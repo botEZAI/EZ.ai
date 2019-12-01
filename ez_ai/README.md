@@ -14,6 +14,7 @@ https://www.learnstorybook.com/
 
 ```
 npm run storybook           //npm run build말고 이 명령어로 써야된다.
-npm run deploy              // 위 storybook 실행과 동시에 홈페이지 갱신 명령어
+npm run deploy-storybook    // 위 storybook 실행과 동시에 홈페이지 갱신 명령어
 ```
 
+https://github.com/storybookjs/storybook-deployer : 깃허브에 스토리북 설치 가이드
