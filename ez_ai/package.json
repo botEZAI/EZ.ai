@@ -13,7 +13,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "deploy": "npm run storybook&&gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -36,6 +37,9 @@
     "@storybook/addon-links": "^5.2.7",
     "@storybook/addons": "^5.2.7",
     "@storybook/react": "^5.2.7",
-    "babel-loader": "^8.0.6"
-  }
+    "babel-loader": "^8.0.6",
+    "gh-pages": "^2.1.1"
+  },
+  "homepage": "https://hanswind.github.io/Ez.ai"
+
 }

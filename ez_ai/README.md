@@ -10,3 +10,10 @@ https://storybook.js.org/docs/guides/guide-react/
 
 https://www.learnstorybook.com/
 
+
+
+```
+npm run storybook           //npm run build말고 이 명령어로 써야된다.
+npm run deploy              // 위 storybook 실행과 동시에 홈페이지 갱신 명령어
+```
+
