@@ -13,8 +13,12 @@ https://www.learnstorybook.com/
 
 
 ```
-npm run storybook           //npm run build말고 이 명령어로 써야된다.
-npm run deploy-storybook    // 위 storybook 실행과 동시에 홈페이지 갱신 명령어
+npm run storybook           // 내 컴퓨터에서 storybook react 실행 명령어
+npm run deploy-storybook    // 홈페이지 갱신 명령어(이건 아직 작동 X)
 ```
 
-https://github.com/storybookjs/storybook-deployer : 깃허브에 스토리북 설치 가이드
+ ( https://github.com/storybookjs/storybook-deployer : 깃허브에 스토리북 설치 가이드 )
+
+
+
+=> 깃허브에 올리면 권한 문제 발생.. 
