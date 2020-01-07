@@ -18,6 +18,9 @@ const Header = () => {
       </Link>
       <div></div>
       <div></div>
+      <Link to="/chatbotlist">
+        <div>챗봇목록</div>
+      </Link>
       <Link to="/login">
         <div>로그인</div>
       </Link>
