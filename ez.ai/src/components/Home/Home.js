@@ -1,6 +1,6 @@
 import React from 'react';
 import './Home.css';
-
+import InputBot from '../InputBot/InputBot';
 const searchResult = [
     {
         id: 1,
@@ -12,32 +12,39 @@ const searchResult = [
     },
     {
         id: 3,
+        loginName: "Line Chatbot"
+    },
+    {
+        id: 4,
         loginName: "facebook Chatbot"
     }
 ]
 
-const Home = () => {
+const Home = ({children}) =>{
     return (
-        <div class="main">
-           <div class="main-title">
-                <div class="sub-title">
-                    <span class="list-title">나의 챗봇 목록</span>
+        <div>
+            <div className="main">
+            <div className="main-title">
+                    <div className="sub-title">
+                        <span className="list-title">나의 챗봇 목록</span>
+                    </div>
+                    <div className="sub-title">
+                        <span>
+                            <input type="text" className="search-input" placeholder="검색어를 입력하세요."/>
+                        </span>
+                        <span className="search-btn-span">
+                            <button>검색</button>
+                        </span>
+                    </div>
                 </div>
-                <div class="sub-title">
-                    <span>
-                        <input type="text" class="search-input" placeholder="검색어를 입력하세요."/>
-                    </span>
-                    <span class="search-btn-span">
-                        <button>검색</button>
-                    </span>
-                </div>
-            </div>            
-            <div class="list-line"></div>
-            <div class="chat-list create-bot">
-                <span>+ 새로운 챗봇 만들기</span>
-             </div>
+                <div class="list-line"></div>   
+                <div className="content">
+                    <InputBot />
+                </div>   
+            </div>
+
         </div>
-    );
+    )
 };
 
 export default Home;
