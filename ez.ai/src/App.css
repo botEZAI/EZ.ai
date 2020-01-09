@@ -2,11 +2,14 @@
 /* 헤더의 로고 양식 */
 .logo_default {
   display: inline-block;
-  background-image : url("");
   height: 80px;
   width : 150px;
-  background-color : aliceblue;
 }
+.logo_default > a {
+  font-size : 35px;
+  font-weight : 600;
+}
+
 
 
 /* header, nav 기본 struct */

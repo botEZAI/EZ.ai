@@ -7,8 +7,7 @@ const Header = () => {
         <div class = "nav">
             <ul>
                 <li class = "logo_default">
-                    <Link to="/">
-                        홈(로고)
+                    <Link to="/">Ez.ai
                     </Link>
                 </li>
                 <li>
