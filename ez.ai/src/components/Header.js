@@ -26,13 +26,16 @@ const Header = () => {
                         FAQ
                     </Link>
                 </li>
+                <li>
+                    <Link to="/chatbotlist">
+                        <div>챗봇목록</div>
+                    </Link>
+                </li>
             </ul>
         </div>
 
         {/*
-            <Link to="/chatbotlist">
-                <div>챗봇목록</div>
-            </Link>
+
         */}
         <div class = "login">
           <Link to="/login">
