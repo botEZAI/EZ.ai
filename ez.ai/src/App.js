@@ -14,6 +14,7 @@ const App = ({ location }) => {
   return (
     <div className="App">
       <Header />
+
       <Switch>
         <Route path="/" component={Home} exact={true} />
         <Route path="/about" component={About} />
