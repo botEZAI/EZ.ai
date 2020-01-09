@@ -14,16 +14,17 @@ const App = ({ location }) => {
   return (
     <div className="App">
       <Header />
-
-      <Switch>
-        <Route path="/" component={Home} exact={true} />
-        <Route path="/about" component={About} />
-        <Route path="/guide" component={Guide} />
-        <Route path="/faq" component={FAQ} />
-        <Route path="/chatbotlist" component={ChatbotList} />
-        <Route path="/login" component={Login} />
-        <Route path="/register" component={Register} />
-      </Switch>
+      <section>
+          <Switch>
+            <Route path="/" component={Home} exact={true} />
+            <Route path="/about" component={About} />
+            <Route path="/guide" component={Guide} />
+            <Route path="/faq" component={FAQ} />
+            <Route path="/chatbotlist" component={ChatbotList} />
+            <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
+          </Switch>
+      </section>
     </div>
   );
 };
