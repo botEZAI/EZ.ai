@@ -2,11 +2,18 @@
   "name": "ez.ai",
   "version": "0.0.1",
   "description": "상명대학교 졸업프로젝트 챗봇빌더 ezai",
+  "main": "index.js",
+  "author": "smuTeam",
+  "license": "ISC",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "cookie-parser": "^1.4.4",
+    "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "morgan": "^1.9.1",
     "mysql": "^2.17.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
@@ -34,6 +41,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ],
-    "proxy": "http://localhost:3001" 
+    "proxy": "http://localhost:3001"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
   }
 }
