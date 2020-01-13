@@ -1,49 +1,18 @@
 {
-  "name": "ez.ai",
-  "version": "0.0.1",
-  "description": "상명대학교 졸업프로젝트 챗봇빌더 ezai",
-  "main": "index.js",
-  "author": "smuTeam",
-  "license": "ISC",
-  "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "cookie-parser": "^1.4.4",
-    "express": "^4.17.1",
-    "express-session": "^1.17.0",
-    "morgan": "^1.9.1",
-    "mysql": "^2.17.1",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-router-dom": "^5.1.2",
-    "react-scripts": "3.3.0",
-    "sequelize": "^5.21.3"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ],
-    "proxy": "http://localhost:3001"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.2"
-  }
+    "name": "management",
+    "version": "1.0.0",
+    "scripts": {
+        "client": "cd client && yarn start",
+        "server": "nodemon server.js",
+        "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+    },
+    "dependencies": {
+        "body-parser": "^1.18.3",
+        "express": "^4.16.4",
+        "mysql": "^2.17.1",
+        "sequelize": "^5.21.3"
+    },
+    "devDependencies": {
+        "concurrently": "^4.0.1"
+    }
 }
