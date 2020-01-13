@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <div className="Header">
-        <div class = "nav">
+        <div className = "nav">
             <ul>
-                <li class = "logo_default">
+                <li className = "logo_default">
                     <Link to="/">Ez.ai
                     </Link>
                 </li>
@@ -36,7 +36,7 @@ const Header = () => {
         {/*
 
         */}
-        <div class = "login">
+        <div className = "login">
           <Link to="/login">
             로그인
           </Link>

@@ -2,7 +2,8 @@
 .main{
   width: 80%;
   max-width: 1200px;
-  /* background-color: yellow; */
+  min-height:500px;
+  height: auto;
   margin: 5rem auto;      /*50px*/
 }
 
@@ -42,22 +43,3 @@
   cursor:pointer
   
 }
-/* // .chat-list{
-//     border: 1px solid #07b1bb;
-//     border-radius: 8px;
-//     height: 50px;
-// }
-
-// .create-bot{
-//     text-align: center;
-//     background-color: #b2bbbb;
-//     border: 1px solid #b2bbbb;
-//     color: white;
-//     font-weight: 700;
-//     font-size: 18px;
-// }
-
-// .create-bot div{
-//     line-height: 260%;
-//     cursor:pointer;
-// } */
