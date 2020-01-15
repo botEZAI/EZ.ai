@@ -41,7 +41,7 @@ class Register extends React.Component
 
   addCustomer()   /* 고객 등록 양식 */
   {
-    const url = '';  /* 작성 필요 */
+    const url = '/api/register';  /* 작성 필요 */
 
     const formData = new FormData();
     formData.append('email', this.state.email)
