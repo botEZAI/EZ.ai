@@ -2,6 +2,7 @@ import React,{ useState } from "react";
 import "./ChatbotList.css";
 import InputBot from './InputBot/InputBot';
 import BotList from "./BotList";
+import axios from 'axios';
 
 const ChatbotList = () => {
     
@@ -16,8 +17,26 @@ const ChatbotList = () => {
             id: bots.length + 1,
             text: "봇 테스트"
         };
+
+        const reqData = {
+            text: data.text
+        };
+
+        console.log(data);
+
+        const url = "/url";  
+
+        axios.post(url, reqData).then( resp => { 
+            // 성공시
+            setBots([...bots, data]);
+        })
+        .catch( err => {
+            // 에러발생시
+            alert("ERROR : " + err);
+        });
         
-        setBots([...bots, data]);
+        // setBots([...bots, data]);
+
         
     };
 
@@ -25,7 +44,7 @@ const ChatbotList = () => {
     const dataRemoveHandler = (id) => {
         // if(window.confirm("목록에서 지우시겠습니까?")){
 
-        let index = bots.filter(bot => {
+        let index = bots.filter(bot => {  // filter가 안 먹히는 브라우저도 있으니 slice 이용하는 걸로 수정 예정
             return (bot.id) !== (id);
         });
         
