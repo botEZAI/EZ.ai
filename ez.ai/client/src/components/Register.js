@@ -60,17 +60,25 @@ class Register extends React.Component
 
   render() {
     return (
-        <form className="register-form" onSubmit={this.handleFormSubmit}>
-          <input type="email" name="email" value={this.state.email} placeholder="이메일" onChange={this.handleValueChange}/>
-          <input type="password" name="password" value={this.state.password} placeholder="비밀번호" onChange={this.handleValueChange}/>
-          <input placeholder="비밀번호 확인(아직 작동 X)" />
+        <div className = "register">
+          <form className="register-form" onSubmit={this.handleFormSubmit}>
+            <div className="register-form__column">
+              <p className="register-title"><span>Ez.ai</span> 회원가입</p>
+              <input type="email" name="email" value={this.state.email} placeholder="이메일" onChange={this.handleValueChange}/><br />
+              <input type="password" name="password" value={this.state.password} placeholder="비밀번호" onChange={this.handleValueChange}/><br />
+              <input placeholder="비밀번호 확인(아직 작동 X)" />
+            </div>
 
-          <span>개인정보</span>
-          <input type="text" name="userName" value={this.state.userName} placeholder="이름" onChange={this.handleValueChange}/>
-          <input type="text" name="nickName" value={this.state.nickName} placeholder="닉네임" onChange={this.handleValueChange}/>
-          <input type="text" name="birthday" value={this.state.birthday} placeholder="생년월일" onChange={this.handleValueChange}/>
-          <button type="submit">회원가입하기</button>
-        </form>
+            <div className="register-form__column">
+              <p>개인정보</p>
+              <input type="text" name="userName" value={this.state.userName} placeholder="이름" onChange={this.handleValueChange}/><br />
+              <input type="text" name="nickName" value={this.state.nickName} placeholder="닉네임" onChange={this.handleValueChange}/><br />
+              <input type="text" name="birthday" value={this.state.birthday} placeholder="생년월일" onChange={this.handleValueChange}/><br />
+              <br />
+              <button className = "register-btn" type="submit">회원가입하기</button>
+            </div>
+          </form>
+        </div>
     )
   }
 }
