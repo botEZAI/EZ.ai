@@ -66,9 +66,9 @@ const ChatbotList = () => {
                     </div>
                     <div className="sub-title">
                         <span>
-                            <input type="text" className="search-input" placeholder="검색어를 입력하세요."/>
+                            <input type="text" className="search-input" placeholder="ChatBot name"/>
                         </span>
-                        <span className="search-btn-span">
+                        <span className="search-btn">
                             <button>검색</button>
                         </span>
                     </div>

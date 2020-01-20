@@ -19,9 +19,28 @@
     color: black;   /*'삭제' 버튼 색상*/
     font-size:0.8rem;
 }
-/*컴포넌트 사이에 테두리 생성*/
+
 .bot-item + .bot-item{
     border:1px solid #7fbdbd;  
     border-radius: 8px;
     margin-top:1%;   /*봇들 사이에 간격 조정*/
+}
+
+/*sns icon CSS*/
+/*2020-01-20 23:50 수정할 예정. default */
+.sns-icons-container span{
+    padding:10px 22px;
+}
+.icon-Kakao{
+    background:url(../sprites/kakao_size40px.png) no-repeat;
+
+}
+.icon-Line{
+    background:url(../sprites/line_size40px.png) no-repeat;    
+}
+.icon-Facebook{
+    background:url(../sprites/facebook_size40px.png) no-repeat;
+}
+.icon-Telegram{
+    background:url(../sprites/Telegram_size40px.png) no-repeat;
 }
