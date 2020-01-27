@@ -71,8 +71,8 @@ a {
 section {
   margin : 0 auto;
   max-width : 1200px;
-  min-height: 500px;  /* 임시 */
-  height: auto; /* section 요소들 높이 500px 이상이면 자동으로 늘어남 */
+  height: auto;
+  min-height: 600px;  /* 임시 */
   background-color : #eee;
   padding: 10px 0;
 }
@@ -87,4 +87,8 @@ article {
   background-color : lavender;
   height: 400px; /* 임시 */
 }
+
+
+
+
 

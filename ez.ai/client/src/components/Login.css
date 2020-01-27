@@ -1,3 +1,150 @@
-#login {
-  text-align : center;
+
+* {
+  box-sizing: border-box;
+}
+
+.article__login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height : 90vh;
+  min-height: 700px;
+  background-color : white;
+}
+
+.login-area {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+
+}
+
+
+/* 로그인 로고 영역 */
+.logo .logo__image {
+  display: inline-block;
+  background-image : url("../objects/logo.PNG");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width : 120px;
+  height: 60px;
+}
+
+.logo p {
+  font-size : 20px;
+  margin : 3px 0;
+}
+
+.logo span {
+  color : #08BAB6;
+}
+
+
+/* 외부 로그인 css */
+.external_login {
+  margin : 20px 0;
+}
+
+.external_login div {
+  margin : 10px 0;
+  border : 2px solid #f2f2f2;
+  width : 350px;
+  height: 60px;
+  line-height: 60px;
+  font-size:  20px;
+  cursor: pointer;
+}
+
+.external_login .google:hover {
+  background-color : rgba(0, 0, 0, 0.2);
+}
+
+.external_login .naver {
+  background-color : #19CE60;
+  color : white;
+}
+
+.external_login .naver:hover {
+  background-color : rgb(0, 176, 80);
+}
+
+
+/* 로그인 입력 창 css */
+.login-input {
+  margin : 20px 0;
+}
+
+.login-form > input {
+  width : 350px;
+  height: 50px;
+  border-radius: 10px;
+  border : 2px solid #f2f2f2;
+  margin: 5px 0;
+  padding : 0 15px;
+}
+
+.login-form input::placeholder {
+  font-size : 15px;
+  color : #bbb;
+}
+
+/* 로그인 입력 아래 추가 기능 css */
+.login-extra {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size : 14px;
+  margin-bottom: 20px;
+}
+
+
+.login-keep {
+  display: flex;
+}
+.login-keep input {
+  display: inline-block;
+  margin-top : 4px;
+  width : 16px;
+  height: 16px;
+  background-color : white;
+}
+
+.login-keep span {
+  padding-left : 3px;
+}
+
+.login-find {
+  margin-top : 2px;
+}
+
+.login-find span {
+  color : #bbb;
+  margin : 0 5px;
+  cursor : pointer;
+}
+
+
+/* 로그인 버튼 */
+.login-btn {
+  margin : 30px 0;
+  width : 350px;
+}
+
+.login-btn button {
+  width : 100%;
+  height: 50px;
+  margin-bottom: 10px;
+  border : 1px solid #08BAB6;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.login-btn .login-btn__login {
+  background-color : #08BAB6;
+  color : white;
+}
+
+.login-btn .login-btn__register {
+  background-color : white;
+  color : #08BAB6;
 }
