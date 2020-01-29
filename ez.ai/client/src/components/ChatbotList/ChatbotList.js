@@ -1,60 +1,83 @@
 import React,{ useState } from "react";
 import "./ChatbotList.css";
 import InputBot from './InputBot/InputBot';
+import Popup from './Popup/Popup';
 import BotList from "./BotList";
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 const ChatbotList = () => {
-    
+
+    Popup.propTypes = {
+        isOpen: PropTypes.bool,
+        close: PropTypes.func.isRequired
+    }
+
+    // 봇 state
     const [bots, setBots] = useState([
         {id:1, text:"기본봇"}
     ]);
+    // 팝업 state
+    const [popup, setPopup] = useState([
+        {showPopup : false}
+    ]);
 
-    // 봇 추가 (배열의 마지막에 추가)
-    const dataInsertHandler = () => {
+    //팝업창 닫으면서 봇을 리스트에 추가
+    const closePopup = () => {
+
+        setPopup({
+            showPopup:false // 팝업창 닫힘
+        });
 
         let data = {
             id: bots.length + 1,
             text: "봇 테스트"
         };
 
-        const reqData = {
-            text: data.text
+        // const reqData = {
+        //     text: data.text
+        // };
+        
+        // const url = "/url";  
+
+        // axios.post(url, reqData).then( resp => { 
+        //     // 성공시
+        //     setBots([...bots, data]);
+        // })
+        // .catch( err => {
+        //     // 에러발생시
+        //     alert("ERROR : " + err);
+        // });
+
+        setBots([...bots, data]);
+    };
+
+    // 팝업창 띄움
+    const dataInsertHandler = () => {
+        let openPopup = {
+            showPopup: true
         };
 
-        console.log(data);
-
-        const url = "/url";  
-
-        axios.post(url, reqData).then( resp => { 
-            // 성공시
-            setBots([...bots, data]);
-        })
-        .catch( err => {
-            // 에러발생시
-            alert("ERROR : " + err);
-        });
-        
-        // setBots([...bots, data]);
-
+        setPopup(openPopup);
         
     };
 
     //봇 삭제
     const dataRemoveHandler = (id) => {
-        // if(window.confirm("목록에서 지우시겠습니까?")){
 
-        let index = bots.filter(bot => {  // filter가 안 먹히는 브라우저도 있으니 slice 이용하는 걸로 수정 예정
-            return (bot.id) !== (id);
+        const index = bots.findIndex(bot => bot.id === id);
+        
+        let newBots = [
+            ...bots.slice(0,index),
+            ...bots.slice(index+1, bots.length)
+        ];
+
+        newBots.forEach ( (el, i) => {
+            el.id=(i + 1);
         });
-        
-        index.forEach( (el, i) => {
-            // 0, 1, 2, 3.....
-            el.id = (i + 1);
-        });
-        
-        setBots(index);
-        
+
+        setBots(newBots);
+
     };
 
     return (
@@ -76,6 +99,7 @@ const ChatbotList = () => {
                 <div className="list-line"></div>   
                 <div className="content">
                     <InputBot onInsert={dataInsertHandler}/>
+                    <Popup isOpen = {popup.showPopup} close = {closePopup}/>
                     <BotList bots={bots}
                              onRemove={dataRemoveHandler}/>
                 </div>   
