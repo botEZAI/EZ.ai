@@ -3,15 +3,12 @@ import "./ChatbotList.css";
 import InputBot from './InputBot/InputBot';
 import Popup from './Popup/Popup';
 import BotList from "./BotList";
-import axios from 'axios';
-import PropTypes from 'prop-types';
+//import axios from 'axios';
+import TokenPopup from "./Popup/TokenPopup";
+import TokenChkPopup from "./Popup/TokenChkPopup";
 
 const ChatbotList = () => {
 
-    Popup.propTypes = {
-        isOpen: PropTypes.bool,
-        close: PropTypes.func.isRequired
-    }
 
     // 봇 state
     const [bots, setBots] = useState([
@@ -19,14 +16,27 @@ const ChatbotList = () => {
     ]);
     // 팝업 state
     const [popup, setPopup] = useState([
-        {showPopup : false}
+        {showPopup1 : false, showPopup2 : false, showPopup3 : false}
     ]);
 
-    //팝업창 닫으면서 봇을 리스트에 추가
-    const closePopup = () => {
+    //InsertStarter: 팝업창 띄움
+    const InsertStarter = () => {
+        let openPopup = {
+            showPopup1: true,
+            showPopup2: false,
+            showPopup3: false
+        };
+
+        setPopup(openPopup);
+    };
+
+    //InserFinish : 팝업창 닫으면서 봇을 리스트에 추가
+    const InsertFinish = () => {
 
         setPopup({
-            showPopup:false // 팝업창 닫힘
+            showPopup1:false,
+            showPopup2:false,
+            showPopup3: false // 팝업창 닫힘
         });
 
         let data = {
@@ -52,17 +62,41 @@ const ChatbotList = () => {
         setBots([...bots, data]);
     };
 
-    // 팝업창 띄움
-    const dataInsertHandler = () => {
-        let openPopup = {
-            showPopup: true
-        };
+    // nextPopup : 봇 간의 이동 (이전, 다음)
+    const nextPopup = (nextVal) => { 
 
-        setPopup(openPopup);
-        
-    };
+        const nextPopup = {
+            showPopup1: false,
+            showPopup2: false,
+            showPopup3 : false
+        }
 
-    //봇 삭제
+        if(nextVal === 'tokenInput'){
+            nextPopup.showPopup1 = false;
+            nextPopup.showPopup2 = true;
+            nextPopup.showPopup3 = false;
+        }else if(nextVal === 'tokenChk'){
+            nextPopup.showPopup1 = false;
+            nextPopup.showPopup2 = false;
+            nextPopup.showPopup3 = true;
+        }else if(nextVal === 'first'){
+            nextPopup.showPopup1 = true;
+            nextPopup.showPopup2 = false;
+            nextPopup.showPopup3 = false;
+        }
+
+        setPopup(nextPopup);
+    }
+    // closePopup : (봇 생성과 무관하게) 팝업창 강제로 닫기
+    const closePopup = () => {
+        setPopup({
+            showPopup1:false,
+            showPopup2:false,
+            showPopup3: false 
+        });
+    }
+
+    //dataRemoveHandler: 봇 삭제
     const dataRemoveHandler = (id) => {
 
         const index = bots.findIndex(bot => bot.id === id);
@@ -98,8 +132,10 @@ const ChatbotList = () => {
                 </div>
                 <div className="list-line"></div>   
                 <div className="content">
-                    <InputBot onInsert={dataInsertHandler}/>
-                    <Popup isOpen = {popup.showPopup} close = {closePopup}/>
+                    <InputBot onInsert={InsertStarter}/>
+                    <Popup isOpen = {popup.showPopup1} close = {closePopup} next = {nextPopup}/>
+                    <TokenPopup isOpen = {popup.showPopup2} close = {closePopup} next = {nextPopup}/>
+                    <TokenChkPopup isOpen = {popup.showPopup3} close = {closePopup} next={nextPopup} finish={InsertFinish}/>
                     <BotList bots={bots}
                              onRemove={dataRemoveHandler}/>
                 </div>   

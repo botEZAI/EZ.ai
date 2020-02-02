@@ -1,29 +1,31 @@
 import React from 'react';
 import './Popup.css';
 
-const Popup = ({isOpen, close}) => {
-
+const Popup = ({isOpen, close, next}) => {
     return(
         <React.Fragment>
             {
                 isOpen ?
                 <React.Fragment>
-                    <div className="popup-overlay" onClick={close} />
+                    <div className="popup-overlay" onClick={close}></div>
                     <div className="popup">
-                        <p className="popup-title">Modal Title</p>
+                        <p className="popup-title">새로운 챗봇 생성</p>
+
                         <div className="popup-content">
-                            <p>
-                                Chatbot Name : <input type="text" />
+                            <p className="botname-input">
+                                Chatbot Name <br /> <input type="text" />
+                            </p>
+                            <p className="desc-input">
+                                description  <br /> <textarea cols="60" />
                             </p>
                             <p>
-                                description: <input type="text" />
-                            </p>
-                            <p>
-                                SNS 
+                                Platform
                             </p>
                         </div>
                         <div className="popup-button-wrap">
-                            <button onClick={close}>다음</button>
+                            <button onClick={close}>취소</button>
+                            <span></span> 
+                            <button onClick={() => next('tokenInput')}>다음</button>
                         </div>
                     </div>
                 </React.Fragment>
