@@ -74,7 +74,6 @@ section {
   height: auto;
   min-height: 600px;  /* 임시 */
   background-color : #eee;
-  padding: 10px 0;
 }
 
 section > div {

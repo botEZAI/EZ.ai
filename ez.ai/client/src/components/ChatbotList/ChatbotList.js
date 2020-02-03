@@ -1,60 +1,117 @@
 import React,{ useState } from "react";
 import "./ChatbotList.css";
 import InputBot from './InputBot/InputBot';
+import Popup from './Popup/Popup';
 import BotList from "./BotList";
-import axios from 'axios';
+//import axios from 'axios';
+import TokenPopup from "./Popup/TokenPopup";
+import TokenChkPopup from "./Popup/TokenChkPopup";
 
 const ChatbotList = () => {
-    
+
+
+    // 봇 state
     const [bots, setBots] = useState([
         {id:1, text:"기본봇"}
     ]);
+    // 팝업 state
+    const [popup, setPopup] = useState([
+        {showPopup1 : false, showPopup2 : false, showPopup3 : false}
+    ]);
 
-    // 봇 추가 (배열의 마지막에 추가)
-    const dataInsertHandler = () => {
+    //InsertStarter: 팝업창 띄움
+    const InsertStarter = () => {
+        let openPopup = {
+            showPopup1: true,
+            showPopup2: false,
+            showPopup3: false
+        };
+
+        setPopup(openPopup);
+    };
+
+    //InserFinish : 팝업창 닫으면서 봇을 리스트에 추가
+    const InsertFinish = () => {
+
+        setPopup({
+            showPopup1:false,
+            showPopup2:false,
+            showPopup3: false // 팝업창 닫힘
+        });
 
         let data = {
             id: bots.length + 1,
             text: "봇 테스트"
         };
 
-        const reqData = {
-            text: data.text
-        };
-
-        console.log(data);
-
-        const url = "/url";  
-
-        axios.post(url, reqData).then( resp => { 
-            // 성공시
-            setBots([...bots, data]);
-        })
-        .catch( err => {
-            // 에러발생시
-            alert("ERROR : " + err);
-        });
+        // const reqData = {
+        //     text: data.text
+        // };
         
-        // setBots([...bots, data]);
+        // const url = "/url";  
 
-        
+        // axios.post(url, reqData).then( resp => { 
+        //     // 성공시
+        //     setBots([...bots, data]);
+        // })
+        // .catch( err => {
+        //     // 에러발생시
+        //     alert("ERROR : " + err);
+        // });
+
+        setBots([...bots, data]);
     };
 
-    //봇 삭제
-    const dataRemoveHandler = (id) => {
-        // if(window.confirm("목록에서 지우시겠습니까?")){
+    // nextPopup : 봇 간의 이동 (이전, 다음)
+    const nextPopup = (nextVal) => { 
 
-        let index = bots.filter(bot => {  // filter가 안 먹히는 브라우저도 있으니 slice 이용하는 걸로 수정 예정
-            return (bot.id) !== (id);
+        const nextPopup = {
+            showPopup1: false,
+            showPopup2: false,
+            showPopup3 : false
+        }
+
+        if(nextVal === 'tokenInput'){
+            nextPopup.showPopup1 = false;
+            nextPopup.showPopup2 = true;
+            nextPopup.showPopup3 = false;
+        }else if(nextVal === 'tokenChk'){
+            nextPopup.showPopup1 = false;
+            nextPopup.showPopup2 = false;
+            nextPopup.showPopup3 = true;
+        }else if(nextVal === 'first'){
+            nextPopup.showPopup1 = true;
+            nextPopup.showPopup2 = false;
+            nextPopup.showPopup3 = false;
+        }
+
+        setPopup(nextPopup);
+    }
+    // closePopup : (봇 생성과 무관하게) 팝업창 강제로 닫기
+    const closePopup = () => {
+        setPopup({
+            showPopup1:false,
+            showPopup2:false,
+            showPopup3: false 
         });
+    }
+
+    //dataRemoveHandler: 봇 삭제
+    const dataRemoveHandler = (id) => {
+
+        const index = bots.findIndex(bot => bot.id === id);
         
-        index.forEach( (el, i) => {
-            // 0, 1, 2, 3.....
-            el.id = (i + 1);
+        let newBots = [
+            ...bots.slice(0,index),
+            ...bots.slice(index+1, bots.length)
+        ];
+
+        newBots.forEach ( (el, i) => {
+            el.id=(i + 1);
         });
-        
-        setBots(index);
-        
+
+        setBots(newBots);
+
     };
 
     return (
@@ -66,16 +123,19 @@ const ChatbotList = () => {
                     </div>
                     <div className="sub-title">
                         <span>
-                            <input type="text" className="search-input" placeholder="검색어를 입력하세요."/>
+                            <input type="text" className="search-input" placeholder="ChatBot name"/>
                         </span>
-                        <span className="search-btn-span">
+                        <span className="search-btn">
                             <button>검색</button>
                         </span>
                     </div>
                 </div>
                 <div className="list-line"></div>   
                 <div className="content">
-                    <InputBot onInsert={dataInsertHandler}/>
+                    <InputBot onInsert={InsertStarter}/>
+                    <Popup isOpen = {popup.showPopup1} close = {closePopup} next = {nextPopup}/>
+                    <TokenPopup isOpen = {popup.showPopup2} close = {closePopup} next = {nextPopup}/>
+                    <TokenChkPopup isOpen = {popup.showPopup3} close = {closePopup} next={nextPopup} finish={InsertFinish}/>
                     <BotList bots={bots}
                              onRemove={dataRemoveHandler}/>
                 </div>   
