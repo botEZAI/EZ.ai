@@ -1,0 +1,48 @@
+.chatbotbuild {
+  display: flex;
+  justify-content: space-between;
+  border-style: solid;
+  height: -webkit-fill-available;
+  text-align: center;
+  max-width: 100%;
+}
+.chatbotbuild-tool {
+  border-style: solid;
+  width: 30%;
+}
+.chatbotbuild-main {
+  border-style: solid;
+  width: 40%;
+}
+.chatbotbuild-preview {
+  border-style: solid;
+  width: 30%;
+}
+.tool-tabs {
+  display: flex;
+  justify-content: space-around;
+}
+.tool-basic {
+  display: inline-block;
+  margin: 10px;
+  width: 30%;
+  height: 50px;
+  border-style: solid;
+  padding: 10px;
+  border-radius: 10px;
+}
+.tool-keyword {
+  display: flex;
+  border-style: solid;
+  margin: 10px;
+  border-radius: 10px;
+  padding: 5px;
+}
+.main-keyword-title {
+  display: inline-block;
+  border-style: solid;
+  width: 60%;
+  margin: 5px;
+  padding: 5px;
+  border-radius: 10px;
+}
