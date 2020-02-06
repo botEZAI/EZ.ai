@@ -1,23 +1,7 @@
-.chatbotbuild {
-  display: flex;
-  justify-content: space-between;
-  border-style: solid;
-  height: -webkit-fill-available;
-  text-align: center;
-  max-width: 100%;
-}
-.chatbotbuild-tool {
-  border-style: solid;
-  width: 30%;
-}
-.chatbotbuild-main {
-  border-style: solid;
-  width: 40%;
-}
-.chatbotbuild-preview {
-  border-style: solid;
-  width: 30%;
-}
+@import './ChatbotBuildLayout.css';
+@import 'BuilderNav.css';
+
+
 .tool-tabs {
   display: flex;
   justify-content: space-around;
