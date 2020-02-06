@@ -1,0 +1,7 @@
+.tool-tabs > div {
+  width: 30%;
+  height: 30px;
+}
+.active {
+  background-color: green;
+}
