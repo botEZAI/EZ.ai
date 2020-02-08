@@ -1,4 +1,4 @@
-@import './BuilderNavContents/Preview.css';
+@import 'Preview.css';
 
 .builderNav {
     position : fixed;
