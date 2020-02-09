@@ -1,7 +1,12 @@
 import React from 'react';
 import './TokenChkPopup.css';
 
-const TokenChkPopup = ({isOpen, close, next, finish}) => {
+const TokenChkPopup = ({isOpen, close, botToken, setBotToken, next, finish}) => {
+
+    const undoToTokenInput = () => { // 토큰 확인 이전으로 돌아갈 경우
+        setBotToken({token:""})
+        next('tokenInput');
+    }
     return(
         <React.Fragment>
             {
@@ -12,12 +17,15 @@ const TokenChkPopup = ({isOpen, close, next, finish}) => {
                         <p className="tokenChk-title">토큰체크팝업</p>
 
                         <div className="tokenChk-content">
-                            <p className="botname-input">
-                                Token 확인 <br /> <input type="text" />
-                            </p>
+                            <div className="tokenChk-header">
+                                Token 확인 
+                            </div>
+                            <div className="tokenVal">
+                                {botToken.token}
+                            </div>
                         </div>
                         <div className="popup-button-wrap">
-                            <button onClick={() => next('tokenInput')}>이전</button>
+                            <button onClick={undoToTokenInput}>이전</button>
                             <button onClick={finish}>완료</button>
                         </div>
                     </div>
@@ -26,6 +34,7 @@ const TokenChkPopup = ({isOpen, close, next, finish}) => {
                 null
             }
         </React.Fragment>
+
     )
 }
 
