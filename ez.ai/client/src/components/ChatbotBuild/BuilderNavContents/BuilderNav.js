@@ -10,6 +10,7 @@ const BuilderNav = () => {
     const navStyle = {
         width : navWidth,
         transition: '.5s width'
+
     }
     const rightArrow = {
         display : rightArrowDisplay
@@ -19,7 +20,7 @@ const BuilderNav = () => {
     }
 
     const foldNav = (e) => {
-        if (navWidth == '400px'){
+        if (navWidth === '400px'){
             setNavWidth('50px');
             setLeftArrowDisplay('block');
             setRightArrowDisplay('none');
@@ -33,7 +34,7 @@ const BuilderNav = () => {
     }
 
     return (
-            <cloasNav>
+            <>
                 <div className="builder__column builderNav" style={navStyle}>
                     <div className="builderNav-btn" onClick = {foldNav}>
                         <i className="fas fa-angle-double-right" style={rightArrow}></i>
@@ -43,7 +44,7 @@ const BuilderNav = () => {
 
                     </div>
                 </div>
-            </cloasNav>
+            </>
         )
 }
 

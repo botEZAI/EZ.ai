@@ -11,15 +11,11 @@
 }
 
 .builder__column {
+    margin : 0;
     display: flex;
     justify-content: center;
-    width : 100%;
     height: inherit;
 
-}
-
-.builder__column:first-child {
-    max-width: 80vw;
 }
 .builderTool {
     border-style: solid;
