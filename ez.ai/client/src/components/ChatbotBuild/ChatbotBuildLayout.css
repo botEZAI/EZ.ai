@@ -13,10 +13,18 @@
   justify-content: center;
   min-height: -webkit-fill-available;
 }
-.builderTool {
-  border-style: solid;
-  width: 30%;
+
+.mainScreen {
+  padding : 20px;
 }
+
+.builderTool {
+  border : .5px solid #999;
+  width: 30%;
+  min-width : 330px;
+  margin : 0 10px;
+}
+
 .builderMain {
   border-style: solid;
   width: 40%;
