@@ -1,27 +1,23 @@
-
-
-
 .builder {
-    position : absolute;
-    margin : 0 auto;
-    left: 0;
-    text-align: center;
-    width : 100vw;
-    height: inherit;
+  position: absolute;
+  margin: 0 auto;
+  left: 0;
+  text-align: center;
+  width: 100vw;
+  height: inherit;
 }
 
 .builder__column {
-    margin : 0;
-    display: flex;
-    justify-content: center;
-    height: inherit;
-
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  min-height: -webkit-fill-available;
 }
 .builderTool {
-    border-style: solid;
-    width: 30%;
+  border-style: solid;
+  width: 30%;
 }
 .builderMain {
-    border-style: solid;
-    width: 40%;
+  border-style: solid;
+  width: 40%;
 }

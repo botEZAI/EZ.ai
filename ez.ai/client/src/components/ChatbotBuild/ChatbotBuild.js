@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-import React, { useState, useCallback, useEffect } from "react";
-=======
 import React, { useState, useCallback } from "react";
-import BuilderNav from "./BuilderNavContents/BuilderNav"
->>>>>>> f1e66e2eed9d4f913a5b0abdb9c6f3d4745fb659
+import BuilderNav from "./BuilderNavContents/BuilderNav";
 import "./ChatbotBuild.css";
 import Tabs from ".//Tabs";
 import ToolBasic from ".//ToolBasic";
@@ -95,17 +91,7 @@ const ChatbotBuild = () => {
           />
         </div>
       </div>
-<<<<<<< HEAD
-      <div className="builder__column builderNav">
-        <div className="builderNav-btn">
-          <i className="fas fa-angle-double-right"></i>
-          <i className="fas fa-angle-double-left"></i>
-        </div>
-        <div className="preview"></div>
-      </div>
-=======
       <BuilderNav />
->>>>>>> f1e66e2eed9d4f913a5b0abdb9c6f3d4745fb659
     </div>
   );
 };
