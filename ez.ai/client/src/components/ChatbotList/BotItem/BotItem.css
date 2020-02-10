@@ -1,46 +1,133 @@
 /*생성되는 봇들의 디자인*/
-.bot-item{
-    padding :1rem;
-    display:flex;
-    align-items:center;
-    cursor:pointer;
-    border:1px solid #7fbdbd;
-    border-radius:8px;
-    background-color: #ffffff;
+.bot-item-default{
+    padding : 1rem;
+    display : flex;
+    cursor : pointer;
+    border : 1px solid #7fbdbd;
+    border-radius : 8px;
+    background-color : #ffffff;
 }
-
-.text{
+.bot-item-default:hover{
+    box-shadow:1px 1px 3px 1px rgba(10,10,120,0.15);
+}
+.bot-item-expand{
+    padding : 1rem;
+    display : flex;
+    border : 1px solid #7fbdbd;
+    border-radius : 8px;
+    flex-direction : column;
+    box-shadow: 1px 1px 3px 1px rgba(10,10,120,0.15);
+}
+.bot-item-header{
+    display:flex;
+}
+.bot-item-footer{
+    margin-top:auto;
+}
+.txt-description{
+    font-size: 10pt;
+    color: gray;
+}
+.txtBox{
+    font-size: 11.5pt;
+    border-style: solid;
+    border-width: 0 0 0 8px;
+    border-color: #bebebe;
+    padding: 12px;
+    word-break: break-all;
+    width: 90%;
+    /* background-color: #f2fdfd; */
+}
+.bot-item-header + .bot-item-footer{
+    margin-top:2%;
+}
+.txt-description + .txtBox{
+    margin-top:10px;
+}
+.bot-name{
     flex:1;
     word-break:break-all;
+    font-size:13pt;
 }
-
+.bot-desc{
+    display:flex;
+}
 .delete{
-    margin-left:1rem;
+    margin-top:1px;
+    margin-left:16px;
     color: black;   /*'삭제' 버튼 색상*/
-    font-size:0.8rem;
+    font-size:10pt;
 }
 
-.bot-item + .bot-item{
+.bot-item-default + .bot-item-default, 
+.bot-item-default + .bot-item-expand,
+.bot-item-expand + .bot-item-expand,
+.bot-item-expand + .bot-item-default
+{
     border:1px solid #7fbdbd;  
     border-radius: 8px;
     margin-top:1%;   /*봇들 사이에 간격 조정*/
 }
-
 /*sns icon CSS*/
 /*2020-01-20 23:50 수정할 예정. default */
 .sns-icons-container span{
-    padding:10px 22px;
+    padding:8px 22px;
 }
-.icon-Kakao{
+.icon-kakao{
     background:url(../sprites/kakao_size40px.png) no-repeat;
-
+    vertical-align: middle;
 }
-.icon-Line{
-    background:url(../sprites/line_size40px.png) no-repeat;    
+.icon-line{
+    background:url(../sprites/line_size40px.png) no-repeat;
+    vertical-align: middle;    
 }
-.icon-Facebook{
+.icon-facebook{
     background:url(../sprites/facebook_size40px.png) no-repeat;
+    vertical-align: middle;
 }
-.icon-Telegram{
+.icon-telegram{
     background:url(../sprites/Telegram_size40px.png) no-repeat;
+    vertical-align: middle;
+}
+/*툴팁 css*/
+[data-tooltip-text]:hover{
+    position: relative;
+}
+[data-tooltip-text]:after{
+    -webkit-transition: bottom .3s ease-in-out;
+    -moz-transition: bottom .3s ease-in-out;
+    transition: bottom .3s ease-in-out;
+
+    background-color:#000000 ;
+    background-color:rgba(0,0,0,0.8);
+
+    -webkit-box-shadow: 0px 0px 3px 1px rgba(50,50,50,0.4);
+    -moz-box-shadow: 0px 0px 3px 1px rgba(50,50,50,0.4);
+    box-shadow:0px 0px 3px 1px rgba(50,50,50,0.4);
+
+    -webkit-border-radius:5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+
+    color:#FFFFFF;
+    font-size:12px;
+    content: attr(data-tooltip-text);
+
+    margin-bottom: 10px;
+    padding: 7px 12px;
+    position: absolute;
+    width:auto;
+    min-width: 50px;
+    max-width:300px;
+    word-wrap: break-word;
+    z-index:9999;
+
+    opacity: 0;
+    left: -9999px;
+    top: 90%;
+}
+[data-tooltip-text]:hover:after{
+    top: 130%;
+    left: 0;
+    opacity: 1;
 }
