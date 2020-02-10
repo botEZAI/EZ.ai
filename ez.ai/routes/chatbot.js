@@ -15,7 +15,6 @@ router.post('/', function(req, res, next){
           console.error(err);
           next(err);
         });
-
     console.log("받아지는 것 확인");
     const content= req.body.keywordObject[0].contents[0].type;
  
