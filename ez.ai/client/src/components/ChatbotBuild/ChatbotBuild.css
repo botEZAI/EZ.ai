@@ -1,20 +1,21 @@
 @import './ChatbotBuildLayout.css';
 @import './BuilderNavContents/BuilderNav.css';
+/* 이름이랑 구조 바꾸기. Tabs의 하위 요소또는 동 수준 요소로 */
 
 
-.tool-tabs {
-  display: flex;
-  justify-content: space-around;
-}
+/* 기본 요소 css */
 .tool-basic {
-  display: inline-block;
-  margin: 10px;
-  width: 30%;
   height: 50px;
   border-style: solid;
   padding: 10px;
   border-radius: 10px;
 }
+
+
+
+
+
+/* 키워드 요소 css */
 .tool-keyword {
   display: flex;
   border-style: solid;
@@ -30,3 +31,8 @@
   padding: 5px;
   border-radius: 10px;
 }
+
+
+
+
+

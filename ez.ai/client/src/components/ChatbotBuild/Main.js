@@ -48,7 +48,7 @@ const Main = ({
                   }}
                 />
               </div>
-              <div className="main-content" key={i + v.content}>
+              <div className="main-content" key={v.contnet + i}>
                 <input
                   value={v.content || ""}
                   onChange={e => {
