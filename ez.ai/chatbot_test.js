@@ -16,7 +16,7 @@ const TelegramBot = require('node-telegram-bot-api');
 
 
 //첫번 째 토큰
-const token = 'input type';
+const token = 'input token';
 const bot = new TelegramBot(token, {polling: true});
 
 // const getOneUser = async() => {
@@ -40,15 +40,21 @@ const bot = new TelegramBot(token, {polling: true});
 //indexOf 문자열 내에서 특정한 문자열의 index 값을 리턴한다.
 bot.on('message', (msg) => {
     console.log(msg);
-    Chatbot.findOne({
-        where:{id:1}
+    Chatbot.findAll({
+       // where:{id:1}
     })
     .then((chatbot)=>{
         console.log("통과");
-        if(chatbot.type=="text"){
-            if (msg.text.toString().toLowerCase().includes(chatbot.entity)) {
-            bot.sendMessage(msg.chat.id, chatbot.content);
+        console.log(chatbot);
+        for(var i = 0;i<chatbot.length;i++){
+        if(chatbot[i].type=="text"){
+            console.log("타입 통과");
+            console.log(chatbot[i].entity);
+            if (msg.text.toString().toLowerCase().includes(chatbot[i].entity)) {
+                console.log("엔티티 통과");    
+            bot.sendMessage(msg.chat.id, chatbot[i].content);
             }
+        }
         }
     })
 });
