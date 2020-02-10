@@ -68,8 +68,7 @@
     border-radius: 8px;
     margin-top:1%;   /*봇들 사이에 간격 조정*/
 }
-/*sns icon CSS*/
-/*2020-01-20 23:50 수정할 예정. default */
+
 .sns-icons-container span{
     padding:8px 22px;
 }

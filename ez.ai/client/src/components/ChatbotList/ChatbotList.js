@@ -3,7 +3,7 @@ import "./ChatbotList.css";
 import InputBot from './InputBot/InputBot';
 import Popup from './Popup/Popup';
 import BotList from "./BotList";
-//import axios from 'axios';
+import axios from 'axios';
 import TokenPopup from "./Popup/TokenPopup";
 import TokenChkPopup from "./Popup/TokenChkPopup";
 
@@ -50,23 +50,22 @@ const ChatbotList = () => {
         };
 
         console.log(dataObject);
-        // const reqData = {
-        //     name: botName.name,
-        //     desc: botDesc.desc,
-        //     sns:botConnect.sns,
-        //     token: botToken.token
-        // };
+        const reqData = {
+            name: botName.name,
+            desc: botDesc.desc,
+            sns : botConnect.sns,
+            token: botToken.token
+        };
         
-        // const url = "/url";  
+        const url = "/api/chatbotlist/createtoken";  
 
-        // axios.post(url, reqData).then( resp => { 
-        //     // 성공시
-        //     setBots([...bots, dataObject]);
-        // })
-        // .catch( err => {
-        //     // 에러발생시
-        //     alert("ERROR : " + err);
-        // });
+        axios.post(url, reqData).then( resp => console.log(resp)
+             //'챗봇 만들기'로 이동시키는 로직
+        )
+        .catch( err => {
+            // 에러발생시
+            alert("ERROR : " + err);
+        });
 
         setBots([...bots, dataObject]);
     };
