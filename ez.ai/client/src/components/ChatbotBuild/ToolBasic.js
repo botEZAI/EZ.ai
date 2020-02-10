@@ -1,11 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import produce from "immer";
 
-const ToolBasic = ({ mainKeyword, onClickBasic }) => {
+const ToolBasic = ({
+  mainKeyword,
+  onClickBasic,
+  setGarbage,
+  keywordObject,
+  setKeywordObject
+}) => {
   const onClickTool = tool => {
-    mainKeyword ? onClickBasic(tool) : alert("키워드를 선택하세요");
+    console.log("onClickTool");
+    mainKeyword
+      ? setKeywordObject(
+          produce(keywordObject, draft => {
+            const object = draft.find(t => t.keyword === mainKeyword);
+            object.contents.push({
+              type: tool,
+              id: object.contents.length + 1,
+              entity: "",
+              content: ""
+            });
+          })
+        )
+      : alert("키워드를 선택하세요");
+    console.log(keywordObject);
   };
   return (
     <>
+      {console.log("Toolbasic")}
       <div
         className="tool-basic tool-basic-text"
         onClick={() => onClickTool("text")}
@@ -14,9 +36,9 @@ const ToolBasic = ({ mainKeyword, onClickBasic }) => {
       </div>
       <div
         className="tool-basic tool-basic-list"
-        onClick={() => onClickTool("list")}
+        onClick={() => onClickTool("image")}
       >
-        list
+        image
       </div>
     </>
   );

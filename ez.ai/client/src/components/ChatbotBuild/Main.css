@@ -1,0 +1,14 @@
+.main-content {
+  display: flex;
+  margin: 10px;
+}
+.main-entity {
+  display: flex;
+  justify-content: flex-end;
+  margin: 10px;
+}
+.main-button {
+  display: flex;
+  justify-content: flex-end;
+  margin: 5px;
+}
