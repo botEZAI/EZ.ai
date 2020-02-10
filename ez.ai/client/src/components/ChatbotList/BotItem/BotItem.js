@@ -24,20 +24,6 @@ const BotItem = (props) => {
             return null;
         }
     }
-    // const botSnsStateHandler = (botConnect) => {
-    //     if (botConnect === "kakao"){
-    //         return (<span className="publish-indicator">●</span>);
-    //     }else if (botConnect === "line"){
-    //         return (<span className="publish-indicator">●</span>);
-    //     }else if (botConnect === "facebook"){
-    //         return (<span className="publish-indicator">●</span>);
-    //     }else if (botConnect === "telegram"){
-    //         return (<span className="publish-indicator">●</span>);
-    //     }else{
-    //         return null;
-    //     }
-
-    // }
     return(
         <React.Fragment>
         {
