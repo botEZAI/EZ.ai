@@ -1,21 +1,26 @@
 
 
-
+section {
+    max-width: 100%;
+    height: 80vh;
+}
 .builder {
-    position : absolute;
-    margin : 0 auto;
-    left: 0;
+
     text-align: center;
-    width : 100vw;
+    max-width: 100%;
     height: inherit;
 }
 
 .builder__column {
-    margin : 0;
     display: flex;
     justify-content: center;
+    width : 100%;
     height: inherit;
 
+}
+
+.builder__column:first-child {
+    max-width: 80vw;
 }
 .builderTool {
     border-style: solid;

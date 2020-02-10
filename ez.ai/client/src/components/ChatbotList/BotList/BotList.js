@@ -1,14 +1,14 @@
 import React from 'react';
 import BotItem from '../BotItem';
 
-const BotList = ({bots, onRemove, }) => {
+const BotList = (props) => {
     
+    const {bots, onRemove}=props;
+
     const botList = bots.map (bot => {
         return <BotItem key = {bot.id}
-                        onRemove = {() => onRemove(bot.id)}
-                        botDesc={bot.desc}
-                        botConnect={bot.sns}>
-                        {bot.name}
+                        onRemove = {() => onRemove(bot.id)}>
+                        {bot.text}
                 </BotItem>
     });
 

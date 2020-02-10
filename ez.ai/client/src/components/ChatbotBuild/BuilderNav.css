@@ -1,12 +1,12 @@
-@import 'Preview.css';
+@import './BuilderNavContents/Preview.css';
 
 .builderNav {
     position : fixed;
-    border-left : 0.5px solid #ddd;
+    background-color: #ddd;
     right : 0;
     top : 80px;
     height : 100vh;
-    background-color: #fdfdfd;
+    width: 400px;
 }
 
 .builderNav-btn {
@@ -24,4 +24,6 @@
     color : #bbb;
 }
 
-
+.builderNav-btn > .fa-angle-double-left {
+    display: none;
+}

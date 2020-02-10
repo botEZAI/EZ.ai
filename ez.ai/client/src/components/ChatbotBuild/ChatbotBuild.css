@@ -1,5 +1,5 @@
 @import './ChatbotBuildLayout.css';
-@import './BuilderNavContents/BuilderNav.css';
+@import 'BuilderNav.css';
 
 
 .tool-tabs {
