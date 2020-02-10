@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import BuilderNav from "./BuilderNavContents/BuilderNav";
+import Preview from "./BuilderNavContents/Preview";
 import "./ChatbotBuild.css";
 import Tabs from ".//Tabs";
 import ToolBasic from ".//ToolBasic";
@@ -145,7 +145,7 @@ const ChatbotBuild = () => {
           <i className="fas fa-angle-double-right" style={rightArrow}></i>
           <i className="fas fa-angle-double-left" style={leftArrow}></i>
         </div>
-        <BuilderNav />
+        <Preview />
       </div>
 
     </div>

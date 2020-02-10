@@ -32,6 +32,7 @@
 /* 사이드 바 css */
 .builderNav {
   position : fixed;
+  display: block;
   border-left : 0.5px solid #ddd;
   right : 0;
   top : 80px;

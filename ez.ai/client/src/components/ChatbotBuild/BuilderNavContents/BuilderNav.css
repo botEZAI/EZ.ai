@@ -1,5 +1,16 @@
 @import 'Preview.css';
 
-
+.sidebar-icon {
+    position : fixed;
+    right : 0;
+    display: inline-block;
+    background-color : #3f5a9d;
+    width : 49.5px;
+    height: 49.5px;;
+    box-sizing: border-box;
+    margin : 10px 0;
+    cursor : pointer;
+    text-align: center;
+}
 
 

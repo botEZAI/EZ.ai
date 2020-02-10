@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 
 
-const BuilderNav = () => {
-
-
+const Preview = () => {
     return (
         <>
             <div className="preview">
+                <div className = "sidebar-icon preview-icon">미리보기</div>
             </div>
         </>
         )
@@ -14,4 +13,4 @@ const BuilderNav = () => {
 
 
 
-export default BuilderNav;
+export default Preview;
