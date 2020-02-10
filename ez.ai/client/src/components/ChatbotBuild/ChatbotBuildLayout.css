@@ -11,12 +11,9 @@
   margin-bottom: 10px;
   display: flex;
   justify-content: center;
-  min-height: -webkit-fill-available;
+  height: auto;
 }
 
-.mainScreen {
-  padding : 20px;
-}
 
 .builderTool {
   border : .5px solid #999;

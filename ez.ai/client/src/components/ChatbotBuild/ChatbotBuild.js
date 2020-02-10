@@ -94,7 +94,7 @@ const ChatbotBuild = () => {
 
   return (
     <div className="builder">
-      <div className="builder__column mainScreen" style={mainStyle}>
+      <div className="builder__column" style={mainStyle}>
         <div className="builderTool">
           <div className="tool-tabs">
             <Tabs activeTab={activeTab} onSelect={onSelect}>
