@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import produce from "immer";
 
 const ToolBasic = ({
@@ -39,6 +39,12 @@ const ToolBasic = ({
         onClick={() => onClickTool("image")}
       >
         image
+      </div>
+      <div
+        className="tool-basic tool-basic-list"
+        onClick={() => onClickTool("location")}
+      >
+        location
       </div>
     </>
   );
