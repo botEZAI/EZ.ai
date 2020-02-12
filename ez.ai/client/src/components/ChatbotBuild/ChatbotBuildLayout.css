@@ -12,19 +12,20 @@
   display: flex;
   justify-content: center;
   height: auto;
+  min-height: 800px;
 }
-
 
 .builderTool {
   border : .5px solid #999;
-  width: 30%;
+  width: 50%;
   min-width : 330px;
   margin : 0 10px;
+
 }
 
 .builderMain {
-  border-style: solid;
-  width: 40%;
+  border : .5px solid #999;
+  width: 500px;
 }
 
 
