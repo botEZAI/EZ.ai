@@ -13,7 +13,7 @@
   align-items: center;
   width : 33.3%;
   height: 50px;
-  border: 0.2px solid #d9d9d9;
+  border-bottom: 0.2px solid #d9d9d9;
   cursor : pointer;
   font-weight : bold;
 }
