@@ -11,9 +11,6 @@ const Main = ({
   setKeywordObject
 }) => {
   const index = keywordObject.findIndex(v => v.keyword === mainKeyword);
-  const onClickCurrent = e => {
-    console.log(e.currentTarget);
-  };
 
   //post
   const onClickButton = () => {
@@ -35,9 +32,24 @@ const Main = ({
         keywordObject[index].contents.map((v, i) =>
           v.type === "text" ? (
             <>
+              <div className="main-entity" key={v + i}>
+                <input
+                  placeholder="entity"
+                  value={v.entity || ""}
+                  onChange={e => {
+                    setKeywordObject(
+                      produce(keywordObject, draft => {
+                        const tmp = draft[index].contents.find(
+                          t => t.id === v.id
+                        );
+                        tmp.entity = e.target.value;
+                      })
+                    );
+                  }}
+                />
+              </div>
               <div className="main-content" key={v.contnet + i}>
                 <input
-                  onClick={e => onClickCurrent(e)}
                   value={v.content || ""}
                   onChange={e => {
                     setKeywordObject(
@@ -55,6 +67,22 @@ const Main = ({
             </>
           ) : v.type === "image" ? (
             <>
+              <div className="main-entity" key={v + i}>
+                <input
+                  placeholder="entity"
+                  value={v.entity || ""}
+                  onChange={e => {
+                    setKeywordObject(
+                      produce(keywordObject, draft => {
+                        const tmp = draft[index].contents.find(
+                          t => t.id === v.id
+                        );
+                        tmp.entity = e.target.value;
+                      })
+                    );
+                  }}
+                />
+              </div>
               <div className="main-content" key={v.contnet + i}>
                 <input
                   value={v.content || ""}
@@ -69,53 +97,6 @@ const Main = ({
                     );
                   }}
                   placeholder="image"
-                />
-              </div>
-            </>
-          ) : v.type === "location" ? (
-            <>
-              <div className="main-content" key={v.contnet + i}>
-                <input
-                  value={v.content.title || ""}
-                  onChange={e => {
-                    setKeywordObject(
-                      produce(keywordObject, draft => {
-                        const tmp = draft[index].contents.find(
-                          t => t.id === v.id
-                        );
-                        tmp.content.title = e.target.value;
-                      })
-                    );
-                  }}
-                  placeholder="title"
-                />
-                <input
-                  value={v.content.latitude || ""}
-                  onChange={e => {
-                    setKeywordObject(
-                      produce(keywordObject, draft => {
-                        const tmp = draft[index].contents.find(
-                          t => t.id === v.id
-                        );
-                        tmp.content.latitude = e.target.value;
-                      })
-                    );
-                  }}
-                  placeholder="latitude"
-                />
-                <input
-                  value={v.content.longtitude || ""}
-                  onChange={e => {
-                    setKeywordObject(
-                      produce(keywordObject, draft => {
-                        const tmp = draft[index].contents.find(
-                          t => t.id === v.id
-                        );
-                        tmp.content.longtitude = e.target.value;
-                      })
-                    );
-                  }}
-                  placeholder="longtitude"
                 />
               </div>
             </>
