@@ -5,6 +5,7 @@ import Tabs from ".//Tabs";
 import ToolBasic from ".//ToolBasic";
 import ToolAdvance from ".//ToolAdvance";
 import ToolKeyword from ".//ToolKeyword";
+import ToolStatus from "./ToolStatus";
 import Main from ".//Main";
 
 const ChatbotBuild = () => {
@@ -46,51 +47,43 @@ const ChatbotBuild = () => {
     console.log(mainKeywordObject);
   }, []);
 
-
-
-  {/* 오른쪽 사이드바 fold 동적 프로그래밍 코드*/}
-  const [mainWidth, setMainWidth] = useState('calc(100vw - 50px)');
-  const [navWidth, setNavWidth] = useState('50px');
-  const [leftArrowDisplay, setLeftArrowDisplay] = useState('block');
-  const [rightArrowDisplay, setRightArrowDisplay] = useState('none');
+  {
+    /* 오른쪽 사이드바 fold 동적 프로그래밍 코드*/
+  }
+  const [mainWidth, setMainWidth] = useState("calc(100vw - 50px)");
+  const [navWidth, setNavWidth] = useState("50px");
+  const [leftArrowDisplay, setLeftArrowDisplay] = useState("block");
+  const [rightArrowDisplay, setRightArrowDisplay] = useState("none");
 
   const mainStyle = {
-    width : mainWidth,
-    transition: '.5s width'
-  }
+    width: mainWidth,
+    transition: ".5s width"
+  };
 
   const navStyle = {
-    width : navWidth,
-    transition: '.5s width'
-
-  }
+    width: navWidth,
+    transition: ".5s width"
+  };
   const rightArrow = {
-    display : rightArrowDisplay
-  }
+    display: rightArrowDisplay
+  };
   const leftArrow = {
-    display : leftArrowDisplay
-  }
+    display: leftArrowDisplay
+  };
 
-  const foldNav = (e) => {
-    if (navWidth === '400px'){
-      setNavWidth('50px');
-      setMainWidth('calc(100vw - 50px)');
-      setLeftArrowDisplay('block');
-      setRightArrowDisplay('none');
-
+  const foldNav = e => {
+    if (navWidth === "400px") {
+      setNavWidth("50px");
+      setMainWidth("calc(100vw - 50px)");
+      setLeftArrowDisplay("block");
+      setRightArrowDisplay("none");
     } else {
-      setNavWidth('400px');
-      setMainWidth('calc(100vw - 400px)')
-      setLeftArrowDisplay('none');
-      setRightArrowDisplay('block');
+      setNavWidth("400px");
+      setMainWidth("calc(100vw - 400px)");
+      setLeftArrowDisplay("none");
+      setRightArrowDisplay("block");
     }
-
-  }
-
-
-
-
-
+  };
 
   return (
     <div className="builder">
@@ -112,7 +105,13 @@ const ChatbotBuild = () => {
                 setGarbage={setGarbage}
               />
             )}
-            {activeTab === "advance" && <ToolAdvance />}
+            {activeTab === "advance" && (
+              <ToolAdvance
+                mainKeyword={mainKeyword}
+                keywordObject={keywordObject}
+                setKeywordObject={setKeywordObject}
+              />
+            )}
             {activeTab === "keyword" && (
               <ToolKeyword
                 keyword={keyword}
@@ -123,6 +122,15 @@ const ChatbotBuild = () => {
                 onClickKeyword={onClickKeyword}
                 setKeywordObject={setKeywordObject}
                 mainKeywordObject={mainKeywordObject}
+              />
+            )}
+          </div>
+          <div>
+            {(activeTab === "basic" || activeTab === "advance") && (
+              <ToolStatus
+                mainKeyword={mainKeyword}
+                keywordObject={keywordObject}
+                setKeywordObject={setKeywordObject}
               />
             )}
           </div>
@@ -141,13 +149,12 @@ const ChatbotBuild = () => {
 
       {/* 챗봇 빌더 오른쪽 사이드 바 기본 레이아웃*/}
       <div className="builder__column builderNav" style={navStyle}>
-        <div className="builderNav-btn" onClick = {foldNav}>
+        <div className="builderNav-btn" onClick={foldNav}>
           <i className="fas fa-angle-double-right" style={rightArrow}></i>
           <i className="fas fa-angle-double-left" style={leftArrow}></i>
         </div>
         <Preview />
       </div>
-
     </div>
   );
 };

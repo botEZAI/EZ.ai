@@ -1,6 +1,7 @@
 .main-content {
   display: flex;
-  margin: 10px;
+  flex-direction: column;
+  margin: 20px;
 }
 .main-entity {
   display: flex;
