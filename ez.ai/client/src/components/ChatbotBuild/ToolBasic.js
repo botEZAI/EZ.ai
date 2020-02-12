@@ -14,12 +14,17 @@ const ToolBasic = ({
       ? setKeywordObject(
           produce(keywordObject, draft => {
             const object = draft.find(t => t.keyword === mainKeyword);
-            object.contents.push({
-              type: tool,
-              id: object.contents.length + 1,
-              entity: "",
-              content: ""
-            });
+            tool === "location"
+              ? object.contents.push({
+                  type: tool,
+                  id: object.contents.length + 1,
+                  content: { title: "", latitude: "", longtitude: "" }
+                })
+              : object.contents.push({
+                  type: tool,
+                  id: object.contents.length + 1,
+                  content: ""
+                });
           })
         )
       : alert("키워드를 선택하세요");

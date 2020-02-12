@@ -5,6 +5,7 @@ import Tabs from ".//Tabs";
 import ToolBasic from ".//ToolBasic";
 import ToolAdvance from ".//ToolAdvance";
 import ToolKeyword from ".//ToolKeyword";
+import ToolStatus from "./ToolStatus";
 import Main from ".//Main";
 
 const ChatbotBuild = () => {
@@ -121,6 +122,15 @@ const ChatbotBuild = () => {
                 onClickKeyword={onClickKeyword}
                 setKeywordObject={setKeywordObject}
                 mainKeywordObject={mainKeywordObject}
+              />
+            )}
+          </div>
+          <div>
+            {(activeTab === "basic" || activeTab === "advance") && (
+              <ToolStatus
+                mainKeyword={mainKeyword}
+                keywordObject={keywordObject}
+                setKeywordObject={setKeywordObject}
               />
             )}
           </div>

@@ -1,7 +1,6 @@
-@import './ChatbotBuildLayout.css';
-@import './BuilderNavContents/BuilderNav.css';
+@import "./ChatbotBuildLayout.css";
+@import "./BuilderNavContents/BuilderNav.css";
 /* 이름이랑 구조 바꾸기. Tabs의 하위 요소또는 동 수준 요소로 */
-
 
 /* 기본 요소 css */
 .tool-basic {
@@ -10,10 +9,6 @@
   padding: 10px;
   border-radius: 10px;
 }
-
-
-
-
 
 /* 키워드 요소 css */
 .tool-keyword {
@@ -32,7 +27,13 @@
   border-radius: 10px;
 }
 
-
-
-
-
+/* Tool Stuatus */
+.tool-status {
+  border-style: solid;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.status-input {
+}
