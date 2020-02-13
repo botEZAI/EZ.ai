@@ -1,3 +1,6 @@
+@import "ToolBasic.css";
+@import "ToolStatus.css";
+
 
 .tool-tabs {
   display: flex;
@@ -24,6 +27,3 @@
   transition : .5s background-color;
 }
 
-.tool-contents {
-  padding : 10px;
-}
