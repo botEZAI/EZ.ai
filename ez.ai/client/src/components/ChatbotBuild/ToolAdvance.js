@@ -31,7 +31,8 @@ const ToolAdvance = ({
         className="tool-basic tool-basic-text"
         onClick={() => onClickTool("list")}
       >
-        list
+          <i className="fas fa-list"></i>
+        버튼형 리스트
       </div>
     </>
   );

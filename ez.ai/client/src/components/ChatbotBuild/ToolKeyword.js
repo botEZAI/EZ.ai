@@ -33,22 +33,30 @@ const ToolKeyword = ({
   return (
     <>
       {console.log("Toolkeyword")}
-      <form onSubmit={onSubmit}>
-        <input placeholder="키워드" value={value} onChange={onChangeInput} />
-        <button type="submit">추가</button>
-      </form>
-      {keywordList.map((keyword, index) => {
-        return (
-          <div
-            key={index}
-            label={keyword}
-            onClick={() => onClickKeyword(keyword)}
-            className="tool-keyword"
-          >
-            {keyword}
-          </div>
-        );
-      })}
+      <div className="keyword-contents">
+        <div className="add-keyword">
+        <form onSubmit={onSubmit}>
+          <input placeholder="키워드" value={value} onChange={onChangeInput} />
+          <button type="submit">추가</button>
+        </form>
+      </div>
+
+        <div className="keyword-status">
+          <h4>키워드 목록</h4>
+          {keywordList.map((keyword, index) => {
+            return (
+                <div
+                    key={index}
+                    label={keyword}
+                    onClick={() => onClickKeyword(keyword)}
+                    className="tool-keyword"
+                >
+                  {keyword}
+                </div>
+            );
+          })}
+        </div>
+      </div>
     </>
   );
 };

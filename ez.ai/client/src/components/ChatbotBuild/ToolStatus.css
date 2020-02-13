@@ -1,0 +1,9 @@
+
+/* Tool Stuatus */
+.tool-status {
+    border-top : 0.5px solid #d9d9d9;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

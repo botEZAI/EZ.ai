@@ -37,19 +37,22 @@ const ToolBasic = ({
         className="tool-basic tool-basic-text"
         onClick={() => onClickTool("text")}
       >
-        text
+          <i className="far fa-comment-alt"></i>
+        텍스트
       </div>
       <div
         className="tool-basic tool-basic-list"
         onClick={() => onClickTool("image")}
       >
-        image
+          <i className="fas fa-image"></i>
+        이미지
       </div>
       <div
         className="tool-basic tool-basic-list"
         onClick={() => onClickTool("location")}
       >
-        location
+          <i className="fas fa-map-marked-alt"></i>
+        위치
       </div>
     </>
   );
