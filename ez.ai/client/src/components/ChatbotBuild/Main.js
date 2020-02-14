@@ -36,7 +36,7 @@ const Main = ({
           v.type === "text" ? (
             <>
               <div className="main-content" key={v.contnet + i}>
-                <input
+                <textarea
                   onClick={e => onClickCurrent(e)}
                   value={v.content || ""}
                   onChange={e => {
