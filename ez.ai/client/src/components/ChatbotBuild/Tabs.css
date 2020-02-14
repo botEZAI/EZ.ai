@@ -3,11 +3,17 @@
 @import "ToolStatus.css";
 
 
+.builderTool > div {
+  margin : 0 1px;
+}
+
+
 .tool-tabs {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 50px;
+  margin : 0!important;
 
 }
 
