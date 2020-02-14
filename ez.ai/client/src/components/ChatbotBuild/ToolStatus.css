@@ -115,9 +115,12 @@
 
 }
 
-.status-text input {
+.status-text textarea {
     width : inherit;
-    height: 50px;
+    height: 150px;
 }
 
+.status-text textarea:focus {
+    outline-color: rgb(0, 184, 180);
+}
 

@@ -41,7 +41,7 @@ const ToolStatus = ({ mainKeyword, keywordObject, setKeywordObject }) => {
                 <>
                   <div className="status-input status-text">
                     <textarea
-                      placeholder="text"
+                      placeholder="작성하고자 하는 텍스트를 적어주세요"
                       value={currentContent || ""}
                       onChange={e => {
                         setKeywordObject(
