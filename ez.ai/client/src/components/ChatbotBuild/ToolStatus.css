@@ -1,9 +1,123 @@
 
-/* Tool Stuatus */
+/* tool status css */
 .tool-status {
     border-top : 0.5px solid #d9d9d9;
-    height: 300px;
+    padding-top : 50px;
+}
+
+
+
+
+/* tool status-header css */
+.tool-status-header {
+    height: 50px;
+    border-top : 0.2px solid #d9d9d9;
+    border-bottom: 0.1px solid #d9d9d9;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding : 0 20px;
+}
+
+.tool-status-name {
+    display: inline-block;
+    height: inherit;
+    min-width : 50px;
+    line-height: 50px;
+}
+
+.tool-status-header .help {
+    width : 20px;
+    height: 20px;
+    border-radius: 10px;
+    background-color : #bbb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    color : #fff;
+    cursor : pointer;
+}
+
+.tool-status-header .help:hover {
+    background-color : orange;
+    width : 26px;
+    height : 26px;
+    font-size: 14px;
+    transition: .2s all;
+}
+
+
+
+
+
+
+
+/* Tool status main css */
+.tool-status-main {
+    min-height: 300px;
     display: flex;
     align-items: center;
     justify-content: center;
+    border-bottom:  0.1px solid #d9d9d9;
 }
+
+
+/* tool status-nav css */
+.tool-status-nav {
+    height: 50px;
+    border-bottom: 0.2px solid #d9d9d9;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.tool-status-nav-btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.tool-status-btn {
+    width : 50px;
+    height : 30px;
+    margin-right : 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: #eee;
+    color : #999;
+    cursor : pointer;
+    transition: .2s all;
+}
+
+
+.tool-status-nav-btns .confirm:hover {
+    background-color: #86CD33;
+    color : #fff;
+}
+
+.tool-status-nav-btns .decline:hover {
+    background-color: #BE5A5A;
+    color : #fff;
+}
+
+
+/* 각 요소별 입력칸 css */
+/*==========================================================*/
+
+/* 텍스트 */
+.status-text {
+    width : 90%;
+
+}
+
+.status-text input {
+    width : inherit;
+    height: 50px;
+}
+
+

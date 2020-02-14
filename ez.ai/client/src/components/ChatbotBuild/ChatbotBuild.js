@@ -125,7 +125,7 @@ const ChatbotBuild = () => {
               />
             )}
           </div>
-          <div>
+          <div className="tool-status">
             {(activeTab === "basic" || activeTab === "advance") && (
               <ToolStatus
                 mainKeyword={mainKeyword}
