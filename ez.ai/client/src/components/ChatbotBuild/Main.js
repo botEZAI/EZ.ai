@@ -36,7 +36,7 @@ const Main = ({
           v.type === "text" ? (
             <>
               <div className="main-content" key={v.contnet + i}>
-                <input
+                <textarea
                   onClick={e => onClickCurrent(e)}
                   value={v.content || ""}
                   onChange={e => {
@@ -49,7 +49,7 @@ const Main = ({
                       })
                     );
                   }}
-                  placeholder="text"
+                  placeholder="작성하고자 하는 텍스트를 적어주세요"
                 />
               </div>
             </>
