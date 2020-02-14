@@ -15,36 +15,15 @@ const ChatbotBuild = () => {
   const [mainKeyword, setMainKeyword] = useState("");
   const [keywordContentList, setKeywordContentList] = useState([]);
   const [keywordObject, setKeywordObject] = useState([]);
-  const [mainKeywordObject, setMainKeywordObject] = useState({});
-  const [garbage, setGarbage] = useState("");
+  const [clickedMainInput, setClickedMainInput] = useState({});
   const onSelect = useCallback(tab => {
     setActiveTab(tab);
     console.log("onSelect");
   }, []);
 
-  // const onClickBasic = useCallback(
-  //   e => {
-  //     console.log("onClickBasic");
-  //     const keywordIndex = keywordObject.findIndex(
-  //       v => v.keyword === mainKeyword
-  //     );
-  //     const smainKeywordObject = keywordObject[keywordIndex];
-
-  //     smainKeywordObject.contents = [
-  //       ...smainKeywordObject.contents,
-  //       { type: e, content: null }
-  //     ];
-  //     console.log(keywordObject);
-  //     console.log("smain=", smainKeywordObject);
-  //     setMainKeywordObject(keywordObject[keywordIndex]);
-  //     console.log("main=", mainKeywordObject);
-  //   },
-  //   [keywordObject, mainKeyword, mainKeywordObject]
-  // );
   const onClickKeyword = useCallback(keyword => {
     setMainKeyword(keyword);
     console.log("onclIkkeywod");
-    console.log(mainKeywordObject);
   }, []);
 
   {
@@ -102,7 +81,7 @@ const ChatbotBuild = () => {
                 mainKeyword={mainKeyword}
                 keywordObject={keywordObject}
                 setKeywordObject={setKeywordObject}
-                setGarbage={setGarbage}
+                setClickedMainInput={setClickedMainInput}
               />
             )}
             {activeTab === "advance" && (
@@ -110,6 +89,7 @@ const ChatbotBuild = () => {
                 mainKeyword={mainKeyword}
                 keywordObject={keywordObject}
                 setKeywordObject={setKeywordObject}
+                setClickedMainInput={setClickedMainInput}
               />
             )}
             {activeTab === "keyword" && (
@@ -121,7 +101,6 @@ const ChatbotBuild = () => {
                 keywordObject={keywordObject}
                 onClickKeyword={onClickKeyword}
                 setKeywordObject={setKeywordObject}
-                mainKeywordObject={mainKeywordObject}
               />
             )}
           </div>
@@ -131,6 +110,7 @@ const ChatbotBuild = () => {
                 mainKeyword={mainKeyword}
                 keywordObject={keywordObject}
                 setKeywordObject={setKeywordObject}
+                clickedMainInput={clickedMainInput}
               />
             )}
           </div>
@@ -141,8 +121,8 @@ const ChatbotBuild = () => {
             keywordContentList={keywordContentList}
             keywordObject={keywordObject}
             keywordList={keywordList}
-            mainKeywordObject={mainKeywordObject}
             setKeywordObject={setKeywordObject}
+            setClickedMainInput={setClickedMainInput}
           />
         </div>
       </div>

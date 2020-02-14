@@ -1,7 +1,12 @@
 import React from "react";
 import produce from "immer";
 
-const ToolStatus = ({ mainKeyword, keywordObject, setKeywordObject }) => {
+const ToolStatus = ({
+  mainKeyword,
+  keywordObject,
+  setKeywordObject,
+  clickedMainInput
+}) => {
   const index = keywordObject.findIndex(v => v.keyword === mainKeyword);
   const length = keywordObject[index] && keywordObject[index].contents.length;
   const currentInput =
@@ -10,10 +15,12 @@ const ToolStatus = ({ mainKeyword, keywordObject, setKeywordObject }) => {
     keywordObject[index] &&
     keywordObject[index].contents[length - 1] &&
     keywordObject[index].contents[length - 1].content;
+  console.log(clickedMainInput.content);
   return (
     <>
       <div className="tool-status">
-        {currentInput &&
+        {!clickedMainInput.content &&
+          currentInput &&
           (currentInput.type === "text" ? (
             <>
               <div className="status-input status-text">
@@ -91,19 +98,93 @@ const ToolStatus = ({ mainKeyword, keywordObject, setKeywordObject }) => {
             </>
           ) : currentInput.type === "list" ? (
             <>
-              <div className="status-input status-lsit">
-                <input
-                  placeholder="lsit"
-                  value={currentContent || ""}
-                  onChange={e => {
-                    setKeywordObject(
-                      produce(keywordObject, draft => {
-                        draft[index].contents[length - 1].content =
-                          e.target.value;
-                      })
-                    );
-                  }}
-                />
+              <div className="status-input status-list">
+                <table>
+                  <tr>
+                    <input
+                      placeholder="list"
+                      value={currentContent[0] || ""}
+                      onChange={e => {
+                        setKeywordObject(
+                          produce(keywordObject, draft => {
+                            draft[index].contents[length - 1].content[0] =
+                              e.target.value;
+                          })
+                        );
+                      }}
+                    />
+                    <input
+                      placeholder="list"
+                      value={currentContent[1] || ""}
+                      onChange={e => {
+                        setKeywordObject(
+                          produce(keywordObject, draft => {
+                            draft[index].contents[length - 1].content[1] =
+                              e.target.value;
+                          })
+                        );
+                      }}
+                    />
+                    <input
+                      placeholder="list"
+                      value={currentContent[2] || ""}
+                      onChange={e => {
+                        setKeywordObject(
+                          produce(keywordObject, draft => {
+                            draft[index].contents[length - 1].content[2] =
+                              e.target.value;
+                          })
+                        );
+                      }}
+                    />
+                  </tr>
+                  <tr>
+                    <input
+                      placeholder="list"
+                      value={currentContent[3] || ""}
+                      onChange={e => {
+                        setKeywordObject(
+                          produce(keywordObject, draft => {
+                            draft[index].contents[length - 1].content[3] =
+                              e.target.value;
+                          })
+                        );
+                      }}
+                    />
+                    <input
+                      placeholder="list"
+                      value={currentContent[4] || ""}
+                      onChange={e => {
+                        setKeywordObject(
+                          produce(keywordObject, draft => {
+                            draft[index].contents[length - 1].content[4] =
+                              e.target.value;
+                          })
+                        );
+                      }}
+                    />
+                    <input
+                      placeholder="list"
+                      value={currentContent[5] || ""}
+                      onChange={e => {
+                        setKeywordObject(
+                          produce(keywordObject, draft => {
+                            draft[index].contents[length - 1].content[5] =
+                              e.target.value;
+                          })
+                        );
+                      }}
+                    />
+                  </tr>
+                </table>
+              </div>
+            </>
+          ) : null)}
+        {clickedMainInput.content &&
+          (clickedMainInput.type === "text" ? (
+            <>
+              <div className="status-input status-text">
+                <input value={clickedMainInput.content} />
               </div>
             </>
           ) : null)}
