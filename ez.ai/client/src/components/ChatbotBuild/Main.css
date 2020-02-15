@@ -1,7 +1,7 @@
 .main-content {
-  display: flex;
-  flex-direction: column;
-  margin: 20px;
+  display:block;
+  margin:10px;
+  margin-right:100px;
 }
 .main-entity {
   display: flex;
@@ -9,7 +9,61 @@
   margin: 10px;
 }
 .main-button {
-  display: flex;
-  justify-content: flex-end;
-  margin: 5px;
+  float:right;
+  margin:13px;
+}
+/*2020-02-15 Main.js css code edited by hyeonjeong*/
+.main-keyword-title{
+  position:relative;
+  background-color:#e5ffd0;
+  border:1px solid #e5ffd0;
+  padding:2%;
+  max-width:60%;
+  width:fit-content;
+  word-break:break-all;
+  margin: 20px 15px 15px auto;
+}
+.main-keyword-title:after{
+  position:absolute;
+  border-top:0px solid transparent;
+  border-bottom:15px solid transparent;
+  border-left:15px solid #e5ffd0;
+  border-right:0px solid transparent;
+  content:"";
+  right:-9px;
+  top:-1px;
+}
+.main-header{
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-color: #54759e;
+  height:70px;
+  color: white;
+  display:flex;
+}
+.main-header-icon{
+  flex:none;
+}
+.item-last{
+  margin-left:auto;
+  font-size:17pt;
+  margin-top:5px;
+}
+.fa{
+  vertical-align: middle;
+  margin: 20px;
+}
+.main-contents{
+  display:flex;
+  flex-direction: column;
+  height:680px;
+  overflow-y: auto;
+}
+.main-footer{
+  border: .5px solid #999;
+  background-color:#EEEEEE;
+  height:50px;
+  margin-top:auto;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
