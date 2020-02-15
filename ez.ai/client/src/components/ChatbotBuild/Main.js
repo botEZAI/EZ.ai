@@ -8,13 +8,11 @@ const Main = ({
   keywordObject,
   keywordList,
   mainKeywordObject,
-  setKeywordObject
+  setKeywordObject,
+  onClickCurrent,
+  setClickedMainInput
 }) => {
   const index = keywordObject.findIndex(v => v.keyword === mainKeyword);
-  const onClickCurrent = e => {
-    console.log(e.currentTarget);
-  };
-
   //post
   const onClickButton = () => {
     axios
@@ -35,9 +33,12 @@ const Main = ({
         keywordObject[index].contents.map((v, i) =>
           v.type === "text" ? (
             <>
-              <div className="main-content" key={v.contnet + i}>
+              <div
+                className="main-content"
+                onClick={() => setClickedMainInput(v)}
+                key={v.contnet + i}
+              >
                 <textarea
-                  onClick={e => onClickCurrent(e)}
                   value={v.content || ""}
                   onChange={e => {
                     setKeywordObject(
@@ -117,6 +118,110 @@ const Main = ({
                   }}
                   placeholder="longtitude"
                 />
+              </div>
+            </>
+          ) : v.type === "list" ? (
+            <>
+              <div className="main-content" key={v.contnet + i}>
+                <input
+                  value={v.content[0] || ""}
+                  onChange={e => {
+                    setKeywordObject(
+                      produce(keywordObject, draft => {
+                        const tmp = draft[index].contents.find(
+                          t => t.id === v.id
+                        );
+                        tmp.content[0] = e.target.value;
+                      })
+                    );
+                  }}
+                  placeholder="list"
+                />
+
+                {v.content[1] && (
+                  <input
+                    value={v.content[1] || ""}
+                    onChange={e => {
+                      setKeywordObject(
+                        produce(keywordObject, draft => {
+                          const tmp = draft[index].contents.find(
+                            t => t.id === v.id
+                          );
+                          tmp.content[1] = e.target.value;
+                        })
+                      );
+                    }}
+                    placeholder="list"
+                  />
+                )}
+
+                {v.content[2] && (
+                  <input
+                    value={v.content[2] || ""}
+                    onChange={e => {
+                      setKeywordObject(
+                        produce(keywordObject, draft => {
+                          const tmp = draft[index].contents.find(
+                            t => t.id === v.id
+                          );
+                          tmp.content[2] = e.target.value;
+                        })
+                      );
+                    }}
+                    placeholder="list"
+                  />
+                )}
+
+                {v.content[3] && (
+                  <input
+                    value={v.content[3] || ""}
+                    onChange={e => {
+                      setKeywordObject(
+                        produce(keywordObject, draft => {
+                          const tmp = draft[index].contents.find(
+                            t => t.id === v.id
+                          );
+                          tmp.content[3] = e.target.value;
+                        })
+                      );
+                    }}
+                    placeholder="list"
+                  />
+                )}
+
+                {v.content[4] && (
+                  <input
+                    value={v.content[4] || ""}
+                    onChange={e => {
+                      setKeywordObject(
+                        produce(keywordObject, draft => {
+                          const tmp = draft[index].contents.find(
+                            t => t.id === v.id
+                          );
+                          tmp.content[4] = e.target.value;
+                        })
+                      );
+                    }}
+                    placeholder="list"
+                  />
+                )}
+
+                {v.content[5] && (
+                  <input
+                    value={v.content[5] || ""}
+                    onChange={e => {
+                      setKeywordObject(
+                        produce(keywordObject, draft => {
+                          const tmp = draft[index].contents.find(
+                            t => t.id === v.id
+                          );
+                          tmp.content[5] = e.target.value;
+                        })
+                      );
+                    }}
+                    placeholder="list"
+                  />
+                )}
               </div>
             </>
           ) : null

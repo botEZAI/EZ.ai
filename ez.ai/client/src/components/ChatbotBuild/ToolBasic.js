@@ -6,7 +6,8 @@ const ToolBasic = ({
   onClickBasic,
   setGarbage,
   keywordObject,
-  setKeywordObject
+  setKeywordObject,
+  setClickedMainInput
 }) => {
   const onClickTool = tool => {
     console.log("onClickTool");
@@ -28,6 +29,7 @@ const ToolBasic = ({
           })
         )
       : alert("키워드를 선택하세요");
+    setClickedMainInput("");
     console.log(keywordObject);
   };
   return (
@@ -37,21 +39,21 @@ const ToolBasic = ({
         className="tool-basic tool-basic-text"
         onClick={() => onClickTool("text")}
       >
-          <i className="far fa-comment-alt"></i>
+        <i className="far fa-comment-alt"></i>
         텍스트
       </div>
       <div
         className="tool-basic tool-basic-list"
         onClick={() => onClickTool("image")}
       >
-          <i className="fas fa-image"></i>
+        <i className="fas fa-image"></i>
         이미지
       </div>
       <div
         className="tool-basic tool-basic-list"
         onClick={() => onClickTool("location")}
       >
-          <i className="fas fa-map-marked-alt"></i>
+        <i className="fas fa-map-marked-alt"></i>
         위치
       </div>
     </>

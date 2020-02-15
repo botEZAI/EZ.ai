@@ -5,7 +5,8 @@ const ToolAdvance = ({
   mainKeyword,
   onClickBasic,
   keywordObject,
-  setKeywordObject
+  setKeywordObject,
+  setClickedMainInput
 }) => {
   const onClickTool = tool => {
     console.log("onClickTool");
@@ -13,15 +14,21 @@ const ToolAdvance = ({
       ? setKeywordObject(
           produce(keywordObject, draft => {
             const object = draft.find(t => t.keyword === mainKeyword);
-            object.contents.push({
-              type: tool,
-              id: object.contents.length + 1,
-              entity: "",
-              content: ""
-            });
+            tool === "list"
+              ? object.contents.push({
+                  type: tool,
+                  id: object.contents.length + 1,
+                  content: ["", "", "", "", "", ""]
+                })
+              : object.contents.push({
+                  type: tool,
+                  id: object.contents.length + 1,
+                  content: []
+                });
           })
         )
       : alert("키워드를 선택하세요");
+    setClickedMainInput("");
     console.log(keywordObject);
   };
   return (
@@ -31,7 +38,7 @@ const ToolAdvance = ({
         className="tool-basic tool-basic-text"
         onClick={() => onClickTool("list")}
       >
-          <i className="fas fa-list"></i>
+        <i className="fas fa-list"></i>
         버튼형 리스트
       </div>
     </>
