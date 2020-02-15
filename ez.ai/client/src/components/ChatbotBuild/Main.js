@@ -38,7 +38,7 @@ const Main = ({
                 onClick={() => setClickedMainInput(v)}
                 key={v.contnet + i}
               >
-                <input
+                <textarea
                   value={v.content || ""}
                   onChange={e => {
                     setKeywordObject(
@@ -50,7 +50,7 @@ const Main = ({
                       })
                     );
                   }}
-                  placeholder="text"
+                  placeholder="작성하고자 하는 텍스트를 적어주세요"
                 />
               </div>
             </>

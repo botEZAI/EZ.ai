@@ -63,8 +63,14 @@
 /* 키워드 요소 css */
 .tool-keyword {
     display: flex;
-    background-color: lavender;
+    border : 2px solid lavender;
     margin: 10px;
     border-radius: 10px;
-    padding: 5px;
+    padding: 5px 10px;
+    cursor : pointer;
+    font-weight: bold;
+}
+
+.tool-keyword:hover {
+    box-shadow: 0.5px 0.5px 0.5px 1px #eee;
 }

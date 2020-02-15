@@ -18,7 +18,34 @@ const ToolStatus = ({
   console.log(clickedMainInput.content);
   return (
     <>
-      <div className="tool-status">
+    
+    
+            <div className = "tool-status-header">
+            <div className="tool-status-name">
+                {currentInput &&
+                    (currentInput.type === "text" ? (
+                        <>
+                            <span>텍스트</span>
+                        </>
+                    ) : currentInput.type === "image" ? (
+                        <>
+                            <span>이미지</span>
+                        </>
+                        ) : currentInput.type === "location" ? (
+                        <>
+                            <span>위치</span>
+                        </>
+                        ) : currentInput.type === "list" ? (
+                        <>
+                            <span>버튼형 리스트</span>
+                        </>
+                        ) : null)}
+            </div>
+            <div className = "help" alt="도움말">?</div>
+        </div>
+
+
+      <div className="tool-status-main">
         {!clickedMainInput.content &&
           currentInput &&
           (currentInput.type === "text" ? (
@@ -113,6 +140,7 @@ const ToolStatus = ({
                         );
                       }}
                     />
+
                     <input
                       placeholder="list"
                       value={currentContent[1] || ""}
@@ -189,6 +217,16 @@ const ToolStatus = ({
             </>
           ) : null)}
       </div>
+
+
+
+        <div className = "tool-status-nav">
+            <div></div>
+            <div className = "tool-status-nav-btns">
+                <div className = "tool-status-btn confirm">확인</div>
+                <div className = "tool-status-btn decline">삭제</div>
+            </div>
+        </div>
     </>
   );
 };
