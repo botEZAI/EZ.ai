@@ -2,8 +2,7 @@ import React from "react";
 
 const Home = () => {
   return <div>
-    <article>
-      아티클 1
+    <article className="main-banner">
     </article>
     <article>
       아티클 2

@@ -1,3 +1,5 @@
+@import "./Home.css";
+
 
 /* 헤더의 로고 양식 */
 .logo_default {
@@ -86,12 +88,15 @@ section > div {
   position : relative;
 }
 
+
 article {
   margin-bottom : 10px;
   padding : 0;
   background-color : lavender;
   height: 400px; /* 임시 */
 }
+
+
 
 
 
