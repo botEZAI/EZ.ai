@@ -21,7 +21,6 @@ const Popup = ({
         setBotDesc({desc:e.target.value});
     }
     const onChangeBotSns = (e) => { //한 챗봇 당 하나의 소셜 계정만 연동
-        console.log(e.target.value);
         setCheckError(false);
         setBotConnect({sns:e.target.value});
     }
