@@ -219,3 +219,19 @@
     font-weight: bold;
     color : #999;
 }
+
+
+
+/* 위치 */
+/* 임시 css */
+.status-location {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.status-location input {
+    margin : 2px;
+    outline-color: #00b8b4;
+}

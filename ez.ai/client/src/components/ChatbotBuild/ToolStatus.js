@@ -96,9 +96,11 @@ const ToolStatus = ({
 
           ) : currentInput.type === "location" ? (
             <>
+
               <div className="status-input status-location">
+                  <p>임시 - 추후 지도 API로 연동</p>
                 <input
-                  placeholder="title"
+                  placeholder="장소 이름을 적어주세요"
                   value={currentContent.title || ""}
                   onChange={e => {
                     setKeywordObject(
@@ -110,7 +112,7 @@ const ToolStatus = ({
                   }}
                 />
                 <input
-                  placeholder="latitude"
+                  placeholder="latitude(위도)"
                   value={currentContent.latitude || ""}
                   onChange={e => {
                     setKeywordObject(
@@ -122,7 +124,7 @@ const ToolStatus = ({
                   }}
                 />
                 <input
-                  placeholder="longtitude"
+                  placeholder="longtitude(경도)"
                   value={currentContent.longtitude || ""}
                   onChange={e => {
                     setKeywordObject(
