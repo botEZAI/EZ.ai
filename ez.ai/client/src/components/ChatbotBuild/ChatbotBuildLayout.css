@@ -4,7 +4,9 @@
   left: 0;
   text-align: center;
   width: 100vw;
-  height: inherit;
+  height: 90vh;
+  display: flex;
+  align-items: center;
 }
 
 .builder__column {
