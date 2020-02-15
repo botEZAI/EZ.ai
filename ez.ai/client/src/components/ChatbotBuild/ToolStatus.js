@@ -51,8 +51,8 @@ const ToolStatus = ({
           (currentInput.type === "text" ? (
             <>
               <div className="status-input status-text">
-                <input
-                  placeholder="text"
+                <textarea
+                  placeholder="작성하고자 하는 텍스트를 적어주세요"
                   value={currentContent || ""}
                   onChange={e => {
                     setKeywordObject(
@@ -66,22 +66,34 @@ const ToolStatus = ({
               </div>
             </>
           ) : currentInput.type === "image" ? (
-            <>
-              <div className="status-input status-image">
-                <input
-                  placeholder="image"
-                  value={currentContent || ""}
-                  onChange={e => {
-                    setKeywordObject(
-                      produce(keywordObject, draft => {
-                        draft[index].contents[length - 1].content =
-                          e.target.value;
-                      })
-                    );
-                  }}
-                />
-              </div>
-            </>
+            <div className ="image-status">
+                <div className="status-image-tab">
+                    <div className = "image-tab-btn outer-img-link">외부 이미지 URL</div>
+                    <div className = "image-tab-btn upload-img-file">이미지 첨부하기</div>
+                </div>
+
+                <div className="status-input status-image">
+                    <div className = "status-image-input">
+                        <input
+                          placeholder="외부 URL를 입력해주세요"
+                          value={currentContent || ""}
+                          onChange={e => {
+                            setKeywordObject(
+                              produce(keywordObject, draft => {
+                                draft[index].contents[length - 1].content =
+                                  e.target.value;
+                              })
+                            );
+                          }}
+                        />
+                        <div className="outer-img-btn">적용</div>
+                    </div>
+                    <div className = "image-preview">
+                        <div className = "image-preview-screen">이미지 미리보기</div>
+                    </div>
+                </div>
+            </div>
+
           ) : currentInput.type === "location" ? (
             <>
               <div className="status-input status-location">
