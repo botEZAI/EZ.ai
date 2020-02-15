@@ -60,6 +60,7 @@
     align-items: center;
     justify-content: center;
     border-bottom:  0.1px solid #d9d9d9;
+    margin : 0 auto;
 }
 
 
@@ -124,3 +125,113 @@
     outline-color: rgb(0, 184, 180);
 }
 
+
+/* 이미지 */
+.image-status {
+    width : 80%;
+    min-height: inherit;
+    background-color: #eee;
+    margin : 20px 0;
+}
+
+.status-image-tab {
+    height: 50px;
+    background-color: #ddd;
+    margin-bottom : 20px;
+    display: flex;
+}
+
+.status-image-tab > div {
+    width : 50%;
+    height: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor : pointer;
+}
+
+.status-image-tab > div:active {
+    background-color: orange;
+}
+
+.status-image {
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.status-image-input {
+    width : 80%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.status-image-input input {
+    width : 60%;
+    height: 30px;
+    font-size : 14px;
+    outline-color: #00b8b4;
+}
+
+.status-image-input .outer-img-btn {
+    width : 60px;
+    height: 30px;
+    background-color: #ddd;
+    margin-left : 20px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size : 14px;
+    cursor: pointer;
+}
+
+.status-image-input .outer-img-btn:hover {
+    background-color: #00b8b4;
+    color : #eee;
+    transition: 0.2s all;
+}
+
+.status-image .image-preview {
+    height :200px;
+    width : 80%;
+    background-color: white;
+    margin : 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-preview .image-preview-screen {
+    border : 2px dotted #ddd;
+    width : 50%;
+    height: 80%;
+    border-radius: 10px;
+    background-color: #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color : #999;
+}
+
+
+
+/* 위치 */
+/* 임시 css */
+.status-location {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.status-location input {
+    margin : 2px;
+    outline-color: #00b8b4;
+}
