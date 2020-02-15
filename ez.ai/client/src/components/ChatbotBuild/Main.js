@@ -21,15 +21,21 @@ const Main = ({
   };
   return (
     <>
-      <button className="main-button" onClick={onClickButton}>
-        저장
-      </button>
-      {keywordObject[index] && (
-        <div className="main-keyword-title">
-          KEYWORD: {keywordObject[index].keyword}
+      <div className="main-header">
+        <div className="main-header-icon">
+          <span className="item"><i className="fa fa-arrow-left"></i></span>
+          <span className="item"><i className="fa fa-user-circle fa-2x"></i></span>
+          <span className="item">USER</span>
         </div>
-      )}
-      {keywordObject[index] &&
+        <div className="item-last"><i className="fa fa-ellipsis-v"></i></div>
+      </div>
+      <div className="main-contents">
+        {keywordObject[index] && (
+          <div className="main-keyword-title">
+            KEYWORD: {keywordObject[index].keyword}
+          </div>
+        )}
+        {keywordObject[index] &&
         keywordObject[index].contents.map((v, i) =>
           v.type === "text" ? (
             <>
@@ -226,7 +232,12 @@ const Main = ({
             </>
           ) : null
         )}
-
+      </div>
+      <div className="main-footer">
+        <button className="main-button" onClick={onClickButton}>
+          저장
+        </button>
+      </div>
       {console.log("main")}
     </>
   );
