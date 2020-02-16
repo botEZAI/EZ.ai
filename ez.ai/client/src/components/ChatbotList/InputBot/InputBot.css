@@ -16,4 +16,5 @@
 .input-bot:hover{
     background-color:#c4cccc;
     box-shadow:1px 1px 1px 1px rgba(10,10,120,0.15);
+    transition: .5s all;
 }

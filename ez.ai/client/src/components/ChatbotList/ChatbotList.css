@@ -38,6 +38,7 @@
 .search-btn button:hover{ /*검색 버튼에 생명력을 불어넣음*/
   background-color: skyblue;
   color:white;
+  transition: .2s all;
 }
 .search-input{
   width: 9.5rem;
