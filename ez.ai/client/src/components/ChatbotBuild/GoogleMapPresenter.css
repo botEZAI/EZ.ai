@@ -1,0 +1,9 @@
+.GoogleMapPresenter {
+    width : 200px;
+    height :200px;
+}
+
+.GoogleMapPresenter > div {
+    width : inherit!important;
+    height : inherit!important;
+}

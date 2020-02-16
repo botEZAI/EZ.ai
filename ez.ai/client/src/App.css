@@ -1,3 +1,5 @@
+@import "./Home.css";
+
 
 /* 헤더의 로고 양식 */
 .logo_default {
@@ -75,17 +77,17 @@ a {
  */
 section {
   margin-top : 80px!important;
-  padding-top : 20px;
+  padding : 20px 0;
   margin : 0 auto;
   max-width : 1200px;
-  height: auto;
-  min-height: 600px;  /* 임시 */
+  height: 95vh;
   background-color : #eee;
 }
 
 section > div {
   position : relative;
 }
+
 
 article {
   margin-bottom : 10px;
@@ -95,6 +97,17 @@ article {
 }
 
 
+
+
+
+/* footer css */
+footer {
+  position : relative;
+  bottom : 0;
+  background-color: #eee;
+  width : 100%;
+  height: 10vh;
+}
 
 
 
