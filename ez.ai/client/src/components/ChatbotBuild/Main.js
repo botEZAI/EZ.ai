@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import produce from "immer";
 import axios from "axios";
 import "./Main.css";
+import GoogleMapPresenter from "./GoogleMapPresenter";
 
 
 const Main = ({
@@ -77,8 +78,11 @@ const Main = ({
                       })
                     );
                   }}
-                  placeholder="image"
+                  placeholder="image url"
                 />
+                <div className = "image-preview">
+                  <div className = "image-preview-screen">이미지 미리보기</div>
+                </div>
               </div>
             </>
           ) : v.type === "location" ? (
@@ -126,11 +130,14 @@ const Main = ({
                   }}
                   placeholder="longtitude"
                 />
+                <GoogleMapPresenter />
               </div>
+              
+              
             </>
           ) : v.type === "list" ? (
             <>
-              <div className="main-content" key={v.contnet + i}>
+              <div className="main-content list-content" key={v.contnet + i}>
                 <input
                   value={v.content[0] || ""}
                   onChange={e => {

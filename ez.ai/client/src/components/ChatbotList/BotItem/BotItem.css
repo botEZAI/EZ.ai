@@ -9,6 +9,7 @@
 }
 .bot-item-default:hover{
     box-shadow:1px 1px 3px 1px rgba(10,10,120,0.15);
+    transition: .5s all;
 }
 .bot-item-expand{
     padding : 1rem;
