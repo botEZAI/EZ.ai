@@ -1,5 +1,6 @@
 import React from "react";
 import produce from "immer";
+import GoogleMapPresenter from "./GoogleMapPresenter";
 
 const ToolStatus = ({
   mainKeyword,
@@ -136,6 +137,7 @@ const ToolStatus = ({
                   }}
                 />
               </div>
+                <GoogleMapPresenter />;
             </>
           ) : currentInput.type === "list" ? (
             <>
@@ -247,3 +249,4 @@ const ToolStatus = ({
 };
 
 export default ToolStatus;
+
