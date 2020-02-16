@@ -141,9 +141,10 @@ const ToolStatus = ({
             <>
               <div className="status-input status-list">
                 <table>
+                    <p>텍스트작성 / 키워드 등록(키워드에 대한 텍스트 작성) / 마지막요소로 권장 등 추가하기</p>
                   <tr>
                     <input
-                      placeholder="list"
+                      placeholder="키워드명을 적어주세요"
                       value={currentContent[0] || ""}
                       onChange={e => {
                         setKeywordObject(
@@ -156,7 +157,7 @@ const ToolStatus = ({
                     />
 
                     <input
-                      placeholder="list"
+                      placeholder="키워드명을 적어주세요"
                       value={currentContent[1] || ""}
                       onChange={e => {
                         setKeywordObject(
@@ -168,7 +169,7 @@ const ToolStatus = ({
                       }}
                     />
                     <input
-                      placeholder="list"
+                      placeholder="키워드명을 적어주세요"
                       value={currentContent[2] || ""}
                       onChange={e => {
                         setKeywordObject(
@@ -182,7 +183,7 @@ const ToolStatus = ({
                   </tr>
                   <tr>
                     <input
-                      placeholder="list"
+                      placeholder="키워드명을 적어주세요"
                       value={currentContent[3] || ""}
                       onChange={e => {
                         setKeywordObject(
@@ -194,7 +195,7 @@ const ToolStatus = ({
                       }}
                     />
                     <input
-                      placeholder="list"
+                      placeholder="키워드명을 적어주세요"
                       value={currentContent[4] || ""}
                       onChange={e => {
                         setKeywordObject(
@@ -206,7 +207,7 @@ const ToolStatus = ({
                       }}
                     />
                     <input
-                      placeholder="list"
+                      placeholder="키워드명을 적어주세요"
                       value={currentContent[5] || ""}
                       onChange={e => {
                         setKeywordObject(

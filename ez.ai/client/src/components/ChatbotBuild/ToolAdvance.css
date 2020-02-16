@@ -1,0 +1,12 @@
+
+.status-list input{
+    width : 25%;
+    height: 30px;
+    margin : 5px;
+    background-color : #eee;
+    padding: 2px 2px 2px 10px;
+    border : none;
+    border-radius: 5px;
+    outline-color: #00b8b4;
+
+}
