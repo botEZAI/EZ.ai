@@ -29,5 +29,5 @@ class GoogleMapPresenter extends React.Component {
 }
 
 export default GoogleApiWrapper ({
-    apikey : "AIzaSyDcvQUQaNKEFF3Wu-m4pEdjbp5BR8u0ig4"
+    apikey : ""
 })(GoogleMapPresenter);
