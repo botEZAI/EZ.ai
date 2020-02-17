@@ -9,11 +9,7 @@ module.exports = (sequelize, DataTypes) => (
         type: DataTypes.STRING(20),
         allowNull: false,
       },
-      entity: {
-        type: DataTypes.TEXT,
-        allowNull: true,
-      },
-        content: {
+      content: {
         type: DataTypes.TEXT,
         allowNull: true,
       },
