@@ -15,7 +15,7 @@ db.Chatbot = require('./chatbot')(sequelize, Sequelize);
 db.Keyword = require('./keyword')(sequelize, Sequelize);
 
 
-db.Keyword.hasMany(db.Chatbot, {foreigkey: 'keyword', sourceKey: 'id'});
-db.Chatbot.belongsTo(db.Keyword, {foreigkey: 'keyword', targetKey: 'id'});
+db.Keyword.hasMany(db.Chatbot, {foreignKey: 'keyworder', sourceKey: 'id'});
+db.Chatbot.belongsTo(db.Keyword, {foreignKey: 'keyworder', targetKey: 'id'});
 
 module.exports = db;
