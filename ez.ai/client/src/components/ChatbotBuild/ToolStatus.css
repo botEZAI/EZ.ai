@@ -209,8 +209,6 @@
 
 .image-preview .image-preview-screen {
     border : 2px dotted #ddd;
-    width : 50%;
-    height: 80%;
     border-radius: 10px;
     background-color: #eee;
     display: flex;
