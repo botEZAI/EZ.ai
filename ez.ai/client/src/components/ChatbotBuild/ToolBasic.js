@@ -30,7 +30,6 @@ const ToolBasic = ({
         )
       : alert("키워드를 선택하세요");
     setClickedMainInput("");
-    console.log(keywordObject);
   };
   return (
     <>
