@@ -21,9 +21,9 @@ const Main = ({
       .post("/api/chatbotbuild", { keywordObject })
       .then(res => console.log(res));
   };
+  //scroll
   const contentRef = useRef(null);
-
-  useEffect(()=>{ /** content 추가될때마다 스크롤 최하단으로 이동하는 코드 */
+  useEffect(()=>{
     contentRef.current.scrollTop = contentRef.current.scrollHeight;
   });
 
@@ -72,6 +72,9 @@ const Main = ({
                     }}
                     placeholder="작성하고자 하는 텍스트를 적어주세요"
                   />
+                  <div className="tool-delete delete-text">
+                    <i className="fas fa-times"></i>
+                  </div>
                 </div>
               </>
             ) : v.type === "image" ? (
@@ -97,6 +100,9 @@ const Main = ({
                   />
                   <div className="image-preview">
                     <div className="image-preview-screen">이미지 미리보기</div>
+                  </div>
+                  <div className="tool-delete delete-image">
+                    <i className="fas fa-times"></i>
                   </div>
                 </div>
               </>
@@ -146,6 +152,9 @@ const Main = ({
                     placeholder="longtitude"
                   />
                   <GoogleMapPresenter />
+                  <div className="tool-delete delete-location">
+                    <i className="fas fa-times"></i>
+                  </div>
                 </div>
               </>
             ) : v.type === "list" ? (
@@ -250,6 +259,9 @@ const Main = ({
                       placeholder="list"
                     />
                   )}
+                  <div className="tool-delete delete-listbox">
+                    <i className="fas fa-times"></i>
+                  </div>
                 </div>
               </>
             ) : null
