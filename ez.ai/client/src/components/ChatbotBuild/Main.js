@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import produce from "immer";
 import axios from "axios";
 import "./Main.css";
 import GoogleMapPresenter from "./GoogleMapPresenter";
-
 
 const Main = ({
   mainKeyword,
@@ -22,6 +21,12 @@ const Main = ({
       .post("/api/chatbotbuild", { keywordObject })
       .then(res => console.log(res));
   };
+  const contentRef = useRef(null);
+
+  useEffect(()=>{ /** content 추가될때마다 스크롤 최하단으로 이동하는 코드 */
+    contentRef.current.scrollTop = contentRef.current.scrollHeight;
+  });
+
   return (
     <>
       <div className="main-header">
@@ -32,7 +37,7 @@ const Main = ({
         </div>
         <div className="item-last"><i className="fa fa-ellipsis-v"></i></div>
       </div>
-      <div className="main-contents">
+      <div className="main-contents" ref={contentRef}>
         {keywordObject[index] && (
           <div className="main-keyword-title">
             KEYWORD: {keywordObject[index].keyword}
