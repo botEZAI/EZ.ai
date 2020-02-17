@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import produce from "immer";
 import GoogleMapPresenter from "./GoogleMapPresenter";
 
@@ -25,6 +25,26 @@ const ToolStatus = ({
       keywordObject[index].contents[clickedIndex] &&
       keywordObject[index].contents[clickedIndex].content
   );
+
+
+
+  /*이미지 외부 URL 입력후 적용시 미리보기에 적용*/
+  const [imageURL, setImageURL] = useState('');
+  const [imageWidth, setImageWidth] = useState('50%');
+  const [imageHeight, setImageHeight] = useState('80%');
+
+  const imagePreviewStyle = {
+      backgroundImage : `url(${imageURL})`,
+      backgroundSize : '100% 100%',
+      minWidth : '50%',
+      minHeight: '80%',
+  }
+
+
+  const onClickLoadImage = (imagePreviewStyle) => {
+      setImageURL(keywordObject[index].contents[length - 1].content);
+  };
+
 
   return (
     <>
@@ -102,25 +122,28 @@ const ToolStatus = ({
                 </div>
               </div>
 
-              <div className="status-input status-image">
-                <div className="status-image-input">
-                  <input
-                    placeholder="외부 URL를 입력해주세요"
-                    value={currentContent || ""}
-                    onChange={e => {
-                      setKeywordObject(
-                        produce(keywordObject, draft => {
-                          draft[index].contents[length - 1].content =
-                            e.target.value;
-                        })
-                      );
-                    }}
-                  />
-                  <div className="outer-img-btn">적용</div>
+
+                <div className="status-input status-image">
+                    <div className = "status-image-input">
+                        <input
+                          placeholder="외부 URL를 입력해주세요"
+                          value={currentContent || ""}
+                          onChange={e => {
+                            setKeywordObject(
+                              produce(keywordObject, draft => {
+                                draft[index].contents[length - 1].content =
+                                  e.target.value;
+                              })
+                            );
+                          }}
+                        />
+                        <div className="outer-img-btn" onClick = {onClickLoadImage}>적용</div>
+                    </div>
+                    <div className = "image-preview">
+                        <div className = "image-preview-screen" style = {imagePreviewStyle}></div>
+                    </div>
                 </div>
-                <div className="image-preview">
-                  <div className="image-preview-screen">이미지 미리보기</div>
-                </div>
+                
               </div>
             </div>
           ) : currentInput.type === "location" ? (
@@ -200,6 +223,8 @@ const ToolStatus = ({
                         );
                       }}
                     />
+                  </tr>
+                  <tr>
                     <input
                       placeholder="키워드명을 적어주세요"
                       value={currentContent[2] || ""}
@@ -212,8 +237,6 @@ const ToolStatus = ({
                         );
                       }}
                     />
-                  </tr>
-                  <tr>
                     <input
                       placeholder="키워드명을 적어주세요"
                       value={currentContent[3] || ""}
@@ -226,6 +249,8 @@ const ToolStatus = ({
                         );
                       }}
                     />
+                  </tr>
+                  <tr>
                     <input
                       placeholder="키워드명을 적어주세요"
                       value={currentContent[4] || ""}

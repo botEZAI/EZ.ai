@@ -9,7 +9,7 @@
   border-radius: 10px;
   padding:1%;
 }
-.main-content:after{ /*말풍선 꾸미기*/
+.main-content:after{ /*말풍선 꼬리*/
   position:absolute;
   border-top:8px solid transparent;
   border-bottom:8px solid transparent;
@@ -40,7 +40,7 @@
   word-break:break-all;
   margin: 20px 15px 15px auto;
 }
-.main-keyword-title:after{/*말풍선 꼬리 꾸미기*/
+.main-keyword-title:after{/*말풍선 꼬리*/
   position:absolute;
   border-top:0px solid transparent;
   border-bottom:15px solid transparent;
@@ -71,13 +71,21 @@
   vertical-align: middle;
   margin: 20px;
 }
-/*매신저 중간 부분 꾸미기*/
+/*매신저 중간 부분 (content 컨테이너)*/
 .main-contents{
   display:flex;
   flex-direction: column;
   height:680px;
   overflow-y: auto;
 }
+/*메신저 중간 부분 스크롤바*/
+.main-contents::-webkit-scrollbar { width:6px; }
+.main-contents::-webkit-scrollbar-track {background-color: none;}
+.main-contents::-webkit-scrollbar-thumb {background-color:#808080; border-radius:10px;}
+.main-contents::-webkit-scrollbar-thumb:hover {background:#404040;}
+.main-contents::-webkit-scrollbar-thumb:active {background: #808080;}
+.main-contents::-webkit-scrollbar-button {display: none;}
+
 /*메신저 하단 부분 꾸미기*/
 .main-footer{
   border: .5px solid #999;
