@@ -170,6 +170,8 @@ const ToolStatus = ({
                         );
                       }}
                     />
+                  </tr>
+                  <tr>
                     <input
                       placeholder="키워드명을 적어주세요"
                       value={currentContent[2] || ""}
@@ -182,8 +184,6 @@ const ToolStatus = ({
                         );
                       }}
                     />
-                  </tr>
-                  <tr>
                     <input
                       placeholder="키워드명을 적어주세요"
                       value={currentContent[3] || ""}
@@ -196,6 +196,8 @@ const ToolStatus = ({
                         );
                       }}
                     />
+                  </tr>
+                  <tr>
                     <input
                       placeholder="키워드명을 적어주세요"
                       value={currentContent[4] || ""}
