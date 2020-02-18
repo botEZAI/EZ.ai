@@ -23,7 +23,8 @@ const Main = ({
   };
   const contentRef = useRef(null);
 
-  useEffect(()=>{ /** content 추가될때마다 스크롤 최하단으로 이동하는 코드 */
+  useEffect(() => {
+    /** content 추가될때마다 스크롤 최하단으로 이동하는 코드 */
     contentRef.current.scrollTop = contentRef.current.scrollHeight;
   });
 
@@ -102,7 +103,11 @@ const Main = ({
               </>
             ) : v.type === "location" ? (
               <>
-                <div className="main-content" key={v.contnet + i}>
+                <div
+                  className="main-content"
+                  key={v.contnet + i}
+                  onClick={() => setClickedMainInput(v)}
+                >
                   <input
                     value={v.content.title || ""}
                     onChange={e => {
@@ -150,7 +155,11 @@ const Main = ({
               </>
             ) : v.type === "list" ? (
               <>
-                <div className="main-content list-content" key={v.contnet + i}>
+                <div
+                  className="main-content list-content"
+                  key={v.contnet + i}
+                  onClick={() => setClickedMainInput(v)}
+                >
                   <input
                     value={v.content[0] || ""}
                     onChange={e => {
