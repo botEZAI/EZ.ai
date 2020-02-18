@@ -11,8 +11,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
+//DB연결
 const Chatbot = require('./models').Chatbot;
 const Keyword = require('./models').Keyword;
+
+//telegram api
 const TelegramBot = require('node-telegram-bot-api'); 
 
 
@@ -50,13 +53,13 @@ bot.on('message', (msg) => {
                 console.log(chatbot);
                 for(var i = 0;i<chatbot.length;i++){
                     if(chatbot[i].type=="text"){
-                        console.log("타입 통과");
-                        console.log(chatbot[i].content);  
+                        console.log("텍스트 타입 통과");
+                        //console.log(chatbot[i].content);  
                         bot.sendMessage(msg.chat.id, chatbot[i].content);
                     }
                     else if(chatbot[i].type=="image"){
-                        console.log("타입 통과");
-                        bot.sendMessage(msg.chat.id, "사진전송");
+                        console.log("이미지 타입 통과");
+                        bot.sendMessage(msg.chat.id, chatbot[i].content);
                     }
                 }
             })
