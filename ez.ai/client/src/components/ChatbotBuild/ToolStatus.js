@@ -28,8 +28,6 @@ const ToolStatus = ({
 
   /*이미지 외부 URL 입력후 적용시 미리보기에 적용*/
   const [imageURL, setImageURL] = useState("");
-  const [imageWidth, setImageWidth] = useState("50%");
-  const [imageHeight, setImageHeight] = useState("80%");
 
   const imagePreviewStyle = {
     backgroundImage: `url(${imageURL})`,
