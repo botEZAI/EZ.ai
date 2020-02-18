@@ -9,12 +9,12 @@
   border-radius: 10px;
   padding:1%;
 }
-.main-content:after{ /*말풍선 꼬리*/
+.main-content::after{ /*말풍선 꼬리*/
   position:absolute;
   border-top:8px solid transparent;
   border-bottom:8px solid transparent;
   border-right: 10px solid white;
-  border-left:0px solid plum;
+  border-left:0px solid transparent;
   content:"";
   left:-8px;
   bottom:10px;
@@ -24,11 +24,11 @@
   justify-content: flex-end;
   margin: 10px;
 }
+
 .main-button {
   float:right;
   margin:13px;
 }
-
 /* ****2020-02-15 Modified by hyeonjeong*/
 .main-keyword-title{
   position:relative;
@@ -50,7 +50,7 @@
   right:-9px;
   top:-1px;
 }
-/*메신저 헤더 (상단) 꾸미기*/
+/*메신저 header(상단) style*/
 .main-header{
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -71,14 +71,14 @@
   vertical-align: middle;
   margin: 20px;
 }
-/*매신저 중간 부분 (content 컨테이너)*/
+/*main-contents style*/
 .main-contents{
   display:flex;
   flex-direction: column;
   height:680px;
   overflow-y: auto;
 }
-/*메신저 중간 부분 스크롤바*/
+/*main-contents scrollbar style*/
 .main-contents::-webkit-scrollbar { width:6px; }
 .main-contents::-webkit-scrollbar-track {background-color: none;}
 .main-contents::-webkit-scrollbar-thumb {background-color:#808080; border-radius:10px;}
@@ -86,7 +86,7 @@
 .main-contents::-webkit-scrollbar-thumb:active {background: #808080;}
 .main-contents::-webkit-scrollbar-button {display: none;}
 
-/*메신저 하단 부분 꾸미기*/
+/*메신저 footer(하단) style*/
 .main-footer{
   border: .5px solid #999;
   background-color:#EEEEEE;
@@ -95,7 +95,6 @@
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }
-
 
 /* **** 2020-02-16 Modified by hyeonjeong*/
 .main-content textarea, .main-content input {
@@ -107,7 +106,7 @@
   height:150px;
 }
 .main-content .GoogleMapPresenter{
-  margin: 20px 0px 20px 40px
+  margin: 10px 0px 10px 40px;
 }
 
 .list-content input{
@@ -119,4 +118,15 @@
   border : none;
   border-radius: 5px;
   outline-color: #00b8b4;
+}
+/* 2020-02-18 */
+.tool-delete{ /* 말풍선 옆 delete 버튼 */
+  position:absolute;
+  content:"\d7";
+  color:#808080;
+  right:-20px;
+  bottom:0px;
+}
+.tool-delete:hover{
+  color:red;
 }

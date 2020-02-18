@@ -143,7 +143,7 @@ const ToolStatus = ({
                   ></div>
                 </div>
               </div>
-            </div>
+          
           ) : currentInput.type === "location" ? (
             <>
               <div className="status-input status-location">
