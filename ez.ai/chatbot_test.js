@@ -20,7 +20,7 @@ const TelegramBot = require('node-telegram-bot-api');
 
 
 //첫번 째 토큰
-const token = '1031768450:AAFy8Csn6kabeU9AlKf0VLzOFeB6hwxAmaE';
+const token = '';
 const bot = new TelegramBot(token, {polling: true});
 
 
