@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import produce from "immer";
 import axios from "axios";
 import "./Main.css";
@@ -24,11 +24,10 @@ const Main = ({
   //scroll
   const contentRef = useRef(null);
   useEffect(() => {
-    /** content 추가될때마다 스크롤 최하단으로 이동하는 코드 */
     contentRef.current.scrollTop = contentRef.current.scrollHeight;
   });
 
-  return (
+    return (
     <>
       <div className="main-header">
         <div className="main-header-icon">
@@ -100,7 +99,9 @@ const Main = ({
                     placeholder="image url"
                   />
                   <div className="image-preview">
-                    <div className="image-preview-screen">이미지 미리보기</div>
+                    <div className="image-preview-screen" 
+                        style={{backgroundImage:`url(${v.content})`}}>
+                    </div>
                   </div>
                   <div className="tool-delete delete-image">
                     <i className="fas fa-times"></i>

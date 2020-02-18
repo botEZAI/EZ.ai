@@ -140,7 +140,8 @@ const ToolStatus = ({
                   <div
                     className="image-preview-screen"
                     style={imagePreviewStyle}
-                  ></div>
+                  >
+                  </div>
                 </div>
               </div>
             </div>
@@ -493,10 +494,8 @@ const ToolStatus = ({
               </div>
             </>
           ) : null)}
-      </div>
-
+          </div>
       <div className="tool-status-nav">
-        <div></div>
         <div className="tool-status-nav-btns">
           <div className="tool-status-btn confirm">확인</div>
           <div className="tool-status-btn decline">삭제</div>
