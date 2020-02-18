@@ -23,7 +23,7 @@ const Main = ({
   };
   //scroll
   const contentRef = useRef(null);
-  useEffect(()=>{
+  useEffect(() => {
     contentRef.current.scrollTop = contentRef.current.scrollHeight;
   });
 
@@ -108,7 +108,11 @@ const Main = ({
               </>
             ) : v.type === "location" ? (
               <>
-                <div className="main-content" key={v.contnet + i}>
+                <div
+                  className="main-content"
+                  key={v.contnet + i}
+                  onClick={() => setClickedMainInput(v)}
+                >
                   <input
                     value={v.content.title || ""}
                     onChange={e => {
@@ -159,7 +163,11 @@ const Main = ({
               </>
             ) : v.type === "list" ? (
               <>
-                <div className="main-content list-content" key={v.contnet + i}>
+                <div
+                  className="main-content list-content"
+                  key={v.contnet + i}
+                  onClick={() => setClickedMainInput(v)}
+                >
                   <input
                     value={v.content[0] || ""}
                     onChange={e => {

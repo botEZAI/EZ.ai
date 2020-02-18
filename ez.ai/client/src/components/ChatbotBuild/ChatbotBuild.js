@@ -23,6 +23,7 @@ const ChatbotBuild = () => {
 
   const onClickKeyword = useCallback(keyword => {
     setMainKeyword(keyword);
+    setClickedMainInput("");
     console.log("onclIkkeywod");
   }, []);
 
