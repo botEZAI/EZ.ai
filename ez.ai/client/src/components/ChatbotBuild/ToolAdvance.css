@@ -1,6 +1,11 @@
 
+
+.status-list textarea {
+    margin : 0 auto;
+    outline-color: #00b8b4;
+}
 .status-list input{
-    width : 25%;
+    width : 39%;
     height: 30px;
     margin : 5px;
     background-color : #eee;

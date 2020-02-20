@@ -189,11 +189,11 @@ const ToolStatus = ({
           ) : currentInput.type === "list" ? (
             <>
               <div className="status-input status-list">
+                <textarea
+                    placeholder="작성하고자 하는 텍스트를 적어주세요"
+                ></textarea>
                 <table>
-                  <p>
-                    텍스트작성 / 키워드 등록(키워드에 대한 텍스트 작성) /
-                    마지막요소로 권장 등 추가하기
-                  </p>
+
                   <tr>
                     <input
                       placeholder="키워드명을 적어주세요"
