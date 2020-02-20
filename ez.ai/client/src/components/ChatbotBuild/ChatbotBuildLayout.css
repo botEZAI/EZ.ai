@@ -13,8 +13,8 @@
   margin-bottom: 10px;
   display: flex;
   justify-content: center;
-  height: auto;
-  min-height: 800px;
+  height: 70vh;
+  min-height: 590px;
 }
 
 .builderTool {
@@ -22,7 +22,7 @@
   width: 50%;
   min-width : 330px;
   margin : 0 10px;
-
+  overflow: hidden;
 }
 
 .builderMain {
