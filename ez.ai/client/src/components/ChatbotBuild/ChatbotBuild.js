@@ -16,6 +16,8 @@ const ChatbotBuild = () => {
   const [keywordContentList, setKeywordContentList] = useState([]);
   const [keywordObject, setKeywordObject] = useState([]);
   const [clickedMainInput, setClickedMainInput] = useState({});
+  const [beforeHeight, setBeforeHeight] = useState(0);
+
   const onSelect = useCallback(tab => {
     setActiveTab(tab);
     console.log("onSelect");
@@ -64,7 +66,6 @@ const ChatbotBuild = () => {
       setRightArrowDisplay("block");
     }
   };
-
   return (
     <div className="builder">
       <div className="builder__column" style={mainStyle}>
@@ -124,6 +125,9 @@ const ChatbotBuild = () => {
             keywordList={keywordList}
             setKeywordObject={setKeywordObject}
             setClickedMainInput={setClickedMainInput}
+            beforeHeight={beforeHeight}
+            setBeforeHeight={setBeforeHeight}
+      
           />
         </div>
       </div>

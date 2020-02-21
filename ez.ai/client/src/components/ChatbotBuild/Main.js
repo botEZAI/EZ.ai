@@ -12,9 +12,12 @@ const Main = ({
   mainKeywordObject,
   setKeywordObject,
   onClickCurrent,
-  setClickedMainInput
+  setClickedMainInput,
+  beforeHeight,
+  setBeforeHeight
 }) => {
   const index = keywordObject.findIndex(v => v.keyword === mainKeyword);
+
   //post
   const onClickButton = () => {
     axios
@@ -23,8 +26,13 @@ const Main = ({
   };
   //scroll
   const contentRef = useRef(null);
+
+  
   useEffect(() => {
-    contentRef.current.scrollTop = contentRef.current.scrollHeight;
+    if(beforeHeight < contentRef.current.scrollHeight){
+      contentRef.current.scrollTop = contentRef.current.scrollHeight;;
+      setBeforeHeight(contentRef.current.scrollHeight);
+    }
   });
 
     return (
@@ -58,7 +66,8 @@ const Main = ({
                   onClick={() => setClickedMainInput(v)}
                   key={v.contnet + i}
                 >
-                  <textarea
+                  {v.content}
+                  {/* <textarea
                     value={v.content || ""}
                     onChange={e => {
                       setKeywordObject(
@@ -70,8 +79,8 @@ const Main = ({
                         })
                       );
                     }}
-                    placeholder="작성하고자 하는 텍스트를 적어주세요"
-                  />
+                    placeholder=""
+                  /> */}
                   <div className="tool-delete delete-text">
                     <i className="fas fa-times"></i>
                   </div>
@@ -282,7 +291,8 @@ const Main = ({
           저장
         </button>
       </div>
-      {console.log("main")}
+    
+      
     </>
   );
 };
