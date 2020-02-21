@@ -13,8 +13,10 @@ const Main = ({
   setKeywordObject,
   onClickCurrent,
   setClickedMainInput,
-  beforeHeight,
-  setBeforeHeight
+  addFlag,
+  setAddFlag,
+  firstEntry,
+  setFirstEntry
 }) => {
   const index = keywordObject.findIndex(v => v.keyword === mainKeyword);
 
@@ -29,9 +31,15 @@ const Main = ({
 
   
   useEffect(() => {
-    if(beforeHeight < contentRef.current.scrollHeight){
-      contentRef.current.scrollTop = contentRef.current.scrollHeight;;
-      setBeforeHeight(contentRef.current.scrollHeight);
+    if(firstEntry === true){ // 키워드 클릭 시 스크롤 초기화
+      contentRef.current.scrollTop = 0;
+      setFirstEntry(false);
+    }else{
+      if(addFlag === true){
+        contentRef.current.scrollTop = contentRef.current.scrollHeight;
+      }
+  
+      setAddFlag(false);
     }
   });
 

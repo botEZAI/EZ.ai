@@ -16,17 +16,20 @@ const ChatbotBuild = () => {
   const [keywordContentList, setKeywordContentList] = useState([]);
   const [keywordObject, setKeywordObject] = useState([]);
   const [clickedMainInput, setClickedMainInput] = useState({});
-  const [beforeHeight, setBeforeHeight] = useState(0);
+  const [addFlag, setAddFlag] = useState(false); // 컨텐츠 추가 flag
+  const [firstEntry, setFirstEntry] = useState(true); // 키워드 진입 flag
 
   const onSelect = useCallback(tab => {
     setActiveTab(tab);
     console.log("onSelect");
   }, []);
 
+  // 키워드 클릭했을시
   const onClickKeyword = useCallback(keyword => {
     setMainKeyword(keyword);
     setClickedMainInput("");
     console.log("onclIkkeywod");
+    setFirstEntry(true); // 키워드 클릭 시 스크롤 초기화 
   }, []);
 
   {
@@ -84,6 +87,7 @@ const ChatbotBuild = () => {
                 keywordObject={keywordObject}
                 setKeywordObject={setKeywordObject}
                 setClickedMainInput={setClickedMainInput}
+                setAddFlag={setAddFlag}
               />
             )}
             {activeTab === "advance" && (
@@ -92,6 +96,7 @@ const ChatbotBuild = () => {
                 keywordObject={keywordObject}
                 setKeywordObject={setKeywordObject}
                 setClickedMainInput={setClickedMainInput}
+                setAddFlag={setAddFlag}
               />
             )}
             {activeTab === "keyword" && (
@@ -125,9 +130,10 @@ const ChatbotBuild = () => {
             keywordList={keywordList}
             setKeywordObject={setKeywordObject}
             setClickedMainInput={setClickedMainInput}
-            beforeHeight={beforeHeight}
-            setBeforeHeight={setBeforeHeight}
-      
+            addFlag={addFlag}
+            setAddFlag={setAddFlag}
+            firstEntry={firstEntry}
+            setFirstEntry={setFirstEntry}
           />
         </div>
       </div>

@@ -32,7 +32,7 @@
   float:right;
   margin:13px;
 }
-/* ****2020-02-15 Modified by hyeonjeong*/
+
 .main-keyword-title{
   position:relative;
   background-color:#e5ffd0;
@@ -92,13 +92,12 @@
 
 /*메신저 footer(하단) style*/
 .main-footer{
-  border: .5px solid #999;
+  /* border: .5px solid #999; */
   background-color:#EEEEEE;
   height:50px;
   margin-top:auto;
 }
 
-/* **** 2020-02-16 Modified by hyeonjeong*/
 .main-content textarea, .main-content input {
   border:none;
   border-radius: 10px;
@@ -119,7 +118,6 @@
   border-radius: 5px;
   outline-color: #00b8b4;
 }
-/* 2020-02-18 */
 .tool-delete{ /* 말풍선 옆 delete 버튼 */
   position:absolute;
   content:"\d7";

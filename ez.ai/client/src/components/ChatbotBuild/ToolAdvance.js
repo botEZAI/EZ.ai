@@ -6,7 +6,8 @@ const ToolAdvance = ({
   onClickBasic,
   keywordObject,
   setKeywordObject,
-  setClickedMainInput
+  setClickedMainInput,
+  setAddFlag
 }) => {
   const onClickTool = tool => {
     console.log("onClickTool");
@@ -25,6 +26,7 @@ const ToolAdvance = ({
                   id: object.contents.length + 1,
                   content: []
                 });
+                setAddFlag(true);
           })
         )
       : alert("키워드를 선택하세요");
