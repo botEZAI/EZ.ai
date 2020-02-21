@@ -12,9 +12,14 @@ const Main = ({
   mainKeywordObject,
   setKeywordObject,
   onClickCurrent,
-  setClickedMainInput
+  setClickedMainInput,
+  addFlag,
+  setAddFlag,
+  firstEntry,
+  setFirstEntry
 }) => {
   const index = keywordObject.findIndex(v => v.keyword === mainKeyword);
+
   //post
   const onClickButton = () => {
     axios
@@ -23,8 +28,19 @@ const Main = ({
   };
   //scroll
   const contentRef = useRef(null);
+
+  
   useEffect(() => {
-    contentRef.current.scrollTop = contentRef.current.scrollHeight;
+    if(firstEntry === true){ // 키워드 클릭 시 스크롤 초기화
+      contentRef.current.scrollTop = 0;
+      setFirstEntry(false);
+    }else{
+      if(addFlag === true){
+        contentRef.current.scrollTop = contentRef.current.scrollHeight;
+      }
+  
+      setAddFlag(false);
+    }
   });
 
     return (
@@ -58,20 +74,36 @@ const Main = ({
                   onClick={() => setClickedMainInput(v)}
                   key={v.contnet + i}
                 >
-                  <textarea
+                  {v.content}
+                  {/* div로 전환 시 줄바꿈이 안되는 문제 'white-space: pre-wrap'으로 잡아봄.  */}
+                  {/* <textarea
                     value={v.content || ""}
                     onChange={e => {
                       setKeywordObject(
                         produce(keywordObject, draft => {
-                          const tmp = draft[index].contents.find(
-                            t => t.id === v.id
-                          );
+                          const tmp = draft[index].contents.find(t => t.id === v.id);
                           tmp.content = e.target.value;
+                          // 포..기.........
+
+                          // console.log(beforeLen);
+                          // console.log(tmp.content.length);
+                          // console.log(e.target.clientWidth);
+                          // if(beforeLen < tmp.content.length){
+                          //   if(tmp.content.length === 1){
+                          //     e.target.style.width = (6 + 12.5 )+ 'px';
+                          //   }else{
+                          //     e.target.style.width = (e.target.clientWidth + 12.5 )+ 'px';
+                          //   }
+                          // }else if(beforeLen > tmp.content.length){
+                          //   e.target.style.width = (e.target.clientWidth - 12.5 )+ 'px';
+                          // }
+                          // console.log('dhodkseho!!');
+                          // setBeforeLen(tmp.content.length);
                         })
                       );
                     }}
-                    placeholder="작성하고자 하는 텍스트를 적어주세요"
-                  />
+                    placeholder=""
+                    style={{width:"0px", resize:"none"}}/> */}
                   <div className="tool-delete delete-text">
                     <i className="fas fa-times"></i>
                   </div>
@@ -282,7 +314,8 @@ const Main = ({
           저장
         </button>
       </div>
-      {console.log("main")}
+    
+      
     </>
   );
 };

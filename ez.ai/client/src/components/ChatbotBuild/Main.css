@@ -1,35 +1,41 @@
 .main-content {
-  display:block;
-  position:relative;
-  margin:3%;
+  position: relative;
+  margin: 1% 1% 2% 3%;
   margin-right:100px;
   background-color:white;
   width:fit-content;
-  max-width:60%;
+  height:fit-content;
+  min-width:10%;
+  min-height:5%;
+  max-width:70%;
+  /* word-break: break-all; */
+  /* word-wrap:break-word; */
   border-radius: 10px;
-  padding:1%;
+  padding:2%;
+  white-space:pre-wrap;
+  text-align: left;
+  clear:right; /*main-keyword-title의 float를 감지하지 않기 위함*/
 }
 .main-content::after{ /*말풍선 꼬리*/
   position:absolute;
-  border-top:8px solid transparent;
-  border-bottom:8px solid transparent;
-  border-right: 10px solid white;
-  border-left:0px solid transparent;
+  border-top:15px solid transparent;
+  border-bottom:0px solid red;
+  border-right: 15px solid white;
+  border-left:0px solid black;
   content:"";
   left:-8px;
-  bottom:10px;
+  bottom:0px;
 }
 .main-entity {
   display: flex;
   justify-content: flex-end;
   margin: 10px;
 }
-
 .main-button {
   float:right;
   margin:13px;
 }
-/* ****2020-02-15 Modified by hyeonjeong*/
+
 .main-keyword-title{
   position:relative;
   background-color:#e5ffd0;
@@ -38,7 +44,9 @@
   max-width:60%;
   width:fit-content;
   word-break:break-all;
-  margin: 20px 15px 15px auto;
+  float:right;
+  margin:3%;
+
 }
 .main-keyword-title:after{/*말풍선 꼬리*/
   position:absolute;
@@ -73,9 +81,8 @@
 }
 /*main-contents style*/
 .main-contents{
-  display:flex;
   flex-direction: column;
-  height:680px;
+  height:100%;
   overflow-y: auto;
 }
 /*main-contents scrollbar style*/
@@ -88,15 +95,12 @@
 
 /*메신저 footer(하단) style*/
 .main-footer{
-  border: .5px solid #999;
+  /* border: .5px solid #999; */
   background-color:#EEEEEE;
   height:50px;
   margin-top:auto;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
 }
 
-/* **** 2020-02-16 Modified by hyeonjeong*/
 .main-content textarea, .main-content input {
   border:none;
   border-radius: 10px;
@@ -105,9 +109,6 @@
   width:100%;
   height:150px;
   background-size: 100% 100% 
-}
-.main-content .GoogleMapPresenter{
-  margin: 10px 0px 10px 40px;
 }
 
 .list-content input{
@@ -120,7 +121,6 @@
   border-radius: 5px;
   outline-color: #00b8b4;
 }
-/* 2020-02-18 */
 .tool-delete{ /* 말풍선 옆 delete 버튼 */
   position:absolute;
   content:"\d7";

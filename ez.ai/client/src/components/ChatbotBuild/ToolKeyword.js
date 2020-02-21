@@ -15,12 +15,7 @@ const ToolKeyword = ({
     console.log("onSubmit");
 
     keyword !== "" && setKeywordList(keywordList => [...keywordList, keyword]);
-    keyword !== ""
-      ? setKeywordObject(keywordObject => [
-          ...keywordObject,
-          { keyword: keyword, id: keywordObject.length + 1, contents: [] }
-        ])
-      : alert("키워드를 입력하세요");
+    keyword !== "" ? setKeywordObject(keywordObject => [...keywordObject,{ keyword: keyword, id: keywordObject.length + 1, contents: [] }]) : alert("키워드를 입력하세요");
     keyword !== "" && setValue("");
     keyword !== "" && setKeyword("");
     e.preventDefault();
@@ -30,6 +25,7 @@ const ToolKeyword = ({
     setKeyword(e.target.value);
     setValue(e.target.value);
   };
+
   return (
     <>
       {console.log("Toolkeyword")}

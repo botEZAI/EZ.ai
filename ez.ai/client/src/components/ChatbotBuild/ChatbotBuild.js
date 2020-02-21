@@ -11,20 +11,25 @@ import Main from ".//Main";
 const ChatbotBuild = () => {
   const [activeTab, setActiveTab] = useState("basic");
   const [keyword, setKeyword] = useState("");
-  const [keywordList, setKeywordList] = useState([]);
+  const [keywordList, setKeywordList] = useState(["Welcome"]);
   const [mainKeyword, setMainKeyword] = useState("");
   const [keywordContentList, setKeywordContentList] = useState([]);
-  const [keywordObject, setKeywordObject] = useState([]);
+  const [keywordObject, setKeywordObject] = useState([{keyword: "Welcome", id: 1, contents: []}]);
   const [clickedMainInput, setClickedMainInput] = useState({});
+  const [addFlag, setAddFlag] = useState(false); // 컨텐츠 추가 flag
+  const [firstEntry, setFirstEntry] = useState(true); // 키워드 진입 flag
+
   const onSelect = useCallback(tab => {
     setActiveTab(tab);
     console.log("onSelect");
   }, []);
 
+  // 키워드 클릭했을시
   const onClickKeyword = useCallback(keyword => {
     setMainKeyword(keyword);
     setClickedMainInput("");
     console.log("onclIkkeywod");
+    setFirstEntry(true); // 키워드 클릭 시 스크롤 초기화 
   }, []);
 
   {
@@ -64,7 +69,6 @@ const ChatbotBuild = () => {
       setRightArrowDisplay("block");
     }
   };
-
   return (
     <div className="builder">
       <div className="builder__column" style={mainStyle}>
@@ -83,6 +87,7 @@ const ChatbotBuild = () => {
                 keywordObject={keywordObject}
                 setKeywordObject={setKeywordObject}
                 setClickedMainInput={setClickedMainInput}
+                setAddFlag={setAddFlag}
               />
             )}
             {activeTab === "advance" && (
@@ -91,6 +96,7 @@ const ChatbotBuild = () => {
                 keywordObject={keywordObject}
                 setKeywordObject={setKeywordObject}
                 setClickedMainInput={setClickedMainInput}
+                setAddFlag={setAddFlag}
               />
             )}
             {activeTab === "keyword" && (
@@ -124,6 +130,10 @@ const ChatbotBuild = () => {
             keywordList={keywordList}
             setKeywordObject={setKeywordObject}
             setClickedMainInput={setClickedMainInput}
+            addFlag={addFlag}
+            setAddFlag={setAddFlag}
+            firstEntry={firstEntry}
+            setFirstEntry={setFirstEntry}
           />
         </div>
       </div>
