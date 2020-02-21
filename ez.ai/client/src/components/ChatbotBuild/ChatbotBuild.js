@@ -11,10 +11,10 @@ import Main from ".//Main";
 const ChatbotBuild = () => {
   const [activeTab, setActiveTab] = useState("basic");
   const [keyword, setKeyword] = useState("");
-  const [keywordList, setKeywordList] = useState([]);
+  const [keywordList, setKeywordList] = useState(["Welcome"]);
   const [mainKeyword, setMainKeyword] = useState("");
   const [keywordContentList, setKeywordContentList] = useState([]);
-  const [keywordObject, setKeywordObject] = useState([]);
+  const [keywordObject, setKeywordObject] = useState([{keyword: "Welcome", id: 1, contents: []}]);
   const [clickedMainInput, setClickedMainInput] = useState({});
   const [addFlag, setAddFlag] = useState(false); // 컨텐츠 추가 flag
   const [firstEntry, setFirstEntry] = useState(true); // 키워드 진입 flag

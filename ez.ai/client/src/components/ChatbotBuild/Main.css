@@ -8,9 +8,12 @@
   min-width:10%;
   min-height:5%;
   max-width:70%;
-  word-break: break-all;
+  /* word-break: break-all; */
+  /* word-wrap:break-word; */
   border-radius: 10px;
   padding:2%;
+  white-space:pre-wrap;
+  text-align: left;
   clear:right; /*main-keyword-title의 float를 감지하지 않기 위함*/
 }
 .main-content::after{ /*말풍선 꼬리*/
