@@ -138,13 +138,13 @@
   color:red;
 }
 
-/*========================================*/
-.keyboard-overlay{
-  position : fixed;
-  width : 500px;
-  height: 600px;
-  left:10;
-  margin: auto;
-  /* background-color: rgba(0,0,0,0.5); */
-  padding-top:50px;
+.keyword-keyboard input{
+  width : 39%;
+  height: 30px;
+  margin : 5px;
+  background-color : #eee;
+  padding: 2px 2px 2px 10px;
+  border : none;
+  border-radius: 5px;
+  outline-color: #00b8b4;
 }

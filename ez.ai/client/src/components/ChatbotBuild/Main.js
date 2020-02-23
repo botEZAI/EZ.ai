@@ -218,9 +218,13 @@ const Main = ({
                                   tmp.content.question = e.target.value;
                                 })
                               );
+                              //TEXTAREA 높이 자동 조절
+                              e.target.style.height = 'auto';
+                              e.target.style.height = e.target.scrollHeight + 'px';
                             }}
                             placeholder="Ask a question"
-                    ></textarea>
+                  >
+                  </textarea>
                   <input
                     value={v.content.elem[0] || ""}
                     onChange={e => {
@@ -333,61 +337,53 @@ const Main = ({
           저장
         </button>
       </div>
-      { keywordKeyboard ?  
+      {keywordKeyboard ?  
         <>
-          <div className = "keyboard-overlay" 
-          onClick={() =>setKeywordKeyboard(false)}></div>
           <div className = "keyword-keyboard">
           {clickedMainInput.type &&
             clickedMainInput.type === "list" ? (
                 <>
                   <input
-                    value={ keywordObject[index].contents[clickedIndex]
+                    value={keywordObject[index].contents[clickedIndex]
                       .content.elem[0] || ""}
                     placeholder="list"
                     readOnly
                 />
-
-                { keywordObject[index].contents[clickedIndex]
-                      .content.elem[1] && (
+                {keywordObject[index].contents[clickedIndex].content.elem[1] && (
                   <input
-                    value={ keywordObject[index].contents[clickedIndex]
+                    value={keywordObject[index].contents[clickedIndex]
                       .content.elem[1] || ""}
                     placeholder="list"
                     readOnly
                   />
                 )}
-
                 {keywordObject[index].contents[clickedIndex].content.elem[2] && (
                   <input
-                    value={ keywordObject[index].contents[clickedIndex]
+                    value={keywordObject[index].contents[clickedIndex]
                       .content.elem[2] || ""}
                     placeholder="list"
                     readOnly
                   />
                 )}
-
                 {keywordObject[index].contents[clickedIndex].content.elem[3] && (
                   <input
-                    value={ keywordObject[index].contents[clickedIndex]
+                    value={keywordObject[index].contents[clickedIndex]
                       .content.elem[3] || ""}
                     placeholder="list"
                     readOnly
                   />
                 )}
-
                 {keywordObject[index].contents[clickedIndex].content.elem[4] && (
                   <input
-                    value={ keywordObject[index].contents[clickedIndex]
+                    value={keywordObject[index].contents[clickedIndex]
                       .content.elem[4]|| ""}
                     placeholder="list"
                     readOnly
                   />
                 )}
-
                 {keywordObject[index].contents[clickedIndex].content.elem[5] && (
                   <input
-                    value={ keywordObject[index].contents[clickedIndex]
+                    value={keywordObject[index].contents[clickedIndex]
                       .content.elem[5]|| ""}
                     placeholder="list"
                     readOnly
