@@ -16,9 +16,14 @@ const Main = ({
   addFlag,
   setAddFlag,
   firstEntry,
-  setFirstEntry
+  setFirstEntry,
+  clickedMainInput
 }) => {
+  const [keywordKeyboard, setKeywordKeyboard] = useState(false);
   const index = keywordObject.findIndex(v => v.keyword === mainKeyword);
+  const clickedIndex =
+    keywordObject[index] &&
+    keywordObject[index].contents.findIndex(v => v.id === clickedMainInput.id);
 
   //post
   const onClickButton = () => {
@@ -204,33 +209,51 @@ const Main = ({
                 <div
                   className="main-content list-content"
                   key={v.contnet + i}
-                  onClick={() => setClickedMainInput(v)}
-                >
+                  onClick={() => {setClickedMainInput(v); setKeywordKeyboard(true);}}
+                > 
+                  <div className = "list-name">Question</div>
+                  <textarea value = {v.content.question || ""}
+                            onChange = {e => {
+                              setKeywordObject(
+                                produce(keywordObject, draft => {
+                                  const tmp = draft[index].contents.find(
+                                    t => t.id === v.id
+                                  )
+                                  tmp.content.question = e.target.value;
+                                })
+                              );
+                              //TEXTAREA 높이 자동 조절
+                              e.target.style.height = 'auto';
+                              e.target.style.height = e.target.scrollHeight + 'px';
+                            }}
+                            placeholder="Ask a question"
+                  >
+                  </textarea>
                   <input
-                    value={v.content[0] || ""}
+                    value={v.content.elem[0] || ""}
                     onChange={e => {
                       setKeywordObject(
                         produce(keywordObject, draft => {
                           const tmp = draft[index].contents.find(
                             t => t.id === v.id
                           );
-                          tmp.content[0] = e.target.value;
+                          tmp.content.elem[0] = e.target.value;
                         })
                       );
                     }}
                     placeholder="list"
                   />
 
-                  {v.content[1] && (
+                  {v.content.elem[1] && (
                     <input
-                      value={v.content[1] || ""}
+                      value={v.content.elem[1] || ""}
                       onChange={e => {
                         setKeywordObject(
                           produce(keywordObject, draft => {
                             const tmp = draft[index].contents.find(
                               t => t.id === v.id
                             );
-                            tmp.content[1] = e.target.value;
+                            tmp.content.elem[1] = e.target.value;
                           })
                         );
                       }}
@@ -238,16 +261,16 @@ const Main = ({
                     />
                   )}
 
-                  {v.content[2] && (
+                  {v.content.elem[2] && (
                     <input
-                      value={v.content[2] || ""}
+                      value={v.content.elem[2] || ""}
                       onChange={e => {
                         setKeywordObject(
                           produce(keywordObject, draft => {
                             const tmp = draft[index].contents.find(
                               t => t.id === v.id
                             );
-                            tmp.content[2] = e.target.value;
+                            tmp.content.elem[2] = e.target.value;
                           })
                         );
                       }}
@@ -255,16 +278,16 @@ const Main = ({
                     />
                   )}
 
-                  {v.content[3] && (
+                  {v.content.elem[3] && (
                     <input
-                      value={v.content[3] || ""}
+                      value={v.content.elem[3] || ""}
                       onChange={e => {
                         setKeywordObject(
                           produce(keywordObject, draft => {
                             const tmp = draft[index].contents.find(
                               t => t.id === v.id
                             );
-                            tmp.content[3] = e.target.value;
+                            tmp.content.elem[3] = e.target.value;
                           })
                         );
                       }}
@@ -272,16 +295,16 @@ const Main = ({
                     />
                   )}
 
-                  {v.content[4] && (
+                  {v.content.elem[4] && (
                     <input
-                      value={v.content[4] || ""}
+                      value={v.content.elem[4] || ""}
                       onChange={e => {
                         setKeywordObject(
                           produce(keywordObject, draft => {
                             const tmp = draft[index].contents.find(
                               t => t.id === v.id
                             );
-                            tmp.content[4] = e.target.value;
+                            tmp.content.elem[4] = e.target.value;
                           })
                         );
                       }}
@@ -289,16 +312,16 @@ const Main = ({
                     />
                   )}
 
-                  {v.content[5] && (
+                  {v.content.elem[5] && (
                     <input
-                      value={v.content[5] || ""}
+                      value={v.content.elem[5] || ""}
                       onChange={e => {
                         setKeywordObject(
                           produce(keywordObject, draft => {
                             const tmp = draft[index].contents.find(
                               t => t.id === v.id
                             );
-                            tmp.content[5] = e.target.value;
+                            tmp.content.elem[5] = e.target.value;
                           })
                         );
                       }}
@@ -318,6 +341,66 @@ const Main = ({
           저장
         </button>
       </div>
+
+      {keywordKeyboard ?  
+        <>
+          <div className = "keyword-keyboard">
+          {clickedMainInput.type &&
+            clickedMainInput.type === "list" ? (
+                <>
+                  <input
+                    value={keywordObject[index].contents[clickedIndex]
+                      .content.elem[0] || ""}
+                    placeholder="list"
+                    readOnly
+                />
+                {keywordObject[index].contents[clickedIndex].content.elem[1] && (
+                  <input
+                    value={keywordObject[index].contents[clickedIndex]
+                      .content.elem[1] || ""}
+                    placeholder="list"
+                    readOnly
+                  />
+                )}
+                {keywordObject[index].contents[clickedIndex].content.elem[2] && (
+                  <input
+                    value={keywordObject[index].contents[clickedIndex]
+                      .content.elem[2] || ""}
+                    placeholder="list"
+                    readOnly
+                  />
+                )}
+                {keywordObject[index].contents[clickedIndex].content.elem[3] && (
+                  <input
+                    value={keywordObject[index].contents[clickedIndex]
+                      .content.elem[3] || ""}
+                    placeholder="list"
+                    readOnly
+                  />
+                )}
+                {keywordObject[index].contents[clickedIndex].content.elem[4] && (
+                  <input
+                    value={keywordObject[index].contents[clickedIndex]
+                      .content.elem[4]|| ""}
+                    placeholder="list"
+                    readOnly
+                  />
+                )}
+                {keywordObject[index].contents[clickedIndex].content.elem[5] && (
+                  <input
+                    value={keywordObject[index].contents[clickedIndex]
+                      .content.elem[5]|| ""}
+                    placeholder="list"
+                    readOnly
+                  />
+                )}
+                </>
+              ) : null
+          }
+          </div>
+        </>
+        : null
+      } 
     </>
   );
 };

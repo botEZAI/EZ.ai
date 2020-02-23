@@ -19,7 +19,7 @@ const ToolAdvance = ({
               ? object.contents.push({
                   type: tool,
                   id: object.contents.length + 1,
-                  content: ["", "", "", "", "", ""]
+                  content: { question:"", elem:["", "", "", "", "", ""] }
                 })
               : object.contents.push({
                   type: tool,
