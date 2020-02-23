@@ -27,28 +27,31 @@ const Main = ({
 
   //post
   const onClickButton = () => {
-    axios
-      .post("/api/chatbotbuild", { keywordObject })
-      .then(res => console.log(res));
+    const count = keywordObject.length;
+    axios.post("/api/chatbotbuild", { count }).then(res => console.log(res));
+
+    keywordObject.map(k =>
+      axios.post("/api/chatbotbuild", { k }).then(res => console.log(res))
+    );
   };
   //scroll
   const contentRef = useRef(null);
 
-  
   useEffect(() => {
-    if(firstEntry === true){ // 키워드 클릭 시 스크롤 초기화
+    if (firstEntry === true) {
+      // 키워드 클릭 시 스크롤 초기화
       contentRef.current.scrollTop = 0;
       setFirstEntry(false);
-    }else{
-      if(addFlag === true){
+    } else {
+      if (addFlag === true) {
         contentRef.current.scrollTop = contentRef.current.scrollHeight;
       }
-  
+
       setAddFlag(false);
     }
   });
 
-    return (
+  return (
     <>
       <div className="main-header">
         <div className="main-header-icon">
@@ -136,9 +139,10 @@ const Main = ({
                     placeholder="image url"
                   />
                   <div className="image-preview">
-                    <div className="image-preview-screen" 
-                        style={{backgroundImage:`url(${v.content})`}}>
-                    </div>
+                    <div
+                      className="image-preview-screen"
+                      style={{ backgroundImage: `url(${v.content})` }}
+                    ></div>
                   </div>
                   <div className="tool-delete delete-image">
                     <i className="fas fa-times"></i>
@@ -337,6 +341,7 @@ const Main = ({
           저장
         </button>
       </div>
+
       {keywordKeyboard ?  
         <>
           <div className = "keyword-keyboard">
