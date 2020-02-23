@@ -134,6 +134,7 @@ const ChatbotBuild = () => {
             setAddFlag={setAddFlag}
             firstEntry={firstEntry}
             setFirstEntry={setFirstEntry}
+            clickedMainInput={clickedMainInput}
           />
         </div>
       </div>

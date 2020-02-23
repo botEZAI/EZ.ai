@@ -191,17 +191,25 @@ const ToolStatus = ({
               <div className="status-input status-list">
                 <textarea
                     placeholder="작성하고자 하는 텍스트를 적어주세요"
+                    value={currentContent.question || ""}
+                    onChange = {e => {
+                      setKeywordObject(
+                        produce(keywordObject, draft => {
+                          draft[index].contents[length - 1].content.question = e.target.value;
+                        })
+                      )
+                    }}
                 ></textarea>
                 <table>
 
                   <tr>
                     <input
                       placeholder="키워드명을 적어주세요"
-                      value={currentContent[0] || ""}
+                      value={currentContent.elem[0] || ""}
                       onChange={e => {
                         setKeywordObject(
                           produce(keywordObject, draft => {
-                            draft[index].contents[length - 1].content[0] =
+                            draft[index].contents[length - 1].content.elem[0] =
                               e.target.value;
                           })
                         );
@@ -210,11 +218,11 @@ const ToolStatus = ({
 
                     <input
                       placeholder="키워드명을 적어주세요"
-                      value={currentContent[1] || ""}
+                      value={currentContent.elem[1] || ""}
                       onChange={e => {
                         setKeywordObject(
                           produce(keywordObject, draft => {
-                            draft[index].contents[length - 1].content[1] =
+                            draft[index].contents[length - 1].content.elem[1] =
                               e.target.value;
                           })
                         );
@@ -224,11 +232,11 @@ const ToolStatus = ({
                   <tr>
                     <input
                       placeholder="키워드명을 적어주세요"
-                      value={currentContent[2] || ""}
+                      value={currentContent.elem[2] || ""}
                       onChange={e => {
                         setKeywordObject(
                           produce(keywordObject, draft => {
-                            draft[index].contents[length - 1].content[2] =
+                            draft[index].contents[length - 1].content.elem[2] =
                               e.target.value;
                           })
                         );
@@ -236,11 +244,11 @@ const ToolStatus = ({
                     />
                     <input
                       placeholder="키워드명을 적어주세요"
-                      value={currentContent[3] || ""}
+                      value={currentContent.elem[3] || ""}
                       onChange={e => {
                         setKeywordObject(
                           produce(keywordObject, draft => {
-                            draft[index].contents[length - 1].content[3] =
+                            draft[index].contents[length - 1].content.elem[3] =
                               e.target.value;
                           })
                         );
@@ -250,11 +258,11 @@ const ToolStatus = ({
                   <tr>
                     <input
                       placeholder="키워드명을 적어주세요"
-                      value={currentContent[4] || ""}
+                      value={currentContent.elem[4] || ""}
                       onChange={e => {
                         setKeywordObject(
                           produce(keywordObject, draft => {
-                            draft[index].contents[length - 1].content[4] =
+                            draft[index].contents[length - 1].content.elem[4] =
                               e.target.value;
                           })
                         );
@@ -262,11 +270,11 @@ const ToolStatus = ({
                     />
                     <input
                       placeholder="키워드명을 적어주세요"
-                      value={currentContent[5] || ""}
+                      value={currentContent.elem[5] || ""}
                       onChange={e => {
                         setKeywordObject(
                           produce(keywordObject, draft => {
-                            draft[index].contents[length - 1].content[5] =
+                            draft[index].contents[length - 1].content.elem[5] =
                               e.target.value;
                           })
                         );
@@ -387,21 +395,30 @@ const ToolStatus = ({
             <>
               <div className="status-input status-list">
                 <table>
-                  <p>
-                    텍스트작성 / 키워드 등록(키워드에 대한 텍스트 작성) /
-                    마지막요소로 권장 등 추가하기
-                  </p>
+                  <textarea
+                    placeholder="작성하고자 하는 텍스트를 적어주세요"
+                    value={
+                      keywordObject[index].contents[clickedIndex].content.question || ""
+                    }
+                    onChange = {e => {
+                      setKeywordObject(
+                        produce(keywordObject, draft => {
+                          draft[index].contents[clickedIndex].content.question = e.target.value;
+                        })
+                      );
+                    }}
+                  ></textarea>
                   <tr>
                     <input
                       placeholder="키워드명을 적어주세요"
                       value={
                         keywordObject[index].contents[clickedIndex]
-                          .content[0] || ""
+                          .content.elem[0] || ""
                       }
                       onChange={e => {
                         setKeywordObject(
                           produce(keywordObject, draft => {
-                            draft[index].contents[clickedIndex].content[0] =
+                            draft[index].contents[clickedIndex].content.elem[0] =
                               e.target.value;
                           })
                         );
@@ -412,12 +429,12 @@ const ToolStatus = ({
                       placeholder="키워드명을 적어주세요"
                       value={
                         keywordObject[index].contents[clickedIndex]
-                          .content[1] || ""
+                          .content.elem[1] || ""
                       }
                       onChange={e => {
                         setKeywordObject(
                           produce(keywordObject, draft => {
-                            draft[index].contents[clickedIndex].content[1] =
+                            draft[index].contents[clickedIndex].content.elem[1] =
                               e.target.value;
                           })
                         );
@@ -429,12 +446,12 @@ const ToolStatus = ({
                       placeholder="키워드명을 적어주세요"
                       value={
                         keywordObject[index].contents[clickedIndex]
-                          .content[2] || ""
+                          .content.elem[2] || ""
                       }
                       onChange={e => {
                         setKeywordObject(
                           produce(keywordObject, draft => {
-                            draft[index].contents[clickedIndex].content[2] =
+                            draft[index].contents[clickedIndex].content.elem[2] =
                               e.target.value;
                           })
                         );
@@ -444,12 +461,12 @@ const ToolStatus = ({
                       placeholder="키워드명을 적어주세요"
                       value={
                         keywordObject[index].contents[clickedIndex]
-                          .content[3] || ""
+                          .content.elem[3] || ""
                       }
                       onChange={e => {
                         setKeywordObject(
                           produce(keywordObject, draft => {
-                            draft[index].contents[clickedIndex].content[3] =
+                            draft[index].contents[clickedIndex].content.elem[3] =
                               e.target.value;
                           })
                         );
@@ -461,12 +478,12 @@ const ToolStatus = ({
                       placeholder="키워드명을 적어주세요"
                       value={
                         keywordObject[index].contents[clickedIndex]
-                          .content[4] || ""
+                          .content.elem[4] || ""
                       }
                       onChange={e => {
                         setKeywordObject(
                           produce(keywordObject, draft => {
-                            draft[index].contents[clickedIndex].content[4] =
+                            draft[index].contents[clickedIndex].content.elem[4] =
                               e.target.value;
                           })
                         );
@@ -476,12 +493,12 @@ const ToolStatus = ({
                       placeholder="키워드명을 적어주세요"
                       value={
                         keywordObject[index].contents[clickedIndex]
-                          .content[5] || ""
+                          .content.elem[5] || ""
                       }
                       onChange={e => {
                         setKeywordObject(
                           produce(keywordObject, draft => {
-                            draft[index].contents[clickedIndex].content[5] =
+                            draft[index].contents[clickedIndex].content.elem[5] =
                               e.target.value;
                           })
                         );
