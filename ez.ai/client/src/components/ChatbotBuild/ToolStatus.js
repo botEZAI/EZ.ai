@@ -243,7 +243,7 @@ const ToolStatus = ({
                     <div
                         className="upload-preview-screen cursor"
                         style={imagePreviewStyle}
-                        onClick={onClickUploadImage}
+                        /*onClick={onClickUploadImage}*/
                     ><p>로컬에서 동영상 불러오기</p></div>
 
                     {/* 이미지 양식이므로 동영상 양식으로 바꿔야합니다
@@ -270,7 +270,7 @@ const ToolStatus = ({
                       <div
                           className="upload-preview-screen cursor"
                           style={imagePreviewStyle}
-                          onClick={onClickUploadImage}
+                          /*onClick={onClickUploadImage}*/
                       ><p>로컬에서 오디오 불러오기</p></div>
 
                       {/* 이미지 양식이므로 오디오 양식으로 바꿔야합니다
@@ -340,7 +340,7 @@ const ToolStatus = ({
                       <div
                           className="upload-preview-screen cursor"
                           style={imagePreviewStyle}
-                          onClick={onClickUploadImage}
+                          /*onClick={onClickUploadImage}*/
                       ><p>로컬에서 파일 불러오기</p></div>
 
                       {/* 이미지 양식이므로 파일 양식으로 바꿔야합니다
@@ -376,83 +376,100 @@ const ToolStatus = ({
                 ></textarea>
                 <table>
                   <tr>
-                    <input
-                      placeholder="키워드명을 적어주세요"
-                      value={currentContent.elem[0] || ""}
-                      onChange={e => {
-                        setKeywordObject(
-                          produce(keywordObject, draft => {
-                            draft[index].contents[length - 1].content.elem[0] =
-                              e.target.value;
-                          })
-                        );
-                      }}
-                    />
-
-                    <input
-                      placeholder="키워드명을 적어주세요"
-                      value={currentContent.elem[1] || ""}
-                      onChange={e => {
-                        setKeywordObject(
-                          produce(keywordObject, draft => {
-                            draft[index].contents[length - 1].content.elem[1] =
-                              e.target.value;
-                          })
-                        );
-                      }}
-                    />
+                    <div className = "status-list-content">
+                      <input
+                        placeholder="키워드명을 적어주세요"
+                        value={currentContent.elem[0] || ""}
+                        onChange={e => {
+                          setKeywordObject(
+                            produce(keywordObject, draft => {
+                              draft[index].contents[length - 1].content.elem[0] =
+                                e.target.value;
+                            })
+                          );
+                        }}
+                      />
+                      <div className = "list-keyword-btn">키워드 연동</div>
+                    </div>
+                    <div className = "status-list-content">
+                      <input
+                        placeholder="키워드명을 적어주세요"
+                        value={currentContent.elem[1] || ""}
+                        onChange={e => {
+                          setKeywordObject(
+                            produce(keywordObject, draft => {
+                              draft[index].contents[length - 1].content.elem[1] =
+                                e.target.value;
+                            })
+                          );
+                        }}
+                      />
+                      <div className = "list-keyword-btn">키워드 연동</div>
+                    </div>
                   </tr>
                   <tr>
-                    <input
-                      placeholder="키워드명을 적어주세요"
-                      value={currentContent.elem[2] || ""}
-                      onChange={e => {
-                        setKeywordObject(
-                          produce(keywordObject, draft => {
-                            draft[index].contents[length - 1].content.elem[2] =
-                              e.target.value;
-                          })
-                        );
-                      }}
-                    />
-                    <input
-                      placeholder="키워드명을 적어주세요"
-                      value={currentContent.elem[3] || ""}
-                      onChange={e => {
-                        setKeywordObject(
-                          produce(keywordObject, draft => {
-                            draft[index].contents[length - 1].content.elem[3] =
-                              e.target.value;
-                          })
-                        );
-                      }}
-                    />
+                    <div className = "status-list-content">
+                      <input
+                        placeholder="키워드명을 적어주세요"
+                        value={currentContent.elem[2] || ""}
+                        onChange={e => {
+                          setKeywordObject(
+                            produce(keywordObject, draft => {
+                              draft[index].contents[length - 1].content.elem[2] =
+                                e.target.value;
+                            })
+                          );
+                        }}
+                      />
+                      <div className = "list-keyword-btn">키워드 연동</div>
+                    </div>
+                    <div className = "status-list-content">
+                      <input
+                        placeholder="키워드명을 적어주세요"
+                        value={currentContent.elem[3] || ""}
+                        onChange={e => {
+                          setKeywordObject(
+                            produce(keywordObject, draft => {
+                              draft[index].contents[length - 1].content.elem[3] =
+                                e.target.value;
+                            })
+                          );
+                        }}
+                      />
+                      <div className = "list-keyword-btn">키워드 연동</div>
+                    </div>
                   </tr>
                   <tr>
-                    <input
-                      placeholder="키워드명을 적어주세요"
-                      value={currentContent.elem[4] || ""}
-                      onChange={e => {
-                        setKeywordObject(
-                          produce(keywordObject, draft => {
-                            draft[index].contents[length - 1].content.elem[4] =
-                              e.target.value;
-                          })
-                        );
-                      }}
-                    />
-                    <input
-                      placeholder="키워드명을 적어주세요"
-                      value={currentContent.elem[5] || ""}
-                      onChange={e => {
-                        setKeywordObject(
-                          produce(keywordObject, draft => {
-                            draft[index].contents[length - 1].content.elem[5] =
-                              e.target.value;
-                          })
-                        );
-                      }}
-                    />
+                    <div className = "status-list-content">
+                      <input
+                        placeholder="키워드명을 적어주세요"
+                        value={currentContent.elem[4] || ""}
+                        onChange={e => {
+                          setKeywordObject(
+                            produce(keywordObject, draft => {
+                              draft[index].contents[length - 1].content.elem[4] =
+                                e.target.value;
+                            })
+                          );
+                        }}
+                      />
+                      <div className = "list-keyword-btn">키워드 연동</div>
+                    </div>
+                    <div className = "status-list-content">
+                      <input
+                        placeholder="키워드명을 적어주세요"
+                        value={currentContent.elem[5] || ""}
+                        onChange={e => {
+                          setKeywordObject(
+                            produce(keywordObject, draft => {
+                              draft[index].contents[length - 1].content.elem[5] =
+                                e.target.value;
+                            })
+                          );
+                        }}
+                      />
+                      <div className = "list-keyword-btn">키워드 연동</div>
+                    </div>
                   </tr>
                 </table>
               </div>
@@ -589,107 +606,124 @@ const ToolStatus = ({
                     }}
                   ></textarea>
                   <tr>
-                    <input
-                      placeholder="키워드명을 적어주세요"
-                      value={
-                        keywordObject[index].contents[clickedIndex].content
-                          .elem[0] || ""
-                      }
-                      onChange={e => {
-                        setKeywordObject(
-                          produce(keywordObject, draft => {
-                            draft[index].contents[
-                              clickedIndex
-                            ].content.elem[0] = e.target.value;
-                          })
-                        );
-                      }}
-                    />
-
-                    <input
-                      placeholder="키워드명을 적어주세요"
-                      value={
-                        keywordObject[index].contents[clickedIndex].content
-                          .elem[1] || ""
-                      }
-                      onChange={e => {
-                        setKeywordObject(
-                          produce(keywordObject, draft => {
-                            draft[index].contents[
-                              clickedIndex
-                            ].content.elem[1] = e.target.value;
-                          })
-                        );
-                      }}
-                    />
+                    <div className = "status-list-content">
+                      <input
+                        placeholder="키워드명을 적어주세요"
+                        value={
+                          keywordObject[index].contents[clickedIndex].content
+                            .elem[0] || ""
+                        }
+                        onChange={e => {
+                          setKeywordObject(
+                            produce(keywordObject, draft => {
+                              draft[index].contents[
+                                clickedIndex
+                              ].content.elem[0] = e.target.value;
+                            })
+                          );
+                        }}
+                      />
+                      <div className = "list-keyword-btn">키워드 연동</div>
+                    </div>
+                    <div className = "status-list-content">
+                      <input
+                        placeholder="키워드명을 적어주세요"
+                        value={
+                          keywordObject[index].contents[clickedIndex].content
+                            .elem[1] || ""
+                        }
+                        onChange={e => {
+                          setKeywordObject(
+                            produce(keywordObject, draft => {
+                              draft[index].contents[
+                                clickedIndex
+                              ].content.elem[1] = e.target.value;
+                            })
+                          );
+                        }}
+                      />
+                      <div className = "list-keyword-btn">키워드 연동</div>
+                    </div>
                   </tr>
                   <tr>
-                    <input
-                      placeholder="키워드명을 적어주세요"
-                      value={
-                        keywordObject[index].contents[clickedIndex].content
-                          .elem[2] || ""
-                      }
-                      onChange={e => {
-                        setKeywordObject(
-                          produce(keywordObject, draft => {
-                            draft[index].contents[
-                              clickedIndex
-                            ].content.elem[2] = e.target.value;
-                          })
-                        );
-                      }}
-                    />
-                    <input
-                      placeholder="키워드명을 적어주세요"
-                      value={
-                        keywordObject[index].contents[clickedIndex].content
-                          .elem[3] || ""
-                      }
-                      onChange={e => {
-                        setKeywordObject(
-                          produce(keywordObject, draft => {
-                            draft[index].contents[
-                              clickedIndex
-                            ].content.elem[3] = e.target.value;
-                          })
-                        );
-                      }}
-                    />
+                    <div className = "status-list-content">
+                      <input
+                        placeholder="키워드명을 적어주세요"
+                        value={
+                          keywordObject[index].contents[clickedIndex].content
+                            .elem[2] || ""
+                        }
+                        onChange={e => {
+                          setKeywordObject(
+                            produce(keywordObject, draft => {
+                              draft[index].contents[
+                                clickedIndex
+                              ].content.elem[2] = e.target.value;
+                            })
+                          );
+                        }}
+                      />
+                      <div className = "list-keyword-btn">키워드 연동</div>
+                    </div>
+                    <div className = "status-list-content">
+                      <input
+                        placeholder="키워드명을 적어주세요"
+                        value={
+                          keywordObject[index].contents[clickedIndex].content
+                            .elem[3] || ""
+                        }
+                        onChange={e => {
+                          setKeywordObject(
+                            produce(keywordObject, draft => {
+                              draft[index].contents[
+                                clickedIndex
+                              ].content.elem[3] = e.target.value;
+                            })
+                          );
+                        }}
+                      />
+                      <div className = "list-keyword-btn">키워드 연동</div>
+                    </div>
                   </tr>
                   <tr>
-                    <input
-                      placeholder="키워드명을 적어주세요"
-                      value={
-                        keywordObject[index].contents[clickedIndex].content
-                          .elem[4] || ""
-                      }
-                      onChange={e => {
-                        setKeywordObject(
-                          produce(keywordObject, draft => {
-                            draft[index].contents[
-                              clickedIndex
-                            ].content.elem[4] = e.target.value;
-                          })
-                        );
-                      }}
-                    />
-                    <input
-                      placeholder="키워드명을 적어주세요"
-                      value={
-                        keywordObject[index].contents[clickedIndex].content
-                          .elem[5] || ""
-                      }
-                      onChange={e => {
-                        setKeywordObject(
-                          produce(keywordObject, draft => {
-                            draft[index].contents[
-                              clickedIndex
-                            ].content.elem[5] = e.target.value;
-                          })
-                        );
-                      }}
-                    />
+                    <div className = "status-list-content">
+                      <input
+                        placeholder="키워드명을 적어주세요"
+                        value={
+                          keywordObject[index].contents[clickedIndex].content
+                            .elem[4] || ""
+                        }
+                        onChange={e => {
+                          setKeywordObject(
+                            produce(keywordObject, draft => {
+                              draft[index].contents[
+                                clickedIndex
+                              ].content.elem[4] = e.target.value;
+                            })
+                          );
+                        }}
+                      />
+                    <div className = "list-keyword-btn">키워드 연동</div>
+                  </div>
+                    <div className = "status-list-content">
+                      <input
+                        placeholder="키워드명을 적어주세요"
+                        value={
+                          keywordObject[index].contents[clickedIndex].content
+                            .elem[5] || ""
+                        }
+                        onChange={e => {
+                          setKeywordObject(
+                            produce(keywordObject, draft => {
+                              draft[index].contents[
+                                clickedIndex
+                              ].content.elem[5] = e.target.value;
+                            })
+                          );
+                        }}
+                      />
+                    <div className = "list-keyword-btn">키워드 연동</div>
+                  </div>
                   </tr>
                 </table>
               </div>
