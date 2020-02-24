@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import produce from "immer";
 import GoogleMapPresenter from "./GoogleMapPresenter";
+import axios from "axios";
 
 const ToolStatus = ({
   mainKeyword,
@@ -27,7 +28,10 @@ const ToolStatus = ({
   );
 
   /*이미지 외부 URL 입력후 적용시 미리보기에 적용*/
+  const imageRef = useRef();
   const [imageURL, setImageURL] = useState("");
+  const [imageTab, setImageTab] = useState("url");
+  const [imageSrc, setImageSrc] = useState("");
 
   const imagePreviewStyle = {
     backgroundImage: `url(${imageURL})`,
@@ -38,6 +42,29 @@ const ToolStatus = ({
 
   const onClickLoadImage = imagePreviewStyle => {
     setImageURL(keywordObject[index].contents[length - 1].content);
+  };
+  const onClickUploadImage = () => {
+    imageRef.current.click();
+  };
+  const onChangeImage = e => {
+    //     const reader = new FileReader();
+    //   reader.onloadend = () => {
+    //     const imageSrc = reader.result;
+    //     if (imageSrc) {
+    //       setImageSrc(imageSrc.toString());
+    //     }
+    //   };
+    // reader.readAsDataURL(e.target.files[0]);
+
+    setKeywordObject(
+      produce(keywordObject, draft => {
+        draft[index].contents[length - 1].content = e.target.files[0].name;
+      })
+    );
+    const imageFormData = new FormData();
+    imageFormData.append("image", e.target.files[0]);
+
+    axios.post("/api/image", imageFormData);
   };
 
   return (
@@ -108,40 +135,69 @@ const ToolStatus = ({
           ) : currentInput.type === "image" ? (
             <div className="image-status">
               <div className="status-image-tab">
-                <div className="image-tab-btn outer-img-link">
+                <div
+                  className={`image-tab-btn outer-img-link ${imageTab ===
+                    "url" && "active"}`}
+                  onClick={() => setImageTab("url")}
+                >
                   외부 이미지 URL
                 </div>
-                <div className="image-tab-btn upload-img-file">
+                <div
+                  className={`image-tab-btn upload-img-file ${imageTab ===
+                    "local" && "active"}`}
+                  onClick={() => setImageTab("local")}
+                >
                   이미지 첨부하기
                 </div>
               </div>
 
-              <div className="status-input status-image">
-                <div className="status-image-input">
-                  <input
-                    placeholder="외부 URL를 입력해주세요"
-                    value={currentContent || ""}
-                    onChange={e => {
-                      setKeywordObject(
-                        produce(keywordObject, draft => {
-                          draft[index].contents[length - 1].content =
-                            e.target.value;
-                        })
-                      );
-                    }}
-                  />
-                  <div className="outer-img-btn" onClick={onClickLoadImage}>
-                    적용
+              {imageTab === "url" ? (
+                <div className="status-input status-image">
+                  <div className="status-image-input">
+                    <input
+                      placeholder="외부 URL를 입력해주세요"
+                      value={currentContent || ""}
+                      onChange={e => {
+                        setKeywordObject(
+                          produce(keywordObject, draft => {
+                            draft[index].contents[length - 1].content =
+                              e.target.value;
+                          })
+                        );
+                      }}
+                    />
+                    <div className="outer-img-btn" onClick={onClickLoadImage}>
+                      적용
+                    </div>
+                  </div>
+                  <div className="image-preview">
+                    <div
+                      className="image-preview-screen"
+                      style={imagePreviewStyle}
+                    ></div>
                   </div>
                 </div>
-                <div className="image-preview">
-                  <div
-                    className="image-preview-screen"
-                    style={imagePreviewStyle}
-                  >
+              ) : (
+                <div className="status-input status-image">
+                  <div className="status-image-input">
+                    <input
+                      ref={imageRef}
+                      type="file"
+                      hidden
+                      onChange={onChangeImage}
+                    />
+                    <div className="outer-img-btn" onClick={onClickUploadImage}>
+                      첨부
+                    </div>
+                  </div>
+                  <div className="image-preview">
+                    <div
+                      className="image-preview-screen"
+                      style={imagePreviewStyle}
+                    ></div>
                   </div>
                 </div>
-              </div>
+              )}
             </div>
           ) : currentInput.type === "location" ? (
             <>
@@ -190,18 +246,18 @@ const ToolStatus = ({
             <>
               <div className="status-input status-list">
                 <textarea
-                    placeholder="작성하고자 하는 텍스트를 적어주세요"
-                    value={currentContent.question || ""}
-                    onChange = {e => {
-                      setKeywordObject(
-                        produce(keywordObject, draft => {
-                          draft[index].contents[length - 1].content.question = e.target.value;
-                        })
-                      )
-                    }}
+                  placeholder="작성하고자 하는 텍스트를 적어주세요"
+                  value={currentContent.question || ""}
+                  onChange={e => {
+                    setKeywordObject(
+                      produce(keywordObject, draft => {
+                        draft[index].contents[length - 1].content.question =
+                          e.target.value;
+                      })
+                    );
+                  }}
                 ></textarea>
                 <table>
-
                   <tr>
                     <input
                       placeholder="키워드명을 적어주세요"
@@ -288,7 +344,7 @@ const ToolStatus = ({
         {clickedMainInput.type &&
           (clickedMainInput.type === "text" ? (
             <>
-              <div className="status-input status-text">
+              <div className="status-input status-text ">
                 <textarea
                   placeholder="작성하고자 하는 텍스트를 적어주세요"
                   value={
@@ -398,12 +454,14 @@ const ToolStatus = ({
                   <textarea
                     placeholder="작성하고자 하는 텍스트를 적어주세요"
                     value={
-                      keywordObject[index].contents[clickedIndex].content.question || ""
+                      keywordObject[index].contents[clickedIndex].content
+                        .question || ""
                     }
-                    onChange = {e => {
+                    onChange={e => {
                       setKeywordObject(
                         produce(keywordObject, draft => {
-                          draft[index].contents[clickedIndex].content.question = e.target.value;
+                          draft[index].contents[clickedIndex].content.question =
+                            e.target.value;
                         })
                       );
                     }}
@@ -412,14 +470,15 @@ const ToolStatus = ({
                     <input
                       placeholder="키워드명을 적어주세요"
                       value={
-                        keywordObject[index].contents[clickedIndex]
-                          .content.elem[0] || ""
+                        keywordObject[index].contents[clickedIndex].content
+                          .elem[0] || ""
                       }
                       onChange={e => {
                         setKeywordObject(
                           produce(keywordObject, draft => {
-                            draft[index].contents[clickedIndex].content.elem[0] =
-                              e.target.value;
+                            draft[index].contents[
+                              clickedIndex
+                            ].content.elem[0] = e.target.value;
                           })
                         );
                       }}
@@ -428,14 +487,15 @@ const ToolStatus = ({
                     <input
                       placeholder="키워드명을 적어주세요"
                       value={
-                        keywordObject[index].contents[clickedIndex]
-                          .content.elem[1] || ""
+                        keywordObject[index].contents[clickedIndex].content
+                          .elem[1] || ""
                       }
                       onChange={e => {
                         setKeywordObject(
                           produce(keywordObject, draft => {
-                            draft[index].contents[clickedIndex].content.elem[1] =
-                              e.target.value;
+                            draft[index].contents[
+                              clickedIndex
+                            ].content.elem[1] = e.target.value;
                           })
                         );
                       }}
@@ -445,14 +505,15 @@ const ToolStatus = ({
                     <input
                       placeholder="키워드명을 적어주세요"
                       value={
-                        keywordObject[index].contents[clickedIndex]
-                          .content.elem[2] || ""
+                        keywordObject[index].contents[clickedIndex].content
+                          .elem[2] || ""
                       }
                       onChange={e => {
                         setKeywordObject(
                           produce(keywordObject, draft => {
-                            draft[index].contents[clickedIndex].content.elem[2] =
-                              e.target.value;
+                            draft[index].contents[
+                              clickedIndex
+                            ].content.elem[2] = e.target.value;
                           })
                         );
                       }}
@@ -460,14 +521,15 @@ const ToolStatus = ({
                     <input
                       placeholder="키워드명을 적어주세요"
                       value={
-                        keywordObject[index].contents[clickedIndex]
-                          .content.elem[3] || ""
+                        keywordObject[index].contents[clickedIndex].content
+                          .elem[3] || ""
                       }
                       onChange={e => {
                         setKeywordObject(
                           produce(keywordObject, draft => {
-                            draft[index].contents[clickedIndex].content.elem[3] =
-                              e.target.value;
+                            draft[index].contents[
+                              clickedIndex
+                            ].content.elem[3] = e.target.value;
                           })
                         );
                       }}
@@ -477,14 +539,15 @@ const ToolStatus = ({
                     <input
                       placeholder="키워드명을 적어주세요"
                       value={
-                        keywordObject[index].contents[clickedIndex]
-                          .content.elem[4] || ""
+                        keywordObject[index].contents[clickedIndex].content
+                          .elem[4] || ""
                       }
                       onChange={e => {
                         setKeywordObject(
                           produce(keywordObject, draft => {
-                            draft[index].contents[clickedIndex].content.elem[4] =
-                              e.target.value;
+                            draft[index].contents[
+                              clickedIndex
+                            ].content.elem[4] = e.target.value;
                           })
                         );
                       }}
@@ -492,14 +555,15 @@ const ToolStatus = ({
                     <input
                       placeholder="키워드명을 적어주세요"
                       value={
-                        keywordObject[index].contents[clickedIndex]
-                          .content.elem[5] || ""
+                        keywordObject[index].contents[clickedIndex].content
+                          .elem[5] || ""
                       }
                       onChange={e => {
                         setKeywordObject(
                           produce(keywordObject, draft => {
-                            draft[index].contents[clickedIndex].content.elem[5] =
-                              e.target.value;
+                            draft[index].contents[
+                              clickedIndex
+                            ].content.elem[5] = e.target.value;
                           })
                         );
                       }}
@@ -509,11 +573,9 @@ const ToolStatus = ({
               </div>
             </>
           ) : null)}
-          </div>
+      </div>
       <div className="tool-status-nav">
-        <div className="tool-status-extra">
-          {/* 아직 미구현 */}
-        </div>
+        <div className="tool-status-extra">{/* 아직 미구현 */}</div>
         <div className="tool-status-nav-btns">
           <div className="tool-status-btn confirm">확인</div>
           <div className="tool-status-btn decline">삭제</div>

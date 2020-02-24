@@ -3,8 +3,6 @@ import produce from "immer";
 
 const ToolBasic = ({
   mainKeyword,
-  onClickBasic,
-  setGarbage,
   keywordObject,
   setKeywordObject,
   setClickedMainInput,
@@ -27,7 +25,7 @@ const ToolBasic = ({
                   id: object.contents.length + 1,
                   content: ""
                 });
-                setAddFlag(true);
+            setAddFlag(true);
           })
         )
       : alert("키워드를 선택하세요");
