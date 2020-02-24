@@ -100,7 +100,11 @@ const ToolStatus = ({
               <>
                 <span>버튼형 리스트</span>
               </>
-            ) : null
+            ) : currentInput.type === "sticker" ? (
+                <>
+                  <span>스티커</span>
+                </>
+            ): null
           ) : clickedMainInput.type === "text" ? (
             <>
               <span>텍스트</span>
@@ -109,13 +113,29 @@ const ToolStatus = ({
             <>
               <span>이미지</span>
             </>
+          ) : clickedMainInput.type === "video" ? (
+              <>
+                <span>비디오</span>
+              </>
+          ) : clickedMainInput.type === "audio" ? (
+              <>
+                <span>오디오</span>
+              </>
           ) : clickedMainInput.type === "location" ? (
             <>
               <span>위치</span>
             </>
+          ) : clickedMainInput.type === "file" ? (
+              <>
+                <span>파일</span>
+              </>
           ) : clickedMainInput.type === "list" ? (
             <>
               <span>버튼형 리스트</span>
+            </>
+          ) : clickedMainInput.type === "sticker" ? (
+             <>
+              <span>스티커</span>
             </>
           ) : null}
         </div>
@@ -215,7 +235,7 @@ const ToolStatus = ({
                 </div>
               )}
             </div>
-          ) : currentInput.type == "video" ? (
+          ) : currentInput.type === "video" ? (
             <>
               <div className="status-video upload">
                 <div className="status-input status-upload">
@@ -242,7 +262,7 @@ const ToolStatus = ({
                 </div>
               </div>
             </>
-          ) : currentInput.type == "audio" ? (
+          ) : currentInput.type === "audio" ? (
               <>
                 <div className="status-audio upload">
                   <div className="status-input status-upload">
@@ -312,7 +332,7 @@ const ToolStatus = ({
               </div>
               <GoogleMapPresenter />;
             </>
-          ) : currentInput.type == "file" ? (
+          ) : currentInput.type === "file" ? (
               <>
                 <div className="status-file upload">
                   <div className="status-input status-upload">
@@ -437,7 +457,12 @@ const ToolStatus = ({
                 </table>
               </div>
             </>
-          ) : null)}
+          ) : currentInput.type === "sticker" ? (
+              <>
+                <div>
+                  <p>스티커는 추후 텔레그램 스티커 api와 연결</p></div>
+              </>
+          ): null)}
         {clickedMainInput.type &&
           (clickedMainInput.type === "text" ? (
             <>
@@ -669,6 +694,11 @@ const ToolStatus = ({
                 </table>
               </div>
             </>
+          ) : clickedMainInput.type === "sticker" ? (
+              <>
+                <div>
+                  <p>스티커는 추후 텔레그램 스티커 api와 연결</p></div>
+              </>
           ) : null)}
       </div>
       <div className="tool-status-nav">
