@@ -43,6 +43,13 @@ const ToolAdvance = ({
         <i className="fas fa-list"></i>
         버튼형 리스트
       </div>
+        <div
+            className="tool-basic tool-basic-text"
+            onClick={() => onClickTool("sticker")}
+        >
+            <i className="far fa-laugh"></i>
+            스티커
+        </div>
     </>
   );
 };

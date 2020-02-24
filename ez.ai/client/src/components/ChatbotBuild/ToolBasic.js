@@ -48,6 +48,20 @@ const ToolBasic = ({
         <i className="fas fa-image"></i>
         이미지
       </div>
+        <div
+            className="tool-basic tool-basic-list"
+            onClick={() => onClickTool("video")}
+        >
+            <i className="fas fa-video"></i>
+            동영상
+        </div>
+        <div
+            className="tool-basic tool-basic-list"
+            onClick={() => onClickTool("audio")}
+        >
+            <i className="fas fa-file-audio"></i>
+            음성
+        </div>
       <div
         className="tool-basic tool-basic-list"
         onClick={() => onClickTool("location")}
@@ -55,6 +69,13 @@ const ToolBasic = ({
         <i className="fas fa-map-marked-alt"></i>
         위치
       </div>
+        <div
+            className="tool-basic tool-basic-list"
+            onClick={() => onClickTool("file")}
+        >
+            <i className="fas fa-file"></i>
+            파일
+        </div>
     </>
   );
 };

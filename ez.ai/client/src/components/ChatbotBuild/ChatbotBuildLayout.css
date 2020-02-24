@@ -20,7 +20,7 @@
 .builderTool {
   border : .5px solid #999;
   width: 50%;
-  min-width : 330px;
+  min-width : 300px;
   margin : 0 10px;
   overflow: hidden;
 }
