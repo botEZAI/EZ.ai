@@ -80,10 +80,22 @@ const ToolStatus = ({
               <>
                 <span>이미지</span>
               </>
+            ) : currentInput.type === "video" ? (
+                <>
+                  <span>비디오</span>
+                </>
+            ) : currentInput.type === "audio" ? (
+                <>
+                  <span>오디오</span>
+                </>
             ) : currentInput.type === "location" ? (
               <>
                 <span>위치</span>
               </>
+            ) : currentInput.type === "file" ? (
+                <>
+                  <span>파일</span>
+                </>
             ) : currentInput.type === "list" ? (
               <>
                 <span>버튼형 리스트</span>
@@ -152,7 +164,7 @@ const ToolStatus = ({
               </div>
 
               {imageTab === "url" ? (
-                <div className="status-input status-image">
+                <div className="status-input status-upload">
                   <div className="status-image-input">
                     <input
                       placeholder="외부 URL를 입력해주세요"
@@ -171,25 +183,24 @@ const ToolStatus = ({
                       적용
                     </div>
                   </div>
-                  <div className="image-preview">
+                  <div className="upload-preview">
                     <div
-                      className="image-preview-screen"
+                      className="upload-preview-screen"
                       style={imagePreviewStyle}
-                    ></div>
+                    ><p>미리보기</p></div>
                   </div>
                   <div className = "caution">
                     <p>파일형식 : JPG, JPEG, PNG, GIF</p>
-                    <p>최대 파일 크기 : 30MB</p>
                   </div>
                 </div>
               ) : (
-                <div className="status-input status-image">
-                  <div className="image-preview">
+                <div className="status-input status-upload">
+                  <div className="upload-preview">
                     <div
-                      className="image-preview-screen cursor"
+                      className="upload-preview-screen cursor"
                       style={imagePreviewStyle}
                       onClick={onClickUploadImage}
-                    >로컬에서 이미지 불러오기</div>
+                    ><p>로컬에서 이미지 불러오기</p></div>
                     <input
                         ref={imageRef}
                         type="file"
@@ -204,6 +215,60 @@ const ToolStatus = ({
                 </div>
               )}
             </div>
+          ) : currentInput.type == "video" ? (
+            <>
+              <div className="status-video upload">
+                <div className="status-input status-upload">
+                  <div className="upload-preview">
+                    <div
+                        className="upload-preview-screen cursor"
+                        style={imagePreviewStyle}
+                        onClick={onClickUploadImage}
+                    ><p>로컬에서 동영상 불러오기</p></div>
+
+                    {/* 이미지 양식이므로 동영상 양식으로 바꿔야합니다
+                    <input
+                        ref={imageRef}
+                        type="file"
+                        hidden
+                        onChange={onChangeImage}
+                    />*/}
+
+                  </div>
+                  <div className = "caution">
+                    <p>파일 형식: MP4, M4V, MOV, AVI, WMV</p>
+                    <p>최대 파일 크기 : 200MB</p>
+                  </div>
+                </div>
+              </div>
+            </>
+          ) : currentInput.type == "audio" ? (
+              <>
+                <div className="status-audio upload">
+                  <div className="status-input status-upload">
+                    <div className="upload-preview">
+                      <div
+                          className="upload-preview-screen cursor"
+                          style={imagePreviewStyle}
+                          onClick={onClickUploadImage}
+                      ><p>로컬에서 오디오 불러오기</p></div>
+
+                      {/* 이미지 양식이므로 오디오 양식으로 바꿔야합니다
+                    <input
+                        ref={imageRef}
+                        type="file"
+                        hidden
+                        onChange={onChangeImage}
+                    />*/}
+
+                    </div>
+                    <div className = "caution">
+                      <p>파일 형식: WAV, MP3, M4A, AAC, OGG</p>
+                      <p>최대 파일 크기 : 150MB</p>
+                    </div>
+                  </div>
+                </div>
+              </>
           ) : currentInput.type === "location" ? (
             <>
               <div className="status-input status-location">
@@ -247,6 +312,33 @@ const ToolStatus = ({
               </div>
               <GoogleMapPresenter />;
             </>
+          ) : currentInput.type == "file" ? (
+              <>
+                <div className="status-file upload">
+                  <div className="status-input status-upload">
+                    <div className="upload-preview">
+                      <div
+                          className="upload-preview-screen cursor"
+                          style={imagePreviewStyle}
+                          onClick={onClickUploadImage}
+                      ><p>로컬에서 파일 불러오기</p></div>
+
+                      {/* 이미지 양식이므로 파일 양식으로 바꿔야합니다
+                    <input
+                        ref={imageRef}
+                        type="file"
+                        hidden
+                        onChange={onChangeImage}
+                    />*/}
+
+                    </div>
+                    <div className = "caution">
+                      <p>파일 형식: HWP, EXCEL ,PPT, WORD, ZIP 등</p>
+                      <p>최대 파일 크기 : 50MB</p>
+                    </div>
+                  </div>
+                </div>
+              </>
           ) : currentInput.type === "list" ? (
             <>
               <div className="status-input status-list">

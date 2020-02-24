@@ -60,7 +60,7 @@ const ToolBasic = ({
             onClick={() => onClickTool("audio")}
         >
             <i className="fas fa-file-audio"></i>
-            음성
+            오디오
         </div>
       <div
         className="tool-basic tool-basic-list"

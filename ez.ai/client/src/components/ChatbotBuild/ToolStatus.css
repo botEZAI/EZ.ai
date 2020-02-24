@@ -107,6 +107,38 @@
 }
 
 
+
+/* 파일 업로드 인터페이스 양식 */
+.status-upload .upload-preview {
+    height :200px;
+    width : 80%;
+    background-color: white;
+    margin-top : 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.upload-preview .upload-preview-screen {
+    border : 2px dotted #ddd;
+    border-radius: 10px;
+    background-color: #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color : #999;
+}
+
+.status-upload {
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
 /* 각 요소 제한 사항 */
 .caution {
     width : 80%;
@@ -120,7 +152,6 @@
     margin : 0;
 
 }
-
 
 /* 각 요소별 입력칸 css */
 /*==========================================================*/
@@ -165,13 +196,6 @@
     cursor : pointer;
 }
 
-.status-image {
-    max-height: 275px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
 
 .status-image-input {
     width : 80%;
@@ -208,28 +232,13 @@
     transition: 0.2s all;
 }
 
-.status-image .image-preview {
-    height :200px;
-    width : 80%;
-    background-color: white;
-    margin-top : 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.image-preview .image-preview-screen {
-    border : 2px dotted #ddd;
-    border-radius: 10px;
+/* 비디오 */
+.upload {
+    width: 80%;
+    min-height: inherit;
     background-color: #eee;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    color : #999;
+    margin: 20px 0;
 }
-
-
 
 
 
