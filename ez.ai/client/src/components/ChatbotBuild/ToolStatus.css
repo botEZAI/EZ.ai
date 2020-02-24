@@ -49,10 +49,6 @@
 
 
 
-
-
-
-
 /* Tool status main css */
 .tool-status-main {
     min-height: 300px;
@@ -63,6 +59,25 @@
     margin : 0 auto;
 }
 
+
+/* tool status extra css */
+.tool-status-extra {
+    display : flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tool-status-extra .extra-btn {
+    background-color: #eee;
+    color : #999;
+    margin : 0 5px;
+    padding : 8px;
+}
+
+.tool-status-extra .extra-btn:hover {
+    background-color: #00b8b4;
+    color : white;
+}
 
 /* tool status-nav css */
 .tool-status-nav {

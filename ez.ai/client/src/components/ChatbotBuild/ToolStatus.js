@@ -702,7 +702,10 @@ const ToolStatus = ({
           ) : null)}
       </div>
       <div className="tool-status-nav">
-        <div className="tool-status-extra">{/* 아직 미구현 */}</div>
+        <div className="tool-status-extra">
+          <div className = "extra-btn user-name">사용자명</div>
+          <div className = "extra-btn emoji">이모지</div>
+        </div>
         <div className="tool-status-nav-btns">
           <div className="tool-status-btn confirm">확인</div>
           <div className="tool-status-btn decline">삭제</div>
