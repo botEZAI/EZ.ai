@@ -25,6 +25,11 @@ const Main = ({
     keywordObject[index] &&
     keywordObject[index].contents.findIndex(v => v.id === clickedMainInput.id);
 
+    const MainContent =
+    keywordObject[index] &&
+    keywordObject[index].contents[clickedIndex] &&
+    keywordObject[index].contents[clickedIndex].content;
+    const contentRef = useRef(null);
   //post
   const onClickButton = () => {
     const count = keywordObject.length;
@@ -34,9 +39,16 @@ const Main = ({
       axios.post("/api/chatbotbuild", { k }).then(res => console.log(res))
     );
   };
-  //scroll
-  const contentRef = useRef(null);
-
+  //리스트 요소 삭제
+  const removeListElement = (id) => {
+    // MainContent.elem[id] = "";
+    // keywordObject[0].contents[0].content.elem[0] = '';
+    setKeywordObject(produce(keywordObject, draft => {
+      draft[index].contents[clickedIndex].content.elem[id] = '';
+    })
+    );
+    
+  };
   useEffect(() => {
     if (firstEntry === true) {
       // 키워드 클릭 시 스크롤 초기화
@@ -46,7 +58,6 @@ const Main = ({
       if (addFlag === true) {
         contentRef.current.scrollTop = contentRef.current.scrollHeight;
       }
-
       setAddFlag(false);
     }
   });
@@ -67,7 +78,7 @@ const Main = ({
           <i className="fa fa-ellipsis-v"></i>
         </div>
       </div>
-      <div className="main-contents" ref={contentRef}>
+      <div className="main-contents" ref={contentRef} onClick={()=>{setKeywordKeyboard(false)}}>
         {keywordObject[index] && (
           <div className="main-keyword-title">
             KEYWORD: {keywordObject[index].keyword}
@@ -209,7 +220,7 @@ const Main = ({
                 <div
                   className="main-content list-content"
                   key={v.contnet + i}
-                  onClick={() => {setClickedMainInput(v); setKeywordKeyboard(true);}}
+                  onClick={(e) => {setClickedMainInput(v); e.stopPropagation(); setKeywordKeyboard(true);}}
                 > 
                   <div className = "list-name">Question</div>
                   <textarea value = {v.content.question || ""}
@@ -223,6 +234,7 @@ const Main = ({
                                 })
                               );
                               //TEXTAREA 높이 자동 조절
+                              e.target.style.maxHeight = '200px';
                               e.target.style.height = 'auto';
                               e.target.style.height = e.target.scrollHeight + 'px';
                             }}
@@ -341,66 +353,77 @@ const Main = ({
           저장
         </button>
       </div>
-
-      {keywordKeyboard ?  
-        <>
-          <div className = "keyword-keyboard">
-          {clickedMainInput.type &&
-            clickedMainInput.type === "list" ? (
-                <>
+      {keywordKeyboard ?
+       <>
+        <div className = "keyword-keyboard">
+        {clickedMainInput.type &&
+          clickedMainInput.type === "list" ? (
+              <>
+                <span className="list-elem-wrapper">
                   <input
-                    value={keywordObject[index].contents[clickedIndex]
-                      .content.elem[0] || ""}
-                    placeholder="list"
-                    readOnly
-                />
-                {keywordObject[index].contents[clickedIndex].content.elem[1] && (
-                  <input
-                    value={keywordObject[index].contents[clickedIndex]
-                      .content.elem[1] || ""}
+                    value={MainContent.elem[0] || ""}
                     placeholder="list"
                     readOnly
                   />
+                  <span className="clear-button" onClick={()=>{removeListElement(0)}}>x</span>
+                </span>
+                {MainContent.elem[1] && (
+                  <span className="list-elem-wrapper">
+                    <input
+                      value={MainContent.elem[1] || ""}
+                      placeholder="list"
+                      readOnly
+                    />
+                    <span className="clear-button" onClick={()=>{removeListElement(1)}}>x</span>
+                  </span>
                 )}
-                {keywordObject[index].contents[clickedIndex].content.elem[2] && (
-                  <input
-                    value={keywordObject[index].contents[clickedIndex]
-                      .content.elem[2] || ""}
-                    placeholder="list"
-                    readOnly
-                  />
+                {MainContent.elem[2] && (
+                  <span className="list-elem-wrapper">
+                    <input
+                      value={MainContent.elem[2] || ""}
+                      placeholder="list"
+                      readOnly
+                    />
+                    <span className="clear-button" onClick={()=>{removeListElement(2)}}>x</span>
+                  </span>
                 )}
-                {keywordObject[index].contents[clickedIndex].content.elem[3] && (
-                  <input
-                    value={keywordObject[index].contents[clickedIndex]
-                      .content.elem[3] || ""}
-                    placeholder="list"
-                    readOnly
-                  />
+                {MainContent.elem[3] && (
+                  <span className="list-elem-wrapper">
+                    <input
+                      value={MainContent.elem[3] || ""}
+                      placeholder="list"
+                      readOnly
+                    />
+                    <span className="clear-button" onClick={()=>{removeListElement(3)}}>x</span>
+                  </span>
                 )}
-                {keywordObject[index].contents[clickedIndex].content.elem[4] && (
-                  <input
-                    value={keywordObject[index].contents[clickedIndex]
-                      .content.elem[4]|| ""}
-                    placeholder="list"
-                    readOnly
-                  />
+                {MainContent.elem[4] && (
+                  <span className="list-elem-wrapper">
+                    <input
+                      value={MainContent.elem[4] || ""}
+                      placeholder="list"
+                      readOnly
+                    />
+                    <span className="clear-button" onClick={()=>{removeListElement(4)}}>x</span>
+                  </span>
                 )}
-                {keywordObject[index].contents[clickedIndex].content.elem[5] && (
-                  <input
-                    value={keywordObject[index].contents[clickedIndex]
-                      .content.elem[5]|| ""}
-                    placeholder="list"
-                    readOnly
-                  />
+                {MainContent.elem[5] && (
+                  <span className="list-elem-wrapper">
+                    <input
+                      value={MainContent.elem[5] || ""}
+                      placeholder="list"
+                      readOnly
+                    />
+                    <span className="clear-button" onClick={()=>{removeListElement(5)}}>x</span>
+                  </span>
                 )}
-                </>
-              ) : null
-          }
-          </div>
-        </>
-        : null
-      } 
+              </>
+            ) : null
+        }
+        </div>
+      </>
+      : null
+    }
     </>
   );
 };
