@@ -36,7 +36,7 @@ const ToolStatus = ({
   const imagePreviewStyle = {
     backgroundImage: `url(${imageURL})`,
     backgroundSize: "100% 100%",
-    minWidth: "50%",
+    width : '200px',
     minHeight: "80%"
   };
 
@@ -164,6 +164,7 @@ const ToolStatus = ({
                               e.target.value;
                           })
                         );
+
                       }}
                     />
                     <div className="outer-img-btn" onClick={onClickLoadImage}>
@@ -176,25 +177,29 @@ const ToolStatus = ({
                       style={imagePreviewStyle}
                     ></div>
                   </div>
+                  <div className = "caution">
+                    <p>파일형식 : JPG, JPEG, PNG, GIF</p>
+                    <p>최대 파일 크기 : 30MB</p>
+                  </div>
                 </div>
               ) : (
                 <div className="status-input status-image">
-                  <div className="status-image-input">
-                    <input
-                      ref={imageRef}
-                      type="file"
-                      hidden
-                      onChange={onChangeImage}
-                    />
-                    <div className="outer-img-btn" onClick={onClickUploadImage}>
-                      첨부
-                    </div>
-                  </div>
                   <div className="image-preview">
                     <div
-                      className="image-preview-screen"
+                      className="image-preview-screen cursor"
                       style={imagePreviewStyle}
-                    ></div>
+                      onClick={onClickUploadImage}
+                    >로컬에서 이미지 불러오기</div>
+                    <input
+                        ref={imageRef}
+                        type="file"
+                        hidden
+                        onChange={onChangeImage}
+                    />
+                  </div>
+                  <div className = "caution">
+                    <p>파일형식 : JPG, JPEG, PNG, GIF</p>
+                    <p>최대 파일 크기 : 30MB</p>
                   </div>
                 </div>
               )}
