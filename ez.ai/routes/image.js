@@ -3,13 +3,13 @@ const multer = require('multer');
 const path = require('path');
 const router = express.Router();
 
-
+// multer 처리부분
 const upload = multer({
     storage: multer.diskStorage({
-        destination(req,file, cb){
+        destination(req,file, cb){ //경로 설정 
             cb(null, 'objects/');
         },
-        filename(req, file, cb){
+        filename(req, file, cb){ // 파일 이름 설정
             const ext = path.extname(file.originalname);
             cb(null, path.basename(file.originalname, ext) + new Date().valueOf() + ext);
         },
@@ -18,7 +18,7 @@ const upload = multer({
 });
 
 
-router.post('/', upload.single('image'), (req, res) =>{
+router.post('/', upload.single('image'), (req, res) =>{  // 'image'가 일치해야함 리액트랑 
     console.log("파일 전송 성공");
     console.log(req.file);
 });
