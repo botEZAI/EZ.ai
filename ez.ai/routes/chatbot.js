@@ -11,14 +11,15 @@ router.post('/', function(req, res, next){
 
   Keyword.create({
     keyword: keyword.keyword,
-  }).
-    then(() =>{
+    })
+    .then(() =>{
       console.log("keyword 통과");
     })
     .catch((err)=>{
       console.error(err);
       next(err);
     });
+    
   if(contents){
   for(var i=0;i<contents.length;i++){
   Chatbot.create({
@@ -39,6 +40,6 @@ router.post('/', function(req, res, next){
     });  
   }     
 }
-    // // contents 내부 [ { type: 'text', id: 1, entity: '', content: 'gg' } ]
+
 });
 module.exports = router;
