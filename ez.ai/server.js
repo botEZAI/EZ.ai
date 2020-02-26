@@ -18,9 +18,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 //라우터 사용
+app.use('/api/chatbotbuild',chatbotRouter); // 키워드 + 콘텐트 
+app.use('/api/image',imageRouter); //이미지 
 
-app.use('/api/chatbotbuild',chatbotRouter);
-app.use('/api/image',imageRouter);
 
 // 아직 에러 처리부분 없음 
 app.listen(port, () => console.log(`Listening on port ${port}`));
