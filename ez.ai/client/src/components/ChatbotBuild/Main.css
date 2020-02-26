@@ -1,56 +1,9 @@
-.main-content {
-  display:block;
-  position:relative;
-  margin:3%;
-  margin-right:100px;
-  background-color:white;
-  width:fit-content;
-  max-width:60%;
-  border-radius: 10px;
-  padding:1%;
-}
-.main-content:after{ /*말풍선 꼬리*/
-  position:absolute;
-  border-top:8px solid transparent;
-  border-bottom:8px solid transparent;
-  border-right: 10px solid white;
-  border-left:0px solid plum;
-  content:"";
-  left:-8px;
-  bottom:10px;
-}
 .main-entity {
   display: flex;
   justify-content: flex-end;
   margin: 10px;
 }
-.main-button {
-  float:right;
-  margin:13px;
-}
-
-/* ****2020-02-15 Modified by hyeonjeong*/
-.main-keyword-title{
-  position:relative;
-  background-color:#e5ffd0;
-  border:1px solid #e5ffd0;
-  padding:2%;
-  max-width:60%;
-  width:fit-content;
-  word-break:break-all;
-  margin: 20px 15px 15px auto;
-}
-.main-keyword-title:after{/*말풍선 꼬리*/
-  position:absolute;
-  border-top:0px solid transparent;
-  border-bottom:15px solid transparent;
-  border-left:15px solid #e5ffd0;
-  border-right:0px solid transparent;
-  content:"";
-  right:-9px;
-  top:-1px;
-}
-/*메신저 헤더 (상단) 꾸미기*/
+/*================ Main header(상단) =============== */
 .main-header{
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -71,14 +24,14 @@
   vertical-align: middle;
   margin: 20px;
 }
-/*매신저 중간 부분 (content 컨테이너)*/
+/*======================== Main contents 내부 요소들 ===================== */
+/*main-contents style*/
 .main-contents{
-  display:flex;
   flex-direction: column;
-  height:680px;
+  height:100%;
   overflow-y: auto;
 }
-/*메신저 중간 부분 스크롤바*/
+/*main-contents scrollbar style*/
 .main-contents::-webkit-scrollbar { width:6px; }
 .main-contents::-webkit-scrollbar-track {background-color: none;}
 .main-contents::-webkit-scrollbar-thumb {background-color:#808080; border-radius:10px;}
@@ -86,18 +39,56 @@
 .main-contents::-webkit-scrollbar-thumb:active {background: #808080;}
 .main-contents::-webkit-scrollbar-button {display: none;}
 
-/*메신저 하단 부분 꾸미기*/
-.main-footer{
-  border: .5px solid #999;
-  background-color:#EEEEEE;
-  height:50px;
-  margin-top:auto;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+.main-keyword-title{
+  position:relative;
+  background-color:#e5ffd0;
+  border:1px solid #e5ffd0;
+  padding:2%;
+  max-width:60%;
+  width:fit-content;
+  word-break:break-all;
+  float:right;
+  margin:3%;
+
 }
-
-
-/* **** 2020-02-16 Modified by hyeonjeong*/
+.main-keyword-title:after{/*말풍선 꼬리*/
+  position:absolute;
+  border-top:0px solid transparent;
+  border-bottom:15px solid transparent;
+  border-left:15px solid #e5ffd0;
+  border-right:0px solid transparent;
+  content:"";
+  right:-9px;
+  top:-1px;
+}
+.main-content {
+  position: relative;
+  margin: 1% 1% 2% 3%;
+  margin-right:100px;
+  background-color:white;
+  width:fit-content;
+  height:fit-content;
+  min-width:10%;
+  min-height:5%;
+  max-width:70%;
+  /* word-break: break-all; */
+  /* white-space:pre-wrap; */
+  word-wrap:break-word;
+  border-radius: 10px;
+  padding:2%;
+  text-align: left;
+  clear:right; /*main-keyword-title의 float를 감지하지 않기 위함*/
+}
+.main-content::after{ /*말풍선 꼬리*/
+  position:absolute;
+  border-top:15px solid transparent;
+  border-bottom:0px solid red;
+  border-right: 15px solid white;
+  border-left:0px solid black;
+  content:"";
+  left:-8px;
+  bottom:0px;
+}
 .main-content textarea, .main-content input {
   border:none;
   border-radius: 10px;
@@ -105,12 +96,23 @@
 .main-content .image-preview .image-preview-screen{
   width:100%;
   height:150px;
+  background-size: 100% 100% 
 }
-.main-content .GoogleMapPresenter{
-  margin: 20px 0px 20px 40px
+.list-content {
+  z-index:1;
+}
+.list-content textarea{
+  scrollbar-width: none; /*Firefox*/
+}
+.list-content textarea::-webkit-scrollbar{
+  display:none; /*Chrome, Safari, Opera*/
+}/*IE나 Edge는 적용 X*/
+
+.list-name{
+  color:#318ace;
 }
 
-.list-content input{
+/* .list-content input{
   width : 40%;
   height: 30px;
   margin : 5px;
@@ -119,4 +121,48 @@
   border : none;
   border-radius: 5px;
   outline-color: #00b8b4;
+} */
+.tool-delete{ /* 말풍선 옆 delete 버튼 */
+  position:absolute;
+  content:"\d7";
+  color:#808080;
+  right:-20px;
+  bottom:0px;
+}
+.tool-delete:hover{
+  color:red;
+}
+
+
+/*==================== Main footer(하단) ===================*/
+.main-footer{
+  /* border: .5px solid #999; */
+  background-color:#EEEEEE;
+  height:50px;
+  margin-top:auto;
+}
+.main-button { /*저장 버튼*/
+  float:right;
+  margin:13px;
+}
+.keyword-keyboard{
+  background-color: #bebebe;
+  transition: .5s ease;
+}
+.keyword-keyboard input, .list-elem-wrapper{
+  width : 38%;
+  height: 30px;
+  margin : 10px 5px 5px 5px;
+  background-color : #eee;
+  padding: 5px 5px 5px 10px;
+  border : none;
+  border-radius: 5px;
+  outline-color: #00b8b4;
+}
+.list-elem-wrapper .clear-button{
+  color: #808080;
+  cursor:pointer;
+}
+.clear-button:active{
+  color:#eee;
 }

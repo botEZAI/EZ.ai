@@ -3,11 +3,10 @@ import produce from "immer";
 
 const ToolBasic = ({
   mainKeyword,
-  onClickBasic,
-  setGarbage,
   keywordObject,
   setKeywordObject,
-  setClickedMainInput
+  setClickedMainInput,
+  setAddFlag
 }) => {
   const onClickTool = tool => {
     console.log("onClickTool");
@@ -26,6 +25,7 @@ const ToolBasic = ({
                   id: object.contents.length + 1,
                   content: ""
                 });
+            setAddFlag(true);
           })
         )
       : alert("키워드를 선택하세요");
@@ -48,6 +48,20 @@ const ToolBasic = ({
         <i className="fas fa-image"></i>
         이미지
       </div>
+        <div
+            className="tool-basic tool-basic-list"
+            onClick={() => onClickTool("video")}
+        >
+            <i className="fas fa-video"></i>
+            동영상
+        </div>
+        <div
+            className="tool-basic tool-basic-list"
+            onClick={() => onClickTool("audio")}
+        >
+            <i className="fas fa-file-audio"></i>
+            오디오
+        </div>
       <div
         className="tool-basic tool-basic-list"
         onClick={() => onClickTool("location")}
@@ -55,6 +69,13 @@ const ToolBasic = ({
         <i className="fas fa-map-marked-alt"></i>
         위치
       </div>
+        <div
+            className="tool-basic tool-basic-list"
+            onClick={() => onClickTool("file")}
+        >
+            <i className="fas fa-file"></i>
+            파일
+        </div>
     </>
   );
 };

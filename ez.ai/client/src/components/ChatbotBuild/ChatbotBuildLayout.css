@@ -13,22 +13,22 @@
   margin-bottom: 10px;
   display: flex;
   justify-content: center;
-  height: auto;
-  min-height: 800px;
+  height: 70vh;
+  min-height: 590px;
 }
 
 .builderTool {
   border : .5px solid #999;
   width: 50%;
-  min-width : 330px;
+  min-width : 360px;
   margin : 0 10px;
-
+  overflow: hidden;
 }
 
 .builderMain {
   display:flex;
   flex-direction: column;
-  border : .5px solid #999;
+  /* border : .5px solid #999; */
   border-radius: 10px;
   width: 500px;
   background-color:#d2dbe3;

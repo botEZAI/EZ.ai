@@ -6,7 +6,8 @@ const ToolAdvance = ({
   onClickBasic,
   keywordObject,
   setKeywordObject,
-  setClickedMainInput
+  setClickedMainInput,
+  setAddFlag
 }) => {
   const onClickTool = tool => {
     console.log("onClickTool");
@@ -18,13 +19,14 @@ const ToolAdvance = ({
               ? object.contents.push({
                   type: tool,
                   id: object.contents.length + 1,
-                  content: ["", "", "", "", "", ""]
+                  content: { question:"", elem:["", "", "", "", "", ""] }
                 })
               : object.contents.push({
                   type: tool,
                   id: object.contents.length + 1,
                   content: []
                 });
+                setAddFlag(true);
           })
         )
       : alert("키워드를 선택하세요");
@@ -41,6 +43,13 @@ const ToolAdvance = ({
         <i className="fas fa-list"></i>
         버튼형 리스트
       </div>
+      <div
+        className="tool-basic tool-basic-text"
+        onClick={() => onClickTool("sticker")}
+       >
+         <i className="far fa-laugh"></i>
+         스티커
+       </div>
     </>
   );
 };
