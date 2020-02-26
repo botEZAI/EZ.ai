@@ -8,8 +8,8 @@ var app = express();
 sequelize.sync();
 
 //라우터 연결
-var chatbotRouter = require('./routes/chatbot');
-var imageRouter = require('./routes/image');
+var chatbotRouter = require('./routes/chatbot'); // 키워드 + 콘텐트 라우터
+var imageRouter = require('./routes/image');  //이미지 라우터
 
 //미들웨어 사용
 app.use(cookieParser());
@@ -17,25 +17,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-
 //라우터 사용
 
 app.use('/api/chatbotbuild',chatbotRouter);
 app.use('/api/image',imageRouter);
 
-
-app.get("api/register", (req, res) => {
-  res.send({ message: "Hello Express!" });
-});
-
-app.post("/api/register", function(req, res) {
-  console.log("가나다라마");
-  res.send("POST request to the homepage");
-});
-
-// app.post("/api/chatbotbuild", (req, res) => {
-//   console.log("받아지는 것 확인");
-//   const content= req.body.keywordObject[0].keyword;
-//   console.log(content);
-// });
+// 아직 에러 처리부분 없음 
 app.listen(port, () => console.log(`Listening on port ${port}`));
