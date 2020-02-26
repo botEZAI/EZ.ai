@@ -9,6 +9,7 @@ sequelize.sync();
 
 //라우터 연결
 var chatbotRouter = require('./routes/chatbot');
+var imageRouter = require('./routes/image');
 
 //미들웨어 사용
 app.use(cookieParser());
@@ -20,6 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //라우터 사용
 
 app.use('/api/chatbotbuild',chatbotRouter);
+app.use('/api/image',imageRouter);
 
 
 app.get("api/register", (req, res) => {
