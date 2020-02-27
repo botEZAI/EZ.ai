@@ -21,9 +21,14 @@ const Main = ({
 }) => {
   const [keywordKeyboard, setKeywordKeyboard] = useState(false);
   const index = keywordObject.findIndex(v => v.keyword === mainKeyword);
+
+  {/* 왼쪽 status에서 버튼 클릭하면 아이디 지정(중복)*/}
   const clickedIndex =
     keywordObject[index] &&
-    keywordObject[index].contents.findIndex(v => v.id === clickedMainInput.id);
+    keywordObject[index].contents.findIndex(v =>
+        v.id === clickedMainInput.id,
+    );
+
     const MainContent =
     keywordObject[index] &&
     keywordObject[index].contents[clickedIndex] &&

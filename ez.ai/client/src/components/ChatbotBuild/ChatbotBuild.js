@@ -21,14 +21,12 @@ const ChatbotBuild = () => {
 
   const onSelect = useCallback(tab => {
     setActiveTab(tab);
-    console.log("onSelect");
   }, []);
 
   // 키워드 클릭했을시
   const onClickKeyword = useCallback(keyword => {
     setMainKeyword(keyword);
     setClickedMainInput("");
-    console.log("onclIkkeywod");
     setFirstEntry(true); // 키워드 클릭 시 스크롤 초기화 
   }, []);
 
