@@ -18,6 +18,10 @@ const ChatbotBuild = () => {
   const [clickedMainInput, setClickedMainInput] = useState({});
   const [addFlag, setAddFlag] = useState(false); // 컨텐츠 추가 flag
   const [firstEntry, setFirstEntry] = useState(true); // 키워드 진입 flag
+  const [now, setNow] = useState(-1);
+
+  const index = keywordObject.findIndex(v => v.keyword === mainKeyword);
+  const length = keywordObject[index] && keywordObject[index].contents.length -1;
 
   const onSelect = useCallback(tab => {
     setActiveTab(tab);
@@ -86,6 +90,9 @@ const ChatbotBuild = () => {
                 setKeywordObject={setKeywordObject}
                 setClickedMainInput={setClickedMainInput}
                 setAddFlag={setAddFlag}
+                setNow={setNow}
+                now = {now}
+                length = {length}
               />
             )}
             {activeTab === "advance" && (
@@ -95,6 +102,9 @@ const ChatbotBuild = () => {
                 setKeywordObject={setKeywordObject}
                 setClickedMainInput={setClickedMainInput}
                 setAddFlag={setAddFlag}
+                setNow={setNow}
+                now = {now}
+                length = {length}
               />
             )}
             {activeTab === "keyword" && (
@@ -116,6 +126,9 @@ const ChatbotBuild = () => {
                 keywordObject={keywordObject}
                 setKeywordObject={setKeywordObject}
                 clickedMainInput={clickedMainInput}
+                setNow={setNow}
+                now={now}
+                index = {index}
               />
             )}
           </div>

@@ -6,8 +6,13 @@ const ToolBasic = ({
   keywordObject,
   setKeywordObject,
   setClickedMainInput,
-  setAddFlag
+  setAddFlag,
+  setNow,
+  now,
+  length,
 }) => {
+
+
   const onClickTool = tool => {
     console.log("onClickTool");
     mainKeyword
@@ -33,45 +38,63 @@ const ToolBasic = ({
   };
   return (
     <>
-      {console.log("Toolbasic")}
       <div
         className="tool-basic tool-basic-text"
-        onClick={() => onClickTool("text")}
+        onClick={() => {
+            onClickTool("text")
+            setNow(length + 1)
+            }
+        }
       >
         <i className="far fa-comment-alt"></i>
         텍스트
       </div>
       <div
         className="tool-basic tool-basic-list"
-        onClick={() => onClickTool("image")}
+        onClick={() => {
+            onClickTool("image")
+            setNow(length + 1)
+        }}
       >
         <i className="fas fa-image"></i>
         이미지
       </div>
         <div
             className="tool-basic tool-basic-list"
-            onClick={() => onClickTool("video")}
+            onClick={() => {
+                onClickTool("video")
+                setNow(length + 1)
+            }}
         >
             <i className="fas fa-video"></i>
             동영상
         </div>
         <div
             className="tool-basic tool-basic-list"
-            onClick={() => onClickTool("audio")}
+            onClick={() => {
+                    onClickTool("audio")
+                    setNow(length + 1)
+                }}
         >
             <i className="fas fa-file-audio"></i>
             오디오
         </div>
       <div
         className="tool-basic tool-basic-list"
-        onClick={() => onClickTool("location")}
+        onClick={() => {
+            onClickTool("location")
+            setNow(length + 1)
+        }}
       >
         <i className="fas fa-map-marked-alt"></i>
         위치
       </div>
         <div
             className="tool-basic tool-basic-list"
-            onClick={() => onClickTool("file")}
+            onClick={() => {
+                onClickTool("file")
+                setNow(length + 1)
+            }}
         >
             <i className="fas fa-file"></i>
             파일
