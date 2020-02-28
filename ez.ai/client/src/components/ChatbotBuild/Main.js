@@ -18,12 +18,19 @@ const Main = ({
   firstEntry,
   setFirstEntry,
   clickedMainInput,
+  keywordKeyboard,
+  setKeywordKeyboard
   setNow,
 }) => {
-  const [keywordKeyboard, setKeywordKeyboard] = useState(false);
   const index = keywordObject.findIndex(v => v.keyword === mainKeyword);
-
-  {/* 왼쪽 status에서 버튼 클릭하면 아이디 지정(중복)*/}
+  const length = keywordObject[index] && keywordObject[index].contents.length;
+  const currentInput =
+    keywordObject[index] && keywordObject[index].contents[length - 1];
+  const currentContent =
+    keywordObject[index] &&
+    keywordObject[index].contents[length - 1] &&
+    keywordObject[index].contents[length - 1].content;
+  
   const clickedIndex =
     keywordObject[index] &&
     keywordObject[index].contents.findIndex(v =>
@@ -34,8 +41,7 @@ const Main = ({
     keywordObject[index] &&
     keywordObject[index].contents[clickedIndex] &&
     keywordObject[index].contents[clickedIndex].content;
-    const contentRef = useRef(null);
-    
+    const contentRef = useRef(null); 
   //post
   const onClickButton = () => {
     const count = keywordObject.length;
@@ -47,10 +53,15 @@ const Main = ({
   };
   //리스트 요소 삭제
   const removeListElement = (id) => {
-    setKeywordObject(produce(keywordObject, draft => {
-      draft[index].contents[clickedIndex].content.elem[id] = '';
-      })
-    );
+    if (!clickedMainInput) {
+      setKeywordObject(produce(keywordObject, draft => {
+        draft[index].contents[length-1].content.elem[id] = '';})
+      );
+    }else {
+      setKeywordObject(produce(keywordObject, draft => {
+        draft[index].contents[clickedIndex].content.elem[id] = '';})
+      );
+    }
   };
   useEffect(() => {
     if (firstEntry === true) {
@@ -64,6 +75,10 @@ const Main = ({
       setAddFlag(false);
     }
   });
+
+  const isClickedBuilderMain = () => {
+    setKeywordKeyboard(false);
+  }
   return (
     <>
       <div className="main-header">
@@ -80,7 +95,7 @@ const Main = ({
           <i className="fa fa-ellipsis-v"></i>
         </div>
       </div>
-      <div className="main-contents" ref={contentRef} onClick={() => setKeywordKeyboard(false)}>
+      <div className="main-contents" ref={contentRef} onClick={isClickedBuilderMain}>
         {keywordObject[index] && (
           <div className="main-keyword-title">
             KEYWORD: {keywordObject[index].keyword}
@@ -122,11 +137,27 @@ const Main = ({
                     >미리보기</div> 
                     :
                     <div className="image-preview-default">
-                    미리보기</div>
+                    이미지 없음</div>
                   }
                   <div className="tool-delete delete-image">
                     <i className="fas fa-times"></i>
                   </div>
+                </div>
+              </>
+            ) : v.type === "video" ? (
+              <>
+                <div className="main-content main-videobox"
+                     onClick = {() => setClickedMainInput(v)}
+                     key = {v.content + i}
+                >TEST VIDEO
+                </div>
+              </>
+            ) : v.type === "audio" ? (
+              <>
+                <div className = "main-content main-audiobox"
+                    onClick = {() => setClickedMainInput(v)}
+                    key = {v.content + i}
+                >TEST AUDIO
                 </div>
               </>
             ) : v.type === "location" ? (
@@ -142,6 +173,14 @@ const Main = ({
                   <div className="tool-delete delete-location">
                     <i className="fas fa-times"></i>
                   </div>
+                </div>
+              </>
+            ) : v.type === "file" ? (
+              <>
+                <div className = "main-content main-filebox"
+                    key = {v.content + i}
+                    onClick = {() => setClickedMainInput(v)}
+                >TEST FILE
                 </div>
               </>
             ) : v.type === "list" ? (
@@ -192,54 +231,111 @@ const Main = ({
           저장
         </button>
       </div>
-      {keywordKeyboard ?
-       <>
-        <div className = "keyword-keyboard">
-        {clickedMainInput.type &&
-          clickedMainInput.type === "list" ? (
-              <>
+      {/** Keyword-keyboard START  */}
+      <div className = "keyword-keyboard">
+      { keywordKeyboard ? (
+        <>
+        { !clickedMainInput && 
+          currentInput && 
+          ( currentInput.type === "list" ? (
+            <>
+              <div className="main-keyboard">
+                {currentContent.elem[0] && (
                 <div className="list-elem-wrapper">
-                  <span className="list-elem">{MainContent.elem[0]}</span>
-                  <span className="clear-button" onClick={()=>{removeListElement(0)}}>x</span>
+                  <span className="list-elem">{currentContent.elem[0]}</span>
+                  <span className="clear-button" onClick={() => {removeListElement(0)}}>x</span>
                 </div>
+                )}
+                {currentContent.elem[1] && (
+                  <div className="list-elem-wrapper">
+                    <span className="list-elem">{currentContent.elem[1]}</span>
+                    <span className="clear-button" onClick={() => {removeListElement(1)}}>x</span>
+                  </div>
+                )}
+                {currentContent.elem[2] && (
+                  <div className="list-elem-wrapper">
+                    <span className="list-elem">{currentContent.elem[2]}</span>
+                    <span className="clear-button" onClick={() => {removeListElement(2)}}>x</span>
+                  </div>
+                )}
+                {currentContent.elem[3] && (
+                  <div className="list-elem-wrapper">
+                   <span className="list-elem">{currentContent.elem[3]}</span>
+                    <span className="clear-button" onClick={() => {removeListElement(3)}}>x</span>
+                  </div>
+                )}
+                {currentContent.elem[4] && (
+                  <div className="list-elem-wrapper">
+                    <span className="list-elem">{currentContent.elem[4]}</span>
+                    <span className="clear-button" onClick={() => {removeListElement(4)}}>x</span>
+                  </div>
+                )}
+                {currentContent.elem[5] && (
+                  <div className="list-elem-wrapper">
+                    <span className="list-elem">{currentContent.elem[5]}</span>
+                    <span className="clear-button" onClick={() => {removeListElement(5)}}>x</span>
+                  </div>
+                )}
+                {!currentContent.elem[0] && !currentContent.elem[1] &&
+                 !currentContent.elem[2] && !currentContent.elem[3] &&
+                 !currentContent.elem[4] && !currentContent.elem[5] &&
+                 <div className="list-elem-default"> + KEYWORD </div>
+                }
+              </div>
+              </>
+          ) : null
+          )}
+        { clickedMainInput.type &&
+          ( clickedMainInput.type === "list" ? (
+              <>
+                {MainContent.elem[0] && (
+                  <div className="list-elem-wrapper">
+                    <span className="list-elem">{MainContent.elem[0]}</span>
+                    <span className="clear-button" onClick={() => {removeListElement(0)}}>x</span>
+                  </div>
+                )}
                 {MainContent.elem[1] && (
-                  <span className="list-elem-wrapper">
+                  <div className="list-elem-wrapper">
                     <span className="list-elem">{MainContent.elem[1]}</span>
-                    <span className="clear-button" onClick={()=>{removeListElement(1)}}>x</span>
-                  </span>
+                    <span className="clear-button" onClick={() => {removeListElement(1)}}>x</span>
+                  </div>
                 )}
                 {MainContent.elem[2] && (
                   <div className="list-elem-wrapper">
                     <span className="list-elem">{MainContent.elem[2]}</span>
-                    <span className="clear-button" onClick={()=>{removeListElement(2)}}>x</span>
+                    <span className="clear-button" onClick={() => {removeListElement(2)}}>x</span>
                   </div>
                 )}
                 {MainContent.elem[3] && (
                   <div className="list-elem-wrapper">
                    <span className="list-elem">{MainContent.elem[3]}</span>
-                    <span className="clear-button" onClick={()=>{removeListElement(3)}}>x</span>
+                    <span className="clear-button" onClick={() => {removeListElement(3)}}>x</span>
                   </div>
                 )}
                 {MainContent.elem[4] && (
                   <div className="list-elem-wrapper">
                     <span className="list-elem">{MainContent.elem[4]}</span>
-                    <span className="clear-button" onClick={()=>{removeListElement(4)}}>x</span>
+                    <span className="clear-button" onClick={() => {removeListElement(4)}}>x</span>
                   </div>
                 )}
                 {MainContent.elem[5] && (
                   <div className="list-elem-wrapper">
                     <span className="list-elem">{MainContent.elem[5]}</span>
-                    <span className="clear-button" onClick={()=>{removeListElement(5)}}>x</span>
+                    <span className="clear-button" onClick={() => {removeListElement(5)}}>x</span>
                   </div>
                 )}
+                {!MainContent.elem[0] && !MainContent.elem[1] &&
+                 !MainContent.elem[2] && !MainContent.elem[3] &&
+                 !MainContent.elem[4] && !MainContent.elem[5] &&
+                 <div className="list-elem-default"> + KEYWORD </div>
+                }
               </>
-            ) : null
-        }
-        </div>
-      </>
-      : null
-    }
+          ) : null )}
+        </>
+      ) : null }
+      </div> 
+      {/** keyword-keyboard END */}
     </>
-  );
+  );  /**retun END */
 };
 export default Main;
