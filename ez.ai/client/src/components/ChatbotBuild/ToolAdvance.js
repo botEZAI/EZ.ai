@@ -9,6 +9,8 @@ const ToolAdvance = ({
   setClickedMainInput,
   setAddFlag,
   setKeywordKeyboard
+  setNow,
+  length,
 }) => {
   const onClickTool = tool => {
     console.log("onClickTool");
@@ -40,14 +42,20 @@ const ToolAdvance = ({
       {console.log("Tooladvance")}
       <div
         className="tool-basic tool-basic-text"
-        onClick={() => onClickTool("list")}
+        onClick={() => {
+            onClickTool("list")
+            setNow(length + 1)
+        }}
       >
         <i className="fas fa-list"></i>
         버튼형 리스트
       </div>
       <div
         className="tool-basic tool-basic-text"
-        onClick={() => onClickTool("sticker")}
+        onClick={() => {
+            onClickTool("sticker")
+            setNow(length + 1)
+        }}
        >
          <i className="far fa-laugh"></i>
          스티커
