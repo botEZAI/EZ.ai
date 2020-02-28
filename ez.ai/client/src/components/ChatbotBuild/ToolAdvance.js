@@ -8,7 +8,7 @@ const ToolAdvance = ({
   setKeywordObject,
   setClickedMainInput,
   setAddFlag,
-  setKeywordKeyboard
+  setKeywordKeyboard,
   setNow,
   length,
 }) => {

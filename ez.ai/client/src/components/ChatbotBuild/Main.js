@@ -19,7 +19,7 @@ const Main = ({
   setFirstEntry,
   clickedMainInput,
   keywordKeyboard,
-  setKeywordKeyboard
+  setKeywordKeyboard,
   setNow,
 }) => {
   const index = keywordObject.findIndex(v => v.keyword === mainKeyword);
