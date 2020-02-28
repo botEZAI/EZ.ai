@@ -2,7 +2,6 @@ import React, { useState, useRef } from "react";
 import produce from "immer";
 import GoogleMapPresenter from "./GoogleMapPresenter";
 import axios from "axios";
-import TextStatus from "./Status/TextStatus"
 
 const ToolStatus = ({
   mainKeyword,
