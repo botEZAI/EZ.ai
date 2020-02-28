@@ -102,8 +102,8 @@
   align-items: flex-start;
 }
 .image-preview-default{
-  min-width:100px;
-  min-height:100px;
+  min-width:200px;
+  min-height:150px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -163,8 +163,6 @@
 .tool-delete:hover{
   color:red;
 }
-
-
 /*==================== Main footer(하단) ===================*/
 .main-footer{
   /* border: .5px solid #999; */
@@ -180,13 +178,28 @@
   background-color: #bebebe;
   transition: .5s ease;
 }
+.main-keyboard{
+  min-height:45px;
+}
+.list-elem-default{
+  display:inline-flex;
+  width : 40%;
+  height: 35px;
+  justify-content:center;
+  align-items:center;
+  margin : 5px;
+  background-color : rgba(73, 71, 71, 0.336);
+  border-radius: 5px;
+  outline-color: #00b8b4;
+  color: #bebebe;
+}
 .list-elem-wrapper{
   display:inline-flex;
   width : 40%;
-  height: 33px;
+  height: 36px;
+  padding: 5px 5px 5px 10px;
   margin : 5px;
   background-color : #eee;
-  padding: 5px 5px 5px 10px;
   border : none;
   border-radius: 5px;
   outline-color: #00b8b4;
