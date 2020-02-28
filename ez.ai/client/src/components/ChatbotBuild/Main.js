@@ -17,7 +17,8 @@ const Main = ({
   setAddFlag,
   firstEntry,
   setFirstEntry,
-  clickedMainInput
+  clickedMainInput,
+  setNow,
 }) => {
   const [keywordKeyboard, setKeywordKeyboard] = useState(false);
   const index = keywordObject.findIndex(v => v.keyword === mainKeyword);
@@ -91,7 +92,10 @@ const Main = ({
               <>
                 <div
                   className="main-content main-textbox"
-                  onClick={(e) => setClickedMainInput(v)}
+                  onClick={(e) => {
+                    setClickedMainInput(v)
+                    setNow(i)  // 요소 클릭시 setNow(i)를 해줘야 왼쪽 status화면에서 보이니 참고해주세요
+                  }}
                   key={v.contnet + i}
                   style={{padding:"3%"}}
                 >
@@ -105,7 +109,10 @@ const Main = ({
               <>
                 <div
                   className="main-content main-imgbox"
-                  onClick={() => setClickedMainInput(v)}
+                  onClick={() => {
+                    setClickedMainInput(v)
+                    setNow(i)
+                  }}
                   key={v.contnet + i}
                   style={{padding:"1%"}}
                 >
@@ -127,7 +134,10 @@ const Main = ({
                 <div
                   className="main-content main-locabox"
                   key={v.contnet + i}
-                  onClick={() => setClickedMainInput(v)}
+                  onClick={() => {
+                    setClickedMainInput(v)
+                    setNow(i)
+                  }}
                 > <GoogleMapPresenter />
                   <div className="tool-delete delete-location">
                     <i className="fas fa-times"></i>
@@ -139,7 +149,12 @@ const Main = ({
                 <div
                   className="main-content main-listbox"
                   key={v.contnet + i}
-                  onClick={(e) => {setClickedMainInput(v); e.stopPropagation(); setKeywordKeyboard(true);}}
+                  onClick={(e) => {
+                    setClickedMainInput(v)
+                    e.stopPropagation()
+                    setKeywordKeyboard(true)
+                    setNow(i)
+                  }}
                 > 
                   <div className = "main-listbox-header">Question</div>
                   <div className="main-listbox-question">

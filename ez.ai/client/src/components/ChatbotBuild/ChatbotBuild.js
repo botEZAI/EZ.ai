@@ -91,7 +91,6 @@ const ChatbotBuild = () => {
                 setClickedMainInput={setClickedMainInput}
                 setAddFlag={setAddFlag}
                 setNow={setNow}
-                now = {now}
                 length = {length}
               />
             )}
@@ -103,7 +102,6 @@ const ChatbotBuild = () => {
                 setClickedMainInput={setClickedMainInput}
                 setAddFlag={setAddFlag}
                 setNow={setNow}
-                now = {now}
                 length = {length}
               />
             )}
@@ -126,7 +124,6 @@ const ChatbotBuild = () => {
                 keywordObject={keywordObject}
                 setKeywordObject={setKeywordObject}
                 clickedMainInput={clickedMainInput}
-                setNow={setNow}
                 now={now}
                 index = {index}
               />
@@ -146,6 +143,7 @@ const ChatbotBuild = () => {
             firstEntry={firstEntry}
             setFirstEntry={setFirstEntry}
             clickedMainInput={clickedMainInput}
+            setNow={setNow}
           />
         </div>
       </div>
