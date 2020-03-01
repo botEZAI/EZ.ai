@@ -20,7 +20,8 @@ const Main = ({
   clickedMainInput,
   keywordKeyboard,
   setKeywordKeyboard,
-  setNow
+  setNow,
+  now
 }) => {
   const index = keywordObject.findIndex(v => v.keyword === mainKeyword);
   const length = keywordObject[index] && keywordObject[index].contents.length;
@@ -67,14 +68,16 @@ const Main = ({
   };
   //삭제
   const onDelete = id => {
-    setKeywordObject(
-      produce(keywordObject, draft => {
-        draft[index].contents.splice(
-          draft[index].contents.findIndex(content => content.id === id),
-          1
-        );
-      })
-    );
+    setNow(-1);
+    console.log(now);
+    // setKeywordObject(
+    //   produce(keywordObject, draft => {
+    //     draft[index].contents.splice(
+    //       draft[index].contents.findIndex(content => content.id === id),
+    //       1
+    //     );
+    //   })
+    // );
   };
   useEffect(() => {
     if (firstEntry === true) {
