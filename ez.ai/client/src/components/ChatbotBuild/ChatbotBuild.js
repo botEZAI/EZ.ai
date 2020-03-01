@@ -148,6 +148,8 @@ const ChatbotBuild = () => {
             clickedMainInput={clickedMainInput}
             keywordKeyboard={keywordKeyboard}
             setKeywordKeyboard={setKeywordKeyboard}
+            now={now}
+            index={index}
             setNow={setNow}
           />
         </div>
