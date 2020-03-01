@@ -5,27 +5,23 @@
 }
 /*================ Main header(상단) =============== */
 .main-header{
+  display:flex;
+  align-items:center;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   background-color: #54759e;
   height:70px;
   color: white;
-  display:flex;
-}
-.main-header-icon{
-  flex:none;
-}
-.item-last{
-  margin-left:auto;
-  font-size:17pt;
-  margin-top:5px;
 }
 .fa{
-  vertical-align: middle;
   margin: 20px;
 }
+#item-last{
+  margin-left:auto;
+  font-size:17pt;
+  margin-top:20px;
+}
 /*======================== Main contents 내부 요소들 ===================== */
-/*main-contents style*/
 .main-contents{
   flex-direction: column;
   height:100%;
@@ -49,8 +45,8 @@
   word-break:break-all;
   float:right;
   margin:3%;
-
 }
+
 .main-keyword-title:after{
   position:absolute;
   border-top:0px solid transparent;
@@ -74,7 +70,7 @@
   clear:right;/*main-keyword-title의 float를 감지하지 않기 위함*/
   min-width:10%;
   min-height:5%;
-  max-width:70%;
+  max-width:80%;
 }
 .main-content::after{ 
   position:absolute;
@@ -111,12 +107,52 @@
   color:#ddd;
   border-radius: 5px;
 }
+.main-videobox{ /*==Basic > video==*/
+  padding:1%;
+  line-height:0; 
+  width: 300px; 
+  height: 180px; 
+  cursor: pointer;
+}
+.main-video-content{
+  line-height: 170px; 
+  height:170px;
+  text-align: center;
+  border-radius:5px;
+  border:1px solid #ddd;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(); /*미리보기 사진*/
+}
 .main-locabox{/*== Basic > 지도(Map) ==*/
   width:210px;
   height:210px;
   display:flex;
   justify-content:center;
   align-items:center;
+}
+.main-filebox, .main-audiobox{/* === Basic > File == */
+  display:flex;
+  align-items:center;
+  width:fit-content;
+  height:fit-content;
+  padding:10px;
+}
+.main-file-content{
+  display:block;
+  width:200px;
+  white-space:nowrap;
+  overflow-x:hidden;
+  text-overflow:ellipsis;
+  margin:10px;
+}
+.main-file-icon{
+  padding:18px;
+  margin:5px;
+  border-radius: 50%;
+  background:#2ca2da;
+  color:white;
+  cursor:pointer;
 }
 .main-listbox { /*== Advance > List == */
   z-index:1;
