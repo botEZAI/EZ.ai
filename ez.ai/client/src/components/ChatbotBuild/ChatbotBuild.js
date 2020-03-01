@@ -14,7 +14,9 @@ const ChatbotBuild = () => {
   const [keywordList, setKeywordList] = useState(["Welcome"]);
   const [mainKeyword, setMainKeyword] = useState("");
   const [keywordContentList, setKeywordContentList] = useState([]);
-  const [keywordObject, setKeywordObject] = useState([{keyword: "Welcome", id: 1, contents: []}]);
+  const [keywordObject, setKeywordObject] = useState([
+    { keyword: "Welcome", id: 1, contents: [] }
+  ]);
   const [clickedMainInput, setClickedMainInput] = useState({});
   const [addFlag, setAddFlag] = useState(false); // 컨텐츠 추가 flag
   const [firstEntry, setFirstEntry] = useState(true); // 키워드 진입 flag
@@ -22,19 +24,23 @@ const ChatbotBuild = () => {
   const [now, setNow] = useState(-1);
 
   const index = keywordObject.findIndex(v => v.keyword === mainKeyword);
-  const length = keywordObject[index] && keywordObject[index].contents.length -1;
+  const length =
+    keywordObject[index] && keywordObject[index].contents.length - 1;
 
   const onSelect = useCallback(tab => {
     setActiveTab(tab);
   }, []);
 
   // 키워드 클릭했을시
-  const onClickKeyword = useCallback(keyword => {
-    setMainKeyword(keyword);
-    setClickedMainInput("");
-    setFirstEntry(true); // 키워드 클릭 시, 스크롤 초기화 (맨 위로 가서 keyword-title 보이게 함) 
-    setKeywordKeyboard(false); // 키워드 클릭 시, Main의 '리스트' 하단 바 초기화(하단 바 안 보임)
-  }, []);
+  const onClickKeyword = useCallback(
+    keyword => () => {
+      setMainKeyword(keyword);
+      setClickedMainInput("");
+      setFirstEntry(true); // 키워드 클릭 시, 스크롤 초기화 (맨 위로 가서 keyword-title 보이게 함)
+      setKeywordKeyboard(false); // 키워드 클릭 시, Main의 '리스트' 하단 바 초기화(하단 바 안 보임)
+    },
+    [keywordObject.length]
+  );
 
   {
     /* 오른쪽 사이드바 fold 동적 프로그래밍 코드*/
@@ -93,7 +99,7 @@ const ChatbotBuild = () => {
                 setClickedMainInput={setClickedMainInput}
                 setAddFlag={setAddFlag}
                 setNow={setNow}
-                length = {length}
+                length={length}
               />
             )}
             {activeTab === "advance" && (
@@ -105,7 +111,7 @@ const ChatbotBuild = () => {
                 setAddFlag={setAddFlag}
                 setKeywordKeyboard={setKeywordKeyboard}
                 setNow={setNow}
-                length = {length}
+                length={length}
               />
             )}
             {activeTab === "keyword" && (
@@ -128,7 +134,7 @@ const ChatbotBuild = () => {
                 setKeywordObject={setKeywordObject}
                 clickedMainInput={clickedMainInput}
                 now={now}
-                index = {index}
+                index={index}
               />
             )}
           </div>
@@ -148,6 +154,7 @@ const ChatbotBuild = () => {
             clickedMainInput={clickedMainInput}
             keywordKeyboard={keywordKeyboard}
             setKeywordKeyboard={setKeywordKeyboard}
+            now={now}
             setNow={setNow}
           />
         </div>
