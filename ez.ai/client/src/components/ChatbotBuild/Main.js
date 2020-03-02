@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, useCallback } from "react";
 import produce from "immer";
 import axios from "axios";
 import "./Main.css";
@@ -50,6 +50,16 @@ const Main = ({
   const isClickedBuilderMain = () => {
     setKeywordKeyboard(false);
   }
+  const onDelete = id => {
+    setKeywordObject(
+      produce(keywordObject, draft => {
+        draft[index].contents.splice(
+          draft[index].contents.findIndex(content => content.id === id),
+          1
+        );
+      })
+    );
+  };
   useEffect(() => {
     if (firstEntry === true) {
       contentRef.current.scrollTop = 0; // 키워드 클릭 시 스크롤 초기화
@@ -68,7 +78,11 @@ const Main = ({
           <span>USER</span>
           <i id="item-last" className="fa fa-ellipsis-v"></i>
       </div>
-      <div className="main-contents" ref={contentRef} onClick={isClickedBuilderMain}>
+      <div
+        className="main-contents"
+        ref={contentRef}
+        onClick={isClickedBuilderMain}
+      >
         {keywordObject[index] && (
           <div className="main-keyword-title">
             KEYWORD: {keywordObject[index].keyword}
@@ -80,15 +94,21 @@ const Main = ({
               <>
                 <div
                   className="main-content main-textbox"
-                  onClick={(e) => {
-                    setClickedMainInput(v)
-                    setNow(i)  // 요소 클릭시 setNow(i)를 해줘야 왼쪽 status화면에서 보이니 참고해주세요
+                  onClick={e => {
+                    setClickedMainInput(v);
+                    console.log(keywordObject);
+                    setNow(i); // 요소 클릭시 setNow(i)를 해줘야 왼쪽 status화면에서 보이니 참고해주세요
                   }}
-                  key={v.contnet + i}
-                  style={{padding:"3%"}}
+                  key={v.content + i}
+                  style={{ padding: "3%" }}
                 >
                   {v.content}
-                  <div className="tool-delete delete-text">
+                  <div
+                    className="tool-delete delete-text"
+                    onClick={() => {
+                      onDelete(v.id);
+                    }}
+                  >
                     <i className="fas fa-times"></i>
                   </div>
                 </div>
@@ -98,20 +118,22 @@ const Main = ({
                 <div
                   className="main-content main-imgbox"
                   onClick={() => {
-                    setClickedMainInput(v)
-                    setNow(i)
+                    setClickedMainInput(v);
+                    setNow(i);
                   }}
-                  key={v.contnet + i}
-                  style={{padding:"1%"}}
+                  key={v.content + i}
+                  style={{ padding: "1%" }}
                 >
-                  { v.content !== "" ?
-                    <div className="main-image-preview"
-                      style={{ backgroundImage: `url(${v.content})`}}
-                    >미리보기</div> 
-                    :
-                    <div className="image-preview-default">
-                    이미지 없음</div>
-                  }
+                  {v.content !== "" ? (
+                    <div
+                      className="main-image-preview"
+                      style={{ backgroundImage: `url(${v.content})` }}
+                    >
+                      미리보기
+                    </div>
+                  ) : (
+                    <div className="image-preview-default">이미지 없음</div>
+                  )}
                   <div className="tool-delete delete-image">
                     <i className="fas fa-times"></i>
                   </div>
@@ -147,11 +169,14 @@ const Main = ({
               <>
                 <div
                   className="main-content main-locabox"
-                  key={v.contnet + i}
+                  key={v.content + i}
                   onClick={() => {
-                    setClickedMainInput(v)
-                    setNow(i)}}
-                > <GoogleMapPresenter />
+                    setClickedMainInput(v);
+                    setNow(i);
+                  }}
+                >
+                  {" "}
+                  <GoogleMapPresenter />
                   <div className="tool-delete delete-location">
                     <i className="fas fa-times"></i>
                   </div>
@@ -175,19 +200,19 @@ const Main = ({
               <>
                 <div
                   className="main-content main-listbox"
-                  key={v.contnet + i}
-                  onClick={(e) => {
-                    setClickedMainInput(v)
-                    e.stopPropagation()
-                    setKeywordKeyboard(true)
-                    setNow(i)
+                  key={v.content + i}
+                  onClick={e => {
+                    setClickedMainInput(v);
+                    e.stopPropagation();
+                    setKeywordKeyboard(true);
+                    setNow(i);
                   }}
-                > <div className = "main-listbox-header">Question</div>
+                >
+                  <div className="main-listbox-header">Question</div>
                   <div className="main-listbox-question">
-                    {v.content.question !== "" ? 
-                      v.content.question 
-                      : "(Ask a question)"
-                    } 
+                    {v.content.question !== ""
+                      ? v.content.question
+                      : "(Ask a question)"}
                   </div>
                   <div className="main-listbox-elem">{v.content.elem[0]}</div>
                   {v.content.elem[1] && (
@@ -276,6 +301,6 @@ const Main = ({
       </div> 
       {/** keyword-keyboard END */}
     </>
-  );  /**retun END */
+  ); /**retun END */
 };
 export default Main;
