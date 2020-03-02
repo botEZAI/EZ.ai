@@ -50,6 +50,7 @@ const Main = ({
   const isClickedBuilderMain = () => {
     setKeywordKeyboard(false);
   }
+  //삭제
   const onDelete = id => {
     setKeywordObject(
       produce(keywordObject, draft => {
