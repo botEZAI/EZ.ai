@@ -152,9 +152,6 @@ const ToolStatus = ({
                       value={currentContent || ""}
                       onChange={onClickLoadImage}
                     />
-                    <div className="outer-img-btn" onChange={onClickLoadImage}>
-                      적용
-                    </div>
                   </div>
                   <div className="upload-preview" >
                     <div
