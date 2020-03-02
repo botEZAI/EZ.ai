@@ -22,7 +22,6 @@ const Main = ({
   setKeywordKeyboard,
   index,
   now,
-
   setNow
 }) => {
   const currentInput =
@@ -54,14 +53,16 @@ const Main = ({
   }
   //삭제
   const onDelete = id => {
-    setKeywordObject(
-      produce(keywordObject, draft => {
-        draft[index].contents.splice(
-          draft[index].contents.findIndex(content => content.id === id),
-          1
-        );
-      })
-    );
+      setNow(-1);
+      console.log(now);
+      // setKeywordObject(
+      //   produce(keywordObject, draft => {
+      //     draft[index].contents.splice(
+      //       draft[index].contents.findIndex(content => content.id === id),
+      //       1
+      //     );
+      //   })
+      // );
   };
   useEffect(() => {
     if (firstEntry === true) {

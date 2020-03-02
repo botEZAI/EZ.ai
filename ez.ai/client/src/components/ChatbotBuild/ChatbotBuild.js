@@ -29,12 +29,15 @@ const ChatbotBuild = () => {
   }, []);
 
   // 키워드 클릭했을시
-  const onClickKeyword = useCallback(keyword => {
-    setMainKeyword(keyword);
-    setClickedMainInput("");
-    setFirstEntry(true); // 키워드 클릭 시, 스크롤 초기화 (맨 위로 가서 keyword-title 보이게 함) 
-    setKeywordKeyboard(false); // 키워드 클릭 시, Main의 '리스트' 하단 바 초기화(하단 바 안 보임)
-  }, []);
+  const onClickKeyword = useCallback(
+      keyword => () => {
+        setMainKeyword(keyword);
+        setClickedMainInput("");
+        setFirstEntry(true); // 키워드 클릭 시, 스크롤 초기화 (맨 위로 가서 keyword-title 보이게 함)
+        setKeywordKeyboard(false); // 키워드 클릭 시, Main의 '리스트' 하단 바 초기화(하단 바 안 보임)
+      },
+      [keywordObject.length]
+  );
 
   {
     /* 오른쪽 사이드바 fold 동적 프로그래밍 코드*/

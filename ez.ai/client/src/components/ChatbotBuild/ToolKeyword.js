@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import produce from "immer";
 
 const ToolKeyword = ({
   keyword,
@@ -12,18 +13,29 @@ const ToolKeyword = ({
 }) => {
   const [value, setValue] = useState("");
   const onSubmit = e => {
+    e.preventDefault();
     console.log("onSubmit");
 
     keyword !== "" && setKeywordList(keywordList => [...keywordList, keyword]);
-    keyword !== "" ? setKeywordObject(keywordObject => [...keywordObject,{ keyword: keyword, id: keywordObject.length + 1, contents: [] }]) : alert("키워드를 입력하세요");
+    keyword !== ""
+        ? setKeywordObject(
+        produce(keywordObject, draft => {
+          draft.push({
+            keyword: keyword,
+            id: keywordObject[keywordObject.length - 1].id + 1,
+            contents: []
+          });
+        })
+        )
+        : alert("키워드를 입력하세요");
     keyword !== "" && setValue("");
     keyword !== "" && setKeyword("");
     e.preventDefault();
   };
 
   const onChangeInput = e => {
-    setKeyword(e.target.value);
     setValue(e.target.value);
+    setKeyword(e.target.value);
   };
 
   return (
@@ -35,7 +47,7 @@ const ToolKeyword = ({
             <input
               placeholder="키워드"
               value={value}
-              onChange={onChangeInput}
+              onChange={e => onChangeInput(e)}
             />
             <button type="submit">추가</button>
           </form>
@@ -47,11 +59,11 @@ const ToolKeyword = ({
             return (
               <div
                 key={index}
-                label={keyword}
-                onClick={() => onClickKeyword(keyword)}
+                label={keyword.keyword}
+                onClick={onClickKeyword(keyword.keyword)}
                 className="tool-keyword"
               >
-                {keyword}
+                {keyword.keyword}
               </div>
             );
           })}

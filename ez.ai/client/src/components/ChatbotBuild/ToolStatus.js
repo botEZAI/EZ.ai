@@ -14,7 +14,9 @@ const ToolStatus = ({
   index,
 }) => {
   const clickedIndex =
-      keywordObject[index] && keywordObject[index].contents.findIndex(v => v.id === clickedMainInput.id);
+      keywordObject[index] &&
+      keywordObject[index].contents.findIndex(v => v.id === clickedMainInput.id);
+
   const currentInput =
       keywordObject[index] && keywordObject[index].contents[now];
   const currentContent =
@@ -24,40 +26,35 @@ const ToolStatus = ({
 
   /*이미지 외부 URL 입력후 적용시 미리보기에 적용*/
   const imageRef = useRef();
+  const fileRef = useRef();
   const [imageURL, setImageURL] = useState("");
   const [imageTab, setImageTab] = useState("url");
   const [imageSrc, setImageSrc] = useState("");
 
-  const onClickLoadImage = (e) => {
+  const onClickLoadImage = e => {
     setImageURL(e.target.value);
     setKeywordObject(
         produce(keywordObject, draft => {
-            draft[index].contents[now].content =
-                e.target.value;
-          })
-      );
-    };
+            draft[index].contents[now].content = e.target.value;
+        })
+    );
+  };
 
   const onClickUploadImage = () => {
-    imageRef.current.click();
+      console.log(fileRef);
+      fileRef.current.click();
   };
   const onChangeImage = e => {
-    //     const reader = new FileReader();
-    //   reader.onloadend = () => {
-    //     const imageSrc = reader.result;
-    //     if (imageSrc) {
-    //       setImageSrc(imageSrc.toString());
-    //     }
-    //   };
-    // reader.readAsDataURL(e.target.files[0]);
+      if (e.target.value === "") return;
+      if (e.target.files[0].type.match(/image/g)) {
+          setKeywordObject(
+              produce(keywordObject, draft => {
+                  draft[index].contents[now].content = e.target.files[0].name;
+              })
+          );
 
-    setKeywordObject(
-      produce(keywordObject, draft => {
-        draft[index].contents[now].content = e.target.files[0].name;
-      })
-    );
-    const imageFormData = new FormData();
-    imageFormData.append("image", e.target.files[0]);
+          const imageFormData = new FormData();
+          imageFormData.append("image", e.target.files[0]);
 
     axios.post("/api/image", imageFormData);
   };
@@ -73,39 +70,45 @@ const ToolStatus = ({
         <div className="tool-status-name">
 
           {currentInput ? (
-              (currentInput.type === "text" || clickedMainInput.type === "text") ? (
+              currentInput.type === "text" || clickedMainInput.type === "text" ? (
               <>
                 <span>텍스트</span>
               </>
-            ) : (currentInput.type === "image" || clickedMainInput.type === "image") ? (
+              ) : currentInput.type === "image" || clickedMainInput.type === "image" ? (
               <>
                 <span>이미지</span>
               </>
-            ) : currentInput.type === "video" || clickedMainInput.type === "video" ? (
-                <>
-                  <span>비디오</span>
-                </>
-            ) : currentInput.type === "audio" || clickedMainInput.type === "audio" ? (
-                <>
-                  <span>오디오</span>
-                </>
-            ) : currentInput.type === "location" || clickedMainInput.type === "location" ? (
+              ) : currentInput.type === "video" ||
+              clickedMainInput.type === "video" ? (
+                  <>
+                      <span>비디오</span>
+                  </>
+              ) : currentInput.type === "audio" ||
+              clickedMainInput.type === "audio" ? (
+                  <>
+                      <span>오디오</span>
+                  </>
+              ) : currentInput.type === "location" ||
+              clickedMainInput.type === "location" ? (
               <>
                 <span>위치</span>
               </>
-            ) : currentInput.type === "file" || clickedMainInput.type === "file" ? (
-                <>
-                  <span>파일</span>
-                </>
-            ) : currentInput.type === "list" || clickedMainInput.type === "list" ? (
+              ) : currentInput.type === "file" ||
+              clickedMainInput.type === "file" ? (
+                  <>
+                      <span>파일</span>
+                  </>
+              ) : currentInput.type === "list" ||
+              clickedMainInput.type === "list" ? (
               <>
                 <span>버튼형 리스트</span>
               </>
-            ) : currentInput.type === "sticker" || clickedMainInput.type === "sticker" ? (
-                <>
-                  <span>스티커</span>
-                </>
-            ): null
+              ) : currentInput.type === "sticker" ||
+              clickedMainInput.type === "sticker" ? (
+                  <>
+                      <span>스티커</span>
+                  </>
+              ) : null
           ) : null}
         </div>
         <div className="help" alt="도움말">
@@ -114,23 +117,23 @@ const ToolStatus = ({
       </div>
 
       <div className="tool-status-main">
-        {(clickedMainInput.type || (!clickedMainInput.type && currentInput )) &&
-        ( currentInput.type === "text" || clickedMainInput.type === "text" ? (
-                <div className="status-input status-text">
-                <textarea
-                    placeholder="작성하고자 하는 텍스트를 적어주세요"
-                    value={currentContent || ""}
-                    onChange={e => {
+          {(clickedMainInput.type || (!clickedMainInput.type && currentInput)) &&
+          (currentInput.type === "text" || clickedMainInput.type === "text" ? (
+              <div className="status-input status-text">
+              <textarea
+                  placeholder="작성하고자 하는 텍스트를 적어주세요"
+                  value={currentContent || ""}
+                  onChange={e => {
                       setKeywordObject(
                           produce(keywordObject, draft => {
-                            draft[index].contents[now].content =
-                                e.target.value;
+                              draft[index].contents[now].content = e.target.value;
                           })
                       );
-                    }}
-                />
-                </div>
-        ) : currentInput.type === "image" || clickedMainInput.type === "image" ? (
+                  }}
+              />
+              </div>
+          ) : currentInput.type === "image" ||
+          clickedMainInput.type === "image" ? (
             <div className="image-status">
               <div className="status-image-tab">
                 <div
@@ -217,15 +220,18 @@ const ToolStatus = ({
                 </div>
               </div>
             </>
-          ) : currentInput.type === "audio" || clickedMainInput.type === "audio" ? (
+          ) : currentInput.type === "audio" ||
+          clickedMainInput.type === "audio" ? (
               <>
-                <div className="status-audio upload">
-                  <div className="status-input status-upload">
-                    <div className="upload-preview">
-                      <div
-                          className="preview-screen upload-preview-screen cursor"
-                          /*onClick={onClickUploadImage}*/
-                      ><p>로컬에서 오디오 불러오기</p></div>
+                  <div className="status-audio upload">
+                      <div className="status-input status-upload">
+                          <div className="upload-preview">
+                              <div
+                                  className="upload-preview-screen cursor"
+                                  /*onClick={onClickUploadImage}*/
+                              >
+                                  <p>로컬에서 오디오 불러오기</p>
+                              </div>
 
                       {/* 이미지 양식이므로 오디오 양식으로 바꿔야합니다
                     <input
