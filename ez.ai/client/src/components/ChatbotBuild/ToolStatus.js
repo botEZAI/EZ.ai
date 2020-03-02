@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import produce from "immer";
 import GoogleMapPresenter from "./GoogleMapPresenter";
 import axios from "axios";
+import KeywordPopUp from "./KeywordPopUp";
 
 
 const ToolStatus = ({
@@ -35,7 +36,6 @@ const ToolStatus = ({
                 e.target.value;
           })
       );
-    console.log(imageURL)
     };
 
   const onClickUploadImage = () => {
@@ -61,6 +61,11 @@ const ToolStatus = ({
 
     axios.post("/api/image", imageFormData);
   };
+
+  const showKeywordPopUp = (e) => {
+      console.log("works")
+      return <KeywordPopUp/>
+  }
 
   return (
     <>
@@ -152,6 +157,9 @@ const ToolStatus = ({
                       value={currentContent || ""}
                       onChange={onClickLoadImage}
                     />
+                    <div className="outer-img-btn" onChange={onClickLoadImage}>
+                      적용
+                    </div>
                   </div>
                   <div className="upload-preview" >
                     <div
@@ -325,6 +333,7 @@ const ToolStatus = ({
                       <input
                         placeholder="키워드명을 적어주세요"
                         value={currentContent.elem[0] || ""}
+
                         onChange={e => {
                           setKeywordObject(
                             produce(keywordObject, draft => {
@@ -334,7 +343,10 @@ const ToolStatus = ({
                           );
                         }}
                       />
-                      <div className = "list-keyword-btn">키워드 연동</div>
+                      <div
+                          className = "list-keyword-btn"
+                          onClick = {showKeywordPopUp}
+                      >키워드 연동</div>
                     </div>
                     <div className = "status-list-content">
                       <input
@@ -429,9 +441,16 @@ const ToolStatus = ({
 
       </div>
       <div className="tool-status-nav">
-        <div className="tool-status-extra">
-          <div className = "extra-btn user-name">사용자명</div>
-          <div className = "extra-btn emoji">이모지</div>
+        <div className="tool-status-extra">  {/* type에 따라 추가적인 기능 버튼 보여주는 영역 */}
+            {currentInput ? (
+                (currentInput.type === "text" || clickedMainInput.type === "text") ? (
+                    <>
+                      <div className = "extra-btn user-name">사용자명</div>
+                      <div className = "extra-btn emoji">이모지</div>
+                     </>
+                ): null
+                ) : null
+            }
         </div>
         <div className="tool-status-nav-btns">
           <div className="tool-status-btn confirm">확인</div>

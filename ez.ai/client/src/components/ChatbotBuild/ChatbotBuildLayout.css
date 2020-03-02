@@ -10,6 +10,8 @@
 }
 
 .builder__column {
+  position : absolute;
+  top : 0;
   margin-bottom: 10px;
   display: flex;
   justify-content: center;
