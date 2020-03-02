@@ -114,7 +114,7 @@ const Main = ({
                   </div>
                 </div>
               </>
-            ) : v.type === "image" ? (
+            ) : v.type === "image" ? ( /**서버에서 파일 받아옴. */
               <>
                 <div
                   className="main-content main-imgbox"
@@ -140,7 +140,7 @@ const Main = ({
                   </div>
                 </div>
               </>
-            ) : v.type === "video" ? (
+            ) : v.type === "video" ? (/**서버에서 파일 받아옴 */
               <>
                 <div className="main-content main-videobox"
                      key = {v.content + i}
@@ -149,6 +149,9 @@ const Main = ({
                        setNow(i)}}
                 > <div className="main-video-content">
                     <i className="fas fa-play fa-lg main-file-icon"></i>
+                  </div>
+                  <div className="tool-delete delete-video">
+                    <i className="fas fa-times"></i>
                   </div>
                 </div>
               </>
@@ -163,6 +166,9 @@ const Main = ({
                   <div className="main-file-content">
                     <div className="main-file-name" data-filetype="">(fileName{v.content})</div>
                     <div className="main-file-size" data-filetype="">00:00, 00.00 MB </div>
+                  </div>
+                  <div className="tool-delete delete-audio">
+                    <i className="fas fa-times"></i>
                   </div>
                 </div>
               </>
@@ -194,6 +200,9 @@ const Main = ({
                   <div className="main-file-content">
                     <div className="main-file-name" data-filetype="">(fileName{v.content})</div>
                     <div className="main-file-size" data-filetype="">00.00 MB</div>
+                  </div>
+                  <div className="tool-delete delete-file">
+                    <i className="fas fa-times"></i>
                   </div>
                 </div>
               </>
