@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, useCallback } from "react";
 import produce from "immer";
 import axios from "axios";
 import "./Main.css";
@@ -17,19 +17,22 @@ const Main = ({
   setAddFlag,
   firstEntry,
   setFirstEntry,
-  clickedMainInput
-}) => {
-  const [keywordKeyboard, setKeywordKeyboard] = useState(false);
-  const index = keywordObject.findIndex(v => v.keyword === mainKeyword);
-  const clickedIndex =
-    keywordObject[index] &&
-    keywordObject[index].contents.findIndex(v => v.id === clickedMainInput.id);
+  clickedMainInput,
+  keywordKeyboard,
+  setKeywordKeyboard,
+  index,
+  now,
 
-    const MainContent =
+  setNow
+}) => {
+  const currentInput =
+    keywordObject[index] && keywordObject[index].contents[now];
+  const currentContent =
     keywordObject[index] &&
-    keywordObject[index].contents[clickedIndex] &&
-    keywordObject[index].contents[clickedIndex].content;
-    const contentRef = useRef(null);
+    keywordObject[index].contents[now] &&
+    keywordObject[index].contents[now].content;
+  const contentRef = useRef(null); 
+
   //post
   const onClickButton = () => {
     const count = keywordObject.length;
@@ -41,23 +44,32 @@ const Main = ({
   };
   //리스트 요소 삭제
   const removeListElement = (id) => {
-    // MainContent.elem[id] = "";
-    // keywordObject[0].contents[0].content.elem[0] = '';
     setKeywordObject(produce(keywordObject, draft => {
-      draft[index].contents[clickedIndex].content.elem[id] = '';
-    })
+      draft[index].contents[now].content.elem[id] = '';})
     );
-    
+  };
+  // 
+  const isClickedBuilderMain = () => {
+    setKeywordKeyboard(false);
+  }
+  //삭제
+  const onDelete = id => {
+    setKeywordObject(
+      produce(keywordObject, draft => {
+        draft[index].contents.splice(
+          draft[index].contents.findIndex(content => content.id === id),
+          1
+        );
+      })
+    );
   };
   useEffect(() => {
     if (firstEntry === true) {
-      // 키워드 클릭 시 스크롤 초기화
-      contentRef.current.scrollTop = 0;
+      contentRef.current.scrollTop = 0; // 키워드 클릭 시 스크롤 초기화
       setFirstEntry(false);
-    } else {
-      if (addFlag === true) {
-        contentRef.current.scrollTop = contentRef.current.scrollHeight;
-      }
+    }
+    else if (addFlag === true) { // 
+      contentRef.current.scrollTop = contentRef.current.scrollHeight;
       setAddFlag(false);
     }
   });
@@ -65,20 +77,16 @@ const Main = ({
   return (
     <>
       <div className="main-header">
-        <div className="main-header-icon">
-          <span className="item">
-            <i className="fa fa-arrow-left"></i>
-          </span>
-          <span className="item">
-            <i className="fa fa-user-circle fa-2x"></i>
-          </span>
-          <span className="item">USER</span>
-        </div>
-        <div className="item-last">
-          <i className="fa fa-ellipsis-v"></i>
-        </div>
+          <i className="fa fa-arrow-left"></i>
+          <i className="fa fa-user-circle fa-3x"></i>
+          <span>USER</span>
+          <i id="item-last" className="fa fa-ellipsis-v"></i>
       </div>
-      <div className="main-contents" ref={contentRef} onClick={()=>{setKeywordKeyboard(false)}}>
+      <div
+        className="main-contents"
+        ref={contentRef}
+        onClick={isClickedBuilderMain}
+      >
         {keywordObject[index] && (
           <div className="main-keyword-title">
             KEYWORD: {keywordObject[index].keyword}
@@ -89,41 +97,19 @@ const Main = ({
             v.type === "text" ? (
               <>
                 <div
-                  className="main-content"
-                  onClick={() => setClickedMainInput(v)}
-                  key={v.contnet + i}
+                  className="main-content main-textbox"
+                  onClick={e => {
+                    setClickedMainInput(v);
+                    console.log(keywordObject);
+
+                    setNow(i); // 요소 클릭시 setNow(i)를 해줘야 왼쪽 status화면에서 보이니 참고해주세요
+                  }}
+                  key={v.content + i}
+                  style={{ padding: "3%" }}
                 >
                   {v.content}
-                  {/* div로 전환 시 줄바꿈이 안되는 문제 'white-space: pre-wrap'으로 잡아봄.  */}
-                  {/* <textarea
-                    value={v.content || ""}
-                    onChange={e => {
-                      setKeywordObject(
-                        produce(keywordObject, draft => {
-                          const tmp = draft[index].contents.find(t => t.id === v.id);
-                          tmp.content = e.target.value;
-                          // 포..기.........
-
-                          // console.log(beforeLen);
-                          // console.log(tmp.content.length);
-                          // console.log(e.target.clientWidth);
-                          // if(beforeLen < tmp.content.length){
-                          //   if(tmp.content.length === 1){
-                          //     e.target.style.width = (6 + 12.5 )+ 'px';
-                          //   }else{
-                          //     e.target.style.width = (e.target.clientWidth + 12.5 )+ 'px';
-                          //   }
-                          // }else if(beforeLen > tmp.content.length){
-                          //   e.target.style.width = (e.target.clientWidth - 12.5 )+ 'px';
-                          // }
-                          // console.log('dhodkseho!!');
-                          // setBeforeLen(tmp.content.length);
-                        })
-                      );
-                    }}
-                    placeholder=""
-                    style={{width:"0px", resize:"none"}}/> */}
                   <div className="tool-delete delete-text">
+
                     <i className="fas fa-times"></i>
                   </div>
                 </div>
@@ -131,214 +117,118 @@ const Main = ({
             ) : v.type === "image" ? (
               <>
                 <div
-                  className="main-content"
-                  onClick={() => setClickedMainInput(v)}
-                  key={v.contnet + i}
+                  className="main-content main-imgbox"
+                  onClick={() => {
+                    setClickedMainInput(v);
+                    setNow(i);
+                  }}
+                  key={v.content + i}
+                  style={{ padding: "1%" }}
                 >
-                  <input
-                    value={v.content || ""}
-                    onChange={e => {
-                      setKeywordObject(
-                        produce(keywordObject, draft => {
-                          const tmp = draft[index].contents.find(
-                            t => t.id === v.id
-                          );
-                          tmp.content = e.target.value;
-                        })
-                      );
-                    }}
-                    placeholder="image url"
-                  />
-                  <div className="image-preview">
+                  {v.content !== "" ? (
                     <div
-                      className="image-preview-screen"
+                      className="main-image-preview"
                       style={{ backgroundImage: `url(${v.content})` }}
-                    ></div>
-                  </div>
+                    >
+                      미리보기
+                    </div>
+                  ) : (
+                    <div className="image-preview-default">이미지 없음</div>
+                  )}
                   <div className="tool-delete delete-image">
                     <i className="fas fa-times"></i>
+                  </div>
+                </div>
+              </>
+            ) : v.type === "video" ? (
+              <>
+                <div className="main-content main-videobox"
+                     key = {v.content + i}
+                     onClick = {() => {
+                       setClickedMainInput(v)
+                       setNow(i)}}
+                > <div className="main-video-content">
+                    <i className="fas fa-play fa-lg main-file-icon"></i>
+                  </div>
+
+                </div>
+              </>
+            ) : v.type === "audio" ? (
+              <>
+                <div className = "main-content main-audiobox"
+                     key = {v.content + i}
+                     onClick = {() => {
+                      setClickedMainInput(v)
+                      setNow(i)}}   
+                > <i className="fas fa-play fa-lg main-file-icon"></i>
+                  <div className="main-file-content">
+                    <div className="main-file-name" data-filetype="">(fileName{v.content})</div>
+                    <div className="main-file-size" data-filetype="">00:00, 00.00 MB </div>
                   </div>
                 </div>
               </>
             ) : v.type === "location" ? (
               <>
                 <div
-                  className="main-content"
-                  key={v.contnet + i}
-                  onClick={() => setClickedMainInput(v)}
-                >
-                  <input
-                    value={v.content.title || ""}
-                    onChange={e => {
-                      setKeywordObject(
-                        produce(keywordObject, draft => {
-                          const tmp = draft[index].contents.find(
-                            t => t.id === v.id
-                          );
-                          tmp.content.title = e.target.value;
-                        })
-                      );
-                    }}
-                    placeholder="title"
-                  />
-                  <input
-                    value={v.content.latitude || ""}
-                    onChange={e => {
-                      setKeywordObject(
-                        produce(keywordObject, draft => {
-                          const tmp = draft[index].contents.find(
-                            t => t.id === v.id
-                          );
-                          tmp.content.latitude = e.target.value;
-                        })
-                      );
-                    }}
-                    placeholder="latitude"
-                  />
-                  <input
-                    value={v.content.longtitude || ""}
-                    onChange={e => {
-                      setKeywordObject(
-                        produce(keywordObject, draft => {
-                          const tmp = draft[index].contents.find(
-                            t => t.id === v.id
-                          );
-                          tmp.content.longtitude = e.target.value;
-                        })
-                      );
-                    }}
-                    placeholder="longtitude"
-                  />
-                  <GoogleMapPresenter />
+                  className="main-content main-locabox"
+                  key={v.content + i}
+                  onClick={() => {
+                    setClickedMainInput(v)
+                    setNow(i)}}
+                > <GoogleMapPresenter />
+
                   <div className="tool-delete delete-location">
                     <i className="fas fa-times"></i>
+                  </div>
+                </div>
+              </>
+            ) : v.type === "file" ? (
+              <>
+                <div className = "main-content main-filebox"
+                    key = {v.content + i}
+                    onClick = {() => {
+                      setClickedMainInput(v)
+                      setNow(i)}}
+                > <i className="fas fa-file fa-lg main-file-icon"></i>
+                  <div className="main-file-content">
+                    <div className="main-file-name" data-filetype="">(fileName{v.content})</div>
+                    <div className="main-file-size" data-filetype="">00.00 MB</div>
                   </div>
                 </div>
               </>
             ) : v.type === "list" ? (
               <>
                 <div
-                  className="main-content list-content"
-                  key={v.contnet + i}
-                  onClick={(e) => {setClickedMainInput(v); e.stopPropagation(); setKeywordKeyboard(true);}}
-                > 
-                  <div className = "list-name">Question</div>
-                  <textarea value = {v.content.question || ""}
-                            onChange = {e => {
-                              setKeywordObject(
-                                produce(keywordObject, draft => {
-                                  const tmp = draft[index].contents.find(
-                                    t => t.id === v.id
-                                  )
-                                  tmp.content.question = e.target.value;
-                                })
-                              );
-                              //TEXTAREA 높이 자동 조절
-                              e.target.style.maxHeight = '200px';
-                              e.target.style.height = 'auto';
-                              e.target.style.height = e.target.scrollHeight + 'px';
-                            }}
-                            placeholder="Ask a question"
-                  >
-                  </textarea>
-                  <input
-                    value={v.content.elem[0] || ""}
-                    onChange={e => {
-                      setKeywordObject(
-                        produce(keywordObject, draft => {
-                          const tmp = draft[index].contents.find(
-                            t => t.id === v.id
-                          );
-                          tmp.content.elem[0] = e.target.value;
-                        })
-                      );
-                    }}
-                    placeholder="list"
-                  />
+                  className="main-content main-listbox"
+                  key={v.content + i}
+                  onClick={e => {
+                    setClickedMainInput(v);
+                    e.stopPropagation();
+                    setKeywordKeyboard(true);
+                    setNow(i);
+                  }}
+                > <div className = "main-listbox-header">Question</div>
 
+                  <div className="main-listbox-question">
+                    {v.content.question !== ""
+                      ? v.content.question
+                      : "(Ask a question)"}
+                  </div>
+                  <div className="main-listbox-elem">{v.content.elem[0]}</div>
                   {v.content.elem[1] && (
-                    <input
-                      value={v.content.elem[1] || ""}
-                      onChange={e => {
-                        setKeywordObject(
-                          produce(keywordObject, draft => {
-                            const tmp = draft[index].contents.find(
-                              t => t.id === v.id
-                            );
-                            tmp.content.elem[1] = e.target.value;
-                          })
-                        );
-                      }}
-                      placeholder="list"
-                    />
+                    <div className="main-listbox-elem">{v.content.elem[1]}</div>
                   )}
-
                   {v.content.elem[2] && (
-                    <input
-                      value={v.content.elem[2] || ""}
-                      onChange={e => {
-                        setKeywordObject(
-                          produce(keywordObject, draft => {
-                            const tmp = draft[index].contents.find(
-                              t => t.id === v.id
-                            );
-                            tmp.content.elem[2] = e.target.value;
-                          })
-                        );
-                      }}
-                      placeholder="list"
-                    />
+                    <div className="main-listbox-elem">{v.content.elem[2]}</div>
                   )}
-
                   {v.content.elem[3] && (
-                    <input
-                      value={v.content.elem[3] || ""}
-                      onChange={e => {
-                        setKeywordObject(
-                          produce(keywordObject, draft => {
-                            const tmp = draft[index].contents.find(
-                              t => t.id === v.id
-                            );
-                            tmp.content.elem[3] = e.target.value;
-                          })
-                        );
-                      }}
-                      placeholder="list"
-                    />
+                    <div className="main-listbox-elem">{v.content.elem[3]}</div>
                   )}
-
                   {v.content.elem[4] && (
-                    <input
-                      value={v.content.elem[4] || ""}
-                      onChange={e => {
-                        setKeywordObject(
-                          produce(keywordObject, draft => {
-                            const tmp = draft[index].contents.find(
-                              t => t.id === v.id
-                            );
-                            tmp.content.elem[4] = e.target.value;
-                          })
-                        );
-                      }}
-                      placeholder="list"
-                    />
+                    <div className="main-listbox-elem">{v.content.elem[4]}</div>
                   )}
-
                   {v.content.elem[5] && (
-                    <input
-                      value={v.content.elem[5] || ""}
-                      onChange={e => {
-                        setKeywordObject(
-                          produce(keywordObject, draft => {
-                            const tmp = draft[index].contents.find(
-                              t => t.id === v.id
-                            );
-                            tmp.content.elem[5] = e.target.value;
-                          })
-                        );
-                      }}
-                      placeholder="list"
-                    />
+                    <div className="main-listbox-elem">{v.content.elem[5]}</div>
                   )}
                   <div className="tool-delete delete-listbox">
                     <i className="fas fa-times"></i>
@@ -353,79 +243,65 @@ const Main = ({
           저장
         </button>
       </div>
-      {keywordKeyboard ?
-       <>
-        <div className = "keyword-keyboard">
-        {clickedMainInput.type &&
-          clickedMainInput.type === "list" ? (
-              <>
-                <span className="list-elem-wrapper">
-                  <input
-                    value={MainContent.elem[0] || ""}
-                    placeholder="list"
-                    readOnly
-                  />
-                  <span className="clear-button" onClick={()=>{removeListElement(0)}}>x</span>
-                </span>
-                {MainContent.elem[1] && (
-                  <span className="list-elem-wrapper">
-                    <input
-                      value={MainContent.elem[1] || ""}
-                      placeholder="list"
-                      readOnly
-                    />
-                    <span className="clear-button" onClick={()=>{removeListElement(1)}}>x</span>
-                  </span>
-                )}
-                {MainContent.elem[2] && (
-                  <span className="list-elem-wrapper">
-                    <input
-                      value={MainContent.elem[2] || ""}
-                      placeholder="list"
-                      readOnly
-                    />
-                    <span className="clear-button" onClick={()=>{removeListElement(2)}}>x</span>
-                  </span>
-                )}
-                {MainContent.elem[3] && (
-                  <span className="list-elem-wrapper">
-                    <input
-                      value={MainContent.elem[3] || ""}
-                      placeholder="list"
-                      readOnly
-                    />
-                    <span className="clear-button" onClick={()=>{removeListElement(3)}}>x</span>
-                  </span>
-                )}
-                {MainContent.elem[4] && (
-                  <span className="list-elem-wrapper">
-                    <input
-                      value={MainContent.elem[4] || ""}
-                      placeholder="list"
-                      readOnly
-                    />
-                    <span className="clear-button" onClick={()=>{removeListElement(4)}}>x</span>
-                  </span>
-                )}
-                {MainContent.elem[5] && (
-                  <span className="list-elem-wrapper">
-                    <input
-                      value={MainContent.elem[5] || ""}
-                      placeholder="list"
-                      readOnly
-                    />
-                    <span className="clear-button" onClick={()=>{removeListElement(5)}}>x</span>
-                  </span>
-                )}
+      {/** Keyword-keyboard START  */}
+      <div className = "keyword-keyboard">
+      { keywordKeyboard ? (
+        <>
+        {(clickedMainInput.type || (!clickedMainInput.type && currentInput )) && 
+         (currentInput.type ==="list" || clickedMainInput.type === "list" ? (
+            <>
+              <div className="main-keyboard">
+                {currentContent.elem[0] &&
+                <div className="list-elem-wrapper">
+                  <span className="list-elem">{currentContent.elem[0] || ""}</span>
+                  <span className="clear-button" onClick={() => {removeListElement(0)}}>x</span>
+                </div>
+                }
+                {currentContent.elem[1] &&
+                <div className="list-elem-wrapper">
+                  <span className="list-elem">{currentContent.elem[1] || ""}</span>
+                  <span className="clear-button" onClick={() => {removeListElement(1)}}>x</span>
+                </div>
+                }
+                {currentContent.elem[2] &&
+                <div className="list-elem-wrapper">
+                  <span className="list-elem">{currentContent.elem[2] || ""}</span>
+                  <span className="clear-button" onClick={() => {removeListElement(2)}}>x</span>
+                </div>
+                }
+                {currentContent.elem[3] &&
+                <div className="list-elem-wrapper">
+                  <span className="list-elem">{currentContent.elem[3] || ""}</span>
+                  <span className="clear-button" onClick={() => {removeListElement(3)}}>x</span>
+                </div>
+                }
+                {currentContent.elem[4] &&
+                <div className="list-elem-wrapper">
+                  <span className="list-elem">{currentContent.elem[4] || ""}</span>
+                  <span className="clear-button" onClick={() => {removeListElement(4)}}>x</span>
+                </div>
+                }
+                {currentContent.elem[5] &&
+                <div className="list-elem-wrapper">
+                  <span className="list-elem">{currentContent.elem[5] || ""}</span>
+                  <span className="clear-button" onClick={() => {removeListElement(5)}}>x</span>
+                </div>
+                }
+                {!currentContent.elem[0] && !currentContent.elem[1] &&
+                 !currentContent.elem[2] && !currentContent.elem[3] &&
+                 !currentContent.elem[4] && !currentContent.elem[5] &&
+                 <div className="list-elem-default"> KEYWORD </div>
+                }
+              </div>
               </>
-            ) : null
-        }
-        </div>
-      </>
-      : null
-    }
-    </>
-  );
-};
+          ) : null
+          )}
+        </>
+      ) : null }
+      </div> 
 
+      {/** keyword-keyboard END */}
+    </>
+  ); /**retun END */
+};
 export default Main;

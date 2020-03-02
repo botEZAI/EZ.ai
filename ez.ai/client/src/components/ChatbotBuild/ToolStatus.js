@@ -7,31 +7,25 @@ const ToolStatus = ({
   mainKeyword,
   keywordObject,
   setKeywordObject,
-  clickedMainInput
+  clickedMainInput,
+  now,
+  index,
 }) => {
-  const index = keywordObject.findIndex(v => v.keyword === mainKeyword);
-  const length = keywordObject[index] && keywordObject[index].contents.length;
+  const clickedIndex =
+      keywordObject[index] && keywordObject[index].contents.findIndex(v => v.id === clickedMainInput.id);
   const currentInput =
-    keywordObject[index] && keywordObject[index].contents[length - 1];
+      keywordObject[index] && keywordObject[index].contents[now];
   const currentContent =
     keywordObject[index] &&
-    keywordObject[index].contents[length - 1] &&
-    keywordObject[index].contents[length - 1].content;
-  const clickedIndex =
-    keywordObject[index] &&
-    keywordObject[index].contents.findIndex(v => v.id === clickedMainInput.id);
-  console.log(
-    "clicked=",
-    keywordObject[index] &&
-      keywordObject[index].contents[clickedIndex] &&
-      keywordObject[index].contents[clickedIndex].content
-  );
+    keywordObject[index].contents[now] &&
+    keywordObject[index].contents[now].content;
 
   /*이미지 외부 URL 입력후 적용시 미리보기에 적용*/
   const imageRef = useRef();
   const [imageURL, setImageURL] = useState("");
   const [imageTab, setImageTab] = useState("url");
   const [imageSrc, setImageSrc] = useState("");
+
 
   const imagePreviewStyle = {
     backgroundImage: `url(${imageURL})`,
@@ -40,9 +34,16 @@ const ToolStatus = ({
     minHeight: "80%"
   };
 
-  const onClickLoadImage = imagePreviewStyle => {
-    setImageURL(keywordObject[index].contents[length - 1].content);
-  };
+  const onClickLoadImage = (e) => {
+    setImageURL(keywordObject[index].contents[now].content);
+    setKeywordObject(
+        produce(keywordObject, draft => {
+            draft[index].contents[now].content =
+                e.target.value;
+          })
+      );
+    };
+
   const onClickUploadImage = () => {
     imageRef.current.click();
   };
@@ -58,7 +59,7 @@ const ToolStatus = ({
 
     setKeywordObject(
       produce(keywordObject, draft => {
-        draft[index].contents[length - 1].content = e.target.files[0].name;
+        draft[index].contents[now].content = e.target.files[0].name;
       })
     );
     const imageFormData = new FormData();
@@ -71,72 +72,41 @@ const ToolStatus = ({
     <>
       <div className="tool-status-header">
         <div className="tool-status-name">
-          {currentInput && !clickedMainInput.content ? (
-            currentInput.type === "text" ? (
+
+          {currentInput ? (
+              (currentInput.type === "text" || clickedMainInput.type === "text") ? (
               <>
                 <span>텍스트</span>
               </>
-            ) : currentInput.type === "image" ? (
+            ) : (currentInput.type === "image" || clickedMainInput.type === "image") ? (
               <>
                 <span>이미지</span>
               </>
-            ) : currentInput.type === "video" ? (
+            ) : currentInput.type === "video" || clickedMainInput.type === "video" ? (
                 <>
                   <span>비디오</span>
                 </>
-            ) : currentInput.type === "audio" ? (
+            ) : currentInput.type === "audio" || clickedMainInput.type === "audio" ? (
                 <>
                   <span>오디오</span>
                 </>
-            ) : currentInput.type === "location" ? (
+            ) : currentInput.type === "location" || clickedMainInput.type === "location" ? (
               <>
                 <span>위치</span>
               </>
-            ) : currentInput.type === "file" ? (
+            ) : currentInput.type === "file" || clickedMainInput.type === "file" ? (
                 <>
                   <span>파일</span>
                 </>
-            ) : currentInput.type === "list" ? (
+            ) : currentInput.type === "list" || clickedMainInput.type === "list" ? (
               <>
                 <span>버튼형 리스트</span>
               </>
-            ) : currentInput.type === "sticker" ? (
+            ) : currentInput.type === "sticker" || clickedMainInput.type === "sticker" ? (
                 <>
                   <span>스티커</span>
                 </>
             ): null
-          ) : clickedMainInput.type === "text" ? (
-            <>
-              <span>텍스트</span>
-            </>
-          ) : clickedMainInput.type === "image" ? (
-            <>
-              <span>이미지</span>
-            </>
-          ) : clickedMainInput.type === "video" ? (
-              <>
-                <span>비디오</span>
-              </>
-          ) : clickedMainInput.type === "audio" ? (
-              <>
-                <span>오디오</span>
-              </>
-          ) : clickedMainInput.type === "location" ? (
-            <>
-              <span>위치</span>
-            </>
-          ) : clickedMainInput.type === "file" ? (
-              <>
-                <span>파일</span>
-              </>
-          ) : clickedMainInput.type === "list" ? (
-            <>
-              <span>버튼형 리스트</span>
-            </>
-          ) : clickedMainInput.type === "sticker" ? (
-             <>
-              <span>스티커</span>
-            </>
           ) : null}
         </div>
         <div className="help" alt="도움말">
@@ -145,26 +115,23 @@ const ToolStatus = ({
       </div>
 
       <div className="tool-status-main">
-        {!clickedMainInput &&
-          currentInput &&
-          (currentInput.type === "text" ? (
-            <>
-              <div className="status-input status-text">
+        {(clickedMainInput.type || (!clickedMainInput.type && currentInput )) &&
+        ( currentInput.type === "text" || clickedMainInput.type === "text" ? (
+                <div className="status-input status-text">
                 <textarea
-                  placeholder="작성하고자 하는 텍스트를 적어주세요"
-                  value={currentContent || ""}
-                  onChange={e => {
-                    setKeywordObject(
-                      produce(keywordObject, draft => {
-                        draft[index].contents[length - 1].content =
-                          e.target.value;
-                      })
-                    );
-                  }}
+                    placeholder="작성하고자 하는 텍스트를 적어주세요"
+                    value={currentContent || ""}
+                    onChange={e => {
+                      setKeywordObject(
+                          produce(keywordObject, draft => {
+                            draft[index].contents[now].content =
+                                e.target.value;
+                          })
+                      );
+                    }}
                 />
-              </div>
-            </>
-          ) : currentInput.type === "image" ? (
+                </div>
+        ) : currentInput.type === "image" || clickedMainInput.type === "image" ? (
             <div className="image-status">
               <div className="status-image-tab">
                 <div
@@ -189,15 +156,8 @@ const ToolStatus = ({
                     <input
                       placeholder="외부 URL를 입력해주세요"
                       value={currentContent || ""}
-                      onChange={e => {
-                        setKeywordObject(
-                          produce(keywordObject, draft => {
-                            draft[index].contents[length - 1].content =
-                              e.target.value;
-                          })
-                        );
+                      onChange={onClickLoadImage}
 
-                      }}
                     />
                     <div className="outer-img-btn" onClick={onClickLoadImage}>
                       적용
@@ -235,7 +195,7 @@ const ToolStatus = ({
                 </div>
               )}
             </div>
-          ) : currentInput.type === "video" ? (
+          ) : currentInput.type === "video" || clickedMainInput.type === "video" ? (
             <>
               <div className="status-video upload">
                 <div className="status-input status-upload">
@@ -262,7 +222,7 @@ const ToolStatus = ({
                 </div>
               </div>
             </>
-          ) : currentInput.type === "audio" ? (
+          ) : currentInput.type === "audio" || clickedMainInput.type === "audio" ? (
               <>
                 <div className="status-audio upload">
                   <div className="status-input status-upload">
@@ -289,7 +249,7 @@ const ToolStatus = ({
                   </div>
                 </div>
               </>
-          ) : currentInput.type === "location" ? (
+          ) : currentInput.type === "location" || clickedMainInput.type === "location" ? (
             <>
               <div className="status-input status-location">
                 <p>임시 - 추후 지도 API로 연동</p>
@@ -299,7 +259,7 @@ const ToolStatus = ({
                   onChange={e => {
                     setKeywordObject(
                       produce(keywordObject, draft => {
-                        draft[index].contents[length - 1].content.title =
+                        draft[index].contents[now].content.title =
                           e.target.value;
                       })
                     );
@@ -311,7 +271,7 @@ const ToolStatus = ({
                   onChange={e => {
                     setKeywordObject(
                       produce(keywordObject, draft => {
-                        draft[index].contents[length - 1].content.latitude =
+                        draft[index].contents[now].content.latitude =
                           e.target.value;
                       })
                     );
@@ -323,7 +283,7 @@ const ToolStatus = ({
                   onChange={e => {
                     setKeywordObject(
                       produce(keywordObject, draft => {
-                        draft[index].contents[length - 1].content.longtitude =
+                        draft[index].contents[now].content.longtitude =
                           e.target.value;
                       })
                     );
@@ -332,7 +292,7 @@ const ToolStatus = ({
               </div>
               <GoogleMapPresenter />;
             </>
-          ) : currentInput.type === "file" ? (
+          ) : currentInput.type === "file" || clickedMainInput.type === "file"? (
               <>
                 <div className="status-file upload">
                   <div className="status-input status-upload">
@@ -359,7 +319,7 @@ const ToolStatus = ({
                   </div>
                 </div>
               </>
-          ) : currentInput.type === "list" ? (
+          ) : currentInput.type === "list" || clickedMainInput.type === "list"? (
             <>
               <div className="status-input status-list">
                 <textarea
@@ -368,7 +328,7 @@ const ToolStatus = ({
                   onChange={e => {
                     setKeywordObject(
                       produce(keywordObject, draft => {
-                        draft[index].contents[length - 1].content.question =
+                        draft[index].contents[now].content.question =
                           e.target.value;
                       })
                     );
@@ -383,7 +343,7 @@ const ToolStatus = ({
                         onChange={e => {
                           setKeywordObject(
                             produce(keywordObject, draft => {
-                              draft[index].contents[length - 1].content.elem[0] =
+                              draft[index].contents[now].content.elem[0] =
                                 e.target.value;
                             })
                           );
@@ -398,7 +358,7 @@ const ToolStatus = ({
                         onChange={e => {
                           setKeywordObject(
                             produce(keywordObject, draft => {
-                              draft[index].contents[length - 1].content.elem[1] =
+                              draft[index].contents[now].content.elem[1] =
                                 e.target.value;
                             })
                           );
@@ -415,7 +375,7 @@ const ToolStatus = ({
                         onChange={e => {
                           setKeywordObject(
                             produce(keywordObject, draft => {
-                              draft[index].contents[length - 1].content.elem[2] =
+                              draft[index].contents[now].content.elem[2] =
                                 e.target.value;
                             })
                           );
@@ -430,7 +390,7 @@ const ToolStatus = ({
                         onChange={e => {
                           setKeywordObject(
                             produce(keywordObject, draft => {
-                              draft[index].contents[length - 1].content.elem[3] =
+                              draft[index].contents[now].content.elem[3] =
                                 e.target.value;
                             })
                           );
@@ -447,7 +407,7 @@ const ToolStatus = ({
                         onChange={e => {
                           setKeywordObject(
                             produce(keywordObject, draft => {
-                              draft[index].contents[length - 1].content.elem[4] =
+                              draft[index].contents[now].content.elem[4] =
                                 e.target.value;
                             })
                           );
@@ -462,7 +422,7 @@ const ToolStatus = ({
                         onChange={e => {
                           setKeywordObject(
                             produce(keywordObject, draft => {
-                              draft[index].contents[length - 1].content.elem[5] =
+                              draft[index].contents[now].content.elem[5] =
                                 e.target.value;
                             })
                           );
@@ -474,266 +434,14 @@ const ToolStatus = ({
                 </table>
               </div>
             </>
-          ) : currentInput.type === "sticker" ? (
+          ) : currentInput.type === "sticker" || clickedMainInput.type === "sticker" ? (
               <>
                 <div>
                   <p>스티커는 추후 텔레그램 스티커 api와 연결</p></div>
               </>
           ): null)}
-        {clickedMainInput.type &&
-          (clickedMainInput.type === "text" ? (
-            <>
-              <div className="status-input status-text ">
-                <textarea
-                  placeholder="작성하고자 하는 텍스트를 적어주세요"
-                  value={
-                    keywordObject[index].contents[clickedIndex].content || ""
-                  }
-                  onChange={e => {
-                    setKeywordObject(
-                      produce(keywordObject, draft => {
-                        draft[index].contents[clickedIndex].content =
-                          e.target.value;
-                      })
-                    );
-                  }}
-                />
-              </div>
-            </>
-          ) : clickedMainInput.type === "image" ? (
-            <div className="image-status">
-              <div className="status-image-tab">
-                <div className="image-tab-btn outer-img-link">
-                  외부 이미지 URL
-                </div>
-                <div className="image-tab-btn upload-img-file">
-                  이미지 첨부하기
-                </div>
-              </div>
 
-              <div className="status-input status-image">
-                <div className="status-image-input">
-                  <input
-                    placeholder="외부 URL를 입력해주세요"
-                    value={
-                      keywordObject[index].contents[clickedIndex].content || ""
-                    }
-                    onChange={e => {
-                      setKeywordObject(
-                        produce(keywordObject, draft => {
-                          draft[index].contents[clickedIndex].content =
-                            e.target.value;
-                        })
-                      );
-                    }}
-                  />
-                  <div className="outer-img-btn">적용</div>
-                </div>
-                <div className="image-preview">
-                  <div className="image-preview-screen">이미지 미리보기</div>
-                </div>
-              </div>
-            </div>
-          ) : clickedMainInput.type === "location" ? (
-            <>
-              <div className="status-input status-location">
-                <p>임시 - 추후 지도 API로 연동</p>
-                <input
-                  placeholder="장소 이름을 적어주세요"
-                  value={
-                    keywordObject[index].contents[clickedIndex].content.title ||
-                    ""
-                  }
-                  onChange={e => {
-                    setKeywordObject(
-                      produce(keywordObject, draft => {
-                        draft[index].contents[clickedIndex].content.title =
-                          e.target.value;
-                      })
-                    );
-                  }}
-                />
-                <input
-                  placeholder="latitude(위도)"
-                  value={
-                    keywordObject[index].contents[clickedIndex].content
-                      .latitude || ""
-                  }
-                  onChange={e => {
-                    setKeywordObject(
-                      produce(keywordObject, draft => {
-                        draft[index].contents[clickedIndex].content.latitude =
-                          e.target.value;
-                      })
-                    );
-                  }}
-                />
-                <input
-                  placeholder="longtitude(경도)"
-                  value={
-                    keywordObject[index].contents[clickedIndex].content
-                      .longtitude || ""
-                  }
-                  onChange={e => {
-                    setKeywordObject(
-                      produce(keywordObject, draft => {
-                        draft[index].contents[clickedIndex].content.longtitude =
-                          e.target.value;
-                      })
-                    );
-                  }}
-                />
-              </div>
-              <GoogleMapPresenter />;
-            </>
-          ) : clickedMainInput.type === "list" ? (
-            <>
-              <div className="status-input status-list">
-                <table>
-                  <textarea
-                    placeholder="작성하고자 하는 텍스트를 적어주세요"
-                    value={
-                      keywordObject[index].contents[clickedIndex].content
-                        .question || ""
-                    }
-                    onChange={e => {
-                      setKeywordObject(
-                        produce(keywordObject, draft => {
-                          draft[index].contents[clickedIndex].content.question =
-                            e.target.value;
-                        })
-                      );
-                    }}
-                  ></textarea>
-                  <tr>
-                    <div className = "status-list-content">
-                      <input
-                        placeholder="키워드명을 적어주세요"
-                        value={
-                          keywordObject[index].contents[clickedIndex].content
-                            .elem[0] || ""
-                        }
-                        onChange={e => {
-                          setKeywordObject(
-                            produce(keywordObject, draft => {
-                              draft[index].contents[
-                                clickedIndex
-                              ].content.elem[0] = e.target.value;
-                            })
-                          );
-                        }}
-                      />
-                      <div className = "list-keyword-btn">키워드 연동</div>
-                    </div>
-                    <div className = "status-list-content">
-                      <input
-                        placeholder="키워드명을 적어주세요"
-                        value={
-                          keywordObject[index].contents[clickedIndex].content
-                            .elem[1] || ""
-                        }
-                        onChange={e => {
-                          setKeywordObject(
-                            produce(keywordObject, draft => {
-                              draft[index].contents[
-                                clickedIndex
-                              ].content.elem[1] = e.target.value;
-                            })
-                          );
-                        }}
-                      />
-                      <div className = "list-keyword-btn">키워드 연동</div>
-                    </div>
-                  </tr>
-                  <tr>
-                    <div className = "status-list-content">
-                      <input
-                        placeholder="키워드명을 적어주세요"
-                        value={
-                          keywordObject[index].contents[clickedIndex].content
-                            .elem[2] || ""
-                        }
-                        onChange={e => {
-                          setKeywordObject(
-                            produce(keywordObject, draft => {
-                              draft[index].contents[
-                                clickedIndex
-                              ].content.elem[2] = e.target.value;
-                            })
-                          );
-                        }}
-                      />
-                      <div className = "list-keyword-btn">키워드 연동</div>
-                    </div>
-                    <div className = "status-list-content">
-                      <input
-                        placeholder="키워드명을 적어주세요"
-                        value={
-                          keywordObject[index].contents[clickedIndex].content
-                            .elem[3] || ""
-                        }
-                        onChange={e => {
-                          setKeywordObject(
-                            produce(keywordObject, draft => {
-                              draft[index].contents[
-                                clickedIndex
-                              ].content.elem[3] = e.target.value;
-                            })
-                          );
-                        }}
-                      />
-                      <div className = "list-keyword-btn">키워드 연동</div>
-                    </div>
-                  </tr>
-                  <tr>
-                    <div className = "status-list-content">
-                      <input
-                        placeholder="키워드명을 적어주세요"
-                        value={
-                          keywordObject[index].contents[clickedIndex].content
-                            .elem[4] || ""
-                        }
-                        onChange={e => {
-                          setKeywordObject(
-                            produce(keywordObject, draft => {
-                              draft[index].contents[
-                                clickedIndex
-                              ].content.elem[4] = e.target.value;
-                            })
-                          );
-                        }}
-                      />
-                    <div className = "list-keyword-btn">키워드 연동</div>
-                  </div>
-                    <div className = "status-list-content">
-                      <input
-                        placeholder="키워드명을 적어주세요"
-                        value={
-                          keywordObject[index].contents[clickedIndex].content
-                            .elem[5] || ""
-                        }
-                        onChange={e => {
-                          setKeywordObject(
-                            produce(keywordObject, draft => {
-                              draft[index].contents[
-                                clickedIndex
-                              ].content.elem[5] = e.target.value;
-                            })
-                          );
-                        }}
-                      />
-                    <div className = "list-keyword-btn">키워드 연동</div>
-                  </div>
-                  </tr>
-                </table>
-              </div>
-            </>
-          ) : clickedMainInput.type === "sticker" ? (
-              <>
-                <div>
-                  <p>스티커는 추후 텔레그램 스티커 api와 연결</p></div>
-              </>
-          ) : null)}
+
       </div>
       <div className="tool-status-nav">
         <div className="tool-status-extra">
