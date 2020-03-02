@@ -51,9 +51,11 @@ const ToolStatus = ({
                   draft[index].contents[now].content = e.target.files[0].name;
               })
           );
-          console.log(e.target.value);
+
           const imageFormData = new FormData();
           imageFormData.append("image", e.target.files[0]);
+
+          // 보안상 로컬경로는 fakepath로 뜨기 때문에 실제 파일이 업로드 된 후 업로드 된 실파일경로를 가져와야함 
 
           axios.post("/api/image", imageFormData);
       } else return alert("이미지 파일이 아닙니다.");
