@@ -56,7 +56,8 @@ const ToolStatus = ({
           const imageFormData = new FormData();
           imageFormData.append("image", e.target.files[0]);
 
-    axios.post("/api/image", imageFormData);
+          axios.post("/api/image", imageFormData);
+      } else return alert("이미지 파일이 아닙니다.");
   };
 
   const showKeywordPopUp = (e) => {

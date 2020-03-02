@@ -30,7 +30,6 @@ const ToolKeyword = ({
         : alert("키워드를 입력하세요");
     keyword !== "" && setValue("");
     keyword !== "" && setKeyword("");
-    e.preventDefault();
   };
 
   const onChangeInput = e => {
@@ -55,7 +54,7 @@ const ToolKeyword = ({
 
         <div className="keyword-status">
           <h4>키워드 목록</h4>
-          {keywordList.map((keyword, index) => {
+          {keywordObject.map((keyword, index) => {
             return (
               <div
                 key={index}
