@@ -41,8 +41,7 @@ const ToolStatus = ({
   };
 
   const onClickUploadImage = () => {
-      console.log(fileRef);
-      fileRef.current.click();
+      imageRef.current.click();
   };
   const onChangeImage = e => {
       if (e.target.value === "") return;
@@ -52,7 +51,7 @@ const ToolStatus = ({
                   draft[index].contents[now].content = e.target.files[0].name;
               })
           );
-
+          console.log(e.target.value);
           const imageFormData = new FormData();
           imageFormData.append("image", e.target.files[0]);
 
