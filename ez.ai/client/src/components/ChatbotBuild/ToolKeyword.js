@@ -18,16 +18,16 @@ const ToolKeyword = ({
 
     keyword !== "" && setKeywordList(keywordList => [...keywordList, keyword]);
     keyword !== ""
-        ? setKeywordObject(
-        produce(keywordObject, draft => {
-          draft.push({
-            keyword: keyword,
-            id: keywordObject[keywordObject.length - 1].id + 1,
-            contents: []
-          });
-        })
+      ? setKeywordObject(
+          produce(keywordObject, draft => {
+            draft.push({
+              keyword: keyword,
+              id: keywordObject[keywordObject.length - 1].id + 1,
+              contents: []
+            });
+          })
         )
-        : alert("키워드를 입력하세요");
+      : alert("키워드를 입력하세요");
     keyword !== "" && setValue("");
     keyword !== "" && setKeyword("");
   };
