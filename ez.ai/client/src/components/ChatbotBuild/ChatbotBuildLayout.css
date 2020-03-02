@@ -13,8 +13,9 @@
   margin-bottom: 10px;
   display: flex;
   justify-content: center;
-  height: 70vh;
-  min-height: 590px;
+  height: 75vh;
+  min-height: 800px;
+  max-height : 1200px;
 }
 
 .builderTool {
@@ -23,6 +24,9 @@
   min-width : 360px;
   margin : 0 10px;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .builderMain {

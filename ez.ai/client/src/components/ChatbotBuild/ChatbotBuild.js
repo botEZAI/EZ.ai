@@ -77,48 +77,50 @@ const ChatbotBuild = () => {
     <div className="builder">
       <div className="builder__column" style={mainStyle}>
         <div className="builderTool">
-          <div className="tool-tabs">
-            <Tabs activeTab={activeTab} onSelect={onSelect}>
-              <div label="basic">기본</div>
-              <div label="advance">고급</div>
-              <div label="keyword">키워드</div>
-            </Tabs>
-          </div>
-          <div className="tool-contents">
-            {activeTab === "basic" && (
-              <ToolBasic
-                mainKeyword={mainKeyword}
-                keywordObject={keywordObject}
-                setKeywordObject={setKeywordObject}
-                setClickedMainInput={setClickedMainInput}
-                setAddFlag={setAddFlag}
-                setNow={setNow}
-                length = {length}
-              />
-            )}
-            {activeTab === "advance" && (
-              <ToolAdvance
-                mainKeyword={mainKeyword}
-                keywordObject={keywordObject}
-                setKeywordObject={setKeywordObject}
-                setClickedMainInput={setClickedMainInput}
-                setAddFlag={setAddFlag}
-                setKeywordKeyboard={setKeywordKeyboard}
-                setNow={setNow}
-                length = {length}
-              />
-            )}
-            {activeTab === "keyword" && (
-              <ToolKeyword
-                keyword={keyword}
-                keywordList={keywordList}
-                setKeyword={setKeyword}
-                setKeywordList={setKeywordList}
-                keywordObject={keywordObject}
-                onClickKeyword={onClickKeyword}
-                setKeywordObject={setKeywordObject}
-              />
-            )}
+          <div className = "tool-menu">
+            <div className="tool-tabs">
+              <Tabs activeTab={activeTab} onSelect={onSelect}>
+                <div label="basic">기본</div>
+                <div label="advance">고급</div>
+                <div label="keyword">키워드</div>
+              </Tabs>
+            </div>
+            <div className="tool-contents">
+              {activeTab === "basic" && (
+                  <ToolBasic
+                      mainKeyword={mainKeyword}
+                      keywordObject={keywordObject}
+                      setKeywordObject={setKeywordObject}
+                      setClickedMainInput={setClickedMainInput}
+                      setAddFlag={setAddFlag}
+                      setNow={setNow}
+                      length = {length}
+                  />
+              )}
+              {activeTab === "advance" && (
+                  <ToolAdvance
+                      mainKeyword={mainKeyword}
+                      keywordObject={keywordObject}
+                      setKeywordObject={setKeywordObject}
+                      setClickedMainInput={setClickedMainInput}
+                      setAddFlag={setAddFlag}
+                      setKeywordKeyboard={setKeywordKeyboard}
+                      setNow={setNow}
+                      length = {length}
+                  />
+              )}
+              {activeTab === "keyword" && (
+                  <ToolKeyword
+                      keyword={keyword}
+                      keywordList={keywordList}
+                      setKeyword={setKeyword}
+                      setKeywordList={setKeywordList}
+                      keywordObject={keywordObject}
+                      onClickKeyword={onClickKeyword}
+                      setKeywordObject={setKeywordObject}
+                  />
+              )}
+            </div>
           </div>
           <div className="tool-status">
             {(activeTab === "basic" || activeTab === "advance") && (

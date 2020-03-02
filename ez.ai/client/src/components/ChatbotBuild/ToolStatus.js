@@ -3,6 +3,7 @@ import produce from "immer";
 import GoogleMapPresenter from "./GoogleMapPresenter";
 import axios from "axios";
 
+
 const ToolStatus = ({
   mainKeyword,
   keywordObject,
@@ -26,22 +27,15 @@ const ToolStatus = ({
   const [imageTab, setImageTab] = useState("url");
   const [imageSrc, setImageSrc] = useState("");
 
-
-  const imagePreviewStyle = {
-    backgroundImage: `url(${imageURL})`,
-    backgroundSize: "100% 100%",
-    width : '200px',
-    minHeight: "80%"
-  };
-
   const onClickLoadImage = (e) => {
-    setImageURL(keywordObject[index].contents[now].content);
+    setImageURL(e.target.value);
     setKeywordObject(
         produce(keywordObject, draft => {
             draft[index].contents[now].content =
                 e.target.value;
           })
       );
+    console.log(imageURL)
     };
 
   const onClickUploadImage = () => {
@@ -157,17 +151,15 @@ const ToolStatus = ({
                       placeholder="외부 URL를 입력해주세요"
                       value={currentContent || ""}
                       onChange={onClickLoadImage}
-
                     />
-                    <div className="outer-img-btn" onClick={onClickLoadImage}>
+                    <div className="outer-img-btn" onChange={onClickLoadImage}>
                       적용
                     </div>
                   </div>
-                  <div className="upload-preview">
+                  <div className="upload-preview" >
                     <div
-                      className="upload-preview-screen"
-                      style={imagePreviewStyle}
-                    ><p>미리보기</p></div>
+                      className="preview-screen" style={{ backgroundImage: `url(${imageURL})` }}
+                    ><p>외부 이미지 미리보기<br />(올바른 주소일때 이미지가 출력됩니다)</p></div>
                   </div>
                   <div className = "caution">
                     <p>파일형식 : JPG, JPEG, PNG, GIF</p>
@@ -177,8 +169,7 @@ const ToolStatus = ({
                 <div className="status-input status-upload">
                   <div className="upload-preview">
                     <div
-                      className="upload-preview-screen cursor"
-                      style={imagePreviewStyle}
+                      className="preview-screen upload-preview-screen cursor"
                       onClick={onClickUploadImage}
                     ><p>로컬에서 이미지 불러오기</p></div>
                     <input
@@ -201,8 +192,7 @@ const ToolStatus = ({
                 <div className="status-input status-upload">
                   <div className="upload-preview">
                     <div
-                        className="upload-preview-screen cursor"
-                        style={imagePreviewStyle}
+                        className="preview-screen upload-preview-screen cursor"
                         /*onClick={onClickUploadImage}*/
                     ><p>로컬에서 동영상 불러오기</p></div>
 
@@ -228,8 +218,7 @@ const ToolStatus = ({
                   <div className="status-input status-upload">
                     <div className="upload-preview">
                       <div
-                          className="upload-preview-screen cursor"
-                          style={imagePreviewStyle}
+                          className="preview-screen upload-preview-screen cursor"
                           /*onClick={onClickUploadImage}*/
                       ><p>로컬에서 오디오 불러오기</p></div>
 
@@ -298,8 +287,7 @@ const ToolStatus = ({
                   <div className="status-input status-upload">
                     <div className="upload-preview">
                       <div
-                          className="upload-preview-screen cursor"
-                          style={imagePreviewStyle}
+                          className="preview-screen upload-preview-screen cursor"
                           /*onClick={onClickUploadImage}*/
                       ><p>로컬에서 파일 불러오기</p></div>
 
