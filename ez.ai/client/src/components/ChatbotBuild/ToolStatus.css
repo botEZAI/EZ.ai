@@ -1,10 +1,19 @@
 
 /* tool status css */
 .tool-status {
+    height : 70vh;
+    min-height: 650px;
     border-top : 0.5px solid #d9d9d9;
     padding-top : 50px;
+    display : flex;
+    flex-direction : column;
+    justify-content: space-between;
+    align-items: center;
 }
 
+.tool-status > div {
+    width : 100%;
+}
 
 
 
@@ -55,7 +64,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-bottom:  0.1px solid #d9d9d9;
     margin : 0 auto;
 }
 
@@ -81,8 +89,10 @@
 
 /* tool status-nav css */
 .tool-status-nav {
+    position : relative;
+    bottom : 0;
     height: 50px;
-    border-bottom: 0.2px solid #d9d9d9;
+    border-top: 0.1px solid #d9d9d9;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -125,28 +135,51 @@
 
 /* 파일 업로드 인터페이스 양식 */
 .status-upload .upload-preview {
-    height :200px;
+    height :300px;
     width : 80%;
+    max-width : 400px;
     background-color: white;
     margin-top : 5px;
+    padding : 10px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.upload-preview .upload-preview-screen {
-    border : 2px dotted #ddd;
-    border-radius: 10px;
-    background-color: #eee;
+.upload-preview .preview-screen {
+    color : #999;
+    background-size: 100% 100%;
+    width : 100%;
+    height : 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size : 20px;
     font-weight: bold;
-    color : #999;
+    z-index : 3;
+}
+
+.preview-screen p {
+    z-index : 1;
+}
+
+
+.upload-preview .upload-preview-screen {
+    border : 7px dotted #ddd;
+    border-radius: 30px;
+}
+
+.upload-preview .upload-preview-screen:hover {
+    border : 7px dotted #00b8b4;
+    color : #00b8b4;
+    font-size : 21px;
+    transition: .2s all;
+
 }
 
 .status-upload {
-    height: 300px;
+    min-height: 300px;
+    margin : 30px 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -154,12 +187,15 @@
 }
 
 
+
 /* 각 요소 제한 사항 */
 .caution {
+    max-width : 400px;
     width : 80%;
     margin : 5px 0;
     display: flex;
     justify-content: space-between;
+    flex-wrap : wrap;
 }
 .caution p {
     font-size : 12px;
@@ -179,7 +215,9 @@
 
 .status-text textarea {
     width : inherit;
-    height: 150px;
+    height: 30vh;
+    min-height: 150px;
+    font-size : 16px;
 }
 
 .status-text textarea:focus {
@@ -198,7 +236,6 @@
 .status-image-tab {
     height: 50px;
     background-color: #ddd;
-    margin-bottom : 20px;
     display: flex;
 }
 
@@ -213,17 +250,20 @@
 
 
 .status-image-input {
+    max-width : 400px;
     width : 80%;
     height: 40px;
+    margin-bottom : 10px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .status-image-input input {
-    width : 60%;
-    height: 30px;
-    font-size : 14px;
+    width : 100%;
+    height: 100%;
+    font-size : 16px;
+    padding-left : 5px;
     outline-color: #00b8b4;
 }
 

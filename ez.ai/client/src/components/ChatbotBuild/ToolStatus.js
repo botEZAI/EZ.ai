@@ -2,6 +2,8 @@ import React, { useState, useRef } from "react";
 import produce from "immer";
 import GoogleMapPresenter from "./GoogleMapPresenter";
 import axios from "axios";
+import KeywordPopUp from "./KeywordPopUp";
+
 
 const ToolStatus = ({
   mainKeyword,
@@ -12,7 +14,9 @@ const ToolStatus = ({
   index,
 }) => {
   const clickedIndex =
-      keywordObject[index] && keywordObject[index].contents.findIndex(v => v.id === clickedMainInput.id);
+      keywordObject[index] &&
+      keywordObject[index].contents.findIndex(v => v.id === clickedMainInput.id);
+
   const currentInput =
       keywordObject[index] && keywordObject[index].contents[now];
   const currentContent =
@@ -22,51 +26,44 @@ const ToolStatus = ({
 
   /*이미지 외부 URL 입력후 적용시 미리보기에 적용*/
   const imageRef = useRef();
+  const fileRef = useRef();
   const [imageURL, setImageURL] = useState("");
   const [imageTab, setImageTab] = useState("url");
   const [imageSrc, setImageSrc] = useState("");
 
-
-  const imagePreviewStyle = {
-    backgroundImage: `url(${imageURL})`,
-    backgroundSize: "100% 100%",
-    width : '200px',
-    minHeight: "80%"
-  };
-
-  const onClickLoadImage = (e) => {
-    setImageURL(keywordObject[index].contents[now].content);
+  const onClickLoadImage = e => {
+    setImageURL(e.target.value);
     setKeywordObject(
         produce(keywordObject, draft => {
-            draft[index].contents[now].content =
-                e.target.value;
-          })
-      );
-    };
+            draft[index].contents[now].content = e.target.value;
+        })
+    );
+  };
 
   const onClickUploadImage = () => {
-    imageRef.current.click();
+      console.log(fileRef);
+      fileRef.current.click();
   };
   const onChangeImage = e => {
-    //     const reader = new FileReader();
-    //   reader.onloadend = () => {
-    //     const imageSrc = reader.result;
-    //     if (imageSrc) {
-    //       setImageSrc(imageSrc.toString());
-    //     }
-    //   };
-    // reader.readAsDataURL(e.target.files[0]);
+      if (e.target.value === "") return;
+      if (e.target.files[0].type.match(/image/g)) {
+          setKeywordObject(
+              produce(keywordObject, draft => {
+                  draft[index].contents[now].content = e.target.files[0].name;
+              })
+          );
 
-    setKeywordObject(
-      produce(keywordObject, draft => {
-        draft[index].contents[now].content = e.target.files[0].name;
-      })
-    );
-    const imageFormData = new FormData();
-    imageFormData.append("image", e.target.files[0]);
+          const imageFormData = new FormData();
+          imageFormData.append("image", e.target.files[0]);
 
-    axios.post("/api/image", imageFormData);
+          axios.post("/api/image", imageFormData);
+      } else return alert("이미지 파일이 아닙니다.");
   };
+
+  const showKeywordPopUp = (e) => {
+      console.log("works")
+      return <KeywordPopUp/>
+  }
 
   return (
     <>
@@ -74,39 +71,45 @@ const ToolStatus = ({
         <div className="tool-status-name">
 
           {currentInput ? (
-              (currentInput.type === "text" || clickedMainInput.type === "text") ? (
+              currentInput.type === "text" || clickedMainInput.type === "text" ? (
               <>
                 <span>텍스트</span>
               </>
-            ) : (currentInput.type === "image" || clickedMainInput.type === "image") ? (
+              ) : currentInput.type === "image" || clickedMainInput.type === "image" ? (
               <>
                 <span>이미지</span>
               </>
-            ) : currentInput.type === "video" || clickedMainInput.type === "video" ? (
-                <>
-                  <span>비디오</span>
-                </>
-            ) : currentInput.type === "audio" || clickedMainInput.type === "audio" ? (
-                <>
-                  <span>오디오</span>
-                </>
-            ) : currentInput.type === "location" || clickedMainInput.type === "location" ? (
+              ) : currentInput.type === "video" ||
+              clickedMainInput.type === "video" ? (
+                  <>
+                      <span>비디오</span>
+                  </>
+              ) : currentInput.type === "audio" ||
+              clickedMainInput.type === "audio" ? (
+                  <>
+                      <span>오디오</span>
+                  </>
+              ) : currentInput.type === "location" ||
+              clickedMainInput.type === "location" ? (
               <>
                 <span>위치</span>
               </>
-            ) : currentInput.type === "file" || clickedMainInput.type === "file" ? (
-                <>
-                  <span>파일</span>
-                </>
-            ) : currentInput.type === "list" || clickedMainInput.type === "list" ? (
+              ) : currentInput.type === "file" ||
+              clickedMainInput.type === "file" ? (
+                  <>
+                      <span>파일</span>
+                  </>
+              ) : currentInput.type === "list" ||
+              clickedMainInput.type === "list" ? (
               <>
                 <span>버튼형 리스트</span>
               </>
-            ) : currentInput.type === "sticker" || clickedMainInput.type === "sticker" ? (
-                <>
-                  <span>스티커</span>
-                </>
-            ): null
+              ) : currentInput.type === "sticker" ||
+              clickedMainInput.type === "sticker" ? (
+                  <>
+                      <span>스티커</span>
+                  </>
+              ) : null
           ) : null}
         </div>
         <div className="help" alt="도움말">
@@ -115,23 +118,23 @@ const ToolStatus = ({
       </div>
 
       <div className="tool-status-main">
-        {(clickedMainInput.type || (!clickedMainInput.type && currentInput )) &&
-        ( currentInput.type === "text" || clickedMainInput.type === "text" ? (
-                <div className="status-input status-text">
-                <textarea
-                    placeholder="작성하고자 하는 텍스트를 적어주세요"
-                    value={currentContent || ""}
-                    onChange={e => {
+          {(clickedMainInput.type || (!clickedMainInput.type && currentInput)) &&
+          (currentInput.type === "text" || clickedMainInput.type === "text" ? (
+              <div className="status-input status-text">
+              <textarea
+                  placeholder="작성하고자 하는 텍스트를 적어주세요"
+                  value={currentContent || ""}
+                  onChange={e => {
                       setKeywordObject(
                           produce(keywordObject, draft => {
-                            draft[index].contents[now].content =
-                                e.target.value;
+                              draft[index].contents[now].content = e.target.value;
                           })
                       );
-                    }}
-                />
-                </div>
-        ) : currentInput.type === "image" || clickedMainInput.type === "image" ? (
+                  }}
+              />
+              </div>
+          ) : currentInput.type === "image" ||
+          clickedMainInput.type === "image" ? (
             <div className="image-status">
               <div className="status-image-tab">
                 <div
@@ -157,17 +160,15 @@ const ToolStatus = ({
                       placeholder="외부 URL를 입력해주세요"
                       value={currentContent || ""}
                       onChange={onClickLoadImage}
-
                     />
-                    <div className="outer-img-btn" onClick={onClickLoadImage}>
+                    <div className="outer-img-btn" onChange={onClickLoadImage}>
                       적용
                     </div>
                   </div>
-                  <div className="upload-preview">
+                  <div className="upload-preview" >
                     <div
-                      className="upload-preview-screen"
-                      style={imagePreviewStyle}
-                    ><p>미리보기</p></div>
+                      className="preview-screen" style={{ backgroundImage: `url(${imageURL})` }}
+                    ><p>외부 이미지 미리보기<br />(올바른 주소일때 이미지가 출력됩니다)</p></div>
                   </div>
                   <div className = "caution">
                     <p>파일형식 : JPG, JPEG, PNG, GIF</p>
@@ -177,8 +178,7 @@ const ToolStatus = ({
                 <div className="status-input status-upload">
                   <div className="upload-preview">
                     <div
-                      className="upload-preview-screen cursor"
-                      style={imagePreviewStyle}
+                      className="preview-screen upload-preview-screen cursor"
                       onClick={onClickUploadImage}
                     ><p>로컬에서 이미지 불러오기</p></div>
                     <input
@@ -201,8 +201,7 @@ const ToolStatus = ({
                 <div className="status-input status-upload">
                   <div className="upload-preview">
                     <div
-                        className="upload-preview-screen cursor"
-                        style={imagePreviewStyle}
+                        className="preview-screen upload-preview-screen cursor"
                         /*onClick={onClickUploadImage}*/
                     ><p>로컬에서 동영상 불러오기</p></div>
 
@@ -222,16 +221,18 @@ const ToolStatus = ({
                 </div>
               </div>
             </>
-          ) : currentInput.type === "audio" || clickedMainInput.type === "audio" ? (
+          ) : currentInput.type === "audio" ||
+          clickedMainInput.type === "audio" ? (
               <>
-                <div className="status-audio upload">
-                  <div className="status-input status-upload">
-                    <div className="upload-preview">
-                      <div
-                          className="upload-preview-screen cursor"
-                          style={imagePreviewStyle}
-                          /*onClick={onClickUploadImage}*/
-                      ><p>로컬에서 오디오 불러오기</p></div>
+                  <div className="status-audio upload">
+                      <div className="status-input status-upload">
+                          <div className="upload-preview">
+                              <div
+                                  className="upload-preview-screen cursor"
+                                  /*onClick={onClickUploadImage}*/
+                              >
+                                  <p>로컬에서 오디오 불러오기</p>
+                              </div>
 
                       {/* 이미지 양식이므로 오디오 양식으로 바꿔야합니다
                     <input
@@ -298,8 +299,7 @@ const ToolStatus = ({
                   <div className="status-input status-upload">
                     <div className="upload-preview">
                       <div
-                          className="upload-preview-screen cursor"
-                          style={imagePreviewStyle}
+                          className="preview-screen upload-preview-screen cursor"
                           /*onClick={onClickUploadImage}*/
                       ><p>로컬에서 파일 불러오기</p></div>
 
@@ -340,6 +340,7 @@ const ToolStatus = ({
                       <input
                         placeholder="키워드명을 적어주세요"
                         value={currentContent.elem[0] || ""}
+
                         onChange={e => {
                           setKeywordObject(
                             produce(keywordObject, draft => {
@@ -349,7 +350,10 @@ const ToolStatus = ({
                           );
                         }}
                       />
-                      <div className = "list-keyword-btn">키워드 연동</div>
+                      <div
+                          className = "list-keyword-btn"
+                          onClick = {showKeywordPopUp}
+                      >키워드 연동</div>
                     </div>
                     <div className = "status-list-content">
                       <input
@@ -444,9 +448,16 @@ const ToolStatus = ({
 
       </div>
       <div className="tool-status-nav">
-        <div className="tool-status-extra">
-          <div className = "extra-btn user-name">사용자명</div>
-          <div className = "extra-btn emoji">이모지</div>
+        <div className="tool-status-extra">  {/* type에 따라 추가적인 기능 버튼 보여주는 영역 */}
+            {currentInput ? (
+                (currentInput.type === "text" || clickedMainInput.type === "text") ? (
+                    <>
+                      <div className = "extra-btn user-name">사용자명</div>
+                      <div className = "extra-btn emoji">이모지</div>
+                     </>
+                ): null
+                ) : null
+            }
         </div>
         <div className="tool-status-nav-btns">
           <div className="tool-status-btn confirm">확인</div>
