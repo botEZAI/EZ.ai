@@ -158,6 +158,9 @@ const Main = ({
                   <div className="main-video-content">
                     <i className="fas fa-play fa-lg main-file-icon"></i>
                   </div>
+                   <div className="tool-delete delete-video">
+                       <i className="fas fa-times"></i>
+                   </div>
 
                 </div>
               </>
