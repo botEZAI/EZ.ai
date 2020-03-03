@@ -32,6 +32,7 @@ const Main = ({
     keywordObject[index].contents[now].content;
   const contentRef = useRef(null);
 
+
   //post
   const onClickButton = () => {
     const count = keywordObject.length;
@@ -74,7 +75,6 @@ const Main = ({
       setAddFlag(false);
     }
   });
-
   return (
     <>
       <div className="main-header">
@@ -102,7 +102,6 @@ const Main = ({
                   onClick={e => {
                     setClickedMainInput(v);
                     console.log(keywordObject);
-
                     setNow(i); // 요소 클릭시 setNow(i)를 해줘야 왼쪽 status화면에서 보이니 참고해주세요
                   }}
                   key={v.content + i}
@@ -119,7 +118,7 @@ const Main = ({
                   </div>
                 </div>
               </>
-            ) : v.type === "image" ? (
+            ) : v.type === "image" ? ( /**서버에서 파일 받아옴. */
               <>
                 <div
                   className="main-content main-imgbox"
@@ -145,7 +144,7 @@ const Main = ({
                   </div>
                 </div>
               </>
-            ) : v.type === "video" ? (
+            ) : v.type === "video" ? (/**서버에서 파일 받아옴 */
               <>
                 <div
                   className="main-content main-videobox"
@@ -159,6 +158,7 @@ const Main = ({
                   <div className="main-video-content">
                     <i className="fas fa-play fa-lg main-file-icon"></i>
                   </div>
+
                 </div>
               </>
             ) : v.type === "audio" ? (
@@ -180,6 +180,9 @@ const Main = ({
                     <div className="main-file-size" data-filetype="">
                       00:00, 00.00 MB{" "}
                     </div>
+                  </div>
+                  <div className="tool-delete delete-audio">
+                    <i className="fas fa-times"></i>
                   </div>
                 </div>
               </>
@@ -220,6 +223,9 @@ const Main = ({
                       00.00 MB
                     </div>
                   </div>
+                  <div className="tool-delete delete-file">
+                    <i className="fas fa-times"></i>
+                  </div>
                 </div>
               </>
             ) : v.type === "list" ? (
@@ -235,6 +241,7 @@ const Main = ({
                   }}
                 >
                   {" "}
+
                   <div className="main-listbox-header">Question</div>
                   <div className="main-listbox-question">
                     {v.content.question !== ""
@@ -384,6 +391,7 @@ const Main = ({
           </>
         ) : null}
       </div>
+
       {/** keyword-keyboard END */}
     </>
   ); /**retun END */
