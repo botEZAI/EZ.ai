@@ -14,7 +14,9 @@ const ChatbotBuild = () => {
   const [keywordList, setKeywordList] = useState(["Welcome"]);
   const [mainKeyword, setMainKeyword] = useState("");
   const [keywordContentList, setKeywordContentList] = useState([]);
-  const [keywordObject, setKeywordObject] = useState([{keyword: "Welcome", id: 1, contents: []}]);
+  const [keywordObject, setKeywordObject] = useState([
+    { keyword: "Welcome", id: 1, contents: [] }
+  ]);
   const [clickedMainInput, setClickedMainInput] = useState({});
   const [addFlag, setAddFlag] = useState(false); // 컨텐츠 추가 flag
   const [firstEntry, setFirstEntry] = useState(true); // 키워드 진입 flag
@@ -22,7 +24,8 @@ const ChatbotBuild = () => {
   const [now, setNow] = useState(-1);
 
   const index = keywordObject.findIndex(v => v.keyword === mainKeyword);
-  const length = keywordObject[index] && keywordObject[index].contents.length -1;
+  const length =
+    keywordObject[index] && keywordObject[index].contents.length - 1;
 
   const onSelect = useCallback(tab => {
     setActiveTab(tab);
@@ -30,13 +33,13 @@ const ChatbotBuild = () => {
 
   // 키워드 클릭했을시
   const onClickKeyword = useCallback(
-      keyword => () => {
-        setMainKeyword(keyword);
-        setClickedMainInput("");
-        setFirstEntry(true); // 키워드 클릭 시, 스크롤 초기화 (맨 위로 가서 keyword-title 보이게 함)
-        setKeywordKeyboard(false); // 키워드 클릭 시, Main의 '리스트' 하단 바 초기화(하단 바 안 보임)
-      },
-      [keywordObject.length]
+    keyword => () => {
+      setMainKeyword(keyword);
+      setClickedMainInput("");
+      setFirstEntry(true); // 키워드 클릭 시, 스크롤 초기화 (맨 위로 가서 keyword-title 보이게 함)
+      setKeywordKeyboard(false); // 키워드 클릭 시, Main의 '리스트' 하단 바 초기화(하단 바 안 보임)
+    },
+    [keywordObject.length]
   );
 
   {
@@ -78,9 +81,11 @@ const ChatbotBuild = () => {
   };
   return (
     <div className="builder">
+      {console.log(keywordObject)}
+      {console.log("main=", mainKeyword, "now=", now)}
       <div className="builder__column" style={mainStyle}>
         <div className="builderTool">
-          <div className = "tool-menu">
+          <div className="tool-menu">
             <div className="tool-tabs">
               <Tabs activeTab={activeTab} onSelect={onSelect}>
                 <div label="basic">기본</div>
@@ -90,38 +95,38 @@ const ChatbotBuild = () => {
             </div>
             <div className="tool-contents">
               {activeTab === "basic" && (
-                  <ToolBasic
-                      mainKeyword={mainKeyword}
-                      keywordObject={keywordObject}
-                      setKeywordObject={setKeywordObject}
-                      setClickedMainInput={setClickedMainInput}
-                      setAddFlag={setAddFlag}
-                      setNow={setNow}
-                      length = {length}
-                  />
+                <ToolBasic
+                  mainKeyword={mainKeyword}
+                  keywordObject={keywordObject}
+                  setKeywordObject={setKeywordObject}
+                  setClickedMainInput={setClickedMainInput}
+                  setAddFlag={setAddFlag}
+                  setNow={setNow}
+                  length={length}
+                />
               )}
               {activeTab === "advance" && (
-                  <ToolAdvance
-                      mainKeyword={mainKeyword}
-                      keywordObject={keywordObject}
-                      setKeywordObject={setKeywordObject}
-                      setClickedMainInput={setClickedMainInput}
-                      setAddFlag={setAddFlag}
-                      setKeywordKeyboard={setKeywordKeyboard}
-                      setNow={setNow}
-                      length = {length}
-                  />
+                <ToolAdvance
+                  mainKeyword={mainKeyword}
+                  keywordObject={keywordObject}
+                  setKeywordObject={setKeywordObject}
+                  setClickedMainInput={setClickedMainInput}
+                  setAddFlag={setAddFlag}
+                  setKeywordKeyboard={setKeywordKeyboard}
+                  setNow={setNow}
+                  length={length}
+                />
               )}
               {activeTab === "keyword" && (
-                  <ToolKeyword
-                      keyword={keyword}
-                      keywordList={keywordList}
-                      setKeyword={setKeyword}
-                      setKeywordList={setKeywordList}
-                      keywordObject={keywordObject}
-                      onClickKeyword={onClickKeyword}
-                      setKeywordObject={setKeywordObject}
-                  />
+                <ToolKeyword
+                  keyword={keyword}
+                  keywordList={keywordList}
+                  setKeyword={setKeyword}
+                  setKeywordList={setKeywordList}
+                  keywordObject={keywordObject}
+                  onClickKeyword={onClickKeyword}
+                  setKeywordObject={setKeywordObject}
+                />
               )}
             </div>
           </div>
@@ -133,7 +138,7 @@ const ChatbotBuild = () => {
                 setKeywordObject={setKeywordObject}
                 clickedMainInput={clickedMainInput}
                 now={now}
-                index = {index}
+                index={index}
               />
             )}
           </div>
