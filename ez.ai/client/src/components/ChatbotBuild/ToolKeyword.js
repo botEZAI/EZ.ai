@@ -8,14 +8,11 @@ const ToolKeyword = ({
   setKeywordList,
   onClickKeyword,
   keywordObject,
-  setKeywordObject,
-  mainKeywordObject
+  setKeywordObject
 }) => {
   const [value, setValue] = useState("");
   const onSubmit = e => {
     e.preventDefault();
-    console.log("onSubmit");
-
     keyword !== "" && setKeywordList(keywordList => [...keywordList, keyword]);
     keyword !== ""
       ? setKeywordObject(

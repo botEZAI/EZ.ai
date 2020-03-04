@@ -25,13 +25,13 @@ const Main = ({
   setNow
 }) => {
   const currentInput =
-    keywordObject[index] && keywordObject[index].contents[now];
+    now !== -1 && keywordObject[index] && keywordObject[index].contents[now];
   const currentContent =
+    now !== -1 &&
     keywordObject[index] &&
     keywordObject[index].contents[now] &&
     keywordObject[index].contents[now].content;
   const contentRef = useRef(null);
-
 
   //post
   const onClickButton = () => {
@@ -56,6 +56,10 @@ const Main = ({
   };
   //삭제
   const onDelete = id => {
+    if (id === now + 1) {
+      setNow(now - 1);
+      setClickedMainInput({});
+    }
     setKeywordObject(
       produce(keywordObject, draft => {
         draft[index].contents.splice(
@@ -64,6 +68,7 @@ const Main = ({
         );
       })
     );
+    console.log("now=", now);
   };
   useEffect(() => {
     if (firstEntry === true) {
@@ -99,15 +104,17 @@ const Main = ({
               <>
                 <div
                   className="main-content main-textbox"
-                  onClick={e => {
-                    setClickedMainInput(v);
-                    console.log(keywordObject);
-                    setNow(i); // 요소 클릭시 setNow(i)를 해줘야 왼쪽 status화면에서 보이니 참고해주세요
-                  }}
                   key={v.content + i}
                   style={{ padding: "3%" }}
                 >
-                  {v.content}
+                  <div
+                    onClick={() => {
+                      setClickedMainInput(v);
+                      setNow(i);
+                    }}
+                  >
+                    {v.content || "(입력)"}
+                  </div>
                   <div
                     className="tool-delete delete-text"
                     onClick={() => {
@@ -118,112 +125,142 @@ const Main = ({
                   </div>
                 </div>
               </>
-            ) : v.type === "image" ? ( /**서버에서 파일 받아옴. */
+            ) : v.type === "image" /**서버에서 파일 받아옴. */ ? (
               <>
                 <div
                   className="main-content main-imgbox"
-                  onClick={() => {
-                    setClickedMainInput(v);
-                    setNow(i);
-                  }}
                   key={v.content + i}
                   style={{ padding: "1%" }}
                 >
-                  {v.content !== "" ? (
-                    <div
-                      className="main-image-preview"
-                      style={{ backgroundImage: `url(${v.content})` }}
-                    >
-                      미리보기
-                    </div>
-                  ) : (
-                    <div className="image-preview-default">이미지 없음</div>
-                  )}
-                  <div className="tool-delete delete-image">
+                  <div
+                    onClick={() => {
+                      setClickedMainInput(v);
+                      setNow(i);
+                    }}
+                  >
+                    {" "}
+                    {v.content !== "" ? (
+                      <div
+                        className="main-image-preview"
+                        style={{ backgroundImage: `url(${v.content})` }}
+                      >
+                        미리보기
+                      </div>
+                    ) : (
+                      <div className="image-preview-default">이미지 없음</div>
+                    )}
+                  </div>
+                  <div
+                    className="tool-delete delete-image"
+                    onClick={() => {
+                      onDelete(v.id);
+                    }}
+                  >
                     <i className="fas fa-times"></i>
                   </div>
                 </div>
               </>
-            ) : v.type === "video" ? (/**서버에서 파일 받아옴 */
+            ) : v.type === "video" /**서버에서 파일 받아옴 */ ? (
               <>
-                <div
-                  className="main-content main-videobox"
-                  key={v.content + i}
-                  onClick={() => {
-                    setClickedMainInput(v);
-                    setNow(i);
-                  }}
-                >
+                <div className="main-content main-videobox" key={v.content + i}>
                   {" "}
-                  <div className="main-video-content">
+                  <div
+                    className="main-video-content"
+                    onClick={() => {
+                      setClickedMainInput(v);
+                      setNow(i);
+                    }}
+                  >
                     <i className="fas fa-play fa-lg main-file-icon"></i>
                   </div>
-
+                  <div
+                    className="tool-delete delete-video"
+                    onClick={() => {
+                      onDelete(v.id);
+                    }}
+                  >
+                    <i className="fas fa-times"></i>
+                  </div>
                 </div>
               </>
             ) : v.type === "audio" ? (
               <>
-                <div
-                  className="main-content main-audiobox"
-                  key={v.content + i}
-                  onClick={() => {
-                    setClickedMainInput(v);
-                    setNow(i);
-                  }}
-                >
+                <div className="main-content main-audiobox" key={v.content + i}>
                   {" "}
-                  <i className="fas fa-play fa-lg main-file-icon"></i>
-                  <div className="main-file-content">
-                    <div className="main-file-name" data-filetype="">
-                      (fileName{v.content})
-                    </div>
-                    <div className="main-file-size" data-filetype="">
-                      00:00, 00.00 MB{" "}
+                  <div
+                    onClick={() => {
+                      setClickedMainInput(v);
+                      setNow(i);
+                    }}
+                  >
+                    <i className="fas fa-play fa-lg main-file-icon"></i>
+                    <div className="main-file-content">
+                      <div className="main-file-name" data-filetype="">
+                        (fileName{v.content})
+                      </div>
+                      <div className="main-file-size" data-filetype="">
+                        00:00, 00.00 MB{" "}
+                      </div>
                     </div>
                   </div>
-                  <div className="tool-delete delete-audio">
+                  <div
+                    className="tool-delete delete-audio"
+                    onClick={() => {
+                      onDelete(v.id);
+                    }}
+                  >
                     <i className="fas fa-times"></i>
                   </div>
                 </div>
               </>
             ) : v.type === "location" ? (
               <>
-                <div
-                  className="main-content main-locabox"
-                  key={v.content + i}
-                  onClick={() => {
-                    setClickedMainInput(v);
-                    setNow(i);
-                  }}
-                >
+                <div className="main-content main-locabox" key={v.content + i}>
                   {" "}
-                  <GoogleMapPresenter />
-                  <div className="tool-delete delete-location">
+                  <div
+                    onClick={() => {
+                      setClickedMainInput(v);
+                      setNow(i);
+                    }}
+                  >
+                    <GoogleMapPresenter />
+                  </div>
+                  <div
+                    className="tool-delete delete-location"
+                    onClick={() => {
+                      onDelete(v.id);
+                    }}
+                  >
                     <i className="fas fa-times"></i>
                   </div>
                 </div>
               </>
             ) : v.type === "file" ? (
               <>
-                <div
-                  className="main-content main-filebox"
-                  key={v.content + i}
-                  onClick={() => {
-                    setClickedMainInput(v);
-                    setNow(i);
-                  }}
-                >
+                <div className="main-content main-filebox" key={v.content + i}>
                   {" "}
-                  <i className="fas fa-file fa-lg main-file-icon"></i>
-                  <div className="main-file-content">
-                    <div className="main-file-name" data-filetype="">
-                      (fileName{v.content})
-                    </div>
-                    <div className="main-file-size" data-filetype="">
-                      00.00 MB
+                  <div
+                    onClick={() => {
+                      setClickedMainInput(v);
+                      setNow(i);
+                    }}
+                  >
+                    <i className="fas fa-file fa-lg main-file-icon"></i>
+                    <div className="main-file-content">
+                      <div className="main-file-name" data-filetype="">
+                        (fileName{v.content})
+                      </div>
+                      <div className="main-file-size" data-filetype="">
+                        00.00 MB
+                      </div>
                     </div>
                   </div>
-                  <div className="tool-delete delete-file">
+                  <div
+                    className="tool-delete delete-file"
+                    onClick={() => {
+                      onDelete(v.id);
+                    }}
+                  >
                     <i className="fas fa-times"></i>
                   </div>
                 </div>
@@ -234,37 +271,56 @@ const Main = ({
                   className="main-content main-listbox"
                   key={v.content + i}
                   onClick={e => {
-                    setClickedMainInput(v);
                     e.stopPropagation();
                     setKeywordKeyboard(true);
-                    setNow(i);
                   }}
                 >
                   {" "}
-
-                  <div className="main-listbox-header">Question</div>
-                  <div className="main-listbox-question">
-                    {v.content.question !== ""
-                      ? v.content.question
-                      : "(Ask a question)"}
+                  <div
+                    onClick={() => {
+                      setClickedMainInput(v);
+                      setNow(i);
+                    }}
+                  >
+                    <div className="main-listbox-header">Question</div>
+                    <div className="main-listbox-question">
+                      {v.content.question !== ""
+                        ? v.content.question
+                        : "(Ask a question)"}
+                    </div>
+                    <div className="main-listbox-elem">{v.content.elem[0]}</div>
+                    {v.content.elem[1] && (
+                      <div className="main-listbox-elem">
+                        {v.content.elem[1]}
+                      </div>
+                    )}
+                    {v.content.elem[2] && (
+                      <div className="main-listbox-elem">
+                        {v.content.elem[2]}
+                      </div>
+                    )}
+                    {v.content.elem[3] && (
+                      <div className="main-listbox-elem">
+                        {v.content.elem[3]}
+                      </div>
+                    )}
+                    {v.content.elem[4] && (
+                      <div className="main-listbox-elem">
+                        {v.content.elem[4]}
+                      </div>
+                    )}
+                    {v.content.elem[5] && (
+                      <div className="main-listbox-elem">
+                        {v.content.elem[5]}
+                      </div>
+                    )}
                   </div>
-                  <div className="main-listbox-elem">{v.content.elem[0]}</div>
-                  {v.content.elem[1] && (
-                    <div className="main-listbox-elem">{v.content.elem[1]}</div>
-                  )}
-                  {v.content.elem[2] && (
-                    <div className="main-listbox-elem">{v.content.elem[2]}</div>
-                  )}
-                  {v.content.elem[3] && (
-                    <div className="main-listbox-elem">{v.content.elem[3]}</div>
-                  )}
-                  {v.content.elem[4] && (
-                    <div className="main-listbox-elem">{v.content.elem[4]}</div>
-                  )}
-                  {v.content.elem[5] && (
-                    <div className="main-listbox-elem">{v.content.elem[5]}</div>
-                  )}
-                  <div className="tool-delete delete-listbox">
+                  <div
+                    className="tool-delete delete-listbox "
+                    onClick={() => {
+                      onDelete(v.id);
+                    }}
+                  >
                     <i className="fas fa-times"></i>
                   </div>
                 </div>
