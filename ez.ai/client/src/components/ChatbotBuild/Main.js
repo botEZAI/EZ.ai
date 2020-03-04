@@ -181,6 +181,7 @@ const Main = ({
                   >
                     <i className="fas fa-times"></i>
                   </div>
+
                 </div>
               </>
             ) : v.type === "audio" ? (
