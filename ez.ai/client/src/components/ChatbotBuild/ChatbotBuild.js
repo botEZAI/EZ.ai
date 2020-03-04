@@ -12,11 +12,11 @@ const ChatbotBuild = () => {
   const [activeTab, setActiveTab] = useState("basic");
   const [keyword, setKeyword] = useState("");
   const [keywordList, setKeywordList] = useState(["Welcome"]);
-  const [mainKeyword, setMainKeyword] = useState("");
   const [keywordContentList, setKeywordContentList] = useState([]);
   const [keywordObject, setKeywordObject] = useState([
     { keyword: "Welcome", id: 1, contents: [] }
   ]);
+  const [mainKeyword, setMainKeyword] = useState(keywordObject[0].keyword);
   const [clickedMainInput, setClickedMainInput] = useState({});
   const [addFlag, setAddFlag] = useState(false); // 컨텐츠 추가 flag
   const [firstEntry, setFirstEntry] = useState(true); // 키워드 진입 flag
@@ -34,6 +34,7 @@ const ChatbotBuild = () => {
   // 키워드 클릭했을시
   const onClickKeyword = useCallback(
     keyword => () => {
+      setNow(-1);
       setMainKeyword(keyword);
       setClickedMainInput("");
       setFirstEntry(true); // 키워드 클릭 시, 스크롤 초기화 (맨 위로 가서 keyword-title 보이게 함)
