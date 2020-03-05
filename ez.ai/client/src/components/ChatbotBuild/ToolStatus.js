@@ -240,7 +240,7 @@ const ToolStatus = ({
                 <div className="status-input status-upload">
                   <div className="upload-preview">
                     <div
-                      className="upload-preview-screen cursor"
+                      className="preview-screen upload-preview-screen cursor"
                       /*onClick={onClickUploadImage}*/
                     >
                       <p>로컬에서 오디오 불러오기</p>
