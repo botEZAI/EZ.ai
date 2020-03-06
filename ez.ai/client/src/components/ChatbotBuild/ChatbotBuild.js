@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from "react";
-import Preview from "./BuilderNavContents/Preview";
+import PrevTab from "./BuilderNavContents/PrevTab.js"
+import PrevContent from "./BuilderNavContents/PrevContent.js"
 import "./ChatbotBuild.css";
 import BuilderInfo from "./BuilderInfo";
 import Tabs from ".//Tabs";
@@ -31,7 +32,6 @@ const ChatbotBuild = () => {
   const onSelect = useCallback(tab => {
     setActiveTab(tab);
   }, []);
-
   // 키워드 클릭했을시
   const onClickKeyword = useCallback(
     keyword => () => {
@@ -47,11 +47,13 @@ const ChatbotBuild = () => {
   {
     /* 오른쪽 사이드바 fold 동적 프로그래밍 코드*/
   }
-  const [tabActive, setTabActive] = useState(false);
   const [mainWidth, setMainWidth] = useState("calc(100vw - 50px)");
   const [navWidth, setNavWidth] = useState("50px");
   const [leftArrowDisplay, setLeftArrowDisplay] = useState("block");
   const [rightArrowDisplay, setRightArrowDisplay] = useState("none");
+  const [activePrevTab, setActivePrevTab] = useState("preview");
+  const [prevTabPosition, setPrevTabPosition] = useState("0px");
+  const [prevDisplay,setPrevDisplay] = useState(false);
   const mainStyle = {
     width: mainWidth,
     transition: ".5s width"
@@ -66,21 +68,32 @@ const ChatbotBuild = () => {
   const leftArrow = {
     display: leftArrowDisplay
   };
+  const PrevTabStyle = {
+    marginLeft: prevTabPosition,
+    transition: ".8s all"
+  };
+  const defaultPreviewStyle = {
+    display: "none"
+  }
+  const onSelectPrev = useCallback(prevtab => {
+    setActivePrevTab(prevtab)
+  }, []);
+
   const foldNav = e => {
     if (navWidth === "400px") {
-      console.log("tabActive: "+tabActive)
       setNavWidth("50px");
       setMainWidth("calc(100vw - 50px)");
       setLeftArrowDisplay("block");
       setRightArrowDisplay("none");
-      setTabActive(false);
+      setPrevTabPosition("0px");
+      setPrevDisplay(false);
     } else {
-      console.log("tabActive: "+tabActive)
       setNavWidth("400px");
       setMainWidth("calc(100vw - 400px)");
       setLeftArrowDisplay("none");
       setRightArrowDisplay("block");
-      setTabActive(true);
+      setPrevTabPosition("-50px");
+      setPrevDisplay(true);
     }
   };
   return (
@@ -178,7 +191,30 @@ const ChatbotBuild = () => {
           <i className="fas fa-angle-double-right" style={rightArrow}></i>
           <i className="fas fa-angle-double-left" style={leftArrow}></i>
         </div>
-        <Preview tabActive={tabActive}/>
+        <div className="preview">
+            <ul className="preview-tab" style={PrevTabStyle}>
+              <PrevTab activePrevTab={activePrevTab} 
+                        onSelectPrev={onSelectPrev}
+              >
+                <li label="preview">tab1</li>
+                <li label="tab2">tab2</li>
+                <li label="tab3">tab3</li>
+              </PrevTab>
+            </ul>
+            <PrevContent activePrevTab={activePrevTab} 
+                          style={(!prevDisplay) ? defaultPreviewStyle : null}
+            >
+              <div label="preview">
+                ---------------@---------------
+              </div>
+              <div label="tab2">
+                -----------------★----------------★------------------
+              </div>
+              <div label="tab3">
+                -----------♥-----------♥---------♥------------------
+              </div>
+            </PrevContent>
+        </div>
       </div>
     </div>
   );
