@@ -46,16 +46,15 @@ const ChatbotBuild = () => {
   {
     /* 오른쪽 사이드바 fold 동적 프로그래밍 코드*/
   }
+  const [tabActive, setTabActive] = useState(false);
   const [mainWidth, setMainWidth] = useState("calc(100vw - 50px)");
   const [navWidth, setNavWidth] = useState("50px");
   const [leftArrowDisplay, setLeftArrowDisplay] = useState("block");
   const [rightArrowDisplay, setRightArrowDisplay] = useState("none");
-
   const mainStyle = {
     width: mainWidth,
     transition: ".5s width"
   };
-
   const navStyle = {
     width: navWidth,
     transition: ".5s width"
@@ -66,18 +65,21 @@ const ChatbotBuild = () => {
   const leftArrow = {
     display: leftArrowDisplay
   };
-
   const foldNav = e => {
     if (navWidth === "400px") {
+      console.log("tabActive: "+tabActive)
       setNavWidth("50px");
       setMainWidth("calc(100vw - 50px)");
       setLeftArrowDisplay("block");
       setRightArrowDisplay("none");
+      setTabActive(false);
     } else {
+      console.log("tabActive: "+tabActive)
       setNavWidth("400px");
       setMainWidth("calc(100vw - 400px)");
       setLeftArrowDisplay("none");
       setRightArrowDisplay("block");
+      setTabActive(true);
     }
   };
   return (
@@ -172,7 +174,7 @@ const ChatbotBuild = () => {
           <i className="fas fa-angle-double-right" style={rightArrow}></i>
           <i className="fas fa-angle-double-left" style={leftArrow}></i>
         </div>
-        <Preview />
+        <Preview tabActive={tabActive}/>
       </div>
     </div>
   );
