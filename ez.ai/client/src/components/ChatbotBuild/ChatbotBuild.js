@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from "react";
 import Preview from "./BuilderNavContents/Preview";
 import "./ChatbotBuild.css";
+import BuilderInfo from "./BuilderInfo";
 import Tabs from ".//Tabs";
 import ToolBasic from ".//ToolBasic";
 import ToolAdvance from ".//ToolAdvance";
@@ -86,7 +87,10 @@ const ChatbotBuild = () => {
     <div className="builder">
       {console.log(keywordObject)}
       {console.log("main=", mainKeyword, "now=", now)}
-      <div className="builder__column" style={mainStyle}>
+      <div className="builder__column builder-info">
+        <BuilderInfo />
+      </div>
+      <div className="builder__column builder-main" style={mainStyle}>
         <div className="builderTool">
           <div className="tool-menu">
             <div className="tool-tabs">
@@ -169,7 +173,7 @@ const ChatbotBuild = () => {
       </div>
 
       {/* 챗봇 빌더 오른쪽 사이드 바 기본 레이아웃*/}
-      <div className="builder__column builderNav" style={navStyle}>
+      <div className="builderNav" style={navStyle}>
         <div className="builderNav-btn" onClick={foldNav}>
           <i className="fas fa-angle-double-right" style={rightArrow}></i>
           <i className="fas fa-angle-double-left" style={leftArrow}></i>

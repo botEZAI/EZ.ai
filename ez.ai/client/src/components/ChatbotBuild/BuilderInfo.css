@@ -1,0 +1,10 @@
+.builder-info p {
+    margin : 0;
+}
+
+.info__column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
