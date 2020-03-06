@@ -89,7 +89,7 @@ const ChatbotBuild = () => {
       setPrevDisplay(false);
     } else {
       setNavWidth("400px");
-      setMainWidth("calc(100vw - 400px)");
+      setMainWidth("calc(100vw - 430px)");
       setLeftArrowDisplay("none");
       setRightArrowDisplay("block");
       setPrevTabPosition("-50px");
@@ -100,7 +100,7 @@ const ChatbotBuild = () => {
     <div className="builder">
       {console.log(keywordObject)}
       {console.log("main=", mainKeyword, "now=", now)}
-      <div className="builder__column builder-info">
+      <div className="builder__column builder-info" style={mainStyle}>
         <BuilderInfo />
       </div>
       <div className="builder__column builder-main" style={mainStyle}>
