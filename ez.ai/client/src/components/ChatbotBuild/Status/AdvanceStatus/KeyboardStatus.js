@@ -1,6 +1,6 @@
-import React from "react";
+import React, {useState} from "react";
 import produce from "immer";
-import KeywordPopUp from "../../KeywordPopUp";
+import KeywordPopUp from "./KeywordPopUp";
 
 
 
@@ -11,10 +11,13 @@ const KeyboardStatus = ({
     now,
     index,
 }) => {
+    const [showPopup, setShowPopup] = useState(false);
+    const [popNum, setPopNum] = useState("kb0");
 
-    const showKeywordPopUp = e => {
-        console.log("works");
-        return <KeywordPopUp />;
+    const toggleKeywordPopUp = e => {
+        setPopNum(e.target.getAttribute('name'))
+        setShowPopup(!showPopup);
+        console.log(popNum);
     };
 
 
@@ -50,10 +53,15 @@ const KeyboardStatus = ({
                             />
                             <div
                                 className="list-keyword-btn"
-                                onClick={showKeywordPopUp}
+                                name = "kb1"
+                                onClick={toggleKeywordPopUp}
                             >
                                 키워드 연동
+                                {showPopup && popNum === "kb1" ?
+                                    <KeywordPopUp/>
+                                    : null}
                             </div>
+
                         </div>
                         <div className="status-list-content">
                             <input
@@ -68,7 +76,16 @@ const KeyboardStatus = ({
                                     );
                                 }}
                             />
-                            <div className="list-keyword-btn">키워드 연동</div>
+                            <div
+                                className="list-keyword-btn"
+                                name = "kb2"
+                                onClick={toggleKeywordPopUp}
+                            >
+                                키워드 연동
+                                {showPopup && popNum === "kb2" ?
+                                    <KeywordPopUp/>
+                                    : null}
+                            </div>
                         </div>
                     </tr>
                     <tr>
@@ -85,7 +102,16 @@ const KeyboardStatus = ({
                                     );
                                 }}
                             />
-                            <div className="list-keyword-btn">키워드 연동</div>
+                            <div
+                                className="list-keyword-btn"
+                                name = "kb3"
+                                onClick={toggleKeywordPopUp}
+                            >
+                                키워드 연동
+                                {showPopup && popNum === "kb3" ?
+                                    <KeywordPopUp/>
+                                    : null}
+                            </div>
                         </div>
                         <div className="status-list-content">
                             <input
@@ -100,7 +126,16 @@ const KeyboardStatus = ({
                                     );
                                 }}
                             />
-                            <div className="list-keyword-btn">키워드 연동</div>
+                            <div
+                                className="list-keyword-btn"
+                                name = "kb4"
+                                onClick={toggleKeywordPopUp}
+                            >
+                                키워드 연동
+                                {showPopup && popNum === "kb4" ?
+                                    <KeywordPopUp/>
+                                    : null}
+                            </div>
                         </div>
                     </tr>
                     <tr>
@@ -117,7 +152,16 @@ const KeyboardStatus = ({
                                     );
                                 }}
                             />
-                            <div className="list-keyword-btn">키워드 연동</div>
+                            <div
+                                className="list-keyword-btn"
+                                name = "kb5"
+                                onClick={toggleKeywordPopUp}
+                            >
+                                키워드 연동
+                                {showPopup && popNum === "kb5" ?
+                                    <KeywordPopUp/>
+                                    : null}
+                            </div>
                         </div>
                         <div className="status-list-content">
                             <input
@@ -132,7 +176,16 @@ const KeyboardStatus = ({
                                     );
                                 }}
                             />
-                            <div className="list-keyword-btn">키워드 연동</div>
+                            <div
+                                className="list-keyword-btn"
+                                name = "kb6"
+                                onClick={toggleKeywordPopUp}
+                            >
+                                키워드 연동
+                                {showPopup && popNum === "kb6" ?
+                                    <KeywordPopUp/>
+                                    : null}
+                            </div>
                         </div>
                     </tr>
                 </table>
