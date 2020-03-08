@@ -19,7 +19,9 @@ const ToolStatus = ({
   now,
   setNow,
   setClickedMainInput,
-  index
+  index,
+  keywordPopup,
+  setKeywordPopup,
 }) => {
   const clickedIndex =
     keywordObject[index] &&
@@ -138,6 +140,8 @@ const ToolStatus = ({
                 keywordObject={keywordObject}
                 now={now}
                 index={index}
+                keywordPopup={keywordPopup}
+                setKeywordPopup={setKeywordPopup}
             />
           ) : currentInput.type === "sticker" ||
             clickedMainInput.type === "sticker" ? (

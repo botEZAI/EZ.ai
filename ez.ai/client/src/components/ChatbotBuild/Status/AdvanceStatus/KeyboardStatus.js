@@ -10,14 +10,15 @@ const KeyboardStatus = ({
     keywordObject,
     now,
     index,
+    keywordPopup,
+    setKeywordPopup,
 }) => {
     const [showPopup, setShowPopup] = useState(false);
-    const [popNum, setPopNum] = useState("kb0");
+    const [popNum, setPopNum] = useState("-1");
 
     const toggleKeywordPopUp = e => {
-        setPopNum(e.target.getAttribute('name'))
-        setShowPopup(!showPopup);
-        console.log(popNum);
+        setPopNum(e.target.getAttribute("name"))
+        setShowPopup(!showPopup)
     };
 
 
@@ -37,15 +38,15 @@ const KeyboardStatus = ({
                     }}
                 ></textarea>
                 <table>
-                    <tr>
+                    {keywordPopup.map((keywordPop, index) => (
                         <div className="status-list-content">
                             <input
                                 placeholder="키워드명을 적어주세요"
-                                value={currentContent.elem[0] || ""}
+                                value={currentContent.elem[keywordPop.id] || ""}
                                 onChange={e => {
                                     setKeywordObject(
                                         produce(keywordObject, draft => {
-                                            draft[index].contents[now].content.elem[0] =
+                                            draft[index].contents[now].content.elem[keywordPop.id] =
                                                 e.target.value;
                                         })
                                     );
@@ -53,153 +54,21 @@ const KeyboardStatus = ({
                             />
                             <div
                                 className="list-keyword-btn"
-                                name = "kb1"
+                                name = {keywordPop.id}
                                 onClick={toggleKeywordPopUp}
                             >
-                                키워드 연동
-                                {showPopup && popNum === "kb1" ?
+                                {keywordPop.value}
+                                {showPopup && popNum === keywordPop.id.toString() ?
                                     <KeywordPopUp
                                         keywordObject = {keywordObject}
-                                    />
-                                    : null}
-                            </div>
-
-                        </div>
-                        <div className="status-list-content">
-                            <input
-                                placeholder="키워드명을 적어주세요"
-                                value={currentContent.elem[1] || ""}
-                                onChange={e => {
-                                    setKeywordObject(
-                                        produce(keywordObject, draft => {
-                                            draft[index].contents[now].content.elem[1] =
-                                                e.target.value;
-                                        })
-                                    );
-                                }}
-                            />
-                            <div
-                                className="list-keyword-btn"
-                                name = "kb2"
-                                onClick={toggleKeywordPopUp}
-                            >
-                                키워드 연동
-                                {showPopup && popNum === "kb2" ?
-                                    <KeywordPopUp
-                                        keywordObject = {keywordObject}
+                                        keywordPopup = {keywordPopup}
+                                        setKeywordPopup = {setKeywordPopup}
+                                        keywordPop={keywordPop}
                                     />
                                     : null}
                             </div>
                         </div>
-                    </tr>
-                    <tr>
-                        <div className="status-list-content">
-                            <input
-                                placeholder="키워드명을 적어주세요"
-                                value={currentContent.elem[2] || ""}
-                                onChange={e => {
-                                    setKeywordObject(
-                                        produce(keywordObject, draft => {
-                                            draft[index].contents[now].content.elem[2] =
-                                                e.target.value;
-                                        })
-                                    );
-                                }}
-                            />
-                            <div
-                                className="list-keyword-btn"
-                                name = "kb3"
-                                onClick={toggleKeywordPopUp}
-                            >
-                                키워드 연동
-                                {showPopup && popNum === "kb3" ?
-                                    <KeywordPopUp
-                                        keywordObject = {keywordObject}
-                                    />
-                                    : null}
-                            </div>
-                        </div>
-                        <div className="status-list-content">
-                            <input
-                                placeholder="키워드명을 적어주세요"
-                                value={currentContent.elem[3] || ""}
-                                onChange={e => {
-                                    setKeywordObject(
-                                        produce(keywordObject, draft => {
-                                            draft[index].contents[now].content.elem[3] =
-                                                e.target.value;
-                                        })
-                                    );
-                                }}
-                            />
-                            <div
-                                className="list-keyword-btn"
-                                name = "kb4"
-                                onClick={toggleKeywordPopUp}
-                            >
-                                키워드 연동
-                                {showPopup && popNum === "kb4" ?
-                                    <KeywordPopUp
-                                        keywordObject = {keywordObject}
-                                    />
-                                    : null}
-                            </div>
-                        </div>
-                    </tr>
-                    <tr>
-                        <div className="status-list-content">
-                            <input
-                                placeholder="키워드명을 적어주세요"
-                                value={currentContent.elem[4] || ""}
-                                onChange={e => {
-                                    setKeywordObject(
-                                        produce(keywordObject, draft => {
-                                            draft[index].contents[now].content.elem[4] =
-                                                e.target.value;
-                                        })
-                                    );
-                                }}
-                            />
-                            <div
-                                className="list-keyword-btn"
-                                name = "kb5"
-                                onClick={toggleKeywordPopUp}
-                            >
-                                키워드 연동
-                                {showPopup && popNum === "kb5" ?
-                                    <KeywordPopUp
-                                        keywordObject = {keywordObject}
-                                    />
-                                    : null}
-                            </div>
-                        </div>
-                        <div className="status-list-content">
-                            <input
-                                placeholder="키워드명을 적어주세요"
-                                value={currentContent.elem[5] || ""}
-                                onChange={e => {
-                                    setKeywordObject(
-                                        produce(keywordObject, draft => {
-                                            draft[index].contents[now].content.elem[5] =
-                                                e.target.value;
-                                        })
-                                    );
-                                }}
-                            />
-                            <div
-                                className="list-keyword-btn"
-                                name = "kb6"
-                                onClick={toggleKeywordPopUp}
-                            >
-                                키워드 연동
-                                {showPopup && popNum === "kb6" ?
-                                    <KeywordPopUp
-                                        keywordObject = {keywordObject}
-                                    />
-                                    : null}
-                            </div>
-                        </div>
-                    </tr>
+                    ))}
                 </table>
             </div>
         </>

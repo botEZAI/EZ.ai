@@ -23,7 +23,17 @@ const ChatbotBuild = () => {
   const [addFlag, setAddFlag] = useState(false); // 컨텐츠 추가 flag
   const [firstEntry, setFirstEntry] = useState(true); // 키워드 진입 flag
   const [keywordKeyboard, setKeywordKeyboard] = useState(false);
-  const [now, setNow] = useState(-1);
+  const [now, setNow] = useState(-1);  // 현재 작업중인 status id 번호
+  // 키보드(리스트) 요소에서 연동한 키워드 종류
+  const initialKP = [ // list 팝업에서 선택한 변수.
+    { id: 0, value : "키워드 연동"},
+    { id: 1, value : "키워드 연동"},
+    { id: 2, value : "키워드 연동"},
+    { id: 3, value : "키워드 연동"},
+    { id: 4, value : "키워드 연동"},
+    { id: 5, value : "키워드 연동"}
+  ]
+  const [keywordPopup, setKeywordPopup] = useState(initialKP);
 
   const index = keywordObject.findIndex(v => v.keyword === mainKeyword);
   const length =
@@ -135,6 +145,7 @@ const ChatbotBuild = () => {
                   setKeywordKeyboard={setKeywordKeyboard}
                   setNow={setNow}
                   length={length}
+
                 />
               )}
               {activeTab === "keyword" && (
@@ -161,6 +172,8 @@ const ChatbotBuild = () => {
                 index={index}
                 setNow={setNow}
                 setClickedMainInput={setClickedMainInput}
+                keywordPopup={keywordPopup}
+                setKeywordPopup={setKeywordPopup}
               />
             )}
           </div>
