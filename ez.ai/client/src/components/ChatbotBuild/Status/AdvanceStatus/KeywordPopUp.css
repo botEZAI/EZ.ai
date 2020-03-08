@@ -2,8 +2,8 @@
 
 .keyword-popup {
     position : absolute;
-    top : 70%;
-    left : 70%;
+    top : 65%;
+    left : -30%;
     width : 200px;
     height : auto;
     min-height : 50px;
@@ -11,6 +11,7 @@
     border : 2px dotted #bbb;
     border-radius : 10px;
     border-top-left-radius: 0;
+    border-top-right-radius: 0;
     background-color: #fff;
     padding : 2px 0;
 }
