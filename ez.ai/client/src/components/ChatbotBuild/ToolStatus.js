@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import produce from "immer";
 
 import TextStatus from "./Status/BasicStatus/TextStatus";
 import ImageStatus from "./Status/BasicStatus/ImageStatus";
@@ -16,6 +17,8 @@ const ToolStatus = ({
   setKeywordObject,
   clickedMainInput,
   now,
+  setNow,
+  setClickedMainInput,
   index
 }) => {
   const clickedIndex =
@@ -32,6 +35,7 @@ const ToolStatus = ({
 
 
   const fileRef = useRef();
+
 
 
   return (
@@ -157,9 +161,13 @@ const ToolStatus = ({
             ) : null
           ) : null}
         </div>
+
         <div className="tool-status-nav-btns">
-          <div className="tool-status-btn confirm">확인</div>
-          <div className="tool-status-btn decline">삭제</div>
+          <div
+              className="tool-status-btn decline"
+          >
+              삭제
+          </div>
         </div>
       </div>
     </>
