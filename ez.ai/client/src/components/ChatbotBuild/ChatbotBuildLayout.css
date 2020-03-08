@@ -39,7 +39,7 @@
 .builderTool {
   border : .5px solid #999;
   width: 50%;
-  min-width : 360px;
+  min-width : 500px;
   margin : 0 10px;
   overflow: hidden;
   display: flex;
