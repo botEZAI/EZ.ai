@@ -58,7 +58,9 @@ const KeyboardStatus = ({
                             >
                                 키워드 연동
                                 {showPopup && popNum === "kb1" ?
-                                    <KeywordPopUp/>
+                                    <KeywordPopUp
+                                        keywordObject = {keywordObject}
+                                    />
                                     : null}
                             </div>
 
@@ -83,7 +85,9 @@ const KeyboardStatus = ({
                             >
                                 키워드 연동
                                 {showPopup && popNum === "kb2" ?
-                                    <KeywordPopUp/>
+                                    <KeywordPopUp
+                                        keywordObject = {keywordObject}
+                                    />
                                     : null}
                             </div>
                         </div>
@@ -109,7 +113,9 @@ const KeyboardStatus = ({
                             >
                                 키워드 연동
                                 {showPopup && popNum === "kb3" ?
-                                    <KeywordPopUp/>
+                                    <KeywordPopUp
+                                        keywordObject = {keywordObject}
+                                    />
                                     : null}
                             </div>
                         </div>
@@ -133,7 +139,9 @@ const KeyboardStatus = ({
                             >
                                 키워드 연동
                                 {showPopup && popNum === "kb4" ?
-                                    <KeywordPopUp/>
+                                    <KeywordPopUp
+                                        keywordObject = {keywordObject}
+                                    />
                                     : null}
                             </div>
                         </div>
@@ -159,7 +167,9 @@ const KeyboardStatus = ({
                             >
                                 키워드 연동
                                 {showPopup && popNum === "kb5" ?
-                                    <KeywordPopUp/>
+                                    <KeywordPopUp
+                                        keywordObject = {keywordObject}
+                                    />
                                     : null}
                             </div>
                         </div>
@@ -183,7 +193,9 @@ const KeyboardStatus = ({
                             >
                                 키워드 연동
                                 {showPopup && popNum === "kb6" ?
-                                    <KeywordPopUp/>
+                                    <KeywordPopUp
+                                        keywordObject = {keywordObject}
+                                    />
                                     : null}
                             </div>
                         </div>
