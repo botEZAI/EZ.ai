@@ -1,6 +1,6 @@
 var express = require("express");
 var bodyParser = require("body-parser");
-var port = process.env.PORT || 5000;
+var port = process.env.PORT || 5000; //5000포트 사용 react는 3000포트 proxy로 연결중
 var cookieParser = require('cookie-parser');
 var sequelize = require('./models').sequelize;
 
