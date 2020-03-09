@@ -3,14 +3,17 @@ var router = express.Router();
 const Chatbot = require('../models').Chatbot;
 const Keyword = require('../models').Keyword;
 router.post('/', function(req, res, next){
-  const keywordObject = req.body.keywordObject;
-  const keyword = req.body.keywordObject[0];
-  const contents = req.body.keywordObject[0].contents;
+  console.log(req.body);
+  console.log(req.body.k);
+  const keyword = req.body.k.keyword;
+  const keyword_id = req.body.k.id;
+  const contents = req.body.k.contents;
   
   //console.log(contents.length);
-
+  console.log(keyword);
+  console.log(contents);
   Keyword.create({
-    keyword: keyword.keyword,
+    keyword: keyword,
     })
     .then(() =>{
       console.log("keyword 통과");
@@ -23,7 +26,7 @@ router.post('/', function(req, res, next){
   if(contents){
   for(var i=0;i<contents.length;i++){
   Chatbot.create({
-    keyworder: keyword.id,
+    keyworder: keyword_id,
     type: contents[i].type,
     content: contents[i].content,
     //location에 대한 정보 아직 보류 
