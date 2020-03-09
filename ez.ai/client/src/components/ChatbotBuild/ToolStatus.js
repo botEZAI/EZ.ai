@@ -9,8 +9,6 @@ import LocationStatus from "./Status/BasicStatus/LocationStatus";
 import FileStatus from "./Status/BasicStatus/FileStatus";
 import KeyboardStatus from "./Status/AdvanceStatus/KeyboardStatus";
 
-
-
 const ToolStatus = ({
   mainKeyword,
   keywordObject,
@@ -21,7 +19,7 @@ const ToolStatus = ({
   setClickedMainInput,
   index,
   keywordPopup,
-  setKeywordPopup,
+  setKeywordPopup
 }) => {
   const clickedIndex =
     keywordObject[index] &&
@@ -35,10 +33,7 @@ const ToolStatus = ({
     keywordObject[index].contents[now] &&
     keywordObject[index].contents[now].content;
 
-
   const fileRef = useRef();
-
-
 
   return (
     <>
@@ -105,43 +100,58 @@ const ToolStatus = ({
           ) : currentInput.type === "image" ||
             clickedMainInput.type === "image" ? (
             <ImageStatus
-                currentContent={currentContent}
-                setKeywordObject={setKeywordObject}
-                keywordObject={keywordObject}
-                now={now}
-                index={index}
+              currentContent={currentContent}
+              setKeywordObject={setKeywordObject}
+              keywordObject={keywordObject}
+              now={now}
+              index={index}
             />
           ) : currentInput.type === "video" ||
             clickedMainInput.type === "video" ? (
             <VideoStatus
+              currentContent={currentContent}
+              setKeywordObject={setKeywordObject}
+              keywordObject={keywordObject}
+              now={now}
+              index={index}
             />
           ) : currentInput.type === "audio" ||
             clickedMainInput.type === "audio" ? (
-           <AudioStatus
-           />
+            <AudioStatus
+              currentContent={currentContent}
+              setKeywordObject={setKeywordObject}
+              keywordObject={keywordObject}
+              now={now}
+              index={index}
+            />
           ) : currentInput.type === "location" ||
             clickedMainInput.type === "location" ? (
             <LocationStatus
-                currentContent={currentContent}
-                setKeywordObject={setKeywordObject}
-                keywordObject={keywordObject}
-                now={now}
-                index={index}
+              currentContent={currentContent}
+              setKeywordObject={setKeywordObject}
+              keywordObject={keywordObject}
+              now={now}
+              index={index}
             />
           ) : currentInput.type === "file" ||
             clickedMainInput.type === "file" ? (
             <FileStatus
+              currentContent={currentContent}
+              setKeywordObject={setKeywordObject}
+              keywordObject={keywordObject}
+              now={now}
+              index={index}
             />
           ) : currentInput.type === "list" ||
             clickedMainInput.type === "list" ? (
             <KeyboardStatus
-                currentContent={currentContent}
-                setKeywordObject={setKeywordObject}
-                keywordObject={keywordObject}
-                now={now}
-                index={index}
-                keywordPopup={keywordPopup}
-                setKeywordPopup={setKeywordPopup}
+              currentContent={currentContent}
+              setKeywordObject={setKeywordObject}
+              keywordObject={keywordObject}
+              now={now}
+              index={index}
+              keywordPopup={keywordPopup}
+              setKeywordPopup={setKeywordPopup}
             />
           ) : currentInput.type === "sticker" ||
             clickedMainInput.type === "sticker" ? (
@@ -167,11 +177,7 @@ const ToolStatus = ({
         </div>
 
         <div className="tool-status-nav-btns">
-          <div
-              className="tool-status-btn decline"
-          >
-              삭제
-          </div>
+          <div className="tool-status-btn decline">삭제</div>
         </div>
       </div>
     </>
