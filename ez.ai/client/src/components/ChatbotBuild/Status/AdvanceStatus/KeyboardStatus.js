@@ -38,15 +38,15 @@ const KeyboardStatus = ({
                     }}
                 ></textarea>
                 <table>
-                    {keywordPopup.map((keywordPop, index) => (
+                    {keywordPopup.map((keywordPop, i) => (
                         <div className="status-list-content">
                             <input
                                 placeholder="키워드명을 적어주세요"
-                                value={currentContent.elem[keywordPop.id] || ""}
+                                value={currentContent.elem[i] || ""}
                                 onChange={e => {
                                     setKeywordObject(
                                         produce(keywordObject, draft => {
-                                            draft[index].contents[now].content.elem[keywordPop.id] =
+                                            draft[index].contents[now].content.elem[i] =
                                                 e.target.value;
                                         })
                                     );
