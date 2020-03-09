@@ -2,13 +2,7 @@ import React, { useRef } from "react";
 import axios from "axios";
 import produce from "immer";
 
-const VideoStatus = ({
-  currentContent,
-  setKeywordObject,
-  keywordObject,
-  now,
-  index
-}) => {
+const VideoStatus = ({ setKeywordObject, keywordObject, now, index }) => {
   const videoRef = useRef();
   const onClickUploadVideo = () => {
     videoRef.current.click();

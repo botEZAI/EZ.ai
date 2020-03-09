@@ -109,7 +109,6 @@ const ToolStatus = ({
           ) : currentInput.type === "video" ||
             clickedMainInput.type === "video" ? (
             <VideoStatus
-              currentContent={currentContent}
               setKeywordObject={setKeywordObject}
               keywordObject={keywordObject}
               now={now}
@@ -118,7 +117,6 @@ const ToolStatus = ({
           ) : currentInput.type === "audio" ||
             clickedMainInput.type === "audio" ? (
             <AudioStatus
-              currentContent={currentContent}
               setKeywordObject={setKeywordObject}
               keywordObject={keywordObject}
               now={now}
@@ -136,7 +134,6 @@ const ToolStatus = ({
           ) : currentInput.type === "file" ||
             clickedMainInput.type === "file" ? (
             <FileStatus
-              currentContent={currentContent}
               setKeywordObject={setKeywordObject}
               keywordObject={keywordObject}
               now={now}
