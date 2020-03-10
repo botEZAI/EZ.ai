@@ -14,7 +14,7 @@ const upload = multer({
             cb(null, path.basename(file.originalname, ext) + new Date().valueOf() + ext);
         },
     }),
-    limits: {fileSize: 5 * 1024 * 1024}, //limits 용량 논의 필요 
+    limits: {fileSize: 200 * 1024 * 1024}, //limits 용량 논의 필요 200MB
 });
 
 
@@ -23,6 +23,7 @@ router.post('/', upload.single('video'), (req, res) =>{  // 'video'가 일치해
     //리액트에 주소 보내는 방식은 이야기 해야함 !
     console.log("파일 전송 성공");
     console.log(req.file);
+    res.json(req.file);
 });
   
 module.exports = router;
