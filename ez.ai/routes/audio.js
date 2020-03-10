@@ -14,7 +14,7 @@ const upload = multer({
             cb(null, path.basename(file.originalname, ext) + new Date().valueOf() + ext);
         },
     }),
-    limits: {fileSize: 5 * 1024 * 1024},//limits 용량 논의 필요 
+    limits: {fileSize: 150 * 1024 * 1024},//limits 용량 논의 필요 
 });
 
 
