@@ -38,9 +38,10 @@ const Main = ({
     const count = keywordObject.length;
     axios.post("/api/chatbotbuild", { count }).then(res => console.log(res));
 
-    keywordObject.map(k =>
-      axios.post("/api/chatbotbuild", { k }).then(res => console.log(res))
-    );
+    const nowKeyword = keywordObject[index];
+    axios
+      .post("/api/chatbotbuild", { nowKeyword })
+      .then(res => console.log(res));
   };
   //리스트 요소 삭제
   const removeListElement = id => {
@@ -181,7 +182,6 @@ const Main = ({
                   >
                     <i className="fas fa-times"></i>
                   </div>
-
                 </div>
               </>
             ) : v.type === "audio" ? (
