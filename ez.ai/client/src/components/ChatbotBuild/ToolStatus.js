@@ -9,6 +9,9 @@ import LocationStatus from "./Status/BasicStatus/LocationStatus";
 import FileStatus from "./Status/BasicStatus/FileStatus";
 import KeyboardStatus from "./Status/AdvanceStatus/KeyboardStatus";
 
+import "./Status/ExtraBtn/ExtraBtn.css";
+import ImogiPopup from "./Status/ExtraBtn/EmogiPopup";
+
 const ToolStatus = ({
   mainKeyword,
   keywordObject,
@@ -167,7 +170,7 @@ const ToolStatus = ({
             currentInput.type === "text" || clickedMainInput.type === "text" ? (
               <>
                 <div className="extra-btn user-name">사용자명</div>
-                <div className="extra-btn emoji">이모지</div>
+                <ImogiPopup/>
               </>
             ) : null
           ) : null}
