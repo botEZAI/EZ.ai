@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import produce from "immer";
+
 
 import TextStatus from "./Status/BasicStatus/TextStatus";
 import ImageStatus from "./Status/BasicStatus/ImageStatus";
@@ -170,7 +170,13 @@ const ToolStatus = ({
             currentInput.type === "text" || clickedMainInput.type === "text" ? (
               <>
                 <div className="extra-btn user-name">사용자명</div>
-                <ImogiPopup/>
+                <ImogiPopup
+                    setKeywordObject={setKeywordObject}
+                    keywordObject={keywordObject}
+                    now={now}
+                    index={index}
+                    onClick = { console.log("now : ", now)}
+                />
               </>
             ) : null
           ) : null}

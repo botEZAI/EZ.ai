@@ -8,7 +8,7 @@
     bottom : 50%;
     left : 50%;
     width : 200px;
-    height : auto;
+    height : 300px;
     min-height : 50px;
     z-index : 10;
     border : 2px solid #bbb;
@@ -16,6 +16,7 @@
     border-bottom-left-radius: 0;
     background-color: #fff;
     padding : 5px;
+    overflow : scroll;
 }
 
 .emoji-interface:hover {
@@ -39,7 +40,7 @@
 
 .emoji-interface > div {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     flex-wrap: wrap;
 }
 

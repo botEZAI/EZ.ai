@@ -1,7 +1,13 @@
 import React, {useState} from "react";
+import produce from "immer";
 
 
-const EmogiPopup = () => {
+const EmogiPopup = (
+    setKeywordObject,
+    keywordObject,
+    now,
+    index,
+) => {
     const [showImoPopup, setShowImoPopup] = useState(false);
 
     const emogi_1 = [
@@ -27,13 +33,17 @@ const EmogiPopup = () => {
 
     const selectEmo = e => {
         setShowImoPopup(!showImoPopup);
-        console.log(e.target.innerText);
+        setKeywordObject(
+            produce(keywordObject, draft => {
+                draft[index].contents[now].content += e.target.innerHTML;
+            })
+        );
+        console.log(e.target.innerHTML, keywordObject);
     };
 
     const emogi1List = emogi_1.map((emogi) => (<div className="emogi-text" onClick={selectEmo}><p>{emogi}</p></div>));
 
 
-    const [imogiTab, setImogiTab] = useState("")
     
     return (
         <>
@@ -46,8 +56,6 @@ const EmogiPopup = () => {
                     <div className="emoji-interface">
                         <ul class = "emoji-tab">
                             <li className = "active" label="emoji-preview-1"><p>{emogi_1[0]}</p></li>
-                            <li label="emoji-preview-2"><p>{emogi_1[0]}</p></li>
-                            <li label="emoji-preview-3"><p>{emogi_1[0]}</p></li>
                         </ul>
                         <div className="emogi-1">
                             {emogi1List}
