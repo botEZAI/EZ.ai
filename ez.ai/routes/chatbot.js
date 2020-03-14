@@ -3,10 +3,10 @@ var router = express.Router();
 const Chatbot = require('../models').Chatbot;
 const Keyword = require('../models').Keyword;
 router.post('/', function(req, res, next){
-  const post_keyword = req.body.k.keyword;
-  const keyword_id = req.body.k.id;
-  const contents = req.body.k.contents;
-  
+  const post_keyword = req.body.nowKeyword.keyword;
+  const keyword_id = req.body.nowKeyword.id;
+  const contents = req.body.nowKeyword.contents;
+  //console.log(req.body);
   //console.log(contents.length);
 
   if(post_keyword){
@@ -15,13 +15,14 @@ router.post('/', function(req, res, next){
     Keyword.create({
       keyword: post_keyword,
     })
-    .then(() =>{
+    .then((keywords) =>{
       console.log("keyword 통과");
       for(var i=0;i<contents.length;i++){
         Chatbot.create({
           keyworder: keyword_id,
           type: contents[i].type,
           content: contents[i].content,
+          
         }).
         then(() =>{
           console.log("content 통과");
