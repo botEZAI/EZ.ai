@@ -17,7 +17,7 @@ const KeyboardStatus = ({
     const [popNum, setPopNum] = useState("-1");
 
     const toggleKeywordPopUp = e => {
-        setPopNum(e.target.getAttribute("name"))
+        setPopNum(e.target.getAttribute("name"));
         setShowPopup(!showPopup)
     };
 

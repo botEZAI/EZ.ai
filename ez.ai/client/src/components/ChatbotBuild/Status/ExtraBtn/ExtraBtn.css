@@ -1,0 +1,58 @@
+/* 추가버튼 - 이모지 */
+.emoji {
+    position : relative;
+}
+
+.emoji-interface {
+    position : absolute;
+    bottom : 50%;
+    left : 50%;
+    width : 200px;
+    height : auto;
+    min-height : 50px;
+    z-index : 10;
+    border : 2px solid #bbb;
+    border-radius : 10px;
+    border-bottom-left-radius: 0;
+    background-color: #fff;
+    padding : 5px;
+}
+
+.emoji-interface:hover {
+    border: 2px solid #00b8b4;
+}
+
+.emoji-interface .emoji-tab {
+    list-style: none;
+    margin : 0;
+    padding : 0;
+    border-bottom : 1px solid #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.emoji-tab li {
+    padding : 1px 3px;
+}
+
+
+.emoji-interface > div {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.emoji-interface > div > div {
+    display: inline-block;
+}
+
+.emoji-interface > div > div:hover {
+    background-color : #eee;
+    cursor: pointer;
+}
+
+.emoji-interface p {
+    margin : 0;
+    padding : 5px;
+}
