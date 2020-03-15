@@ -270,7 +270,7 @@ const Main = ({
               <>
                 <div
                   className="main-content main-listbox"
-                  key={v.content + i}
+                  key={v.listContent + i}
                   onClick={e => {
                     e.stopPropagation();
                     setKeywordKeyboard(true);
@@ -285,34 +285,36 @@ const Main = ({
                   >
                     <div className="main-listbox-header">Question</div>
                     <div className="main-listbox-question">
-                      {v.content.question !== ""
-                        ? v.content.question
+                      {v.listContent.question !== ""
+                        ? v.listContent.question
                         : "(Ask a question)"}
                     </div>
-                    <div className="main-listbox-elem">{v.content.elem[0]}</div>
-                    {v.content.elem[1] && (
+                    <div className="main-listbox-elem">
+                      {v.listContent.elem[0]}
+                    </div>
+                    {v.listContent.elem[1] && (
                       <div className="main-listbox-elem">
-                        {v.content.elem[1]}
+                        {v.listContent.elem[1]}
                       </div>
                     )}
-                    {v.content.elem[2] && (
+                    {v.listContent.elem[2] && (
                       <div className="main-listbox-elem">
-                        {v.content.elem[2]}
+                        {v.listContent.elem[2]}
                       </div>
                     )}
-                    {v.content.elem[3] && (
+                    {v.listContent.elem[3] && (
                       <div className="main-listbox-elem">
-                        {v.content.elem[3]}
+                        {v.listContent.elem[3]}
                       </div>
                     )}
-                    {v.content.elem[4] && (
+                    {v.listContent.elem[4] && (
                       <div className="main-listbox-elem">
-                        {v.content.elem[4]}
+                        {v.listContent.elem[4]}
                       </div>
                     )}
-                    {v.content.elem[5] && (
+                    {v.listContent.elem[5] && (
                       <div className="main-listbox-elem">
-                        {v.content.elem[5]}
+                        {v.listContent.elem[5]}
                       </div>
                     )}
                   </div>
@@ -344,10 +346,11 @@ const Main = ({
               clickedMainInput.type === "list" ? (
                 <>
                   <div className="main-keyboard">
-                    {currentContent.elem[0] && (
+                    {keywordObject[index].contents[now].listContent.elem[0] && (
                       <div className="list-elem-wrapper">
                         <span className="list-elem">
-                          {currentContent.elem[0] || ""}
+                          {keywordObject[index].contents[now].listContent
+                            .elem[0] || ""}
                         </span>
                         <span
                           className="clear-button"
@@ -359,10 +362,11 @@ const Main = ({
                         </span>
                       </div>
                     )}
-                    {currentContent.elem[1] && (
+                    {keywordObject[index].contents[now].listContent.elem[1] && (
                       <div className="list-elem-wrapper">
                         <span className="list-elem">
-                          {currentContent.elem[1] || ""}
+                          {keywordObject[index].contents[now].listContent
+                            .elem[1] || ""}
                         </span>
                         <span
                           className="clear-button"
@@ -374,10 +378,11 @@ const Main = ({
                         </span>
                       </div>
                     )}
-                    {currentContent.elem[2] && (
+                    {keywordObject[index].contents[now].listContent.elem[2] && (
                       <div className="list-elem-wrapper">
                         <span className="list-elem">
-                          {currentContent.elem[2] || ""}
+                          {keywordObject[index].contents[now].listContent
+                            .elem[2] || ""}
                         </span>
                         <span
                           className="clear-button"
@@ -389,10 +394,11 @@ const Main = ({
                         </span>
                       </div>
                     )}
-                    {currentContent.elem[3] && (
+                    {keywordObject[index].contents[now].listContent.elem[3] && (
                       <div className="list-elem-wrapper">
                         <span className="list-elem">
-                          {currentContent.elem[3] || ""}
+                          {keywordObject[index].contents[now].listContent
+                            .elem[3] || ""}
                         </span>
                         <span
                           className="clear-button"
@@ -404,10 +410,11 @@ const Main = ({
                         </span>
                       </div>
                     )}
-                    {currentContent.elem[4] && (
+                    {keywordObject[index].contents[now].listContent.elem[4] && (
                       <div className="list-elem-wrapper">
                         <span className="list-elem">
-                          {currentContent.elem[4] || ""}
+                          {keywordObject[index].contents[now].listContent
+                            .elem[4] || ""}
                         </span>
                         <span
                           className="clear-button"
@@ -419,10 +426,11 @@ const Main = ({
                         </span>
                       </div>
                     )}
-                    {currentContent.elem[5] && (
+                    {keywordObject[index].contents[now].listContent.elem[5] && (
                       <div className="list-elem-wrapper">
                         <span className="list-elem">
-                          {currentContent.elem[5] || ""}
+                          {keywordObject[index].contents[now].listContent
+                            .elem[5] || ""}
                         </span>
                         <span
                           className="clear-button"
@@ -434,12 +442,13 @@ const Main = ({
                         </span>
                       </div>
                     )}
-                    {!currentContent.elem[0] &&
-                      !currentContent.elem[1] &&
-                      !currentContent.elem[2] &&
-                      !currentContent.elem[3] &&
-                      !currentContent.elem[4] &&
-                      !currentContent.elem[5] && (
+                    {!keywordObject[index].contents[now].listContent.elem[0] &&
+                      !keywordObject[index].contents[now].listContent.elem[1] &&
+                      !keywordObject[index].contents[now].listContent.elem[2] &&
+                      !keywordObject[index].contents[now].listContent.elem[3] &&
+                      !keywordObject[index].contents[now].listContent.elem[4] &&
+                      !keywordObject[index].contents[now].listContent
+                        .elem[5] && (
                         <div className="list-elem-default"> KEYWORD </div>
                       )}
                   </div>

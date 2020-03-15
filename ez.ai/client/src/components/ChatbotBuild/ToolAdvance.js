@@ -22,7 +22,7 @@ const ToolAdvance = ({
               ? object.contents.push({
                   type: tool,
                   id: object.contents.length + 1,
-                  content: {
+                  listContent: {
                     question: "",
                     elem: ["", "", "", "", "", ""],
                     keywordLink: ["", "", "", "", "", ""]

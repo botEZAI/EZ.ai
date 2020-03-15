@@ -24,25 +24,28 @@ const KeyboardStatus = ({
       <div className="status-input status-list">
         <textarea
           placeholder="작성하고자 하는 텍스트를 적어주세요"
-          value={currentContent.question || ""}
+          value={keywordObject[index].contents[now].listContent.question || ""}
           onChange={e => {
             setKeywordObject(
               produce(keywordObject, draft => {
-                draft[index].contents[now].content.question = e.target.value;
+                draft[index].contents[now].listContent.question =
+                  e.target.value;
               })
             );
           }}
         ></textarea>
         <table>
-          {currentContent.elem.map((e, i) => (
+          {keywordObject[index].contents[now].listContent.elem.map((e, i) => (
             <div className="status-list-content">
               <input
                 placeholder="키워드명을 적어주세요"
-                value={currentContent.elem[i] || ""}
+                value={
+                  keywordObject[index].contents[now].listContent.elem[i] || ""
+                }
                 onChange={e => {
                   setKeywordObject(
                     produce(keywordObject, draft => {
-                      draft[index].contents[now].content.elem[i] =
+                      draft[index].contents[now].listContent.elem[i] =
                         e.target.value;
                     })
                   );
@@ -53,7 +56,9 @@ const KeyboardStatus = ({
                 name={i}
                 onClick={() => toggleKeywordPopUp(i)}
               >
-                {currentContent.keywordLink[i] || "연동"}
+                {keywordObject[index].contents[now].listContent.keywordLink[
+                  i
+                ] || "연동"}
                 {showPopup && popNum === i ? (
                   <KeywordPopUp
                     keywordObject={keywordObject}
