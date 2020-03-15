@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
-import PrevTab from "./BuilderNavContents/PrevTab.js"
-import PrevContent from "./BuilderNavContents/PrevContent.js"
+import PrevTab from "./BuilderNavContents/PrevTab.js";
+import PrevContent from "./BuilderNavContents/PrevContent.js";
 import "./ChatbotBuild.css";
 import BuilderInfo from "./BuilderInfo";
 import Tabs from ".//Tabs";
@@ -23,16 +23,17 @@ const ChatbotBuild = () => {
   const [addFlag, setAddFlag] = useState(false); // 컨텐츠 추가 flag
   const [firstEntry, setFirstEntry] = useState(true); // 키워드 진입 flag
   const [keywordKeyboard, setKeywordKeyboard] = useState(false);
-  const [now, setNow] = useState(-1);  // 현재 작업중인 status id 번호
+  const [now, setNow] = useState(-1); // 현재 작업중인 status id 번호
   // 키보드(리스트) 요소에서 연동한 키워드 종류
-  const initialKP = [ // list 팝업에서 선택한 변수.
-    { id: 0, value : "키워드 연동"},
-    { id: 1, value : "키워드 연동"},
-    { id: 2, value : "키워드 연동"},
-    { id: 3, value : "키워드 연동"},
-    { id: 4, value : "키워드 연동"},
-    { id: 5, value : "키워드 연동"}
-  ]
+  const initialKP = [
+    // list 팝업에서 선택한 변수.
+    { id: 0, value: "키워드 연동" },
+    { id: 1, value: "키워드 연동" },
+    { id: 2, value: "키워드 연동" },
+    { id: 3, value: "키워드 연동" },
+    { id: 4, value: "키워드 연동" },
+    { id: 5, value: "키워드 연동" }
+  ];
   const [keywordPopup, setKeywordPopup] = useState(initialKP);
 
   const index = keywordObject.findIndex(v => v.keyword === mainKeyword);
@@ -63,7 +64,7 @@ const ChatbotBuild = () => {
   const [rightArrowDisplay, setRightArrowDisplay] = useState("none");
   const [activePrevTab, setActivePrevTab] = useState("preview");
   const [prevTabPosition, setPrevTabPosition] = useState("0px");
-  const [prevDisplay,setPrevDisplay] = useState(false);
+  const [prevDisplay, setPrevDisplay] = useState(false);
   const mainStyle = {
     width: mainWidth,
     transition: ".5s width"
@@ -84,9 +85,9 @@ const ChatbotBuild = () => {
   };
   const defaultPreviewStyle = {
     display: "none"
-  }
+  };
   const onSelectPrev = useCallback(prevtab => {
-    setActivePrevTab(prevtab)
+    setActivePrevTab(prevtab);
   }, []);
 
   const foldNav = e => {
@@ -145,7 +146,6 @@ const ChatbotBuild = () => {
                   setKeywordKeyboard={setKeywordKeyboard}
                   setNow={setNow}
                   length={length}
-
                 />
               )}
               {activeTab === "keyword" && (
@@ -207,28 +207,25 @@ const ChatbotBuild = () => {
           <i className="fas fa-angle-double-left" style={leftArrow}></i>
         </div>
         <div className="preview">
-            <ul className="preview-tab" style={PrevTabStyle}>
-              <PrevTab activePrevTab={activePrevTab} 
-                        onSelectPrev={onSelectPrev}
-              >
-                <li label="preview">tab1</li>
-                <li label="tab2">tab2</li>
-                <li label="tab3">tab3</li>
-              </PrevTab>
-            </ul>
-            <PrevContent activePrevTab={activePrevTab} 
-                          style={(!prevDisplay) ? defaultPreviewStyle : null}
-            >
-              <div label="preview">
-                ---------------@---------------
-              </div>
-              <div label="tab2">
-                -----------------★----------------★------------------
-              </div>
-              <div label="tab3">
-                -----------♥-----------♥---------♥------------------
-              </div>
-            </PrevContent>
+          <ul className="preview-tab" style={PrevTabStyle}>
+            <PrevTab activePrevTab={activePrevTab} onSelectPrev={onSelectPrev}>
+              <li label="preview">tab1</li>
+              <li label="tab2">tab2</li>
+              <li label="tab3">tab3</li>
+            </PrevTab>
+          </ul>
+          <PrevContent
+            activePrevTab={activePrevTab}
+            style={!prevDisplay ? defaultPreviewStyle : null}
+          >
+            <div label="preview">---------------@---------------</div>
+            <div label="tab2">
+              -----------------★----------------★------------------
+            </div>
+            <div label="tab3">
+              -----------♥-----------♥---------♥------------------
+            </div>
+          </PrevContent>
         </div>
       </div>
     </div>
