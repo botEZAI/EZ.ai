@@ -1,14 +1,23 @@
 import React from "react";
 import "./KeywordPopUp.css";
+import produce from "immer";
 
-const KeywordPopUp = ({ keywordObject, currentContent, currentElemIndex }) => {
-  const setListKeyword = e => {
-    let newKeywordPopup = keywordPopup;
-    newKeywordPopup[keywordPop.id] = {
-      id: keywordPop.id,
-      value: e.target.getAttribute("label")
-    };
-    setKeywordPopup(newKeywordPopup);
+const KeywordPopUp = ({
+  keywordObject,
+  currentContent,
+  currentElemIndex,
+  setKeywordObject,
+  now,
+  index
+}) => {
+  const setListKeyword = keyword => {
+    setKeywordObject(
+      produce(keywordObject, draft => {
+        draft[index].contents[now].content.keywordLink[
+          currentElemIndex
+        ] = keyword;
+      })
+    );
   };
 
   return (
@@ -19,7 +28,7 @@ const KeywordPopUp = ({ keywordObject, currentContent, currentElemIndex }) => {
           <div
             key={index}
             label={keyword.keyword}
-            onClick={setListKeyword}
+            onClick={() => setListKeyword(keyword.keyword)}
             className="keyword-list"
           >
             {keyword.keyword}

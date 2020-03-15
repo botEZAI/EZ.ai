@@ -57,8 +57,11 @@ const KeyboardStatus = ({
                 {showPopup && popNum === i ? (
                   <KeywordPopUp
                     keywordObject={keywordObject}
+                    setKeywordObject={setKeywordObject}
                     currentContent={currentContent}
                     currentElemIndex={i}
+                    now={now}
+                    index={index}
                   />
                 ) : null}
               </div>
