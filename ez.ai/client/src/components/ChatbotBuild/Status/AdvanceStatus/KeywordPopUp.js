@@ -13,7 +13,7 @@ const KeywordPopUp = ({
   const setListKeyword = keyword => {
     setKeywordObject(
       produce(keywordObject, draft => {
-        draft[index].contents[now].content.keywordLink[
+        draft[index].contents[now].listContent.keywordLink[
           currentElemIndex
         ] = keyword;
       })
