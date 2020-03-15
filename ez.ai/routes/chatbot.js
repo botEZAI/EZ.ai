@@ -23,9 +23,9 @@ router.post('/', function(req, res, next){
           content: contents[i].content,
 
           //위치 정보 
-          // title: contents[i].title,
-          // latitude: contents[i].latitude,
-          // longtitude: contents[i].longtitude,
+          title: contents[i].title,
+          latitude: contents[i].latitude,
+          longtitude: contents[i].longtitude,
         }).
         then(() =>{
           console.log("content 통과");
