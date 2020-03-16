@@ -6,11 +6,11 @@ router.post('/', function(req, res, next){
   const post_keyword = req.body.nowKeyword.keyword;
   // const keyword_id = req.body.nowKeyword.keyword.id; DB조회 후 키에 넣기 떄문에 필요 x
   const contents = req.body.nowKeyword.contents;
-
+  console.log(contents[0].content.elem);
 
   if(post_keyword){
-    console.log(post_keyword);
-    console.log(contents);
+    // console.log(post_keyword);
+    // console.log(contents);
     Keyword.create({
       keyword: post_keyword,
     })
