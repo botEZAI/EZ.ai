@@ -8,6 +8,7 @@ const EmogiPopup = ({
                         keywordObject,
                         now,
                         index,
+                        selectType,
                     }) => {
     const [showImoPopup, setShowImoPopup] = useState(false);
 
@@ -35,10 +36,17 @@ const EmogiPopup = ({
         if (e.target.innerHTML.length == 2) {
             setKeywordObject(
                 produce(keywordObject, draft => {
-                    draft[index].contents[now].content += e.target.innerHTML;
+                    if (selectType == "text") {
+                        draft[index].contents[now].content += e.target.innerHTML;
+                    }
+                    else if (selectType == "keyword"){
+                        draft[index].contents[now].listContent.question += e.target.innerHTML;
+
+                    }
+
                 })
             );
-        } else {}
+        }
 
     };
 

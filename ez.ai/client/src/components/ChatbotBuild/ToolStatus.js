@@ -167,7 +167,7 @@ const ToolStatus = ({
           {" "}
           {/* type에 따라 추가적인 기능 버튼 보여주는 영역 */}
           {currentInput ? (
-            currentInput.type === "text" || clickedMainInput.type === "text" ? (
+            currentInput.type === "text" || clickedMainInput.type === "text"  ? (
               <>
                 {/*<div className="extra-btn user-name">사용자명</div>*/}
                 <ImogiPopup
@@ -175,8 +175,18 @@ const ToolStatus = ({
                     keywordObject={keywordObject}
                     now={now}
                     index={index}
+                    selectType = "text"
                 />
               </>
+            ) : currentInput.type === "list" ||
+              clickedMainInput.type === "list" ? (
+                <ImogiPopup
+                    setKeywordObject={setKeywordObject}
+                    keywordObject={keywordObject}
+                    now={now}
+                    index={index}
+                    selectType = "keyword"
+                />
             ) : null
           ) : null}
         </div>
