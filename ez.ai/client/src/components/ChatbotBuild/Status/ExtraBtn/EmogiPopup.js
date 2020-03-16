@@ -1,13 +1,14 @@
 import React, {useState} from "react";
 import produce from "immer";
+import "./ExtraBtn.css";
 
 
-const EmogiPopup = (
-    setKeywordObject,
-    keywordObject,
-    now,
-    index,
-) => {
+const EmogiPopup = ({
+                        setKeywordObject,
+                        keywordObject,
+                        now,
+                        index,
+                    }) => {
     const [showImoPopup, setShowImoPopup] = useState(false);
 
     const emogi_1 = [
@@ -26,22 +27,22 @@ const EmogiPopup = (
     ]
 
     const showImoView = () => {
-        if (showImoPopup == false) {
-            setShowImoPopup(!showImoPopup);
-        }
+        setShowImoPopup(!showImoPopup);
     };
 
     const selectEmo = e => {
         setShowImoPopup(!showImoPopup);
-        setKeywordObject(
-            produce(keywordObject, draft => {
-                draft[index].contents[now].content += e.target.innerHTML;
-            })
-        );
-        console.log(e.target.innerHTML, keywordObject);
+        if (e.target.innerHTML.length == 2) {
+            setKeywordObject(
+                produce(keywordObject, draft => {
+                    draft[index].contents[now].content += e.target.innerHTML;
+                })
+            );
+        } else {}
+
     };
 
-    const emogi1List = emogi_1.map((emogi) => (<div className="emogi-text" onClick={selectEmo}><p>{emogi}</p></div>));
+    const emogi1List = emogi_1.map((emogi) => (<div className="emogi-text"><p>{emogi}</p></div>));
 
 
     
@@ -53,11 +54,11 @@ const EmogiPopup = (
             >
                 이모지
                 { showImoPopup ?
-                    <div className="emoji-interface">
-                        <ul class = "emoji-tab">
+                    <div className="emoji-interface" >
+                        <ul className = "emoji-tab">
                             <li className = "active" label="emoji-preview-1"><p>{emogi_1[0]}</p></li>
                         </ul>
-                        <div className="emogi-1">
+                        <div className="emogi-1" onClick={selectEmo}>
                             {emogi1List}
                         </div>
                     </div>

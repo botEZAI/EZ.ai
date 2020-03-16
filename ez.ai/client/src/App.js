@@ -10,6 +10,7 @@ import Login from "./components/Login";
 import ChatbotList from "./components/ChatbotList/ChatbotList";
 import Register from "./components/Register";
 import ChatbotBuild from "./components/ChatbotBuild/ChatbotBuild";
+import Footer from "./components/Footer";
 
 const App = ({ location }) => {
   return (
@@ -27,7 +28,7 @@ const App = ({ location }) => {
           <Route path="/register" component={Register} />
         </Switch>
       </section>
-      <footer />
+      <Footer />
     </div>
   );
 };

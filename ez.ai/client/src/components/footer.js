@@ -1,10 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Header = () => {
+const Footer = () => {
     return (
-        <footer>
+        <></>
+        /*<footer>
 
-        </footer>
+        </footer>*/
     )
 }
+
+export default Footer;

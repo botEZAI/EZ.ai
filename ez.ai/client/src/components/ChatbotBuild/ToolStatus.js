@@ -169,13 +169,12 @@ const ToolStatus = ({
           {currentInput ? (
             currentInput.type === "text" || clickedMainInput.type === "text" ? (
               <>
-                <div className="extra-btn user-name">사용자명</div>
+                {/*<div className="extra-btn user-name">사용자명</div>*/}
                 <ImogiPopup
                     setKeywordObject={setKeywordObject}
                     keywordObject={keywordObject}
                     now={now}
                     index={index}
-                    onClick = { console.log("now : ", now)}
                 />
               </>
             ) : null

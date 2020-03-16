@@ -80,6 +80,7 @@
     color : #999;
     margin : 0 5px;
     padding : 8px;
+    cursor: pointer;
 }
 
 .tool-status-extra .extra-btn:hover {
@@ -154,7 +155,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size : 20px;
+    font-size : 18px;
     font-weight: bold;
     z-index : 3;
 }
