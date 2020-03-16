@@ -9,6 +9,7 @@ import ToolAdvance from ".//ToolAdvance";
 import ToolKeyword from ".//ToolKeyword";
 import ToolStatus from "./ToolStatus";
 import Main from ".//Main";
+import MessageForAll from "./BuilderNavContents/MessageForAll";
 
 const ChatbotBuild = () => {
   const [activeTab, setActiveTab] = useState("basic");
@@ -210,7 +211,7 @@ const ChatbotBuild = () => {
           <ul className="preview-tab" style={PrevTabStyle}>
             <PrevTab activePrevTab={activePrevTab} onSelectPrev={onSelectPrev}>
               <li label="preview">tab1</li>
-              <li label="tab2">tab2</li>
+              <li label="all-message">전체메세지</li>
               <li label="tab3">tab3</li>
             </PrevTab>
           </ul>
@@ -219,8 +220,8 @@ const ChatbotBuild = () => {
             style={!prevDisplay ? defaultPreviewStyle : null}
           >
             <div label="preview">---------------@---------------</div>
-            <div label="tab2">
-              -----------------★----------------★------------------
+            <div label="all-message">
+              <MessageForAll/>
             </div>
             <div label="tab3">
               -----------♥-----------♥---------♥------------------
