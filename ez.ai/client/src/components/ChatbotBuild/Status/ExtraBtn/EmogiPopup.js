@@ -11,6 +11,7 @@ const EmogiPopup = ({
                         selectType,
                     }) => {
     const [showImoPopup, setShowImoPopup] = useState(false);
+    const [imoNow, setImoNow] = useState("emoji-1");
 
     const emogi_1 = [
         `\u{1F601}`, `\u{1F602}`, `\u{1F603}`, `\u{1F604}`, `\u{1F605}`,
@@ -27,8 +28,26 @@ const EmogiPopup = ({
         `\u{1F64D}`, `\u{1F64E}`,
     ]
 
+    const emogi_2 = [
+        `\u{1F680}`,`\u{1F683}`,`\u{1F684}`,`\u{1F685}`,`\u{1F687}`,
+        `\u{1F689}`,`\u{1F68C}`,`\u{1F68F}`,`\u{1F691}`,`\u{1F692}`,
+        `\u{1F693}`,`\u{1F695}`,`\u{1F697}`,`\u{1F699}`,`\u{1F69A}`,
+        `\u{1F6A2}`,`\u{1F6A4}`,`\u{1F6A5}`,`\u{1F6A7}`,`\u{1F6A8}`,
+        `\u{1F6A9}`,`\u{1F6AA}`,`\u{1F6AB}`,`\u{1F6AC}`,`\u{1F6AD}`,
+        `\u{1F6B2}`,`\u{1F6B6}`,`\u{1F6B9}`,`\u{1F6BA}`,`\u{1F6BB}`,
+        `\u{1F6BC}`,`\u{1F6BD}`,`\u{1F6BE}`,`\u{1F6C0}`
+    ]
+
+
     const showImoView = () => {
-        setShowImoPopup(!showImoPopup);
+        if (showImoPopup == false){
+            setShowImoPopup(!showImoPopup);
+        }
+
+    };
+
+    const imoTab = e => {
+        setImoNow(e.currentTarget.getAttribute('value'));
     };
 
     const selectEmo = e => {
@@ -50,8 +69,8 @@ const EmogiPopup = ({
 
     };
 
-    const emogi1List = emogi_1.map((emogi) => (<div className="emogi-text"><p>{emogi}</p></div>));
-
+    const emogi1List = emogi_1.map((emogi) => (<div className="emoji-text"><p>{emogi}</p></div>));
+    const emogi2List = emogi_2.map((emogi) => (<div className="emoji-text"><p>{emogi}</p></div>));
 
     
     return (
@@ -64,10 +83,19 @@ const EmogiPopup = ({
                 { showImoPopup ?
                     <div className="emoji-interface" >
                         <ul className = "emoji-tab">
-                            <li className = "active" label="emoji-preview-1"><p>{emogi_1[0]}</p></li>
+                            <li value="emoji-1" onClick={imoTab}><p>{emogi_1[0]}</p></li>
+                            <li value="emoji-2" onClick={imoTab}><p>{emogi_2[0]}</p></li>
                         </ul>
-                        <div className="emogi-1" onClick={selectEmo}>
-                            {emogi1List}
+                        <div onClick={selectEmo}>
+                        { imoNow == "emoji-1" ?
+                            <>
+                                {emogi1List}
+                            </>
+                            : imoNow == "emoji-2" ?
+                                <>
+                                    {emogi2List}
+                                </>
+                            : null }
                         </div>
                     </div>
                 : null }
