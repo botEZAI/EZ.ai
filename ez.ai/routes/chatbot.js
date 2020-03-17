@@ -3,25 +3,29 @@ var router = express.Router();
 const Chatbot = require('../models').Chatbot;
 const Keyword = require('../models').Keyword;
 router.post('/', function(req, res, next){
-  const post_keyword = req.body.k.keyword;
-  const keyword_id = req.body.k.id;
-  const contents = req.body.k.contents;
-  
-  //console.log(contents.length);
+  const post_keyword = req.body.nowKeyword.keyword;
+  // const keyword_id = req.body.nowKeyword.keyword.id; DB조회 후 키에 넣기 떄문에 필요 x
+  const contents = req.body.nowKeyword.contents;
+  console.log(contents[0].content.elem);
 
   if(post_keyword){
-    console.log(post_keyword);
-    console.log(contents);
+    // console.log(post_keyword);
+    // console.log(contents);
     Keyword.create({
       keyword: post_keyword,
     })
-    .then(() =>{
+    .then((keywords) =>{
       console.log("keyword 통과");
       for(var i=0;i<contents.length;i++){
         Chatbot.create({
-          keyworder: keyword_id,
+          keyworder: keywords.id,
           type: contents[i].type,
           content: contents[i].content,
+
+          //위치 정보 
+          title: contents[i].title,
+          latitude: contents[i].latitude,
+          longtitude: contents[i].longtitude,
         }).
         then(() =>{
           console.log("content 통과");

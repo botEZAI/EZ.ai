@@ -10,7 +10,7 @@ const ToolAdvance = ({
   setAddFlag,
   setKeywordKeyboard,
   setNow,
-  length,
+  length
 }) => {
   const onClickTool = tool => {
     console.log("onClickTool");
@@ -22,15 +22,19 @@ const ToolAdvance = ({
               ? object.contents.push({
                   type: tool,
                   id: object.contents.length + 1,
-                  content: { question:"", elem:["", "", "", "", "", ""] }
+                  listContent: {
+                    question: "",
+                    elem: ["", "", "", "", "", ""],
+                    keywordLink: ["", "", "", "", "", ""]
+                  }
                 })
               : object.contents.push({
                   type: tool,
                   id: object.contents.length + 1,
                   content: []
                 });
-                setAddFlag(true);// 컨텐츠 추가됨 => 스크롤 하단으로 이동 
-                setKeywordKeyboard(true); // 새 '리스트' 생성 시, Main 에서 바로 하단 바 보이게 함
+            setAddFlag(true); // 컨텐츠 추가됨 => 스크롤 하단으로 이동
+            setKeywordKeyboard(true); // 새 '리스트' 생성 시, Main 에서 바로 하단 바 보이게 함
           })
         )
       : alert("키워드를 선택하세요");
@@ -43,8 +47,8 @@ const ToolAdvance = ({
       <div
         className="tool-basic tool-basic-text"
         onClick={() => {
-            onClickTool("list")
-            setNow(length + 1)
+          onClickTool("list");
+          setNow(length + 1);
         }}
       >
         <i className="fas fa-list"></i>
@@ -53,13 +57,13 @@ const ToolAdvance = ({
       <div
         className="tool-basic tool-basic-text"
         onClick={() => {
-            onClickTool("sticker")
-            setNow(length + 1)
+          onClickTool("sticker");
+          setNow(length + 1);
         }}
-       >
-         <i className="far fa-laugh"></i>
-         스티커
-       </div>
+      >
+        <i className="far fa-laugh"></i>
+        스티커
+      </div>
     </>
   );
 };

@@ -21,7 +21,9 @@ const ToolBasic = ({
                 ? object.contents.push({
                     type: tool,
                     id: 1,
-                    content: { title: "", latitude: "", longtitude: "" }
+                    title: "",
+                    latitude: "",
+                    longtitude: ""
                   })
                 : object.contents.push({
                     type: tool,
@@ -32,7 +34,9 @@ const ToolBasic = ({
               ? object.contents.push({
                   type: tool,
                   id: object.contents[object.contents.length - 1].id + 1,
-                  content: { title: "", latitude: "", longtitude: "" }
+                  title: "",
+                  latitude: "",
+                  longtitude: ""
                 })
               : object.contents.push({
                   type: tool,

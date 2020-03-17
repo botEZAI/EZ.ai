@@ -20,51 +20,48 @@ const TelegramBot = require('node-telegram-bot-api');
 
 
 //첫번 째 토큰
-const token = '';
+const token = 'input token';
 const bot = new TelegramBot(token, {polling: true});
 
 
 //indexOf 문자열 내에서 특정한 문자열의 index 값을 리턴한다.
 bot.on('message', (msg) => {
-    console.log(msg);
+    console.log(msg.text);
     var idnumber = 0; 
 
     //키워드 먼저 탐색
-    Keyword.findAll({
+    Keyword.findOne({
+        where: {keyword: msg.text},
     })
-    .then((keyword)=>{
-        for(var i = 0;i<keyword.length;i++){
-            if (msg.text.toString().toLowerCase().includes(keyword[i].keyword)) {
-                idnumber =  keyword[i].id; //키워드가 있다면 해당하는 id를 저장 
-                console.log(idnumber);
-                console.log("키워드 찾음");
-                break;
-            }
-            if(idnumber==0) bot.sendMessage(msg.chat.id, "키워드를 찾지 못했습니다");
-        }
-    Chatbot.findAll({
+    .then((keywords)=>{
+        console.log(keywords);
+        Chatbot.findAll({
             include:{
             model: Keyword,
-            where: {id: idnumber},
-               },
-            })
-            .then((chatbot)=>{
+            where: {id: keywords.id},
+            },
+         })
+            .then((chatbots)=>{
                 console.log("콘텐츠 통과");
-                console.log(chatbot);
-                for(var i = 0;i<chatbot.length;i++){
-                    if(chatbot[i].type=="text"){
+                for(var i = 0;i<chatbots.length;i++){
+                    if(chatbots[i].type=="text"){
                         console.log("텍스트 타입 통과");
-                        //console.log(chatbot[i].content);  
-                        bot.sendMessage(msg.chat.id, chatbot[i].content);
+                        bot.sendMessage(msg.chat.id, chatbots[i].content);
                     }
-                    else if(chatbot[i].type=="image"){
+                    else if(chatbots[i].type=="image"){
                         console.log("이미지 타입 통과");
-                        bot.sendMessage(msg.chat.id, chatbot[i].content);
+                        bot.sendPhoto(msg.chat.id, chatbots[i].content);
+                    }
+                    else if(chatbots[i].type=="location"){
+                        console.log("위치 타입 통과");
+                        bot.sendMessage(msg.chat.id, chatbots[i].title);
+                        bot.sendLocation(msg.chat.id,chatbots[i].latitude, chatbots[i].longtitude);
                     }
                 }
             })
     })
     .catch((err)=>{
+        bot.sendMessage(msg.chat.id, "키워드를 찾지 못했습니다.");
         console.error(err);
         next(err);
     });  

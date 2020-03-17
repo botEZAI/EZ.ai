@@ -8,7 +8,7 @@
     bottom : 50%;
     left : 50%;
     width : 200px;
-    height : auto;
+    height : 300px;
     min-height : 50px;
     z-index : 10;
     border : 2px solid #bbb;
@@ -16,6 +16,7 @@
     border-bottom-left-radius: 0;
     background-color: #fff;
     padding : 5px;
+    overflow : scroll;
 }
 
 .emoji-interface:hover {
@@ -30,17 +31,40 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    color : #333;
 }
 
+.emoji-tab {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+.emogi-tab ul {
+    list-style: none;
+}
 .emoji-tab li {
     padding : 1px 3px;
 }
 
 
+.emoji-tab .emoMenu:active {
+    background-color: #00b8b4;
+}
+
+.emoji-interface {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
 .emoji-interface > div {
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     flex-wrap: wrap;
+    padding : 0 12px;
+    margin : 0;
 }
 
 .emoji-interface > div > div {
@@ -55,4 +79,8 @@
 .emoji-interface p {
     margin : 0;
     padding : 5px;
+}
+
+.emoji-text {
+    width : 32px;
 }
