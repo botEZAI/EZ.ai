@@ -18,8 +18,8 @@ const Main = ({
   firstEntry,
   setFirstEntry,
   clickedMainInput,
-  keywordKeyboard,
-  setKeywordKeyboard,
+  virtualKeyboard,
+  setVirtualKeyboard,
   index,
   now,
   setNow
@@ -53,7 +53,7 @@ const Main = ({
   };
   //
   const isClickedBuilderMain = () => {
-    setKeywordKeyboard(false);
+    setVirtualKeyboard(false);
   };
   //삭제
   const onDelete = id => {
@@ -273,7 +273,7 @@ const Main = ({
                   key={v.listContent + i}
                   onClick={e => {
                     e.stopPropagation();
-                    setKeywordKeyboard(true);
+                    setVirtualKeyboard(true);
                   }}
                 >
                   {" "}
@@ -336,9 +336,9 @@ const Main = ({
           저장
         </button>
       </div>
-      {/** Keyword-keyboard START  */}
+      {/** Keyword-PopUp START  */}
       <div className="keyword-keyboard">
-        {keywordKeyboard ? (
+        {virtualKeyboard ? (
           <>
             {(clickedMainInput.type ||
               (!clickedMainInput.type && currentInput)) &&
