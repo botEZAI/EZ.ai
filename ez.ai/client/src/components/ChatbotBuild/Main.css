@@ -121,7 +121,7 @@
   border:1px solid #ddd;
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  background-image: url(); /*미리보기 사진*/
+  /*background-image: url(); 미리보기 사진*/
 }
 .main-locabox{/*== Basic > 지도(Map) ==*/
   width:210px;
@@ -171,7 +171,7 @@
   min-width:200px;
   min-height:30px;
   font-size:13pt;
-  font-style:bold;
+  font-weight : bold;
 }
 .main-listbox-question{
   scrollbar-width: none; /*Firefox*/
