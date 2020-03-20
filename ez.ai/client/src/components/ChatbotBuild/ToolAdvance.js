@@ -8,7 +8,7 @@ const ToolAdvance = ({
   setKeywordObject,
   setClickedMainInput,
   setAddFlag,
-  setKeywordKeyboard,
+  setVirtualKeyboard,
   setNow,
   length
 }) => {
@@ -34,7 +34,7 @@ const ToolAdvance = ({
                   content: []
                 });
             setAddFlag(true); // 컨텐츠 추가됨 => 스크롤 하단으로 이동
-            setKeywordKeyboard(true); // 새 '리스트' 생성 시, Main 에서 바로 하단 바 보이게 함
+            setVirtualKeyboard(true); // 새 '리스트' 생성 시, Main 에서 바로 하단 바 보이게 함
           })
         )
       : alert("키워드를 선택하세요");
