@@ -50,19 +50,23 @@ const ToolKeyword = ({
         </div>
 
         <div className="keyword-status">
-          <h4>키워드 목록</h4>
-          {keywordObject.map((keyword, index) => {
-            return (
-              <div
-                key={index}
-                label={keyword.keyword}
-                onClick={onClickKeyword(keyword.keyword)}
-                className="tool-keyword"
-              >
-                {keyword.keyword}
-              </div>
-            );
-          })}
+          <div className="keyword-status-title">
+            <h4>키워드 목록</h4>
+          </div>
+          <div className = "tool-keywords">
+            {keywordObject.map((keyword, index) => {
+              return (
+                  <div
+                      key={index}
+                      label={keyword.keyword}
+                      onClick={onClickKeyword(keyword.keyword)}
+                      className="tool-keyword"
+                  >
+                    {keyword.keyword}
+                  </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </>

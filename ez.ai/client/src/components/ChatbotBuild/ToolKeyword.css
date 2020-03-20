@@ -1,10 +1,15 @@
 
 .keyword-contents {
     width : 100%;
+    height: 100%;
 }
 
 .add-keyword {
     margin : 20px 0;
+}
+
+.tool-contents {
+    height: calc(100% - 50px);
 }
 .tool-contents form {
     margin : 0 auto;
@@ -48,20 +53,36 @@
 
 /* 키워드 관리 창 css */
 .keyword-status {
+    height: 57vh;
     padding: 10px 0;
     background-color: #fff;
     border : 0.5px solid #bbb;
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
+    overflow: scroll;
+
 }
 
-.keyword-status > h4 {
-    width: 100%;
+.keyword-status .keyword-status-title {
+    height: 24px;
+    width : 100%;
+}
+.keyword-status-title > h4 {
+    margin : 0 auto;
 }
 
 
 /* 키워드 요소 css */
+.tool-keywords {
+    width : 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
 .tool-keyword {
+    height : 36px;
     display: flex;
     border : 2px solid lavender;
     margin: 10px;
