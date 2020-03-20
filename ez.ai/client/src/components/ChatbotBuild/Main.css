@@ -209,11 +209,9 @@
   float:right;
   margin:13px;
 }
-.keyword-keyboard{
-  background-color: #bebebe;
+.virtual-keyboard{
   transition: .5s ease;
-}
-.main-keyboard{
+  background-color: #bebebe;
   min-height:45px;
 }
 .list-elem-default{

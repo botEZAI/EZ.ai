@@ -12,13 +12,13 @@ const VirtualKeyboard = ({
   return (
     <>
     {virtualKeyboard ? (
-      <>
+      <div>
         {(clickedMainInput.type ||
           (!clickedMainInput.type && currentInput)) &&
           (currentInput.type === "list" ||
           clickedMainInput.type === "list" ? (
             <>
-              <div className="main-keyboard">
+              <div className="virtual-keyboard">
                 {keywordObject[index].contents[now].listContent.elem[0] && (
                   <div className="list-elem-wrapper">
                     <span className="list-elem">
@@ -127,7 +127,7 @@ const VirtualKeyboard = ({
               </div>
             </>
           ) : null)}
-      </>
+      </div>
     ) : null}
     </>
   )
