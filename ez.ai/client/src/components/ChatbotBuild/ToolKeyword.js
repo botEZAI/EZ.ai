@@ -39,33 +39,58 @@ const ToolKeyword = ({
       {console.log("Toolkeyword")}
       <div className="keyword-contents">
         <div className="add-keyword">
+          <h4>키워드 추가</h4>
           <form onSubmit={onSubmit}>
-            <input
-              placeholder="키워드"
-              value={value}
-              onChange={e => onChangeInput(e)}
-            />
-            <button type="submit">추가</button>
+            <div>
+              <input
+                placeholder="추가할 키워드명을 입력해주세요"
+                value={value}
+                onChange={e => onChangeInput(e)}
+              />
+              <button type="submit">추가</button>
+            </div>
           </form>
         </div>
-
+        <div className="modify-keyword">
+          <h4>키워드 속성</h4>
+          <form>
+            <div className="modify-delete">
+              <input
+                placeholder="선택한 키워드명"
+                />
+                <button type="submit">수정</button>
+                <button type="submit">삭제</button>
+            </div>
+            <div className="modify-category">
+              <select name="keyword-category">
+                <option value="">--- 키워드 카테고리 선택 ---</option>
+              </select>
+            </div>
+          </form>
+        </div>
         <div className="keyword-status">
           <div className="keyword-status-title">
             <h4>키워드 목록</h4>
           </div>
           <div className = "tool-keywords">
-            {keywordObject.map((keyword, index) => {
-              return (
-                  <div
-                      key={index}
-                      label={keyword.keyword}
-                      onClick={onClickKeyword(keyword.keyword)}
-                      className="tool-keyword"
-                  >
-                    {keyword.keyword}
-                  </div>
-              );
-            })}
+            <div value = "미분류 " className= "keyword-category">
+              <div className= "keyword-category-title">
+                <div>미분류</div>
+                <div className="keyword-category-fold">-</div>
+              </div>
+              {keywordObject.map((keyword, index) => {
+                return (
+                    <div
+                        key={index}
+                        label={keyword.keyword}
+                        onClick={onClickKeyword(keyword.keyword)}
+                        className="tool-keyword"
+                    >
+                      {keyword.keyword}
+                    </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>

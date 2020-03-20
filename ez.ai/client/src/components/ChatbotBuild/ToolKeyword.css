@@ -4,25 +4,36 @@
     height: 100%;
 }
 
+.keyword-contents h4 {
+    margin : 0;
+    margin-bottom : 10px;
+}
+
 .add-keyword {
-    margin : 20px 0;
+    margin : 10px 0;
+    padding : 10px 0;
+    border-bottom : 1px solid #bbb;
+    background-color: #fff;
 }
 
 .tool-contents {
     height: calc(100% - 50px);
 }
 .tool-contents form {
-    margin : 0 auto;
-    width : 70%;
+    margin : 0;
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
 }
 
 .tool-contents form input {
+    width : 60%;
     height : 40px;
-    border : none;
+    border : 1px solid #eee;
     border-radius: 3px;
-    padding : 0 0 0 10px ;
+    margin : 0 10px;
+    padding : 0 10px;
     font-size: 15px;
 }
 
@@ -32,9 +43,11 @@
 
 /* 키워드 추가 버튼 css */
 .tool-contents form button {
+    background-color: #eee;
     border : none;
+    margin : 0 5px;
+    width : 15%;
     height: 40px;
-    margin-top : 10px;
     cursor: pointer;
     font-size: 15px;
     font-weight: bold;
@@ -50,10 +63,67 @@
     outline: none;
 }
 
+/* 키워드 속성 창 css */
+.modify-keyword {
+    background-color: white;
+    margin : 10px 0;
+    padding : 10px 0;
+    border-bottom : 1px solid #bbb;
+}
+
+.tool-contents form > div {
+    display: inline-block;
+    width : 100%;
+}
+
+
+/* 키워드 속성 창 내 셀렉트 css */
+.modify-category {
+    margin : 10px 0;
+    display: flex;
+    align-items: flex-start;
+}
+
+.modify-category select {
+    width : 70%;
+    height : 40px;
+    border : 1px solid #eee;
+    padding : 10px 5px;
+}
+
+.modify-category select:focus {
+    outline-color: #00b8b4;
+}
+
+
+/* 키워드 카테고리 별 분류 창 css */
+.keyword-category {
+    width : 100%;
+    display : flex;
+    flex-wrap : wrap;
+}
+
+.keyword-category .keyword-category-title {
+    width : 95%;
+    margin : 5px auto;
+    padding : 5px 10px;
+    border-bottom : 1px solid #bbb;
+    display: flex;
+    justify-content: space-between;
+    font-size : 13px;
+    color : #999;
+}
+
+.keyword-category-title .keyword-category-fold {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
 
 /* 키워드 관리 창 css */
 .keyword-status {
-    height: 57vh;
+    height: calc(75vh - 342px);
     padding: 10px 0;
     background-color: #fff;
     border : 0.5px solid #bbb;
