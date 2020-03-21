@@ -36,6 +36,7 @@ const ChatbotBuild = () => {
     { id: 5, value: "키워드 연동" }
   ];
   const [keywordPopup, setKeywordPopup] = useState(initialKP);
+  const [keywordCompleted, setKeywordCompleted] = useState(false);
 
   const index = keywordObject.findIndex(v => v.keyword === mainKeyword);
   const length =
@@ -128,24 +129,27 @@ const ChatbotBuild = () => {
             <div className="tool-contents">
               {activeTab === "basic" && (
                 <ToolBasic
-                  mainKeyword={mainKeyword}
+                  keywordCompleted={keywordCompleted}
                   keywordObject={keywordObject}
-                  setKeywordObject={setKeywordObject}
-                  setClickedMainInput={setClickedMainInput}
+                  mainKeyword={mainKeyword}
                   setAddFlag={setAddFlag}
+                  setClickedMainInput={setClickedMainInput}
+                  setKeywordObject={setKeywordObject}
                   setNow={setNow}
                   length={length}
                 />
               )}
               {activeTab === "advance" && (
                 <ToolAdvance
-                  mainKeyword={mainKeyword}
+                  keywordCompleted={keywordCompleted}
                   keywordObject={keywordObject}
-                  setKeywordObject={setKeywordObject}
-                  setClickedMainInput={setClickedMainInput}
+                  mainKeyword={mainKeyword}
                   setAddFlag={setAddFlag}
-                  setVirtualKeyboard={setVirtualKeyboard}
+                  setClickedMainInput={setClickedMainInput}
+                  setKeywordCompleted={setKeywordCompleted}
+                  setKeywordObject={setKeywordObject}
                   setNow={setNow}
+                  setVirtualKeyboard={setVirtualKeyboard}
                   length={length}
                 />
               )}
@@ -197,6 +201,7 @@ const ChatbotBuild = () => {
             now={now}
             index={index}
             setNow={setNow}
+            setKeywordCompleted={setKeywordCompleted}
           />
         </div>
       </div>

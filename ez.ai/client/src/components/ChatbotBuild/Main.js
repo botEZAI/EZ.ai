@@ -23,7 +23,8 @@ const Main = ({
   setVirtualKeyboard,
   index,
   now,
-  setNow
+  setNow,
+  setKeywordCompleted
 }) => {
   const currentInput =
     now !== -1 && keywordObject[index] && keywordObject[index].contents[now];
@@ -70,6 +71,7 @@ const Main = ({
         );
       })
     );
+    setKeywordCompleted(false);
     console.log("now=", now);
   };
   useEffect(() => {
@@ -338,13 +340,13 @@ const Main = ({
         </button>
       </div>
       <VirtualKeyboard 
-        keywordObject={keywordObject} 
-        index={index}
-        now={now}
         clickedMainInput={clickedMainInput}
         currentInput={currentInput}
-        virtualKeyboard={virtualKeyboard}
+        index={index}
+        keywordObject={keywordObject} 
+        now={now}
         removeListElement={removeListElement}
+        virtualKeyboard={virtualKeyboard}
       />
     </>
   ); /**retun END */
