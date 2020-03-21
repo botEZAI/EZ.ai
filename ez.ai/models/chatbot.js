@@ -20,6 +20,10 @@ module.exports = (sequelize, DataTypes) => (
         type: DataTypes.TEXT,
         allowNull: true,
       },
+      kategorie:{
+        type: DataTypes.TEXT,
+        allowNull: true,
+      },
     }, {
       timestamps: true,
       paranoid: true,
