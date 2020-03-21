@@ -48,7 +48,7 @@ const Main = ({
   const removeListElement = id => {
     setKeywordObject(
       produce(keywordObject, draft => {
-        draft[index].contents[now].content.elem[id] = "";
+        draft[index].contents[now].listContent.elem[id] = "";
       })
     );
   };
