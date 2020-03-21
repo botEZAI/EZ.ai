@@ -15,35 +15,40 @@ const ToolBasic = ({
     mainKeyword
       ? setKeywordObject(
           produce(keywordObject, draft => {
+            
             const object = draft.find(t => t.keyword === mainKeyword);
-            object.contents.length === 0
-              ? tool === "location"
+            if(!object.completed){
+              object.contents.length === 0
+                ? tool === "location"
+                  ? object.contents.push({
+                      type: tool,
+                      id: 1,
+                      title: "",
+                      latitude: "",
+                      longtitude: ""
+                    })
+                  : object.contents.push({
+                      type: tool,
+                      id: 1,
+                      content: ""
+                    })
+                : tool === "location"
                 ? object.contents.push({
                     type: tool,
-                    id: 1,
+                    id: object.contents[object.contents.length - 1].id + 1,
                     title: "",
                     latitude: "",
                     longtitude: ""
                   })
                 : object.contents.push({
                     type: tool,
-                    id: 1,
+                    id: object.contents[object.contents.length - 1].id + 1,
                     content: ""
-                  })
-              : tool === "location"
-              ? object.contents.push({
-                  type: tool,
-                  id: object.contents[object.contents.length - 1].id + 1,
-                  title: "",
-                  latitude: "",
-                  longtitude: ""
-                })
-              : object.contents.push({
-                  type: tool,
-                  id: object.contents[object.contents.length - 1].id + 1,
-                  content: ""
-                });
-            setAddFlag(true);
+                  });
+              setAddFlag(true);
+            }else{
+              alert('[버튼형 리스트] 생성 후, 요소 추가가 안됩니다.\n요소 추가를 원하시면, [버튼형 리스트]를 삭제하세요.');
+            }
           })
         )
       : alert("키워드를 선택하세요");

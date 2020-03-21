@@ -57,7 +57,7 @@ const Main = ({
     setVirtualKeyboard(false);
   };
   //삭제
-  const onDelete = id => {
+  const onDelete = (id, isList) => {
     if (id === now + 1) {
       setNow(now - 1);
       setClickedMainInput({});
@@ -68,8 +68,12 @@ const Main = ({
           draft[index].contents.findIndex(content => content.id === id),
           1
         );
+        if(isList === 'list'){
+          draft[index].completed = false;
+        }
       })
     );
+
     console.log("now=", now);
   };
   useEffect(() => {
@@ -322,7 +326,7 @@ const Main = ({
                   <div
                     className="tool-delete delete-listbox "
                     onClick={() => {
-                      onDelete(v.id);
+                      onDelete(v.id, 'list');
                     }}
                   >
                     <i className="fas fa-times"></i>

@@ -17,7 +17,7 @@ const ChatbotBuild = () => {
   const [keywordList, setKeywordList] = useState(["Welcome"]);
   const [keywordContentList, setKeywordContentList] = useState([]);
   const [keywordObject, setKeywordObject] = useState([
-    { keyword: "Welcome", id: 1, contents: [] }
+    { keyword: "Welcome", id: 1, contents: [], completed:false}
   ]);
   const [mainKeyword, setMainKeyword] = useState(keywordObject[0].keyword);
   const [clickedMainInput, setClickedMainInput] = useState({});
