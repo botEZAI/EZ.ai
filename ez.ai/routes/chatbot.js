@@ -3,10 +3,11 @@ var router = express.Router();
 const Chatbot = require('../models').Chatbot;
 const Keyword = require('../models').Keyword;
 router.post('/', function(req, res, next){
+
   const post_keyword = req.body.nowKeyword.keyword;
   // const keyword_id = req.body.nowKeyword.keyword.id; DB조회 후 키에 넣기 떄문에 필요 x
   const contents = req.body.nowKeyword.contents;
-  console.log(contents[0].content.elem);
+  //console.log(contents[0].content.elem);
 
   if(post_keyword){
     console.log(post_keyword);
@@ -27,7 +28,9 @@ router.post('/', function(req, res, next){
           title: contents[i].title,
           latitude: contents[i].latitude,
           longtitude: contents[i].longtitude,
-
+          // 카테고리 (추후 추가 예정)
+          // kategorie: contents[i].kategorie,
+          
           //리스트 정보
 
           //개수
@@ -49,32 +52,6 @@ router.post('/', function(req, res, next){
       next(err);
     });
   }
-    
-    // for(var i=0;i<contents.length;i++){
-    //   Keyword.findOne({
-    //     where:{
-    //       keyword: post_keyword,
-    //     },
-    //   })
-    //    .then((keywords)=>{
-    //       Chatbot.create({
-    //         keyworder: keywords.id,
-    //         type: contents[i].type,
-    //         content: contents[i].content,
-    //         //location에 대한 정보 , 정보 입력 불가 
-    //         // title : contents[i].title,
-    //         // latitude : contents[i].latitude,
-    //         // longtitude: contents[i].longtitude,
-    //       }).
-    //         then(() =>{
-    //           console.log("content 통과");
-    //         }).
-    //           catch((err)=>{
-    //             console.error(err);
-    //             next(err);
-    //            });
-    //     });
-    //   }
-   
+
 });
 module.exports = router;
