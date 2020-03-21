@@ -23,8 +23,7 @@ const Main = ({
   setVirtualKeyboard,
   index,
   now,
-  setNow,
-  setKeywordCompleted
+  setNow
 }) => {
   const currentInput =
     now !== -1 && keywordObject[index] && keywordObject[index].contents[now];
@@ -54,11 +53,11 @@ const Main = ({
     );
   };
   //
-  const isClickedBuilderMain = () => {
+  const ClickedBuilderMain = () => {
     setVirtualKeyboard(false);
   };
   //삭제
-  const onDelete = id => {
+  const onDelete = (id, isList) => {
     if (id === now + 1) {
       setNow(now - 1);
       setClickedMainInput({});
@@ -69,9 +68,12 @@ const Main = ({
           draft[index].contents.findIndex(content => content.id === id),
           1
         );
+        if(isList === 'list'){
+          draft[index].completed = false;
+        }
       })
     );
-    setKeywordCompleted(false);
+
     console.log("now=", now);
   };
   useEffect(() => {
@@ -95,7 +97,7 @@ const Main = ({
       <div
         className="main-contents"
         ref={contentRef}
-        onClick={isClickedBuilderMain}
+        onClick={ClickedBuilderMain}
       >
         {keywordObject[index] && (
           <div className="main-keyword-title">
@@ -324,7 +326,7 @@ const Main = ({
                   <div
                     className="tool-delete delete-listbox "
                     onClick={() => {
-                      onDelete(v.id);
+                      onDelete(v.id, 'list');
                     }}
                   >
                     <i className="fas fa-times"></i>
