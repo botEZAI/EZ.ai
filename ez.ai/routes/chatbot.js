@@ -9,8 +9,9 @@ router.post('/', function(req, res, next){
   console.log(contents[0].content.elem);
 
   if(post_keyword){
-    // console.log(post_keyword);
-    // console.log(contents);
+    console.log(post_keyword);
+    console.log(contents);
+    //리스트 추가 작업 중
     Keyword.create({
       keyword: post_keyword,
     })
@@ -26,6 +27,13 @@ router.post('/', function(req, res, next){
           title: contents[i].title,
           latitude: contents[i].latitude,
           longtitude: contents[i].longtitude,
+
+          //리스트 정보
+
+          //개수
+          //내용 1
+          //...f
+          //~내용 5
         }).
         then(() =>{
           console.log("content 통과");
