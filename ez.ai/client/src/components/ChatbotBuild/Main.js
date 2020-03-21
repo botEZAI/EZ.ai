@@ -23,8 +23,7 @@ const Main = ({
   setVirtualKeyboard,
   index,
   now,
-  setNow,
-  setKeywordCompleted
+  setNow
 }) => {
   const currentInput =
     now !== -1 && keywordObject[index] && keywordObject[index].contents[now];
@@ -54,7 +53,7 @@ const Main = ({
     );
   };
   //
-  const isClickedBuilderMain = () => {
+  const ClickedBuilderMain = () => {
     setVirtualKeyboard(false);
   };
   //삭제
@@ -71,7 +70,6 @@ const Main = ({
         );
       })
     );
-    setKeywordCompleted(false);
     console.log("now=", now);
   };
   useEffect(() => {
@@ -95,7 +93,7 @@ const Main = ({
       <div
         className="main-contents"
         ref={contentRef}
-        onClick={isClickedBuilderMain}
+        onClick={ClickedBuilderMain}
       >
         {keywordObject[index] && (
           <div className="main-keyword-title">
