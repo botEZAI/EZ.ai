@@ -8,9 +8,13 @@ const ToolKeyword = ({
   setKeywordList,
   onClickKeyword,
   keywordObject,
-  setKeywordObject
+  setKeywordObject,
+  index,
 }) => {
   const [value, setValue] = useState("");
+  const [disableInput, setDisableInput] = useState(true);  // 키워드 속성내 키워드 수정 가능 여부
+
+
   const onSubmit = e => {
     e.preventDefault();
     keyword !== "" && setKeywordList(keywordList => [...keywordList, keyword]);
@@ -27,12 +31,34 @@ const ToolKeyword = ({
       : alert("키워드를 입력하세요");
     keyword !== "" && setValue("");
     keyword !== "" && setKeyword("");
+
   };
 
   const onChangeInput = e => {
     setValue(e.target.value);
     setKeyword(e.target.value);
   };
+
+  const modifyInput = e => {
+    console.log(e.target.value,index, "ㄴ이이이")
+    setKeywordObject(keywordObject.map(i => i.id === keywordObject[index].id
+        ? ({ ...i, keyword: e.target.value})
+        : i ))
+    console.log(keywordObject, "바뀐오브젝트")
+    console.log(index)
+  }
+
+
+  const updateKeyword = e => {
+    e.preventDefault();
+    setDisableInput(!disableInput)
+  }
+
+  const deleteKeyword = e => {
+    e.preventDefault();
+    setKeywordObject(keywordObject.filter(i => i.id !== keywordObject[index].id));
+  };
+
 
   return (
     <>
@@ -55,11 +81,18 @@ const ToolKeyword = ({
           <h4>키워드 속성</h4>
           <form>
             <div className="modify-delete">
+              선택한 키워드명 :
               <input
+                className={disableInput ? "modify-input-disable" : "modify-input-enable"}
                 placeholder="선택한 키워드명"
+                value={ keywordObject[index] !== undefined ? keywordObject[index].keyword : ""}
+                onChange={modifyInput}
+                readOnly={disableInput}
                 />
-                <button type="submit">수정</button>
-                <button type="submit">삭제</button>
+                <div className="modify-btns">
+                  <button type="submit" onClick={updateKeyword}>수정</button>
+                  <button type="submit" onClick={deleteKeyword}>삭제</button>
+                </div>
             </div>
             <div className="modify-category">
               <select name="keyword-category">
@@ -83,7 +116,8 @@ const ToolKeyword = ({
                     <div
                         key={index}
                         label={keyword.keyword}
-                        onClick={onClickKeyword(keyword.keyword)}
+                        onClick={
+                          onClickKeyword(keyword.keyword)}
                         className="tool-keyword"
                     >
                       {keyword.keyword}

@@ -71,6 +71,25 @@
     border-bottom : 1px solid #bbb;
 }
 
+.modify-keyword .modify-btns {
+    margin : 10px 0;
+}
+
+.modify-keyword .modify-input-disable {
+     background-color: #eee;
+    color : #999;
+ }
+
+.modify-keyword .modify-input-disable:focus {
+    outline-color: #fff;
+}
+
+.modify-keyword .modify-input-enable {
+    background-color: #fff;
+    cursor : pointer;
+}
+
+
 .tool-contents form > div {
     display: inline-block;
     width : 100%;
@@ -123,7 +142,8 @@
 
 /* 키워드 관리 창 css */
 .keyword-status {
-    height: calc(75vh - 342px);
+    height: calc(75vh - 403px);
+    min-height: 400px;
     padding: 10px 0;
     background-color: #fff;
     border : 0.5px solid #bbb;

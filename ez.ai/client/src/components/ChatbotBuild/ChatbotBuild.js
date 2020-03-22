@@ -158,6 +158,8 @@ const ChatbotBuild = () => {
                   keywordObject={keywordObject}
                   onClickKeyword={onClickKeyword}
                   setKeywordObject={setKeywordObject}
+                  index = {index}
+
                 />
               )}
             </div>
