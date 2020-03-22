@@ -68,7 +68,7 @@ const Main = ({
           draft[index].contents.findIndex(content => content.id === id),
           1
         );
-        if(isList === 'list'){
+        if (isList === "list") {
           draft[index].completed = false;
         }
       })
@@ -149,9 +149,7 @@ const Main = ({
                       <div
                         className="main-image-preview"
                         style={{ backgroundImage: `url(${v.content})` }}
-                      >
-                        미리보기
-                      </div>
+                      ></div>
                     ) : (
                       <div className="image-preview-default">이미지 없음</div>
                     )}
@@ -326,7 +324,7 @@ const Main = ({
                   <div
                     className="tool-delete delete-listbox "
                     onClick={() => {
-                      onDelete(v.id, 'list');
+                      onDelete(v.id, "list");
                     }}
                   >
                     <i className="fas fa-times"></i>
@@ -341,11 +339,11 @@ const Main = ({
           저장
         </button>
       </div>
-      <VirtualKeyboard 
+      <VirtualKeyboard
         clickedMainInput={clickedMainInput}
         currentInput={currentInput}
         index={index}
-        keywordObject={keywordObject} 
+        keywordObject={keywordObject}
         now={now}
         removeListElement={removeListElement}
         virtualKeyboard={virtualKeyboard}
