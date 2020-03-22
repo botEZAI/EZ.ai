@@ -10,15 +10,17 @@ const VideoStatus = ({ setKeywordObject, keywordObject, now, index }) => {
   const onChangeVideo = e => {
     if (e.target.value === "") return;
     if (e.target.files[0].type.match(/video/g)) {
-      setKeywordObject(
-        produce(keywordObject, draft => {
-          draft[index].contents[now].content = e.target.files[0].name;
-        })
-      );
       const videoFormData = new FormData();
       videoFormData.append("video", e.target.files[0]);
 
-      axios.post("/api/video", videoFormData);
+      axios.post("/api/video", videoFormData).then(res => {
+        console.log(res);
+        setKeywordObject(
+          produce(keywordObject, draft => {
+            draft[index].contents[now].content = res.data.filename;
+          })
+        );
+      });
     } else return alert("비디오 파일이 아닙니다.");
   };
   return (
@@ -30,7 +32,9 @@ const VideoStatus = ({ setKeywordObject, keywordObject, now, index }) => {
               className="preview-screen upload-preview-screen cursor"
               onClick={onClickUploadVideo}
             >
-              <p>로컬에서 동영상 불러오기</p>
+              {keywordObject[index].contents[now].content || (
+                <p>로컬에서 동영상 불러오기</p>
+              )}
             </div>
             <input ref={videoRef} type="file" hidden onChange={onChangeVideo} />
           </div>

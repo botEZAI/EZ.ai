@@ -10,15 +10,17 @@ const AudioStatus = ({ setKeywordObject, keywordObject, now, index }) => {
   const onChangeAudio = e => {
     if (e.target.value === "") return;
     if (e.target.files[0].type.match(/audio/g)) {
-      setKeywordObject(
-        produce(keywordObject, draft => {
-          draft[index].contents[now].content = e.target.files[0].name;
-        })
-      );
       const audioFormData = new FormData();
       audioFormData.append("audio", e.target.files[0]);
 
-      axios.post("/api/audio", audioFormData);
+      axios.post("/api/audio", audioFormData).then(res => {
+        console.log(res);
+        setKeywordObject(
+          produce(keywordObject, draft => {
+            draft[index].contents[now].content = res.data.filename;
+          })
+        );
+      });
     } else return alert("오디오 파일이 아닙니다.");
   };
   return (
@@ -30,7 +32,9 @@ const AudioStatus = ({ setKeywordObject, keywordObject, now, index }) => {
               className="preview-screen upload-preview-screen cursor"
               onClick={onClickUploadAudio}
             >
-              <p>로컬에서 오디오 불러오기</p>
+              {keywordObject[index].contents[now].content || (
+                <p>로컬에서 오디오 불러오기</p>
+              )}
             </div>
             <input ref={audioRef} type="file" hidden onChange={onChangeAudio} />
           </div>

@@ -200,10 +200,11 @@ const Main = ({
                     <i className="fas fa-play fa-lg main-file-icon"></i>
                     <div className="main-file-content">
                       <div className="main-file-name" data-filetype="">
-                        (fileName{v.content})
+                        {v.content}
                       </div>
                       <div className="main-file-size" data-filetype="">
-                        00:00, 00.00 MB{" "}
+                        {/* 길이, 용량을 표시하려면 데이터를 확장해야함.현재는 파일 이름만 저장 */}
+                        {/* 00:00, 00.00 MB{" "} */}
                       </div>
                     </div>
                   </div>
@@ -252,10 +253,10 @@ const Main = ({
                     <i className="fas fa-file fa-lg main-file-icon"></i>
                     <div className="main-file-content">
                       <div className="main-file-name" data-filetype="">
-                        (fileName{v.content})
+                        {v.content}
                       </div>
                       <div className="main-file-size" data-filetype="">
-                        00.00 MB
+                        {/* 00.00 MB */}
                       </div>
                     </div>
                   </div>
