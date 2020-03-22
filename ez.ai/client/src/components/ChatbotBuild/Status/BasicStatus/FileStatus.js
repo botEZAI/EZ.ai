@@ -10,15 +10,17 @@ const FileStatus = ({ setKeywordObject, keywordObject, now, index }) => {
   const onChangeFile = e => {
     if (e.target.value === "") return;
 
-    setKeywordObject(
-      produce(keywordObject, draft => {
-        draft[index].contents[now].content = e.target.files[0].name;
-      })
-    );
     const fileFormData = new FormData();
     fileFormData.append("file", e.target.files[0]);
 
-    axios.post("/api/file", fileFormData);
+    axios.post("/api/file", fileFormData).then(res => {
+      console.log(res);
+      setKeywordObject(
+        produce(keywordObject, draft => {
+          draft[index].contents[now].content = res.data.filename;
+        })
+      );
+    });
   };
   return (
     <>
@@ -29,7 +31,9 @@ const FileStatus = ({ setKeywordObject, keywordObject, now, index }) => {
               className="preview-screen upload-preview-screen cursor"
               onClick={onClickUploadFile}
             >
-              <p>로컬에서 파일 불러오기</p>
+              {keywordObject[index].contents[now].content || (
+                <p>로컬에서 파일 불러오기</p>
+              )}
             </div>
             <input ref={fileRef} type="file" hidden onChange={onChangeFile} />
           </div>
