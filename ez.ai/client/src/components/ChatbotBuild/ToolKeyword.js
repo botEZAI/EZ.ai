@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import produce from "immer";
 
 const ToolKeyword = ({
+  setMainKeyword,
   keyword,
   keywordList,
   setKeyword,
@@ -38,17 +39,17 @@ const ToolKeyword = ({
     setValue(e.target.value);
     setKeyword(e.target.value);
   };
-
+  
+  // 키워드 속성 - 수정에서 키워드명 변경시
   const modifyInput = e => {
-    console.log(e.target.value,index, "ㄴ이이이")
     setKeywordObject(keywordObject.map(i => i.id === keywordObject[index].id
         ? ({ ...i, keyword: e.target.value})
         : i ))
-    console.log(keywordObject, "바뀐오브젝트")
-    console.log(index)
+    setMainKeyword(e.target.value);
   }
 
 
+  // 수정 버튼 누를때
   const updateKeyword = e => {
     e.preventDefault();
     setDisableInput(!disableInput)
@@ -90,8 +91,8 @@ const ToolKeyword = ({
                 readOnly={disableInput}
                 />
                 <div className="modify-btns">
-                  <button type="submit" onClick={updateKeyword}>수정</button>
-                  <button type="submit" onClick={deleteKeyword}>삭제</button>
+                  <button className={disableInput ? "modify-btn" : "modify-btn-active"} type="submit" onClick={updateKeyword}>{disableInput ? "수정" : "수정완료"}</button>
+                  <button className="delete-btn" type="submit" onClick={deleteKeyword}>삭제</button>
                 </div>
             </div>
             <div className="modify-category">

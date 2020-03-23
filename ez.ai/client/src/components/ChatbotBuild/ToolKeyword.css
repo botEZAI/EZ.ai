@@ -86,14 +86,37 @@
 
 .modify-keyword .modify-input-enable {
     background-color: #fff;
+    border : 1px solid #00b8b4;
     cursor : pointer;
 }
+
+/* 수정, 삭제 버튼 css */
+.modify-btns .modify-btn:hover {
+    background-color : #00b8b4;
+}
+
+.modify-btns .modify-btn-active {
+    background-color : #00b8b4;
+    color : #fff;
+}
+
+.modify-btns .delete-btn:hover {
+    background-color: darkred;
+}
+
+
+
+
 
 
 .tool-contents form > div {
     display: inline-block;
     width : 100%;
 }
+
+
+
+
 
 
 /* 키워드 속성 창 내 셀렉트 css */

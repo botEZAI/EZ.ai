@@ -47,9 +47,10 @@ const ChatbotBuild = () => {
   // 키워드 클릭했을시
   const onClickKeyword = useCallback(
     keyword => () => {
+      console.log(keyword,"keyword!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
       setNow(-1);
       setMainKeyword(keyword);
-      setClickedMainInput("");
+      //setClickedMainInput(""); 키워드 수정 기능때문에 일반 비활성화했는데 오류 있으면 말해주세요
       setFirstEntry(true); // 키워드 클릭 시, 스크롤 초기화 (맨 위로 가서 keyword-title 보이게 함)
       setVirtualKeyboard(false); // 키워드 클릭 시, Main의 '리스트' 하단 바 초기화(하단 바 안 보임)
     },
@@ -151,6 +152,7 @@ const ChatbotBuild = () => {
               )}
               {activeTab === "keyword" && (
                 <ToolKeyword
+                  setMainKeyword={setMainKeyword}
                   keyword={keyword}
                   keywordList={keywordList}
                   setKeyword={setKeyword}
