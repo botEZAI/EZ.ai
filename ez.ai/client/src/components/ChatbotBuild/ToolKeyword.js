@@ -42,10 +42,18 @@ const ToolKeyword = ({
   
   // 키워드 속성 - 수정에서 키워드명 변경시
   const modifyInput = e => {
-    setKeywordObject(keywordObject.map(i => i.id === keywordObject[index].id
-        ? ({ ...i, keyword: e.target.value})
-        : i ))
-    setMainKeyword(e.target.value);
+    if (index < 0) {
+      alert('선택한 키워드가 없습니다!')
+    }
+    else if (index == 0) {
+      alert('Welcome 키워드는 수정할 수 없습니다!')
+    } else {
+      setKeywordObject(keywordObject.map(i => i.id === keywordObject[index].id
+          ? ({ ...i, keyword: e.target.value})
+          : i ))
+      setMainKeyword(e.target.value);
+    }
+
   }
 
 
@@ -57,7 +65,14 @@ const ToolKeyword = ({
 
   const deleteKeyword = e => {
     e.preventDefault();
-    setKeywordObject(keywordObject.filter(i => i.id !== keywordObject[index].id));
+    if (index < 0) {
+      alert('선택한 키워드가 없습니다!')
+    }
+    else if (index == 0) {
+      alert('Welcome 키워드는 삭제할 수 없습니다!')
+    } else {
+      setKeywordObject(keywordObject.filter(i => i.id !== keywordObject[index].id));
+    }
   };
 
 
