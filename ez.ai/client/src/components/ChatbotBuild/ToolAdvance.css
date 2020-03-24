@@ -1,16 +1,15 @@
 
-
+.status-list {
+    width : 90%;
+}
 .status-list table {
     margin : 0 auto;
-    width : 90%;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap : wrap;
-
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
 }
+
 .status-list textarea {
     margin : 0 auto;
-    width : 89%;
     height : 100px;
     min-width : 465px;
     outline-color: #00b8b4;
@@ -21,8 +20,29 @@
     justify-content: space-around;
 }
 
+/* 키보드 입력 개수 css */
+.status-list .list-count {
+    display: flex;
+}
+
+.list-count .list-count-num {
+    width : 20px;
+    height: 20px;
+    background-color : #eee;
+    color : #999;
+    font-size : 13px;
+    margin : 3px;
+    border-radius: 10px;
+    cursor : pointer;
+}
+
+.list-count .list-count-num:hover {
+    background-color : #00b8b4;
+    color : #fff;
+}
+
+
 .status-list .status-list-content {
-    width : 49%;
     min-width: 230px;
     margin : 2px;
     padding : 2px;
@@ -30,7 +50,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
 
+.status-list .status-list-content:nth-child(2n+1):last-child  {
+    grid-column: span 2;
 }
 
 .status-list-content .list-keyword-btn {
