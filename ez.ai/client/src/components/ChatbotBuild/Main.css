@@ -213,6 +213,8 @@
   transition: .5s ease;
   background-color: #bebebe;
   min-height:45px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 }
 .list-elem-default{
   display:inline-flex;
@@ -228,7 +230,6 @@
 }
 .list-elem-wrapper{
   display:inline-flex;
-  width : 40%;
   height: 36px;
   padding: 5px 5px 5px 10px;
   margin : 5px;
@@ -237,6 +238,12 @@
   border-radius: 5px;
   outline-color: #00b8b4;
 }
+
+.list-elem-wrapper:nth-child(2n+1):last-child  {
+  grid-column: span 2;
+}
+
+
 .list-elem{
   overflow:hidden;
   text-overflow: ellipsis;
