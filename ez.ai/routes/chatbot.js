@@ -19,7 +19,7 @@ router.post('/', function(req, res, next){
   console.log(contents[0].listContent);
   if(post_keyword){
     // console.log(post_keyword);
-    // console.log(contents);
+    console.log(contents);
     //리스트 추가 작업 중
     Keyword.create({
       keyword: post_keyword,
@@ -41,6 +41,9 @@ router.post('/', function(req, res, next){
 
           //리스트 정보
           question: contents[i].listContent.question,
+
+          //리스트 개수 
+          contentLen: contents[i].listContent.contentLen,
           //내용 1
           elem1: contents[i].listContent.elem[0],
           elem2: contents[i].listContent.elem[1],
