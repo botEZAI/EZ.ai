@@ -26,7 +26,12 @@ const KeyboardStatus = ({
 
   const changeListLength = (i) => {
     setCurListCount(listCount[i-1])
-    keywordObject[index].contents[now].listContent.contentLen = i;
+    setKeywordObject(
+        produce(keywordObject, draft => {
+          draft[index].contents[now].listContent.keywordLen =
+              i;
+        })
+    );
   }
 
   return (
