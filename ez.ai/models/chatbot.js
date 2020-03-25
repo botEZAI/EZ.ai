@@ -24,11 +24,11 @@ module.exports = (sequelize, DataTypes) => (
         type: DataTypes.TEXT,
         allowNull: true,
       },
-      // 숫자 추가 
-      // count:{
-      //   type: DataTypes.TEXT,
-      //   allowNull: true,
-      // },
+      //리스트 개수를 나타냄 
+      contentLen:{
+        type: DataTypes.INTEGER,
+        allowNull: true,
+      },
       question:{
         type: DataTypes.TEXT,
         allowNull: true,
