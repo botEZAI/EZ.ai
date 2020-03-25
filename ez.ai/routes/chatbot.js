@@ -45,12 +45,12 @@ router.post('/', function(req, res, next){
           //리스트 개수 
           contentLen: contents[i].listContent.contentLen,
           //내용 1
-          elem1: contents[i].listContent.elem[0],
-          elem2: contents[i].listContent.elem[1],
-          elem3: contents[i].listContent.elem[2],
-          elem4: contents[i].listContent.elem[3],
-          elem5: contents[i].listContent.elem[4],
-          elem6: contents[i].listContent.elem[5],
+          elem1: contents[i].listContent.elem[1],
+          elem2: contents[i].listContent.elem[2],
+          elem3: contents[i].listContent.elem[3],
+          elem4: contents[i].listContent.elem[4],
+          elem5: contents[i].listContent.elem[5],
+          elem6: contents[i].listContent.elem[6],
           //~내용 5
         }).
         then(() =>{
