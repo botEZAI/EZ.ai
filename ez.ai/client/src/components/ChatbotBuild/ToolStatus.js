@@ -22,7 +22,10 @@ const ToolStatus = ({
   setClickedMainInput,
   index,
   keywordPopup,
-  setKeywordPopup
+  setKeywordPopup,
+  listCount,
+  curListCount,
+  setCurListCount
 }) => {
   const clickedIndex =
     keywordObject[index] &&
@@ -152,6 +155,9 @@ const ToolStatus = ({
               index={index}
               keywordPopup={keywordPopup}
               setKeywordPopup={setKeywordPopup}
+              listCount={listCount}
+              curListCount={curListCount}
+              setCurListCount={setCurListCount}
             />
           ) : currentInput.type === "sticker" ||
             clickedMainInput.type === "sticker" ? (

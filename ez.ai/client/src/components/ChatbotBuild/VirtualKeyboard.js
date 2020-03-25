@@ -7,7 +7,8 @@ const VirtualKeyboard = ({
   removeListElement,
   clickedMainInput,
   currentInput,
-  virtualKeyboard
+  virtualKeyboard,
+  curListCount
 }) => {
   return (
     <>
@@ -19,7 +20,7 @@ const VirtualKeyboard = ({
           clickedMainInput.type === "list" ? (
             <>
               <div className="virtual-keyboard">
-                {keywordObject[index].contents[now].listContent.elem[0] && (
+                {/* {keywordObject[index].contents[now].listContent.elem[0] && (
                   <div className="list-elem-wrapper">
                     <span className="list-elem">
                       {keywordObject[index].contents[now].listContent
@@ -114,8 +115,24 @@ const VirtualKeyboard = ({
                       x
                     </span>
                   </div>
-                )}
-                {!keywordObject[index].contents[now].listContent.elem[0] &&
+                )} */}
+                {curListCount.map((i) => (
+                    <div className="list-elem-wrapper">
+                      <span className="list-elem">
+                        {keywordObject[index].contents[now].listContent
+                          .keywordLink[i] || ""}
+                      </span>
+                      <span
+                        className="clear-button"
+                        onClick={() => {
+                          removeListElement(i);
+                        }}
+                      >
+                        x
+                      </span>
+                    </div>
+                ))}
+                {/* {!keywordObject[index].contents[now].listContent.elem[0] &&
                   !keywordObject[index].contents[now].listContent.elem[1] &&
                   !keywordObject[index].contents[now].listContent.elem[2] &&
                   !keywordObject[index].contents[now].listContent.elem[3] &&
@@ -123,7 +140,7 @@ const VirtualKeyboard = ({
                   !keywordObject[index].contents[now].listContent
                     .elem[5] && (
                     <div className="list-elem-default"> KEYWORD </div>
-                )}
+                )} */}
               </div>
             </>
           ) : null)}
