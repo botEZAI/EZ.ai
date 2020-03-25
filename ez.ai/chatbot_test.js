@@ -26,7 +26,7 @@ const bot = new TelegramBot(token, {polling: true});
 
 //indexOf 문자열 내에서 특정한 문자열의 index 값을 리턴한다.
 bot.on('message', (msg) => {
-    console.log(msg.text)
+    //console.log(msg.text)
     var idnumber = 0; 
 
     //키워드 먼저 탐색
@@ -34,7 +34,7 @@ bot.on('message', (msg) => {
         where: {keyword: msg.text},
     })
     .then((keywords)=>{
-        console.log(keywords);
+       // console.log(keywords);
         Chatbot.findAll({
             include:{
             model: Keyword,
@@ -59,12 +59,42 @@ bot.on('message', (msg) => {
                     }
                     else if(chatbots[i].type=="list"){
                         console.log("리스트  타입 통과");
-                        bot.sendMessage(msg.chat.id, chatbots[i].question, {
-                            "reply_markup": {
-                                "keyboard": [[chatbots[i].elem1, chatbots[i].elem2],   [chatbots[i].elem3, chatbots[i].elem4], [chatbots[i].elem5, chatbots[i].elem6]]
-                            }
+                        if(chatbots[i].contentLen == 1 ){ //리스트 개수 1개
+                            bot.sendMessage(msg.chat.id, chatbots[i].question, {
+                                "reply_markup": {
+                                    "keyboard": [[chatbots[i].elem1]]}
                             });
-                        
+                        }
+                        else if(chatbots[i].contentLen == 2){ //리스트 개수 2개
+                            bot.sendMessage(msg.chat.id, chatbots[i].question, {
+                                "reply_markup": {
+                                    "keyboard": [[chatbots[i].elem1, chatbots[i].elem2]]}
+                            });
+                        }    
+                        else if(chatbots[i].contentLen == 3){ //리스트 개수 3개
+                            bot.sendMessage(msg.chat.id, chatbots[i].question, {
+                                "reply_markup": {
+                                    "keyboard": [[chatbots[i].elem1, chatbots[i].elem2], [chatbots[i].elem3]]}
+                            });
+                        } 
+                        else if(chatbots[i].contentLen == 4){ //리스트 개수 4개
+                            bot.sendMessage(msg.chat.id, chatbots[i].question, {
+                                "reply_markup": {
+                                    "keyboard": [[chatbots[i].elem1, chatbots[i].elem2], [chatbots[i].elem3, chatbots[i].elem4]]}
+                            });
+                        }  
+                        else if(chatbots[i].contentLen == 5){ //리스트 개수 5개
+                            bot.sendMessage(msg.chat.id, chatbots[i].question, {
+                                "reply_markup": {
+                                    "keyboard": [[chatbots[i].elem1, chatbots[i].elem2], [chatbots[i].elem3, chatbots[i].elem4 ], [chatbots[i].elem5]]}
+                            });
+                        }      
+                        else if(chatbots[i].contentLen == 6){ //리스트 개수 6개
+                        bot.sendMessage(msg.chat.id, chatbots[i].question, {
+                                "reply_markup": {
+                                    "keyboard": [[chatbots[i].elem1, chatbots[i].elem2], [chatbots[i].elem3, chatbots[i].elem4 ], [chatbots[i].elem5,chatbots[i].elem6 ]]}
+                            });
+                        }    
                     }
                 }
             })
