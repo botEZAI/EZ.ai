@@ -17,13 +17,17 @@ const KeyboardStatus = ({
 
   const listCount = [[1], [1,2], [1,2,3], [1,2,3,4], [1,2,3,4,5], [1,2,3,4,5,6]];  // 키보드 요소의 키워드 입력 총 개수
 
-
   const [curListCount, setCurListCount] = useState(listCount[1]);
 
   const toggleKeywordPopUp = (i, e) => {
     setPopNum(i);
     setShowPopup(!showPopup);
   };
+
+  const changeListLength = (i) => {
+    setCurListCount(listCount[i-1])
+    keywordObject[index].contents[now].listContent.contentLen = i;
+  }
 
   return (
     <>
@@ -42,7 +46,7 @@ const KeyboardStatus = ({
         ></textarea>
         <div className = "list-count">
           {listCount[5].map((i) => (
-              <div className = "list-count-num" onClick={() => {setCurListCount(listCount[i-1])}}>{i}</div>
+              <div className = "list-count-num" onClick={() => changeListLength(i)}>{i}</div>
               ))
           }
 

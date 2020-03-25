@@ -47,7 +47,6 @@ const ChatbotBuild = () => {
   // 키워드 클릭했을시
   const onClickKeyword = useCallback(
     keyword => () => {
-      console.log(keyword,"keyword!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
       setNow(-1);
       setMainKeyword(keyword);
       //setClickedMainInput(""); 키워드 수정 기능때문에 일반 비활성화했는데 오류 있으면 말해주세요

@@ -27,7 +27,8 @@ const ToolAdvance = ({
                 listContent: {
                   question: "",
                   elem: ["", "", "", "", "", ""],
-                  keywordLink: ["", "", "", "", "", ""]
+                  keywordLink: ["", "", "", "", "", ""],
+                  contentLen: 2,
                 }
                 });
               }else {
