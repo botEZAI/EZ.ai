@@ -43,7 +43,8 @@ const ImageStatus = ({
         console.log(res);
         setKeywordObject(
           produce(keywordObject, draft => {
-            draft[index].contents[now].content = res.data;
+            draft[index].contents[now].content = res.data.filename;
+            draft[index].contents[now].filepath = res.data.path;
           })
         );
       });

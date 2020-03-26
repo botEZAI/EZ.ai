@@ -26,7 +26,7 @@ router.post("/", upload.single("image"), (req, res) => {
   // 'image'가 일치해야함 리액트랑
   //리액트에 주소 보내는 방식은 이야기 해야함 !
   console.log("이미지 전송 성공");
-  res.json(req.file.filename);
+  res.json(req.file);
 });
 
 module.exports = router;

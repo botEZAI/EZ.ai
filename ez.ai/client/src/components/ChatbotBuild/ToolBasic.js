@@ -8,16 +8,15 @@ const ToolBasic = ({
   setClickedMainInput,
   setKeywordObject,
   setNow,
-  length,
+  length
 }) => {
   const onClickTool = tool => {
     console.log("onClickTool");
     mainKeyword
       ? setKeywordObject(
           produce(keywordObject, draft => {
-            
             const object = draft.find(t => t.keyword === mainKeyword);
-            if(!object.completed){
+            if (!object.completed) {
               object.contents.length === 0
                 ? tool === "location"
                   ? object.contents.push({
@@ -30,7 +29,8 @@ const ToolBasic = ({
                   : object.contents.push({
                       type: tool,
                       id: 1,
-                      content: ""
+                      content: "",
+                      filepath: ""
                     })
                 : tool === "location"
                 ? object.contents.push({
@@ -43,11 +43,14 @@ const ToolBasic = ({
                 : object.contents.push({
                     type: tool,
                     id: object.contents[object.contents.length - 1].id + 1,
-                    content: ""
+                    content: "",
+                    filepath: ""
                   });
               setAddFlag(true);
-            }else{
-              alert('[버튼형 리스트] 생성 후, 요소 추가가 안됩니다.\n요소 추가를 원하시면, [버튼형 리스트]를 삭제하세요.');
+            } else {
+              alert(
+                "[버튼형 리스트] 생성 후, 요소 추가가 안됩니다.\n요소 추가를 원하시면, [버튼형 리스트]를 삭제하세요."
+              );
             }
           })
         )
