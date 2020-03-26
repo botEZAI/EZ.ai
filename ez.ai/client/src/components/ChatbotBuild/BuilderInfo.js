@@ -18,6 +18,17 @@ const BuilderInfo = () => {
                     <p>플랫폼 정보</p>
                 </div>
             </div>
+            <div className="info__column">
+              <button>
+                저장
+              </button>
+              <button>
+                배포
+              </button>
+              <div className="builder_undo">
+                배포 전 되돌아가기
+              </div>
+            </div>
         </>
     )
 }
