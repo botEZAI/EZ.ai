@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => (
         type: DataTypes.TEXT,
         allowNull: true,
       },
-      kategorie:{
+      category:{
         type: DataTypes.TEXT,
         allowNull: true,
       },
