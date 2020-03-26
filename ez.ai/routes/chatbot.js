@@ -14,7 +14,6 @@ router.post('/', function(req, res, next){
   // listContent: { question: '1', elem: [Array], keywordLink: [Array] }
   // }
 
-  //리스트 갯수 받는 거 추가 중
 
   console.log(contents[0].listContent);
   if(post_keyword){
@@ -40,6 +39,7 @@ router.post('/', function(req, res, next){
           // kategorie: contents[i].kategorie,
 
           //리스트 정보
+
           question: contents[i].listContent.question,
 
           //리스트 개수 
