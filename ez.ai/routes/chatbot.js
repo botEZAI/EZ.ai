@@ -36,15 +36,15 @@ router.post('/', function(req, res, next){
           latitude: contents[i].latitude,
           longtitude: contents[i].longtitude,
           // 카테고리 (추후 추가 예정)
-          // kategorie: contents[i].kategorie,
+          // category: contents[i].category,
 
           //리스트 정보
 
           question: contents[i].listContent.question,
 
-          //리스트 개수 
+          // //리스트 개수 
           contentLen: contents[i].listContent.contentLen,
-          //내용 1
+          // //내용 1
           elem1: contents[i].listContent.elem[1],
           elem2: contents[i].listContent.elem[2],
           elem3: contents[i].listContent.elem[3],
