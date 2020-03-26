@@ -24,13 +24,25 @@ const ToolBasic = ({
                       id: 1,
                       title: "",
                       latitude: "",
-                      longtitude: ""
+                      longtitude: "",
+                      listContent: {
+                        question: "",
+                        elem: ["", "", "", "", "", ""],
+                        keywordLink: ["", "", "", "", "", ""],
+                        contentLen: 2
+                      }
                     })
                   : object.contents.push({
                       type: tool,
                       id: 1,
                       content: "",
-                      filepath: ""
+                      filepath: "",
+                      listContent: {
+                        question: "",
+                        elem: ["", "", "", "", "", ""],
+                        keywordLink: ["", "", "", "", "", ""],
+                        contentLen: 2
+                      }
                     })
                 : tool === "location"
                 ? object.contents.push({
@@ -38,13 +50,25 @@ const ToolBasic = ({
                     id: object.contents[object.contents.length - 1].id + 1,
                     title: "",
                     latitude: "",
-                    longtitude: ""
+                    longtitude: "",
+                    listContent: {
+                      question: "",
+                      elem: ["", "", "", "", "", ""],
+                      keywordLink: ["", "", "", "", "", ""],
+                      contentLen: 2
+                    }
                   })
                 : object.contents.push({
                     type: tool,
                     id: object.contents[object.contents.length - 1].id + 1,
                     content: "",
-                    filepath: ""
+                    filepath: "",
+                    listContent: {
+                      question: "",
+                      elem: ["", "", "", "", "", ""],
+                      keywordLink: ["", "", "", "", "", ""],
+                      contentLen: 2
+                    }
                   });
               setAddFlag(true);
             } else {
