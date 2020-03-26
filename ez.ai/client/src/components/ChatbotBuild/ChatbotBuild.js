@@ -25,6 +25,8 @@ const ChatbotBuild = () => {
   const [firstEntry, setFirstEntry] = useState(true); // 키워드 진입 flag
   const [virtualKeyboard, setVirtualKeyboard] = useState(false);
   const [now, setNow] = useState(-1); // 현재 작업중인 status id 번호
+  const listCount = [[1], [1,2], [1,2,3], [1,2,3,4], [1,2,3,4,5], [1,2,3,4,5,6]];  // 키보드 요소의 키워드 입력 총 개수
+  const [curListCount, setCurListCount] = useState(listCount[1]);
   // 키보드(리스트) 요소에서 연동한 키워드 종류
   const initialKP = [
     // list 팝업에서 선택한 변수.
@@ -178,6 +180,9 @@ const ChatbotBuild = () => {
                 setClickedMainInput={setClickedMainInput}
                 keywordPopup={keywordPopup}
                 setKeywordPopup={setKeywordPopup}
+                listCount={listCount}
+                curListCount={curListCount}
+                setCurListCount={setCurListCount}
               />
             )}
           </div>
@@ -200,6 +205,8 @@ const ChatbotBuild = () => {
             now={now}
             index={index}
             setNow={setNow}
+            curListCount={curListCount}
+            setCurListCount={setCurListCount}
           />
         </div>
       </div>

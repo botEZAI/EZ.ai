@@ -23,7 +23,9 @@ const Main = ({
   setVirtualKeyboard,
   index,
   now,
-  setNow
+  setNow,
+  curListCount,
+  setCurListCount
 }) => {
   const currentInput =
     now !== -1 && keywordObject[index] && keywordObject[index].contents[now];
@@ -46,9 +48,11 @@ const Main = ({
   };
   //리스트 요소 삭제
   const removeListElement = id => {
+    setCurListCount(curListCount.filter(num => num !== id));
     setKeywordObject(
       produce(keywordObject, draft => {
-        draft[index].contents[now].listContent.elem[id] = "";
+        draft[index].contents[now].listContent.keywordLink[id] = "";
+        draft[index].contents[now].listContent.elem[id]="";
       })
     );
   };
@@ -348,6 +352,7 @@ const Main = ({
         now={now}
         removeListElement={removeListElement}
         virtualKeyboard={virtualKeyboard}
+        curListCount={curListCount}
       />
     </>
   ); /**retun END */

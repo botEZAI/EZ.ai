@@ -9,15 +9,18 @@ const KeyboardStatus = ({
   now,
   index,
   keywordPopup,
-  setKeywordPopup
+  setKeywordPopup,
+  listCount,
+  curListCount,
+  setCurListCount
 }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [popNum, setPopNum] = useState("-1");
 
 
-  const listCount = [[1], [1,2], [1,2,3], [1,2,3,4], [1,2,3,4,5], [1,2,3,4,5,6]];  // 키보드 요소의 키워드 입력 총 개수
+  // const listCount = [[1], [1,2], [1,2,3], [1,2,3,4], [1,2,3,4,5], [1,2,3,4,5,6]];  // 키보드 요소의 키워드 입력 총 개수
 
-  const [curListCount, setCurListCount] = useState(listCount[1]);
+  // const [curListCount, setCurListCount] = useState(listCount[1]);
 
   const toggleKeywordPopUp = (i, e) => {
     setPopNum(i);
