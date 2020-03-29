@@ -78,6 +78,14 @@ const ToolKeyword = ({
     }
   };
 
+  // 카테고리 select문에서 변경했을때 실행
+  const changeCategory = e => {
+    console.log(index, keywordObject, e.target.value)
+    setKeywordObject(keywordObject.map(i => i.id === keywordObject[index].id
+        ? ({ ...i, category: e.target.value})
+        : i ))
+  }
+
 
   return (
     <>
@@ -114,8 +122,8 @@ const ToolKeyword = ({
                 </div>
             </div>
             <div className="modify-category">
-              <select name="keyword-category">
-                <option value="">--- 키워드 카테고리 선택 ---</option>
+              <select name="keyword-category" onChange={ e => changeCategory(e)} value={keywordObject[index] ? keywordObject[index].category : keywordCategory[0]}>
+                <option value="default" disabled>--- 키워드 카테고리 선택 ---</option>
                 { keywordCategory.map(i =>
                   <option value={i}>{i}</option>
                 )}
@@ -128,25 +136,31 @@ const ToolKeyword = ({
             <h4>키워드 목록</h4>
           </div>
           <div className = "tool-keywords">
-            <div value = "미분류 " className= "keyword-category">
-              <div className= "keyword-category-title">
-                <div>{keywordCategory[0]}</div>
-                <div className="keyword-category-fold">-</div>
-              </div>
-              {keywordObject.map((keyword, index) => {
-                return (
-                    <div
-                        key={index}
-                        label={keyword.keyword}
-                        onClick={
-                          onClickKeyword(keyword.keyword)}
-                        className="tool-keyword"
-                    >
-                      {keyword.keyword}
-                    </div>
-                );
-              })}
-            </div>
+            {keywordCategory.map(i =>
+                <div value = {i} className= "keyword-category">
+                  <div className= "keyword-category-title">
+                    <div>{i}</div>
+                    <div className="keyword-category-fold">-</div>
+                  </div>
+                  {keywordObject.map((keyword, index) => {
+                    return (
+                    keyword.category === i ?
+                        <div
+                            key={index}
+                            label={keyword.keyword}
+                            onClick={
+                              onClickKeyword(keyword.keyword)}
+                            className="tool-keyword"
+                        >
+                          {keyword.keyword}
+                        </div>
+                     : null
+                  );
+
+                  })}
+                </div>
+            )}
+
           </div>
         </div>
       </div>
