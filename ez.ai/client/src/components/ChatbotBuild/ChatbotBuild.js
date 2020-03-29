@@ -16,8 +16,9 @@ const ChatbotBuild = () => {
   const [keyword, setKeyword] = useState("");
   const [keywordList, setKeywordList] = useState(["Welcome"]);
   const [keywordContentList, setKeywordContentList] = useState([]);
+  const [keywordCategory, setKeywordCategory] = useState(["미분류", "카테고리1"])
   const [keywordObject, setKeywordObject] = useState([
-    { keyword: "Welcome", id: 1, contents: [], completed:false}
+    { keyword: "Welcome", id: 1, contents: [], completed:false, category: keywordCategory[0] }
   ]);
   const [mainKeyword, setMainKeyword] = useState(keywordObject[0].keyword);
   const [clickedMainInput, setClickedMainInput] = useState({});
@@ -159,6 +160,8 @@ const ChatbotBuild = () => {
                   setKeyword={setKeyword}
                   setKeywordList={setKeywordList}
                   keywordObject={keywordObject}
+                  keywordCategory={keywordCategory}
+                  setKeywordCategory={setKeywordCategory}
                   onClickKeyword={onClickKeyword}
                   setKeywordObject={setKeywordObject}
                   index = {index}

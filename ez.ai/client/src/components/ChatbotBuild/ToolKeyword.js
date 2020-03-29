@@ -10,6 +10,8 @@ const ToolKeyword = ({
   onClickKeyword,
   keywordObject,
   setKeywordObject,
+  keywordCategory,
+  setKeywordCategory,
   index,
 }) => {
   const [value, setValue] = useState("");
@@ -25,7 +27,8 @@ const ToolKeyword = ({
             draft.push({
               keyword: keyword,
               id: keywordObject[keywordObject.length - 1].id + 1,
-              contents: []
+              contents: [],
+              category: keywordCategory[0]
             });
           })
         )
@@ -113,6 +116,9 @@ const ToolKeyword = ({
             <div className="modify-category">
               <select name="keyword-category">
                 <option value="">--- 키워드 카테고리 선택 ---</option>
+                { keywordCategory.map(i =>
+                  <option value={i}>{i}</option>
+                )}
               </select>
             </div>
           </form>
@@ -124,7 +130,7 @@ const ToolKeyword = ({
           <div className = "tool-keywords">
             <div value = "미분류 " className= "keyword-category">
               <div className= "keyword-category-title">
-                <div>미분류</div>
+                <div>{keywordCategory[0]}</div>
                 <div className="keyword-category-fold">-</div>
               </div>
               {keywordObject.map((keyword, index) => {
