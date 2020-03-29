@@ -16,7 +16,7 @@ const ToolKeyword = ({
 }) => {
   const [value, setValue] = useState("");
   const [disableInput, setDisableInput] = useState(true);  // 키워드 속성내 키워드 수정 가능 여부
-
+  const [category, setCategory] = useState("");
 
   const onSubmit = e => {
     e.preventDefault();
@@ -38,10 +38,21 @@ const ToolKeyword = ({
 
   };
 
-  const onChangeInput = e => {
+  const onChangeKeyword = e => {
     setValue(e.target.value);
     setKeyword(e.target.value);
   };
+
+  const onChangeCategory = e => {
+    setCategory(e.target.value);
+  }
+
+  const onSubmitCategory = e => {
+    e.preventDefault();
+    setKeywordCategory(keywordCategory => [...keywordCategory, category])
+    setCategory("")
+  }
+
   
   // 키워드 속성 - 수정에서 키워드명 변경시
   const modifyInput = e => {
@@ -98,7 +109,7 @@ const ToolKeyword = ({
               <input
                 placeholder="추가할 키워드명을 입력해주세요"
                 value={value}
-                onChange={e => onChangeInput(e)}
+                onChange={e => onChangeKeyword(e)}
               />
               <button type="submit">추가</button>
             </div>
@@ -136,6 +147,27 @@ const ToolKeyword = ({
             <h4>키워드 목록</h4>
           </div>
           <div className = "tool-keywords">
+            <div className= "add-category">
+              <div className="Add-category-title">
+                카테고리 추가
+              </div>
+              <div className="add-category-main">
+                <form onSubmit={onSubmitCategory}>
+                  <div className="add-category-input">
+                    <div>
+                      <input
+                          value={category}
+                          onChange={e => onChangeCategory(e)}
+                          placeholder="추가할 카테고리명을 입력해주세요"
+                      />
+                    </div>
+                    <div>
+                      <button type = "submit" className="add-category-btn" >추가</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
             {keywordCategory.map(i =>
                 <div value = {i} className= "keyword-category">
                   <div className= "keyword-category-title">
