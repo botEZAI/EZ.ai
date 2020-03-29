@@ -14,6 +14,16 @@ var videoRouter = require("./routes/video"); //비디오 라우터
 var audioRouter = require("./routes/audio"); //오디오 라우터
 var fileRouter = require("./routes/file"); //파일 라우터
 
+//수정,삭제 라우터 추가 
+
+//var fileRouterPut = require("./routes/filePut"); //파일 수정 라우터
+// var imageRouterPut = require("./routes/imagePut"); //이미지 라우터
+// var videoRouterPut = require("./routes/videoPut"); //비디오 라우터
+// var audioRouterPut = require("./routes/audioPut"); //오디오 라우터
+// var fileRouterPut = require("./routes/filePut"); //파일 라우터
+
+
+
 //미들웨어 사용
 app.use("/", express.static("objects"));
 app.use(cookieParser());
