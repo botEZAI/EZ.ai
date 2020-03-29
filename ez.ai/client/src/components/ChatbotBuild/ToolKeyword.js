@@ -171,7 +171,10 @@ const ToolKeyword = ({
             {keywordCategory.map(i =>
                 <div value = {i} className= "keyword-category">
                   <div className= "keyword-category-title">
-                    <div>{i}</div>
+                    <div className="keyword-category-title-main">
+                      <div className="keyword-category-name">{i}</div>
+                      <div className="keyword-category-remove">X</div>
+                    </div>
                     <div className="keyword-category-fold">-</div>
                   </div>
                   {keywordObject.map((keyword, index) => {

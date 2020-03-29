@@ -145,6 +145,28 @@
     flex-wrap : wrap;
 }
 
+.keyword-category .keyword-category-title-main {
+    display: flex;
+}
+
+.keyword-category .keyword-category-title-main > div {
+    margin-left : 5px;
+}
+
+.keyword-category-title-main .keyword-category-remove {
+    border-radius: 5px;
+    padding : 0 5px;
+    background-color: #eee;
+    cursor: pointer;
+}
+
+.keyword-category-title-main .keyword-category-remove:hover {
+    background-color: darkred;
+    color : white;
+    transition: .2s all;
+}
+
+
 .keyword-category .keyword-category-title, .add-category{
     width : 95%;
     margin : 5px auto;
@@ -161,6 +183,7 @@
     font-weight: bold;
     cursor: pointer;
 }
+
 
 
 
