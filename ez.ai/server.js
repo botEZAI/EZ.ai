@@ -22,6 +22,13 @@ var fileRouter = require("./routes/file"); //파일 라우터
 // var audioRouterPut = require("./routes/audioPut"); //오디오 라우터
 // var fileRouterPut = require("./routes/filePut"); //파일 라우터
 
+//삭제 라우터 추가 
+
+//var fileRouterDel = require("./routes/fileDel"); //파일 수정 라우터
+// var imageRouterDel = require("./routes/imageDel"); //이미지 라우터
+// var videoRouterDel = require("./routes/videoDel"); //비디오 라우터
+// var audioRouterDel = require("./routes/audioDel"); //오디오 라우터
+// var fileRouterDel = require("./routes/fileDel"); //파일 라우터
 
 
 //미들웨어 사용
