@@ -53,6 +53,21 @@ const ToolKeyword = ({
     setCategory("")
   }
 
+  const deleteCategory = (e, val) => {
+    let found = false
+    keywordObject.map(keyword => {
+      if(keyword.category === val)
+        found = true
+    })
+    if (found) {
+      alert("해당 카테고리에 속해있는 키워드가 아직 존재합니다!");
+    }
+    else {
+      setKeywordCategory(keywordCategory.filter(c => c !== val));
+    }
+
+  }
+
   
   // 키워드 속성 - 수정에서 키워드명 변경시
   const modifyInput = e => {
@@ -173,7 +188,7 @@ const ToolKeyword = ({
                   <div className= "keyword-category-title">
                     <div className="keyword-category-title-main">
                       <div className="keyword-category-name">{i}</div>
-                      <div className="keyword-category-remove">X</div>
+                      <div className="keyword-category-remove" onClick={e => deleteCategory(e, i)}>X</div>
                     </div>
                     <div className="keyword-category-fold">-</div>
                   </div>
