@@ -15,20 +15,20 @@ var audioRouter = require("./routes/audio"); //오디오 라우터
 var fileRouter = require("./routes/file"); //파일 라우터
 
 //수정,삭제 라우터 추가 
-
-//var fileRouterPut = require("./routes/filePut"); //파일 수정 라우터
-// var imageRouterPut = require("./routes/imagePut"); //이미지 라우터
-// var videoRouterPut = require("./routes/videoPut"); //비디오 라우터
-// var audioRouterPut = require("./routes/audioPut"); //오디오 라우터
-// var fileRouterPut = require("./routes/filePut"); //파일 라우터
+// var fileChatbotUpdata = require("./routes/chatbotUpdate")// 챗봇 내용 수정 라우터
+// var fileRouterUpdate = require("./routes/fileUpdate"); //파일 수정 라우터
+// var imageRouterUpdate = require("./routes/imageUpdate"); //이미지 라우터
+// var videoRouterUpdate = require("./routes/videoUpdate"); //비디오 라우터
+// var audioRouterUpdate = require("./routes/audioUpdate"); //오디오 라우터
+// var fileRouterUpdate = require("./routes/fileUpdate"); //파일 라우터
 
 //삭제 라우터 추가 
-
-//var fileRouterDel = require("./routes/fileDel"); //파일 수정 라우터
-// var imageRouterDel = require("./routes/imageDel"); //이미지 라우터
-// var videoRouterDel = require("./routes/videoDel"); //비디오 라우터
-// var audioRouterDel = require("./routes/audioDel"); //오디오 라우터
-// var fileRouterDel = require("./routes/fileDel"); //파일 라우터
+// var fileChatbotDel = require("./routes/chatbotDel")// 챗봇 내용 삭제 라우터
+//var fileRouterDel = require("./routes/fileDel"); //파일 삭제 라우터
+// var imageRouterDel = require("./routes/imageDel"); //이미지 삭제 라우터
+// var videoRouterDel = require("./routes/videoDel"); //비디오 삭제 라우터
+// var audioRouterDel = require("./routes/audioDel"); //오디오 삭제 라우터
+// var fileRouterDel = require("./routes/fileDel"); //파일 삭제 라우터
 
 
 //미들웨어 사용
