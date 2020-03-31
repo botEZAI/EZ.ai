@@ -49,22 +49,35 @@ const ToolKeyword = ({
 
   const onSubmitCategory = e => {
     e.preventDefault();
-    setKeywordCategory(keywordCategory => [...keywordCategory, category])
-    setCategory("")
+    if (keywordCategory.includes(category)){
+      alert("입력하신 ' " + category + " ' 는 이미 존재하는 카테고리입니다.")
+    } else {
+      setKeywordCategory(keywordCategory => [...keywordCategory, category])
+      setCategory("")
+    }
+
   }
 
   const deleteCategory = (e, val) => {
-    let found = false
-    keywordObject.map(keyword => {
-      if(keyword.category === val)
-        found = true
-    })
-    if (found) {
-      alert("해당 카테고리에 속해있는 키워드가 아직 존재합니다!");
+    if (val == "미분류") {
+      alert("기본으로 제공되는 '미분류' 카테고리는 삭제할 수 없습니다.")
+    } else {
+      let found = false
+
+      keywordObject.map(keyword => {
+        if(keyword.category === val)
+          found = true
+      })
+
+      if (found) {
+        alert("해당 카테고리에 속해있는 키워드가 아직 존재합니다!");
+      }
+      else {
+        setKeywordCategory(keywordCategory.filter(c => c !== val));
+      }
     }
-    else {
-      setKeywordCategory(keywordCategory.filter(c => c !== val));
-    }
+
+
 
   }
 
@@ -104,6 +117,13 @@ const ToolKeyword = ({
     }
   };
 
+  // 키워드 목록 카테고리 접기
+  const foldCategory = e => {
+    console.log(e.target);
+  }
+
+
+
   // 카테고리 select문에서 변경했을때 실행
   const changeCategory = e => {
     console.log(index, keywordObject, e.target.value)
@@ -111,6 +131,7 @@ const ToolKeyword = ({
         ? ({ ...i, category: e.target.value})
         : i ))
   }
+
 
 
   return (
@@ -163,51 +184,57 @@ const ToolKeyword = ({
           </div>
           <div className = "tool-keywords">
             <div className= "add-category">
-              <div className="Add-category-title">
-                카테고리 추가
-              </div>
-              <div className="add-category-main">
                 <form onSubmit={onSubmitCategory}>
-                  <div className="add-category-input">
+                  <div className="add-category-main">
                     <div>
-                      <input
-                          value={category}
-                          onChange={e => onChangeCategory(e)}
-                          placeholder="추가할 카테고리명을 입력해주세요"
-                      />
-                    </div>
-                    <div>
-                      <button type = "submit" className="add-category-btn" >추가</button>
+                      <div className="add-category-title">
+                        카테고리 추가 :
+                      </div>
+                      <div className="add-category-input">
+                        <input
+                            value={category}
+                            onChange={e => onChangeCategory(e)}
+                            placeholder="추가할 카테고리명을 입력해주세요"
+                        />
+                        </div>
+                        <div className="add-category-btns">
+                        <button type = "submit" className="add-category-btn" >추가</button>
+                      </div>
                     </div>
                   </div>
                 </form>
-              </div>
             </div>
             {keywordCategory.map(i =>
                 <div value = {i} className= "keyword-category">
                   <div className= "keyword-category-title">
-                    <div className="keyword-category-title-main">
+                    <div className="keyword-category-title-main" onClick={e=>foldCategory(e)}>
+                      <div className="keyword-category-fold"><i className="fas fa-sort-down"></i></div>
                       <div className="keyword-category-name">{i}</div>
-                      <div className="keyword-category-remove" onClick={e => deleteCategory(e, i)}>X</div>
                     </div>
-                    <div className="keyword-category-fold">-</div>
+                    <div className="keyword-category-btns">
+                      <div className="keyword-category-btn keyword-category-modify">수정</div>
+                      <div className="keyword-category-btn keyword-category-remove" onClick={e => deleteCategory(e, i)}>삭제</div>
+                    </div>
                   </div>
-                  {keywordObject.map((keyword, index) => {
-                    return (
-                    keyword.category === i ?
-                        <div
-                            key={index}
-                            label={keyword.keyword}
-                            onClick={
-                              onClickKeyword(keyword.keyword)}
-                            className="tool-keyword"
-                        >
-                          {keyword.keyword}
-                        </div>
-                     : null
-                  );
 
-                  })}
+                  <div className = "keyword-category-contents" >
+                    {keywordObject.map((keyword, index) => {
+                      return (
+                          keyword.category === i ?
+                              <div
+                                  key={index}
+                                  label={keyword.keyword}
+                                  onClick={
+                                    onClickKeyword(keyword.keyword)}
+                                  className="tool-keyword"
+                              >
+                                {keyword.keyword}
+                              </div>
+                              : null
+                      );
+
+                    })}
+                  </div>
                 </div>
             )}
 
