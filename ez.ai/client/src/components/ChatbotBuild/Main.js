@@ -39,11 +39,11 @@ const Main = ({
   //post
   const onClickButton = () => {
     const count = keywordObject.length;
-    axios.post("/api/chatbotbuild", { count }).then(res => console.log(res));
+    // axios.post("/api/chatbotbuild", { count }).then(res => console.log(res));
 
     const nowKeyword = keywordObject[index];
     axios
-      .post("/api/chatbotbuild", { nowKeyword })
+      .post("/api/chatbotbuild", { nowKeyword, keywordObject })
       .then(res => console.log(res));
   };
   //리스트 요소 삭제
@@ -52,7 +52,7 @@ const Main = ({
     setKeywordObject(
       produce(keywordObject, draft => {
         draft[index].contents[now].listContent.keywordLink[id] = "";
-        draft[index].contents[now].listContent.elem[id]="";
+        draft[index].contents[now].listContent.elem[id] = "";
       })
     );
   };
