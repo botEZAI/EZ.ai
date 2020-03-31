@@ -163,51 +163,54 @@ const ToolKeyword = ({
           </div>
           <div className = "tool-keywords">
             <div className= "add-category">
-              <div className="Add-category-title">
-                카테고리 추가
-              </div>
-              <div className="add-category-main">
                 <form onSubmit={onSubmitCategory}>
-                  <div className="add-category-input">
+                  <div className="add-category-main">
                     <div>
-                      <input
-                          value={category}
-                          onChange={e => onChangeCategory(e)}
-                          placeholder="추가할 카테고리명을 입력해주세요"
-                      />
-                    </div>
-                    <div>
-                      <button type = "submit" className="add-category-btn" >추가</button>
+                      <div className="add-category-title">
+                        카테고리 추가 :
+                      </div>
+                      <div className="add-category-input">
+                        <input
+                            value={category}
+                            onChange={e => onChangeCategory(e)}
+                            placeholder="추가할 카테고리명을 입력해주세요"
+                        />
+                        </div>
+                        <div className="add-category-btns">
+                        <button type = "submit" className="add-category-btn" >추가</button>
+                      </div>
                     </div>
                   </div>
                 </form>
-              </div>
             </div>
             {keywordCategory.map(i =>
                 <div value = {i} className= "keyword-category">
                   <div className= "keyword-category-title">
                     <div className="keyword-category-title-main">
+                      <div className="keyword-category-fold"><i className="fas fa-sort-down"></i></div>
                       <div className="keyword-category-name">{i}</div>
-                      <div className="keyword-category-remove" onClick={e => deleteCategory(e, i)}>X</div>
                     </div>
-                    <div className="keyword-category-fold">-</div>
-                  </div>
-                  {keywordObject.map((keyword, index) => {
-                    return (
-                    keyword.category === i ?
-                        <div
-                            key={index}
-                            label={keyword.keyword}
-                            onClick={
-                              onClickKeyword(keyword.keyword)}
-                            className="tool-keyword"
-                        >
-                          {keyword.keyword}
-                        </div>
-                     : null
-                  );
+                    <div className="keyword-category-remove" onClick={e => deleteCategory(e, i)}>카테고리 삭제</div>
 
-                  })}
+                  </div>
+                  <div className = "keyword-category-contents">
+                    {keywordObject.map((keyword, index) => {
+                      return (
+                          keyword.category === i ?
+                              <div
+                                  key={index}
+                                  label={keyword.keyword}
+                                  onClick={
+                                    onClickKeyword(keyword.keyword)}
+                                  className="tool-keyword"
+                              >
+                                {keyword.keyword}
+                              </div>
+                              : null
+                      );
+
+                    })}
+                  </div>
                 </div>
             )}
 

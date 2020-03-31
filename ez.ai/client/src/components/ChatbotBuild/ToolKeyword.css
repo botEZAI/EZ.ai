@@ -142,6 +142,8 @@
 .keyword-category {
     width : 100%;
     display : flex;
+    flex-direction: column;
+    align-items: center;
     flex-wrap : wrap;
 }
 
@@ -149,25 +151,28 @@
     display: flex;
 }
 
-.keyword-category .keyword-category-title-main > div {
-    margin-left : 5px;
+
+.keyword-category-name {
+    margin : 0 10px;
 }
 
-.keyword-category-title-main .keyword-category-remove {
-    border-radius: 5px;
+
+.keyword-category-title .keyword-category-remove {
+    border-radius: 15px;
     padding : 0 5px;
     background-color: #eee;
     cursor: pointer;
+    display: flex;
 }
 
-.keyword-category-title-main .keyword-category-remove:hover {
+.keyword-category-title .keyword-category-remove:hover {
     background-color: darkred;
     color : white;
     transition: .2s all;
 }
 
 
-.keyword-category .keyword-category-title, .add-category{
+.keyword-category .keyword-category-title {
     width : 95%;
     margin : 5px auto;
     padding : 5px 10px;
@@ -180,6 +185,9 @@
 }
 
 .keyword-category-title .keyword-category-fold {
+    display: flex;
+    align-items: center;
+    margin : 0;
     font-weight: bold;
     cursor: pointer;
 }
@@ -210,70 +218,90 @@
 }
 
 /* 키워드 카테고리 추가 css */
-.add-category .add-category-input div {
-    height: 20px;
+.add-category {
+    width : 100%;
 }
 
-.add-category .add-category-input {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.add-category > form {
+    width : inherit;
+    flex-direction: row!important;
+    flex-wrap: wrap;
 }
 
-.add-category-input > div > input {
-    width : 300px;
-    height: 24px;
-    margin : 0 10px;
-    padding : 0 5px;
-    font-size : 13px;
-    color : #999;
-}
-
-.add-category-input input:focus {
-    outline-color: #00b8b4;
-}
-
-.add-category-input > div > button {
-    width: 100%;
-    height: 100%;
+.add-category-main > div {
+    width: 95%;
     background-color: #eee;
-    padding : 2px 8px;
-    cursor: pointer;
-    font-size : 12px;
-    color : #999;
+    margin: 5px auto;
+    border-top: 1px solid #999;
+    border-bottom: 1px solid #999;
+    padding: 5px 10px;
     display: flex;
-    justify-content : center;
+    flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+
+
+.add-category-input {
+    display: flex;
+    width: 250px;
+}
+.add-category-input > input {
+    width: inherit!important;
+    height: 30px!important;
+    font-size: 13px!important;
+}
+
+.add-category-btns {
+    height: 30px;
 
 }
 
-.add-category-input .add-category-btn:hover {
-    background-color: #00b8b4;
-    color : white;
-    transition: .2s all;
+.add-category-btns .add-category-btn {
+    width : 50px;
+    height: inherit;
+    background-color: #bbb;
 }
+
+
+
 
 
 
 /* 키워드 요소 css */
-.tool-keywords {
-    width : 100%;
+.keyword-category-contents {
+    max-width : 95%;
     display: flex;
     flex-wrap: wrap;
-    align-items: flex-start;
+    margin: 5px;
+    padding: 0 5px;
+}
+
+
+.tool-keywords {
+    width : 100%;
 }
 
 .tool-keyword {
+    background-color: #eee;
     height : 36px;
-    display: flex;
-    border : 2px solid lavender;
-    margin: 10px;
-    border-radius: 10px;
+    margin: 5px;
+    border : 1px solid #999;
+    border-radius: 3px;
     padding: 5px 10px;
+    display: flex;
     cursor : pointer;
     font-weight: bold;
+    color : #999;
 }
 
 .tool-keyword:hover {
+    background-color: #e0fffd;
+    border : 1px solid #00b8b4;
+    color : #333;
     box-shadow: 0.5px 0.5px 0.5px 1px #eee;
+    transition: .2s all;
 }
