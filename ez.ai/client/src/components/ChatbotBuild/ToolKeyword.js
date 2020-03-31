@@ -117,6 +117,13 @@ const ToolKeyword = ({
     }
   };
 
+  // 키워드 목록 카테고리 접기
+  const foldCategory = e => {
+    console.log(e.target);
+  }
+
+
+
   // 카테고리 select문에서 변경했을때 실행
   const changeCategory = e => {
     console.log(index, keywordObject, e.target.value)
@@ -124,6 +131,7 @@ const ToolKeyword = ({
         ? ({ ...i, category: e.target.value})
         : i ))
   }
+
 
 
   return (
@@ -199,14 +207,17 @@ const ToolKeyword = ({
             {keywordCategory.map(i =>
                 <div value = {i} className= "keyword-category">
                   <div className= "keyword-category-title">
-                    <div className="keyword-category-title-main">
+                    <div className="keyword-category-title-main" onClick={e=>foldCategory(e)}>
                       <div className="keyword-category-fold"><i className="fas fa-sort-down"></i></div>
                       <div className="keyword-category-name">{i}</div>
                     </div>
-                    <div className="keyword-category-remove" onClick={e => deleteCategory(e, i)}>카테고리 삭제</div>
-
+                    <div className="keyword-category-btns">
+                      <div className="keyword-category-btn keyword-category-modify">수정</div>
+                      <div className="keyword-category-btn keyword-category-remove" onClick={e => deleteCategory(e, i)}>삭제</div>
+                    </div>
                   </div>
-                  <div className = "keyword-category-contents">
+
+                  <div className = "keyword-category-contents" >
                     {keywordObject.map((keyword, index) => {
                       return (
                           keyword.category === i ?
