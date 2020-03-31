@@ -8,13 +8,6 @@ router.post('/', function(req, res, next){
   const contents = req.body.nowKeyword.contents;
   //리스트
 
-  // {
-  // type: 'list',
-  // id: 1,
-  // listContent: { question: '1', elem: [Array], keywordLink: [Array] }
-  // }
-
-
   console.log(contents[0].listContent);
   if(post_keyword){
     // console.log(post_keyword);
