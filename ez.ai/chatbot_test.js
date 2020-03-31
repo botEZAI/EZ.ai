@@ -20,7 +20,7 @@ const TelegramBot = require('node-telegram-bot-api');
 
 
 //첫번 째 토큰
-const token = 'input token';
+const token ='input ';
 const bot = new TelegramBot(token, {polling: true});
 
 
