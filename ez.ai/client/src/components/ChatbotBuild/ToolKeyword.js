@@ -49,22 +49,35 @@ const ToolKeyword = ({
 
   const onSubmitCategory = e => {
     e.preventDefault();
-    setKeywordCategory(keywordCategory => [...keywordCategory, category])
-    setCategory("")
+    if (keywordCategory.includes(category)){
+      alert("입력하신 ' " + category + " ' 는 이미 존재하는 카테고리입니다.")
+    } else {
+      setKeywordCategory(keywordCategory => [...keywordCategory, category])
+      setCategory("")
+    }
+
   }
 
   const deleteCategory = (e, val) => {
-    let found = false
-    keywordObject.map(keyword => {
-      if(keyword.category === val)
-        found = true
-    })
-    if (found) {
-      alert("해당 카테고리에 속해있는 키워드가 아직 존재합니다!");
+    if (val == "미분류") {
+      alert("기본으로 제공되는 '미분류' 카테고리는 삭제할 수 없습니다.")
+    } else {
+      let found = false
+
+      keywordObject.map(keyword => {
+        if(keyword.category === val)
+          found = true
+      })
+
+      if (found) {
+        alert("해당 카테고리에 속해있는 키워드가 아직 존재합니다!");
+      }
+      else {
+        setKeywordCategory(keywordCategory.filter(c => c !== val));
+      }
     }
-    else {
-      setKeywordCategory(keywordCategory.filter(c => c !== val));
-    }
+
+
 
   }
 
