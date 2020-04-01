@@ -90,6 +90,13 @@ const Main = ({
       setAddFlag(false);
     }
   });
+  useEffect(() => {
+    //챗봇 데이터 로딩
+    axios
+      .get("/api/chatbotbuild")
+      .then(res => setKeywordObject(JSON.parse(res.data.keyword)));
+  }, []);
+  console.log("데이터", keywordObject);
   return (
     <>
       <div className="main-header">
