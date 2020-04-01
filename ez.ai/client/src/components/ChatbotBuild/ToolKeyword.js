@@ -125,8 +125,11 @@ const ToolKeyword = ({
   };
 
   // 키워드 목록 카테고리 접기
-  const foldCategory = e => {
-    console.log(e.target);
+  const foldCategory = s => {
+      setKeywordCategory(keywordCategory.map(i => i.category === s.category
+      ? ({...i, show : !s.show})
+      : i))
+    console.log(keywordCategory)
   }
 
 
@@ -137,6 +140,7 @@ const ToolKeyword = ({
     setKeywordObject(keywordObject.map(i => i.id === keywordObject[index].id
         ? ({ ...i, category: e.target.value})
         : i ))
+
   }
 
 
@@ -214,8 +218,8 @@ const ToolKeyword = ({
             {keywordCategory.map(i =>
                 <div value = {i.category} className= "keyword-category">
                   <div className= "keyword-category-title">
-                    <div className="keyword-category-title-main" onClick={e=>foldCategory(e)}>
-                      <div className="keyword-category-fold"><i className="fas fa-sort-down"></i></div>
+                    <div className="keyword-category-title-main" onClick={e=>foldCategory(i)}>
+                      <div className="keyword-category-fold">{i.show ? <i className="fas fa-sort-down"></i> : <i className="fas fa-sort-up"></i>}</div>
                       <div className="keyword-category-name">{i.category}</div>
                     </div>
                     <div className="keyword-category-btns">
@@ -224,24 +228,25 @@ const ToolKeyword = ({
                     </div>
                   </div>
 
-                  <div className = "keyword-category-contents" >
-                    {keywordObject.map((keyword, index) => {
-                      return (
-                          keyword.category === i.category ?
-                              <div
-                                  key={index}
-                                  label={keyword.keyword}
-                                  onClick={
-                                    onClickKeyword(keyword.keyword)}
-                                  className="tool-keyword"
-                              >
-                                {keyword.keyword}
-                              </div>
-                              : null
-                      );
-
-                    })}
+                  {i.show ?
+                      <div className = "keyword-category-contents" >
+                      {keywordObject.map((keyword, index) => {
+                        return (
+                            keyword.category === i.category ?
+                                <div
+                                    key={index}
+                                    label={keyword.keyword}
+                                    onClick={
+                                      onClickKeyword(keyword.keyword)}
+                                    className="tool-keyword"
+                                >
+                                  {keyword.keyword}
+                                </div>
+                                : null
+                        );
+                      })}
                   </div>
+                      : null }
                 </div>
             )}
 

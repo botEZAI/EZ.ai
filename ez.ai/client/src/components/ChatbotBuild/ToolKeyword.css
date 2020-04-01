@@ -210,6 +210,9 @@
     cursor: pointer;
 }
 
+.keyword-category-fold i {
+    height: 20px;
+}
 
 
 
