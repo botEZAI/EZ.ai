@@ -28,14 +28,14 @@ const ToolKeyword = ({
               keyword: keyword,
               id: keywordObject[keywordObject.length - 1].id + 1,
               contents: [],
-              category: keywordCategory[0]
+              category: keywordCategory[0].category
             });
           })
         )
       : alert("키워드를 입력하세요");
     keyword !== "" && setValue("");
     keyword !== "" && setKeyword("");
-
+    console.log(keyword, "kewor;snaflnsdf")
   };
 
   const onChangeKeyword = e => {
@@ -49,10 +49,17 @@ const ToolKeyword = ({
 
   const onSubmitCategory = e => {
     e.preventDefault();
-    if (keywordCategory.includes(category)){
+    if (keywordCategory.some(c => c.category === category)) {
       alert("입력하신 ' " + category + " ' 는 이미 존재하는 카테고리입니다.")
     } else {
-      setKeywordCategory(keywordCategory => [...keywordCategory, category])
+      setKeywordCategory(
+          produce(keywordCategory, draft => {
+            draft.push({
+              category: category,
+              show : true
+            });
+          })
+      )
       setCategory("")
     }
 
@@ -73,7 +80,7 @@ const ToolKeyword = ({
         alert("해당 카테고리에 속해있는 키워드가 아직 존재합니다!");
       }
       else {
-        setKeywordCategory(keywordCategory.filter(c => c !== val));
+        setKeywordCategory(keywordCategory.filter(c => c.category !== val));
       }
     }
 
@@ -169,10 +176,10 @@ const ToolKeyword = ({
                 </div>
             </div>
             <div className="modify-category">
-              <select name="keyword-category" onChange={ e => changeCategory(e)} value={keywordObject[index] ? keywordObject[index].category : keywordCategory[0]}>
+              <select name="keyword-category" onChange={ e => changeCategory(e)} value={keywordObject[index] ? keywordObject[index].category : keywordCategory[0].category}>
                 <option value="default" disabled>--- 키워드 카테고리 선택 ---</option>
                 { keywordCategory.map(i =>
-                  <option value={i}>{i}</option>
+                  <option value={i.category}>{i.category}</option>
                 )}
               </select>
             </div>
@@ -205,11 +212,11 @@ const ToolKeyword = ({
                 </form>
             </div>
             {keywordCategory.map(i =>
-                <div value = {i} className= "keyword-category">
+                <div value = {i.category} className= "keyword-category">
                   <div className= "keyword-category-title">
                     <div className="keyword-category-title-main" onClick={e=>foldCategory(e)}>
                       <div className="keyword-category-fold"><i className="fas fa-sort-down"></i></div>
-                      <div className="keyword-category-name">{i}</div>
+                      <div className="keyword-category-name">{i.category}</div>
                     </div>
                     <div className="keyword-category-btns">
                       <div className="keyword-category-btn keyword-category-modify">수정</div>
@@ -220,7 +227,7 @@ const ToolKeyword = ({
                   <div className = "keyword-category-contents" >
                     {keywordObject.map((keyword, index) => {
                       return (
-                          keyword.category === i ?
+                          keyword.category === i.category ?
                               <div
                                   key={index}
                                   label={keyword.keyword}
