@@ -202,6 +202,10 @@
     color : #999;
 }
 
+.keyword-category .fold {
+    background-color: #eee;
+}
+
 .keyword-category-title .keyword-category-fold {
     display: flex;
     align-items: center;
@@ -210,8 +214,8 @@
     cursor: pointer;
 }
 
-.keyword-category-fold i {
-    height: 20px;
+.keyword-category-fold .fa-sort-up {
+    height : 8px;
 }
 
 

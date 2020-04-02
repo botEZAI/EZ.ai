@@ -49,7 +49,10 @@ const ToolKeyword = ({
 
   const onSubmitCategory = e => {
     e.preventDefault();
-    if (keywordCategory.some(c => c.category === category)) {
+    if (category.trim().length === 0) {
+      alert("카테고리명을 입력해주세요")
+    }
+    else if (keywordCategory.some(c => c.category === category)) {
       alert("입력하신 ' " + category + " ' 는 이미 존재하는 카테고리입니다.")
     } else {
       setKeywordCategory(
@@ -77,7 +80,7 @@ const ToolKeyword = ({
       })
 
       if (found) {
-        alert("해당 카테고리에 속해있는 키워드가 아직 존재합니다!");
+        alert("해당 카테고리에 속해있는 키워드들을 먼저 옮겨주세요.");
       }
       else {
         setKeywordCategory(keywordCategory.filter(c => c.category !== val));
@@ -216,15 +219,18 @@ const ToolKeyword = ({
                 </form>
             </div>
             {keywordCategory.map(i =>
+
                 <div value = {i.category} className= "keyword-category">
-                  <div className= "keyword-category-title">
-                    <div className="keyword-category-title-main" onClick={e=>foldCategory(i)}>
-                      <div className="keyword-category-fold">{i.show ? <i className="fas fa-sort-down"></i> : <i className="fas fa-sort-up"></i>}</div>
+                  <div className= {i.show ? "keyword-category-title" : "keyword-category-title fold"}>
+                    <div className="keyword-category-title-main" onClick={()=>foldCategory(i)}>
+                      <div className="keyword-category-fold">{i.show ? <i className="fas fa-sort-down"></i> :
+                          <i className="fas fa-sort-up"></i>}</div>
                       <div className="keyword-category-name">{i.category}</div>
                     </div>
                     <div className="keyword-category-btns">
                       <div className="keyword-category-btn keyword-category-modify">수정</div>
-                      <div className="keyword-category-btn keyword-category-remove" onClick={e => deleteCategory(e, i)}>삭제</div>
+                      <div className="keyword-category-btn keyword-category-remove"
+                           onClick={e => deleteCategory(e, i.category)}>삭제</div>
                     </div>
                   </div>
 
