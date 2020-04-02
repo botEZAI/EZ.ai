@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState, useCallback } from "react";
 import produce from "immer";
 import axios from "axios";
 import "./Main.css";
-import GoogleMapPresenter from "./GoogleMapPresenter";
+import GoogleMapPresenter from "../GoogleMapPresenter";
 import VirtualKeyboard from "./VirtualKeyboard";
 
 const Main = ({
