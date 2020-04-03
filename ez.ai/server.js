@@ -1,18 +1,18 @@
-var express = require("express");
-var bodyParser = require("body-parser");
-var port = process.env.PORT || 5000; //5000포트 사용 react는 3000포트 proxy로 연결중
-var cookieParser = require("cookie-parser");
-var sequelize = require("./models").sequelize;
+const express = require("express");
+const bodyParser = require("body-parser");
+const port = process.env.PORT || 5000; //5000포트 사용 react는 3000포트 proxy로 연결중
+const cookieParser = require("cookie-parser");
+const sequelize = require("./models").sequelize;
 
-var app = express();
+const app = express();
 sequelize.sync();
 
 //라우터 연결
-var chatbotRouter = require("./routes/chatbot"); // 키워드 + 콘텐트 라우터
-var imageRouter = require("./routes/image"); //이미지 라우터
-var videoRouter = require("./routes/video"); //비디오 라우터
-var audioRouter = require("./routes/audio"); //오디오 라우터
-var fileRouter = require("./routes/file"); //파일 라우터
+const chatbotRouter = require("./routes/chatbot"); // 키워드 + 콘텐트 라우터
+const imageRouter = require("./routes/image"); //이미지 라우터
+const videoRouter = require("./routes/video"); //비디오 라우터
+const audioRouter = require("./routes/audio"); //오디오 라우터
+const fileRouter = require("./routes/file"); //파일 라우터
 
 //수정,삭제 라우터 추가 
 // var fileChatbotUpdata = require("./routes/chatbotUpdate")// 챗봇 내용 수정 라우터
