@@ -2,10 +2,11 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const passport = require('passport'); // passport 패키지 설치
 const port = process.env.PORT || 5000; //5000포트 사용 react는 3000포트 proxy로 연결중
+const flash = require('connect-flash'); //일회용 메세지를 출력하는 미들웨어
 
 const cookieParser = require("cookie-parser");
 const sequelize = require("./models").sequelize;
-const passportConfig = require('./passport'); // passport 모듈 연결
+//const passportConfig = require('./passport'); // passport 모듈 연결
 
 const app = express();
 sequelize.sync();
@@ -40,8 +41,10 @@ app.use("/", express.static("objects"));
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(flash());// flash 미들웨어
 app.use(passport.initialize()); //passport 사용
 app.use(passport.session()); //passport 사용 
+
  
 //라우터 사용
 app.use("/api/chatbotbuild", chatbotRouter); // 키워드 + 콘텐트
