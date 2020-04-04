@@ -1,5 +1,11 @@
+@import "./reset.css";
 @import "./Home.css";
 
+
+
+* {
+  box-sizing: border-box;
+}
 
 /* 헤더의 로고 양식 */
 .logo_default {
