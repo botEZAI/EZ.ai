@@ -8,7 +8,7 @@ import ToolBasic from "./Tabs/ToolBasic";
 import ToolAdvance from "./Tabs/ToolAdvance";
 import ToolKeyword from "./Tabs/ToolKeyword";
 import ToolStatus from "./Status/ToolStatus";
-import Main from "./Preview/Main";
+import Main from "./Preview/Preview";
 import MessageForAll from "./Sidebar/SidebarComponents/MessageForAll";
 
 const ChatbotBuild = () => {
@@ -61,66 +61,13 @@ const ChatbotBuild = () => {
     [keywordObject.length]
   );
 
-  {
-    /* 오른쪽 사이드바 fold 동적 프로그래밍 코드*/
-  }
-  const [mainWidth, setMainWidth] = useState("calc(100vw - 50px)");
-  const [navWidth, setNavWidth] = useState("50px");
-  const [leftArrowDisplay, setLeftArrowDisplay] = useState("block");
-  const [rightArrowDisplay, setRightArrowDisplay] = useState("none");
-  const [activePrevTab, setActivePrevTab] = useState("preview");
-  const [prevTabPosition, setPrevTabPosition] = useState("0px");
-  const [prevDisplay, setPrevDisplay] = useState(false);
-  const mainStyle = {
-    width: mainWidth,
-    transition: ".5s width"
-  };
-  const navStyle = {
-    width: navWidth,
-    transition: ".5s width"
-  };
-  const rightArrow = {
-    display: rightArrowDisplay
-  };
-  const leftArrow = {
-    display: leftArrowDisplay
-  };
-  const PrevTabStyle = {
-    marginLeft: prevTabPosition,
-    transition: ".8s all"
-  };
-  const defaultPreviewStyle = {
-    display: "none"
-  };
-  const onSelectPrev = useCallback(prevtab => {
-    setActivePrevTab(prevtab);
-  }, []);
 
-  const foldNav = e => {
-    if (navWidth === "400px") {
-      setNavWidth("50px");
-      setMainWidth("calc(100vw - 50px)");
-      setLeftArrowDisplay("block");
-      setRightArrowDisplay("none");
-      setPrevTabPosition("0px");
-      setPrevDisplay(false);
-    } else {
-      setNavWidth("400px");
-      setMainWidth("calc(100vw - 430px)");
-      setLeftArrowDisplay("none");
-      setRightArrowDisplay("block");
-      setPrevTabPosition("-50px");
-      setPrevDisplay(true);
-    }
-  };
   return (
     <div className="builder">
-      {console.log(keywordObject)}
-      {console.log("main=", mainKeyword, "now=", now)}
-      <div className="builder__column builder-info" style={mainStyle}>
+      <div className="builder__column builder-info">
         <BuilderInfo />
       </div>
-      <div className="builder__column builder-main" style={mainStyle}>
+      <div className="builder__column builder-main">
         <div className="builderTool">
           <div className="tool-menu">
             <div className="tool-tabs">
@@ -217,33 +164,7 @@ const ChatbotBuild = () => {
       </div>
 
       {/* 챗봇 빌더 오른쪽 사이드 바 기본 레이아웃*/}
-      <div className="builderNav" style={navStyle}>
-        <div className="builderNav-btn" onClick={foldNav}>
-          <i className="fas fa-angle-double-right" style={rightArrow}></i>
-          <i className="fas fa-angle-double-left" style={leftArrow}></i>
-        </div>
-        <div className="preview">
-          <ul className="preview-tab" style={PrevTabStyle}>
-            <PrevTab activePrevTab={activePrevTab} onSelectPrev={onSelectPrev}>
-              <li label="preview">tab1</li>
-              <li label="all-message">전체메세지</li>
-              <li label="tab3">tab3</li>
-            </PrevTab>
-          </ul>
-          <Sidebar
-            activePrevTab={activePrevTab}
-            style={!prevDisplay ? defaultPreviewStyle : null}
-          >
-            <div label="preview">---------------@---------------</div>
-            <div label="all-message">
-              <MessageForAll/>
-            </div>
-            <div label="tab3">
-              -----------♥-----------♥---------♥------------------
-            </div>
-          </Sidebar>
-        </div>
-      </div>
+      <Sidebar/>
     </div>
   );
 };
