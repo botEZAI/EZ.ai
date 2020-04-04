@@ -1,7 +1,7 @@
-@import "ToolBasic.css";
-@import "ToolAdvance.css";
-@import "ToolKeyword.css";
-@import "ToolStatus.css";
+@import "./ToolBasic.css";
+@import "./ToolAdvance.css";
+@import "./ToolKeyword.css";
+@import "../Status/ToolStatus.css";
 
 
 .builderTool > div {

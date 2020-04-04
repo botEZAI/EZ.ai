@@ -1,16 +1,16 @@
 import React, { useState, useRef } from "react";
 
 
-import TextStatus from "./Status/BasicStatus/TextStatus";
-import ImageStatus from "./Status/BasicStatus/ImageStatus";
-import VideoStatus from "./Status/BasicStatus/VideoStatus";
-import AudioStatus from "./Status/BasicStatus/AudioStatus";
-import LocationStatus from "./Status/BasicStatus/LocationStatus";
-import FileStatus from "./Status/BasicStatus/FileStatus";
-import KeyboardStatus from "./Status/AdvanceStatus/KeyboardStatus";
+import TextStatus from "./BasicStatus/TextStatus";
+import ImageStatus from "./BasicStatus/ImageStatus";
+import VideoStatus from "./BasicStatus/VideoStatus";
+import AudioStatus from "./BasicStatus/AudioStatus";
+import LocationStatus from "./BasicStatus/LocationStatus";
+import FileStatus from "./BasicStatus/FileStatus";
+import KeyboardStatus from "./AdvanceStatus/KeyboardStatus";
 
-import "./Status/ExtraBtn/ExtraBtn.css";
-import ImogiPopup from "./Status/ExtraBtn/EmogiPopup";
+import "./StatusPopups/EmogiPopup.css";
+import ImogiPopup from "./StatusPopups/EmogiPopup";
 
 const ToolStatus = ({
   mainKeyword,

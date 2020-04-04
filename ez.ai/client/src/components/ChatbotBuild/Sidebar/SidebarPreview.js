@@ -1,7 +1,6 @@
 import React, { useMemo } from "react";
-import "./Preview.css";
 
-const PrevTabs = props => {
+const SidebarPreview = props => {
   return (
     <>
       {props.children.map(child => {
@@ -20,4 +19,4 @@ const PrevTabs = props => {
   );
 };
 
-export default PrevTabs;
+export default SidebarPreview;

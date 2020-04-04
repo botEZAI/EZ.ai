@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import produce from "immer";
-import KeywordPopUp from "./KeywordPopUp";
+import KeywordPopUp from "../StatusPopups/KeywordPopUp";
 
 const KeyboardStatus = ({
   currentContent,

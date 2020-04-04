@@ -1,7 +1,8 @@
 import React from "react";
-import './Preview.css'
+import MessageForAll from "./SidebarComponents/MessageForAll";
 
-const PrevContent = props => {
+
+const Sidebar = props => {
   return(
     <>
       {props.children.map(child => {
@@ -44,4 +45,4 @@ const PrevContent = props => {
   );
 };
 
-export default PrevContent;
+export default Sidebar;

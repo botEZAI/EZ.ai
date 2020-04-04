@@ -1,15 +1,15 @@
 import React, { useState, useCallback } from "react";
-import PrevTab from "./BuilderNavContents/PrevTab.js";
-import PrevContent from "./BuilderNavContents/PrevContent.js";
+import PrevTab from "./Sidebar/SidebarPreview.js";
+import Sidebar from "./Sidebar/Sidebar.js";
 import "./ChatbotBuild.css";
 import BuilderInfo from "./BuilderInfo";
-import Tabs from ".//Tabs";
-import ToolBasic from ".//ToolBasic";
-import ToolAdvance from ".//ToolAdvance";
-import ToolKeyword from ".//ToolKeyword";
-import ToolStatus from "./ToolStatus";
+import Tabs from "./Tabs/Tabs";
+import ToolBasic from "./Tabs/ToolBasic";
+import ToolAdvance from "./Tabs/ToolAdvance";
+import ToolKeyword from "./Tabs/ToolKeyword";
+import ToolStatus from "./Status/ToolStatus";
 import Main from "./Preview/Main";
-import MessageForAll from "./BuilderNavContents/MessageForAll";
+import MessageForAll from "./Sidebar/SidebarComponents/MessageForAll";
 
 const ChatbotBuild = () => {
   const [activeTab, setActiveTab] = useState("basic");
@@ -230,7 +230,7 @@ const ChatbotBuild = () => {
               <li label="tab3">tab3</li>
             </PrevTab>
           </ul>
-          <PrevContent
+          <Sidebar
             activePrevTab={activePrevTab}
             style={!prevDisplay ? defaultPreviewStyle : null}
           >
@@ -241,7 +241,7 @@ const ChatbotBuild = () => {
             <div label="tab3">
               -----------♥-----------♥---------♥------------------
             </div>
-          </PrevContent>
+          </Sidebar>
         </div>
       </div>
     </div>
