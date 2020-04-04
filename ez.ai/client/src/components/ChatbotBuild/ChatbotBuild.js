@@ -8,7 +8,7 @@ import ToolBasic from ".//ToolBasic";
 import ToolAdvance from ".//ToolAdvance";
 import ToolKeyword from ".//ToolKeyword";
 import ToolStatus from "./ToolStatus";
-import Main from ".//Main";
+import Main from "./Preview/Main";
 import MessageForAll from "./BuilderNavContents/MessageForAll";
 
 const ChatbotBuild = () => {

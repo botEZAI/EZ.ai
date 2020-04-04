@@ -1,15 +1,27 @@
 import React from 'react';
+import produce from "immer";
 
 const VirtualKeyboard = ({
   keywordObject, 
   index, 
   now,
-  removeListElement,
   clickedMainInput,
   currentInput,
   virtualKeyboard,
-  curListCount
+  curListCount,
+  setCurListCount,
+  setKeywordObject,
 }) => {
+    //리스트 요소 삭제
+    const removeListElement = id => {
+      setCurListCount(curListCount.filter(num => num !== id));
+      setKeywordObject(
+        produce(keywordObject, draft => {
+          draft[index].contents[now].listContent.keywordLink[id] = "";
+          draft[index].contents[now].listContent.elem[id] = "";
+        })
+      );
+    };
   return (
     <>
     {virtualKeyboard ? (
