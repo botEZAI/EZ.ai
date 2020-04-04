@@ -1,6 +1,6 @@
 import React from "react";
 import produce from "immer";
-import GoogleMapPresenter from "../../API/GoogleMapPresenter";
+import GoogleMapPresenter from "../../api/GoogleMapPresenter";
 
 const LocationStatus = ({
   currentContent,

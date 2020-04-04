@@ -1,5 +1,5 @@
 import React from "react"
-import GoogleMapPresenter from "../../API/GoogleMapPresenter";
+import GoogleMapPresenter from "../../api/GoogleMapPresenter";
 
 const LocationPreview = ({
   v,

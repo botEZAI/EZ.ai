@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState, useCallback } from "react";
 import produce from "immer";
 import axios from "axios";
-import "./Main.css";
+import "./Preview.css";
 
 import TextPreview from "./BasicPreview/TextPreview";
 import ImagePreview from "./BasicPreview/ImagePreview";
@@ -12,7 +12,7 @@ import FilePreview from "./BasicPreview/FilePreview";
 import ListPreview from "./AdvancePreview/ListPreview";
 import VirtualKeyboard from "./AdvancePreview/VirtualKeyboard";
 
-const Main = ({
+const Preview = ({
   mainKeyword,
   keywordContentList,
   keywordObject,
@@ -193,4 +193,4 @@ const Main = ({
     </>
   ); /**retun END */
 };
-export default Main;
+export default Preview;
