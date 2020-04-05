@@ -20,8 +20,10 @@
   text-align: center;
   width: 100vw;
   height: 110vh;
+  background-color: #F7f7f7;
   display: flex;
   flex-direction: column;
+
   align-items: center;
 }
 
@@ -33,6 +35,7 @@
   width :100%;
   border-bottom: 0.2px solid #ddd;
   height: 100px;
+  background-color: #fff;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -41,12 +44,15 @@
 .builder-main {
   position : absolute;
   top : 170px;
-  margin-bottom: 10px;
-  display: flex;
-  justify-content: center;
+  padding : 30px 10%;
+  border-radius: 30px;
   height: 75vh;
   min-height: 800px;
   max-height : 1400px;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  box-shadow: 1px 1px 10px #ddd;
 }
 
 .builderTool {
@@ -62,6 +68,7 @@
 .builderMain {
   display:flex;
   flex-direction: column;
+  margin : 0 10px;
   /* border : .5px solid #999; */
   border-radius: 10px;
   width: 500px;
