@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Header = () => {
+  const { user } = useSelector((state) => state.user);
   return (
     <div className="header">
       <div className="nav">
@@ -35,7 +37,11 @@ const Header = () => {
 
         */}
       <div className="login">
-        <Link to="/login">로그인</Link>
+        {user ? (
+          <Link to="/profile">프로필</Link>
+        ) : (
+          <Link to="/login">로그인</Link>
+        )}
       </div>
     </div>
   );

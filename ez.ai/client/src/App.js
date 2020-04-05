@@ -11,6 +11,7 @@ import ChatbotList from "./components/ChatbotList/ChatbotList";
 import Register from "./components/Register";
 import ChatbotBuild from "./components/ChatbotBuild/ChatbotBuild";
 import Footer from "./components/Footer";
+import Profile from "./components/Profile";
 
 const App = ({ location }) => {
   return (
@@ -25,6 +26,7 @@ const App = ({ location }) => {
           <Route path="/chatbotlist" component={ChatbotList} />
           <Route path="/chatbotbuild" component={ChatbotBuild} />
           <Route path="/login" component={Login} />
+          <Route path="/profile" component={Profile} />
           <Route path="/register" component={Register} />
         </Switch>
       </section>
