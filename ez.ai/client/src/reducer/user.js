@@ -7,6 +7,7 @@ export const initialState = {
   isSignedUp: false, // 회원가입 성공
   user: null, // 내 정보
   chatbotList: [], //내 챗봇 리스트
+  telegramToken: null, //텔레그램 토큰
 };
 
 //액션 이름
