@@ -28,3 +28,32 @@ router.post('/join', isNotLoggedIn, async(req, res, next) => { //회원가입
         return next(error);
     }   
 });
+
+router.post('/login', isNotLoggedIn, (req, res,next) => {
+    passport.authenticate('local', (authError, user, info)=>{
+        if (authError){
+            console.error(authError);
+            return next(authError);
+        }
+        if (!user){
+            req.flash('loginError', info.message);
+            return res.redirect('/');    
+        }
+
+        return req.login(user, (loginError) =>{
+            if (loginError){
+            console.error(loginError);
+            return next(loginError);
+        }
+        return res.redirect('/');
+        });
+    })(req, res, next);
+});
+
+router.get('/logout', isLoggedIn, (req,res) =>{
+    req.logout();
+    req.session.destory();
+    res.redirect('/');
+});
+
+module.exports = router;
