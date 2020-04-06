@@ -3,33 +3,38 @@
 const express = require('express');
 const passport = require('passport');
 const bcrypt = require('bcrypt');
-const {isLoggedIn, isNotLoggedIn }  = require('./middlewares');
+const { isLoggedIn, isNotLoggedIn }  = require('./middlewares');
 const { User } = require('../models');
 
 const router = express.Router();
 
-router.post('/join', isNotLoggedIn, async(req, res, next) => { //회원가입
-    const { email, nick, passowrd } = req.body;
+router.post('/', isNotLoggedIn, async(req, res, next) => { //회원가입
+    const { email, password, userName, nickName, birthday } = req.body;
     try{
-        const exUser = await User.find({ where : { email }});
+        const exUser = await User.findOne({ where : { email }});
         if (exUser){
             req.flash('joinError', '이미 가입된 메일입니다');
-            return res.redirect('/join');
+            console.log("이미 가입된 메일입니다.");
+            return res.json('회원 가입 실패');
         }
     const hash = await bcrypt.hash(password, 12);
+    console.log(hash);
     await User.create({
-        email,
-        nick,
-        passowrd: hash,
+        email: email,
+        password: hash,
+        nick: nickName,
+        name: userName,
+        birth: birthday, 
     });
-        return res.redirect('/');
+        return res.json('회원 가입 성공');
     } catch (error){
         console.error(error);
         return next(error);
     }   
 });
 
-router.post('/login', isNotLoggedIn, (req, res,next) => {
+router.post('/login', isNotLoggedIn, (req, res,next) => { //로그인
+    console.log(req.body);
     passport.authenticate('local', (authError, user, info)=>{
         if (authError){
             console.error(authError);
@@ -39,7 +44,6 @@ router.post('/login', isNotLoggedIn, (req, res,next) => {
             req.flash('loginError', info.message);
             return res.redirect('/');    
         }
-
         return req.login(user, (loginError) =>{
             if (loginError){
             console.error(loginError);
@@ -50,7 +54,7 @@ router.post('/login', isNotLoggedIn, (req, res,next) => {
     })(req, res, next);
 });
 
-router.get('/logout', isLoggedIn, (req,res) =>{
+router.get('/logout', isLoggedIn, (req,res) =>{ //로그아웃
     req.logout();
     req.session.destory();
     res.redirect('/');
