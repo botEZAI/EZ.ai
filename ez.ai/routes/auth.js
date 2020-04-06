@@ -15,7 +15,7 @@ router.post('/', isNotLoggedIn, async(req, res, next) => { //회원가입
         if (exUser){
             req.flash('joinError', '이미 가입된 메일입니다');
             console.log("이미 가입된 메일입니다.");
-            return res.redirect('/login');
+            return res.json('회원 가입 실패');
         }
     const hash = await bcrypt.hash(password, 12);
     console.log(hash);
@@ -26,14 +26,14 @@ router.post('/', isNotLoggedIn, async(req, res, next) => { //회원가입
         name: userName,
         birth: birthday, 
     });
-        return res.redirect('/login');
+        return res.json('회원 가입 성공');
     } catch (error){
         console.error(error);
         return next(error);
     }   
 });
 
-router.post('/login', isNotLoggedIn, (req, res,next) => {
+router.post('/login', isNotLoggedIn, (req, res,next) => { //로그인
     console.log(req.body);
     passport.authenticate('local', (authError, user, info)=>{
         if (authError){
@@ -54,7 +54,7 @@ router.post('/login', isNotLoggedIn, (req, res,next) => {
     })(req, res, next);
 });
 
-router.get('/logout', isLoggedIn, (req,res) =>{
+router.get('/logout', isLoggedIn, (req,res) =>{ //로그아웃
     req.logout();
     req.session.destory();
     res.redirect('/');
