@@ -1,7 +1,7 @@
 import React, { useCallback, useState, useEffect } from "react";
 import "./Register.css";
 import { useDispatch, useSelector } from "react-redux";
-import { SIGN_UP_REQUEST } from "../reducer/user";
+import { SIGN_UP_REQUEST, SIGN_UP_RESET } from "../reducer/user";
 import { withRouter } from "react-router-dom";
 
 export const useInput = (initValue = null) => {
@@ -21,14 +21,27 @@ const Register = ({ history }) => {
   const [nickName, onChangeNickName] = useInput("");
   const [birthday, onChangeBirthday] = useInput("");
   const dispatch = useDispatch();
-  const { isSigningUp, user } = useSelector((state) => state.user);
+  const { isSignedUp, user, signUpErrorReason } = useSelector(
+    (state) => state.user
+  );
 
   useEffect(() => {
-    if (user) {
-      alert("로그인했으니 메인페이지로 이동합니다.");
-      history.push("/");
+    if (isSignedUp) {
+      alert("가입했으니 메인페이지로 이동합니다.");
+      history.push("/login");
+      dispatch({
+        type: SIGN_UP_RESET,
+      });
     }
-  }, [user && user.id]);
+  }, [isSignedUp]);
+  useEffect(() => {
+    if (signUpErrorReason) {
+      alert("이미 사용중인 이메일입니다.");
+    }
+    dispatch({
+      type: SIGN_UP_RESET,
+    });
+  }, [signUpErrorReason, isSignedUp]);
 
   const onChangePasswordCheck = useCallback(
     (e) => {

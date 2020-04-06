@@ -14,6 +14,7 @@ export const initialState = {
 export const SIGN_UP_REQUEST = "SIGN_UP_REQUEST";
 export const SIGN_UP_SUCCESS = "SIGN_UP_SUCCESS";
 export const SIGN_UP_FAILURE = "SIGN_UP_FAILURE";
+export const SIGN_UP_RESET = "SIGN_UP_RESET";
 
 export const LOG_IN_REQUEST = "LOG_IN_REQUEST";
 export const LOG_IN_SUCCESS = "LOG_IN_SUCCESS";
@@ -45,6 +46,14 @@ export default (state = initialState, action) => {
         ...state,
         isSigningUp: false,
         signUpErrorReason: action.error,
+      };
+    }
+    case SIGN_UP_RESET: {
+      return {
+        ...state,
+        isSigningUp: false,
+        isSignedUp: false,
+        signUpErrorReason: "",
       };
     }
     case LOG_IN_REQUEST: {
