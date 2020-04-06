@@ -77,50 +77,56 @@ const ChatbotBuild = () => {
                 <div label="keyword">키워드</div>
               </Tabs>
             </div>
-            <div className="tool-contents">
-              {activeTab === "basic" && (
-                <ToolBasic
-                  keywordObject={keywordObject}
-                  mainKeyword={mainKeyword}
-                  setAddFlag={setAddFlag}
-                  setClickedMainInput={setClickedMainInput}
-                  setKeywordObject={setKeywordObject}
-                  setNow={setNow}
-                  length={length}
-                />
+            {(activeTab === "basic" || activeTab === "advance") && (
+            <div className = "tool-contents-title">
+              추가할 요소를 선택해주세요
+            </div>
+            )}
+            {activeTab === "basic" && (
+                <div className="tool-contents">
+                  <ToolBasic
+                    keywordObject={keywordObject}
+                    mainKeyword={mainKeyword}
+                    setAddFlag={setAddFlag}
+                    setClickedMainInput={setClickedMainInput}
+                    setKeywordObject={setKeywordObject}
+                    setNow={setNow}
+                    length={length}
+                  />
+                </div>
               )}
               {activeTab === "advance" && (
-                <ToolAdvance
-                  keywordObject={keywordObject}
-                  mainKeyword={mainKeyword}
-                  setAddFlag={setAddFlag}
-                  setClickedMainInput={setClickedMainInput}
-                  setKeywordObject={setKeywordObject}
-                  setNow={setNow}
-                  setVirtualKeyboard={setVirtualKeyboard}
-                  length={length}
-                />
+                 <div className="tool-contents">
+                  <ToolAdvance
+                    keywordObject={keywordObject}
+                    mainKeyword={mainKeyword}
+                    setAddFlag={setAddFlag}
+                    setClickedMainInput={setClickedMainInput}
+                    setKeywordObject={setKeywordObject}
+                    setNow={setNow}
+                    setVirtualKeyboard={setVirtualKeyboard}
+                    length={length}
+                  />
+                 </div>
               )}
-              {activeTab === "keyword" && (
+            {activeTab === "keyword" && (
                 <ToolKeyword
-                  setMainKeyword={setMainKeyword}
-                  keyword={keyword}
-                  keywordList={keywordList}
-                  setKeyword={setKeyword}
-                  setKeywordList={setKeywordList}
-                  keywordObject={keywordObject}
-                  keywordCategory={keywordCategory}
-                  setKeywordCategory={setKeywordCategory}
-                  onClickKeyword={onClickKeyword}
-                  setKeywordObject={setKeywordObject}
-                  index = {index}
-
+                    setMainKeyword={setMainKeyword}
+                    keyword={keyword}
+                    keywordList={keywordList}
+                    setKeyword={setKeyword}
+                    setKeywordList={setKeywordList}
+                    keywordObject={keywordObject}
+                    keywordCategory={keywordCategory}
+                    setKeywordCategory={setKeywordCategory}
+                    onClickKeyword={onClickKeyword}
+                    setKeywordObject={setKeywordObject}
+                    index = {index}
                 />
-              )}
-            </div>
+            )}
           </div>
+          {(activeTab === "basic" || activeTab === "advance") && (
           <div className="tool-status">
-            {(activeTab === "basic" || activeTab === "advance") && (
               <ToolStatus
                 mainKeyword={mainKeyword}
                 keywordObject={keywordObject}
@@ -136,8 +142,8 @@ const ChatbotBuild = () => {
                 curListCount={curListCount}
                 setCurListCount={setCurListCount}
               />
-            )}
           </div>
+          )}
         </div>
         <div className="builderMain">
           <Main

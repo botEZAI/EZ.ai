@@ -8,6 +8,10 @@
   margin : 0 1px;
 }
 
+.tool-menu {
+  height : 210px;
+}
+
 .tool-tabs {
   display: flex;
   justify-content: space-between;
@@ -34,3 +38,13 @@
   transition : .5s background-color;
 }
 
+
+.tool-contents-title {
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f9f9f9;
+  font-weight: 600;
+  color : #00b8b4;
+}

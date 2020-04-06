@@ -47,6 +47,7 @@
     margin : 2px;
     padding : 2px;
     border : 1px solid #ddd;
+    background-color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;

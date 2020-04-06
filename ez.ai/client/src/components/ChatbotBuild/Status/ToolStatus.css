@@ -1,10 +1,9 @@
 
 /* tool status css */
 .tool-status {
+    position : relative;
     height : 70vh;
-    min-height: 650px;
     border-top : 0.5px solid #d9d9d9;
-    padding-top : 50px;
     display : flex;
     flex-direction : column;
     justify-content: space-between;
@@ -20,7 +19,6 @@
 /* tool status-header css */
 .tool-status-header {
     height: 50px;
-    border-top : 0.2px solid #d9d9d9;
     border-bottom: 0.1px solid #d9d9d9;
     display: flex;
     justify-content: space-between;
@@ -60,11 +58,15 @@
 
 /* Tool status main css */
 .tool-status-main {
-    min-height: 300px;
+    position :absolute;
+    top : 50px;
+    height: 460px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin : 0 auto;
+    background-color: #f9f9f9;
+
 }
 
 
@@ -90,7 +92,7 @@
 
 /* tool status-nav css */
 .tool-status-nav {
-    position : relative;
+    position : absolute;
     bottom : 0;
     height: 50px;
     border-top: 0.1px solid #d9d9d9;
@@ -142,6 +144,7 @@
     background-color: white;
     margin-top : 5px;
     padding : 10px;
+    border-radius: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -150,18 +153,17 @@
 .upload-preview .preview-screen {
     color : #999;
     background-size: 100% 100%;
-    width : 100%;
-    height : 100%;
+    width : 95%;
+    height : 95%;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size : 18px;
-    font-weight: bold;
-    z-index : 3;
 }
 
 .preview-screen p {
-    z-index : 1;
+    font-size : 18px;
+    font-weight: bold;
+    color : #bbb;
 }
 
 
@@ -170,17 +172,17 @@
     border-radius: 30px;
 }
 
-.upload-preview .upload-preview-screen:hover {
-    border : 7px dotted #00b8b4;
+.upload-preview .upload-preview-screen:hover, .upload-preview-screen:hover p {
+    border-color : #00b8b4;
     color : #00b8b4;
-    font-size : 21px;
-    transition: .2s all;
+    font-size : 20px;
+    transition: .5s all;
 
 }
 
 .status-upload {
-    min-height: 300px;
-    margin : 30px 0;
+    height: 410px;
+    margin : 10px 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -228,10 +230,8 @@
 
 /* 이미지 */
 .image-status {
-    width : 80%;
-    min-height: inherit;
-    background-color: #eee;
-    margin : 20px 0;
+    width : 100%;
+    height: inherit;
 }
 
 .status-image-tab {
@@ -263,24 +263,13 @@
 .status-image-input input {
     width : 100%;
     height: 100%;
-    font-size : 16px;
-    padding-left : 5px;
-    outline-color: #00b8b4;
+    font-size : 15px;
+    border: 1px solid #eee;
+    border-radius: 3px;
+    padding: 0 10px;
+    outline-color : #00b8b4;
 }
 
-.status-image-input .outer-img-btn {
-    width : 60px;
-    height: 30px;
-    background-color: #ddd;
-    margin-left : 20px;
-    border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    font-size : 14px;
-    cursor: pointer;
-}
 
 .status-image-input .outer-img-btn:hover {
     background-color: #00b8b4;
@@ -290,9 +279,8 @@
 
 /* 비디오 */
 .upload {
-    width: 80%;
+    width: 100%;
     min-height: inherit;
-    background-color: #eee;
     margin: 20px 0;
 }
 

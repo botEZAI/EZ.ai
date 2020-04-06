@@ -45,6 +45,7 @@ const ToolStatus = ({
     <>
       <div className="tool-status-header">
         <div className="tool-status-name">
+          <span>현재 선택한 요소 : </span>
           {currentInput ? (
             currentInput.type === "text" || clickedMainInput.type === "text" ? (
               <>

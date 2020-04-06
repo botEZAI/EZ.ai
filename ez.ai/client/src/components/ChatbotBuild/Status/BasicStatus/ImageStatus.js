@@ -66,7 +66,7 @@ const ImageStatus = ({
             "active"}`}
           onClick={() => setImageTab("local")}
         >
-          이미지 첨부하기
+          내장 이미지 첨부
         </div>
       </div>
 
@@ -74,24 +74,24 @@ const ImageStatus = ({
         <div className="status-input status-upload">
           <div className="status-image-input">
             <input
-              placeholder="외부 URL를 입력해주세요"
+              placeholder="외부 이미지 URL를 입력해주세요"
               value={currentContent || ""}
               onChange={onClickLoadImage}
             />
-            <div className="outer-img-btn" onChange={onClickLoadImage}>
-              적용
-            </div>
           </div>
           <div className="upload-preview">
             <div
               className="preview-screen"
               style={{ backgroundImage: `url(${imageURL})` }}
             >
-              <p>
-                외부 이미지 미리보기
-                <br />
-                (올바른 주소일때 이미지가 출력됩니다)
-              </p>
+              {!imageURL ? (
+                  <p>
+                    외부 이미지 미리보기
+                    <br />
+                    (올바른 URL 주소일때 이미지가 보여집니다.)
+                  </p>
+              ) : null}
+
             </div>
           </div>
           <div className="caution">
