@@ -53,6 +53,7 @@ const KeyboardStatus = ({
           }}
         ></textarea>
         <div className = "list-count">
+          <span >선택지 개수 :  </span>
           {listCount[5].map((i) => (
               <div className = "list-count-num" onClick={() => changeListLength(i)}>{i}</div>
               ))

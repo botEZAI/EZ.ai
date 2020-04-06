@@ -23,6 +23,16 @@
 /* 키보드 입력 개수 css */
 .status-list .list-count {
     display: flex;
+    align-items: center;
+
+    font-size : 14px;
+    padding-left : 5px;
+}
+
+.list-count span {
+    color : #999;
+    font-weight: bold;
+    margin-right : 5px;
 }
 
 .list-count .list-count-num {
@@ -30,10 +40,13 @@
     height: 20px;
     background-color : #eee;
     color : #999;
-    font-size : 13px;
     margin : 3px;
+
     border-radius: 10px;
     cursor : pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .list-count .list-count-num:hover {
