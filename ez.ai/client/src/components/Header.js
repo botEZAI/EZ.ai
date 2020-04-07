@@ -1,9 +1,25 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import React, { useEffect, useCallback } from "react";
+import { Link, withRouter } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { LOAD_USER_REQUEST, LOG_OUT_REQUEST } from "../reducer/user";
 
-const Header = () => {
+const Header = ({ history }) => {
   const { user } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (!user) {
+      dispatch({
+        type: LOAD_USER_REQUEST,
+      });
+      history.push("/");
+    }
+  }, [user]);
+  const onLogout = useCallback(() => {
+    dispatch({
+      type: LOG_OUT_REQUEST,
+    });
+  }, []);
+
   return (
     <div className="header">
       <div className="nav">
@@ -36,6 +52,8 @@ const Header = () => {
       {/*
 
         */}
+      {/*로그아웃 버튼 css필요*/}
+      {user && <button onClick={onLogout}>로그아웃</button>}
       <div className="login">
         {user ? (
           <Link to="/profile">프로필</Link>
@@ -47,4 +65,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default withRouter(Header);
