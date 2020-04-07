@@ -10,6 +10,9 @@ import {
   LOG_OUT_REQUEST,
   LOG_OUT_SUCCESS,
   LOG_OUT_FAILURE,
+  LOAD_USER_FAILURE,
+  LOAD_USER_REQUEST,
+  LOAD_USER_SUCCESS,
 } from "../reducer/user";
 
 //---로그인---
@@ -91,7 +94,37 @@ function* logOut() {
 function* watchLogOut() {
   yield takeEvery(LOG_OUT_REQUEST, logOut);
 }
+//유저정보 로드
+function loadUserAPI() {
+  return axios.get("api/user/", {
+    withCredentials: true,
+  });
+}
 
+function* loadUser(action) {
+  try {
+    const result = yield call(loadUserAPI);
+    yield put({
+      type: LOAD_USER_SUCCESS,
+      data: result.data,
+    });
+  } catch (e) {
+    console.error(e);
+    yield put({
+      type: LOAD_USER_FAILURE,
+      error: e,
+    });
+  }
+}
+
+function* watchLoadUser() {
+  yield takeEvery(LOAD_USER_REQUEST, loadUser);
+}
 export default function* userSaga() {
-  yield all([fork(watchLogIn), fork(watchLogOut), fork(watchSignUp)]);
+  yield all([
+    fork(watchLogIn),
+    fork(watchLogOut),
+    fork(watchSignUp),
+    fork(watchLoadUser),
+  ]);
 }

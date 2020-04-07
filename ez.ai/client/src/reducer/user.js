@@ -24,6 +24,10 @@ export const LOG_OUT_REQUEST = "LOG_OUT_REQUEST";
 export const LOG_OUT_SUCCESS = "LOG_OUT_SUCCESS";
 export const LOG_OUT_FAILURE = "LOG_OUT_FAILURE";
 
+export const LOAD_USER_REQUEST = "LOAD_USER_REQUEST";
+export const LOAD_USER_SUCCESS = "LOAD_USER_SUCCESS";
+export const LOAD_USER_FAILURE = "LOAD_USER_FAILURE";
+
 export default (state = initialState, action) => {
   switch (action.type) {
     case SIGN_UP_REQUEST: {
@@ -90,6 +94,22 @@ export default (state = initialState, action) => {
         ...state,
         isLoggingOut: false,
         user: null,
+      };
+    }
+    case LOAD_USER_REQUEST: {
+      return {
+        ...state,
+      };
+    }
+    case LOAD_USER_SUCCESS: {
+      return {
+        ...state,
+        user: action.data,
+      };
+    }
+    case LOAD_USER_FAILURE: {
+      return {
+        ...state,
       };
     }
     default: {

@@ -8,6 +8,12 @@ const { User } = require("../models");
 
 const router = express.Router();
 
+//유저 로딩
+router.get("/", isLoggedIn, (req, res) => {
+  const user = Object.assign({}, req.user.toJSON());
+  delete user.password;
+  return res.json(user);
+});
 router.post("/", isNotLoggedIn, async (req, res, next) => {
   //회원가입
   const { email, password, userName, nickName, birthday } = req.body;
@@ -56,11 +62,10 @@ router.post("/login", isNotLoggedIn, (req, res, next) => {
   })(req, res, next);
 });
 
-router.get("/logout", isLoggedIn, (req, res) => {
-  //로그아웃
+router.post("/logout", (req, res) => {
   req.logout();
-  req.session.destory();
-  res.redirect("/");
+  req.session.destroy();
+  res.send("logout 성공");
 });
 
 module.exports = router;
