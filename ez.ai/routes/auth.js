@@ -12,6 +12,9 @@ const router = express.Router();
 router.get("/", isLoggedIn, (req, res) => {
   const user = Object.assign({}, req.user.toJSON());
   delete user.password;
+  delete user.createdAt;
+  delete user.deletedAt;
+  delete user.updatedAt;
   return res.json(user);
 });
 router.post("/", isNotLoggedIn, async (req, res, next) => {
@@ -40,24 +43,32 @@ router.post("/", isNotLoggedIn, async (req, res, next) => {
   }
 });
 
-router.post("/login", isNotLoggedIn, (req, res, next) => {
+router.post("/login", (req, res, next) => {
   //로그인
-  console.log(req.body);
   passport.authenticate("local", (authError, user, info) => {
     if (authError) {
       console.error(authError);
       return next(authError);
     }
-    if (!user) {
-      req.flash("loginError", info.message);
-      return res.redirect("/");
+    if (info) {
+      return res.status(401).send(info.reason);
     }
-    return req.login(user, (loginError) => {
-      if (loginError) {
-        console.error(loginError);
-        return next(loginError);
+
+    return req.login(user, async (loginError) => {
+      try {
+        if (loginError) {
+          console.error(loginError);
+          return next(loginError);
+        }
+        const fullUser = await User.findOne({
+          where: { email: user.email },
+          attributes: ["id", "email", "nick", "name", "birth"],
+        });
+        console.log("fullUser:", fullUser);
+        return res.json(fullUser);
+      } catch (e) {
+        next(e);
       }
-      return res.redirect("/");
     });
   })(req, res, next);
 });

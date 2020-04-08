@@ -4,7 +4,7 @@ import { Link, withRouter } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useInput } from "./Register";
-import { LOG_IN_REQUEST } from "../reducer/user";
+import { LOG_IN_REQUEST, LOAD_USER_REQUEST } from "../reducer/user";
 
 const Login = ({ history }) => {
   const [email, onChangeEmail] = useInput("");
@@ -32,6 +32,7 @@ const Login = ({ history }) => {
     },
     [email, password]
   );
+
   return (
     <>
       <article className="article__login">

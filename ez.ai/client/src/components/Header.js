@@ -6,12 +6,12 @@ import { LOAD_USER_REQUEST, LOG_OUT_REQUEST } from "../reducer/user";
 const Header = ({ history }) => {
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
+
   useEffect(() => {
     if (!user) {
       dispatch({
         type: LOAD_USER_REQUEST,
       });
-      history.push("/");
     }
   }, [user]);
   const onLogout = useCallback(() => {
