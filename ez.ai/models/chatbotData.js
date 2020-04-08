@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) =>
         allowNull: true,
       },
       token: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.TEXT,
         allowNull: false,
       },
       data: {
