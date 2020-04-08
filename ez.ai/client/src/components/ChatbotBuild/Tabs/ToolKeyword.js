@@ -17,6 +17,8 @@ const ToolKeyword = ({
   const [value, setValue] = useState("");
   const [disableInput, setDisableInput] = useState(true);  // 키워드 속성내 키워드 수정 가능 여부
   const [category, setCategory] = useState("");
+  const [categoryName, setCategoryName] = useState(true);  // 키워드 카테고리 이름 수정 가능 여부
+  const [selectedCategory, setSelectedCategory] = useState("");  // 선택한 수정할 키워드 카테고리명
 
   const onSubmit = e => {
     e.preventDefault();
@@ -86,10 +88,9 @@ const ToolKeyword = ({
         setKeywordCategory(keywordCategory.filter(c => c.category !== val));
       }
     }
-
-
-
   }
+
+
 
   
   // 키워드 속성 - 수정에서 키워드명 변경시
@@ -139,18 +140,41 @@ const ToolKeyword = ({
 
   // 카테고리 select문에서 변경했을때 실행
   const changeCategory = e => {
-    console.log(index, keywordObject, e.target.value)
     setKeywordObject(keywordObject.map(i => i.id === keywordObject[index].id
         ? ({ ...i, category: e.target.value})
         : i ))
+  }
+
+  const updateCategoryName = i => {
+    setCategoryName(!categoryName)
+    if (i.category !== selectedCategory) {
+      setSelectedCategory(i.category)
+    } else {
+      setSelectedCategory("")
+    }
+  }
+
+  // 키워드 카테고리명 수정
+  const onChangeCategoryName = (e, i) => {
+    if (i.category === "미분류") {
+      alert("기본으로 제공되는 '미분류' 카테고리의 이름은 수정할 수 없습니다.")
+    } else if (e.target.value === "") {
+      alert("카테고리명은 공백으로 지정할 수 없습니다.")
+    } else {
+      setKeywordObject(keywordObject.map(m => m.category === i.category
+          ? ({ ...m, category: e.target.value})
+          : i ))
+      setKeywordCategory(keywordCategory.map(m => m.category === i.category
+          ? ({category: e.target.value, show:true})
+          : m))
+      setSelectedCategory(e.target.value)
+    }
 
   }
 
 
-
   return (
     <>
-      {console.log("Toolkeyword")}
       <div className="keyword-contents">
         <div className="add-keyword">
           <h4>키워드 추가</h4>
@@ -222,13 +246,22 @@ const ToolKeyword = ({
 
                 <div value = {i.category} className= "keyword-category">
                   <div className= {i.show ? "keyword-category-title" : "keyword-category-title fold"}>
-                    <div className="keyword-category-title-main" onClick={()=>foldCategory(i)}>
-                      <div className="keyword-category-fold">{i.show ? <i className="fas fa-sort-down"></i> :
+                    <div className="keyword-category-title-main">
+                      <div className="keyword-category-fold" onClick={()=>foldCategory(i)}>{i.show ? <i className="fas fa-sort-down"></i> :
                           <i className="fas fa-sort-up"></i>}</div>
-                      <div className="keyword-category-name">{i.category}</div>
+                      {disableInput && selectedCategory !== i.category ?
+                          <div className="keyword-category-name" onClick={()=>foldCategory(i)}>
+                            {i.category}
+                          </div>
+                          :
+                          <input className="keyword-category-name-input" value = {i.category} onChange ={e=>onChangeCategoryName(e, i)}/>
+                      }
                     </div>
                     <div className="keyword-category-btns">
-                      <div className="keyword-category-btn keyword-category-modify">수정</div>
+                      <div className={ disableInput && selectedCategory !== i.category ?
+                          "keyword-category-btn keyword-category-modify" : "keyword-category-btn keyword-category-modify-active"}
+                           onClick={()=>updateCategoryName(i)}>
+                        {disableInput && selectedCategory !== i.category ? "수정" : "수정완료"}</div>
                       <div className="keyword-category-btn keyword-category-remove"
                            onClick={e => deleteCategory(e, i.category)}>삭제</div>
                     </div>
