@@ -39,14 +39,18 @@ const BotItem = (props) => {
     <React.Fragment>
       {botClick.botOn ? (
         <div>
-          <div className="bot-item-ceate" onClick={() => setCurrentChatbot(id)}>
-            만들기
-          </div>
           <div className="bot-item-expand" onClick={botClickEvent}>
             <div className="bot-item-header">
               <div className="bot-name">{children}</div>
+
               <div className="sns-icons-container">
                 {botSnsIconHandler(botConnect)}
+              </div>
+              <div
+                className="bot-item-ceate"
+                onClick={() => setCurrentChatbot(id)}
+              >
+                만들기
               </div>
               <div className="delete" onClick={botDeleteClickEvent}>
                 삭제
@@ -62,13 +66,17 @@ const BotItem = (props) => {
         </div>
       ) : (
         <div>
-          <div className="bot-item-ceate" onClick={() => setCurrentChatbot(id)}>
-            만들기
-          </div>
           <div className="bot-item-default" onClick={botClickEvent}>
             <div className="bot-name">{children}</div>
+
             <div className="sns-icons-container">
               {botSnsIconHandler(botConnect)}
+            </div>
+            <div
+              className="bot-item-ceate"
+              onClick={() => setCurrentChatbot(id)}
+            >
+              만들기
             </div>
             <div className="delete" onClick={botDeleteClickEvent}>
               삭제

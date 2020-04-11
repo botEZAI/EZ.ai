@@ -53,7 +53,7 @@ const Header = ({ history }) => {
 
         */}
       {/*로그아웃 버튼 css필요*/}
-      {user && <button onClick={onLogout}>로그아웃</button>}
+
       <div className="login">
         {user ? (
           <Link to="/profile">프로필</Link>
@@ -61,6 +61,11 @@ const Header = ({ history }) => {
           <Link to="/login">로그인</Link>
         )}
       </div>
+      {user && (
+        <button className="logout" onClick={onLogout}>
+          로그아웃
+        </button>
+      )}
     </div>
   );
 };
