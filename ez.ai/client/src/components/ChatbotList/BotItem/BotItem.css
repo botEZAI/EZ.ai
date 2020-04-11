@@ -69,7 +69,10 @@
   margin-top: 1%; /*봇들 사이에 간격 조정*/
 }
 .bot-item-ceate {
-  display: inline;
+  margin-top: 1px;
+  margin-left: 16px;
+  color: black;
+  font-size: 10pt;
 }
 
 .sns-icons-container span {
