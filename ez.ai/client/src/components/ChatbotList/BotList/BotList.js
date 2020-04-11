@@ -9,6 +9,7 @@ const BotList = ({ bots, onRemove }) => {
     return (
       <BotItem
         key={bot.id}
+        id={bot.id}
         onRemove={() => onRemove(bot.id)}
         botDesc={bot.desc}
         botConnect={bot.sns}

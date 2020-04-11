@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import PrevTab from "./Sidebar/SidebarPreview.js";
 import Sidebar from "./Sidebar/Sidebar.js";
 import "./ChatbotBuild.css";
@@ -10,25 +10,46 @@ import ToolKeyword from "./Tabs/ToolKeyword";
 import ToolStatus from "./Status/ToolStatus";
 import Main from "./Preview/Preview";
 import MessageForAll from "./Sidebar/SidebarComponents/MessageForAll";
+import { useDispatch, useSelector } from "react-redux";
 
 const ChatbotBuild = () => {
+  const { currentChatbot } = useSelector((state) => state.chatbot);
   const [activeTab, setActiveTab] = useState("basic");
   const [keyword, setKeyword] = useState("");
   const [keywordList, setKeywordList] = useState(["Welcome"]);
   const [keywordContentList, setKeywordContentList] = useState([]);
   const [keywordCategory, setKeywordCategory] = useState([
-      {category : "미분류", show : true}
+    { category: "미분류", show: true },
   ]);
+
   const [keywordObject, setKeywordObject] = useState([
-    { keyword: "Welcome", id: 1, contents: [], completed:false, category: keywordCategory[0].category }
+    {
+      keyword: "Welcome",
+      id: 1,
+      contents: [],
+      completed: false,
+      category: keywordCategory[0].category,
+    },
   ]);
+  useEffect(() => {
+    const tmp = currentChatbot && JSON.parse(currentChatbot.data);
+    tmp && setKeywordObject(tmp);
+  }, []);
+
   const [mainKeyword, setMainKeyword] = useState(keywordObject[0].keyword);
   const [clickedMainInput, setClickedMainInput] = useState({});
   const [addFlag, setAddFlag] = useState(false); // 컨텐츠 추가 flag
   const [firstEntry, setFirstEntry] = useState(true); // 키워드 진입 flag
   const [virtualKeyboard, setVirtualKeyboard] = useState(false);
   const [now, setNow] = useState(-1); // 현재 작업중인 status id 번호
-  const listCount = [[1], [1,2], [1,2,3], [1,2,3,4], [1,2,3,4,5], [1,2,3,4,5,6]];  // 키보드 요소의 키워드 입력 총 개수
+  const listCount = [
+    [1],
+    [1, 2],
+    [1, 2, 3],
+    [1, 2, 3, 4],
+    [1, 2, 3, 4, 5],
+    [1, 2, 3, 4, 5, 6],
+  ]; // 키보드 요소의 키워드 입력 총 개수
   const [curListCount, setCurListCount] = useState(listCount[1]);
   // 키보드(리스트) 요소에서 연동한 키워드 종류
   const initialKP = [
@@ -38,20 +59,20 @@ const ChatbotBuild = () => {
     { id: 2, value: "키워드 연동" },
     { id: 3, value: "키워드 연동" },
     { id: 4, value: "키워드 연동" },
-    { id: 5, value: "키워드 연동" }
+    { id: 5, value: "키워드 연동" },
   ];
   const [keywordPopup, setKeywordPopup] = useState(initialKP);
 
-  const index = keywordObject.findIndex(v => v.keyword === mainKeyword);
+  const index = keywordObject.findIndex((v) => v.keyword === mainKeyword);
   const length =
     keywordObject[index] && keywordObject[index].contents.length - 1;
 
-  const onSelect = useCallback(tab => {
+  const onSelect = useCallback((tab) => {
     setActiveTab(tab);
   }, []);
   // 키워드 클릭했을시
   const onClickKeyword = useCallback(
-    keyword => () => {
+    (keyword) => () => {
       setNow(-1);
       setMainKeyword(keyword);
       //setClickedMainInput(""); 키워드 수정 기능때문에 일반 비활성화했는데 오류 있으면 말해주세요
@@ -60,7 +81,6 @@ const ChatbotBuild = () => {
     },
     [keywordObject.length]
   );
-
 
   return (
     <div className="builder">
@@ -78,55 +98,55 @@ const ChatbotBuild = () => {
               </Tabs>
             </div>
             {(activeTab === "basic" || activeTab === "advance") && (
-            <div className = "tool-contents-title">
-              추가할 요소를 선택해주세요
-            </div>
+              <div className="tool-contents-title">
+                추가할 요소를 선택해주세요
+              </div>
             )}
             {activeTab === "basic" && (
-                <div className="tool-contents">
-                  <ToolBasic
-                    keywordObject={keywordObject}
-                    mainKeyword={mainKeyword}
-                    setAddFlag={setAddFlag}
-                    setClickedMainInput={setClickedMainInput}
-                    setKeywordObject={setKeywordObject}
-                    setNow={setNow}
-                    length={length}
-                  />
-                </div>
-              )}
-              {activeTab === "advance" && (
-                 <div className="tool-contents">
-                  <ToolAdvance
-                    keywordObject={keywordObject}
-                    mainKeyword={mainKeyword}
-                    setAddFlag={setAddFlag}
-                    setClickedMainInput={setClickedMainInput}
-                    setKeywordObject={setKeywordObject}
-                    setNow={setNow}
-                    setVirtualKeyboard={setVirtualKeyboard}
-                    length={length}
-                  />
-                 </div>
-              )}
-            {activeTab === "keyword" && (
-                <ToolKeyword
-                    setMainKeyword={setMainKeyword}
-                    keyword={keyword}
-                    keywordList={keywordList}
-                    setKeyword={setKeyword}
-                    setKeywordList={setKeywordList}
-                    keywordObject={keywordObject}
-                    keywordCategory={keywordCategory}
-                    setKeywordCategory={setKeywordCategory}
-                    onClickKeyword={onClickKeyword}
-                    setKeywordObject={setKeywordObject}
-                    index = {index}
+              <div className="tool-contents">
+                <ToolBasic
+                  keywordObject={keywordObject}
+                  mainKeyword={mainKeyword}
+                  setAddFlag={setAddFlag}
+                  setClickedMainInput={setClickedMainInput}
+                  setKeywordObject={setKeywordObject}
+                  setNow={setNow}
+                  length={length}
                 />
+              </div>
+            )}
+            {activeTab === "advance" && (
+              <div className="tool-contents">
+                <ToolAdvance
+                  keywordObject={keywordObject}
+                  mainKeyword={mainKeyword}
+                  setAddFlag={setAddFlag}
+                  setClickedMainInput={setClickedMainInput}
+                  setKeywordObject={setKeywordObject}
+                  setNow={setNow}
+                  setVirtualKeyboard={setVirtualKeyboard}
+                  length={length}
+                />
+              </div>
+            )}
+            {activeTab === "keyword" && (
+              <ToolKeyword
+                setMainKeyword={setMainKeyword}
+                keyword={keyword}
+                keywordList={keywordList}
+                setKeyword={setKeyword}
+                setKeywordList={setKeywordList}
+                keywordObject={keywordObject}
+                keywordCategory={keywordCategory}
+                setKeywordCategory={setKeywordCategory}
+                onClickKeyword={onClickKeyword}
+                setKeywordObject={setKeywordObject}
+                index={index}
+              />
             )}
           </div>
           {(activeTab === "basic" || activeTab === "advance") && (
-          <div className="tool-status">
+            <div className="tool-status">
               <ToolStatus
                 mainKeyword={mainKeyword}
                 keywordObject={keywordObject}
@@ -142,7 +162,7 @@ const ChatbotBuild = () => {
                 curListCount={curListCount}
                 setCurListCount={setCurListCount}
               />
-          </div>
+            </div>
           )}
         </div>
         <div className="builderMain">
@@ -170,7 +190,7 @@ const ChatbotBuild = () => {
       </div>
 
       {/* 챗봇 빌더 오른쪽 사이드 바 기본 레이아웃*/}
-      <Sidebar/>
+      <Sidebar />
     </div>
   );
 };
