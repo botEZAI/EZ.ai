@@ -9,7 +9,10 @@ import { LOG_IN_REQUEST, LOAD_USER_REQUEST } from "../reducer/user";
 const Login = ({ history }) => {
   const [email, onChangeEmail] = useInput("");
   const [password, onChangePassword] = useInput("");
-  const { isLoggingIn, user } = useSelector((state) => state.user);
+  const { isLoggingIn, user, logInErrorReason } = useSelector(
+    (state) => state.user
+  );
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (user) {
@@ -17,7 +20,11 @@ const Login = ({ history }) => {
       history.push("/");
     }
   }, [user && user.id]);
-  const dispatch = useDispatch();
+  useEffect(() => {
+    if (logInErrorReason) {
+      alert("비밀번호가 틀렸습니다.");
+    }
+  }, [logInErrorReason]);
 
   const onSubmitForm = useCallback(
     (e) => {
