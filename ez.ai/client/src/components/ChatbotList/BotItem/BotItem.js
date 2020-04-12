@@ -2,6 +2,7 @@ import React, { useState, useCallback } from "react";
 import "./BotItem.css";
 import { useDispatch, useSelector } from "react-redux";
 import { SET_CURRENT_CHATBOT } from "../../../reducer/chatbot";
+import { withRouter } from "react-router-dom";
 
 const BotItem = (props) => {
   const dispatch = useDispatch();
@@ -28,13 +29,17 @@ const BotItem = (props) => {
       return null;
     }
   };
-  const setCurrentChatbot = useCallback((id) => {
-    const currentChatbot = chatbotList.find((v) => v.id === id);
-    dispatch({
-      type: SET_CURRENT_CHATBOT,
-      data: currentChatbot,
-    });
-  }, []);
+  const setCurrentChatbot = useCallback(
+    (id) => {
+      const currentChatbot = chatbotList.find((v) => v.id === id);
+      dispatch({
+        type: SET_CURRENT_CHATBOT,
+        data: currentChatbot,
+      });
+      props.history.push("/chatbotbuild");
+    },
+    [currentChatbot]
+  );
   return (
     <React.Fragment>
       {botClick.botOn ? (
@@ -88,4 +93,4 @@ const BotItem = (props) => {
   );
 };
 
-export default BotItem;
+export default withRouter(BotItem);
