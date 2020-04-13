@@ -2,8 +2,44 @@
     position : absolute;
     right : 0px;
     top : 80px;
-    width : 100px;
-    height : 100px;
+    width : 200px;
+    height : 50px;
+    border : 1px solid #eee;
+}
+
+.NavPopUp-btns {
+    width : 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.NavPopUp-btn {
+    width: 80px;
+    height: 40px;
+    margin : 0 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #eee;
-    z-index: 10;
+    cursor: pointer;
+    transition: .2s background-color, .2s color;
+}
+
+.myInfo a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .2s background-color, .2s color;
+}
+
+.myInfo a:hover {
+    background-color : #00b8b4;
+    color : white;
+}
+
+.logout:hover {
+    background-color: #d8345f;
+    color: white;
 }
