@@ -1,7 +1,8 @@
-import React, { useEffect, useCallback } from "react";
+import React, {useEffect, useCallback, useState} from "react";
 import { Link, withRouter } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { LOAD_USER_REQUEST, LOG_OUT_REQUEST } from "../reducer/user";
+import NavPopup from "../NavPopup";
 
 const Header = ({ history }) => {
   const { user } = useSelector((state) => state.user);
@@ -19,6 +20,12 @@ const Header = ({ history }) => {
       type: LOG_OUT_REQUEST,
     });
   }, []);
+
+
+  const [showNP, setShowNP] = useState(false)
+  const clickNavPopup = () => {
+    setShowNP(!showNP)
+  }
 
   return (
     <div className="header">
@@ -49,23 +56,23 @@ const Header = ({ history }) => {
         </ul>
       </div>
 
-      {/*
-
-        */}
-      {/*로그아웃 버튼 css필요*/}
-
-      <div className="login">
-        {user ? (
-          <Link to="/profile">프로필</Link>
-        ) : (
-          <Link to="/login">로그인</Link>
-        )}
-      </div>
-      {user && (
-        <button className="logout" onClick={onLogout}>
-          로그아웃
-        </button>
+      {user ? (
+          <div className="nav_right login">
+            <Link to="/login">로그인</Link>
+          </div>
+      ) : (
+          <div className="nav_right profile" onClick = {clickNavPopup}>
+            <div className = "profile-picture">
+              <i className="fas fa-user-circle"></i>
+            </div>
+            <div className = "profile-more">
+              <Link to="/profile">XXXs{user}님</Link>
+            </div>
+          </div>
       )}
+      {showNP ? (
+          <NavPopup/>
+      ) : null}
     </div>
   );
 };

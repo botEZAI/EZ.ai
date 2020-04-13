@@ -1,0 +1,9 @@
+.NavPopUp {
+    position : absolute;
+    right : 0px;
+    top : 80px;
+    width : 100px;
+    height : 100px;
+    background-color: #eee;
+    z-index: 10;
+}

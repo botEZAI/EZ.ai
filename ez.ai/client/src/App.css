@@ -1,5 +1,6 @@
 @import "./reset.css";
 @import "./Home.css";
+@import "Nav.css";
 
 
 
@@ -21,7 +22,7 @@
 
 
 
-/* header, nav 기본 struct */
+/* header 기본 struct */
 .header {
   position : fixed;
   top : 0;
@@ -30,43 +31,12 @@
   height : 80px;
   margin : 0;
   line-height: 80px;
-  overflow : hidden;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.12);
   z-index : 10;
   background-color: #fff;
 }
 
-.nav {
-  display : inline-block;
-  height: 80px;
-}
-.nav > ul{
-  text-align : center;
 
-  list-style : none;
-  margin : 0 auto;
-  padding : 0;
-}
-
-.nav > ul > li {
-  margin : 0;
-  min-width: 120px;
-  float : left;
-}
-
-.nav > ul > li:nth-child(n+2):hover {
-  background-color: #eee;
-}
-
-
-/* nav의 login 버튼 */
-.login {
-  text-align: center;
-  display : inline-block;
-  width : 150px;
-  float : right;
-  background-color : skyblue;
-}
 
 /*-------------- Section 영역 ------------------*/
 
