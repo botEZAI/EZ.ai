@@ -66,7 +66,7 @@ const Header = ({ history }) => {
               <i className="fas fa-user-circle"></i>
             </div>
             <div className = "profile-more">
-              <Link to="/profile">XXXs{user}님</Link>
+              XXXs{user}님
             </div>
           </div>
       )}
