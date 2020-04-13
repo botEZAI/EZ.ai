@@ -56,7 +56,7 @@ const Header = ({ history }) => {
         </ul>
       </div>
 
-      {user ? (
+      {!user ? (
           <div className="nav_right login">
             <Link to="/login">로그인</Link>
           </div>
