@@ -4,47 +4,26 @@ import SidebarPreview from "./SidebarPreview";
 
 
 const Sidebar = () => {
-  const [activeSidebar, setActiveSidebar] = useState("preview");
-
-  
+  const [activeSidebar, setActiveSidebar] = useState(false);
   return(
-      <div className="sidebar" >
-        <div className="sidebar-icons">
-          <ul className="sidebar-icon" >
-            <SidebarPreview>
-              <li label="preview">tab1</li>
-              <li label="all-message">전체메세지</li>
-              <li label="tab3">tab3</li>
-            </SidebarPreview>
-          </ul>
-
-
-          {activeSidebar === "preview" &&
-        <div
-          key="preview"
-          className="active-content"
-
-        >-------------------------@--------------ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd--------------
-        </div>
-      }
-      {activeSidebar === "tab2" &&
-        <div
-          key="tab2"
-          className="active-content"
-
-        > -----------------★----------------★------------------
-        </div>
-      }
-      {activeSidebar === "tab3" &&
-        <div
-          key="tab3"
-          className="active-content"
-
-        > -----------♥-----------♥---------♥------------------
-        </div>
-      }
-        </div>
+    <div className = "sidebar">
+      <ul>
+        <SidebarPreview setActiveSidebar={setActiveSidebar}>
+          <li label="preview">a</li>
+          <li label="all-message">b</li>
+          <li label="tab3">c</li>
+        </SidebarPreview>
+      </ul>
+      <div className={activeSidebar === "preview"? "active-side":"side"}>
+        aaa
       </div>
+      <div className={activeSidebar === "all-message"? "active-side":"side"}>
+        bbb
+      </div>
+      <div className={activeSidebar === "tab3"? "active-side":"side"}>
+        ccc
+      </div>
+    </div>
   );
 };
 
