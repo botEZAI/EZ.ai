@@ -4,7 +4,7 @@ const ChatbotData = require('../models').ChatbotData;
 const User = require('../models').User;
 const Chatbot = require('../models').Chatbot;
 const Keyword = require('../models').Keyword;
-
+const { isLoggedIn, isNotLoggedIn } = require("./middlewares");
 //post 주소 : /api/chatbotbuild/keyword, /api/chatbotbuild/content
 
 
