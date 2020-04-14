@@ -5,6 +5,8 @@ const User = require('../models').User;
 const Chatbot = require('../models').Chatbot;
 const Keyword = require('../models').Keyword;
 const { isLoggedIn, isNotLoggedIn } = require("./middlewares");
+
+
 //post 주소 : /api/chatbotbuild/keyword, /api/chatbotbuild/content
 
 
@@ -15,10 +17,10 @@ router.post('/keyword', isLoggedIn, async (req, res, next) => {
       //botname으로 봇 id 값을 찾음, 추후에는 token으로 조회해야함 토큰 값은 unique하기 때문
       where :{botname: req.name},  
     })
-     .then((chatbotDatas)=>{
+     .then((chatbotData)=>{
        Keyword.Create({
           keyword: req.body.keyword,
-          bot_id : ChatbotDatas.id,
+          bot_id : ChatbotData.id,
        });
      });
     res.json(newKeyword);
@@ -36,10 +38,10 @@ router.post('/content', isLoggedIn, async (req, res, next) => {
       //키워드 명은 unique하기 때문에 중복되지 않는다. 그래서 키워드 명으로 그 키워드 id를 조회
       where :{keyword: req.body.keyword}, 
     })
-     .then((keywords)=>{
+     .then((keyword)=>{
        chatbot.Create({
           // 외래 키 
-          keyworder: keywords.id, // 외래 키에 키워드 아이디를 저장
+          keyworder: keyword.id, // 외래 키에 키워드 아이디를 저장
 
           //챗봇 정보
           type: req.body.type,
