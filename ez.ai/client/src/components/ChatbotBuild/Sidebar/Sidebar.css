@@ -26,4 +26,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+}
+
+.side{
+  display:none;
+}
+.active-side{
+  display:active;
 }
