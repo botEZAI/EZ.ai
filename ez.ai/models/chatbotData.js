@@ -1,8 +1,6 @@
 module.exports = (sequelize, DataTypes) =>
-  sequelize.define(
-    "chatbotData",
-    {
-      user: {
+  sequelize.define('chatbotData',{
+      username: {
         type: DataTypes.TEXT,
         allowNull: false,
       },
