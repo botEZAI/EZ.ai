@@ -31,7 +31,8 @@ router.post('/keyword', isLoggedIn, async (req, res, next) => {
 });
 
 //content 저장 한개씩 먼저 저장하는 방식으로 하는게 좋음 (데이터 날아감 방지)
-// 밑의 정보를 다 보내줘야함, 없는 정보는 빈칸으로 post
+// 밑의 정보를 다 보내줘야함, 없는 정보는 빈칸으로 보내줘야함
+// ex) text 타입으로 보내면, list 내용들을 "" 로 보내야함
 router.post('/content', isLoggedIn, async (req, res, next) => {
   try {
     const newContents = await Keyword.findOne({
