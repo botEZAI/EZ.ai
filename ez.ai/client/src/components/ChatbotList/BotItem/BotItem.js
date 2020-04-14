@@ -6,7 +6,9 @@ import { withRouter } from "react-router-dom";
 
 const BotItem = (props) => {
   const dispatch = useDispatch();
-  const { currentChatbot, chatbotList } = useSelector((state) => state.chatbot);
+  const { currentChatbot, chatbotList, currentCategories } = useSelector(
+    (state) => state.chatbot
+  );
   const [botClick, setBotClick] = useState({ botOn: false });
   const { children, onRemove, botDesc, botConnect, id } = props;
 

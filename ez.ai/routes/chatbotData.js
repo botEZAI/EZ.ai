@@ -27,6 +27,7 @@ router.post("/", isLoggedIn, async (req, res, next) => {
       desc: req.body.desc,
       token: req.body.token,
       data: JSON.stringify(req.body.data),
+      categories: JSON.stringify(req.body.categories),
     });
     res.json(newChatbot);
   } catch (e) {

@@ -15,6 +15,7 @@ import TokenChkPopup from "./Popup/TokenChkPopup";
 const ChatbotList = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
+  const { currentCategories } = useSelector((state) => state.chatbot);
   useEffect(() => {
     if (user) {
       dispatch({
@@ -88,6 +89,7 @@ const ChatbotList = () => {
           category: "미분류",
         },
       ],
+      categories: [{ category: "미분류", show: true }],
     };
 
     dispatch({

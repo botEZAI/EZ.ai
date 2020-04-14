@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useEffect } from "react";
+import { withRouter } from "react-router-dom";
 import PrevTab from "./Sidebar/SidebarPreview.js";
 import Sidebar from "./Sidebar/Sidebar.js";
 import "./ChatbotBuild.css";
@@ -11,9 +12,12 @@ import ToolStatus from "./Status/ToolStatus";
 import Main from "./Preview/Preview";
 import MessageForAll from "./Sidebar/SidebarComponents/MessageForAll";
 import { useDispatch, useSelector } from "react-redux";
+import { actionChannel } from "redux-saga/effects";
 
-const ChatbotBuild = () => {
-  const { currentChatbot } = useSelector((state) => state.chatbot);
+const ChatbotBuild = (props) => {
+  const { currentChatbot, currentCategories } = useSelector(
+    (state) => state.chatbot
+  );
   const [activeTab, setActiveTab] = useState("basic");
   const [keyword, setKeyword] = useState("");
   const [keywordList, setKeywordList] = useState(["Welcome"]);
@@ -31,9 +35,12 @@ const ChatbotBuild = () => {
       category: keywordCategory[0].category,
     },
   ]);
+  //선택한 챗봇의 데이터와 카테고리 로딩
   useEffect(() => {
-    const tmp = currentChatbot && JSON.parse(currentChatbot.data);
-    tmp && setKeywordObject(tmp);
+    const chatbotData = currentChatbot && JSON.parse(currentChatbot.data);
+    chatbotData && setKeywordObject(chatbotData);
+    const categoriesData = currentCategories && JSON.parse(currentCategories);
+    categoriesData && setKeywordCategory(categoriesData);
   }, []);
 
   const [mainKeyword, setMainKeyword] = useState(keywordObject[0].keyword);
@@ -81,6 +88,7 @@ const ChatbotBuild = () => {
     },
     [keywordObject.length]
   );
+  console.log("data=", keywordObject);
 
   return (
     <div className="builder">
@@ -195,4 +203,4 @@ const ChatbotBuild = () => {
   );
 };
 
-export default ChatbotBuild;
+export default withRouter(ChatbotBuild);

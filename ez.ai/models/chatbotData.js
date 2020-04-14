@@ -27,6 +27,11 @@ module.exports = (sequelize, DataTypes) =>
         allowNull: false,
         unique: false,
       },
+      categories: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+        unique: false,
+      },
     },
     {
       timestamps: true,
