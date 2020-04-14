@@ -1,6 +1,7 @@
 export const initialState = {
   chatbotList: [], //챗봇리스트
   currentChatbot: null, //현재 클릭된 챗봇
+  currentCategories: null, //현재 클릭된 챗봇의 카테고리 리스트
 };
 
 export const ADD_CHATBOT_REQUEST = "ADD_CHATBOT_REQUEST";
@@ -24,6 +25,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         chatbotList: [...state.chatbotList, action.data],
+        currentCategories: action.data.categories,
       };
     }
     case ADD_CHATBOT_FAILURE: {
@@ -51,6 +53,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         currentChatbot: action.data,
+        currentCategories: action.data.categories,
       };
     }
     default: {

@@ -25,6 +25,7 @@ router.get('/', async (req, res, next) => {
 router.post('/', isLoggedIn, async (req, res, next) => {
   try {
     const newChatbot = await ChatbotData.create({
+
       username: req.body.user, // 사용자 이름
       botname: req.body.botname, //봇 이름
       sns: req.body.sns,   // 어떤 플랫폼인지
@@ -32,6 +33,7 @@ router.post('/', isLoggedIn, async (req, res, next) => {
       token: req.body.token, //토큰 삽입
       data: JSON.stringify(req.body.data), //나중에 삭제 해야함
       user_id: req.body.id, //유저 ID 외래 키 
+      categories: JSON.stringify(req.body.categories),
     });
     res.json(newChatbot);
   } catch (e) {
