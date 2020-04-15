@@ -9,18 +9,6 @@
   color : #333;
 }
 
-/* 헤더의 로고 양식 */
-.logo_default {
-  display: inline-block;
-  height: 80px;
-  width : 150px;
-}
-.logo_default > a {
-  font-size : 35px;
-  font-weight : 600;
-}
-
-
 
 /* header 기본 struct */
 .header {
@@ -30,10 +18,23 @@
   width : 100%;
   height : 80px;
   margin : 0;
-  line-height: 80px;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.12);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   z-index : 10;
   background-color: #fff;
+}
+
+/* 헤더의 로고 양식 */
+.header .logo_default {
+  width : 150px;
+  height : 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size : 35px;
+  font-weight : 600;
 }
 
 
@@ -91,10 +92,13 @@ footer {
 /* 그외 범용 코드 */
 a {
   display : inline-block;
-  width : 100%;
-  height: 100%;
   text-decoration: none;
   color : #333;
+  width : 100%;
+  height :100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .cursor {

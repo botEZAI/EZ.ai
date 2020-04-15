@@ -93,9 +93,9 @@ const Login = ({ history }) => {
               </div>
               <div className="login-btn">
                 <button className="login-btn__login">로그인</button>
-                <Link to="/register">
-                  <button className="login-btn__register">회원가입</button>
-                </Link>
+
+                <button className="login-btn__register"><Link to="/register">회원가입</Link></button>
+
               </div>
             </form>
           </div>

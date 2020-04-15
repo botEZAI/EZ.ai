@@ -23,11 +23,11 @@ const Header = ({ history }) => {
 
   return (
     <div className="header">
+      <div className="logo_default">
+        <div><Link to="/">Ez.ai</Link></div>
+      </div>
       <div className="nav">
         <ul>
-          <li className="logo_default">
-            <Link to="/">Ez.ai</Link>
-          </li>
           <li>
             <Link to="/about">소개</Link>
           </li>
@@ -59,7 +59,7 @@ const Header = ({ history }) => {
           <div className="profile-picture">
             <i className="fas fa-user-circle"></i>
           </div>
-          <div className="profile-more">{user.name}님</div>
+          <div className="profile-more">{user}님</div>
         </div>
       )}
       {showNP ? <NavPopup showNP={showNP} setShowNP={setShowNP} /> : null}

@@ -1,24 +1,28 @@
 @import "NavPopup.css";
 
 .nav {
-    display : inline-block;
+    display : flex;
+    flex-wrap: wrap;
     height: 80px;
 }
 .nav > ul{
-    text-align : center;
-
+    height: 100%;
     list-style : none;
-    margin : 0 auto;
-    padding : 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .nav > ul > li {
+    height: 100%;
     margin : 0;
-    min-width: 120px;
-    float : left;
+    width: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.nav > ul > li:nth-child(n+2):hover {
+.nav > ul > li:hover {
     background-color: #eee;
 }
 
@@ -27,8 +31,8 @@
 .nav_right {
     text-align: center;
     display : inline-block;
+    height: 100%;
     width : 150px;
-    float : right;
 }
 
 .login {
