@@ -1,13 +1,29 @@
 import React from "react";
+import "./Profile.css";
 
 const Profile = () => {
   return (
       <div className="user-info">
         <div className = "user-info__title">
-            내정보 페이지 제목
+            내정보
         </div>
           <div className="user-info__profile">
-              프로필 - 사진, 별명    ( 수정가능하게)
+              <div className="u-title">
+                  프로필
+              </div>
+              <div className="u-profile__more">
+                  <div className= "u-more__column">
+                      <div className="u-more__picture">
+                            사진
+                      </div>
+                  </div>
+                  <div className= "u-more__column">
+                      <div className = "u-more__name">
+                          별명 ( 수정가능하게)
+                      </div>
+                  </div>
+                  
+              </div>
           </div>
           <div className="user-info__more">
               개인정보 - 이름, 생일, 이메일,비밀번호 (변경기능까지)
