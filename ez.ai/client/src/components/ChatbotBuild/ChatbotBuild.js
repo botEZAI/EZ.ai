@@ -12,9 +12,9 @@ import ToolStatus from "./Status/ToolStatus";
 import Main from "./Preview/Preview";
 import MessageForAll from "./Sidebar/SidebarComponents/MessageForAll";
 import { useDispatch, useSelector } from "react-redux";
-import { actionChannel } from "redux-saga/effects";
 
 const ChatbotBuild = (props) => {
+  const dispatch = useDispatch();
   const { currentChatbot, currentCategories } = useSelector(
     (state) => state.chatbot
   );
@@ -39,7 +39,7 @@ const ChatbotBuild = (props) => {
   useEffect(() => {
     const chatbotData = currentChatbot && JSON.parse(currentChatbot.data);
     chatbotData && setKeywordObject(chatbotData);
-    const categoriesData = currentCategories && JSON.parse(currentCategories);
+    const categoriesData = currentCategories && currentCategories;
     categoriesData && setKeywordCategory(categoriesData);
   }, []);
 
@@ -88,12 +88,14 @@ const ChatbotBuild = (props) => {
     },
     [keywordObject.length]
   );
-  console.log("data=", keywordObject);
 
   return (
     <div className="builder">
       <div className="builder__column builder-info">
-        <BuilderInfo />
+        <BuilderInfo
+          keywordObject={keywordObject}
+          keywordCategory={keywordCategory}
+        />
       </div>
       <div className="builder__column builder-main">
         <div className="builderTool">

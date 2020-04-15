@@ -1,7 +1,10 @@
 import React, { useState, useCallback } from "react";
 import "./BotItem.css";
 import { useDispatch, useSelector } from "react-redux";
-import { SET_CURRENT_CHATBOT } from "../../../reducer/chatbot";
+import {
+  SET_CURRENT_CHATBOT,
+  DELETE_CHATBOT_REQUEST,
+} from "../../../reducer/chatbot";
 import { withRouter } from "react-router-dom";
 
 const BotItem = (props) => {
@@ -15,9 +18,17 @@ const BotItem = (props) => {
   const botClickEvent = (e) => {
     setBotClick({ botOn: !botClick.botOn });
   };
-  const botDeleteClickEvent = (e) => {
-    onRemove();
-  };
+  const botDeleteClickEvent = useCallback(
+    (id) => {
+      const index = chatbotList.findIndex((v) => v.id === id);
+      const chatbotData = chatbotList[index];
+      dispatch({
+        type: DELETE_CHATBOT_REQUEST,
+        data: chatbotData,
+      });
+    },
+    [currentChatbot]
+  );
   const botSnsIconHandler = (botConnect) => {
     if (botConnect === "kakao") {
       return <span className="icon-kakao"></span>;
@@ -33,10 +44,11 @@ const BotItem = (props) => {
   };
   const setCurrentChatbot = useCallback(
     (id) => {
-      const currentChatbot = chatbotList.find((v) => v.id === id);
+      const index = chatbotList.findIndex((v) => v.id === id);
+      const chatbotData = chatbotList[index];
       dispatch({
         type: SET_CURRENT_CHATBOT,
-        data: currentChatbot,
+        data: chatbotData,
       });
       props.history.push("/chatbotbuild");
     },
@@ -59,7 +71,12 @@ const BotItem = (props) => {
               >
                 만들기
               </div>
-              <div className="delete" onClick={botDeleteClickEvent}>
+              <div
+                className="delete"
+                onClick={() => {
+                  botDeleteClickEvent(id);
+                }}
+              >
                 삭제
               </div>
             </div>
@@ -85,7 +102,12 @@ const BotItem = (props) => {
             >
               만들기
             </div>
-            <div className="delete" onClick={botDeleteClickEvent}>
+            <div
+              className="delete"
+              onClick={() => {
+                botDeleteClickEvent(id);
+              }}
+            >
               삭제
             </div>
           </div>
