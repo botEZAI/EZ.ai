@@ -20,7 +20,7 @@ router.get('/', async (req, res, next) => {
 
 //챗봇 등록
 router.post('/', isLoggedIn, async (req, res, next) => {
-  //console.log(req);
+  // console.log(req);
   try {
     const newChatbot = await ChatbotData.create({
       username: req.body.user, // 사용자 이름
@@ -29,7 +29,7 @@ router.post('/', isLoggedIn, async (req, res, next) => {
       desc: req.body.desc,  // 챗봇 설명
       token: req.body.token, //토큰 삽입
       data: JSON.stringify(req.body.data), //나중에 삭제 해야함
-      user_id: req.user.id, //유저 ID 외래 키 
+      user_id: req.user.id, //유저 ID 외래 키, req.user.id 는 passport에 localStrategy에서 옴
       categories: JSON.stringify(req.body.categories),
     });
     res.json(newChatbot);
