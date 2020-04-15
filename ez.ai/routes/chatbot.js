@@ -20,7 +20,7 @@ router.post('/keyword', isLoggedIn, async (req, res, next) => {
      .then((chatbotData)=>{
        Keyword.Create({
           keyword: req.body.keyword,
-          bot_id : ChatbotData.id,
+          bot_id : ChatbotData.id,  //여기 오류 뜰 확률 높음 
        });
      });
     res.json(newKeyword);
@@ -42,7 +42,7 @@ router.post('/content', isLoggedIn, async (req, res, next) => {
      .then((keyword)=>{
        chatbot.Create({
           // 외래 키 
-          keyworder: keyword.id, // 외래 키에 키워드 아이디를 저장
+          keyworder: keyword.id, // 외래 키에 키워드 아이디를 저장 //여기 오류 뜰 확률 높음 
 
           //챗봇 정보
           type: req.body.type,
