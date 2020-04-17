@@ -150,26 +150,23 @@ const ChatbotList = () => {
   };
 
   return (
-    <div>
-      <div className="main">
+    <div className="bot-list">
+      <div className="bot-list-main">
         <div className="main-title">
           <div className="sub-title">
-            <span className="list-title">나의 챗봇 목록</span>
+            나의 챗봇 목록
           </div>
           <div className="sub-title">
-            <span>
+            <div className="search-bar">
               <input
-                type="text"
-                className="search-input"
-                placeholder="ChatBot name"
+                  type="text"
+                  className="search-input"
+                  placeholder="검색할 챗봇 이름을 적어주세요"
               />
-            </span>
-            <span className="search-btn">
-              <button>검색</button>
-            </span>
+            </div>
+            <div className="search-btn">검색</div>
           </div>
         </div>
-        <div className="list-line"></div>
         <div className="content">
           <InputBot onInsert={InsertStarter} />
           <Popup

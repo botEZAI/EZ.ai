@@ -74,7 +74,7 @@ const Register = ({ history }) => {
   return (
     <>
       <div className="register">
-        <form className="register-form" onSubmit={onSubmit}>
+        <form  className="register-form" onSubmit={onSubmit}>
           <div className="register-form__column">
             <p className="register-title">
               <span>Ez.ai</span> 회원가입
