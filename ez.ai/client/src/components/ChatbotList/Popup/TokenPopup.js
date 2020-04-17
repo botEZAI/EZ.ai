@@ -1,5 +1,5 @@
 import React from 'react';
-import './TokenPopup.css';
+import './Popup.css';
 
 const TokenPopup = ({isOpen, close, next, setBotName, setBotDesc, setBotConnect, botToken, setBotToken}) => {
     const onChangeToken = e => { // 토큰 입력 처리
@@ -24,11 +24,11 @@ const TokenPopup = ({isOpen, close, next, setBotName, setBotDesc, setBotConnect,
                 isOpen ?
                 <React.Fragment>
                     <div className="popup-overlay" onClick={close}></div>
-                    <div className="tokenPopup">
-                        <p className="tokenPopup-title">토큰 팝업</p>
-                        <div className="tokenPopup-content" >
-                            <div>Token 입력</div>
-                            <input type="text" onChange = {onChangeToken}/>
+                    <div className="popup">
+                        <p className="popup-title">토큰 팝업</p>
+                        <div className="popup-content" >
+                            <div className="txt-name-in-popup">Token 입력</div>
+                            <input type="text" onChange = {onChangeToken} placeholder="지정한 플랫폼에서 발급받은 토큰을 입력해주세요."/>
                         </div>
                         <div className="popup-button-wrap">
                             <button onClick={undoToBotProfile}>이전</button>

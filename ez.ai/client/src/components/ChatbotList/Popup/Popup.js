@@ -12,6 +12,8 @@ const Popup = ({
     setBotDesc,
     setBotConnect }) => {
     const [checkError, setCheckError] = useState(false);
+    const [selectedSns, setSelectedSns] = useState([{name : "line", color : false}, {name : "facebook", color : false}, {name : "telegram", color : false}, {name : "kakao", color  : false}]);
+
     const onChangeBotName = (e) => {
         e.preventDefault();
         setBotName({name:e.target.value});
@@ -21,7 +23,9 @@ const Popup = ({
         setBotDesc({desc:e.target.value});
     }
     const onChangeBotSns = (e) => { //한 챗봇 당 하나의 소셜 계정만 연동
-        console.log(e.target.value);
+        console.log(e.target.value, "line" === e.target.value ? console.log("true") : null)
+        setSelectedSns(selectedSns.map(i => i.name === e.target.value ? {...i , color : !i.color} : i))  /* 외안덴데 */
+        console.log(selectedSns)
         setCheckError(false);
         setBotConnect({sns:e.target.value});
     }
@@ -50,26 +54,26 @@ const Popup = ({
 
                         <div className="popup-content">
                             <div className="botname-input">
-                                <div className="txt-name-in-popup">ChatbotName</div>
-                                <input type="text" onChange = {onChangeBotName}  />
+                                <div className="txt-name-in-popup">챗봇 이름</div>
+                                <input type="text" onChange = {onChangeBotName}  placeholder="연동할 챗봇 이름을 적어주세요"/>
                             </div>
                             <div className="botdesc-input">
-                                <div className="txt-desc-in-popup">description</div>
-                                <textarea cols="60" onChange = {onChangeBotDesc}/>
+                                <div className="txt-name-in-popup">챗봇 설명</div>
+                                <textarea cols="60" onChange = {onChangeBotDesc} placeholder="연동할 챗봇에 대한 간략한 설명글을 적어주세요."/>
                             </div>
                             <div className="platform-select">
-                                <div className="txt-sns-in-popup">Platform</div>
+                                <div className="txt-name-in-popup">연동할 플랫폼</div>
                                 <div className="sns-icons-container-in-popup">
-                                    <span className="icon-Kakao"></span>
-                                    <span className="icon-Line"></span>
-                                    <span className="icon-Facebook"></span>
-                                    <span className="icon-Telegram"></span> 
+                                    <div className={selectedSns[0].color ? "sns-color-line" : null}><i className="fab fa-line"></i></div>
+                                    <div className={selectedSns[1].color ? "sns-color-line" : null}><i className="fab fa-facebook-square"></i></div>
+                                    <div className={selectedSns[2].color ? "sns-color-line" : null}><i className="fab fa-telegram"></i></div>
+                                    <div className={selectedSns[3].color ? "sns-color-line" : null}><i className="fab fa-kaggle"></i></div>
                                 </div>
                                 <div className="sns-select-container">
-                                    <input data-tooltip-text="카카오톡" type="radio" id="kakao" value="kakao" name="sns" onChange={onChangeBotSns}/>
-                                    <input data-tooltip-text="네이버 Line" type="radio" id="line" value="line" name="sns" onChange={onChangeBotSns}/>
-                                    <input data-tooltip-text="페이스북" type="radio" id="facebook" value="facebook" name="sns" onChange={onChangeBotSns}/>
+                                    <input data-tooltip-text="네이버 라인" type="radio" id="line" value="line" name="sns" onChange={onChangeBotSns}/>
+                                    <input data-tooltip-text="페이스북 메신저" type="radio" id="facebook" value="facebook" name="sns" onChange={onChangeBotSns}/>
                                     <input data-tooltip-text="텔레그램" type="radio" id="telegram" value="telegram" name="sns" onChange={onChangeBotSns}/>
+                                    <input data-tooltip-text="카카오톡" type="radio" id="kakao" value="kakao" name="sns" onChange={onChangeBotSns}/>
                                 </div>
                                 {checkError && <div className="checkError" style={{color:'red'}}>플랫폼을 선택해주세요.</div>}
                             </div>

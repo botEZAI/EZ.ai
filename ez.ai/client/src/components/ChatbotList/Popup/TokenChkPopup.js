@@ -1,5 +1,5 @@
 import React from 'react';
-import './TokenChkPopup.css';
+import './Popup.css';
 
 const TokenChkPopup = ({isOpen, close, botToken, setBotToken, next, finish}) => {
 
@@ -13,11 +13,11 @@ const TokenChkPopup = ({isOpen, close, botToken, setBotToken, next, finish}) => 
                 isOpen ?
                 <React.Fragment>
                     <div className="popup-overlay" onClick={close}></div>
-                    <div className="tokenChk">
-                        <p className="tokenChk-title">토큰체크팝업</p>
+                    <div className="popup">
+                        <p className="popup-title">토큰체크팝업</p>
 
-                        <div className="tokenChk-content">
-                            <div className="tokenChk-header">
+                        <div className="popup-content">
+                            <div className="txt-name-in-popup">
                                 Token 확인 
                             </div>
                             <div className="tokenVal">
