@@ -19,6 +19,7 @@
   left: 0;
   text-align: center;
   width: 100vw;
+  min-width: 1200px;
   height: 110vh;
   background-color: #F7f7f7;
   display: flex;

@@ -23,8 +23,8 @@ const Popup = ({
         setBotDesc({desc:e.target.value});
     }
     const onChangeBotSns = (e) => { //한 챗봇 당 하나의 소셜 계정만 연동
-        console.log(e.target.value, "line" === e.target.value ? console.log("true") : null)
-        setSelectedSns(selectedSns.map(i => i.name === e.target.value ? {...i , color : !i.color} : i))  /* 외안덴데 */
+        console.log(e.target.value, "line" === e.target.value ? "true" : null)
+        setSelectedSns(selectedSns.map(i => i.name === e.target.value ? {...i , color : true} : {...i , color : false}))  /* 외안덴데 */
         console.log(selectedSns)
         setCheckError(false);
         setBotConnect({sns:e.target.value});
@@ -65,9 +65,9 @@ const Popup = ({
                                 <div className="txt-name-in-popup">연동할 플랫폼</div>
                                 <div className="sns-icons-container-in-popup">
                                     <div className={selectedSns[0].color ? "sns-color-line" : null}><i className="fab fa-line"></i></div>
-                                    <div className={selectedSns[1].color ? "sns-color-line" : null}><i className="fab fa-facebook-square"></i></div>
-                                    <div className={selectedSns[2].color ? "sns-color-line" : null}><i className="fab fa-telegram"></i></div>
-                                    <div className={selectedSns[3].color ? "sns-color-line" : null}><i className="fab fa-kaggle"></i></div>
+                                    <div className={selectedSns[1].color ? "sns-color-facebook" : null}><i className="fab fa-facebook-square"></i></div>
+                                    <div className={selectedSns[2].color ? "sns-color-telegram" : null}><i className="fab fa-telegram"></i></div>
+                                    <div className={selectedSns[3].color ? "sns-color-kakao" : null}><i className="fab fa-kaggle"></i></div>
                                 </div>
                                 <div className="sns-select-container">
                                     <input data-tooltip-text="네이버 라인" type="radio" id="line" value="line" name="sns" onChange={onChangeBotSns}/>

@@ -126,20 +126,20 @@
  }
 
 /* 연동 플랫폼 색깔 */
-.sns-color-line {
-    color : #19CE60;
+.sns-color-line i{
+    color : #19CE60!important;
 }
 
-.sns-color-facebook {
-    color : #304a8a;
+.sns-color-facebook i{
+    color : #304a8a!important;
 }
 
-.sns-color-telegram {
-    color : deepskyblue;
+.sns-color-telegram i{
+    color : #26A8D9!important;
 }
 
-.sns-color-kakao{
-    color : yellow;
+.sns-color-kakao i{
+    color : #FBE300!important;
 }
 
 
