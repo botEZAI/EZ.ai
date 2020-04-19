@@ -89,8 +89,16 @@ const ToolStatus = ({
             ) : null
           ) : null}
         </div>
-        <div className="help" alt="도움말">
-          ?
+        <div className="tool-status-info">
+          <div className = "tool-status-available">
+            <div className = "status-telegram"></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+          <div className="help">
+            ?
+          </div>
         </div>
       </div>
 

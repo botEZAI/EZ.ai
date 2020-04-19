@@ -34,24 +34,46 @@
     line-height: 50px;
 }
 
-.tool-status-header .help {
+
+.tool-status-header .tool-status-info {
+    width : 160px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.tool-status-info .tool-status-available {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tool-status-info .tool-status-available > div {
     width : 20px;
-    height: 20px;
+    height : 15px;
+    margin-left : 10px;
+    border-radius: 5px;
+    background-color: #eee;
+}
+
+.tool-status-header .help {
+    width : 24px;
+    height: 24px;
     border-radius: 10px;
     background-color : #bbb;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 12px;
+    font-size: 14px;
+    font-weight: bold;
     color : #fff;
     cursor : pointer;
 }
 
 .tool-status-header .help:hover {
     background-color : orange;
-    width : 26px;
-    height : 26px;
-    font-size: 14px;
+    transform: translateY(-2px);
     transition: .2s all;
 }
 
