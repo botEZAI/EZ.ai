@@ -57,6 +57,25 @@
     background-color: #eee;
 }
 
+/* 연동 플랫폼 색깔 */
+.sns-color-line {
+    background-color : #86efae!important;
+}
+
+.sns-color-facebook {
+    background-color : #7a8fc1!important;
+}
+
+.sns-color-telegram {
+    background-color : #99edf7!important;
+}
+
+.sns-color-kakao {
+    background-color : #fff6a8!important;
+}
+
+
+
 .tool-status-header .help {
     width : 24px;
     height: 24px;
@@ -255,7 +274,7 @@
 /* 이미지 */
 .image-status {
     width : 100%;
-    height: inherit;
+    height: 100%;
 }
 
 .status-image-tab {

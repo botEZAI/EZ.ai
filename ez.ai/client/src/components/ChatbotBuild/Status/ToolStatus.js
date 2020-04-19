@@ -39,6 +39,25 @@ const ToolStatus = ({
     keywordObject[index].contents[now] &&
     keywordObject[index].contents[now].content;
 
+  /* 선택한 요소 플랫폼별 사용가능 여부 */
+  const [availableIcon, setAvailableIcon] = useState([
+      {name : "kakao", useable : true},
+      {name : "line", useable : true},
+      {name : "facebook", useable : true},
+      {name : "telegram", useable : true},
+      ]
+  )
+
+  /* 요소별 플랫폼 사용가능 DB */
+  const canUseThisStatus = [
+      {status : ["text", "image", "video", "audio", "location", "file"] , useinfo : [1,1,1,1]},
+      {status : ["list", "sticker"] , useinfo : [0,1,0,1]}
+      ]
+
+
+
+
+
   const fileRef = useRef();
 
   return (
@@ -91,10 +110,10 @@ const ToolStatus = ({
         </div>
         <div className="tool-status-info">
           <div className = "tool-status-available">
-            <div className = "status-telegram"></div>
-            <div></div>
-            <div></div>
-            <div></div>
+            <div className={availableIcon[0].useable ? "sns-color-kakao" : null}></div>
+            <div className={availableIcon[1].useable ? "sns-color-line" : null}></div>
+            <div className={availableIcon[2].useable ? "sns-color-facebook" : null}></div>
+            <div className={availableIcon[3].useable ? "sns-color-telegram" : null}></div>
           </div>
           <div className="help">
             ?
