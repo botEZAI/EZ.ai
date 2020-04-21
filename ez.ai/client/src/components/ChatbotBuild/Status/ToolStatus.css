@@ -58,19 +58,19 @@
 }
 
 /* 연동 플랫폼 색깔 */
-.sns-color-line {
+.tool-status-available .sns-color-line {
     background-color : #86efae!important;
 }
 
-.sns-color-facebook {
+.tool-status-available .sns-color-facebook {
     background-color : #7a8fc1!important;
 }
 
-.sns-color-telegram {
+.tool-status-available .sns-color-telegram {
     background-color : #99edf7!important;
 }
 
-.sns-color-kakao {
+.tool-status-available .sns-color-kakao {
     background-color : #fff6a8!important;
 }
 
