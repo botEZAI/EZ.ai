@@ -48,7 +48,7 @@ app.use(passport.initialize()); //passport 사용
 app.use(passport.session()); //passport 사용
 
 //라우터 사용
-app.use("/api/chatbotbuild", chatbotRouter); // 키워드 + 콘텐트
+// app.use("/api/chatbotbuild", chatbotRouter); // 키워드 + 콘텐트
 app.use("/api/chatbotdata", chatbotDataRouter); //챗봇 생성 라우터
 app.use("/api/image", imageRouter); //이미지
 app.use("/api/video", videoRouter); //비디오
