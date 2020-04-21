@@ -29,6 +29,7 @@ router.post("/", isLoggedIn, async (req, res, next) => {
       data: JSON.stringify(req.body.data), //나중에 삭제 해야함
       user_id: req.user.id, //유저 ID 외래 키, req.user.id 는 passport에 localStrategy에서 옴
       categories: JSON.stringify(req.body.categories),
+      platformInfo: JSON.stringify(req.body.platformInfo),
     });
     res.json(newChatbot);
   } catch (e) {

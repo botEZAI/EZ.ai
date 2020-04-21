@@ -1,5 +1,7 @@
 module.exports = (sequelize, DataTypes) =>
-  sequelize.define('chatbotData',{
+  sequelize.define(
+    "chatbotData",
+    {
       username: {
         type: DataTypes.TEXT,
         allowNull: false,
@@ -29,6 +31,10 @@ module.exports = (sequelize, DataTypes) =>
         type: DataTypes.TEXT,
         allowNull: false,
         unique: false,
+      },
+      platformInfo: {
+        type: DataTypes.TEXT,
+        allowNull: false,
       },
     },
     {

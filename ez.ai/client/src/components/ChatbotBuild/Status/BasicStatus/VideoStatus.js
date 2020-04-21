@@ -7,17 +7,18 @@ const VideoStatus = ({ setKeywordObject, keywordObject, now, index }) => {
   const onClickUploadVideo = () => {
     videoRef.current.click();
   };
-  const onChangeVideo = e => {
+  const onChangeVideo = (e) => {
     if (e.target.value === "") return;
     if (e.target.files[0].type.match(/video/g)) {
       const videoFormData = new FormData();
       videoFormData.append("video", e.target.files[0]);
 
-      axios.post("/api/video", videoFormData).then(res => {
+      axios.post("/api/video", videoFormData).then((res) => {
         console.log(res);
         setKeywordObject(
-          produce(keywordObject, draft => {
+          produce(keywordObject, (draft) => {
             draft[index].contents[now].content = res.data.filename;
+            draft[index].contents[now].filepath = res.data.path;
           })
         );
       });

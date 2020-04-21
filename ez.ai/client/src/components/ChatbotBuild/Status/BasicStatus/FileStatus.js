@@ -7,17 +7,18 @@ const FileStatus = ({ setKeywordObject, keywordObject, now, index }) => {
   const onClickUploadFile = () => {
     fileRef.current.click();
   };
-  const onChangeFile = e => {
+  const onChangeFile = (e) => {
     if (e.target.value === "") return;
 
     const fileFormData = new FormData();
     fileFormData.append("file", e.target.files[0]);
 
-    axios.post("/api/file", fileFormData).then(res => {
+    axios.post("/api/file", fileFormData).then((res) => {
       console.log(res);
       setKeywordObject(
-        produce(keywordObject, draft => {
+        produce(keywordObject, (draft) => {
           draft[index].contents[now].content = res.data.filename;
+          draft[index].contents[now].filepath = res.data.path;
         })
       );
     });

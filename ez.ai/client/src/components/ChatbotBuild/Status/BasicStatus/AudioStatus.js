@@ -7,17 +7,18 @@ const AudioStatus = ({ setKeywordObject, keywordObject, now, index }) => {
   const onClickUploadAudio = () => {
     audioRef.current.click();
   };
-  const onChangeAudio = e => {
+  const onChangeAudio = (e) => {
     if (e.target.value === "") return;
     if (e.target.files[0].type.match(/audio/g)) {
       const audioFormData = new FormData();
       audioFormData.append("audio", e.target.files[0]);
 
-      axios.post("/api/audio", audioFormData).then(res => {
+      axios.post("/api/audio", audioFormData).then((res) => {
         console.log(res);
         setKeywordObject(
-          produce(keywordObject, draft => {
+          produce(keywordObject, (draft) => {
             draft[index].contents[now].content = res.data.filename;
+            draft[index].contents[now].filepath = res.data.path;
           })
         );
       });

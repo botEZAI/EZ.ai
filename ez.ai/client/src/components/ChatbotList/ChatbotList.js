@@ -39,6 +39,13 @@ const ChatbotList = () => {
   const [botName, setBotName] = useState({ name: "" });
   const [botDesc, setBotDesc] = useState({ desc: "" });
   const [botConnect, setBotConnect] = useState({ sns: "" });
+  const [platformInfo, setPlatformInfo] = useState([
+    { platform: "line", created: false, deploy: false },
+    { platform: "facebook", created: false, deploy: false },
+    { platform: "telegram", created: false, deploy: false },
+    { platform: "kakao", created: false, deploy: false },
+  ]);
+  const [tokenInfo, setTokenInfo] = useState([]);
   const [botToken, setBotToken] = useState({ token: "" });
 
   //InsertStarter: 팝업창 띄움
@@ -48,6 +55,12 @@ const ChatbotList = () => {
     setBotDesc({ desc: "" });
     setBotConnect({ sns: "" });
     setBotToken({ token: "" });
+    setPlatformInfo([
+      { platform: "line", create: false, deploy: false, tokenData: null },
+      { platform: "facebook", create: false, deploy: false, tokenData: null },
+      { platform: "telegram", create: false, deploy: false, tokenData: null },
+      { platform: "kakao", create: false, deploy: false, tokenData: null },
+    ]);
 
     let openPopup = {
       showPopup1: true,
@@ -72,6 +85,7 @@ const ChatbotList = () => {
       desc: botDesc.desc,
       sns: botConnect.sns,
       token: botToken.token,
+      platformInfo,
     };
 
     const reqData = {
@@ -80,6 +94,8 @@ const ChatbotList = () => {
       desc: botDesc.desc,
       sns: botConnect.sns,
       token: botToken.token,
+      platformInfo,
+
       data: [
         {
           keyword: "Welcome",
@@ -91,6 +107,7 @@ const ChatbotList = () => {
       ],
       categories: [{ category: "미분류", show: true }],
     };
+    console.log(platformInfo);
 
     dispatch({
       type: ADD_CHATBOT_REQUEST,
@@ -153,15 +170,13 @@ const ChatbotList = () => {
     <div className="bot-list">
       <div className="bot-list-main">
         <div className="main-title">
-          <div className="sub-title">
-            나의 챗봇 목록
-          </div>
+          <div className="sub-title">나의 챗봇 목록</div>
           <div className="sub-title">
             <div className="search-bar">
               <input
-                  type="text"
-                  className="search-input"
-                  placeholder="검색할 챗봇 이름을 적어주세요"
+                type="text"
+                className="search-input"
+                placeholder="검색할 챗봇 이름을 적어주세요"
               />
             </div>
             <div className="search-btn">검색</div>
@@ -179,6 +194,8 @@ const ChatbotList = () => {
             setBotName={setBotName}
             setBotDesc={setBotDesc}
             setBotConnect={setBotConnect}
+            platformInfo={platformInfo}
+            setPlatformInfo={setPlatformInfo}
           />
           <TokenPopup
             isOpen={popup.showPopup2}
@@ -189,6 +206,8 @@ const ChatbotList = () => {
             setBotConnect={setBotConnect}
             botToken={botToken}
             setBotToken={setBotToken}
+            platformInfo={platformInfo}
+            setPlatformInfo={setPlatformInfo}
           />
           <TokenChkPopup
             isOpen={popup.showPopup3}
@@ -197,12 +216,16 @@ const ChatbotList = () => {
             botToken={botToken}
             setBotToken={setBotToken}
             finish={InsertFinish}
+            platformInfo={platformInfo}
+            setPlatformInfo={setPlatformInfo}
           />
           <BotList
             bots={bots}
             onRemove={dataRemoveHandler}
             botDesc={botDesc}
             botConnect={botConnect}
+            platformInfo={platformInfo}
+            setPlatformInfo={setPlatformInfo}
           />
         </div>
       </div>
