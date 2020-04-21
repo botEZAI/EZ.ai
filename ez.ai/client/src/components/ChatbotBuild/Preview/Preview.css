@@ -154,7 +154,7 @@
   cursor:pointer;
 }
 .main-listbox { /*== Advance > List == */
-  z-index:1;
+  /* z-index:1; */
   padding:2%;
   width:fit-content;
   height:fit-content;

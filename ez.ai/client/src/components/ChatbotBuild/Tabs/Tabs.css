@@ -32,7 +32,7 @@
   font-weight : bold;
 }
 
-.active {
+.activeToolTab {
   background-color : rgb(0, 184, 180);
   color : #eee;
   transition : .5s background-color;

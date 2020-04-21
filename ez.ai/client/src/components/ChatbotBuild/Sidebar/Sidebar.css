@@ -1,37 +1,47 @@
-
-
+.side-wrapper{
+  position: relative;
+}
 .sidebar {
-    width : 50px;
-    height: 100vh;
-    position : absolute;
-    top : 100px;
-    right: 0px;
-    background-color: #eee;
-
+  width : 50px;
+  height: 100vh;
+  position : fixed;
+  top : 80px;
+  right: 0px;
+  background-color: white;
+  border: 0.5px solid #eee;
+}
+/*tabs.css의 .active의 영향을 받아 이벤트 발생시 색상 변화*/
+.sidebar-icon{
+  cursor: pointer;
+  padding:15px;
+  size: 23px;
+  border-left: 3px solid transparent;
 }
 
-.sidebar-icons {
-    width : inherit;
+.fas{
+  font-size: 20px;
+  transition:.2s;
 }
-
-.sidebar-icon {
-    list-style: none;
-    margin : 0;
-    padding : 0;
+.fas:hover{
+  transform: scale(1.2,1.2) translate(-1px,1px);
 }
-
-.sidebar-icon li {
-    height : 50px;
-    background-color: #999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
+.active{
+  border-left: 3px solid #00b8b4;
 }
 
 .side{
   display:none;
+  animation-name: animateSlideClose;
 }
 .active-side{
+  position:absolute;
+  width:400px;
+  height: 100vh;
+  top:-1px;
+  right:50px;
+  background-color: white;
+  border: .5px solid #eee;
+  color:gray;
   display:active;
 }
+
