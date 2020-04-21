@@ -1,8 +1,8 @@
-var express = require('express');
-var bodyParser = require("body-parser");
-var cookieParser = require('cookie-parser');
-var sequelize = require('./models').sequelize;
-var app = express();
+const express = require('express');
+const bodyParser = require("body-parser");
+const cookieParser = require('cookie-parser');
+const sequelize = require('./models').sequelize;
+const app = express();
 sequelize.sync();
 
 //미들웨어 사용
@@ -12,97 +12,119 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 //DB연결
-const Chatbot = require('./models').Chatbot;
-const Keyword = require('./models').Keyword;
+const ChatbotData = require('./models').ChatbotData;
+const User = require('./models').User;
 
 //telegram api
 const TelegramBot = require('node-telegram-bot-api'); 
 
 
 //첫번 째 토큰
-const token ='input ';
+const token ='input token';
 const bot = new TelegramBot(token, {polling: true});
 
 
 //indexOf 문자열 내에서 특정한 문자열의 index 값을 리턴한다.
-bot.on('message', (msg) => {
-    //console.log(msg.text)
-    var idnumber = 0; 
-
-    //키워드 먼저 탐색
-    Keyword.findOne({
-        where: {keyword: msg.text},
-    })
-    .then((keywords)=>{
-       // console.log(keywords);
-        Chatbot.findAll({
-            include:{
-            model: Keyword,
-            where: {id: keywords.id},
-            },
-         })
-            .then((chatbots)=>{
-                console.log("콘텐츠 통과");
-                for(var i = 0;i<chatbots.length;i++){
-                    if(chatbots[i].type=="text"){
-                        console.log("텍스트 타입 통과");
-                        bot.sendMessage(msg.chat.id, chatbots[i].content);
-                    }
-                    else if(chatbots[i].type=="image"){
-                        console.log("이미지 타입 통과");
-                        bot.sendPhoto(msg.chat.id, chatbots[i].content);
-                    }
-                    else if(chatbots[i].type=="location"){
-                        console.log("위치 타입 통과");
-                        bot.sendMessage(msg.chat.id, chatbots[i].title);
-                        bot.sendLocation(msg.chat.id,chatbots[i].latitude, chatbots[i].longtitude);
-                    }
-                    else if(chatbots[i].type=="list"){
-                        console.log("리스트  타입 통과");
-                        if(chatbots[i].contentLen == 1 ){ //리스트 개수 1개
-                            bot.sendMessage(msg.chat.id, chatbots[i].question, {
-                                "reply_markup": {
-                                    "keyboard": [[chatbots[i].elem1]]}
-                            });
-                        }
-                        else if(chatbots[i].contentLen == 2){ //리스트 개수 2개
-                            bot.sendMessage(msg.chat.id, chatbots[i].question, {
-                                "reply_markup": {
-                                    "keyboard": [[chatbots[i].elem1, chatbots[i].elem2]]}
-                            });
-                        }    
-                        else if(chatbots[i].contentLen == 3){ //리스트 개수 3개
-                            bot.sendMessage(msg.chat.id, chatbots[i].question, {
-                                "reply_markup": {
-                                    "keyboard": [[chatbots[i].elem1, chatbots[i].elem2], [chatbots[i].elem3]]}
-                            });
-                        } 
-                        else if(chatbots[i].contentLen == 4){ //리스트 개수 4개
-                            bot.sendMessage(msg.chat.id, chatbots[i].question, {
-                                "reply_markup": {
-                                    "keyboard": [[chatbots[i].elem1, chatbots[i].elem2], [chatbots[i].elem3, chatbots[i].elem4]]}
-                            });
-                        }  
-                        else if(chatbots[i].contentLen == 5){ //리스트 개수 5개
-                            bot.sendMessage(msg.chat.id, chatbots[i].question, {
-                                "reply_markup": {
-                                    "keyboard": [[chatbots[i].elem1, chatbots[i].elem2], [chatbots[i].elem3, chatbots[i].elem4 ], [chatbots[i].elem5]]}
-                            });
-                        }      
-                        else if(chatbots[i].contentLen == 6){ //리스트 개수 6개
-                        bot.sendMessage(msg.chat.id, chatbots[i].question, {
-                                "reply_markup": {
-                                    "keyboard": [[chatbots[i].elem1, chatbots[i].elem2], [chatbots[i].elem3, chatbots[i].elem4 ], [chatbots[i].elem5,chatbots[i].elem6 ]]}
-                            });
-                        }    
-                    }
+bot.on('message',(msg) => {
+     function logic(array){ 
+        let contents= [];
+        array.forEach(element => {
+            if(element.keyword===msg.text) {
+                console.log("키워드 찾음", element.keyword);
+                contents= element.contents;
+            }
+        });
+        return contents;
+    }
+    async function findData(){
+        try{
+        const data = await ChatbotData.findAll({
+          attributes:['data'],
+        });
+ 
+        const data1 = await JSON.parse(data[0].data); //data[0]은 첫번 째 유저, 0에 유저 아이디 필요
+        const contents = await logic(data1);
+        if(contents){
+            console.log(contents);
+            contents.forEach(element => {
+                if(element.type==='text') { // 텍스트 타입 
+                    bot.sendMessage(msg.chat.id, element.content);
                 }
-            })
-    })
-    .catch((err)=>{
-        bot.sendMessage(msg.chat.id, "키워드를 찾지 못했습니다.");
-        console.error(err);
-    });  
+                else if(element.type==='image'){ //이미지 타입 
+                    console.log("이미지 타입 통과");
+                    console.log(element.content);
+                    bot.sendPhoto(msg.chat.id, element.filepath);
+                }
+                else if(element.type==='audio'){ //오디오 타입 
+                    console.log("오디오 타입 통과");
+                    console.log(element.content)
+                    bot.sendAudio(msg.chat.id, element.filepath);
+                }
+                else if(element.type==='video'){ //비디오 타입 
+                    console.log("비디오 타입 통과");
+                    console.log(element.content);
+                    bot.sendVideo(msg.chat.id, element.filepath);
+                }
+                else if(element.type==='file'){ //이미지 타입 
+                    console.log("이미지 타입 통과");
+                    bot.sendDocument(msg.chat.id, element.filepath);
+                }
+                else if(element.type==='list'){ //리스트 타입 
+                    console.log("리스트 타입 통과");
+                    let list = element.listContent;
+                    const question = list.question;
+                    const len = list.keywordLen+1;
+                    if(len==1){
+                        bot.sendMessyage(msg.chat.id, question, {
+                            "reply_markup": {
+                                "keyboard": [[list.keywordLink[0]]]}
+                        });
+                    } 
+                    else if(len==2){
+                        bot.sendMessage(msg.chat.id, question, {
+                            "reply_markup": {
+                                "keyboard": [[list.keywordLink[0], list.keywordLink[1]]]}
+                        });
+                    } 
+                    else if(len==3){
+                        bot.sendMessage(msg.chat.id, question, {
+                            "reply_markup": {
+                                "keyboard": [[list.keywordLink[0], list.keywordLink[1]], [list.keywordLink[2]]]}
+                        });
+                    } 
+                    else if(len==4){
+                        bot.sendMessage(msg.chat.id, question, {
+                            "reply_markup": {
+                                "keyboard": [[list.keywordLink[0], list.keywordLink[1]], [list.keywordLink[2], list.keywordLink[3]]]}
+                        });
+                    } 
+                    else if(len==5){
+                        bot.sendMessage(msg.chat.id, question, {
+                            "reply_markup": {
+                                "keyboard": [[list.keywordLink[0], list.keywordLink[1]], [list.keywordLink[2], list.keywordLink[3]], [list.keywordLink[4]]]}
+                        });
+                    } 
+                    else if(len==6){ 
+                        bot.sendMessage(msg.chat.id, question, {
+                            "reply_markup": {
+                                "keyboard": [[list.keywordLink[0], list.keywordLink[1]], [list.keywordLink[2], list.keywordLink[3]], [list.keywordLink[4],list.keywordLink[5]]]}
+                        });
+                    } 
+
+                }
+                else if(element.type==='location'){ //리스트 타입 
+                    console.log("위치 타입 통과");
+                    console.log(element.content);
+                }
+            });
+
+        } 
+        }
+        catch(err){
+            console.error(err);
+        }
+    }
+    findData();
 });
 
 
