@@ -23,6 +23,14 @@ export const DELETE_CHATBOT_REQUEST = "DELETE_CHATBOT_REQUEST";
 export const DELETE_CHATBOT_SUCCESS = "DELETE_CHATBOT_SUCCESS";
 export const DELETE_CHATBOT_FAILURE = "DELETE_CHATBOT_FAILURE";
 
+export const CONNECT_CHATBOT_REQUEST = "CONNECT_CHATBOT_REQUEST";
+export const CONNECT_CHATBOT_SUCCESS = "CONNECT_CHATBOT_SUCCESS";
+export const CONNECT_CHATBOT_FAILURE = "CONNECT_CHATBOT_FAILURE";
+
+export const DISCONNECT_CHATBOT_REQUEST = "DISCONNECT_CHATBOT_REQUEST";
+export const DISCONNECT_CHATBOT_SUCCESS = "DISCONNECT_CHATBOT_SUCCESS";
+export const DISCONNECT_CHATBOT_FAILURE = "DISCONNECT_CHATBOT_FAILURE";
+
 export const SET_CURRENT_CHATBOT = "SET_CURRENT_CHATBOT";
 
 export default (state = initialState, action) => {
@@ -95,6 +103,38 @@ export default (state = initialState, action) => {
       };
     }
     case DELETE_CHATBOT_FAILURE: {
+      return {
+        ...state,
+      };
+    }
+    case CONNECT_CHATBOT_REQUEST: {
+      return {
+        ...state,
+      };
+    }
+    case CONNECT_CHATBOT_SUCCESS: {
+      return {
+        ...state,
+        chatbotList: action.data,
+      };
+    }
+    case CONNECT_CHATBOT_FAILURE: {
+      return {
+        ...state,
+      };
+    }
+    case DISCONNECT_CHATBOT_REQUEST: {
+      return {
+        ...state,
+      };
+    }
+    case DISCONNECT_CHATBOT_SUCCESS: {
+      return {
+        ...state,
+        chatbotList: action.data,
+      };
+    }
+    case DISCONNECT_CHATBOT_FAILURE: {
       return {
         ...state,
       };

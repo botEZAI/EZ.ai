@@ -23,13 +23,11 @@ router.post("/", isLoggedIn, async (req, res, next) => {
     const newChatbot = await ChatbotData.create({
       username: req.body.user, // 사용자 이름
       botname: req.body.botname, //봇 이름
-      sns: req.body.sns, // 어떤 플랫폼인지
       desc: req.body.desc, // 챗봇 설명
-      token: req.body.token, //토큰 삽입
       data: JSON.stringify(req.body.data), //나중에 삭제 해야함
       user_id: req.user.id, //유저 ID 외래 키, req.user.id 는 passport에 localStrategy에서 옴
       categories: JSON.stringify(req.body.categories),
-      platformInfo: JSON.stringify(req.body.platformInfo),
+      platformInfo: JSON.stringify(req.body.platformInfo), //platform 정보, 토큰 값, 연동여부
     });
     res.json(newChatbot);
   } catch (e) {
@@ -44,6 +42,26 @@ router.patch("/", isLoggedIn, async (req, res, next) => {
       {
         data: JSON.stringify(req.body.data),
         categories: JSON.stringify(req.body.categories),
+      },
+      {
+        where: { id: req.body.id },
+      }
+    );
+    const chatbotData = await ChatbotData.findAll({
+      where: { user_id: req.user.id },
+    });
+    res.json(chatbotData);
+  } catch (e) {
+    console.error(e);
+    next(e);
+  }
+});
+//챗봇 연동(토큰 요청),연동 해제
+router.patch("/connect", isLoggedIn, async (req, res, nex) => {
+  try {
+    await ChatbotData.update(
+      {
+        platformInfo: JSON.stringify(req.body.platformInfo),
       },
       {
         where: { id: req.body.id },

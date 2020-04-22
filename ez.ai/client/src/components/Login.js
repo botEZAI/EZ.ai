@@ -20,7 +20,7 @@ const Login = ({ history }) => {
 
   useEffect(() => {
     if (user) {
-      alert("로그인했으니 메인페이지로 이동합니다.");
+      alert("로그인 페이지로 이동합니다.");
       history.push("/");
     }
   }, [user && user.id]);
@@ -94,8 +94,9 @@ const Login = ({ history }) => {
               <div className="login-btn">
                 <button className="login-btn__login">로그인</button>
 
-                <button className="login-btn__register"><Link to="/register">회원가입</Link></button>
-
+                <button className="login-btn__register">
+                  <Link to="/register">회원가입</Link>
+                </button>
               </div>
             </form>
           </div>
