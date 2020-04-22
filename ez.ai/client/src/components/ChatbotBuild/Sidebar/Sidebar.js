@@ -14,9 +14,9 @@ const Sidebar = () => {
             activeSideTab={activeSideTab}
             setActiveSideTab={setActiveSideTab}
           >
-            <li label="preview"><i class="fas fa-desktop"></i></li>
-            <li label="history"><i class="fas fa-history"></i></li>
-            <li label="settings"><i class="fas fa-cog"></i></li>
+            <li label="preview"><i class="fas fa-desktop" tooltip="미리보기"></i></li>
+            <li label="history"><i class="fas fa-history" tooltip="버전 관리"></i></li>
+            <li label="settings"><i class="fas fa-cog" tooltip="설정"></i></li>
           </SidebarPreview>
         </ul>
         <div className={(activeSideOverlay == 1 ? "side-open" 
