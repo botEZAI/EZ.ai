@@ -100,7 +100,11 @@ const BotItem = (props) => {
                 ).map((info) => (
                   <span className={`icon-${info.platform}`}>
                     <label class="switch">
-                      <input type="checkbox" />
+                      <input
+                        type="checkbox"
+                        onClick={() => onClickPlatform(info)}
+                        checked={info.connect}
+                      />
                       <span class="slider round"></span>
                     </label>
                   </span>
