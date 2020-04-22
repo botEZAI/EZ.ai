@@ -23,12 +23,12 @@ const TokenPopup = ({
     if (botToken.token === "") {
       alert("토큰을 입력해주세요.");
     } else {
-      const index = platformInfo.findIndex((v) => v.create === true);
-      setPlatformInfo(
-        produce(platformInfo, (draft) => {
-          draft[index].tokenData = botToken.token;
-        })
-      );
+      // const index = platformInfo.findIndex((v) => v.create === true);
+      // setPlatformInfo(
+      //   produce(platformInfo, (draft) => {
+      //     draft[index].tokenData = botToken.token;
+      //   })
+      // );
       next("tokenChk");
     }
   };

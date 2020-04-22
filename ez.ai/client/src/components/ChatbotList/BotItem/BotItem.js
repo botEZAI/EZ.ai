@@ -4,8 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   SET_CURRENT_CHATBOT,
   DELETE_CHATBOT_REQUEST,
+  DISCONNECT_CHATBOT_REQUEST,
 } from "../../../reducer/chatbot";
 import { withRouter } from "react-router-dom";
+import AddPlatformPopup from "../Popup/AddPlatformPopup";
 
 const BotItem = (props) => {
   const dispatch = useDispatch();
@@ -14,7 +16,7 @@ const BotItem = (props) => {
   );
   const [botClick, setBotClick] = useState({ botOn: false });
   const { children, onRemove, botDesc, botConnect, id } = props;
-  const [addPlatformFlag, setAddPlatformFlag] = useState(false);
+  const [addPlatformFlag, setAddPlatformFlag] = useState("");
 
   const botClickEvent = (e) => {
     setBotClick({ botOn: !botClick.botOn });
@@ -56,11 +58,31 @@ const BotItem = (props) => {
     [currentChatbot]
   );
   //플랫폼 추가 팝업
-  const addPlatformPopup = () => {
-    setAddPlatformFlag(true);
-  };
+  const onClickPlatform = useCallback((info) => {
+    //연결되어 있으면 해제
+    if (info.connect) {
+      const platformInfo = JSON.parse(
+        chatbotList.find((v) => v.id === id).platformInfo
+      );
+      platformInfo.find((v) => v.platform === info.platform).connect = false;
+
+      dispatch({
+        type: DISCONNECT_CHATBOT_REQUEST,
+        data: { platformInfo, id },
+      });
+    } else {
+      setAddPlatformFlag(info.platform);
+    }
+  }, []);
   return (
     <React.Fragment>
+      {addPlatformFlag && (
+        <AddPlatformPopup
+          addPlatformFlag={addPlatformFlag}
+          setAddPlatformFlag={setAddPlatformFlag}
+          id={id}
+        />
+      )}
       {botClick.botOn ? (
         <div>
           <div className="bot-item-expand">
@@ -84,7 +106,6 @@ const BotItem = (props) => {
                   </span>
                 ))}
               </div>
-              <div className="add-platform-button">추가 연동</div>
               <div
                 className="bot-item-ceate"
                 onClick={() => setCurrentChatbot(id)}
@@ -124,14 +145,15 @@ const BotItem = (props) => {
               ).map((info) => (
                 <span className={`icon-${info.platform}`}>
                   <label class="switch">
-                    <input type="checkbox" />
+                    <input
+                      type="checkbox"
+                      onClick={() => onClickPlatform(info)}
+                      checked={info.connect}
+                    />
                     <span class="slider round"></span>
                   </label>
                 </span>
               ))}
-            </div>
-            <div className="add-platform-button" onClick={addPlatformPopup}>
-              추가 연동
             </div>
             <div
               className="bot-item-ceate"

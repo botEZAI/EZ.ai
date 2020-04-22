@@ -10,17 +10,9 @@ module.exports = (sequelize, DataTypes) =>
         type: DataTypes.TEXT,
         allowNull: false,
       },
-      sns: {
-        type: DataTypes.TEXT,
-        allowNull: false,
-      },
       desc: {
         type: DataTypes.TEXT,
         allowNull: true,
-      },
-      token: {
-        type: DataTypes.TEXT,
-        allowNull: false,
       },
       data: {
         type: DataTypes.TEXT,

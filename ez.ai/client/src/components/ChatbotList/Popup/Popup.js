@@ -14,6 +14,7 @@ const Popup = ({
   setBotConnect,
   platformInfo,
   setPlatformInfo,
+  finish,
 }) => {
   const [checkError, setCheckError] = useState(false);
   const [selectedSns, setSelectedSns] = useState([
@@ -44,14 +45,6 @@ const Popup = ({
     console.log(selectedSns);
     setCheckError(false);
     setBotConnect({ sns: e.target.value });
-    //선택한 platformInfo의 create값만 true로 바꿈
-    setPlatformInfo(
-      platformInfo.map((info) =>
-        info.platform === e.target.value
-          ? { ...info, create: true }
-          : { ...info, create: false }
-      )
-    );
   };
 
   const isBotProfileEmpty = () => {
@@ -62,10 +55,10 @@ const Popup = ({
       alert("봇 이름을 입력해주세요.");
     } else if (botDesc.desc === "") {
       alert("봇 설명을 입력해주세요.");
-    } else if (botConnect.sns === "") {
+    } /*else if (botConnect.sns === "") {
       return setCheckError(true);
-    } else {
-      next("tokenInput");
+    } */ else {
+      next("tokenChk");
     }
   };
   return (
@@ -93,7 +86,7 @@ const Popup = ({
                   placeholder="연동할 챗봇에 대한 간략한 설명글을 적어주세요."
                 />
               </div>
-              <div className="platform-select">
+              {/* <div className="platform-select">
                 <div className="txt-name-in-popup">연동할 플랫폼</div>
                 <div className="sns-icons-container-in-popup">
                   <div
@@ -160,7 +153,7 @@ const Popup = ({
                     플랫폼을 선택해주세요.
                   </div>
                 )}
-              </div>
+              </div> */}
             </div>
             <div className="popup-button-wrap">
               <button onClick={close}>취소</button>

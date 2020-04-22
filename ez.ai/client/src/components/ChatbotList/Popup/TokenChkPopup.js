@@ -20,12 +20,13 @@ const TokenChkPopup = ({
         <React.Fragment>
           <div className="popup-overlay" onClick={close}></div>
           <div className="popup">
-            <p className="popup-title">토큰체크팝업</p>
+            {/* <p className="popup-title">토큰체크팝업</p>
 
             <div className="popup-content">
               <div className="txt-name-in-popup">Token 확인</div>
               <div className="tokenVal">{botToken.token}</div>
-            </div>
+            </div> */}
+            챗봇을 만드시겠습니까?
             <div className="popup-button-wrap">
               <button onClick={undoToTokenInput}>이전</button>
               <button onClick={finish}>완료</button>

@@ -56,10 +56,10 @@ const ChatbotList = () => {
     setBotConnect({ sns: "" });
     setBotToken({ token: "" });
     setPlatformInfo([
-      { platform: "line", create: false, deploy: false, tokenData: null },
-      { platform: "facebook", create: false, deploy: false, tokenData: null },
-      { platform: "telegram", create: false, deploy: false, tokenData: null },
-      { platform: "kakao", create: false, deploy: false, tokenData: null },
+      { platform: "line", connect: false, tokenData: null },
+      { platform: "facebook", connect: false, tokenData: null },
+      { platform: "telegram", connect: false, tokenData: null },
+      { platform: "kakao", connect: false, tokenData: null },
     ]);
 
     let openPopup = {
@@ -83,8 +83,7 @@ const ChatbotList = () => {
       id: bots.length + 1,
       name: botName.name,
       desc: botDesc.desc,
-      sns: botConnect.sns,
-      token: botToken.token,
+
       platformInfo,
     };
 
@@ -92,8 +91,7 @@ const ChatbotList = () => {
       user: user.email,
       botname: botName.name,
       desc: botDesc.desc,
-      sns: botConnect.sns,
-      token: botToken.token,
+
       platformInfo,
 
       data: [
@@ -208,6 +206,7 @@ const ChatbotList = () => {
             setBotToken={setBotToken}
             platformInfo={platformInfo}
             setPlatformInfo={setPlatformInfo}
+            finish={InsertFinish}
           />
           <TokenChkPopup
             isOpen={popup.showPopup3}
