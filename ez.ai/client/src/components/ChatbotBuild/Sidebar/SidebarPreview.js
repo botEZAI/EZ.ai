@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 
 const SidebarPreview = props => {
-  const [activePrevTab, setActivePrevTab] = useState("");
-
   const onClickEventHandler = (label) => {
-    if(activePrevTab == label){
-      setActivePrevTab("");
-      props.setActiveSidebar("");
+    if(props.activeSideTab == label){
+      props.setActiveSideTab("");
+      props.setActiveSideOverlay(2);
     }
     else{
-      setActivePrevTab(label);
-      props.setActiveSidebar(label);
+      props.setActiveSideTab(label);
+      props.setActiveSideOverlay(1);
     }
   }
   return (
@@ -19,7 +17,7 @@ const SidebarPreview = props => {
         return (
           <li
             key={child.props.label}
-            className={"sidebar-icon "+ (activePrevTab === child.props.label ? "active" : "wait")}
+            className={"sidebar-icon "+ (props.activeSideTab === child.props.label ? "active" : "wait")}
             label={child.props.label}
             onClick={() => onClickEventHandler(child.props.label) }
           >

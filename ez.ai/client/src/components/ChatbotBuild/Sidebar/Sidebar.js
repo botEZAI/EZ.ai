@@ -4,25 +4,40 @@ import SidebarPreview from "./SidebarPreview";
 import "./Sidebar.css";
 
 const Sidebar = () => {
-  const [activeSidebar, setActiveSidebar] = useState(false);
+  const [activeSideOverlay, setActiveSideOverlay] = useState(0);
+  const [activeSideTab, setActiveSideTab] = useState("");
   return(
       <div className="sidebar">
         <ul>
-          <SidebarPreview setActiveSidebar={setActiveSidebar}>
+          <SidebarPreview 
+            setActiveSideOverlay={setActiveSideOverlay}
+            activeSideTab={activeSideTab}
+            setActiveSideTab={setActiveSideTab}
+          >
             <li label="preview"><i class="fas fa-desktop"></i></li>
             <li label="history"><i class="fas fa-history"></i></li>
             <li label="settings"><i class="fas fa-cog"></i></li>
           </SidebarPreview>
         </ul>
-        <div className={activeSidebar === "preview"? "active-side":"side"}>
-          미리보기 플랫폼별
+        <div className={(activeSideOverlay == 1 ? "side-open" 
+                         : activeSideOverlay == 2 ? "side-close" : "side-default")}>
+          {activeSideTab == "preview" &&
+            <div className="preview">
+              미리보기 플랫폼별
+            </div>
+          }
+          {activeSideTab == "history" &&
+            <div className="history">
+              버전 관리 기능
+            </div>
+          }
+          {activeSideTab == "settings"  &&
+            <div className="settings">
+              프로젝트 설정 페이지
+            </div>
+          } 
         </div>
-        <div className={activeSidebar === "history"? "active-side":"side"}>
-          버전 관리 기능
-        </div>
-        <div className={activeSidebar === "settings"? "active-side":"side"}>
-          프로젝트 설정 페이지
-        </div>
+
       </div>
   );
 };
