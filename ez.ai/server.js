@@ -15,7 +15,6 @@ passportConfig(passport); //passport
 
 //라우터 연결
 
-const chatbotRouter = require("./routes/chatbot"); // 키워드 + 콘텐트 라우터
 const chatbotDataRouter = require("./routes/chatbotData"); //챗봇 생성 라우터
 const imageRouter = require("./routes/image"); //이미지 라우터
 const videoRouter = require("./routes/video"); //비디오 라우터
@@ -48,7 +47,7 @@ app.use(passport.initialize()); //passport 사용
 app.use(passport.session()); //passport 사용
 
 //라우터 사용
-// app.use("/api/chatbotbuild", chatbotRouter); // 키워드 + 콘텐트
+
 app.use("/api/chatbotdata", chatbotDataRouter); //챗봇 생성 라우터
 app.use("/api/image", imageRouter); //이미지
 app.use("/api/video", videoRouter); //비디오
