@@ -26,7 +26,8 @@ const bot = new TelegramBot(token, {polling: true});
 
 //indexOf 문자열 내에서 특정한 문자열의 index 값을 리턴한다.
 bot.on('message',(msg) => {
-     function logic(array){ 
+
+     function logic(array){   //키워드 찾는 함수 
         let contents= [];
         array.forEach(element => {
             if(element.keyword===msg.text) {
@@ -36,15 +37,16 @@ bot.on('message',(msg) => {
         });
         return contents;
     }
-    async function findData(){
+
+    
+    async function findData(){//키워드를 찾는 main func
         try{
         const data = await ChatbotData.findAll({
           attributes:['data'],
         });
- 
         const data1 = await JSON.parse(data[0].data); //data[0]은 첫번 째 유저, 0에 유저 아이디 필요
         const contents = await logic(data1);
-        if(contents){
+        if(contents){// 키워드가 있을 때 
             console.log(contents);
             contents.forEach(element => {
                 if(element.type==='text') { // 텍스트 타입 
@@ -65,7 +67,7 @@ bot.on('message',(msg) => {
                     console.log(element.content);
                     bot.sendVideo(msg.chat.id, element.filepath);
                 }
-                else if(element.type==='file'){ //이미지 타입 
+                else if(element.type==='file'){ //파일 타입 
                     console.log("이미지 타입 통과");
                     bot.sendDocument(msg.chat.id, element.filepath);
                 }
@@ -81,7 +83,7 @@ bot.on('message',(msg) => {
                         });
                     } 
                     else if(len==2){
-                        bot.sendMessage(msg.chat.id, question, {
+                        bot.sendMessage(msg.chat.id, question, { 
                             "reply_markup": {
                                 "keyboard": [[list.keywordLink[0], list.keywordLink[1]]]}
                         });
@@ -112,13 +114,17 @@ bot.on('message',(msg) => {
                     } 
 
                 }
-                else if(element.type==='location'){ //리스트 타입 
+                else if(element.type==='location'){ // 위치 타입 
                     console.log("위치 타입 통과");
-                    console.log(element.content);
+                    console.log(element.title);
                 }
             });
 
         } 
+        else {
+            console.log("키워드 탐색 실패");
+            bot.sendMessage(msg.chat.id, "키워드를 찾지 못했습니다.");
+        }
         }
         catch(err){
             console.error(err);
