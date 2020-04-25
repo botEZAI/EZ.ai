@@ -100,7 +100,10 @@
 
 .login-keep {
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
 .login-keep input {
   display: inline-block;
   margin-top : 4px;
@@ -113,9 +116,6 @@
   padding-left : 3px;
 }
 
-.login-find {
-  margin-top : 2px;
-}
 
 .login-find span {
   color : #bbb;
