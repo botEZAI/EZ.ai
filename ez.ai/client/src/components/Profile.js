@@ -32,10 +32,8 @@ const Profile = () => {
                       </div>
                   </div>
                   <div className= "u-more__column">
-                      <div className = "u-more__name">
-                          별명 : XXX
-                      </div>
-                      <div className = "u-more__name-btn">수정</div>
+                      <div className = "u-more__name-btn">프로필 사진 업로드</div>
+                      <div className="u-more__name-btn-caution">프로필 사진은 10MB 이하의 JPG, PNG, JPEG만 가능합니다.</div>
                   </div>
                   
               </div>
@@ -46,11 +44,13 @@ const Profile = () => {
               </div>
               <div className="u-profile__more">
                   <div className="u-more__infos">
-                      <div className="u-more__info">이름 : </div>
-                      <div className="u-more__info">생일 : </div>
-                      <div className="u-more__info">이메일 : </div>
-                      <div className="u-more__info">비밀번호 : </div>
-                      <div className = "u-more__name-btn">정보수정</div>
+                      <div className="u-more__info"><div>이메일 : </div><div className="u-more__info-data">{user && user.email}</div></div>
+                      <div className="u-more__info"><div>별명 : </div><div className="u-more__info-data">{user && user.nick}</div></div>
+                      <div className="u-more__info"><div>이름 : </div><div className="u-more__info-data">{user && user.name}</div></div>
+                      <div className="u-more__info"><div>생일 : </div><div className="u-more__info-data">{user && user.birth}</div></div>
+                      
+                      <div className="u-more__info"><div>비밀번호 : </div><div className="u-more__info-data">{user && user.password}</div></div>
+                      <div className = "u-more__name-btn">개인정보 수정</div>
                   </div>
 
               </div>
