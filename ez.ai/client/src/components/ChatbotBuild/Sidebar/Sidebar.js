@@ -19,9 +19,9 @@ const Sidebar = () => {
                 <li label="settings"><i class="fas fa-cog" tooltip="설정"></i></li>
               </SidebarPreview>
           </ul>
-          <div className={(activeSideOverlay == 1 ? "side-open" : activeSideOverlay == 2 ? "side-close" : "side-default")}>
+          <div className={(activeSideOverlay === 1 ? "side-open" : activeSideOverlay === 2 ? "side-close" : "side-default")}>
               <div className="sidebar-section"> {/* 사이드바 컨텐츠는 이 안에! */}
-              {activeSideTab == "preview" &&
+              {activeSideTab === "preview" &&
                 <>
                     <div className="sidebar-title preview">
                       미리보기 플랫폼별
@@ -31,7 +31,7 @@ const Sidebar = () => {
                     </div>
                 </>
                     }
-              {activeSideTab == "history" &&
+              {activeSideTab === "history" &&
                   <>
                       <div className="sidebar-title history">
                         버전 관리 기능
@@ -41,7 +41,7 @@ const Sidebar = () => {
                       </div>
                   </>
               }
-              {activeSideTab == "settings"  &&
+              {activeSideTab === "settings"  &&
                   <>
                     <div className="sidebar-title settings">
                       프로젝트 설정 페이지

@@ -1,6 +1,5 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { withRouter } from "react-router-dom";
-import PrevTab from "./Sidebar/SidebarPreview.js";
 import Sidebar from "./Sidebar/Sidebar.js";
 import "./ChatbotBuild.css";
 import BuilderInfo from "./BuilderInfo";
@@ -10,7 +9,6 @@ import ToolAdvance from "./Tabs/ToolAdvance";
 import ToolKeyword from "./Tabs/ToolKeyword";
 import ToolStatus from "./Status/ToolStatus";
 import Main from "./Preview/Preview";
-import MessageForAll from "./Sidebar/SidebarComponents/MessageForAll";
 import { useDispatch, useSelector } from "react-redux";
 
 const ChatbotBuild = (props) => {
@@ -111,111 +109,113 @@ const ChatbotBuild = (props) => {
           keywordCategory={keywordCategory}
         />
       </div>
-      <div className="builder__column builder-main">
-        <div className="builderTool">
-          <div className="tool-menu">
-            <div className="tool-tabs">
-              <Tabs activeTab={activeTab} onSelect={onSelect}>
-                <div label="basic">기본</div>
-                <div label="advance">고급</div>
-                <div label="keyword">키워드</div>
-              </Tabs>
+      <div className="builder__column builder-section">
+          <div className="builder-main">
+            <div className="builderTool">
+              <div className="tool-menu">
+                <div className="tool-tabs">
+                  <Tabs activeTab={activeTab} onSelect={onSelect}>
+                    <div label="basic">기본</div>
+                    <div label="advance">고급</div>
+                    <div label="keyword">키워드</div>
+                  </Tabs>
+                </div>
+                {(activeTab === "basic" || activeTab === "advance") && (
+                  <div className="tool-contents-title">
+                    추가할 요소를 선택해주세요
+                  </div>
+                )}
+                {activeTab === "basic" && (
+                  <div className="tool-contents">
+                    <ToolBasic
+                      keywordObject={keywordObject}
+                      mainKeyword={mainKeyword}
+                      setAddFlag={setAddFlag}
+                      setClickedMainInput={setClickedMainInput}
+                      setKeywordObject={setKeywordObject}
+                      setNow={setNow}
+                      length={length}
+                      availableIcon={availableIcon}
+                      setAvailableIcon={setAvailableIcon}
+                    />
+                  </div>
+                )}
+                {activeTab === "advance" && (
+                  <div className="tool-contents">
+                    <ToolAdvance
+                      keywordObject={keywordObject}
+                      mainKeyword={mainKeyword}
+                      setAddFlag={setAddFlag}
+                      setClickedMainInput={setClickedMainInput}
+                      setKeywordObject={setKeywordObject}
+                      setNow={setNow}
+                      setVirtualKeyboard={setVirtualKeyboard}
+                      length={length}
+                      availableIcon={availableIcon}
+                      setAvailableIcon={setAvailableIcon}
+                    />
+                  </div>
+                )}
+                {activeTab === "keyword" && (
+                  <ToolKeyword
+                    setMainKeyword={setMainKeyword}
+                    keyword={keyword}
+                    keywordList={keywordList}
+                    setKeyword={setKeyword}
+                    setKeywordList={setKeywordList}
+                    keywordObject={keywordObject}
+                    keywordCategory={keywordCategory}
+                    setKeywordCategory={setKeywordCategory}
+                    onClickKeyword={onClickKeyword}
+                    setKeywordObject={setKeywordObject}
+                    index={index}
+                  />
+                )}
+              </div>
+              {(activeTab === "basic" || activeTab === "advance") && (
+                <div className="tool-status">
+                  <ToolStatus
+                    mainKeyword={mainKeyword}
+                    keywordObject={keywordObject}
+                    setKeywordObject={setKeywordObject}
+                    clickedMainInput={clickedMainInput}
+                    now={now}
+                    index={index}
+                    setNow={setNow}
+                    setClickedMainInput={setClickedMainInput}
+                    keywordPopup={keywordPopup}
+                    setKeywordPopup={setKeywordPopup}
+                    listCount={listCount}
+                    curListCount={curListCount}
+                    setCurListCount={setCurListCount}
+                    availableIcon={availableIcon}
+                  />
+                </div>
+              )}
             </div>
-            {(activeTab === "basic" || activeTab === "advance") && (
-              <div className="tool-contents-title">
-                추가할 요소를 선택해주세요
-              </div>
-            )}
-            {activeTab === "basic" && (
-              <div className="tool-contents">
-                <ToolBasic
-                  keywordObject={keywordObject}
-                  mainKeyword={mainKeyword}
-                  setAddFlag={setAddFlag}
-                  setClickedMainInput={setClickedMainInput}
-                  setKeywordObject={setKeywordObject}
-                  setNow={setNow}
-                  length={length}
-                  availableIcon={availableIcon}
-                  setAvailableIcon={setAvailableIcon}
-                />
-              </div>
-            )}
-            {activeTab === "advance" && (
-              <div className="tool-contents">
-                <ToolAdvance
-                  keywordObject={keywordObject}
-                  mainKeyword={mainKeyword}
-                  setAddFlag={setAddFlag}
-                  setClickedMainInput={setClickedMainInput}
-                  setKeywordObject={setKeywordObject}
-                  setNow={setNow}
-                  setVirtualKeyboard={setVirtualKeyboard}
-                  length={length}
-                  availableIcon={availableIcon}
-                  setAvailableIcon={setAvailableIcon}
-                />
-              </div>
-            )}
-            {activeTab === "keyword" && (
-              <ToolKeyword
-                setMainKeyword={setMainKeyword}
-                keyword={keyword}
-                keywordList={keywordList}
-                setKeyword={setKeyword}
-                setKeywordList={setKeywordList}
-                keywordObject={keywordObject}
-                keywordCategory={keywordCategory}
-                setKeywordCategory={setKeywordCategory}
-                onClickKeyword={onClickKeyword}
-                setKeywordObject={setKeywordObject}
-                index={index}
-              />
-            )}
-          </div>
-          {(activeTab === "basic" || activeTab === "advance") && (
-            <div className="tool-status">
-              <ToolStatus
+            <div className="builderMain">
+              <Main
                 mainKeyword={mainKeyword}
+                keywordContentList={keywordContentList}
                 keywordObject={keywordObject}
+                keywordList={keywordList}
                 setKeywordObject={setKeywordObject}
+                setClickedMainInput={setClickedMainInput}
+                addFlag={addFlag}
+                setAddFlag={setAddFlag}
+                firstEntry={firstEntry}
+                setFirstEntry={setFirstEntry}
                 clickedMainInput={clickedMainInput}
+                virtualKeyboard={virtualKeyboard}
+                setVirtualKeyboard={setVirtualKeyboard}
                 now={now}
                 index={index}
                 setNow={setNow}
-                setClickedMainInput={setClickedMainInput}
-                keywordPopup={keywordPopup}
-                setKeywordPopup={setKeywordPopup}
-                listCount={listCount}
                 curListCount={curListCount}
                 setCurListCount={setCurListCount}
-                availableIcon={availableIcon}
               />
             </div>
-          )}
-        </div>
-        <div className="builderMain">
-          <Main
-            mainKeyword={mainKeyword}
-            keywordContentList={keywordContentList}
-            keywordObject={keywordObject}
-            keywordList={keywordList}
-            setKeywordObject={setKeywordObject}
-            setClickedMainInput={setClickedMainInput}
-            addFlag={addFlag}
-            setAddFlag={setAddFlag}
-            firstEntry={firstEntry}
-            setFirstEntry={setFirstEntry}
-            clickedMainInput={clickedMainInput}
-            virtualKeyboard={virtualKeyboard}
-            setVirtualKeyboard={setVirtualKeyboard}
-            now={now}
-            index={index}
-            setNow={setNow}
-            curListCount={curListCount}
-            setCurListCount={setCurListCount}
-          />
-        </div>
+          </div>
       </div>
 
       {/* 챗봇 빌더 오른쪽 사이드 바 기본 레이아웃*/}

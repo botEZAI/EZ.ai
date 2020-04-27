@@ -18,17 +18,19 @@ const App = ({ location }) => {
     <div className="App">
       <Header />
       <section>
-        <Switch>
-          <Route path="/" component={Home} exact={true} />
-          <Route path="/about" component={About} />
-          <Route path="/guide" component={Guide} />
-          <Route path="/faq" component={FAQ} />
-          <Route path="/chatbotlist" component={ChatbotList} />
-          <Route path="/chatbotbuild" component={ChatbotBuild} />
-          <Route path="/login" component={Login} />
-          <Route path="/profile" component={Profile} />
-          <Route path="/register" component={Register} />
-        </Switch>
+        <div className="section-contents">
+            <Switch>
+              <Route path="/" component={Home} exact={true} />
+              <Route path="/about" component={About} />
+              <Route path="/guide" component={Guide} />
+              <Route path="/faq" component={FAQ} />
+              <Route path="/chatbotlist" component={ChatbotList} />
+              <Route path="/chatbotbuild" component={ChatbotBuild} />
+              <Route path="/login" component={Login} />
+              <Route path="/profile" component={Profile} />
+              <Route path="/register" component={Register} />
+            </Switch>
+        </div>
       </section>
       <Footer />
     </div>

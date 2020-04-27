@@ -13,19 +13,17 @@
 
 
 .builder {
-  position: relative;
+  position: absolute;
   margin: 0 auto;
   top : 0;
   left: 0;
   text-align: center;
   width: 100vw;
   min-width: 1200px;
-  height: auto;
+  height: 110vh;
   background-color: #F7f7f7;
   display: flex;
   flex-direction: column;
-
-  align-items: center;
 }
 
 .builder-info {
@@ -40,12 +38,26 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+  z-index : 2;
 }
+
+.builder-section {
+  position : relative;
+  top : 100px;
+  left : 0;
+  width : calc(100% - 50px);
+  height : 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
 
 .builder-main {
   position : absolute;
-  top : 170px;
-  padding : 30px;
+  padding : 30px 10%;
   border-radius: 30px;
   height: 75vh;
   min-height: 800px;
