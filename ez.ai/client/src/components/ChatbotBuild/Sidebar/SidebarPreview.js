@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 const SidebarPreview = props => {
   const onClickEventHandler = (label) => {
-    if(props.activeSideTab == label){
+    if(props.activeSideTab === label){
       props.setActiveSideTab("");
       props.setActiveSideOverlay(2);
     }

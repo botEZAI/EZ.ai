@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useInput } from "./Register";
 import {
   LOG_IN_REQUEST,
-  LOAD_USER_REQUEST,
+  //LOAD_USER_REQUEST,
   LOG_IN_FAILURE_RESET,
 } from "../reducer/user";
 

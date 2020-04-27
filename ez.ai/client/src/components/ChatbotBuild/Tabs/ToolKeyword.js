@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import produce from "immer";
 
 const ToolKeyword = ({
@@ -72,13 +72,13 @@ const ToolKeyword = ({
   };
 
   const deleteCategory = (e, val) => {
-    if (val == "미분류") {
+    if (val === "미분류") {
       alert("기본으로 제공되는 '미분류' 카테고리는 삭제할 수 없습니다.");
     } else {
       let found = false;
 
       keywordObject.map((keyword) => {
-        if (keyword.category === val) found = true;
+        if (keyword.category === val) {found = true};
       });
 
       if (found) {
@@ -93,7 +93,7 @@ const ToolKeyword = ({
   const modifyInput = (e) => {
     if (index < 0) {
       alert("선택한 키워드가 없습니다!");
-    } else if (index == 0) {
+    } else if (index === 0) {
       alert("Welcome 키워드는 수정할 수 없습니다!");
     } else {
       setKeywordObject(
@@ -117,7 +117,7 @@ const ToolKeyword = ({
     e.preventDefault();
     if (index < 0) {
       alert("선택한 키워드가 없습니다!");
-    } else if (index == 0) {
+    } else if (index === 0) {
       alert("Welcome 키워드는 삭제할 수 없습니다!");
     } else {
       setKeywordObject(

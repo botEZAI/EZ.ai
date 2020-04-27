@@ -40,7 +40,7 @@ const EmogiPopup = ({
 
 
     const showImoView = () => {
-        if (showImoPopup == false){
+        if (showImoPopup === false){
             setShowImoPopup(!showImoPopup);
         }
 
@@ -52,13 +52,13 @@ const EmogiPopup = ({
 
     const selectEmo = e => {
         setShowImoPopup(!showImoPopup);
-        if (e.target.innerHTML.length == 2) {
+        if (e.target.innerHTML.length === 2) {
             setKeywordObject(
                 produce(keywordObject, draft => {
-                    if (selectType == "text") {
+                    if (selectType === "text") {
                         draft[index].contents[now].content += e.target.innerHTML;
                     }
-                    else if (selectType == "keyword"){
+                    else if (selectType === "keyword"){
                         draft[index].contents[now].listContent.question += e.target.innerHTML;
 
                     }
@@ -87,11 +87,11 @@ const EmogiPopup = ({
                             <li value="emoji-2" onClick={imoTab}><p>{emogi_2[0]}</p></li>
                         </ul>
                         <div onClick={selectEmo}>
-                        { imoNow == "emoji-1" ?
+                        { imoNow === "emoji-1" ?
                             <>
                                 {emogi1List}
                             </>
-                            : imoNow == "emoji-2" ?
+                            : imoNow === "emoji-2" ?
                                 <>
                                     {emogi2List}
                                 </>

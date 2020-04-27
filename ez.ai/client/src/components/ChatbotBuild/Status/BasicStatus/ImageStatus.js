@@ -2,9 +2,7 @@ import React, { useRef, useState } from "react";
 import axios from "axios";
 import produce from "immer";
 
-{
-  /* Status screen 이미지 요소 */
-}
+/* Status screen 이미지 요소 */
 const ImageStatus = ({
   currentContent,
   setKeywordObject,
@@ -17,7 +15,6 @@ const ImageStatus = ({
 
   const [imageTab, setImageTab] = useState("url");
   const [imageURL, setImageURL] = useState("");
-  const [imageSrc, setImageSrc] = useState("");
 
   const onClickLoadImage = e => {
     setImageURL(e.target.value);

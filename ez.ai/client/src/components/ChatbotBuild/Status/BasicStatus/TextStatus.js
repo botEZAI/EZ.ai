@@ -2,7 +2,7 @@ import React from "react";
 import produce from "immer";
 
 
-{/* Status screen 텍스트 요소 */}
+/* Status screen 텍스트 요소 */
 const TextStatus = ({
     currentContent,
     setKeywordObject,
