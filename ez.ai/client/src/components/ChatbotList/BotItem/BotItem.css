@@ -1,64 +1,212 @@
 /*생성되는 봇들의 디자인*/
 .bot-item-default {
-  padding: 1rem;
-  display: flex;
-  cursor: pointer;
-  border: 1px solid #7fbdbd;
+  padding: 10px;
+  border: 2px solid #ddd;
   border-radius: 8px;
-  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #eee;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s all;
 }
 .bot-item-default:hover {
-  box-shadow: 1px 1px 3px 1px rgba(10, 10, 120, 0.15);
-  transition: 0.5s all;
+  border : 2px solid #7fbdbd;
+  background-color: #fff;
 }
+
+.bot-item-infos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+
+}
+
+/* 챗봇 목록 - 챗봇 이름 */
+.bot-name {
+  padding : 0 10px;
+  color : #999;
+  height: 30px;
+  display: flex;
+  line-height: 24px;
+  font-size: 18px;
+}
+
+.bot-item-default:hover .bot-name {
+  color : #333;
+}
+
+/* 챗봇 목록 - 챗봇 연동여부 아이콘 */
+.bot-item-connected {
+  padding : 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.bot-item-connected > div {
+  padding : 0 5px;
+  margin : 0 5px;
+}
+
+.bot-item-connected > div > i {
+  color: #999;
+  font-size: 30px;
+}
+
+/* 챗봇 목록 - 챗봇 버튼들 */
+.bot-item-btns {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 10pt;
+  color : #999;
+}
+
+.bot-item-btns > div {
+  width : 50px;
+  height : 28px;
+  margin : 5px;
+  border : 1px none;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ddd;
+  font-size : 12px;
+  color : #999;
+  transition: .2s all;
+}
+
+.bot-item-default:hover > div, .bot-item-default:hover .bot-item-btns > div {
+  color : #333;
+}
+
+.bot-item-default:hover .bot-item-btns > div {
+  background-color: #eee;
+}
+
+.bot-item-create:hover {
+  background-color: #00b8b4!important;
+  color: white!important;
+}
+
+.bot-item-btns .delete:hover {
+  background-color: brown!important;
+  color: white!important;
+}
+
+
+
+/* 챗봇 목록 확대했을때 */
+
 .bot-item-expand {
-  padding: 1rem;
+  padding: 10px;
   display: flex;
   border: 1px solid #7fbdbd;
   border-radius: 8px;
   flex-direction: column;
   box-shadow: 1px 1px 3px 1px rgba(10, 10, 120, 0.15);
 }
+
+/* 챗봇 목록 확대 - 헤더 부분 */
 .bot-item-header {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
 }
+
+.bot-item-header .bot-name, .bot-item-header .bot-item-btns > div {
+  color : #333;
+}
+
+.bot-item-expand .bot-item-btns > div {
+  background-color: #eee;
+}
+
+
+
+/* 챗봇 목록 확대 - 설명 */
 .bot-item-footer {
-  margin-top: auto;
+  margin : 5px 0;
+}
+
+.bot-description {
+  padding : 10px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:  flex-start;
 }
 .txt-description {
-  font-size: 10pt;
+  padding : 2px;
+  font-size: 14px;
   color: gray;
 }
 .txtBox {
-  font-size: 11.5pt;
+  min-height : 50px;
+  width: 100%;
+  font-size: 12pt;
   border-style: solid;
   border-width: 0 0 0 8px;
   border-color: #bebebe;
-  padding: 12px;
+  padding: 5px;
   word-break: break-all;
-  width: 90%;
-  /* background-color: #f2fdfd; */
 }
-.bot-item-header + .bot-item-footer {
-  margin-top: 2%;
-}
+
 .txt-description + .txtBox {
   margin-top: 10px;
 }
-.bot-name {
-  flex: 1;
-  word-break: break-all;
-  font-size: 13pt;
+
+
+/* 챗봇 목록 확대 - 플랫폼 토글버튼 */
+.sns-icons-container {
+  height: 100px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap : 10px;
 }
+.sns-icon-container {
+  border-radius: 10px;
+  background-color: #eee;
+}
+
+
+.sns-icon-container-info {
+  height: 50px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.sns-icon-container-info .sns-icon-container-icon {
+  width : 50px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sns-icon-container-icon > div {
+  width : 40px;
+  height: 40px;
+}
+
+.sns-icon-container-info .sns-icon-container-toggle {
+  width : 80px;
+}
+
+
+
+
 .bot-desc {
   display: flex;
 }
-.delete {
-  margin-top: 1px;
-  margin-left: 16px;
-  color: black; /*'삭제' 버튼 색상*/
-  font-size: 10pt;
-}
+
 .add-platform-button {
   margin-top: 1px;
   margin-left: 16px;
@@ -74,31 +222,23 @@
   border-radius: 8px;
   margin-top: 1%; /*봇들 사이에 간격 조정*/
 }
-.bot-item-ceate {
-  margin-top: 1px;
-  margin-left: 16px;
-  color: black;
-  font-size: 10pt;
-}
 
-.sns-icons-container span {
-  padding: 8px 22px;
-}
+
 .icon-kakao {
   background: url(../sprites/kakao_size40px.png) no-repeat;
-  vertical-align: middle;
+  background-size: 40px 40px;
 }
 .icon-line {
   background: url(../sprites/line_size40px.png) no-repeat;
-  vertical-align: middle;
+  background-size: 40px 40px;
 }
 .icon-facebook {
   background: url(../sprites/facebook_size40px.png) no-repeat;
-  vertical-align: middle;
+  background-size: 40px 40px;
 }
 .icon-telegram {
   background: url(../sprites/Telegram_size40px.png) no-repeat;
-  vertical-align: middle;
+  background-size: 40px 40px;
 }
 /*툴팁 css*/
 [data-tooltip-text]:hover {
@@ -142,18 +282,21 @@
   left: 0;
   opacity: 1;
 }
+
+
+
 /* 토글 버튼 */
 .switch {
   position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
+  width: 100%;
+  height: 40px;
 }
 
 .switch input {
   opacity: 0;
   width: 0;
   height: 0;
+  margin : 0;
 }
 
 .slider {
@@ -172,8 +315,8 @@
   content: "";
   height: 26px;
   width: 26px;
+  top : -10px;
   left: 4px;
-  bottom: 4px;
   background-color: white;
   -webkit-transition: 0.4s;
   transition: 0.4s;
@@ -196,7 +339,8 @@ input:checked + .slider:before {
 
 /* Rounded sliders */
 .slider.round {
-  border-radius: 34px;
+  border-radius: 40px;
+  padding: 8px 30px;
 }
 
 .slider.round:before {

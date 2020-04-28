@@ -18,6 +18,13 @@ const BotItem = (props) => {
   const { children, onRemove, botDesc, botConnect, id } = props;
   const [addPlatformFlag, setAddPlatformFlag] = useState("");
 
+  const [selectedSns, setSelectedSns] = useState([
+    { name: "line", color: false },
+    { name: "facebook", color: false },
+    { name: "telegram", color: false },
+    { name: "kakao", color: false },
+  ]);
+
   const botClickEvent = (e) => {
     setBotClick({ botOn: !botClick.botOn });
   };
@@ -85,33 +92,129 @@ const BotItem = (props) => {
       )}
       {botClick.botOn ? (
         <div>
-          <div className="bot-item-expand">
-            <div className="bot-item-header">
-              <div className="bot-name" onClick={botClickEvent}>
-                {children}
+          <div className="bot-item-expand" >
+            <div className="bot-item-header" onClick={botClickEvent}>
+              <div className="bot-item-infos">
+                <div className="bot-name" >
+                  {children}
+                </div>
+                <div className="bot-item-connected">
+                  <div
+                      className={selectedSns[0].color ? "sns-color-line" : null}
+                  >
+                    <i className="fab fa-line"></i>
+                  </div>
+                  <div
+                      className={
+                        selectedSns[1].color ? "sns-color-facebook" : null
+                      }
+                  >
+                    <i className="fab fa-facebook-square"></i>
+                  </div>
+                  <div
+                      className={
+                        selectedSns[2].color ? "sns-color-telegram" : null
+                      }
+                  >
+                    <i className="fab fa-telegram"></i>
+                  </div>
+                  <div
+                      className={selectedSns[3].color ? "sns-color-kakao" : null}
+                  >
+                    <i className="fab fa-kaggle"></i>
+                  </div>
+                </div>
               </div>
 
               {/* <div className="sns-icons-container">
                 {botSnsIconHandler(botConnect)}
               </div> */}
-              <div className="sns-icons-container">
-                {JSON.parse(
-                  chatbotList.find((v) => v.id === id).platformInfo
-                ).map((info) => (
-                  <span className={`icon-${info.platform}`}>
-                    <label class="switch">
-                      <input
-                        type="checkbox"
-                        onClick={() => onClickPlatform(info)}
-                        checked={info.connect}
-                      />
-                      <span class="slider round"></span>
-                    </label>
-                  </span>
-                ))}
+              <div className="bot-item-btns">
+                <div
+                  className="bot-item-create"
+                  onClick={() => setCurrentChatbot(id)}
+                >
+                  만들기
+                </div>
+                <div
+                  className="delete"
+                  onClick={() => {
+                    botDeleteClickEvent(id);
+                  }}
+                >
+                  삭제
+                </div>
               </div>
+            </div>
+            <div className="bot-item-footer">
+              <div className="bot-description">
+                <div className="txt-description">Description</div>
+                <div className="txtBox">{botDesc}</div>
+              </div>
+            </div>
+
+            <div className="sns-icons-container">
+              {JSON.parse(
+                  chatbotList.find((v) => v.id === id).platformInfo
+              ).map((info) => (
+                  <div className="sns-icon-container">
+                    <div className="sns-icon-container-info">
+                      <div className= "sns-icon-container-icon">
+                        <div className={`icon-${info.platform}`}></div>
+                      </div>
+                      <div className="sns-icon-container-toggle">
+                        <label className="switch">
+                          <input
+                              type="checkbox"
+                              onClick={() => onClickPlatform(info)}
+                              checked={info.connect}
+                          />
+                          <span className="slider round"></span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      ) : (  // 접혀있을때
+        <div>
+          <div className="bot-item-default"onClick={botClickEvent}>
+            <div className="bot-item-infos">
+              <div className="bot-name" >
+                {children}
+              </div>
+              <div className="bot-item-connected">
+                  <div
+                      className={selectedSns[0].color ? "sns-color-line" : null}
+                  >
+                    <i className="fab fa-line"></i>
+                  </div>
+                  <div
+                      className={
+                        selectedSns[1].color ? "sns-color-facebook" : null
+                      }
+                  >
+                    <i className="fab fa-facebook-square"></i>
+                  </div>
+                  <div
+                      className={
+                        selectedSns[2].color ? "sns-color-telegram" : null
+                      }
+                  >
+                    <i className="fab fa-telegram"></i>
+                  </div>
+                  <div
+                      className={selectedSns[3].color ? "sns-color-kakao" : null}
+                  >
+                    <i className="fab fa-kaggle"></i>
+                  </div>
+              </div>
+            </div>
+            <div className="bot-item-btns">
               <div
-                className="bot-item-ceate"
+                className="bot-item-create"
                 onClick={() => setCurrentChatbot(id)}
               >
                 만들기
@@ -124,54 +227,6 @@ const BotItem = (props) => {
               >
                 삭제
               </div>
-            </div>
-            <div className="bot-item-footer">
-              <div className="bot-description">
-                <div className="txt-description">Description</div>
-                <div className="txtBox">{botDesc}</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      ) : (
-        <div>
-          <div className="bot-item-default">
-            <div className="bot-name" onClick={botClickEvent}>
-              {children}
-            </div>
-
-            {/* <div className="sns-icons-container">
-              {botSnsIconHandler(botConnect)}
-            </div> */}
-            <div className="sns-icons-container">
-              {JSON.parse(
-                chatbotList.find((v) => v.id === id).platformInfo
-              ).map((info) => (
-                <span className={`icon-${info.platform}`}>
-                  <label class="switch">
-                    <input
-                      type="checkbox"
-                      onClick={() => onClickPlatform(info)}
-                      checked={info.connect}
-                    />
-                    <span class="slider round"></span>
-                  </label>
-                </span>
-              ))}
-            </div>
-            <div
-              className="bot-item-ceate"
-              onClick={() => setCurrentChatbot(id)}
-            >
-              만들기
-            </div>
-            <div
-              className="delete"
-              onClick={() => {
-                botDeleteClickEvent(id);
-              }}
-            >
-              삭제
             </div>
           </div>
         </div>

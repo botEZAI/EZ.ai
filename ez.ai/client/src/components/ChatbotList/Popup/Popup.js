@@ -86,34 +86,7 @@ const Popup = ({
                   placeholder="연동할 챗봇에 대한 간략한 설명글을 적어주세요."
                 />
               </div>
-              {/* <div className="platform-select">
-                <div className="txt-name-in-popup">연동할 플랫폼</div>
-                <div className="sns-icons-container-in-popup">
-                  <div
-                    className={selectedSns[0].color ? "sns-color-line" : null}
-                  >
-                    <i className="fab fa-line"></i>
-                  </div>
-                  <div
-                    className={
-                      selectedSns[1].color ? "sns-color-facebook" : null
-                    }
-                  >
-                    <i className="fab fa-facebook-square"></i>
-                  </div>
-                  <div
-                    className={
-                      selectedSns[2].color ? "sns-color-telegram" : null
-                    }
-                  >
-                    <i className="fab fa-telegram"></i>
-                  </div>
-                  <div
-                    className={selectedSns[3].color ? "sns-color-kakao" : null}
-                  >
-                    <i className="fab fa-kaggle"></i>
-                  </div>
-                </div>
+              {/*
                 <div className="sns-select-container">
                   <input
                     data-tooltip-text="네이버 라인"
