@@ -66,6 +66,7 @@ const BotItem = (props) => {
   );
   //플랫폼 추가 팝업
   const onClickPlatform = useCallback((info) => {
+
     //연결되어 있으면 해제
     if (info.connect) {
       const platformInfo = JSON.parse(
@@ -80,6 +81,11 @@ const BotItem = (props) => {
     } else {
       setAddPlatformFlag(info.platform);
     }
+    // 연결시 색 생기게끔 - 추후수정예정
+    setSelectedSns(selectedSns.map(i => (
+        i.name === info.platform ?
+            {name : i.name,  color :!i.color }
+            : i)));
   }, []);
   return (
     <React.Fragment>
@@ -156,8 +162,8 @@ const BotItem = (props) => {
             <div className="sns-icons-container">
               {JSON.parse(
                   chatbotList.find((v) => v.id === id).platformInfo
-              ).map((info) => (
-                  <div className="sns-icon-container">
+              ).map((info, i) => (
+                  <div className={selectedSns[i].color ? `sns-color-${info.platform} sns-icon-container` : "sns-icon-container"}>
                     <div className="sns-icon-container-info">
                       <div className= "sns-icon-container-icon">
                         <div className={`icon-${info.platform}`}></div>
@@ -166,6 +172,7 @@ const BotItem = (props) => {
                         <label className="switch">
                           <input
                               type="checkbox"
+                              className="sns-icon-checkbox"
                               onClick={() => onClickPlatform(info)}
                               checked={info.connect}
                           />
