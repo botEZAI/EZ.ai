@@ -62,7 +62,7 @@ const BotItem = (props) => {
       });
       props.history.push("/chatbotbuild");
     },
-    [currentChatbot]
+    [chatbotList]
   );
   //플랫폼 추가 팝업
   const onClickPlatform = useCallback((info) => {
@@ -92,34 +92,32 @@ const BotItem = (props) => {
       )}
       {botClick.botOn ? (
         <div>
-          <div className="bot-item-expand" >
+          <div className="bot-item-expand">
             <div className="bot-item-header" onClick={botClickEvent}>
               <div className="bot-item-infos">
-                <div className="bot-name" >
-                  {children}
-                </div>
+                <div className="bot-name">{children}</div>
                 <div className="bot-item-connected">
                   <div
-                      className={selectedSns[0].color ? "sns-color-line" : null}
+                    className={selectedSns[0].color ? "sns-color-line" : null}
                   >
                     <i className="fab fa-line"></i>
                   </div>
                   <div
-                      className={
-                        selectedSns[1].color ? "sns-color-facebook" : null
-                      }
+                    className={
+                      selectedSns[1].color ? "sns-color-facebook" : null
+                    }
                   >
                     <i className="fab fa-facebook-square"></i>
                   </div>
                   <div
-                      className={
-                        selectedSns[2].color ? "sns-color-telegram" : null
-                      }
+                    className={
+                      selectedSns[2].color ? "sns-color-telegram" : null
+                    }
                   >
                     <i className="fab fa-telegram"></i>
                   </div>
                   <div
-                      className={selectedSns[3].color ? "sns-color-kakao" : null}
+                    className={selectedSns[3].color ? "sns-color-kakao" : null}
                   >
                     <i className="fab fa-kaggle"></i>
                   </div>
@@ -155,61 +153,54 @@ const BotItem = (props) => {
 
             <div className="sns-icons-container">
               {JSON.parse(
-                  chatbotList.find((v) => v.id === id).platformInfo
+                chatbotList.find((v) => v.id === id).platformInfo
               ).map((info) => (
-                  <div className="sns-icon-container">
-                    <div className="sns-icon-container-info">
-                      <div className= "sns-icon-container-icon">
-                        <div className={`icon-${info.platform}`}></div>
-                      </div>
-                      <div className="sns-icon-container-toggle">
-                        <label className="switch">
-                          <input
-                              type="checkbox"
-                              onClick={() => onClickPlatform(info)}
-                              checked={info.connect}
-                          />
-                          <span className="slider round"></span>
-                        </label>
-                      </div>
+                <div className="sns-icon-container">
+                  <div className="sns-icon-container-info">
+                    <div className="sns-icon-container-icon">
+                      <div className={`icon-${info.platform}`}></div>
+                    </div>
+                    <div className="sns-icon-container-toggle">
+                      <label className="switch">
+                        <input
+                          type="checkbox"
+                          onClick={() => onClickPlatform(info)}
+                          checked={info.connect}
+                        />
+                        <span className="slider round"></span>
+                      </label>
                     </div>
                   </div>
+                </div>
               ))}
             </div>
           </div>
         </div>
-      ) : (  // 접혀있을때
+      ) : (
+        // 접혀있을때
         <div>
-          <div className="bot-item-default"onClick={botClickEvent}>
+          <div className="bot-item-default" onClick={botClickEvent}>
             <div className="bot-item-infos">
-              <div className="bot-name" >
-                {children}
-              </div>
+              <div className="bot-name">{children}</div>
               <div className="bot-item-connected">
-                  <div
-                      className={selectedSns[0].color ? "sns-color-line" : null}
-                  >
-                    <i className="fab fa-line"></i>
-                  </div>
-                  <div
-                      className={
-                        selectedSns[1].color ? "sns-color-facebook" : null
-                      }
-                  >
-                    <i className="fab fa-facebook-square"></i>
-                  </div>
-                  <div
-                      className={
-                        selectedSns[2].color ? "sns-color-telegram" : null
-                      }
-                  >
-                    <i className="fab fa-telegram"></i>
-                  </div>
-                  <div
-                      className={selectedSns[3].color ? "sns-color-kakao" : null}
-                  >
-                    <i className="fab fa-kaggle"></i>
-                  </div>
+                <div className={selectedSns[0].color ? "sns-color-line" : null}>
+                  <i className="fab fa-line"></i>
+                </div>
+                <div
+                  className={selectedSns[1].color ? "sns-color-facebook" : null}
+                >
+                  <i className="fab fa-facebook-square"></i>
+                </div>
+                <div
+                  className={selectedSns[2].color ? "sns-color-telegram" : null}
+                >
+                  <i className="fab fa-telegram"></i>
+                </div>
+                <div
+                  className={selectedSns[3].color ? "sns-color-kakao" : null}
+                >
+                  <i className="fab fa-kaggle"></i>
+                </div>
               </div>
             </div>
             <div className="bot-item-btns">

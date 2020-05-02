@@ -4,6 +4,7 @@ export const initialState = {
   currentCategories: null, //현재 클릭된 챗봇의 카테고리 리스트
   isUpdateSuccess: false, //업데이트 성공여부
   isDeleteSuccess: false, //삭제 성공여부
+  history: null, //현재 만들고있는 챗봇의 버전
 };
 
 export const ADD_CHATBOT_REQUEST = "ADD_CHATBOT_REQUEST";
@@ -32,6 +33,18 @@ export const DISCONNECT_CHATBOT_SUCCESS = "DISCONNECT_CHATBOT_SUCCESS";
 export const DISCONNECT_CHATBOT_FAILURE = "DISCONNECT_CHATBOT_FAILURE";
 
 export const SET_CURRENT_CHATBOT = "SET_CURRENT_CHATBOT";
+
+export const LOAD_HISTORY_REQUEST = "LOAD_HISTORY_REQUEST";
+export const LOAD_HISTORY_SUCCESS = "LOAD_HISTORY_SUCCESS";
+export const LOAD_HISTORY_FAILURE = "LOAD_HISTORY_FAILURE";
+
+export const RECOVER_HISTORY_REQUEST = "RECOVER_HISTORY_REQUEST";
+export const RECOVER_HISTORY_SUCCESS = "RECOVER_HISTORY_SUCCESS";
+export const RECOVER_HISTORY_FAILURE = "RECOVER_HISTORY_FAILURE";
+
+export const REMOVE_HISTORY_REQUEST = "REMOVE_HISTORY_REQUEST";
+export const REMOVE_HISTORY_SUCCESS = "REMOVE_HISTORY_SUCCESS";
+export const REMOVE_HISTORY_FAILURE = "REMOVE_HISTORY_FAILURE";
 
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -144,6 +157,59 @@ export default (state = initialState, action) => {
         ...state,
         currentChatbot: action.data,
         currentCategories: JSON.parse(action.data.categories),
+      };
+    }
+    case LOAD_HISTORY_REQUEST: {
+      return {
+        ...state,
+      };
+    }
+    case LOAD_HISTORY_SUCCESS: {
+      return {
+        ...state,
+        history: action.data.history,
+      };
+    }
+    case LOAD_HISTORY_FAILURE: {
+      return {
+        ...state,
+      };
+    }
+    case RECOVER_HISTORY_REQUEST: {
+      return {
+        ...state,
+      };
+    }
+    case RECOVER_HISTORY_SUCCESS: {
+      return {
+        ...state,
+        currentChatbot: {
+          ...state.currentChatbot,
+          data: action.data.data,
+        },
+        currentCategories: JSON.parse(action.data.categories),
+      };
+    }
+    case RECOVER_HISTORY_FAILURE: {
+      return {
+        ...state,
+      };
+    }
+    case REMOVE_HISTORY_REQUEST: {
+      return {
+        ...state,
+      };
+    }
+    case REMOVE_HISTORY_SUCCESS: {
+      console.log(JSON.stringify(action.data));
+      return {
+        ...state,
+        history: JSON.stringify(action.data),
+      };
+    }
+    case REMOVE_HISTORY_FAILURE: {
+      return {
+        ...state,
       };
     }
 

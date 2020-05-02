@@ -1,6 +1,5 @@
 import React, { useState, useRef } from "react";
 
-
 import TextStatus from "./BasicStatus/TextStatus";
 import ImageStatus from "./BasicStatus/ImageStatus";
 import VideoStatus from "./BasicStatus/VideoStatus";
@@ -26,12 +25,8 @@ const ToolStatus = ({
   listCount,
   curListCount,
   setCurListCount,
-  availableIcon
+  availableIcon,
 }) => {
-  const clickedIndex =
-    keywordObject[index] &&
-    keywordObject[index].contents.findIndex(v => v.id === clickedMainInput.id);
-
   const currentInput =
     now !== -1 && keywordObject[index] && keywordObject[index].contents[now];
   const currentContent =
@@ -39,14 +34,6 @@ const ToolStatus = ({
     keywordObject[index] &&
     keywordObject[index].contents[now] &&
     keywordObject[index].contents[now].content;
-
-
-
-
-
-
-
-
 
   const fileRef = useRef();
 
@@ -99,15 +86,21 @@ const ToolStatus = ({
           ) : null}
         </div>
         <div className="tool-status-info">
-          <div className = "tool-status-available">
-            <div className={availableIcon[0].use ? "sns-color-kakao" : null}> </div>
-            <div className={availableIcon[1].use ? "sns-color-line" : null}> </div>
-            <div className={availableIcon[2].use ? "sns-color-facebook" : null}> </div>
-            <div className={availableIcon[3].use ? "sns-color-telegram" : null}> </div>
+          <div className="tool-status-available">
+            <div className={availableIcon[0].use ? "sns-color-kakao" : null}>
+              {" "}
+            </div>
+            <div className={availableIcon[1].use ? "sns-color-line" : null}>
+              {" "}
+            </div>
+            <div className={availableIcon[2].use ? "sns-color-facebook" : null}>
+              {" "}
+            </div>
+            <div className={availableIcon[3].use ? "sns-color-telegram" : null}>
+              {" "}
+            </div>
           </div>
-          <div className="help">
-            ?
-          </div>
+          <div className="help">?</div>
         </div>
       </div>
 
@@ -191,26 +184,26 @@ const ToolStatus = ({
           {" "}
           {/* type에 따라 추가적인 기능 버튼 보여주는 영역 */}
           {currentInput ? (
-            currentInput.type === "text" || clickedMainInput.type === "text"  ? (
+            currentInput.type === "text" || clickedMainInput.type === "text" ? (
               <>
                 {/*<div className="extra-btn user-name">사용자명</div>*/}
                 <ImogiPopup
-                    setKeywordObject={setKeywordObject}
-                    keywordObject={keywordObject}
-                    now={now}
-                    index={index}
-                    selectType = "text"
+                  setKeywordObject={setKeywordObject}
+                  keywordObject={keywordObject}
+                  now={now}
+                  index={index}
+                  selectType="text"
                 />
               </>
             ) : currentInput.type === "list" ||
               clickedMainInput.type === "list" ? (
-                <ImogiPopup
-                    setKeywordObject={setKeywordObject}
-                    keywordObject={keywordObject}
-                    now={now}
-                    index={index}
-                    selectType = "keyword"
-                />
+              <ImogiPopup
+                setKeywordObject={setKeywordObject}
+                keywordObject={keywordObject}
+                now={now}
+                index={index}
+                selectType="keyword"
+              />
             ) : null
           ) : null}
         </div>

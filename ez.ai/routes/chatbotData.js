@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 const ChatbotData = require("../models").ChatbotData;
+const History = require("../models").History;
 const User = require("../models").User;
 const { isLoggedIn } = require("./middlewares");
 
@@ -29,6 +30,22 @@ router.post("/", isLoggedIn, async (req, res, next) => {
       categories: JSON.stringify(req.body.categories),
       platformInfo: JSON.stringify(req.body.platformInfo), //platform 정보, 토큰 값, 연동여부
     });
+    const created = await ChatbotData.findOne({
+      where: { botname: req.body.botname },
+    });
+    const history = [
+      {
+        createdAt: created.createdAt,
+        data: JSON.stringify(req.body.data),
+        categories: JSON.stringify(req.body.categories),
+        info: "초기",
+      },
+    ];
+    await History.create({
+      chatbot_id: created.id,
+      history: JSON.stringify(history),
+    });
+
     res.json(newChatbot);
   } catch (e) {
     console.error(e);
@@ -46,6 +63,26 @@ router.patch("/", isLoggedIn, async (req, res, next) => {
       {
         where: { id: req.body.id },
       }
+    );
+    const updated = await ChatbotData.findOne({ where: { id: req.body.id } });
+    const newHistory = {
+      createdAt: updated.updatedAt,
+      data: updated.data,
+      categories: updated.categories,
+      info: req.body.info,
+    };
+
+    const history = await History.findOne({
+      where: { chatbot_id: req.body.id },
+    });
+    const mergedHistory = JSON.parse(history.history);
+    mergedHistory.push(newHistory);
+
+    await History.update(
+      {
+        history: JSON.stringify(mergedHistory),
+      },
+      { where: { chatbot_id: req.body.id } }
     );
     const chatbotData = await ChatbotData.findAll({
       where: { user_id: req.user.id },
@@ -84,6 +121,56 @@ router.delete("/", isLoggedIn, async (req, res, next) => {
       where: { user_id: req.user.id },
     });
     res.json(chatbotData);
+  } catch (e) {
+    console.error(e);
+    next(e);
+  }
+});
+//챗봇 기록 로딩
+router.post("/history", isLoggedIn, async (req, res, next) => {
+  try {
+    const history = await History.findOne({
+      where: { chatbot_id: req.body.id },
+    });
+    res.json(history);
+  } catch (e) {
+    console.error(e);
+    next(e);
+  }
+});
+//챗봇 기록 복구
+router.post("/history/recover", isLoggedIn, async (req, res, next) => {
+  try {
+    const history = await History.findOne({
+      where: { chatbot_id: req.body.currentChatbot.id },
+    });
+    const selectedHistory = JSON.parse(history.history).find(
+      (v) => v.createdAt === req.body.history.createdAt
+    );
+    res.json(selectedHistory);
+  } catch (e) {
+    console.error(e);
+    next(e);
+  }
+});
+//챗봇 기록 삭제
+router.patch("/history/remove", isLoggedIn, async (req, res, next) => {
+  try {
+    const history = await History.findOne({
+      where: { chatbot_id: req.body.currentChatbot.id },
+    });
+    const rawData = JSON.parse(history.history);
+    const deleteIndex = rawData.findIndex(
+      (v) => v.createdAt === req.body.history.createdAt
+    );
+    rawData.splice(deleteIndex, 1);
+    await History.update(
+      {
+        history: JSON.stringify(rawData),
+      },
+      { where: { chatbot_id: req.body.currentChatbot.id } }
+    );
+    res.json(rawData);
   } catch (e) {
     console.error(e);
     next(e);

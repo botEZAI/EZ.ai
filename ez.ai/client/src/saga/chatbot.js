@@ -26,6 +26,15 @@ import {
   DISCONNECT_CHATBOT_REQUEST,
   DISCONNECT_CHATBOT_SUCCESS,
   DISCONNECT_CHATBOT_FAILURE,
+  LOAD_HISTORY_REQUEST,
+  LOAD_HISTORY_SUCCESS,
+  LOAD_HISTORY_FAILURE,
+  RECOVER_HISTORY_REQUEST,
+  RECOVER_HISTORY_SUCCESS,
+  RECOVER_HISTORY_FAILURE,
+  REMOVE_HISTORY_REQUEST,
+  REMOVE_HISTORY_SUCCESS,
+  REMOVE_HISTORY_FAILURE,
 } from "../reducer/chatbot";
 
 //챗봇 등록
@@ -190,6 +199,86 @@ function* disconnectChatbot(action) {
 function* watchDisconnectChatbot() {
   yield takeEvery(DISCONNECT_CHATBOT_REQUEST, disconnectChatbot);
 }
+//챗봇 기록 로딩
+function loadHistoryAPI(chatbotData) {
+  return axios.post("api/chatbotdata/history", chatbotData, {
+    withCredentials: true,
+  });
+}
+
+function* loadHistory(action) {
+  try {
+    const result = yield call(loadHistoryAPI, action.data);
+    yield put({
+      type: LOAD_HISTORY_SUCCESS,
+      data: result.data,
+    });
+  } catch (e) {
+    console.error(e);
+    yield put({
+      type: LOAD_HISTORY_FAILURE,
+      error: e,
+    });
+  }
+}
+
+function* watchLoadHistory() {
+  yield takeEvery(LOAD_HISTORY_REQUEST, loadHistory);
+}
+
+//챗봇 기록 복구
+function recoverHistoryAPI(chatbotData) {
+  return axios.post("api/chatbotdata/history/recover", chatbotData, {
+    withCredentials: true,
+  });
+}
+
+function* recoverHistory(action) {
+  try {
+    const result = yield call(recoverHistoryAPI, action.data);
+    yield put({
+      type: RECOVER_HISTORY_SUCCESS,
+      data: result.data,
+    });
+  } catch (e) {
+    console.error(e);
+    yield put({
+      type: RECOVER_HISTORY_FAILURE,
+      error: e,
+    });
+  }
+}
+
+function* watchRecoverHistory() {
+  yield takeEvery(RECOVER_HISTORY_REQUEST, recoverHistory);
+}
+//챗봇 기록 삭제
+function removeHistoryAPI(chatbotData) {
+  return axios.patch("api/chatbotdata/history/remove", chatbotData, {
+    withCredentials: true,
+  });
+}
+
+function* removeHistory(action) {
+  try {
+    const result = yield call(removeHistoryAPI, action.data);
+    yield put({
+      type: REMOVE_HISTORY_SUCCESS,
+      data: result.data,
+    });
+  } catch (e) {
+    console.error(e);
+    yield put({
+      type: REMOVE_HISTORY_FAILURE,
+      error: e,
+    });
+  }
+}
+
+function* watchRemoveHistory() {
+  yield takeEvery(REMOVE_HISTORY_REQUEST, removeHistory);
+}
+
 export default function* userSaga() {
   yield all([
     fork(watchLoadChatbot),
@@ -198,5 +287,8 @@ export default function* userSaga() {
     fork(watchDeleteChatbot),
     fork(watchConnectChatbot),
     fork(watchDisconnectChatbot),
+    fork(watchLoadHistory),
+    fork(watchRecoverHistory),
+    fork(watchRemoveHistory),
   ]);
 }

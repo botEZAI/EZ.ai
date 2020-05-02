@@ -1,142 +1,147 @@
-.side-wrapper{
+.side-wrapper {
   position: relative;
 }
 .sidebar {
-  width : 50px;
+  width: 50px;
   height: calc(100vh - 160px);
-  position : fixed;
-  top : 80px;
+  position: fixed;
+  top: 80px;
   right: 0px;
   background-color: white;
   border: 0.5px solid #eee;
   z-index: 3;
 }
 /*tabs.css의 .active의 영향을 받아 이벤트 발생시 색상 변화*/
-.sidebar-icon{
+.sidebar-icon {
   cursor: pointer;
-  width : 50px;
-  height : 50px;
+  width: 50px;
+  height: 50px;
   font-size: 23px;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition:.2s all;
+  transition: 0.2s all;
 }
 
 /* .sidebar-icon:hover {
   background-color: #eee;
 } */
 
-.sidebar-icon:hover i, .active i {
+.sidebar-icon:hover i,
+.active i {
   transform: translateY(-1px);
   transform: scale(1.2, 1.2);
 }
 
 .sidebar-icon i {
-  color : #666;
+  color: #666;
   font-size: 20px;
 }
 
-.active{
+.active {
   background-color: #eee;
 }
 
 .active i {
-  color : #178c8c;
+  color: #178c8c;
 }
 /**/
-.side-default{
-  display:none;
+.side-default {
+  display: none;
 }
 
-.side-close{
-  position:absolute;
+.side-close {
+  position: absolute;
   height: 100vh;
-  top:-1px;
-  right:50px;
+  top: -1px;
+  right: 50px;
   background-color: white;
-  border: .5px solid #eee;
-  color:gray;
-  display:block;
+  border: 0.5px solid #eee;
+  color: gray;
+  display: block;
 
   animation-name: slideout;
   animation-duration: 0.6s;
 }
 
-.side-open{
-  position:absolute;
-  width:400px;
+.side-open {
+  position: absolute;
+  width: 400px;
   height: calc(100vh - 160px);
-  top:-1px;
-  right:50px;
+  top: -1px;
+  right: 50px;
   background-color: white;
-  border: .5px solid #eee;
-  color:gray;
-  display:block;
+  border: 0.5px solid #eee;
+  color: gray;
+  display: block;
 
   animation-name: slidein;
   animation-duration: 0.6s;
 }
 
-
 /* 사이드바 section css */
 .side-open .sidebar-section {
-  height : 100%;
-  padding : 10px;
+  height: 100%;
+  padding: 10px;
   overflow: scroll;
 }
 
 .sidebar-section .sidebar-title {
-  font-size : 17px;
+  font-size: 17px;
   font-weight: bold;
-  padding : 10px 5px;
-  border-bottom : 1px solid #ddd;
+  padding: 10px 5px;
+  border-bottom: 1px solid #ddd;
 }
 
 .sidebar-section .sidebar-article {
   margin-top: 10px;
-  padding : 10px 5px;
+  padding: 10px 5px;
   background-color: #eee;
-  height : 100%;
+  height: 100%;
+}
+.sidebar-history-box {
+  margin: 10px;
+  background-color: darkgray;
+}
+.sidebar-history-button {
+  float: right;
 }
 
-
-
-@keyframes slidein{
-  from{
+@keyframes slidein {
+  from {
     width: 0px;
   }
-  to{
-    width:400px;
+  to {
+    width: 400px;
   }
 }
 
-@keyframes slideout{
-  from{
+@keyframes slideout {
+  from {
     width: 400px;
   }
-  to{
-    width:0px;
-    display:none;
+  to {
+    width: 0px;
+    display: none;
   }
 }
 
 /*tooltip과 연관*/
 
-[tooltip]:hover{
+[tooltip]:hover {
   position: relative;
-  
+
   z-index: 9999;
 }
 
-[tooltip]:hover:after{
+[tooltip]:hover:after {
   content: attr(tooltip);
 
   position: absolute;
-  right:35px;
+  right: 35px;
 
   min-width: 60px;
-  width:fit-content;
+  width: fit-content;
   word-wrap: break-word;
   border: 1px solid #eee;
   line-height: 20px;
@@ -149,15 +154,15 @@
   z-index: 9999;
 
   animation-name: tooltip;
-  animation-duration: .3s;
+  animation-duration: 0.3s;
   animation-timing-function: ease;
 }
 
-@keyframes tooltip{
-  from{
-    right:40px;
+@keyframes tooltip {
+  from {
+    right: 40px;
   }
-  to{
-    right:35px;
+  to {
+    right: 35px;
   }
 }

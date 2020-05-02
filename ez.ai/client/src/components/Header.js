@@ -6,6 +6,7 @@ import NavPopup from "../NavPopup";
 
 const Header = ({ history }) => {
   const { user } = useSelector((state) => state.user);
+  const { currentChatbot } = useSelector((state) => state.chatbot);
   const dispatch = useDispatch();
 
   useEffect(() => {
