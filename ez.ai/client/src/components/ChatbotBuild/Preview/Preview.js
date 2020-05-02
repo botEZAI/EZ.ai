@@ -32,7 +32,7 @@ const Preview = ({
   now,
   setNow,
   curListCount,
-  setCurListCount
+  setCurListCount,
 }) => {
   const currentInput =
     now !== -1 && keywordObject[index] && keywordObject[index].contents[now];
@@ -51,7 +51,7 @@ const Preview = ({
     const nowKeyword = keywordObject[index];
     axios
       .post("/api/chatbotbuild", { nowKeyword, keywordObject })
-      .then(res => console.log(res));
+      .then((res) => console.log(res));
   };
   //
   const ClickedBuilderMain = () => {
@@ -64,9 +64,9 @@ const Preview = ({
       setClickedMainInput({});
     }
     setKeywordObject(
-      produce(keywordObject, draft => {
+      produce(keywordObject, (draft) => {
         draft[index].contents.splice(
-          draft[index].contents.findIndex(content => content.id === id),
+          draft[index].contents.findIndex((content) => content.id === id),
           1
         );
         if (isList === "list") {
@@ -91,9 +91,8 @@ const Preview = ({
     //챗봇 데이터 로딩
     axios
       .get("/api/chatbotbuild")
-      .then(res => setKeywordObject(JSON.parse(res.data.keyword)));
+      .then((res) => setKeywordObject(JSON.parse(res.data.keyword)));
   }, []);
-  console.log("데이터", keywordObject);
   return (
     <>
       <div className="main-header">
@@ -115,7 +114,7 @@ const Preview = ({
         {keywordObject[index] &&
           keywordObject[index].contents.map((v, i) =>
             v.type === "text" ? (
-              <TextPreview 
+              <TextPreview
                 v={v}
                 i={i}
                 setClickedMainInput={setClickedMainInput}
@@ -123,7 +122,7 @@ const Preview = ({
                 onDelete={onDelete}
               />
             ) : v.type === "image" /**서버에서 파일 받아옴. */ ? (
-              <ImagePreview      
+              <ImagePreview
                 v={v}
                 i={i}
                 setClickedMainInput={setClickedMainInput}
@@ -131,7 +130,7 @@ const Preview = ({
                 onDelete={onDelete}
               />
             ) : v.type === "video" /**서버에서 파일 받아옴 */ ? (
-              <VideoPreview 
+              <VideoPreview
                 v={v}
                 i={i}
                 setClickedMainInput={setClickedMainInput}
@@ -139,7 +138,7 @@ const Preview = ({
                 onDelete={onDelete}
               />
             ) : v.type === "audio" ? (
-              <AudioPreview 
+              <AudioPreview
                 v={v}
                 i={i}
                 setClickedMainInput={setClickedMainInput}
@@ -147,7 +146,7 @@ const Preview = ({
                 onDelete={onDelete}
               />
             ) : v.type === "location" ? (
-              <LocationPreview 
+              <LocationPreview
                 v={v}
                 i={i}
                 setClickedMainInput={setClickedMainInput}
@@ -155,7 +154,7 @@ const Preview = ({
                 onDelete={onDelete}
               />
             ) : v.type === "file" ? (
-              <FilePreview 
+              <FilePreview
                 v={v}
                 i={i}
                 setClickedMainInput={setClickedMainInput}
@@ -163,7 +162,7 @@ const Preview = ({
                 onDelete={onDelete}
               />
             ) : v.type === "list" ? (
-              <ListPreview 
+              <ListPreview
                 v={v}
                 i={i}
                 setVirtualKeyboard={setVirtualKeyboard}
@@ -174,11 +173,7 @@ const Preview = ({
             ) : null
           )}
       </div>
-      <div className="main-footer">
-        <button className="main-button" onClick={onClickButton}>
-          저장
-        </button>
-      </div>
+      <div className="main-footer"></div>
       <VirtualKeyboard
         clickedMainInput={clickedMainInput}
         currentInput={currentInput}

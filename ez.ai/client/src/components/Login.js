@@ -20,7 +20,7 @@ const Login = ({ history }) => {
 
   useEffect(() => {
     if (user) {
-      alert("로그인 페이지로 이동합니다.");
+      alert("메인 페이지로 이동합니다.");
       history.push("/");
     }
   }, [user && user.id]);

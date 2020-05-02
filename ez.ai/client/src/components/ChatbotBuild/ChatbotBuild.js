@@ -34,24 +34,13 @@ const ChatbotBuild = (props) => {
     },
   ]);
 
-
   /* 선택한 요소 플랫폼별 사용가능 여부 */
   const [availableIcon, setAvailableIcon] = useState([
-        {name : "kakao", use : false},
-        {name : "line", use : false},
-        {name : "facebook", use : false},
-        {name : "telegram", use : false},
-      ]
-  );
-
-
-  //선택한 챗봇의 데이터와 카테고리 로딩
-  useEffect(() => {
-    const chatbotData = currentChatbot && JSON.parse(currentChatbot.data);
-    chatbotData && setKeywordObject(chatbotData);
-    const categoriesData = currentCategories && currentCategories;
-    categoriesData && setKeywordCategory(categoriesData);
-  }, []);
+    { name: "kakao", use: false },
+    { name: "line", use: false },
+    { name: "facebook", use: false },
+    { name: "telegram", use: false },
+  ]);
 
   const [mainKeyword, setMainKeyword] = useState(keywordObject[0].keyword);
   const [clickedMainInput, setClickedMainInput] = useState({});
@@ -80,7 +69,8 @@ const ChatbotBuild = (props) => {
   ];
   const [keywordPopup, setKeywordPopup] = useState(initialKP);
 
-  const index = keywordObject.findIndex((v) => v.keyword === mainKeyword);
+  const index =
+    currentChatbot && keywordObject.findIndex((v) => v.keyword === mainKeyword);
   const length =
     keywordObject[index] && keywordObject[index].contents.length - 1;
 
@@ -96,20 +86,29 @@ const ChatbotBuild = (props) => {
       setFirstEntry(true); // 키워드 클릭 시, 스크롤 초기화 (맨 위로 가서 keyword-title 보이게 함)
       setVirtualKeyboard(false); // 키워드 클릭 시, Main의 '리스트' 하단 바 초기화(하단 바 안 보임)
 
-      setAvailableIcon(availableIcon.map(i=> ({...i, use : false})))  // 새로운 키워드 선택시 status 정보초기화
+      setAvailableIcon(availableIcon.map((i) => ({ ...i, use: false }))); // 새로운 키워드 선택시 status 정보초기화
     },
     [keywordObject.length]
   );
 
+  //선택한 챗봇의 데이터와 카테고리 로딩
+  useEffect(() => {
+    const chatbotData = currentChatbot && JSON.parse(currentChatbot.data);
+    chatbotData && setKeywordObject(chatbotData);
+    const categoriesData = currentCategories && currentCategories;
+    categoriesData && setKeywordCategory(categoriesData);
+  }, []);
+
   return (
-    <div className="builder">
-      <div className="builder__column builder-info">
-        <BuilderInfo
-          keywordObject={keywordObject}
-          keywordCategory={keywordCategory}
-        />
-      </div>
-      <div className="builder__column builder-section">
+    <>
+      <div className="builder">
+        <div className="builder__column builder-info">
+          <BuilderInfo
+            keywordObject={keywordObject}
+            keywordCategory={keywordCategory}
+          />
+        </div>
+        <div className="builder__column builder-section">
           <div className="builder-main">
             <div className="builderTool">
               <div className="tool-menu">
@@ -216,11 +215,15 @@ const ChatbotBuild = (props) => {
               />
             </div>
           </div>
-      </div>
+        </div>
 
-      {/* 챗봇 빌더 오른쪽 사이드 바 기본 레이아웃*/}
-      <Sidebar />
-    </div>
+        {/* 챗봇 빌더 오른쪽 사이드 바 기본 레이아웃*/}
+        <Sidebar
+          setKeywordObject={setKeywordObject}
+          setKeywordCategory={setKeywordCategory}
+        />
+      </div>
+    </>
   );
 };
 

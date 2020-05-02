@@ -27,7 +27,7 @@ const Register = ({ history }) => {
 
   useEffect(() => {
     if (isSignedUp) {
-      alert("가입했으니 메인페이지로 이동합니다.");
+      alert("가입완료. 로그인 페이지로 이동합니다.");
       history.push("/login");
       dispatch({
         type: SIGN_UP_RESET,
@@ -74,7 +74,7 @@ const Register = ({ history }) => {
   return (
     <>
       <div className="register">
-        <form  className="register-form" onSubmit={onSubmit}>
+        <form className="register-form" onSubmit={onSubmit}>
           <div className="register-form__column">
             <p className="register-title">
               <span>Ez.ai</span> 회원가입
