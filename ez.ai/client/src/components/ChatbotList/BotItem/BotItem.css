@@ -337,6 +337,26 @@ input:checked + .slider:before {
   transform: translateX(26px);
 }
 
+
+/* bot item checked 일때 해당 영역 배경색 */
+.sns-icons-container .sns-color-line {
+  background-color: #19ce60;
+}
+.sns-icons-container .sns-color-facebook {
+  background-color: #304a8a;
+}
+.sns-icons-container .sns-color-telegram {
+  background-color: #26a8d9;
+}
+.sns-icons-container .sns-color-kakao {
+  background-color: #fbe300;
+}
+
+
+
+
+
+
 /* Rounded sliders */
 .slider.round {
   border-radius: 40px;
