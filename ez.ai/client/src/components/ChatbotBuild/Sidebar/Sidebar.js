@@ -11,9 +11,12 @@ import "./Sidebar.css";
 
 const Sidebar = ({ setKeywordCategory, setKeywordObject }) => {
   const dispatch = useDispatch();
-  const { currentChatbot, history, currentCategories } = useSelector(
-    (state) => state.chatbot
-  );
+  const {
+    currentChatbot,
+    history,
+    currentCategories,
+    isUpdateSuccess,
+  } = useSelector((state) => state.chatbot);
   const [activeSideOverlay, setActiveSideOverlay] = useState(0);
   const [activeSideTab, setActiveSideTab] = useState("");
 
@@ -23,7 +26,7 @@ const Sidebar = ({ setKeywordCategory, setKeywordObject }) => {
         type: LOAD_HISTORY_REQUEST,
         data: currentChatbot,
       });
-  }, [activeSideTab === "history"]);
+  }, [activeSideTab === "history", isUpdateSuccess]);
   useEffect(() => {
     const chatbotData = currentChatbot && JSON.parse(currentChatbot.data);
     chatbotData && setKeywordObject(chatbotData);
