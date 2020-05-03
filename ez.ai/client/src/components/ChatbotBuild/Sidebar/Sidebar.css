@@ -3,7 +3,7 @@
 }
 .sidebar {
   width: 50px;
-  height: calc(100vh - 160px);
+  height: 100vh;
   position: fixed;
   top: 80px;
   right: 0px;
@@ -67,7 +67,7 @@
 .side-open {
   position: absolute;
   width: 400px;
-  height: calc(100vh - 160px);
+  height: 100vh;
   top: -1px;
   right: 50px;
   background-color: white;

@@ -9,7 +9,7 @@ import {
 import { withRouter } from "react-router-dom";
 import AddPlatformPopup from "../Popup/AddPlatformPopup";
 
-const BotItem = (props) => {
+const BotItem = (props, platformInfo) => {
   const dispatch = useDispatch();
   const { currentChatbot, chatbotList, currentCategories } = useSelector(
     (state) => state.chatbot
@@ -17,13 +17,8 @@ const BotItem = (props) => {
   const [botClick, setBotClick] = useState({ botOn: false });
   const { children, onRemove, botDesc, botConnect, id } = props;
   const [addPlatformFlag, setAddPlatformFlag] = useState("");
+  const snsIcon = ["fab fa-line", "fab fa-facebook-square", "fab fa-telegram", "fab fa-kaggle"]
 
-  const [selectedSns, setSelectedSns] = useState([
-    { name: "line", color: false },
-    { name: "facebook", color: false },
-    { name: "telegram", color: false },
-    { name: "kakao", color: false },
-  ]);
 
   const botClickEvent = (e) => {
     setBotClick({ botOn: !botClick.botOn });
@@ -80,12 +75,6 @@ const BotItem = (props) => {
     } else {
       setAddPlatformFlag(info.platform);
     }
-    // 연결시 색 생기게끔 - 추후수정예정
-    setSelectedSns(
-      selectedSns.map((i) =>
-        i.name === info.platform ? { name: i.name, color: !i.color } : i
-      )
-    );
   }, []);
   return (
     <React.Fragment>
@@ -103,30 +92,15 @@ const BotItem = (props) => {
               <div className="bot-item-infos">
                 <div className="bot-name">{children}</div>
                 <div className="bot-item-connected">
-                  <div
-                    className={selectedSns[0].color ? "sns-color-line" : null}
-                  >
-                    <i className="fab fa-line"></i>
-                  </div>
-                  <div
-                    className={
-                      selectedSns[1].color ? "sns-color-facebook" : null
-                    }
-                  >
-                    <i className="fab fa-facebook-square"></i>
-                  </div>
-                  <div
-                    className={
-                      selectedSns[2].color ? "sns-color-telegram" : null
-                    }
-                  >
-                    <i className="fab fa-telegram"></i>
-                  </div>
-                  <div
-                    className={selectedSns[3].color ? "sns-color-kakao" : null}
-                  >
-                    <i className="fab fa-kaggle"></i>
-                  </div>
+                  {JSON.parse(
+                      chatbotList.find((v) => v.id === id).platformInfo
+                  ).map((info, i) => (
+                      <div
+                          className={info.connect ? `sns-color-${info.platform}` : null}
+                      >
+                        <i className={snsIcon[i]}></i>
+                      </div>
+                      ))}
                 </div>
               </div>
 
@@ -163,7 +137,7 @@ const BotItem = (props) => {
               ).map((info, i) => (
                 <div
                   className={
-                    selectedSns[i].color
+                    info.connect
                       ? `sns-color-${info.platform} sns-icon-container`
                       : "sns-icon-container"
                   }
@@ -196,24 +170,15 @@ const BotItem = (props) => {
             <div className="bot-item-infos">
               <div className="bot-name">{children}</div>
               <div className="bot-item-connected">
-                <div className={selectedSns[0].color ? "sns-color-line" : null}>
-                  <i className="fab fa-line"></i>
-                </div>
-                <div
-                  className={selectedSns[1].color ? "sns-color-facebook" : null}
-                >
-                  <i className="fab fa-facebook-square"></i>
-                </div>
-                <div
-                  className={selectedSns[2].color ? "sns-color-telegram" : null}
-                >
-                  <i className="fab fa-telegram"></i>
-                </div>
-                <div
-                  className={selectedSns[3].color ? "sns-color-kakao" : null}
-                >
-                  <i className="fab fa-kaggle"></i>
-                </div>
+                {JSON.parse(
+                    chatbotList.find((v) => v.id === id).platformInfo
+                ).map((info, i) => (
+                    <div
+                        className={info.connect ? `sns-color-${info.platform}` : null}
+                    >
+                      <i className={snsIcon[i]}></i>
+                    </div>
+                ))}
               </div>
             </div>
             <div className="bot-item-btns">
