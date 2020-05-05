@@ -1,0 +1,49 @@
+.preview-container{
+  display:flex;
+  height:100%;
+  flex-direction: column;
+}
+.preview-header{
+  background-color:white!important;
+  margin-bottom:auto;
+  height: 50px;
+}
+.side-kakao .preview-contents {
+  background-color:#fffacd!important;
+  height:100%;
+}
+.side-line .preview-contents {
+  background-color:#c4f7d7!important;
+  height:100%;
+}
+.side-facebook .preview-contents {
+  background-color:#b0bbd3!important;
+  height:100%;
+}
+.side-telegram .preview-contents {
+  background-color:#c8f7fc!important;
+  height:100%;
+}
+.preview-footer{
+  background-color:white!important;
+  height: 50px;
+  margin-top:auto;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+.preview-input{
+  background-color: #DDDDDD;
+  width:80%;
+  line-height: 10px;
+  padding:5px;
+  border-radius: 10px;
+}
+input{
+  border:transparent;
+  background: transparent;
+}
+
+input:focus{
+  outline:none;
+}

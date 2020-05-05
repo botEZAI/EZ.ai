@@ -97,7 +97,7 @@ const Sidebar = ({ setKeywordCategory, setKeywordObject }) => {
           {/* 사이드바 컨텐츠는 이 안에! */}
           {activeSideTab === "preview" && (
             <>
-              <div className="sidebar-title preview">미리보기 플랫폼별</div>
+              <div className="sidebar-title preview">메신저별 미리보기</div>
               <div className="platforms-category">
                 <PlatformTabs activePlatformTab={activePlatformTab}
                               onSelectPlatform={onSelectPlatform}>
@@ -107,7 +107,7 @@ const Sidebar = ({ setKeywordCategory, setKeywordObject }) => {
                   <div label="telegram"> Telegram </div>
                 </PlatformTabs>
               </div>
-              <div className="sidebar-article">
+              <div className="sidebar-article" id="preview">
                 <SidePreview activePlatformTab={activePlatformTab}/>
               </div>
             </>
