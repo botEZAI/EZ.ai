@@ -1,6 +1,9 @@
 import React, { useCallback, useState, useEffect } from "react";
 import MessageForAll from "./SidebarComponents/MessageForAll";
+import SidePreview from "./SidebarComponents/SidePreview";
+import PlatformTabs from "./SidebarComponents/PlatformTabs";
 import SidebarTab from "./SidebarTab";
+
 import { useDispatch, useSelector } from "react-redux";
 import {
   LOAD_HISTORY_REQUEST,
@@ -19,7 +22,7 @@ const Sidebar = ({ setKeywordCategory, setKeywordObject }) => {
   } = useSelector((state) => state.chatbot);
   const [activeSideOverlay, setActiveSideOverlay] = useState("default");
   const [activeSideTab, setActiveSideTab] = useState("");
-
+  const [activePlatformTab, setActivePlatformTab] = useState("platform-telegram");
   useEffect(() => {
     currentChatbot &&
       dispatch({
@@ -57,6 +60,10 @@ const Sidebar = ({ setKeywordCategory, setKeywordObject }) => {
     },
     [history]
   );
+
+  const onSelectPlatform = (label)=>{
+    setActivePlatformTab("platform-"+label);
+  }
   return (
     <div className="sidebar">
       <ul>
@@ -91,8 +98,17 @@ const Sidebar = ({ setKeywordCategory, setKeywordObject }) => {
           {activeSideTab === "preview" && (
             <>
               <div className="sidebar-title preview">미리보기 플랫폼별</div>
+              <div className="platforms-category">
+                <PlatformTabs activePlatformTab={activePlatformTab}
+                              onSelectPlatform={onSelectPlatform}>
+                  <div label="kakao"> Kakao</div>
+                  <div label="line"> Line </div>
+                  <div label="facebook"> Facebook </div>
+                  <div label="telegram"> Telegram </div>
+                </PlatformTabs>
+              </div>
               <div className="sidebar-article">
-                <side_preview />
+                <SidePreview activePlatformTab={activePlatformTab}/>
               </div>
             </>
           )}
