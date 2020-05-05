@@ -1,6 +1,6 @@
 import React, { useCallback, useState, useEffect } from "react";
 import MessageForAll from "./SidebarComponents/MessageForAll";
-import SidebarPreview from "./SidebarPreview";
+import SidebarTab from "./SidebarTab";
 import { useDispatch, useSelector } from "react-redux";
 import {
   LOAD_HISTORY_REQUEST,
@@ -17,7 +17,7 @@ const Sidebar = ({ setKeywordCategory, setKeywordObject }) => {
     currentCategories,
     isUpdateSuccess,
   } = useSelector((state) => state.chatbot);
-  const [activeSideOverlay, setActiveSideOverlay] = useState(0);
+  const [activeSideOverlay, setActiveSideOverlay] = useState("default");
   const [activeSideTab, setActiveSideTab] = useState("");
 
   useEffect(() => {
@@ -60,7 +60,7 @@ const Sidebar = ({ setKeywordCategory, setKeywordObject }) => {
   return (
     <div className="sidebar">
       <ul>
-        <SidebarPreview
+        <SidebarTab
           setActiveSideOverlay={setActiveSideOverlay}
           activeSideTab={activeSideTab}
           setActiveSideTab={setActiveSideTab}
@@ -74,13 +74,13 @@ const Sidebar = ({ setKeywordCategory, setKeywordObject }) => {
           <li label="settings">
             <i class="fas fa-cog" tooltip="설정"></i>
           </li>
-        </SidebarPreview>
+        </SidebarTab>
       </ul>
       <div
         className={
-          activeSideOverlay === 1
+          activeSideOverlay === "open"
             ? "side-open"
-            : activeSideOverlay === 2
+            : activeSideOverlay === "close"
             ? "side-close"
             : "side-default"
         }
