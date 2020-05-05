@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 
-const SidebarPreview = props => {
+const SidebarTab = props => {
   const onClickEventHandler = (label) => {
     if(props.activeSideTab === label){
       props.setActiveSideTab("");
-      props.setActiveSideOverlay(2);
+      props.setActiveSideOverlay("close");
     }
     else{
       props.setActiveSideTab(label);
-      props.setActiveSideOverlay(1);
+      props.setActiveSideOverlay("open");
     }
   }
   return (
@@ -29,7 +29,7 @@ const SidebarPreview = props => {
   );
 };
 
-export default SidebarPreview;
+export default SidebarTab;
 
 
 

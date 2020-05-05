@@ -61,7 +61,7 @@
   display: block;
 
   animation-name: slideout;
-  animation-duration: 0.6s;
+  animation-duration: 0.3s;
 }
 
 .side-open {
@@ -76,7 +76,7 @@
   display: block;
 
   animation-name: slidein;
-  animation-duration: 0.6s;
+  animation-duration: 0.3s;
 }
 
 /* 사이드바 section css */
