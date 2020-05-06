@@ -4,18 +4,21 @@
 @import "../Status/ToolStatus.css";
 
 
-.builderTool > div {
-  margin : 0 1px;
-}
 
 .tool-menu {
   height : 210px;
 }
 
+.tool-menu > div, .tool-status > div {
+  margin : 0 -1px;
+  width: 100%;
+}
+
 .tool-tabs {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap : 0px;
+
   height: 50px;
   margin : 0!important;
 
@@ -25,8 +28,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width : 33.3%;
-  height: 50px;
   border-bottom: 0.2px solid #d9d9d9;
   cursor : pointer;
   font-weight : bold;

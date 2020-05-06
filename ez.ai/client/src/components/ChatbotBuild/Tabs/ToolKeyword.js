@@ -165,7 +165,7 @@ const ToolKeyword = ({
     } else {
       setKeywordObject(
         keywordObject.map((m) =>
-          m.category === i.category ? { ...m, category: e.target.value } : i
+          m.category === i.category ? { ...m, category: e.target.value } : m
         )
       );
       setKeywordCategory(
