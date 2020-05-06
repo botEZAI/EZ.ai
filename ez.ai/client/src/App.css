@@ -1,20 +1,21 @@
+@import "./reset.css";
 @import "./Home.css";
+@import "Nav.css";
 
 
-/* 헤더의 로고 양식 */
-.logo_default {
-  display: inline-block;
-  height: 80px;
-  width : 150px;
-}
-.logo_default > a {
-  font-size : 35px;
-  font-weight : 600;
+
+* {
+  box-sizing: border-box;
+  color : #333;
 }
 
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
 
-
-/* header, nav 기본 struct */
+/* header 기본 struct */
 .header {
   position : fixed;
   top : 0;
@@ -22,44 +23,26 @@
   width : 100%;
   height : 80px;
   margin : 0;
-  line-height: 80px;
-  overflow : hidden;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.12);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   z-index : 10;
   background-color: #fff;
 }
 
-.nav {
-  display : inline-block;
-  height: 80px;
-}
-.nav > ul{
-  text-align : center;
-
-  list-style : none;
-  margin : 0 auto;
-  padding : 0;
-}
-
-.nav > ul > li {
-  margin : 0;
-  min-width: 120px;
-  float : left;
-}
-
-.nav > ul > li:nth-child(n+2):hover {
-  background-color: #eee;
-}
-
-
-/* nav의 login 버튼 */
-.login {
-  text-align: center;
-  display : inline-block;
+/* 헤더의 로고 양식 */
+.header .logo_default {
   width : 150px;
-  float : right;
-  background-color : skyblue;
+  height : 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size : 35px;
+  font-weight : 600;
 }
+
+
 
 /*-------------- Section 영역 ------------------*/
 
@@ -69,16 +52,20 @@
    이 아래 설정 값들은 id, class 로 임의로 최대한 변동하지 마세요! (임시라고 적어둔건 예외)
  */
 section {
+  position : relative;
   margin-top : 80px!important;
   padding : 20px 0;
   margin : 0 auto;
-  max-width : 1200px;
-  height: 95vh;
+  width : 100%;
+  min-height: 110vh;
   background-color : #eee;
+  overflow: hidden;
 }
 
-section > div {
-  position : relative;
+.section-contents {
+  max-width : 1200px;
+  height: 100%;
+  margin : 0 auto;
 }
 
 
@@ -96,10 +83,18 @@ article {
 
 /* footer css */
 footer {
-  position : absolute;
-  background-color: #eee;
+  background-color: #555;
   width : 100%;
   height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  z-index: 2;
+}
+
+footer p {
+  color : #ddd;
 }
 
 
@@ -107,10 +102,13 @@ footer {
 /* 그외 범용 코드 */
 a {
   display : inline-block;
-  width : 100%;
-  height: 100%;
   text-decoration: none;
   color : #333;
+  width : 100%;
+  height :100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .cursor {

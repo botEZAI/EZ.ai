@@ -1,0 +1,42 @@
+
+/* 기본 요소 css */
+.tool-contents {
+    height : 100px;
+    background-color: #f9f9f9;
+    padding : 5px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.tool-basic {
+    color : #999;
+    font-size: 14px;
+    font-weight: bold;
+    min-width : 70px;
+    height: 70px;
+    background-color: #dddddd;
+    margin : 8px;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor : pointer;
+}
+
+.tool-basic i {
+    margin : 5px 0;
+    font-size : 25px;
+    color : #999;
+}
+
+.tool-basic:hover, .tool-basic:hover i {
+    background-color: rgb(0, 184, 180);
+    color : #eee;
+    transition: 0.3s all;
+}

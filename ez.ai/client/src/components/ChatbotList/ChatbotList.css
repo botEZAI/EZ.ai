@@ -1,56 +1,87 @@
 
-.main{
+.bot-list {
+  height: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.bot-list-main{
   width: 80%;
+  min-width: 800px;
   max-width: 1200px;
-  min-height:500px;
-  height: auto;
-  margin: 5rem auto;      /*50px*/
+  height: inherit;
+  padding : 50px;
+
 }
 
-.main-title{
+/* 나의 챗봇 목록 이름, 검색 바 */
+.bot-list-main .main-title{
   width: 100%;
+  height : 60px;
+  padding : 10px;
+  border-bottom : 1px solid #bbb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.sub-title{
-  display: inline-block;
+.bot-list-main .sub-title {
+  color: #00b8b4;
+  font-weight: bold;
+  font-size : 25px;
+  height: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.sub-title:last-child{
-  float: right;
-  padding: 0.4rem 0.6rem 0 0;   /*6px 10px 0 0*/
+
+/* 검색 바 */
+.sub-title .search-bar {
+  width : 250px;
+  height: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.list-title{
-  color: #09ccd8;
-  font-weight: 900;
-  font-size: 1.7rem; /*27px*/
+
+.sub-title .search-bar input {
+  font-size : 15px;
+  width: inherit;
+  height: 35px;
+  margin : 0;
+  padding-left: 10px;
+  outline-color: #00b8b4;
 }
-.list-line{
-  border: 0.5px solid #c9c7c7;
-  margin: 10px 10px 10px 10px;
-}
-.search-btn button{
-  margin-left:0.6rem;
-  border: 1px solid skyblue;
-  background-color: rgba(0,0,0,0);
-  color:skyblue;
-  padding:5px; 
-}
-.search-btn button:hover{ /*검색 버튼에 생명력을 불어넣음*/
-  background-color: skyblue;
-  color:white;
-  transition: .2s all;
-}
-.search-input{
-  width: 9.5rem;
-  height: 1.8rem;
-  border : 2px solid #f2f2f2;
-  border-top-left-radius: 0.2rem;
-  border-bottom-left-radius: 0.2rem;
-}
+
 .search-input::placeholder{
   color:#bbb;
 }
+
+.search-btn {
+  color: #999;
+  font-size : 20px;
+  background-color: #eee;
+  width : 70px;
+  height : 35px;
+  margin-left : 10px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: .2s all;  /* 이 코드를 hover가 아닌 여기에 쓰면 마우스 떼도 자연스럽게 바뀜!*/
+}
+.search-btn:hover{ /*검색 버튼에 생명력을 불어넣음*/
+  background-color: #00b8b4;
+  color:white;
+  transform: translateY(-2px);  /* 이런것도 쓰면 더 생명력 추가 부여 가능 */
+}
+
+/* 챗봇 목록 리스트 */
 .content{
-  margin-top:1.5rem;
+  margin-top:30px;
   cursor:pointer;
 }

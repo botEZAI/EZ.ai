@@ -1,0 +1,111 @@
+
+.status-list {
+    width : 90%;
+}
+.status-list table {
+    margin : 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.status-list textarea {
+    margin : 0 auto;
+    height : 100px;
+    min-width : 465px;
+    outline-color: #00b8b4;
+}
+
+.status-list tr {
+    display: flex;
+    justify-content: space-around;
+}
+
+/* 키보드 입력 개수 css */
+.status-list .list-count {
+    display: flex;
+    align-items: center;
+
+    font-size : 14px;
+    padding-left : 5px;
+}
+
+.list-count span {
+    color : #999;
+    font-weight: bold;
+    margin-right : 5px;
+}
+
+.list-count .list-count-num {
+    width : 20px;
+    height: 20px;
+    background-color : #eee;
+    color : #999;
+    margin : 3px;
+
+    border-radius: 10px;
+    cursor : pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.list-count .list-count-num:hover {
+    background-color : #00b8b4;
+    color : #fff;
+}
+
+
+.status-list .status-list-content {
+    min-width: 230px;
+    margin : 2px;
+    padding : 2px;
+    border : 1px solid #ddd;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.status-list .status-list-content:nth-child(2n+1):last-child  {
+    grid-column: span 2;
+}
+
+.status-list-content .list-keyword-btn {
+    position : relative;
+    height : 38px;
+    width : 26%;
+    min-width : 70px;
+    background-color: #eee;
+    font-size : 10px;
+    font-weight: bold;
+    color : #999;
+    border-radius: 15px;
+    margin : 0 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.status-list-content .list-keyword-btn:hover {
+    background-color: #00b8b4;
+    color: white;
+    transition: all .2s;
+    cursor : pointer;
+}
+
+.list-keyword-btn:hover > div {
+    color : #999;
+    border : 2px solid #00b8b4;
+}
+
+.status-list input{
+    width : 70%;
+    min-width : 145px;
+    height: 36px;
+    margin : 5px;
+    background-color : #eee;
+    padding: 2px 2px 2px 10px;
+    border : none;
+    border-radius: 5px;
+    outline-color: #00b8b4;
+}

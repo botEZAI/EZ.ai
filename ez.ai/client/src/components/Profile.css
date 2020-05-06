@@ -1,0 +1,155 @@
+.user-info {
+    min-width : 900px;
+    max-width : 1200px;
+    margin : 10px auto;
+    padding : 20px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #eee;
+}
+
+.user-info > div {
+    width : 100%;
+    margin : 5px 0;
+    padding : 30px 10px ;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+.user-info__title {
+    font-size : 25px;
+    box-shadow: none!important;
+}
+
+.u-title {
+    width : 100%;
+    padding : 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size : 20px;
+    font-weight: bold;
+}
+
+/* 프로필 css */
+.u-profile__more {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width : 80%;
+}
+
+.u-more__picture {
+    background-color: #ddd;
+    color : white;
+    width : 120px;
+    height : 120px;
+    margin : 20px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size : 40px;
+    font-weight: bold;
+}
+
+.u-more__picture i {
+    color : white;
+}
+
+.u-more__column {
+    height : 160px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.u-more__column div {
+    margin : 5px 20px;
+}
+.u-more__name-btn {
+    margin : 5px;
+    border : 1px solid #eee;
+    border-radius: 5px;
+    padding : 5px;
+    align-self: center;
+    background-color: #eee;
+    font-weight : bold;
+    color : #999;
+    cursor: pointer;
+}
+
+.u-more__name-btn:hover {
+    background-color: white;
+    border : 1px solid #ddd;
+    color : #00b8b4;
+    transition: .2s all;
+}
+
+.u-more__name-btn-caution {
+    font-size : 12px;
+    color : #555;
+}
+
+/* 개인정보 css */
+.u-more__infos {
+    width : 100%;
+    display : flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.u-more__info {
+    width : 100%;
+    height : 100px;
+    margin : 10px;
+    padding : 20px 10px;
+    border-bottom : 1px solid #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.u-more__info > div {
+    height : 34px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-weight: bold;
+}
+
+.u-more__info > div:first-child{
+    width : 200px;
+}
+
+
+
+.u-more__info .u-more__info-data {
+    width : 100%;
+    padding : 0 10px;
+    border-radius: 10px;
+    background-color: #eee;
+    color : #999;
+}
+
+.u-more__info input {
+    width : 100%;
+    height: 34px;
+    padding : 0 10px;
+    border : 1px solid #eee;
+    border-radius: 10px;
+    background-color: #fff;
+    font-weight: bold;
+    font-size : 16px;
+    outline-color: #00b8b4;
+}

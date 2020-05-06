@@ -1,0 +1,73 @@
+@import "NavPopup.css";
+
+.nav {
+    display : flex;
+    flex-wrap: wrap;
+    height: 80px;
+}
+.nav > ul{
+    height: 100%;
+    list-style : none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav > ul > li {
+    height: 100%;
+    margin : 0;
+    width: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav > ul > li:hover {
+    background-color: #eee;
+}
+
+
+/* nav의 login 버튼 */
+.nav_right {
+    text-align: center;
+    display : inline-block;
+    height: 100%;
+    width : 150px;
+}
+
+.login, .login a {
+    background-color : #00b8b4;
+    color : #eee;
+    font-weight: bold;
+}
+
+/* nav의 로그인했을때 내정보 버튼 */
+.profile {
+    padding : 0 10px;
+    display : flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile:hover {
+    background-color: #eee;
+    cursor: pointer;
+    transition: .2s background-color;
+}
+
+.profile-picture{
+    padding : 0 10px;
+    font-size : 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-picture i{
+    color : #999;
+}
+
+
+.profile-more {
+}

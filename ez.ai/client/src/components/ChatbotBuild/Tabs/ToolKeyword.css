@@ -1,0 +1,347 @@
+
+.keyword-contents {
+    width : 100%;
+    font-weight: bold;
+}
+
+.keyword-contents h4 {
+    margin : 0;
+    margin-bottom : 10px;
+}
+
+.add-keyword {
+    margin : 10px 0;
+    padding : 10px 0;
+    border-bottom : 1px solid #bbb;
+    background-color: #fff;
+}
+
+.keyword-contents form {
+    margin : 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.keyword-contents form input {
+    width : 60%;
+    height : 40px;
+    border : 1px solid #eee;
+    border-radius: 3px;
+    margin : 0 10px;
+    padding : 0 10px;
+    font-size: 15px;
+}
+
+.keyword-contents form input:focus {
+    outline-color : rgb(0, 184, 180);
+}
+
+/* 키워드 추가 버튼 css */
+.keyword-contents form button {
+    background-color: #eee;
+    border : none;
+    margin : 0 5px;
+    width : 15%;
+    height: 40px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.keyword-contents form button:hover {
+    background-color: rgb(0, 184, 180);
+    color : #eee;
+    transition: .2s all;
+}
+
+.keyword-contents form button:focus {
+    outline: none;
+}
+
+/* 키워드 속성 창 css */
+.modify-keyword {
+    background-color: white;
+    margin : 10px 0;
+    padding : 10px 0;
+    border-bottom : 1px solid #bbb;
+}
+
+.modify-keyword .modify-btns {
+    margin : 10px 0;
+}
+
+.modify-keyword .modify-input-disable {
+     background-color: #eee;
+    color : #999;
+ }
+
+.modify-keyword .modify-input-disable:focus {
+    outline-color: #fff;
+}
+
+.modify-keyword .modify-input-enable {
+    background-color: #fff;
+    border : 1px solid #00b8b4;
+    cursor : pointer;
+}
+
+/* 수정, 삭제 버튼 css */
+.modify-btns .modify-btn:hover {
+    background-color : #00b8b4;
+}
+
+.modify-btns .modify-btn-active {
+    background-color : #00b8b4;
+    color : #fff;
+}
+
+.modify-btns .delete-btn:hover {
+    background-color: darkred;
+}
+
+
+
+
+
+
+.keyword-contents form > div {
+    display: inline-block;
+    width : 100%;
+}
+
+
+
+
+
+
+/* 키워드 속성 창 내 셀렉트 css */
+.modify-category {
+    margin : 10px 0;
+    display: flex;
+    align-items: flex-start;
+}
+
+.modify-category select {
+    width : 70%;
+    height : 40px;
+    border : 1px solid #eee;
+    padding : 10px 5px;
+}
+
+.modify-category select:focus {
+    outline-color: #00b8b4;
+}
+
+
+/* 키워드 카테고리 별 분류 창 css */
+.keyword-category {
+    width : 100%;
+    display : flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap : wrap;
+}
+
+.keyword-category .keyword-category-title-main {
+    height: 20px;
+    width: 80%;
+    overflow: hidden;
+    display: flex;
+    cursor: pointer;
+}
+
+
+.keyword-category-name, .keyword-category-name-input {
+    width : 100%;
+
+    margin-left : 10px;
+    display : flex;
+    align-items: center;
+    outline-color: #00b8b4;
+}
+
+.keyword-category-btns {
+    display: flex;
+    width: 150px;
+    justify-content: flex-end;
+}
+
+.keyword-category-btns .keyword-category-btn{
+    margin : 0 5px;
+    border-radius: 15px;
+    padding : 4px 8px;
+    cursor: pointer;
+    display: flex;
+}
+
+.keyword-category-btns .keyword-category-btn:hover {
+    color : white;
+    transition: .2s all;
+}
+
+.keyword-category-modify {
+    background-color: #eee;
+}
+
+.keyword-category-modify:hover {
+    background-color: #00b8b4;
+}
+
+.keyword-category-modify-active {
+    background-color : #00b8b4;
+    color : white;
+ }
+
+
+.keyword-category-remove {
+    background-color: #eee;
+}
+.keyword-category-remove:hover {
+    background-color: darkred;
+}
+
+
+
+.keyword-category .keyword-category-title {
+    width : 95%;
+    margin : 5px auto;
+    padding : 5px 10px;
+    border-bottom : 1px solid #bbb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size : 13px;
+    color : #999;
+}
+
+.keyword-category .fold {
+    background-color: #eee;
+}
+
+.keyword-category-title .keyword-category-fold {
+    display: flex;
+    align-items: center;
+    margin : 0;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.keyword-category-fold .fa-sort-up {
+    height : 8px;
+}
+
+
+
+/* 키워드 관리 창 css */
+.keyword-status {
+    width : inherit;
+    height: 350px;
+    padding: 10px 0;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    overflow-x :hidden;
+    overflow-y: scroll;
+
+}
+
+.keyword-status .keyword-status-title {
+    height: 24px;
+    width : 100%;
+}
+.keyword-status-title > h4 {
+    margin : 0 auto;
+}
+
+/* 키워드 카테고리 추가 css */
+.add-category {
+    width : 100%;
+}
+
+.add-category > form {
+    width : inherit;
+    flex-direction: row!important;
+    flex-wrap: wrap;
+}
+
+.add-category-main > div {
+    width: 95%;
+    background-color: #eee;
+    margin: 5px auto;
+    border-top: 1px solid #999;
+    border-bottom: 1px solid #999;
+    padding: 5px 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+
+
+.add-category-input {
+    display: flex;
+    width: 250px;
+}
+.add-category-input > input {
+    width: inherit!important;
+    height: 30px!important;
+    font-size: 13px!important;
+}
+
+.add-category-btns {
+    height: 30px;
+
+}
+
+.add-category-btns .add-category-btn {
+    width : 50px;
+    height: inherit;
+    background-color: #bbb;
+}
+
+
+
+
+
+
+/* 키워드 요소 css */
+.keyword-category-contents {
+    max-width : 95%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 5px;
+    padding: 0 5px;
+}
+
+
+.tool-keywords {
+    width : 100%;
+}
+
+.tool-keyword {
+    background-color: #eee;
+    height : 36px;
+    margin: 5px;
+    border : 1px solid #999;
+    border-radius: 3px;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor : pointer;
+    font-weight: bold;
+    color : #999;
+}
+
+.tool-keyword:hover {
+    background-color: white;
+    border : 1px solid #00b8b4;
+    color : #00b8b4;
+    box-shadow: 0.5px 0.5px 0.5px 1px #eee;
+    transition: .2s all;
+}

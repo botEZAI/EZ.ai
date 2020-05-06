@@ -1,20 +1,27 @@
 .input-bot{
     width:100%;
-    height:100%;
-    border-radius: 8px;
+    height:45px;
     margin-bottom: 10px;
-    text-align: center;
-    background-color: #b2bbbb;
-    border: 1px solid #b2bbbb;
-    color: white;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 250%;
-    box-shadow: 2px 3px 5px 2px rgba(10,10,120,0.15);
+
 }
 
-.input-bot:hover{
-    background-color:#c4cccc;
+.input-bot .add-button {
+    color : #666;
+    font-weight: bold;
+    font-size: 18px;
+    background-color: #b2bbbb;
+    width : inherit;
+    height: inherit;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-bot .add-button:hover{
+    background-color:#00b8b4;
+    color : white;
     box-shadow:1px 1px 1px 1px rgba(10,10,120,0.15);
+    transform: translateY(-2px);
     transition: .5s all;
 }

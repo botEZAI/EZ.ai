@@ -1,0 +1,29 @@
+.builder-info p {
+    margin : 0;
+}
+
+/* .info__column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+} */
+.info__column button{
+  margin:10px 10px 0 0;
+  width:60px;
+  height:30px;
+  background-color: transparent;
+  border: 1px solid rgb(190, 182, 182);
+  cursor:pointer;
+}
+
+.builder_undo{
+  margin:10px 10px 0 0;
+  cursor:pointer;
+  color:black;
+  font-size:10pt;
+}
+.builder_undo:hover{
+  color:#da8484;
+  transition: .2s all;
+}

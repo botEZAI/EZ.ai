@@ -1,0 +1,36 @@
+
+
+.keyword-popup {
+    position : absolute;
+    top : 65%;
+    left : -30%;
+    width : 200px;
+    height : auto;
+    min-height : 50px;
+    z-index : 10;
+    border : 2px dotted #bbb;
+    border-radius : 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    background-color: #fff;
+    padding : 2px 0;
+}
+
+.keyword-name {
+    border-bottom : 1px solid #bbb;
+    padding : 5px 0;
+    color : #00b8b4;
+}
+
+.keyword-list {
+    width : 90%;
+    margin : 0 auto;
+    border-bottom : 1px solid #ddd;
+    padding : 3px 0;
+    overflow: hidden;
+}
+
+.keyword-list:hover {
+    background-color: #eee;
+    color : #333;
+}

@@ -1,22 +1,26 @@
-import React from 'react';
-import BotItem from '../BotItem';
+import React from "react";
+import BotItem from "../BotItem";
+import { useDispatch, useSelector } from "react-redux";
 
-const BotList = ({bots, onRemove, }) => {
-    
-    const botList = bots.map (bot => {
-        return <BotItem key = {bot.id}
-                        onRemove = {() => onRemove(bot.id)}
-                        botDesc={bot.desc}
-                        botConnect={bot.sns}>
-                        {bot.name}
-                </BotItem>
-    });
+const BotList = ({ bots, onRemove, platformInfo }) => {
+  const { chatbotList } = useSelector((state) => state.chatbot);
 
-    return(
-        <div>
-            {botList}
-        </div>
+  const botList = chatbotList.map((bot) => {
+    return (
+      <BotItem
+        key={bot.id}
+        id={bot.id}
+        onRemove={() => onRemove(bot.id)}
+        botDesc={bot.desc}
+        botConnect={bot.sns}
+        plaformInfo = {platformInfo}
+      >
+        {bot.botname}
+      </BotItem>
     );
-}
+  });
+
+  return <div>{botList}</div>;
+};
 
 export default BotList;
