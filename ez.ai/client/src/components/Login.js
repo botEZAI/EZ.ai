@@ -66,6 +66,7 @@ const Login = ({ history }) => {
           <div class="login-input">
             <form onSubmit={onSubmitForm} className="login-form">
               <input
+                  type="email"
                 name="email"
                 value={email}
                 onChange={onChangeEmail}

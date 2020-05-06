@@ -1,7 +1,8 @@
-import React, {useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import "./Profile.css";
 import {useDispatch, useSelector} from "react-redux";
 import {LOAD_USER_REQUEST} from "../reducer/user";
+import ChatbotList from "./ChatbotList";
 
 const Profile = () => {
     const { user } = useSelector((state) => state.user);
@@ -14,6 +15,11 @@ const Profile = () => {
             });
         }
     }, [user]);
+
+    const [changeInfo, setChangeInfo] = useState(true);
+    const userInfoInput = () => {
+        setChangeInfo(!changeInfo);
+    }
 
 
   return (
@@ -44,13 +50,31 @@ const Profile = () => {
               </div>
               <div className="u-profile__more">
                   <div className="u-more__infos">
-                      <div className="u-more__info"><div>이메일 : </div><div className="u-more__info-data">{user && user.email}</div></div>
-                      <div className="u-more__info"><div>별명 : </div><div className="u-more__info-data">{user && user.nick}</div></div>
-                      <div className="u-more__info"><div>이름 : </div><div className="u-more__info-data">{user && user.name}</div></div>
-                      <div className="u-more__info"><div>생일 : </div><div className="u-more__info-data">{user && user.birth}</div></div>
+                      <div className="u-more__info">
+                          <div>이메일 : </div>
+                          <div className="u-more__info-data">{user && user.email}</div>
+                      </div>
+                      <div className="u-more__info"><div>별명 : </div>
+                          {changeInfo ?
+                              <div className="u-more__info-data">{user && user.nick}</div>
+                              : <input value={user && user.nick}/>
+                          }
+                      </div>
+                      <div className="u-more__info"><div>이름 : </div>
+                          {changeInfo ?
+                              <div className="u-more__info-data">{user && user.name}</div>
+                              : <input value={user && user.name}/>
+                          }
+                      </div>
+                      <div className="u-more__info"><div>생일 : </div>
+                          {changeInfo ?
+                              <div className="u-more__info-data">{user && user.birth}</div>
+                              : <input value={user && user.birth}/>
+                          }
+                      </div>
                       
                       <div className="u-more__info"><div>비밀번호 : </div><div className="u-more__info-data">{user && user.password}</div></div>
-                      <div className = "u-more__name-btn">개인정보 수정</div>
+                      <div className = "u-more__name-btn" onClick={()=>userInfoInput()}>개인정보 수정</div>
                   </div>
 
               </div>
@@ -60,10 +84,9 @@ const Profile = () => {
                   생성한 챗봇 목록
               </div>
               <div className="u-chatbots">
-                  챗봇목록들 간단하게 보여줌
               </div>
               <div className="u-more__name-btn u-chatbots__detail">
-                  자세히보기
+                  <ChatbotList/>
               </div>
           </div>
       </div>
