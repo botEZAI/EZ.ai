@@ -99,6 +99,9 @@
   background-color: #eee;
   height: 100%;
 }
+#preview{
+  height:83%;
+}
 .sidebar-history-box {
   margin: 10px;
   background-color: darkgray;
@@ -165,4 +168,40 @@
   to {
     right: 35px;
   }
+}
+
+.platforms-category{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  margin : 0!important;
+}
+
+.platforms-category > div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width : 33.3%;
+  height: 50px;
+  border-bottom: 0.2px solid #d9d9d9;
+  cursor : pointer;
+  font-weight : bold;
+}
+
+/* 연동 플랫폼 색깔 */
+.line-btn {
+  background-color : #86efae!important;
+}
+
+.facebook-btn {
+  background-color : #7a8fc1!important;
+}
+
+.telegram-btn{
+  background-color : #99edf7!important;
+}
+
+.kakao-btn{
+  background-color : #fff6a8!important;
 }
