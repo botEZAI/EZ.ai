@@ -35,8 +35,10 @@
     width : 150px;
 }
 
-.login {
-    background-color : skyblue;
+.login, .login a {
+    background-color : #00b8b4;
+    color : #eee;
+    font-weight: bold;
 }
 
 /* nav의 로그인했을때 내정보 버튼 */
