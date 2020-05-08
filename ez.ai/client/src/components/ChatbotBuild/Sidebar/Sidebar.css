@@ -104,13 +104,7 @@
   background-color: #eee;
   border-radius: 10px;
 }
-.sidebar-history-box {
-  margin: 10px;
-  background-color: darkgray;
-}
-.sidebar-history-button {
-  float: right;
-}
+
 
 @keyframes slidein {
   from {

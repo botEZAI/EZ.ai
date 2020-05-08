@@ -67,7 +67,7 @@ const Sidebar = ({ setKeywordCategory, setKeywordObject }) => {
           )}
           {activeSideTab === "history" && (
             <>
-              <div className="sidebar-title history">버전 관리 기능</div>
+              <div className="sidebar-title history">버전 관리</div>
               <SideVersion
                   activeSideTab = {activeSideTab}
                   setKeywordObject = {setKeywordObject}
