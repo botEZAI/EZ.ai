@@ -57,9 +57,16 @@ const SideVersion = ({activeSideTab, setKeywordObject, setKeywordCategory}) => {
                 .reverse()
                 .map((v) => (
                     <div className="sidebar-history-box">
-                        <div>
-                            {" "}
-                            {v.info}
+                        <div className="sidebar-history-contents">
+                            <div className="sidebar-history-text">
+                                {" "}
+                                {v.info}
+                            </div>
+                            <div>
+                                {v.createdAt.replace(/T/, " ").replace(/\..+/, "")}
+                            </div>
+                        </div>
+                        <div className="sidebar-history-btns">
                             <button
                                 className="sidebar-history-button"
                                 onClick={() => onDeleteHistory(v)}
@@ -72,9 +79,6 @@ const SideVersion = ({activeSideTab, setKeywordObject, setKeywordCategory}) => {
                             >
                                 불러오기
                             </button>
-                        </div>
-                        <div>
-                            {v.createdAt.replace(/T/, " ").replace(/\..+/, "")}
                         </div>
                     </div>
                 ))}
