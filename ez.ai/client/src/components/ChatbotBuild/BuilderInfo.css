@@ -1,13 +1,36 @@
-.builder-info p {
-    margin : 0;
+/* builder-info struct css */
+.builder-info {
+  padding-right: 50px;
+}
+.info__column {
+  width : 300px;
+  height : 100%;
+  padding : 10px 0;
+  background-color: #eee;
+  overflow: hidden;
 }
 
-/* .info__column {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-} */
+.info__column:first-child {
+  width : 700px;
+  padding : 10px 30px;
+}
+
+
+/* info-main css */
+.info__main {
+  height : 50px;
+  padding : 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.info-name {
+  font-size : 30px;
+  font-weight: bold;
+}
+
+
+
 .info__column button{
   margin:10px 10px 0 0;
   width:60px;
