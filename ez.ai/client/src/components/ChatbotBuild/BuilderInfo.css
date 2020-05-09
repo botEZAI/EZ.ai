@@ -3,7 +3,6 @@
   padding-right: 50px;
 }
 .info__column {
-  width : 300px;
   padding : 10px 0;
   background-color: #fff;
   overflow: hidden;
@@ -25,8 +24,12 @@
   align-items: center;
 }
 .info-name {
+  max-width: 78%;
+  height : 35px;
   font-size : 30px;
   font-weight: bold;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 
@@ -79,6 +82,16 @@
 
 
 
+/* info__commit css */
+.info__column:last-child {
+  background-color: #eee;
+  width : 350px;
+}
+.info__column input {
+  background-color: white;
+  border : 1px solid #ccc;
+  padding : 0 5px;
+}
 
 
 
@@ -87,9 +100,14 @@
   margin:10px 10px 0 0;
   width:60px;
   height:30px;
-  background-color: transparent;
-  border: 1px solid rgb(190, 182, 182);
+  background-color: #555;
+  color : white;
+  border: none;
   cursor:pointer;
+}
+
+.info__column button:hover{
+  background-color: orangered;
 }
 
 .builder_undo{

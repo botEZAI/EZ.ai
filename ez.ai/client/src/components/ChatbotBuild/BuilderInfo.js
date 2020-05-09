@@ -73,7 +73,7 @@ const BuilderInfo = ({ keywordObject, keywordCategory }) => {
 
       <div className="info__column">
         <input
-          placeholder="변경사항"
+          placeholder="저장에 대한 정보를 입력하세요"
           value={info}
           onChange={(e) => onChangeInfo(e)}
         />
