@@ -67,7 +67,7 @@
 .side-open {
   position: absolute;
   width: 400px;
-  height: 100vh;
+  height: calc(100vh - 80px);
   top: -1px;
   right: 50px;
   background-color: white;
@@ -94,21 +94,17 @@
 }
 
 .sidebar-section .sidebar-article {
-  margin-top: 10px;
+  margin: 10px 0;
   padding: 10px 5px;
-  background-color: #eee;
+  background-color: #fff;
   height: 100%;
 }
 #preview{
-  height:83%;
+  height:90%;
+  background-color: #eee;
+  border-radius: 10px;
 }
-.sidebar-history-box {
-  margin: 10px;
-  background-color: darkgray;
-}
-.sidebar-history-button {
-  float: right;
-}
+
 
 @keyframes slidein {
   from {

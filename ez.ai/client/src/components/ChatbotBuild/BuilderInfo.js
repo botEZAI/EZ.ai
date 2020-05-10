@@ -8,12 +8,13 @@ import {
 
 const BuilderInfo = ({ keywordObject, keywordCategory }) => {
   const [info, setInfo] = useState("");
+  const snsIcon = ["fab fa-line", "fab fa-facebook-square", "fab fa-telegram", "fab fa-kaggle"]
   const dispatch = useDispatch();
   const { currentChatbot, isUpdateSuccess } = useSelector(
     (state) => state.chatbot
   );
   const updateChatbot = useCallback(() => {
-    if (info === "") alert("변경사항을 입력하세요.");
+    if (info === "") alert("저장사항에 대한 정보를 입력하세요.");
     else {
       const mergedData = {
         ...currentChatbot,
@@ -45,27 +46,34 @@ const BuilderInfo = ({ keywordObject, keywordCategory }) => {
   return (
     <>
       <div className="info__column">
-        <div className="info-name">
-          <p>챗봇 이름:{currentChatbot && currentChatbot.botname}</p>
+        <div className="info__main">
+          <div className="info-name">
+            <p>{currentChatbot && currentChatbot.botname}</p>
+          </div>
+          <div className="info-platform">
+            <div className="info-platform-title">
+              <p>플랫폼 연동 정보</p>
+            </div>
+            <div className="builder-bot-item-connected">
+              {currentChatbot &&
+              JSON.parse(currentChatbot.platformInfo).map((info,i) => (
+                  <div
+                      className={info.connect ? `sns-color-${info.platform}` : null}
+                  >
+                    <i className={snsIcon[i]}></i>
+                  </div>
+              ))}
+            </div>
+          </div>
         </div>
         <div className="info-discription">
-          <p>챗봇 간단 설명:{currentChatbot && currentChatbot.desc}</p>
+          <p>Description : {currentChatbot && currentChatbot.desc}</p>
         </div>
       </div>
-      <div className="info__column">
-        <div className="info-platform">
-          <p>
-            연동된 플랫폼:
-            {currentChatbot &&
-              JSON.parse(currentChatbot.platformInfo).map((v) =>
-                v.connect === true ? v.platform + " " : null
-              )}
-          </p>
-        </div>
-      </div>
+
       <div className="info__column">
         <input
-          placeholder="변경사항"
+          placeholder="저장에 대한 정보를 입력하세요"
           value={info}
           onChange={(e) => onChangeInfo(e)}
         />
