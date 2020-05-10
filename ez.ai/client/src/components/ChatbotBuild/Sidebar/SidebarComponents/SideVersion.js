@@ -1,105 +1,109 @@
-import React, {useCallback, useEffect} from 'react'
-import {useDispatch, useSelector} from "react-redux";
-import {LOAD_HISTORY_REQUEST, RECOVER_HISTORY_REQUEST, REMOVE_HISTORY_REQUEST} from "../../../../reducer/chatbot";
+import React, { useCallback, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  LOAD_HISTORY_REQUEST,
+  RECOVER_HISTORY_REQUEST,
+  REMOVE_HISTORY_REQUEST,
+} from "../../../../reducer/chatbot";
 import "./SideVersion.css";
 
-const SideVersion = ({activeSideTab, setKeywordObject, setKeywordCategory}) => {
-    const dispatch = useDispatch();
-    const {
-        currentChatbot,
-        history,
-        currentCategories,
-        isUpdateSuccess,
-    } = useSelector((state) => state.chatbot);
+const SideVersion = ({
+  activeSideTab,
+  setKeywordObject,
+  setKeywordCategory,
+}) => {
+  const dispatch = useDispatch();
+  const {
+    currentChatbot,
+    history,
+    currentCategories,
+    isUpdateSuccess,
+  } = useSelector((state) => state.chatbot);
 
-    useEffect(() => {
-        currentChatbot &&
+  useEffect(() => {
+    currentChatbot &&
+      dispatch({
+        type: LOAD_HISTORY_REQUEST,
+        data: currentChatbot,
+      });
+  }, [activeSideTab === "history", isUpdateSuccess]);
+  useEffect(() => {
+    const chatbotData = currentChatbot && JSON.parse(currentChatbot.data);
+    chatbotData && setKeywordObject(chatbotData);
+    const categoriesData = currentCategories && currentCategories;
+    categoriesData && setKeywordCategory(categoriesData);
+  }, [currentChatbot]);
+
+  //기록 복구
+  const onRecoverHistory = useCallback(
+    (history) => {
+      dispatch({
+        type: RECOVER_HISTORY_REQUEST,
+        data: { currentChatbot, history },
+      });
+    },
+    [history, currentChatbot]
+  );
+  //기록 삭제
+  const onDeleteHistory = useCallback(
+    (history) => {
+      if (history.info === "초기") alert("초기 버전은 삭제할 수 없습니다.");
+      else {
         dispatch({
-            type: LOAD_HISTORY_REQUEST,
-            data: currentChatbot,
+          type: REMOVE_HISTORY_REQUEST,
+          data: { currentChatbot, history },
         });
-    }, [activeSideTab === "history", isUpdateSuccess]);
-    useEffect(() => {
-        const chatbotData = currentChatbot && JSON.parse(currentChatbot.data);
-        chatbotData && setKeywordObject(chatbotData);
-        const categoriesData = currentCategories && currentCategories;
-        categoriesData && setKeywordCategory(categoriesData);
-    }, [currentChatbot]);
+      }
+    },
+    [history]
+  );
 
-    //기록 복구
-    const onRecoverHistory = useCallback(
-        (history) => {
-            dispatch({
-                type: RECOVER_HISTORY_REQUEST,
-                data: { currentChatbot, history },
-            });
-        },
-        [history, currentChatbot]
-    );
-    //기록 삭제
-    const onDeleteHistory = useCallback(
-        (history) => {
-            if (history.info === "초기") alert("초기 버전은 삭제할 수 없습니다.");
-            else {
-                dispatch({
-                    type: REMOVE_HISTORY_REQUEST,
-                    data: { currentChatbot, history },
-                });
-            }
-        },
-        [history]
-    );
-
-    return (
-        <div className="sidebar-article">
-            <div className="sidebar-history-recent-list">
-                <div className="sidebar-history-recent-title">
-                    <div className="sidebar-history-recent-title-text">
-                        최근 저장 목록
-                    </div>
-                    <div className="sidebar-history-recent-title-caution">
-                        최근 저장 목록은 최대 20개까지 저장됩니다.
-                    </div>
-                </div>
-                {history &&
-                JSON.parse(history)
-                    .reverse()
-                    .map((v) => (
-                        <div className="sidebar-history-box">
-                            <div className="sidebar-history-contents">
-                                <div className="sidebar-history-text">
-                                    {" "}
-                                    {v.info}
-                                </div>
-                                <div className="sidebar-history-time">
-                                    {v.createdAt.replace(/T/, " ").replace(/\..+/, "")}
-                                </div>
-                            </div>
-                            <div className="sidebar-history-btns">
-                                <div className="sidebar-history-btn sidebar-history-favorite">
-                                    <i className="far fa-star" alt = "즐겨찾기"></i>
-                                </div>
-                                <div className="sidebar-history-btn">
-                                    <button
-                                        className="sidebar-history-button sidebar-history-btn-load"
-                                        onClick={() => onRecoverHistory(v)}
-                                    >
-                                        불러오기
-                                    </button>
-                                    <button
-                                        className="sidebar-history-button sidebar-history-btn-delete"
-                                        onClick={() => onDeleteHistory(v)}
-                                    >
-                                        삭제
-                                    </button>
-                                </div>
-
-                            </div>
-                        </div>
-                    ))}
-            </div>
+  return (
+    <div className="sidebar-article">
+      <div className="sidebar-history-recent-list">
+        <div className="sidebar-history-recent-title">
+          <div className="sidebar-history-recent-title-text">
+            최근 저장 목록
+          </div>
+          <div className="sidebar-history-recent-title-caution">
+            최근 저장 목록은 최대 20개까지 저장됩니다.
+          </div>
         </div>
-    )
-}
+        {history &&
+          JSON.parse(history)
+            .reverse()
+            .map((v) => (
+              <div className="sidebar-history-box">
+                <div className="sidebar-history-contents">
+                  <div className="sidebar-history-text"> {v.info}</div>
+                  <div className="sidebar-history-time">
+                    {v.createdAt.replace(/T/, " ").replace(/\..+/, "")}
+                  </div>
+                </div>
+                <div className="sidebar-history-btns">
+                  <div className="sidebar-history-btn sidebar-history-favorite">
+                    <i className="far fa-star" alt="즐겨찾기"></i>
+                  </div>
+                  <div className="sidebar-history-btn">
+                    <button
+                      className="sidebar-history-button sidebar-history-btn-load"
+                      onClick={() => onRecoverHistory(v)}
+                    >
+                      불러오기
+                    </button>
+                    <button
+                      className="sidebar-history-button sidebar-history-btn-delete"
+                      onClick={() => onDeleteHistory(v)}
+                    >
+                      삭제
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+      </div>
+    </div>
+  );
+};
 
 export default SideVersion;
