@@ -50,24 +50,24 @@ const BuilderInfo = ({ keywordObject, keywordCategory }) => {
           <div className="info-name">
             <p>{currentChatbot && currentChatbot.botname}</p>
           </div>
-          <div className="info-platform">
-            <div className="info-platform-title">
-              <p>플랫폼 연동 정보</p>
-            </div>
-            <div className="builder-bot-item-connected">
-              {currentChatbot &&
-              JSON.parse(currentChatbot.platformInfo).map((info,i) => (
-                  <div
-                      className={info.connect ? `sns-color-${info.platform}` : null}
-                  >
-                    <i className={snsIcon[i]}></i>
-                  </div>
-              ))}
-            </div>
+          <div className="info-discription">
+            <p>Description : {currentChatbot && currentChatbot.desc}</p>
           </div>
         </div>
-        <div className="info-discription">
-          <p>Description : {currentChatbot && currentChatbot.desc}</p>
+        <div className="info-platform">
+          <div className="info-platform-title">
+            <p>플랫폼 연동 정보</p>
+          </div>
+          <div className="builder-bot-item-connected">
+            {currentChatbot &&
+            JSON.parse(currentChatbot.platformInfo).map((info,i) => (
+                <div
+                    className={info.connect ? `sns-color-${info.platform}` : null}
+                >
+                  <i className={snsIcon[i]}></i>
+                </div>
+            ))}
+          </div>
         </div>
       </div>
 

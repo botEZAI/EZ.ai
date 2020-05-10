@@ -1,6 +1,8 @@
 /* builder-info struct css */
 .builder-info {
-  padding-right: 50px;
+  min-width: 1300px;
+  padding-left : 10%;
+  padding-right: calc(10% + 50px);
 }
 .info__column {
   padding : 10px 0;
@@ -9,9 +11,12 @@
 }
 
 .info__column:first-child {
-  width : 700px;
+  width : 70%;
   padding : 0px 30px;
   border-right: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 
@@ -20,22 +25,26 @@
   height : 60px;
   padding : 5px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
 }
 .info-name {
-  max-width: 78%;
-  height : 35px;
-  font-size : 30px;
+  height: 30px;
+  padding: 0 5px;
+  font-size : 25px;
   font-weight: bold;
   overflow-x: auto;
   overflow-y: hidden;
 }
 
+.info-name p {
+  height: 100%;
+}
+
 
 .info-platform {
-  height : 50px;
-  padding : 0 5px;
+  padding : 5px;
   border : 1px solid #ddd;
   display: flex;
   flex-direction: column;
@@ -61,6 +70,7 @@
 
 .builder-bot-item-connected i {
   font-size : 20px;
+  color : #ddd;
 }
 
 /* info-description css */
@@ -86,6 +96,7 @@
 .info__column:last-child {
   background-color: #eee;
   width : 350px;
+  border-radius: 10px;
 }
 .info__column input {
   background-color: white;
