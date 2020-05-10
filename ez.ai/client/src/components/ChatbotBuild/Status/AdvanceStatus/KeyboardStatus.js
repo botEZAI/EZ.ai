@@ -12,11 +12,10 @@ const KeyboardStatus = ({
   setKeywordPopup,
   listCount,
   curListCount,
-  setCurListCount
+  setCurListCount,
 }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [popNum, setPopNum] = useState("-1");
-
 
   // const listCount = [[1], [1,2], [1,2,3], [1,2,3,4], [1,2,3,4,5], [1,2,3,4,5,6]];  // 키보드 요소의 키워드 입력 총 개수
 
@@ -28,14 +27,13 @@ const KeyboardStatus = ({
   };
 
   const changeListLength = (i) => {
-    setCurListCount(listCount[i-1])
+    setCurListCount(listCount[i - 1]);
     setKeywordObject(
-        produce(keywordObject, draft => {
-          draft[index].contents[now].listContent.keywordLen =
-              i;
-        })
+      produce(keywordObject, (draft) => {
+        draft[index].contents[now].listContent.keywordLen = i;
+      })
     );
-  }
+  };
 
   return (
     <>
@@ -43,22 +41,22 @@ const KeyboardStatus = ({
         <textarea
           placeholder="작성하고자 하는 텍스트를 적어주세요"
           value={keywordObject[index].contents[now].listContent.question || ""}
-          onChange={e => {
+          onChange={(e) => {
             setKeywordObject(
-              produce(keywordObject, draft => {
+              produce(keywordObject, (draft) => {
                 draft[index].contents[now].listContent.question =
                   e.target.value;
               })
             );
           }}
         ></textarea>
-        <div className = "list-count">
-          <span >선택지 개수 :  </span>
+        <div className="list-count">
+          <span>선택지 개수 : </span>
           {listCount[5].map((i) => (
-              <div className = "list-count-num" onClick={() => changeListLength(i)}>{i}</div>
-              ))
-          }
-
+            <div className="list-count-num" onClick={() => changeListLength(i)}>
+              {i}
+            </div>
+          ))}
         </div>
         <table>
           {curListCount.map((i) => (
@@ -68,9 +66,9 @@ const KeyboardStatus = ({
                 value={
                   keywordObject[index].contents[now].listContent.elem[i] || ""
                 }
-                onChange={e => {
+                onChange={(e) => {
                   setKeywordObject(
-                    produce(keywordObject, draft => {
+                    produce(keywordObject, (draft) => {
                       draft[index].contents[now].listContent.elem[i] =
                         e.target.value;
                     })
