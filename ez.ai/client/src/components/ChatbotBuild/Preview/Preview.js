@@ -60,8 +60,9 @@ const Preview = ({
   //삭제
   const onDelete = (id, isList) => {
     if (id === now + 1) {
-      setNow(-1);
+
     }
+    setNow(-1);
     setClickedMainInput(false);
     setKeywordObject(
         produce(keywordObject, (draft) => {
