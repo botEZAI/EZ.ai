@@ -1,8 +1,9 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import "./Profile.css";
 import {useDispatch, useSelector} from "react-redux";
 import {LOAD_USER_REQUEST} from "../reducer/user";
 import ChatbotList from "./ChatbotList";
+import axios from "axios";
 
 const Profile = () => {
     const { user } = useSelector((state) => state.user);
@@ -22,6 +23,32 @@ const Profile = () => {
     }
 
 
+    /* 프로필 사진 */
+    const imgRef = useRef();
+
+
+    const [profileURL, setProfileURL] = useState("");
+
+    const onClickUploadImage = () => {
+        imgRef.current.click();
+        console.log(imgRef)
+    }
+
+    const onChangeImage = e => {
+        if (e.target.value === "") return;
+        if (e.target.files[0].type.match(/image/g)) {
+            const imageFormData = new FormData();
+            imageFormData.append("image", e.target.files[0]);
+
+            // 보안상 로컬경로는 fakepath로 뜨기 때문에 실제 파일이 업로드 된 후 업로드 된 실파일경로를 가져와야함
+
+            axios.post("/api/image", imageFormData).then(res => {
+                console.log(res);
+                setProfileURL(res.data.filename);
+            })
+        } else return alert("이미지 파일이 아닙니다.")
+    };
+
   return (
       <div className="user-info">
         <div className = "user-info__title">
@@ -33,12 +60,15 @@ const Profile = () => {
               </div>
               <div className="u-profile__more">
                   <div className= "u-more__column">
-                      <div className="u-more__picture">
-                          <i className="far fa-images"></i>
+                      <div className="u-more__picture" style={{ backgroundImage: `url(${profileURL})`}}>
+
                       </div>
                   </div>
                   <div className= "u-more__column">
-                      <div className = "u-more__name-btn">프로필 사진 업로드</div>
+                      <div className = "u-more__name-btn" onClick={onClickUploadImage}>
+                          프로필 사진 업로드
+                      </div>
+                        <input ref={imgRef} type="file" hidden onChange={onChangeImage} />
                       <div className="u-more__name-btn-caution">프로필 사진은 10MB 이하의 JPG, PNG, JPEG만 가능합니다.</div>
                   </div>
                   
