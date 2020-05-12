@@ -74,13 +74,19 @@
 .main-content::after{ 
   position:absolute;
   border-top:15px solid transparent;
-  border-bottom:0px solid red;
   border-right: 15px solid white;
   border-left:0px solid black;
   content:"";
   left:-11px;
   bottom:0px;
 }
+.now{
+  border : 3px dashed gray;
+}
+.now:after{
+  border-right: transparent;
+}
+
 .main-textbox, .main-imgbox{/*== Basic > img, text ==*/
   width:fit-content;
   height:fit-content;
@@ -188,15 +194,14 @@
   font-size:11pt;
 }
 
-.tool-delete{ /* delete button for speech bubble */
+.fa-times{ /* delete button for speech bubble */
   position:absolute;
   content:"\d7";
-  color:#808080;
   right:-20px;
   bottom:0px;
 }
-.tool-delete:hover{
-  color:red;
+.fa-times:hover{
+  color: red;
 }
 /*==================== Main footer(하단) ===================*/
 .main-footer{

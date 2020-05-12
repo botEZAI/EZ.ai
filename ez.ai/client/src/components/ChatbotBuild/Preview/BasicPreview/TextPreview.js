@@ -4,18 +4,21 @@ const TextPreview = ({
   v,
   i,
   setClickedMainInput,
+  now,
   setNow,
   onDelete
 }) => {
   return(
-    <div
-    className="main-content main-textbox"
-    key={v.content + i}
-    style={{ padding: "3%" }}
+    <div 
+      className={now == i ? "main-content main-textbox now"
+                          : "main-content main-textbox"}
+      key={v.content + i}
+      style={{ padding: "3%" }}
     >
       <div
         onClick={() => {
           setClickedMainInput(v);
+
           setNow(i);
         }}
       >

@@ -4,18 +4,21 @@ const ImagePreview = ({
   v,
   i,
   setClickedMainInput,
+  now,
   setNow,
   onDelete
 }) => {
   return (
     <div
-      className="main-content main-imgbox"
+      className={now == i ? "main-content main-imgbox now" 
+                          : "main-content main-imgbox"}
       key={v.content + i}
       style={{ padding: "1%" }}
     >
       <div
         onClick={() => {
           setClickedMainInput(v);
+          e.stopPropagation();
           setNow(i);
         }}
       >

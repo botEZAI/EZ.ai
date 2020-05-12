@@ -5,11 +5,16 @@ const LocationPreview = ({
   v,
   i,
   setClickedMainInput,
+  now,
   setNow,
   onDelete
 }) => {
   return(
-    <div className="main-content main-locabox" key={v.content + i}>
+    <div 
+      className={now == i ? "main-content main-locabox now"
+                          : "main-content main-locabox"} 
+      key={v.content + i}
+    >
       {" "}
       <div
         onClick={() => {

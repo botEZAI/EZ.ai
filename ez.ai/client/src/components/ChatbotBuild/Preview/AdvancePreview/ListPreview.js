@@ -5,12 +5,14 @@ const ListPreview = ({
   i,
   setVirtualKeyboard,
   setClickedMainInput,
+  now,
   setNow,
   onDelete
 }) => {
   return(
     <div
-      className="main-content main-listbox"
+      className={now == i ? "main-content main-listbox now"
+                          : "main-content main-listbox"}
       key={v.listContent + i}
       onClick={e => {
         e.stopPropagation();
