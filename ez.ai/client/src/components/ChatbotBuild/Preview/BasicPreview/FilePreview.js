@@ -4,11 +4,16 @@ const FilePreview = ({
   v,
   i,
   setClickedMainInput,
+  now,
   setNow,
   onDelete
 }) => {
   return(
-    <div className="main-content main-filebox" key={v.content + i}>
+    <div 
+      className={now == i ? "main-content main-filebox now"
+                          : "main-content main-filebox"} 
+      key={v.content + i}
+    >
       {" "}
       <div
         onClick={() => {

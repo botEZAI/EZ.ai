@@ -4,11 +4,16 @@ const VideoPreview = ({
   v,
   i,
   setClickedMainInput,
+  now,
   setNow,
   onDelete
 }) => {
   return(
-    <div className="main-content main-videobox" key={v.content + i}>
+    <div 
+      className={now == i ? "main-content main-videobox now"
+                          : "main-content main-videobox"} 
+      key={v.content + i}
+    >
       {" "}
       <div
         className="main-video-content"

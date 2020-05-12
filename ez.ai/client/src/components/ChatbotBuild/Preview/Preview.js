@@ -60,23 +60,21 @@ const Preview = ({
   //삭제
   const onDelete = (id, isList) => {
     if (id === now + 1) {
-
+      setNow(now - 1);
+      setClickedMainInput({});
     }
-    setNow(-1);
-    setClickedMainInput(false);
     setKeywordObject(
-        produce(keywordObject, (draft) => {
-          draft[index].contents.splice(
-              draft[index].contents.findIndex((content) => content.id === id),
-              1
-          );
-          if (isList === "list") {
-            draft[index].completed = false;
-          }
-        })
-      )
-    ;
-    console.log(clickedMainInput, currentInput,)
+      produce(keywordObject, (draft) => {
+        draft[index].contents.splice(
+          draft[index].contents.findIndex((content) => content.id === id),
+          1
+        );
+        if (isList === "list") {
+          draft[index].completed = false;
+        }
+      })
+    );
+
     console.log("now=", now);
   };
   useEffect(() => {
@@ -120,6 +118,7 @@ const Preview = ({
                 v={v}
                 i={i}
                 setClickedMainInput={setClickedMainInput}
+                now={now}
                 setNow={setNow}
                 onDelete={onDelete}
               />
@@ -128,6 +127,7 @@ const Preview = ({
                 v={v}
                 i={i}
                 setClickedMainInput={setClickedMainInput}
+                now={now}
                 setNow={setNow}
                 onDelete={onDelete}
               />
@@ -136,6 +136,7 @@ const Preview = ({
                 v={v}
                 i={i}
                 setClickedMainInput={setClickedMainInput}
+                now={now}
                 setNow={setNow}
                 onDelete={onDelete}
               />
@@ -144,6 +145,7 @@ const Preview = ({
                 v={v}
                 i={i}
                 setClickedMainInput={setClickedMainInput}
+                now={now}
                 setNow={setNow}
                 onDelete={onDelete}
               />
@@ -152,6 +154,7 @@ const Preview = ({
                 v={v}
                 i={i}
                 setClickedMainInput={setClickedMainInput}
+                now={now}
                 setNow={setNow}
                 onDelete={onDelete}
               />
@@ -160,6 +163,7 @@ const Preview = ({
                 v={v}
                 i={i}
                 setClickedMainInput={setClickedMainInput}
+                now={now}
                 setNow={setNow}
                 onDelete={onDelete}
               />
@@ -169,6 +173,7 @@ const Preview = ({
                 i={i}
                 setVirtualKeyboard={setVirtualKeyboard}
                 setClickedMainInput={setClickedMainInput}
+                now={now}
                 setNow={setNow}
                 onDelete={onDelete}
               />
