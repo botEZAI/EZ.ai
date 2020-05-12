@@ -118,6 +118,7 @@ const Preview = ({
                 v={v}
                 i={i}
                 setClickedMainInput={setClickedMainInput}
+                now={now}
                 setNow={setNow}
                 onDelete={onDelete}
               />
@@ -126,6 +127,7 @@ const Preview = ({
                 v={v}
                 i={i}
                 setClickedMainInput={setClickedMainInput}
+                now={now}
                 setNow={setNow}
                 onDelete={onDelete}
               />
@@ -134,6 +136,7 @@ const Preview = ({
                 v={v}
                 i={i}
                 setClickedMainInput={setClickedMainInput}
+                now={now}
                 setNow={setNow}
                 onDelete={onDelete}
               />
@@ -142,6 +145,7 @@ const Preview = ({
                 v={v}
                 i={i}
                 setClickedMainInput={setClickedMainInput}
+                now={now}
                 setNow={setNow}
                 onDelete={onDelete}
               />
@@ -150,6 +154,7 @@ const Preview = ({
                 v={v}
                 i={i}
                 setClickedMainInput={setClickedMainInput}
+                now={now}
                 setNow={setNow}
                 onDelete={onDelete}
               />
@@ -158,6 +163,7 @@ const Preview = ({
                 v={v}
                 i={i}
                 setClickedMainInput={setClickedMainInput}
+                now={now}
                 setNow={setNow}
                 onDelete={onDelete}
               />
@@ -167,6 +173,7 @@ const Preview = ({
                 i={i}
                 setVirtualKeyboard={setVirtualKeyboard}
                 setClickedMainInput={setClickedMainInput}
+                now={now}
                 setNow={setNow}
                 onDelete={onDelete}
               />

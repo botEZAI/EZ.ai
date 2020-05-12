@@ -4,11 +4,16 @@ const AudioPreview = ({
   v,
   i,
   setClickedMainInput,
+  now,
   setNow,
   onDelete
 }) => {
   return (
-    <div className="main-content main-audiobox" key={v.content + i}>
+    <div 
+      className={now == i ? "main-content main-audiobox now" 
+                          : "main-content main-audiobox"} 
+      key={v.content + i}
+    >
       {" "}
       <div
         onClick={() => {

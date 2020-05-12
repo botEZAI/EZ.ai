@@ -43,7 +43,7 @@ const ChatbotBuild = (props) => {
   ]);
 
   const [mainKeyword, setMainKeyword] = useState(keywordObject[0].keyword);
-  const [clickedMainInput, setClickedMainInput] = useState({});
+  const [clickedMainInput, setClickedMainInput] = useState(false);
   const [addFlag, setAddFlag] = useState(false); // 컨텐츠 추가 flag
   const [firstEntry, setFirstEntry] = useState(true); // 키워드 진입 flag
   const [virtualKeyboard, setVirtualKeyboard] = useState(false);
