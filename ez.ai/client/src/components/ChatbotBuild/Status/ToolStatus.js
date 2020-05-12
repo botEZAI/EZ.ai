@@ -105,8 +105,8 @@ const ToolStatus = ({
       </div>
 
       <div className="tool-status-main">
-        {(clickedMainInput.type || (!clickedMainInput.type && currentInput)) &&
-          (currentInput.type === "text" || clickedMainInput.type === "text" ? (
+        {(clickedMainInput || (!clickedMainInput && currentInput)) ?
+            (currentInput.type === "text" || clickedMainInput.type === "text" ? (
             <TextStatus
               currentContent={currentContent}
               setKeywordObject={setKeywordObject}
@@ -177,7 +177,7 @@ const ToolStatus = ({
                 <p>스티커는 추후 텔레그램 스티커 api와 연결</p>
               </div>
             </>
-          ) : null)}
+          ) : null) : null}
       </div>
       <div className="tool-status-nav">
         <div className="tool-status-extra">

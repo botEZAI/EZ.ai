@@ -60,21 +60,22 @@ const Preview = ({
   //삭제
   const onDelete = (id, isList) => {
     if (id === now + 1) {
-      setNow(now - 1);
-      setClickedMainInput({});
+      setNow(-1);
     }
+    setClickedMainInput(false);
     setKeywordObject(
-      produce(keywordObject, (draft) => {
-        draft[index].contents.splice(
-          draft[index].contents.findIndex((content) => content.id === id),
-          1
-        );
-        if (isList === "list") {
-          draft[index].completed = false;
-        }
-      })
-    );
-
+        produce(keywordObject, (draft) => {
+          draft[index].contents.splice(
+              draft[index].contents.findIndex((content) => content.id === id),
+              1
+          );
+          if (isList === "list") {
+            draft[index].completed = false;
+          }
+        })
+      )
+    ;
+    console.log(clickedMainInput, currentInput,)
     console.log("now=", now);
   };
   useEffect(() => {
