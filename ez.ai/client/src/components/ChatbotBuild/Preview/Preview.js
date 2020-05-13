@@ -57,12 +57,27 @@ const Preview = ({
   const ClickedBuilderMain = () => {
     setVirtualKeyboard(false);
   };
+
+
   //삭제
   const onDelete = (id, isList) => {
-    if (id === now + 1) {
-      setNow(now - 1);
-      setClickedMainInput({});
+
+    // 추후 적용..
+    let tmp = -1;
+    keywordObject.map((content, i) => {
+      if (content.id === id-1) {
+        tmp = i+1
+      }
+    });
+
+    if (tmp === id-1) {
+
     }
+
+    setNow(-1);
+    setClickedMainInput(false);
+
+
     setKeywordObject(
       produce(keywordObject, (draft) => {
         draft[index].contents.splice(

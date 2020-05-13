@@ -11,6 +11,7 @@ const SideVersion = ({
   activeSideTab,
   setKeywordObject,
   setKeywordCategory,
+                       setNow, setClickedMainInput,
 }) => {
   const dispatch = useDispatch();
   const {
@@ -37,6 +38,8 @@ const SideVersion = ({
   //기록 복구
   const onRecoverHistory = useCallback(
     (history) => {
+      setNow(-1);
+      setClickedMainInput(false);
       dispatch({
         type: RECOVER_HISTORY_REQUEST,
         data: { currentChatbot, history },

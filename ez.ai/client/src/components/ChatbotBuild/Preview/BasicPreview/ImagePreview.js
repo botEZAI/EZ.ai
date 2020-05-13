@@ -16,7 +16,7 @@ const ImagePreview = ({
       style={{ padding: "1%" }}
     >
       <div
-        onClick={() => {
+        onClick={(e) => {
           setClickedMainInput(v);
           e.stopPropagation();
           setNow(i);

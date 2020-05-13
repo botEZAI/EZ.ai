@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 
 import "./Sidebar.css";
 
-const Sidebar = ({ setKeywordCategory, setKeywordObject }) => {
+const Sidebar = ({ setKeywordCategory, setKeywordObject, setNow, setClickedMainInput }) => {
   const [activeSideOverlay, setActiveSideOverlay] = useState("default");
   const [activeSideTab, setActiveSideTab] = useState("");
   const [activePlatformTab, setActivePlatformTab] = useState("platform-telegram");
@@ -72,6 +72,8 @@ const Sidebar = ({ setKeywordCategory, setKeywordObject }) => {
                   activeSideTab = {activeSideTab}
                   setKeywordObject = {setKeywordObject}
                   setKeywordCategory = {setKeywordCategory}
+                  setNow={setNow}
+                  setClickedMainInput={setClickedMainInput}
               />
             </>
           )}

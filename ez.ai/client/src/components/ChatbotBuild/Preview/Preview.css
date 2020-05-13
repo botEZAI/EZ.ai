@@ -27,6 +27,7 @@
   height:100%;
   overflow-y: auto;
 }
+
 /*main-contents scrollbar style*/
 .main-contents::-webkit-scrollbar { width:6px; }
 .main-contents::-webkit-scrollbar-track {background-color: none;}
@@ -63,7 +64,8 @@
   background-color:white;
   word-wrap:break-word;
   /* word-break: break-all; */
-  white-space:pre-wrap; 
+  white-space:pre-wrap;
+  border : 3px solid #fff;
   border-radius: 10px 10px 10px 0px;
   text-align: left;
   clear:right;/*main-keyword-title의 float를 감지하지 않기 위함*/
@@ -81,7 +83,7 @@
   bottom:0px;
 }
 .now{
-  border : 3px dashed gray;
+  border : 3px dashed #00b8b4;
 }
 .now:after{
   border-right: transparent;
