@@ -4,6 +4,7 @@ import {
   LOAD_HISTORY_REQUEST,
   RECOVER_HISTORY_REQUEST,
   REMOVE_HISTORY_REQUEST,
+  RECOVER_HISTORY_SUCCESS_RESET,
 } from "../../../../reducer/chatbot";
 import "./SideVersion.css";
 
@@ -11,7 +12,8 @@ const SideVersion = ({
   activeSideTab,
   setKeywordObject,
   setKeywordCategory,
-                       setNow, setClickedMainInput,
+  setNow,
+  setClickedMainInput,
 }) => {
   const dispatch = useDispatch();
   const {
@@ -19,6 +21,7 @@ const SideVersion = ({
     history,
     currentCategories,
     isUpdateSuccess,
+    isRecoverSuccess,
   } = useSelector((state) => state.chatbot);
 
   useEffect(() => {
@@ -27,13 +30,17 @@ const SideVersion = ({
         type: LOAD_HISTORY_REQUEST,
         data: currentChatbot,
       });
+    console.log("current===", currentChatbot);
   }, [activeSideTab === "history", isUpdateSuccess]);
   useEffect(() => {
-    const chatbotData = currentChatbot && JSON.parse(currentChatbot.data);
-    chatbotData && setKeywordObject(chatbotData);
-    const categoriesData = currentCategories && currentCategories;
-    categoriesData && setKeywordCategory(categoriesData);
-  }, [currentChatbot]);
+    if (isRecoverSuccess) {
+      setKeywordObject(JSON.parse(currentChatbot.data));
+      setKeywordCategory(currentCategories);
+      dispatch({
+        type: RECOVER_HISTORY_SUCCESS_RESET,
+      });
+    }
+  }, [isRecoverSuccess]);
 
   //기록 복구
   const onRecoverHistory = useCallback(

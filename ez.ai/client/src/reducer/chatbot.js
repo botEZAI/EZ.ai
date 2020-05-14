@@ -5,6 +5,7 @@ export const initialState = {
   isUpdateSuccess: false, //업데이트 성공여부
   isDeleteSuccess: false, //삭제 성공여부
   history: null, //현재 만들고있는 챗봇의 버전
+  isRecoverSuccess: false, //복구 성공여부
 };
 
 export const ADD_CHATBOT_REQUEST = "ADD_CHATBOT_REQUEST";
@@ -41,6 +42,8 @@ export const LOAD_HISTORY_FAILURE = "LOAD_HISTORY_FAILURE";
 export const RECOVER_HISTORY_REQUEST = "RECOVER_HISTORY_REQUEST";
 export const RECOVER_HISTORY_SUCCESS = "RECOVER_HISTORY_SUCCESS";
 export const RECOVER_HISTORY_FAILURE = "RECOVER_HISTORY_FAILURE";
+
+export const RECOVER_HISTORY_SUCCESS_RESET = "RECOVER_HISTORY_SUCCESS_RESET";
 
 export const REMOVE_HISTORY_REQUEST = "REMOVE_HISTORY_REQUEST";
 export const REMOVE_HISTORY_SUCCESS = "REMOVE_HISTORY_SUCCESS";
@@ -188,11 +191,19 @@ export default (state = initialState, action) => {
           data: action.data.data,
         },
         currentCategories: JSON.parse(action.data.categories),
+        isRecoverSuccess: true,
       };
     }
+
     case RECOVER_HISTORY_FAILURE: {
       return {
         ...state,
+      };
+    }
+    case RECOVER_HISTORY_SUCCESS_RESET: {
+      return {
+        ...state,
+        isRecoverSuccess: false,
       };
     }
     case REMOVE_HISTORY_REQUEST: {
