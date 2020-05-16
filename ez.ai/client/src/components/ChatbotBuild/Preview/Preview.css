@@ -61,29 +61,44 @@
   position: relative;
   margin: 1% 1% 2% 3%;
   margin-right:100px;
-  background-color:white;
+  background-color:#eee;
   word-wrap:break-word;
   /* word-break: break-all; */
   white-space:pre-wrap;
-  border : 3px solid #fff;
+  border : 2px solid #eee;
   border-radius: 10px 10px 10px 0px;
   text-align: left;
   clear:right;/*main-keyword-title의 float를 감지하지 않기 위함*/
   min-width:10%;
   min-height:5%;
   max-width:80%;
+  transition: .2s all;
+  cursor: pointer;
 }
+
+.main-content:hover {
+  transform: translateY(-2px);
+  border : 2px solid #fff;
+  background-color: white;
+}
+
+/*
 .main-content::after{ 
   position:absolute;
   border-top:15px solid transparent;
-  border-right: 15px solid white;
+  border-right: 15px solid #eee;
   border-left:0px solid black;
+
   content:"";
   left:-11px;
   bottom:0px;
 }
-.now{
-  border : 3px dashed #00b8b4;
+*/
+
+.now, .now:hover{
+  border: 2px solid #00b8b4;
+  background-color: white;
+  transform: translateY(-2px);
 }
 .now:after{
   border-right: transparent;
