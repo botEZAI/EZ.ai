@@ -22,32 +22,27 @@
   border-radius: 10px;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
   -webkit-animation-name: animatetop;
-  -webkit-animation-duration: 1s;
+  -webkit-animation-duration: .5s;
   animation-name: animatetop;
-  animation-duration: 1s;
+  animation-duration: .5s;
   cursor: auto;
   z-index: 999;
 }
 
 @-webkit-keyframes animatetop {
   from {
-    top: -300px;
-
     opacity: 0;
   }
   to {
-    top: 132px;
     opacity: 1;
   }
 }
 
 @keyframes animatetop {
   from {
-    top: -300px;
     opacity: 0;
   }
   to {
-    top: 132px;
     opacity: 1;
   }
 }
@@ -93,8 +88,14 @@
   border: 2px solid #f2f2f2;
   padding-left: 5px;
   width: 80%;
-  outline-color: #00b8b4;
+  outline : none;
 }
+
+.popup-content input:focus,
+.popup-content textarea:focus {
+  border-color: #00b8b4;
+}
+
 
 /* 연동할 플랫폼 아이콘*/
 .platform-select {
