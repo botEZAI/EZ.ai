@@ -1,18 +1,14 @@
 import React from "react";
 import "./Popup.css";
 
-const TokenChkPopup = ({
+const CheckPopup = ({
   isOpen,
   close,
-  botToken,
-  setBotToken,
   next,
-  finish,
+  finish
 }) => {
   const undoToTokenInput = () => {
-    // 토큰 확인 이전으로 돌아갈 경우
-    setBotToken({ token: "" });
-    next("tokenInput");
+    next("first");
   };
   return (
     <React.Fragment>
@@ -20,12 +16,6 @@ const TokenChkPopup = ({
         <React.Fragment>
           <div className="popup-overlay" onClick={close}></div>
           <div className="popup">
-            {/* <p className="popup-title">토큰체크팝업</p>
-
-            <div className="popup-content">
-              <div className="txt-name-in-popup">Token 확인</div>
-              <div className="tokenVal">{botToken.token}</div>
-            </div> */}
             챗봇을 만드시겠습니까?
             <div className="popup-button-wrap">
               <button onClick={undoToTokenInput}>이전</button>
@@ -38,4 +28,4 @@ const TokenChkPopup = ({
   );
 };
 
-export default TokenChkPopup;
+export default CheckPopup;
