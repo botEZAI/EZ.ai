@@ -7,10 +7,10 @@ import {
 import "./ChatbotList.css";
 import InputBot from "./InputBot/InputBot";
 import Popup from "./Popup/Popup";
+import CheckPopup from "./Popup/CheckPopup";
 import BotList from "./BotList";
 import axios from "axios";
-import TokenPopup from "./Popup/TokenPopup";
-import TokenChkPopup from "./Popup/TokenChkPopup";
+
 
 const ChatbotList = () => {
   const dispatch = useDispatch();
@@ -34,7 +34,7 @@ const ChatbotList = () => {
     },
   ]);
   const [popup, setPopup] = useState([
-    { showPopup1: false, showPopup2: false, showPopup3: false },
+    { showPopup1: false, showPopup2: false },
   ]);
   const [botName, setBotName] = useState({ name: "" });
   const [botDesc, setBotDesc] = useState({ desc: "" });
@@ -64,8 +64,7 @@ const ChatbotList = () => {
 
     let openPopup = {
       showPopup1: true,
-      showPopup2: false,
-      showPopup3: false,
+      showPopup2: false
     };
     setPopup(openPopup);
   };
@@ -75,8 +74,7 @@ const ChatbotList = () => {
     console.log(bots);
     setPopup({
       showPopup1: false,
-      showPopup2: false,
-      showPopup3: false, // 팝업창 닫힘
+      showPopup2: false// 팝업창 닫힘
     });
 
     let dataObject = {
@@ -119,22 +117,16 @@ const ChatbotList = () => {
   const nextPopup = (nextVal) => {
     const nextPopup = {
       showPopup1: false,
-      showPopup2: false,
-      showPopup3: false,
+      showPopup2: false
     };
 
-    if (nextVal === "tokenInput") {
+    if (nextVal === "check") {
       nextPopup.showPopup1 = false;
       nextPopup.showPopup2 = true;
-      nextPopup.showPopup3 = false;
-    } else if (nextVal === "tokenChk") {
-      nextPopup.showPopup1 = false;
-      nextPopup.showPopup2 = false;
-      nextPopup.showPopup3 = true;
-    } else if (nextVal === "first") {
+    } 
+    else if (nextVal === "first") {
       nextPopup.showPopup1 = true;
       nextPopup.showPopup2 = false;
-      nextPopup.showPopup3 = false;
     }
 
     setPopup(nextPopup);
@@ -143,8 +135,7 @@ const ChatbotList = () => {
   const closePopup = () => {
     setPopup({
       showPopup1: false,
-      showPopup2: false,
-      showPopup3: false,
+      showPopup2: false
     });
   };
 
@@ -188,35 +179,15 @@ const ChatbotList = () => {
             next={nextPopup}
             botName={botName}
             botDesc={botDesc}
-            botConnect={botConnect}
             setBotName={setBotName}
             setBotDesc={setBotDesc}
             setBotConnect={setBotConnect}
-            platformInfo={platformInfo}
-            setPlatformInfo={setPlatformInfo}
           />
-          <TokenPopup
+          <CheckPopup
             isOpen={popup.showPopup2}
             close={closePopup}
             next={nextPopup}
-            setBotName={setBotName}
-            setBotDesc={setBotDesc}
-            setBotConnect={setBotConnect}
-            botToken={botToken}
-            setBotToken={setBotToken}
-            platformInfo={platformInfo}
-            setPlatformInfo={setPlatformInfo}
             finish={InsertFinish}
-          />
-          <TokenChkPopup
-            isOpen={popup.showPopup3}
-            close={closePopup}
-            next={nextPopup}
-            botToken={botToken}
-            setBotToken={setBotToken}
-            finish={InsertFinish}
-            platformInfo={platformInfo}
-            setPlatformInfo={setPlatformInfo}
           />
           <BotList
             bots={bots}
