@@ -52,6 +52,8 @@ const BuilderInfo = ({ keywordObject, keywordCategory }) => {
       JSON.stringify(keywordObject) !== currentChatbot.data
     ) {
       setIsSaved(false);
+    } else {
+      setIsSaved(true);
     }
   }, [keywordObject]);
 
