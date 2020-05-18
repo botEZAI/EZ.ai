@@ -14,13 +14,13 @@ const LocationPreview = ({
       className={now == i ? "main-content main-locabox now"
                           : "main-content main-locabox"} 
       key={v.content + i}
+      onClick={() => {
+        setClickedMainInput(v);
+        setNow(i);
+      }}
     >
       {" "}
       <div
-        onClick={() => {
-          setClickedMainInput(v);
-          setNow(i);
-        }}
       >
         <GoogleMapPresenter />
       </div>

@@ -13,15 +13,13 @@ const TextPreview = ({
       className={now == i ? "main-content main-textbox now"
                           : "main-content main-textbox"}
       key={v.content + i}
-      style={{ padding: "3%" }}
+      style={{padding:'2%'}}
+      onClick={() => {
+        setClickedMainInput(v);
+        setNow(i);
+      }}
     >
-      <div
-        onClick={() => {
-          setClickedMainInput(v);
-
-          setNow(i);
-        }}
-      >
+      <div>
         {v.content || "(입력)"}
       </div>
       <div

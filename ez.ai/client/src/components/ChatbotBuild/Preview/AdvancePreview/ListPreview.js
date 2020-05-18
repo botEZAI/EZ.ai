@@ -17,15 +17,12 @@ const ListPreview = ({
       onClick={e => {
         e.stopPropagation();
         setVirtualKeyboard(true);
+        setClickedMainInput(v);
+        setNow(i);
       }}
     >
       {" "}
-      <div
-        onClick={() => {
-          setClickedMainInput(v);
-          setNow(i);
-        }}
-      >
+      <div>
         <div className="main-listbox-header">Question</div>
         <div className="main-listbox-question">
           {v.listContent.question !== ""
