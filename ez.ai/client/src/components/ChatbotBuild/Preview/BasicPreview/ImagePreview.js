@@ -14,14 +14,13 @@ const ImagePreview = ({
                           : "main-content main-imgbox"}
       key={v.content + i}
       style={{ padding: "1%" }}
+      onClick={(e) => {
+        setClickedMainInput(v);
+        e.stopPropagation();
+        setNow(i);
+      }}
     >
-      <div
-        onClick={(e) => {
-          setClickedMainInput(v);
-          e.stopPropagation();
-          setNow(i);
-        }}
-      >
+      <div>
         {" "}
         {v.content !== "" ? (
           <div

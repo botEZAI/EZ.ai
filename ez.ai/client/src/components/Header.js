@@ -40,16 +40,13 @@ const Header = ({ history }) => {
           <li>
             <Link to="/faq">FAQ</Link>
           </li>
+          {user ?
           <li>
             <Link to="/chatbotlist">
               <div>챗봇목록</div>
             </Link>
           </li>
-          <li>
-            <Link to="/chatbotbuild">
-              <div>챗봇만들기</div>
-            </Link>
-          </li>
+          : null }
         </ul>
       </div>
 

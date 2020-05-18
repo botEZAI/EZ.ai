@@ -13,14 +13,13 @@ const FilePreview = ({
       className={now == i ? "main-content main-filebox now"
                           : "main-content main-filebox"} 
       key={v.content + i}
+      onClick={() => {
+        setClickedMainInput(v);
+        setNow(i);
+      }}
     >
       {" "}
-      <div
-        onClick={() => {
-          setClickedMainInput(v);
-          setNow(i);
-        }}
-      >
+      <div>
         <i className="fas fa-file fa-lg main-file-icon"></i>
         <div className="main-file-content">
           <div className="main-file-name" data-filetype="">

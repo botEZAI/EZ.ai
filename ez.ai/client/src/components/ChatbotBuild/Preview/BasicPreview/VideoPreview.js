@@ -13,15 +13,13 @@ const VideoPreview = ({
       className={now == i ? "main-content main-videobox now"
                           : "main-content main-videobox"} 
       key={v.content + i}
+      onClick={() => {
+        setClickedMainInput(v);
+        setNow(i);
+      }}
     >
       {" "}
-      <div
-        className="main-video-content"
-        onClick={() => {
-          setClickedMainInput(v);
-          setNow(i);
-        }}
-      >
+      <div className="main-video-content">
         <i className="fas fa-play fa-lg main-file-icon"></i>
       </div>
       <div
