@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import "./BuilderInfo.css";
+import { Prompt } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
   UPDATE_CHATBOT_REQUEST,
@@ -8,7 +9,13 @@ import {
 
 const BuilderInfo = ({ keywordObject, keywordCategory }) => {
   const [info, setInfo] = useState("");
-  const snsIcon = ["fab fa-line", "fab fa-facebook-square", "fab fa-telegram", "fab fa-kaggle"]
+  const snsIcon = [
+    "fab fa-line",
+    "fab fa-facebook-square",
+    "fab fa-telegram",
+    "fab fa-kaggle",
+  ];
+  const [isSaved, setIsSaved] = useState(true);
   const dispatch = useDispatch();
   const { currentChatbot, isUpdateSuccess } = useSelector(
     (state) => state.chatbot
@@ -32,11 +39,24 @@ const BuilderInfo = ({ keywordObject, keywordCategory }) => {
   useEffect(() => {
     if (isUpdateSuccess) {
       alert("저장성공!");
+      setIsSaved(true);
     }
     dispatch({
       type: UPDATE_CHATBOT_SUCCESS_RESET,
     });
   }, [isUpdateSuccess]);
+  //저장여부 설정
+  useEffect(() => {
+    if (
+      currentChatbot &&
+      JSON.stringify(keywordObject) !== currentChatbot.data
+    ) {
+      setIsSaved(false);
+    } else {
+      setIsSaved(true);
+    }
+  }, [keywordObject]);
+
   const onChangeInfo = useCallback(
     (e) => {
       setInfo(e.target.value);
@@ -45,6 +65,7 @@ const BuilderInfo = ({ keywordObject, keywordCategory }) => {
   );
   return (
     <>
+      <Prompt when={!isSaved} message="저장하시겠습니까?" />
       <div className="info__column">
         <div className="info__main">
           <div className="info-name">
@@ -60,13 +81,13 @@ const BuilderInfo = ({ keywordObject, keywordCategory }) => {
           </div>
           <div className="builder-bot-item-connected">
             {currentChatbot &&
-            JSON.parse(currentChatbot.platformInfo).map((info,i) => (
+              JSON.parse(currentChatbot.platformInfo).map((info, i) => (
                 <div
-                    className={info.connect ? `sns-color-${info.platform}` : null}
+                  className={info.connect ? `sns-color-${info.platform}` : null}
                 >
                   <i className={snsIcon[i]}></i>
                 </div>
-            ))}
+              ))}
           </div>
         </div>
       </div>

@@ -8,13 +8,9 @@ const Popup = ({
   next,
   botName,
   botDesc,
-  botConnect,
   setBotName,
   setBotDesc,
-  setBotConnect,
-  platformInfo,
-  setPlatformInfo,
-  finish,
+  setBotConnect
 }) => {
   const [checkError, setCheckError] = useState(false);
   const [selectedSns, setSelectedSns] = useState([
@@ -55,10 +51,8 @@ const Popup = ({
       alert("봇 이름을 입력해주세요.");
     } else if (botDesc.desc === "") {
       alert("봇 설명을 입력해주세요.");
-    } /*else if (botConnect.sns === "") {
-      return setCheckError(true);
-    } */ else {
-      next("tokenChk");
+    } else {
+      next("check");
     }
   };
   return (
@@ -75,6 +69,7 @@ const Popup = ({
                 <input
                   type="text"
                   onChange={onChangeBotName}
+                  value={botName.name}
                   placeholder="연동할 챗봇 이름을 적어주세요"
                 />
               </div>
@@ -83,50 +78,10 @@ const Popup = ({
                 <textarea
                   cols="60"
                   onChange={onChangeBotDesc}
+                  value={botDesc.desc}
                   placeholder="연동할 챗봇에 대한 간략한 설명글을 적어주세요."
                 />
               </div>
-              {/*
-                <div className="sns-select-container">
-                  <input
-                    data-tooltip-text="네이버 라인"
-                    type="radio"
-                    id="line"
-                    value="line"
-                    name="sns"
-                    onChange={onChangeBotSns}
-                  />
-                  <input
-                    data-tooltip-text="페이스북 메신저"
-                    type="radio"
-                    id="facebook"
-                    value="facebook"
-                    name="sns"
-                    onChange={onChangeBotSns}
-                  />
-                  <input
-                    data-tooltip-text="텔레그램"
-                    type="radio"
-                    id="telegram"
-                    value="telegram"
-                    name="sns"
-                    onChange={onChangeBotSns}
-                  />
-                  <input
-                    data-tooltip-text="카카오톡"
-                    type="radio"
-                    id="kakao"
-                    value="kakao"
-                    name="sns"
-                    onChange={onChangeBotSns}
-                  />
-                </div>
-                {checkError && (
-                  <div className="checkError" style={{ color: "red" }}>
-                    플랫폼을 선택해주세요.
-                  </div>
-                )}
-              </div> */}
             </div>
             <div className="popup-button-wrap">
               <button onClick={close}>취소</button>

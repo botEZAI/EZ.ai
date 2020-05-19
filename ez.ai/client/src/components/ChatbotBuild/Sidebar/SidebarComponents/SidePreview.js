@@ -52,6 +52,17 @@ const SidePreview = (props) => {
             })}
           </div>
         );
+      else if (c.type == "image")
+        return (
+          <div
+            className={`preview-receive ${props.activePlatformTab} ${props.activePlatformTab}-image`}
+          >
+            <div
+              className="main-image-preview"
+              style={{ backgroundImage: `url(${c.content})` || null }}
+            ></div>
+          </div>
+        );
     });
     return dialogues;
   };

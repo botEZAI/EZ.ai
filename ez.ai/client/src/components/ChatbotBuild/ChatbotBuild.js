@@ -221,6 +221,8 @@ const ChatbotBuild = (props) => {
         <Sidebar
           setKeywordObject={setKeywordObject}
           setKeywordCategory={setKeywordCategory}
+          setNow={setNow}
+          setClickedMainInput={setClickedMainInput}
         />
       </div>
     </>

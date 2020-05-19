@@ -13,14 +13,13 @@ const AudioPreview = ({
       className={now == i ? "main-content main-audiobox now" 
                           : "main-content main-audiobox"} 
       key={v.content + i}
+      onClick={() => {
+        setClickedMainInput(v);
+        setNow(i);
+      }}
     >
       {" "}
-      <div
-        onClick={() => {
-          setClickedMainInput(v);
-          setNow(i);
-        }}
-      >
+      <div>
         <i className="fas fa-play fa-lg main-file-icon"></i>
         <div className="main-file-content">
           <div className="main-file-name" data-filetype="">
