@@ -1,12 +1,21 @@
 .preview-container {
-  display: flex;
   height: 100%;
+  border-radius: 5px;
+  display: flex;
   flex-direction: column;
 }
 .preview-header {
-  background-color: white !important;
-  margin-bottom: auto;
   height: 50px;
+  background-color: white;
+  margin-bottom: auto;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+
+.preview-contents {
+  display: flex;
+  flex-direction: column;
+  overflow : scroll;
 }
 .side-kakao .preview-contents {
   background-color: #fffacd !important;
@@ -20,31 +29,67 @@
   background-color: #b0bbd3 !important;
   height: 100%;
 }
+
+.side-telegram .preview-header {
+  background-color: #52749A !important;
+}
+
 .side-telegram .preview-contents {
-  background-color: #c8f7fc !important;
+  background-image: url("../../../../objects/telegram_bg.jpg");
   height: 100%;
 }
 .preview-footer {
   background-color: white !important;
   height: 50px;
   margin-top: auto;
+  padding : 0 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.preview-footer i {
+  font-size : 20px;
+  color : #707f8e;
+}
+
+.preview-footer-imogi {
+  width : 30px;
+  height : 30px;
+  display : flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.preview-footer-icons {
+  width : 120px;
+  height : 30px;
+  display : flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.preview-input {
+  width : 220px;
+  height : 30px;
+  border-radius: 10px;
+}
+
+.preview-input form {
+  height: 100%;
+  width : 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.preview-input {
-  background-color: rgb(223, 223, 223);
-  width: 90%;
-  line-height: 10px;
-  padding: 5px;
-  border-radius: 10px;
-}
-input {
-  width: 90%;
+.preview-input form input {
+  height: 100%;
+  width : 100%;
+  padding : 0 5px;
   border: transparent;
   background: transparent;
+  font-size : 15px;
 }
-input:focus {
+.preview-input form input:focus {
   outline: none;
 }
 .datetime {
@@ -52,27 +97,32 @@ input:focus {
 }
 time {
   font-size: 13px;
-  background-color: rgb(155, 155, 155);
+  font-weight: bold;
+  background-color: #37516d;
+  opacity: 0.5;
   color: white;
-  padding: 5px;
-  border-radius: 10px;
+  padding: 3px 6px;
+  border-radius: 15px;
 }
 .preview-send {
+  align-self : flex-end;
   background-color: #e5ffd0;
   border-radius: 10px;
-  float: right;
-  padding: 1px;
-  width: 200px;
+  padding: 8px;
   margin: 5px;
 }
 .preview-receive {
+  align-self : flex-start;
+  display: inline-block;
   background-color: white;
-  float: left;
   border-radius: 10px;
-  padding: 1px;
-  width: 200px;
+  padding : 2px;
   margin: 5px;
 }
+.platform-telegram-text {
+  padding: 8px;
+}
+
 .preview-button {
   background-color: darkgray;
   margin: 5px;

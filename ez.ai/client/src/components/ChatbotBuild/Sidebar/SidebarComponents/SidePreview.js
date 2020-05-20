@@ -193,14 +193,28 @@ const SidePreview = (props) => {
             })}
           </div>
           <div className="preview-footer">
+            <div className="preview-footer-imogi">
+              <i className="far fa-smile"></i>
+            </div>
             <div class="preview-input input-telegram">
               <form onSubmit={onSubmitPreview}>
                 <input
                   type="text"
-                  placeholder="Say Something"
+                  placeholder="메세지"
                   onChange={onChangeMessage}
                 />
               </form>
+            </div>
+            <div className="preview-footer-icons">
+              <div className="preview-footer-icon">
+                <i className="far fa-keyboard"></i>
+              </div>
+              <div className="preview-footer-icon">
+                <i className="fas fa-paperclip"></i>
+              </div>
+              <div className="preview-footer-icon">
+                <i className="fas fa-microphone"></i>
+              </div>
             </div>
           </div>
         </div>
