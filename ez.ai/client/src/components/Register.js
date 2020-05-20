@@ -4,13 +4,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { SIGN_UP_REQUEST, SIGN_UP_RESET } from "../reducer/user";
 import { withRouter } from "react-router-dom";
 
-export const useInput = (initValue = null) => {
+export const useInput = (initValue) => {
   const [value, setter] = useState(initValue);
   const handler = useCallback((e) => {
     setter(e.target.value);
   }, []);
-  return [value, handler];
+  const reset = useCallback(() => setter(initValue), [initValue]);
+  return [value, handler, reset];
 };
+
+
 const Register = ({ history }) => {
   const [passwordCheck, setPasswordCheck] = useState("");
   const [passwordError, setPasswordError] = useState(false);

@@ -34,7 +34,7 @@ const Header = ({ history }) => {
       <div className="nav_l">
         <div className="logo_default">
           <div>
-            <Link to="/">Ez.ai</Link>
+            <Link to="/"><div className="logo-img"></div><div className="logo-text"><p>Ez.ai</p></div></Link>
           </div>
         </div>
         <div className="nav">

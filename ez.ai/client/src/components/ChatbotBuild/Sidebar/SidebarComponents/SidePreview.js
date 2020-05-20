@@ -16,7 +16,7 @@ const SidePreview = (props) => {
   }
 
   const { currentChatbot } = useSelector((state) => state.chatbot);
-  const [message, onChangeMessage] = useInput("");
+  const [message, onChangeMessage, reset] = useInput("");
 
   //미리보기 => 사용자가 키워드 입력시 일치하는 키워드를 찾아서 dialogues 배열에 추가하는 방식
   const [dialogues, setDialogues] = useState([]);
@@ -85,9 +85,14 @@ const SidePreview = (props) => {
 
       //sendMessage 함수로부터 return받은 배열을  dialogues배열에 추가
       setDialogues((prev) => [...prev, sendMessage(message)]);
+      console.log(message,"mmmm")
+
+      console.log(reset(),"rrrr", message)
     },
     [message]
+
   );
+
 
   //일치하는 키워드가 있으면 키워드의 내용을 addDialogue함수로 전달
   const sendMessage = useCallback(
@@ -118,6 +123,7 @@ const SidePreview = (props) => {
           {addDialogue(findKeyword)}
         </>
       );
+
     },
     [message, currentChatbot, dialogues]
 
