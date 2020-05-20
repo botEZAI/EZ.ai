@@ -119,7 +119,7 @@ time {
   padding : 2px;
   margin: 5px;
 }
-.platform-telegram-text {
+.platform-telegram-text, .platform-telegram-notfound {
   padding: 8px;
 }
 

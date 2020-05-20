@@ -40,13 +40,6 @@ const Header = ({ history }) => {
           <li>
             <Link to="/faq">FAQ</Link>
           </li>
-          {user ?
-          <li>
-            <Link to="/chatbotlist">
-              <div>챗봇목록</div>
-            </Link>
-          </li>
-          : null }
         </ul>
       </div>
 
@@ -55,12 +48,20 @@ const Header = ({ history }) => {
           <Link to="/login">로그인</Link>
         </div>
       ) : (
-        <div className="nav_right profile" onClick={clickNavPopup}>
-          <div className="profile-picture">
-            <i className="fas fa-user-circle"></i>
+          <>
+          <div className= "">
+            <Link to="/chatbotlist">
+              <div>챗봇목록</div>
+            </Link>
+          <div className="nav_right profile" onClick={clickNavPopup}>
+
+            <div className="profile-picture">
+              <i className="fas fa-user-circle"></i>
+            </div>
+            <div className="profile-more">{user.name}님</div>
           </div>
-          <div className="profile-more">{user.name}님</div>
-        </div>
+          </div>
+          </>
       )}
       {showNP ? <NavPopup showNP={showNP} setShowNP={setShowNP} /> : null}
     </div>

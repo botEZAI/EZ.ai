@@ -96,19 +96,26 @@
 .info__column:last-child {
   background-color: #eee;
   width : 350px;
+  margin-left : 10px;
   border-radius: 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 .info__column input {
   background-color: white;
+  height : 25px;
+  width : 240px;
   border : 1px solid #ccc;
   padding : 0 5px;
+  outline-color : #00b8b4;
 }
 
 
 
 
 .info__column button{
-  margin:10px 10px 0 0;
+  margin: 0;
   width:60px;
   height:30px;
   background-color: #555;

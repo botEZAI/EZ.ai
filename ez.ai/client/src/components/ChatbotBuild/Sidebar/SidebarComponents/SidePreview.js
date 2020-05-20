@@ -98,11 +98,14 @@ const SidePreview = (props) => {
       console.log(findKeyword);
       if (!findKeyword)
         return (
-          <div
-            className={`preview-send ${props.activePlatformTab} ${props.activePlatformTab}-notfound`}
-          >
-            키워드를 찾을 수 없습니다.
-          </div>
+            <>
+              <div className="preview-send">{input}</div>
+            <div
+              className={`preview-receive ${props.activePlatformTab} ${props.activePlatformTab}-notfound`}
+            >
+              키워드를 찾을 수 없습니다.
+            </div>
+            </>
         );
       return (
         <>
@@ -117,6 +120,7 @@ const SidePreview = (props) => {
       );
     },
     [message, currentChatbot, dialogues]
+
   );
   return (
     <>
