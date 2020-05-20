@@ -3,8 +3,15 @@
 .nav {
     display : flex;
     flex-wrap: wrap;
-    height: 80px;
+    height: 50px;
 }
+
+.nav_l {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .nav > ul{
     height: 100%;
     list-style : none;
@@ -26,14 +33,66 @@
     background-color: #eee;
 }
 
+/* nav 오른쪽 요소 */
+.nav_r {
+    width : 320px;
+    height : 50px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.nav_chatbot {
+    width : 130px;
+    height : 100%;
+    padding-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav_chatbot .nav_chatbot-btn a {
+    background-color: #00b8b4;
+    padding : 8px 12px;
+    border-radius: 10px;
+    font-weight: bold;
+    color : #eee;
+    cursor: pointer;
+}
+
+.nav_chatbot .nav_chatbot-btn:hover a {
+    background-color: #04a5a0;
+    color : white;
+}
 
 /* nav의 login 버튼 */
 .nav_right {
     text-align: center;
-    display : inline-block;
+    display : flex;
+    justify-content: space-around;
+    align-items: center;
     height: 100%;
-    width : 250px;
 }
+
+.nav_right > div {
+    font-weight: bold;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav_right > div a {
+    width : 80px;
+}
+.nav_right > div:hover a {
+    color : #333;
+}
+.nav_right div a{
+    color : #999;
+}
+
+
 
 .login, .login a {
     background-color : #00b8b4;
@@ -48,15 +107,17 @@
     flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+    color : #999;
 }
 
 .profile:hover {
-    background-color: #eee;
-    cursor: pointer;
-    transition: .2s background-color;
+ color : #333;
 }
 
+
 .profile-picture{
+
     padding : 0 10px;
     font-size : 30px;
     display: flex;
@@ -68,6 +129,7 @@
     color : #999;
 }
 
-
-.profile-more {
+.profile-more i {
+    color : #999;
+    font-size : 14px;
 }
