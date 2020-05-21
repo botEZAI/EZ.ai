@@ -198,6 +198,7 @@ const SidePreview = (props) => {
                 timezone={"Asia/Seoul"}
               />
             </div>
+            <div className="preview-send">/start</div>
             {dialogues.map((dialogue) => {
               return dialogue;
             })}
