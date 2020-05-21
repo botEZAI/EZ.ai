@@ -7,7 +7,8 @@ const ListPreview = ({
   setClickedMainInput,
   now,
   setNow,
-  onDelete
+  onDelete,
+  changeAvailableIcon
 }) => {
   return(
     <div
@@ -19,6 +20,7 @@ const ListPreview = ({
         setVirtualKeyboard(true);
         setClickedMainInput(v);
         setNow(i);
+        changeAvailableIcon("list");
       }}
     >
       {" "}

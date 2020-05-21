@@ -6,7 +6,8 @@ const FilePreview = ({
   setClickedMainInput,
   now,
   setNow,
-  onDelete
+  onDelete,
+  changeAvailableIcon
 }) => {
   return(
     <div 
@@ -16,6 +17,7 @@ const FilePreview = ({
       onClick={() => {
         setClickedMainInput(v);
         setNow(i);
+        changeAvailableIcon("file");
       }}
     >
       {" "}

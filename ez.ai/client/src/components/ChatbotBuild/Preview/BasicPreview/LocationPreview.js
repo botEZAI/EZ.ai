@@ -7,7 +7,8 @@ const LocationPreview = ({
   setClickedMainInput,
   now,
   setNow,
-  onDelete
+  onDelete,
+  changeAvailableIcon
 }) => {
   return(
     <div 
@@ -17,6 +18,7 @@ const LocationPreview = ({
       onClick={() => {
         setClickedMainInput(v);
         setNow(i);
+        changeAvailableIcon("location");
       }}
     >
       {" "}

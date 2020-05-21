@@ -6,7 +6,8 @@ const TextPreview = ({
   setClickedMainInput,
   now,
   setNow,
-  onDelete
+  onDelete,
+  changeAvailableIcon
 }) => {
   return(
     <div 
@@ -17,6 +18,7 @@ const TextPreview = ({
       onClick={() => {
         setClickedMainInput(v);
         setNow(i);
+        changeAvailableIcon("text");
       }}
     >
       <div>

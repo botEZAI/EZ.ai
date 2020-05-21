@@ -6,7 +6,8 @@ const AudioPreview = ({
   setClickedMainInput,
   now,
   setNow,
-  onDelete
+  onDelete,
+  changeAvailableIcon
 }) => {
   return (
     <div 
@@ -16,6 +17,7 @@ const AudioPreview = ({
       onClick={() => {
         setClickedMainInput(v);
         setNow(i);
+        changeAvailableIcon("audio");
       }}
     >
       {" "}

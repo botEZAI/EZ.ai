@@ -6,7 +6,8 @@ const ImagePreview = ({
   setClickedMainInput,
   now,
   setNow,
-  onDelete
+  onDelete,
+  changeAvailableIcon
 }) => {
   return (
     <div
@@ -18,6 +19,7 @@ const ImagePreview = ({
         setClickedMainInput(v);
         e.stopPropagation();
         setNow(i);
+        changeAvailableIcon("image");
       }}
     >
       <div>

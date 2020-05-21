@@ -6,7 +6,8 @@ const VideoPreview = ({
   setClickedMainInput,
   now,
   setNow,
-  onDelete
+  onDelete,
+  changeAvailableIcon
 }) => {
   return(
     <div 
@@ -16,6 +17,7 @@ const VideoPreview = ({
       onClick={() => {
         setClickedMainInput(v);
         setNow(i);
+        changeAvailableIcon("video");
       }}
     >
       {" "}
