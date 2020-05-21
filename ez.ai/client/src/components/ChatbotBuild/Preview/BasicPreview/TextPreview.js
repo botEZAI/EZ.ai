@@ -10,29 +10,31 @@ const TextPreview = ({
   changeAvailableIcon
 }) => {
   return(
-    <div 
-      className={now == i ? "main-content main-textbox now"
-                          : "main-content main-textbox"}
-      key={v.content + i}
-      style={{padding:'2%'}}
-      onClick={() => {
-        setClickedMainInput(v);
-        setNow(i);
-        changeAvailableIcon("text");
-      }}
-    >
-      <div>
-        {v.content || "(입력)"}
+      <div className="main-preview">
+        <div
+          className={now === i ? "main-content main-textbox now"
+                              : "main-content main-textbox"}
+          key={v.content + i}
+          style={{padding:'2%'}}
+          onClick={() => {
+            setClickedMainInput(v);
+            setNow(i);
+            changeAvailableIcon("text");
+          }}
+        >
+          <div>
+            {v.content || "(입력)"}
+          </div>
+        </div>
+          <div
+              className="tool-delete delete-text"
+              onClick={() => {
+                  onDelete(v.id);
+              }}
+          >
+              <i className="fas fa-times"></i>
+          </div>
       </div>
-      <div
-        className="tool-delete delete-text"
-        onClick={() => {
-          onDelete(v.id);
-        }}
-      >
-        <i className="fas fa-times"></i>
-      </div>
-    </div> 
   );
 
 };

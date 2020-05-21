@@ -7,25 +7,28 @@ const LocationPreview = ({
   setClickedMainInput,
   now,
   setNow,
+
   onDelete,
   changeAvailableIcon
 }) => {
   return(
-    <div 
-      className={now == i ? "main-content main-locabox now"
-                          : "main-content main-locabox"} 
-      key={v.content + i}
-      onClick={() => {
-        setClickedMainInput(v);
-        setNow(i);
-        changeAvailableIcon("location");
-      }}
-    >
-      {" "}
-      <div
-      >
-        <GoogleMapPresenter />
-      </div>
+      <div className="main-preview">
+        <div
+          className={now === i ? "main-content main-locabox now"
+                              : "main-content main-locabox"}
+          key={v.content + i}
+          onClick={() => {
+            setClickedMainInput(v);
+            setNow(i);
+            changeAvailableIcon("location");
+          }}
+        >
+          {" "}
+          <div
+          >
+            <GoogleMapPresenter />
+          </div>
+        </div>
       <div
         className="tool-delete delete-location"
         onClick={() => {

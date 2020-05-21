@@ -10,29 +10,31 @@ const ImagePreview = ({
   changeAvailableIcon
 }) => {
   return (
-    <div
-      className={now == i ? "main-content main-imgbox now" 
-                          : "main-content main-imgbox"}
-      key={v.content + i}
-      style={{ padding: "1%" }}
-      onClick={(e) => {
-        setClickedMainInput(v);
-        e.stopPropagation();
-        setNow(i);
-        changeAvailableIcon("image");
-      }}
-    >
-      <div>
-        {" "}
-        {v.content !== "" ? (
-          <div
-            className="main-image-preview"
-            style={{ backgroundImage: `url(${v.content})` }}
-          ></div>
-        ) : (
-          <div className="image-preview-default">이미지 없음</div>
-        )}
-      </div>
+      <div className="main-preview">
+        <div
+            className={now === i ? "main-content main-imgbox now"
+                : "main-content main-imgbox"}
+            key={v.content + i}
+            style={{ padding: "1%" }}
+            onClick={(e) => {
+                setClickedMainInput(v);
+                e.stopPropagation();
+                setNow(i);
+                changeAvailableIcon("image");
+            }}
+        >
+            <div>
+                {" "}
+                {v.content !== "" ? (
+                    <div
+                        className="main-image-preview"
+                        style={{ backgroundImage: `url(${v.content})` }}
+                    ></div>
+                ) : (
+                    <div className="image-preview-default">이미지 없음</div>
+                )}
+            </div>
+        </div>
       <div
         className="tool-delete delete-image"
         onClick={() => {

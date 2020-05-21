@@ -84,21 +84,18 @@ const Preview = ({
 
   //삭제
   const onDelete = (id, isList) => {
-
-    // 추후 적용..
-    let tmp = -1;
-    keywordObject.map((content, i) => {
-      if (content.id === id-1) {
-        tmp = i+1
-      }
-    });
-
-    if (tmp === id-1) {
-
+    let tmp = keywordObject[index].contents.findIndex((content, i) => content.id === id);
+    console.log(tmp,id)
+    setClickedMainInput(false);
+    if (now > tmp) {
+      setNow(now-1);
+    } else if (id === tmp) {
+      setNow(-1);
     }
 
-    setNow(-1);
-    setClickedMainInput(false);
+
+
+    console.log()
 
 
     setKeywordObject(
@@ -112,8 +109,6 @@ const Preview = ({
         }
       })
     );
-
-    console.log("now=", now);
   };
   useEffect(() => {
     if (firstEntry === true) {
