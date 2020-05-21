@@ -48,12 +48,11 @@
 }
 
 .sub-title .search-bar input {
-  font-size : 15px;
   width: inherit;
-  height: 35px;
+  height: 25px;
   margin : 0;
   padding-left: 10px;
-  outline-color: #00b8b4;
+  border : 1px solid #eee;
 }
 
 .search-input::placeholder{
@@ -62,12 +61,12 @@
 
 .search-btn {
   color: #999;
-  font-size : 20px;
+  font-size : 13px;
   background-color: #eee;
-  width : 70px;
-  height : 35px;
+  width : 50px;
+  height : 25px;
   margin-left : 10px;
-  border-radius: 5px;
+  border-radius: 2px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -77,7 +76,6 @@
 .search-btn:hover{ /*검색 버튼에 생명력을 불어넣음*/
   background-color: #00b8b4;
   color:white;
-  transform: translateY(-2px);  /* 이런것도 쓰면 더 생명력 추가 부여 가능 */
 }
 
 /* 챗봇 목록 리스트 */

@@ -1,4 +1,5 @@
 import React from 'react'
+import TextPreview from "./TextPreview";
 
 const VideoPreview = ({
   v,
@@ -6,22 +7,27 @@ const VideoPreview = ({
   setClickedMainInput,
   now,
   setNow,
-  onDelete
+
+  onDelete,
+  changeAvailableIcon
 }) => {
   return(
-    <div 
-      className={now == i ? "main-content main-videobox now"
-                          : "main-content main-videobox"} 
-      key={v.content + i}
-      onClick={() => {
-        setClickedMainInput(v);
-        setNow(i);
-      }}
-    >
-      {" "}
-      <div className="main-video-content">
-        <i className="fas fa-play fa-lg main-file-icon"></i>
-      </div>
+      <div className="main-preview">
+        <div
+          className={now === i ? "main-content main-videobox now"
+                              : "main-content main-videobox"}
+          key={v.content + i}
+          onClick={() => {
+            setClickedMainInput(v);
+            setNow(i);
+            changeAvailableIcon("video");
+          }}
+        >
+          {" "}
+          <div className="main-video-content">
+            <i className="fas fa-play fa-lg main-file-icon"></i>
+          </div>
+        </div>
       <div
         className="tool-delete delete-video"
         onClick={() => {

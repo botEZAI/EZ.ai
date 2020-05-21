@@ -212,6 +212,8 @@ const ChatbotBuild = (props) => {
                 setNow={setNow}
                 curListCount={curListCount}
                 setCurListCount={setCurListCount}
+                availableIcon={availableIcon}
+                setAvailableIcon={setAvailableIcon}
               />
             </div>
           </div>

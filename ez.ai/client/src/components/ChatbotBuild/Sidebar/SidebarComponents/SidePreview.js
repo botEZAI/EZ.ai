@@ -16,7 +16,7 @@ const SidePreview = (props) => {
   }
 
   const { currentChatbot } = useSelector((state) => state.chatbot);
-  const [message, onChangeMessage] = useInput("");
+  const [message, onChangeMessage, reset] = useInput("");
 
   //미리보기 => 사용자가 키워드 입력시 일치하는 키워드를 찾아서 dialogues 배열에 추가하는 방식
   const [dialogues, setDialogues] = useState([]);
@@ -85,9 +85,14 @@ const SidePreview = (props) => {
 
       //sendMessage 함수로부터 return받은 배열을  dialogues배열에 추가
       setDialogues((prev) => [...prev, sendMessage(message)]);
+      console.log(message,"mmmm")
+
+      console.log(reset(),"rrrr", message)
     },
     [message]
+
   );
+
 
   //일치하는 키워드가 있으면 키워드의 내용을 addDialogue함수로 전달
   const sendMessage = useCallback(
@@ -98,11 +103,14 @@ const SidePreview = (props) => {
       console.log(findKeyword);
       if (!findKeyword)
         return (
-          <div
-            className={`preview-send ${props.activePlatformTab} ${props.activePlatformTab}-notfound`}
-          >
-            키워드를 찾을 수 없습니다.
-          </div>
+            <>
+              <div className="preview-send">{input}</div>
+            <div
+              className={`preview-receive ${props.activePlatformTab} ${props.activePlatformTab}-notfound`}
+            >
+              키워드를 찾을 수 없습니다.
+            </div>
+            </>
         );
       return (
         <>
@@ -115,8 +123,10 @@ const SidePreview = (props) => {
           {addDialogue(findKeyword)}
         </>
       );
+
     },
     [message, currentChatbot, dialogues]
+
   );
   return (
     <>
@@ -188,19 +198,34 @@ const SidePreview = (props) => {
                 timezone={"Asia/Seoul"}
               />
             </div>
+            <div className="preview-send">/start</div>
             {dialogues.map((dialogue) => {
               return dialogue;
             })}
           </div>
           <div className="preview-footer">
+            <div className="preview-footer-imogi">
+              <i className="far fa-smile"></i>
+            </div>
             <div class="preview-input input-telegram">
               <form onSubmit={onSubmitPreview}>
                 <input
                   type="text"
-                  placeholder="Say Something"
+                  placeholder="메세지"
                   onChange={onChangeMessage}
                 />
               </form>
+            </div>
+            <div className="preview-footer-icons">
+              <div className="preview-footer-icon">
+                <i className="far fa-keyboard"></i>
+              </div>
+              <div className="preview-footer-icon">
+                <i className="fas fa-paperclip"></i>
+              </div>
+              <div className="preview-footer-icon">
+                <i className="fas fa-microphone"></i>
+              </div>
             </div>
           </div>
         </div>

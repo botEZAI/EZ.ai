@@ -188,6 +188,8 @@ const ChatbotList = () => {
             close={closePopup}
             next={nextPopup}
             finish={InsertFinish}
+            botName={botName}
+            botDesc={botDesc}
           />
           <BotList
             bots={bots}

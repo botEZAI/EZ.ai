@@ -1,5 +1,8 @@
+
+
 /*생성되는 봇들의 디자인*/
 .bot-item-default {
+  margin-bottom: 15px;
   padding: 10px;
   border: 2px solid #ddd;
   border-radius: 8px;
@@ -26,12 +29,14 @@
 
 /* 챗봇 목록 - 챗봇 이름 */
 .bot-name {
+  width : 150px;
   padding : 0 10px;
   color : #999;
   height: 30px;
   display: flex;
   line-height: 24px;
   font-size: 18px;
+  overflow-x: auto;
 }
 
 .bot-item-default:hover .bot-name {

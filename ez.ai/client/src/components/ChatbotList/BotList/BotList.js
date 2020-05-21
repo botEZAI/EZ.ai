@@ -20,7 +20,7 @@ const BotList = ({ bots, onRemove, platformInfo }) => {
     );
   });
 
-  return <div>{botList}</div>;
+  return <div className="bot-item">{botList}</div>;
 };
 
 export default BotList;

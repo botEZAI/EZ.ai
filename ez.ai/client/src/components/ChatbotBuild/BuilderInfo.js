@@ -65,7 +65,10 @@ const BuilderInfo = ({ keywordObject, keywordCategory }) => {
   );
   return (
     <>
-      <Prompt when={!isSaved} message="저장하시겠습니까?" />
+      <Prompt
+        when={!isSaved}
+        message="저장이 안되어있습니다. 이동하시겠습니까?"
+      />
       <div className="info__column">
         <div className="info__main">
           <div className="info-name">
