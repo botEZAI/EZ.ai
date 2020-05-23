@@ -110,10 +110,14 @@ time {
   border-radius: 10px;
   padding: 8px;
   margin: 5px;
+  display: flex;
+
 }
 .preview-receive {
+  width : inherit;
   align-self : flex-start;
-  display: inline-block;
+  position : relative;
+  display: flex;
   background-color: white;
   border-radius: 10px;
   padding : 2px;
@@ -126,4 +130,26 @@ time {
 .preview-button {
   background-color: darkgray;
   margin: 5px;
+}
+
+
+.preview-send .nowtime_outer time{
+  align-self: flex-end;
+  font-size : 11px;
+  background-color: #e5ffd0;
+  color : #426327;
+  font-weight: normal;
+}
+
+
+.preview-receive .nowtime_outer time {
+  align-self: flex-end;
+  font-size : 11px;
+  background-color: white;
+  color : #999;
+  font-weight: normal;
+}
+
+.preview-receive .nowtime_inner time {
+  display: none;
 }

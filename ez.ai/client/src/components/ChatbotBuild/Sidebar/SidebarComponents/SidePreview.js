@@ -5,21 +5,35 @@ import Clock from "react-live-clock";
 import { useSelector } from "react-redux";
 
 const SidePreview = (props) => {
-  var dayList = ["일", "월", "화", "수", "목", "금", "토"];
-  var today = new Date();
-  var dd = dayList[today.getDay()];
-  var theHours = today.getHours();
-  var noon = "오전";
+  const dayList = ["일", "월", "화", "수", "목", "금", "토"];
+  let today = new Date();
+  let dd = dayList[today.getDay()];
+  let theHours = today.getHours();
+  let noon = "오전";
   if (theHours > 12) {
     theHours = theHours - 12;
     noon = "오후";
   }
+  let theMin = today.getMinutes();
+
 
   const { currentChatbot } = useSelector((state) => state.chatbot);
   const [message, onChangeMessage, reset] = useInput("");
 
   //미리보기 => 사용자가 키워드 입력시 일치하는 키워드를 찾아서 dialogues 배열에 추가하는 방식
   const [dialogues, setDialogues] = useState([]);
+
+  const currentTime = (position) => {
+      return (
+          <div className={position == "inner" ? "nowtime_inner" : "nowtime_outer"}>
+              <Clock
+                  format={noon + " " + theHours + ":mm"}
+                  ticking={true}
+                  timezone={"Asia/Seoul"}
+              />
+          </div>
+      )
+  }
 
   //전달받은 키워드 안의 요소들의 타입을 구별후 배열 return
   const addDialogue = (findKeyword) => {
@@ -30,6 +44,7 @@ const SidePreview = (props) => {
             className={`preview-receive ${props.activePlatformTab} ${props.activePlatformTab}-text`}
           >
             {c.content}
+            {currentTime("outer")}
           </div>
         );
       else if (c.type == "list")
@@ -50,6 +65,7 @@ const SidePreview = (props) => {
                 </div>
               );
             })}
+            {currentTime("outer")}
           </div>
         );
       else if (c.type == "image")
@@ -61,6 +77,7 @@ const SidePreview = (props) => {
               className="main-image-preview"
               style={{ backgroundImage: `url(${c.content})` || null }}
             ></div>
+              {currentTime("inner")}
           </div>
         );
     });
@@ -104,11 +121,19 @@ const SidePreview = (props) => {
       if (!findKeyword)
         return (
             <>
-              <div className="preview-send">{input}</div>
+              <div className="preview-send">
+                  {input}
+                  <div className="nowtime">
+                      {currentTime("outer")}
+                  </div>
+              </div>
             <div
               className={`preview-receive ${props.activePlatformTab} ${props.activePlatformTab}-notfound`}
             >
-              키워드를 찾을 수 없습니다.
+              다시 한번 입력해주세요
+                <div className="nowtime">
+                    {currentTime("outer")}
+                </div>
             </div>
             </>
         );
@@ -118,6 +143,9 @@ const SidePreview = (props) => {
             className={`preview-send  ${props.activePlatformTab} ${props.activePlatformTab}-send`}
           >
             {input}
+              <div className="nowtime">
+                  {currentTime("outer")}
+              </div>
           </div>
           {/* 키워드 전달 후 일치하는 요소들의 배열을 return받음 */}
           {addDialogue(findKeyword)}
@@ -198,7 +226,12 @@ const SidePreview = (props) => {
                 timezone={"Asia/Seoul"}
               />
             </div>
-            <div className="preview-send">/start</div>
+            <div className="preview-send">
+                /start
+                <div className="nowtime">
+                    {currentTime("outer")}
+                </div>
+            </div>
             {dialogues.map((dialogue) => {
               return dialogue;
             })}
