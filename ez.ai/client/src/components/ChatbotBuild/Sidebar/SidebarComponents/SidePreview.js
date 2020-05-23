@@ -1,6 +1,5 @@
 import React, { useCallback, useState, useEffect } from "react";
 import "./SidePreview.css";
-import { useInput } from "../../../Register.js";
 import Clock from "react-live-clock";
 import { useSelector } from "react-redux";
 
@@ -18,7 +17,11 @@ const SidePreview = (props) => {
 
 
   const { currentChatbot } = useSelector((state) => state.chatbot);
-  const [message, onChangeMessage, reset] = useInput("");
+  const [message, setMessage] = useState("");
+
+  const onChangeMessage = e => {
+      setMessage(e.target.value)
+  }
 
   //미리보기 => 사용자가 키워드 입력시 일치하는 키워드를 찾아서 dialogues 배열에 추가하는 방식
   const [dialogues, setDialogues] = useState([]);
@@ -102,9 +105,7 @@ const SidePreview = (props) => {
 
       //sendMessage 함수로부터 return받은 배열을  dialogues배열에 추가
       setDialogues((prev) => [...prev, sendMessage(message)]);
-      console.log(message,"mmmm")
-
-      console.log(reset(),"rrrr", message)
+      setMessage("");
     },
     [message]
 
@@ -151,7 +152,6 @@ const SidePreview = (props) => {
           {addDialogue(findKeyword)}
         </>
       );
-
     },
     [message, currentChatbot, dialogues]
 
@@ -245,6 +245,7 @@ const SidePreview = (props) => {
                 <input
                   type="text"
                   placeholder="메세지"
+                  value={message}
                   onChange={onChangeMessage}
                 />
               </form>
