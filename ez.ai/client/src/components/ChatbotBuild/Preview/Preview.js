@@ -60,6 +60,15 @@ const Preview = ({
     setVirtualKeyboard(false);
   };
 
+// <<<<<<< choikeonwoo
+//   //삭제
+//   const onDelete = (id, isList) => {
+//     // 추후 적용..
+//     let tmp = -1;
+//     keywordObject.map((content, i) => {
+//       if (content.id === id - 1) {
+//         tmp = i + 1;
+// =======
   // 아이콘 호환여부 설정
   const useableInfo = [
     {name : "text", value : [0,0,0,0]},
@@ -81,6 +90,9 @@ const Preview = ({
     }
   }
 
+// <<<<<<< choikeonwoo
+//     if (tmp === id - 1) {
+// =======
 
   //삭제
   const onDelete = (id, isList) => {
@@ -96,7 +108,6 @@ const Preview = ({
 
 
     console.log()
-
 
     setKeywordObject(
       produce(keywordObject, (draft) => {
@@ -191,9 +202,16 @@ const Preview = ({
                 v={v}
                 i={i}
                 setClickedMainInput={setClickedMainInput}
+                index={index}
                 now={now}
                 setNow={setNow}
                 onDelete={onDelete}
+// <<<<<<< choikeonwoo
+//                 keywordObject={keywordObject}
+//                 setKeywordObject={setKeywordObject}
+// =======
+          keywordObject={keywordObject}
+                setKeywordObject={setKeywordObject}
                 changeAvailableIcon={changeAvailableIcon}
               />
             ) : v.type === "file" ? (

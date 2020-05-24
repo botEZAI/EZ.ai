@@ -7,7 +7,7 @@ const LocationStatus = ({
   setKeywordObject,
   keywordObject,
   now,
-  index
+  index,
 }) => {
   return (
     <>
@@ -16,9 +16,9 @@ const LocationStatus = ({
         <input
           placeholder="장소 이름을 적어주세요"
           value={keywordObject[index].contents[now].title || ""}
-          onChange={e => {
+          onChange={(e) => {
             setKeywordObject(
-              produce(keywordObject, draft => {
+              produce(keywordObject, (draft) => {
                 draft[index].contents[now].title = e.target.value;
               })
             );
@@ -27,9 +27,9 @@ const LocationStatus = ({
         <input
           placeholder="latitude(위도)"
           value={keywordObject[index].contents[now].latitude || ""}
-          onChange={e => {
+          onChange={(e) => {
             setKeywordObject(
-              produce(keywordObject, draft => {
+              produce(keywordObject, (draft) => {
                 draft[index].contents[now].latitude = e.target.value;
               })
             );
@@ -38,16 +38,22 @@ const LocationStatus = ({
         <input
           placeholder="longtitude(경도)"
           value={keywordObject[index].contents[now].longtitude || ""}
-          onChange={e => {
+          onChange={(e) => {
             setKeywordObject(
-              produce(keywordObject, draft => {
+              produce(keywordObject, (draft) => {
                 draft[index].contents[now].longtitude = e.target.value;
               })
             );
           }}
         />
       </div>
-      <GoogleMapPresenter />;
+      <GoogleMapPresenter
+        keywordObject={keywordObject}
+        setKeywordObject={setKeywordObject}
+        index={index}
+        now={now}
+      />
+      ;
     </>
   );
 };
