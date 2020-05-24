@@ -13,14 +13,12 @@ export const GoogleMapPresenter = ({
 }) => {
   const mapRef = useRef(null);
   const onClickMap = (e, aug, geo) => {
-    if (now === i) {
-      setKeywordObject(
-        produce(keywordObject, (draft) => {
-          draft[index].contents[now].latitude = geo.latLng.lat();
-          draft[index].contents[now].longtitude = geo.latLng.lng();
-        })
-      );
-    }
+    setKeywordObject(
+      produce(keywordObject, (draft) => {
+        draft[index].contents[now].latitude = geo.latLng.lat();
+        draft[index].contents[now].longtitude = geo.latLng.lng();
+      })
+    );
   };
 
   return (
