@@ -58,25 +58,21 @@ const Preview = ({
     setVirtualKeyboard(false);
   };
 
-
   //삭제
   const onDelete = (id, isList) => {
-
     // 추후 적용..
     let tmp = -1;
     keywordObject.map((content, i) => {
-      if (content.id === id-1) {
-        tmp = i+1
+      if (content.id === id - 1) {
+        tmp = i + 1;
       }
     });
 
-    if (tmp === id-1) {
-
+    if (tmp === id - 1) {
     }
 
     setNow(-1);
     setClickedMainInput(false);
-
 
     setKeywordObject(
       produce(keywordObject, (draft) => {
@@ -169,9 +165,12 @@ const Preview = ({
                 v={v}
                 i={i}
                 setClickedMainInput={setClickedMainInput}
+                index={index}
                 now={now}
                 setNow={setNow}
                 onDelete={onDelete}
+                keywordObject={keywordObject}
+                setKeywordObject={setKeywordObject}
               />
             ) : v.type === "file" ? (
               <FilePreview
