@@ -33,6 +33,8 @@ const Preview = ({
   setNow,
   curListCount,
   setCurListCount,
+  availableIcon,
+  setAvailableIcon,
 }) => {
   const currentInput =
     now !== -1 && keywordObject[index] && keywordObject[index].contents[now];
@@ -58,21 +60,54 @@ const Preview = ({
     setVirtualKeyboard(false);
   };
 
+// <<<<<<< choikeonwoo
+//   //삭제
+//   const onDelete = (id, isList) => {
+//     // 추후 적용..
+//     let tmp = -1;
+//     keywordObject.map((content, i) => {
+//       if (content.id === id - 1) {
+//         tmp = i + 1;
+// =======
+  // 아이콘 호환여부 설정
+  const useableInfo = [
+    {name : "text", value : [0,0,0,0]},
+    {name : "image", value : [0,0,0,0]},
+    {name : "video", value : [0,0,0,0]},
+    {name : "audio", value : [0,0,0,0]},
+    {name : "location", value : [0,0,0,0]},
+    {name : "file", value : [0,0,0,0]},
+    {name : "list", value : [0,1,1,0]},
+    {name : "sticker", value : [1,0,1,0]},
+  ]
+
+  const changeAvailableIcon = (tool) => {
+    for (let i=0; i<useableInfo.length; i++) {
+      if(useableInfo[i].name === tool) {
+        console.log(tool)
+        setAvailableIcon(availableIcon.map((ai,index)=> ({...ai, use : useableInfo[i].value[index] ? false : true})))
+      }
+    }
+  }
+
+// <<<<<<< choikeonwoo
+//     if (tmp === id - 1) {
+// =======
+
   //삭제
   const onDelete = (id, isList) => {
-    // 추후 적용..
-    let tmp = -1;
-    keywordObject.map((content, i) => {
-      if (content.id === id - 1) {
-        tmp = i + 1;
-      }
-    });
-
-    if (tmp === id - 1) {
+    let tmp = keywordObject[index].contents.findIndex((content, i) => content.id === id);
+    console.log(tmp,id)
+    setClickedMainInput(false);
+    if (now > tmp) {
+      setNow(now-1);
+    } else if (id === tmp) {
+      setNow(-1);
     }
 
-    setNow(-1);
-    setClickedMainInput(false);
+
+
+    console.log()
 
     setKeywordObject(
       produce(keywordObject, (draft) => {
@@ -85,8 +120,6 @@ const Preview = ({
         }
       })
     );
-
-    console.log("now=", now);
   };
   useEffect(() => {
     if (firstEntry === true) {
@@ -132,6 +165,7 @@ const Preview = ({
                 now={now}
                 setNow={setNow}
                 onDelete={onDelete}
+                changeAvailableIcon={changeAvailableIcon}
               />
             ) : v.type === "image" /**서버에서 파일 받아옴. */ ? (
               <ImagePreview
@@ -141,6 +175,7 @@ const Preview = ({
                 now={now}
                 setNow={setNow}
                 onDelete={onDelete}
+                changeAvailableIcon={changeAvailableIcon}
               />
             ) : v.type === "video" /**서버에서 파일 받아옴 */ ? (
               <VideoPreview
@@ -150,6 +185,7 @@ const Preview = ({
                 now={now}
                 setNow={setNow}
                 onDelete={onDelete}
+                changeAvailableIcon={changeAvailableIcon}
               />
             ) : v.type === "audio" ? (
               <AudioPreview
@@ -159,6 +195,7 @@ const Preview = ({
                 now={now}
                 setNow={setNow}
                 onDelete={onDelete}
+                changeAvailableIcon={changeAvailableIcon}
               />
             ) : v.type === "location" ? (
               <LocationPreview
@@ -169,8 +206,13 @@ const Preview = ({
                 now={now}
                 setNow={setNow}
                 onDelete={onDelete}
-                keywordObject={keywordObject}
+// <<<<<<< choikeonwoo
+//                 keywordObject={keywordObject}
+//                 setKeywordObject={setKeywordObject}
+// =======
+          keywordObject={keywordObject}
                 setKeywordObject={setKeywordObject}
+                changeAvailableIcon={changeAvailableIcon}
               />
             ) : v.type === "file" ? (
               <FilePreview
@@ -180,6 +222,7 @@ const Preview = ({
                 now={now}
                 setNow={setNow}
                 onDelete={onDelete}
+                changeAvailableIcon={changeAvailableIcon}
               />
             ) : v.type === "list" ? (
               <ListPreview
@@ -190,6 +233,7 @@ const Preview = ({
                 now={now}
                 setNow={setNow}
                 onDelete={onDelete}
+                changeAvailableIcon={changeAvailableIcon}
               />
             ) : null
           )}

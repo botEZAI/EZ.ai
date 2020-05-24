@@ -5,6 +5,8 @@
     height : 70vh;
     min-height : 560px;
     border-top : 0.5px solid #d9d9d9;
+    border-left : .5px solid #999;
+    border-right : .5px solid #999;
     display : flex;
     flex-direction : column;
     justify-content: space-between;
@@ -12,7 +14,7 @@
 }
 
 .tool-status > div {
-    width : 100%;
+    width : calc(100% - 1px);
 }
 
 
@@ -139,6 +141,7 @@
     bottom : 0;
     height: 50px;
     border-top: 0.1px solid #d9d9d9;
+    border-bottom : .5px solid #999;
     display: flex;
     justify-content: space-between;
     align-items: center;
