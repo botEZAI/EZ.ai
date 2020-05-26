@@ -35,7 +35,7 @@
 
 /* nav 오른쪽 요소 */
 .nav_r {
-    width : 320px;
+    min-width : 320px;
     height : 50px;
     display: flex;
     justify-content: flex-end;
@@ -52,16 +52,17 @@
 }
 
 .nav_chatbot .nav_chatbot-btn a {
-    background-color: #00b8b4;
+    border : 1px solid #00b8b4;
     padding : 8px 12px;
     border-radius: 10px;
     font-weight: bold;
-    color : #eee;
+    color : #00b8b4;
     cursor: pointer;
+    transition: .2s all;
 }
 
 .nav_chatbot .nav_chatbot-btn:hover a {
-    background-color: #04a5a0;
+    background-color: #00b8b4;
     color : white;
 }
 
