@@ -6,7 +6,7 @@ import VideoStatus from "./BasicStatus/VideoStatus";
 import AudioStatus from "./BasicStatus/AudioStatus";
 import LocationStatus from "./BasicStatus/LocationStatus";
 import FileStatus from "./BasicStatus/FileStatus";
-import KeyboardStatus from "./AdvanceStatus/KeyboardStatus";
+import PersistentStatus from "./AdvanceStatus/PersistentStatus";
 
 import "./StatusPopups/EmogiPopup.css";
 import ImogiPopup from "./StatusPopups/EmogiPopup";
@@ -75,8 +75,18 @@ const ToolStatus = ({
             ) : currentInput.type === "list" ||
               clickedMainInput.type === "list" ? (
               <>
-                <span>버튼형 리스트</span>
+                <span>고정 메뉴</span>
               </>
+            ) : currentInput.type === "template" ||
+            clickedMainInput.type === "template" ? (
+                <>
+                  <span>템플릿</span>
+                </>
+            ) : currentInput.type === "coupon" ||
+            clickedMainInput.type === "coupon" ? (
+                <>
+                  <span>쿠폰</span>
+                </>
             ) : currentInput.type === "sticker" ||
               clickedMainInput.type === "sticker" ? (
               <>
@@ -158,7 +168,7 @@ const ToolStatus = ({
             />
           ) : currentInput.type === "list" ||
             clickedMainInput.type === "list" ? (
-            <KeyboardStatus
+            <PersistentStatus
               currentContent={currentContent}
               setKeywordObject={setKeywordObject}
               keywordObject={keywordObject}
