@@ -129,16 +129,36 @@ const Preview = ({
       .get("/api/chatbotbuild")
       .then((res) => setKeywordObject(JSON.parse(res.data.keyword)));
   }, []);
+
+  // 메인 헤더 - 테마 선택 옵션
+  const [theme, setTheme] = useState("telegram");
+
+
   return (
     <>
       <div className="main-header">
-        <i className="fa fa-arrow-left"></i>
-        <i className="fa fa-user-circle fa-3x"></i>
-        <span>USER</span>
-        <i id="item-last" className="fa fa-ellipsis-v"></i>
+        <div className="main-header-theme">
+          <select value = {theme} onChange = {(e) => {setTheme(e.target.value)}}>
+            <option value="none" disabled>=== 테마 선택 ===</option>
+            <option value="default">기본(Ezai 인터페이스)</option>
+            <option value="telegram">텔레그램</option>
+            <option value="line">라인</option>
+            <option value="facebook">페이스북</option>
+          </select>
+        </div>
       </div>
       <div
-        className="main-contents"
+        className={theme === "default" ? (
+            "main-contents main-contents-default"
+            ) : ( theme === "telegram" ? (
+            "main-contents main-contents-telegram"
+        ) : (theme === "line" ? (
+            "main-contents main-contents-line"
+        ) : (theme === "facebook" ? (
+            "main-contents main-contents-facebook"
+        ) : "main-contents"
+        )))
+        }
         ref={contentRef}
         onClick={ClickedBuilderMain}
       >
@@ -226,7 +246,6 @@ const Preview = ({
             ) : null
           )}
       </div>
-      <div className="main-footer"></div>
       <VirtualKeyboard
         clickedMainInput={clickedMainInput}
         currentInput={currentInput}
