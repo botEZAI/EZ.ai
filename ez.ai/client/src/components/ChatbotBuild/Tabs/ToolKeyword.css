@@ -10,8 +10,10 @@
 }
 
 .add-keyword {
-    margin : 10px 0;
-    padding : 10px 0;
+
+    padding : 15px 0;
+    border : .5px solid #999;
+    border-top : none;
     border-bottom : 1px solid #bbb;
     background-color: #fff;
 }
@@ -63,8 +65,9 @@
 /* 키워드 속성 창 css */
 .modify-keyword {
     background-color: white;
-    margin : 10px 0;
-    padding : 10px 0;
+    padding : 15px 0;
+    border : .5px solid #999;
+    border-top : none;
     border-bottom : 1px solid #bbb;
 }
 
@@ -237,8 +240,10 @@
 /* 키워드 관리 창 css */
 .keyword-status {
     width : inherit;
-    height: 350px;
-    padding: 10px 0;
+    height: 375px;
+    border : .5px solid #999;
+    border-top : none;
+    padding: 15px 0;
     background-color: #fff;
     display: flex;
     flex-direction: column;
