@@ -52,11 +52,11 @@
 }
 
 .main-contents-telegram {
-  background-image: url("/static/media/telegram_bg.51edc046.jpg");
+  background-image: url("../../../objects/telegram_bg.jpg");
 }
 
 .main-contents-line {
-  background-image: url("/static/media/line-bg.JPG");
+  background-image: url("../../../objects/line-bg.JPG");
   background-color : palegreen;
 }
 

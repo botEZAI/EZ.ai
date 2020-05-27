@@ -55,9 +55,9 @@ const ChatbotBuild = (props) => {
     [1, 2, 3, 4],
     [1, 2, 3, 4, 5],
     [1, 2, 3, 4, 5, 6],
-  ]; // 키보드 요소의 키워드 입력 총 개수
+  ]; // 고정 메뉴 요소의 키워드 입력 총 개수
   const [curListCount, setCurListCount] = useState(listCount[1]);
-  // 키보드(리스트) 요소에서 연동한 키워드 종류
+  // 고정메뉴 요소에서 연동한 키워드 종류
   const initialKP = [
     // list 팝업에서 선택한 변수.
     { id: 0, value: "키워드 연동" },

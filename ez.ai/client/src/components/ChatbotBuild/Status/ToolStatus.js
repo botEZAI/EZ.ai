@@ -10,6 +10,7 @@ import PersistentStatus from "./AdvanceStatus/PersistentStatus";
 
 import "./StatusPopups/EmogiPopup.css";
 import ImogiPopup from "./StatusPopups/EmogiPopup";
+import TemplateStatus from "./AdvanceStatus/TemplateStatus";
 
 const ToolStatus = ({
   mainKeyword,
@@ -180,7 +181,19 @@ const ToolStatus = ({
               curListCount={curListCount}
               setCurListCount={setCurListCount}
             />
-          ) : currentInput.type === "sticker" ||
+          ) : currentInput.type === "template" ||
+            clickedMainInput.type === "template" ? (
+                <TemplateStatus
+                    currentContent={currentContent}
+                    setKeywordObject={setKeywordObject}
+                    keywordObject={keywordObject}
+                    now={now}
+                    index={index}
+                    listCount={listCount}
+                    curListCount={curListCount}
+                    setCurListCount={setCurListCount}
+                />
+            ) : currentInput.type === "sticker" ||
             clickedMainInput.type === "sticker" ? (
             <>
               <div>
