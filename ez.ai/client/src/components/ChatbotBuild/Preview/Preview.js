@@ -62,41 +62,44 @@ const Preview = ({
 
   // 아이콘 호환여부 설정
   const useableInfo = [
-    {name : "text", value : [0,0,0,0]},
-    {name : "image", value : [0,0,0,0]},
-    {name : "video", value : [0,0,0,0]},
-    {name : "audio", value : [0,0,0,0]},
-    {name : "location", value : [0,0,0,0]},
-    {name : "file", value : [0,0,0,0]},
-    {name : "list", value : [0,1,1,0]},
-    {name : "sticker", value : [1,0,1,0]},
-  ]
+    { name: "text", value: [0, 0, 0, 0] },
+    { name: "image", value: [0, 0, 0, 0] },
+    { name: "video", value: [0, 0, 0, 0] },
+    { name: "audio", value: [0, 0, 0, 0] },
+    { name: "location", value: [0, 0, 0, 0] },
+    { name: "file", value: [0, 0, 0, 0] },
+    { name: "list", value: [0, 1, 1, 0] },
+    { name: "sticker", value: [1, 0, 1, 0] },
+  ];
 
   const changeAvailableIcon = (tool) => {
-    for (let i=0; i<useableInfo.length; i++) {
-      if(useableInfo[i].name === tool) {
-        console.log(tool)
-        setAvailableIcon(availableIcon.map((ai,index)=> ({...ai, use : useableInfo[i].value[index] ? false : true})))
+    for (let i = 0; i < useableInfo.length; i++) {
+      if (useableInfo[i].name === tool) {
+        console.log(tool);
+        setAvailableIcon(
+          availableIcon.map((ai, index) => ({
+            ...ai,
+            use: useableInfo[i].value[index] ? false : true,
+          }))
+        );
       }
     }
-  }
-
+  };
 
   //삭제
   const onDelete = (id, isList) => {
-    let tmp = keywordObject[index].contents.findIndex((content, i) => content.id === id);
-    console.log(tmp,id)
+    let tmp = keywordObject[index].contents.findIndex(
+      (content, i) => content.id === id
+    );
+    console.log(tmp, id);
     setClickedMainInput(false);
     if (now > tmp) {
-      setNow(now-1);
+      setNow(now - 1);
     } else if (id === tmp) {
       setNow(-1);
     }
 
-
-
-    console.log()
-
+    console.log();
 
     setKeywordObject(
       produce(keywordObject, (draft) => {
@@ -126,16 +129,36 @@ const Preview = ({
       .get("/api/chatbotbuild")
       .then((res) => setKeywordObject(JSON.parse(res.data.keyword)));
   }, []);
+
+  // 메인 헤더 - 테마 선택 옵션
+  const [theme, setTheme] = useState("telegram");
+
+
   return (
     <>
       <div className="main-header">
-        <i className="fa fa-arrow-left"></i>
-        <i className="fa fa-user-circle fa-3x"></i>
-        <span>USER</span>
-        <i id="item-last" className="fa fa-ellipsis-v"></i>
+        <div className="main-header-theme">
+          <select value = {theme} onChange = {(e) => {setTheme(e.target.value)}}>
+            <option value="none" disabled>=== 테마 선택 ===</option>
+            <option value="default">기본(Ezai 인터페이스)</option>
+            <option value="telegram">텔레그램</option>
+            <option value="line">라인</option>
+            <option value="facebook">페이스북</option>
+          </select>
+        </div>
       </div>
       <div
-        className="main-contents"
+        className={theme === "default" ? (
+            "main-contents main-contents-default"
+            ) : ( theme === "telegram" ? (
+            "main-contents main-contents-telegram"
+        ) : (theme === "line" ? (
+            "main-contents main-contents-line"
+        ) : (theme === "facebook" ? (
+            "main-contents main-contents-facebook"
+        ) : "main-contents"
+        )))
+        }
         ref={contentRef}
         onClick={ClickedBuilderMain}
       >
@@ -191,9 +214,12 @@ const Preview = ({
                 v={v}
                 i={i}
                 setClickedMainInput={setClickedMainInput}
+                index={index}
                 now={now}
                 setNow={setNow}
                 onDelete={onDelete}
+                keywordObject={keywordObject}
+                setKeywordObject={setKeywordObject}
                 changeAvailableIcon={changeAvailableIcon}
               />
             ) : v.type === "file" ? (
@@ -220,7 +246,6 @@ const Preview = ({
             ) : null
           )}
       </div>
-      <div className="main-footer"></div>
       <VirtualKeyboard
         clickedMainInput={clickedMainInput}
         currentInput={currentInput}

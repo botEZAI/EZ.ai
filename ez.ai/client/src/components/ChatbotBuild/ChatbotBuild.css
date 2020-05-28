@@ -69,7 +69,6 @@
 }
 
 .builderTool {
-  border : .5px solid #999;
   width : 530px;
   margin : 0 10px;
   overflow: hidden;
@@ -85,7 +84,7 @@
   /* border : .5px solid #999; */
   border-radius: 10px;
   width: 500px;
-  background-color:#d2dbe3;
+  background-color: white;
 }
 
 /* 사이드 바 css */

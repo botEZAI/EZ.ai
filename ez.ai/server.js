@@ -12,7 +12,6 @@ const passportConfig = require("./passport"); // passport 모듈 연결
 const app = express();
 sequelize.sync();
 passportConfig(passport); //passport
-
 //라우터 연결
 
 const chatbotDataRouter = require("./routes/chatbotData"); //챗봇 생성 라우터
@@ -21,6 +20,37 @@ const videoRouter = require("./routes/video"); //비디오 라우터
 const audioRouter = require("./routes/audio"); //오디오 라우터
 const fileRouter = require("./routes/file"); //파일 라우터
 const authRouter = require("./routes/auth"); //로그인 라우터
+
+//라인 봇 코드
+// const config = {
+//   channelAccessToken: 'token',
+//   channelSecret: 'token'
+// };
+
+// const client = new line.Client(config);
+
+// app.post('/webhook', line.middleware(config), (req, res) => {
+//   Promise
+//     .all(req.body.events.map(handleEvent))
+//     .then((result) => res.json(result))
+//     .catch((err) => {
+//       console.error(err);
+//       res.status(500).end();
+//     });
+// });
+// // event handler
+// function handleEvent(event) {
+//   if (event.type !== 'message' || event.message.type !== 'text') {
+//     // ignore non-text-message event
+//     return Promise.resolve(null);
+//   }
+
+//   // create a echoing text message
+//   const echo = { type: 'text', text: event.message.text };
+
+//   // use reply API
+//   return client.replyMessage(event.replyToken, echo);
+// }
 
 
 // 세션관리 + cookiparser 미들웨어

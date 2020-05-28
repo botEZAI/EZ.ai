@@ -55,9 +55,9 @@ const ChatbotBuild = (props) => {
     [1, 2, 3, 4],
     [1, 2, 3, 4, 5],
     [1, 2, 3, 4, 5, 6],
-  ]; // 키보드 요소의 키워드 입력 총 개수
+  ]; // 고정 메뉴 요소의 키워드 입력 총 개수
   const [curListCount, setCurListCount] = useState(listCount[1]);
-  // 키보드(리스트) 요소에서 연동한 키워드 종류
+  // 고정메뉴 요소에서 연동한 키워드 종류
   const initialKP = [
     // list 팝업에서 선택한 변수.
     { id: 0, value: "키워드 연동" },
@@ -82,13 +82,13 @@ const ChatbotBuild = (props) => {
     (keyword) => () => {
       setNow(-1);
       setMainKeyword(keyword);
-      //setClickedMainInput(""); 키워드 수정 기능때문에 일반 비활성화했는데 오류 있으면 말해주세요
+      setClickedMainInput(false);
       setFirstEntry(true); // 키워드 클릭 시, 스크롤 초기화 (맨 위로 가서 keyword-title 보이게 함)
       setVirtualKeyboard(false); // 키워드 클릭 시, Main의 '리스트' 하단 바 초기화(하단 바 안 보임)
 
       setAvailableIcon(availableIcon.map((i) => ({ ...i, use: false }))); // 새로운 키워드 선택시 status 정보초기화
     },
-    [keywordObject.length]
+    [keywordObject]
   );
 
   //선택한 챗봇의 데이터와 카테고리 로딩

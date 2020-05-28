@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import produce from "immer";
 import KeywordPopUp from "../StatusPopups/KeywordPopUp";
 
-const KeyboardStatus = ({
+const PersistentStatus = ({
   currentContent,
   setKeywordObject,
   keywordObject,
@@ -17,9 +17,6 @@ const KeyboardStatus = ({
   const [showPopup, setShowPopup] = useState(false);
   const [popNum, setPopNum] = useState("-1");
 
-  // const listCount = [[1], [1,2], [1,2,3], [1,2,3,4], [1,2,3,4,5], [1,2,3,4,5,6]];  // 키보드 요소의 키워드 입력 총 개수
-
-  // const [curListCount, setCurListCount] = useState(listCount[1]);
 
   const toggleKeywordPopUp = (i, e) => {
     setPopNum(i);
@@ -102,4 +99,4 @@ const KeyboardStatus = ({
   );
 };
 
-export default KeyboardStatus;
+export default PersistentStatus;

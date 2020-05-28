@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { CONNECT_CHATBOT_REQUEST } from "../../../reducer/chatbot";
 
 const AddPlatformPopup = ({ addPlatformFlag, id, setAddPlatformFlag }) => {
@@ -44,12 +45,15 @@ const AddPlatformPopup = ({ addPlatformFlag, id, setAddPlatformFlag }) => {
               onChange={onChangeToken}
               placeholder="지정한 플랫폼에서 발급받은 토큰을 입력해주세요."
             />
-            <button>확인</button>
           </div>
         </div>
 
         <div className="popup-button-wrap">
           <button onClick={addPlatformSubmit}>확인</button>
+        </div>
+        {/* 임시 */}
+        <div className="move-to-guide">
+          <Link to="/guide">토큰 발급 받는 방법 > </Link>
         </div>
       </div>
     </>

@@ -2,12 +2,26 @@
 
 .main-header{
   display:flex;
+  justify-content: space-around;
   align-items:center;
+  border : 1px solid #999;
+  border-bottom: 0px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  background-color: #54759e;
   height:70px;
-  color: white;
+  background-color:#555;
+}
+
+.main-header .main-header-theme select{
+  width: 400px; /* 원하는 너비설정 */
+  padding: .3em .5em; /* 여백으로 높이 설정 */
+  border: none;
+  border-radius: 0px; /* iOS 둥근모서리 제거 */
+  outline-color: #00b8b4;
+  font-size: 16px;
+  font-weight: lighter;
+  appearance: none;
+  background-color: white;
 }
 
 
@@ -23,10 +37,31 @@
 }
 
 
+/* 프리뷰 메인 가운데 section */
 .main-contents{
-  flex-direction: column;
   height:100%;
+  background-size: 100% 100%;
+  border: 1px solid #999;
+  border-top : none;
+  flex-direction: column;
   overflow-y: auto;
+}
+
+.main-contents-default {
+  background-color: #c7edeb;
+}
+
+.main-contents-telegram {
+  background-image: url("../../../objects/telegram_bg.jpg");
+}
+
+.main-contents-line {
+  background-image: url("../../../objects/line-bg.JPG");
+  background-color : palegreen;
+}
+
+.main-contents-facebook {
+  background-color: lightskyblue;
 }
 
 

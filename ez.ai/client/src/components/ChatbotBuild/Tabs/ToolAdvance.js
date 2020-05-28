@@ -17,8 +17,10 @@ const ToolAdvance = ({
 }) => {
     /* 고급 요소 플랫폼별 이용 가능 여부 */
     const useableInfo = [
-        {name : "list", value : [0,1,1,0]},
-        {name : "sticker", value : [1,0,1,0]},
+        {name : "list", value : [0,0,0,0]},
+        {name : "template", value : [0,0,0,1]},
+        {name : "coupon", value : [0,0,1,0]},
+        {name : "sticker", value : [0,0,1,0]},
     ]
 
 
@@ -82,8 +84,34 @@ const ToolAdvance = ({
         }}
       >
         <i className="fas fa-list"></i>
-        버튼형 리스트
+        고정 메뉴
       </div>
+
+        <div
+            className="tool-basic tool-basic-text"
+            onClick={() =>{
+                onClickTool("template");
+                setNow(length + 1);
+            }}
+        >
+            <i className="fas fa-comment-medical"></i>
+            템플릿
+        </div>
+
+
+
+        <div
+            className="tool-basic tool-basic-text"
+            onClick={() =>{
+                onClickTool("coupon");
+                setNow(length + 1);
+            }}
+        >
+            <i className="fas fa-ticket-alt"></i>
+            쿠폰
+        </div>
+
+
       <div
         className="tool-basic tool-basic-text"
         onClick={() => {

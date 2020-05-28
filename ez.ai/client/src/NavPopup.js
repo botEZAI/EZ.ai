@@ -19,6 +19,9 @@ const NavPopup = ({ showNP, setShowNP, history }) => {
         <div className="NavPopUp-btn myInfo">
           <Link to="/profile">내정보</Link>
         </div>
+        <div className="NavPopUp-btn myInfo">
+          <Link to="/chatbotlist">챗봇 목록</Link>
+        </div>
         <div className="NavPopUp-btn logout" onClick={onLogout}>
           로그아웃
         </div>
