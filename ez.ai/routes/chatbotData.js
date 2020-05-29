@@ -29,6 +29,7 @@ router.post("/", isLoggedIn, async (req, res, next) => {
       user_id: req.user.id, //유저 ID 외래 키, req.user.id 는 passport에 localStrategy에서 옴
       categories: JSON.stringify(req.body.categories),
       platformInfo: JSON.stringify(req.body.platformInfo), //platform 정보, 토큰 값, 연동여부
+      deployData: "",
     });
     const created = await ChatbotData.findOne({
       where: { botname: req.body.botname },
@@ -38,6 +39,7 @@ router.post("/", isLoggedIn, async (req, res, next) => {
         createdAt: created.createdAt,
         data: JSON.stringify(req.body.data),
         categories: JSON.stringify(req.body.categories),
+        deploy: false,
         info: "초기",
       },
     ];
@@ -69,6 +71,7 @@ router.patch("/", isLoggedIn, async (req, res, next) => {
       createdAt: updated.updatedAt,
       data: updated.data,
       categories: updated.categories,
+      deploy: false,
       info: req.body.info,
     };
 
@@ -171,6 +174,49 @@ router.patch("/history/remove", isLoggedIn, async (req, res, next) => {
       { where: { chatbot_id: req.body.currentChatbot.id } }
     );
     res.json(rawData);
+  } catch (e) {
+    console.error(e);
+    next(e);
+  }
+});
+
+//챗봇 배포
+router.post("/history/deploy", isLoggedIn, async (req, res, next) => {
+  try {
+    const history = await History.findOne({
+      where: { chatbot_id: req.body.currentChatbot.id },
+    });
+    const selectedHistory = JSON.parse(history.history).find(
+      (v) => v.createdAt === req.body.history.createdAt
+    );
+    const index = JSON.parse(history.history).findIndex(
+      (i) => i.createdAt === req.body.history.createdAt
+    );
+    const dHistory = JSON.parse(history.history);
+    const deployHistory = dHistory.map((v) => {
+      const data = v;
+      data.deploy = false;
+      return data;
+    });
+    deployHistory[index].deploy = true;
+
+    await History.update(
+      {
+        history: JSON.stringify(deployHistory),
+      },
+      {
+        where: { chatbot_id: req.body.currentChatbot.id },
+      }
+    );
+    await ChatbotData.update(
+      {
+        deployData: JSON.stringify(selectedHistory.data),
+      },
+      {
+        where: { id: req.body.currentChatbot.id },
+      }
+    );
+    res.json(JSON.parse(history.history));
   } catch (e) {
     console.error(e);
     next(e);

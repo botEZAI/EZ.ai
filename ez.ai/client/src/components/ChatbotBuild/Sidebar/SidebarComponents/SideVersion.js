@@ -5,6 +5,8 @@ import {
   RECOVER_HISTORY_REQUEST,
   REMOVE_HISTORY_REQUEST,
   RECOVER_HISTORY_SUCCESS_RESET,
+  DEPLOY_HISTORY_REQUEST,
+  DEPLOY_HISTORY_SUCCESS_RESET,
 } from "../../../../reducer/chatbot";
 import "./SideVersion.css";
 
@@ -22,6 +24,7 @@ const SideVersion = ({
     currentCategories,
     isUpdateSuccess,
     isRecoverSuccess,
+    isDeploySuccess,
   } = useSelector((state) => state.chatbot);
 
   useEffect(() => {
@@ -30,12 +33,12 @@ const SideVersion = ({
         type: LOAD_HISTORY_REQUEST,
         data: currentChatbot,
       });
-    console.log("current===", currentChatbot);
-  }, [activeSideTab === "history", isUpdateSuccess]);
+  }, [activeSideTab === "history", isUpdateSuccess, isDeploySuccess]);
   useEffect(() => {
     if (isRecoverSuccess) {
       setKeywordObject(JSON.parse(currentChatbot.data));
       setKeywordCategory(currentCategories);
+      isRecoverSuccess && alert("불러오기 성공");
       dispatch({
         type: RECOVER_HISTORY_SUCCESS_RESET,
       });
@@ -67,6 +70,24 @@ const SideVersion = ({
     },
     [history]
   );
+  //배포
+  const onDeployHistory = useCallback(
+    (history) => {
+      dispatch({
+        type: DEPLOY_HISTORY_REQUEST,
+        data: { currentChatbot, history },
+      });
+    },
+    [history, isDeploySuccess]
+  );
+  useEffect(() => {
+    if (isDeploySuccess) {
+      alert("배포성공");
+    }
+    dispatch({
+      type: DEPLOY_HISTORY_SUCCESS_RESET,
+    });
+  }, [isDeploySuccess]);
 
   return (
     <div className="sidebar-article">
@@ -83,7 +104,11 @@ const SideVersion = ({
           JSON.parse(history)
             .reverse()
             .map((v) => (
-              <div className="sidebar-history-box">
+              <div
+                className={`sidebar-history-box ${
+                  v.deploy && `sidebar-history-deploy`
+                }`}
+              >
                 <div className="sidebar-history-contents">
                   <div className="sidebar-history-text"> {v.info}</div>
                   <div className="sidebar-history-time">
@@ -91,9 +116,15 @@ const SideVersion = ({
                   </div>
                 </div>
                 <div className="sidebar-history-btns">
-                  <div className="sidebar-history-btn sidebar-history-favorite">
-                    <i className="far fa-star" alt="즐겨찾기"></i>
-                  </div>
+                  {/* <div className="sidebar-history-btn sidebar-history-favorite"> */}
+                  {/* <i className="far fa-star" alt="즐겨찾기"></i> */}
+                  <button
+                    className="sidebar-history-button sidebar-history-btn-deploy"
+                    onClick={() => onDeployHistory(v)}
+                  >
+                    배포
+                  </button>
+                  {/* </div> */}
                   <div className="sidebar-history-btn">
                     <button
                       className="sidebar-history-button sidebar-history-btn-load"
