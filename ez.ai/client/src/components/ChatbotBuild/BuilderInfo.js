@@ -28,6 +28,7 @@ const BuilderInfo = ({ keywordObject, keywordCategory }) => {
         data: keywordObject,
         categories: keywordCategory,
         info,
+        deploy: false,
       };
       dispatch({
         type: UPDATE_CHATBOT_REQUEST,

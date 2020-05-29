@@ -11,7 +11,6 @@ import CheckPopup from "./Popup/CheckPopup";
 import BotList from "./BotList";
 import axios from "axios";
 
-
 const ChatbotList = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
@@ -64,7 +63,7 @@ const ChatbotList = () => {
 
     let openPopup = {
       showPopup1: true,
-      showPopup2: false
+      showPopup2: false,
     };
     setPopup(openPopup);
   };
@@ -74,7 +73,7 @@ const ChatbotList = () => {
     console.log(bots);
     setPopup({
       showPopup1: false,
-      showPopup2: false// 팝업창 닫힘
+      showPopup2: false, // 팝업창 닫힘
     });
 
     let dataObject = {
@@ -117,14 +116,13 @@ const ChatbotList = () => {
   const nextPopup = (nextVal) => {
     const nextPopup = {
       showPopup1: false,
-      showPopup2: false
+      showPopup2: false,
     };
 
     if (nextVal === "check") {
       nextPopup.showPopup1 = false;
       nextPopup.showPopup2 = true;
-    } 
-    else if (nextVal === "first") {
+    } else if (nextVal === "first") {
       nextPopup.showPopup1 = true;
       nextPopup.showPopup2 = false;
     }
@@ -135,7 +133,7 @@ const ChatbotList = () => {
   const closePopup = () => {
     setPopup({
       showPopup1: false,
-      showPopup2: false
+      showPopup2: false,
     });
   };
 
