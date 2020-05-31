@@ -1,9 +1,11 @@
 import React, { useCallback, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { withRouter } from "react-router-dom";
 import {
   ADD_CHATBOT_REQUEST,
   LOAD_CHATBOT_REQUEST,
 } from "../../reducer/chatbot";
+import { LOAD_USER_REQUEST } from "../../reducer/user";
 import "./ChatbotList.css";
 import InputBot from "./InputBot/InputBot";
 import Popup from "./Popup/Popup";
@@ -11,10 +13,12 @@ import CheckPopup from "./Popup/CheckPopup";
 import BotList from "./BotList";
 import axios from "axios";
 
-const ChatbotList = () => {
+const ChatbotList = (props) => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
-  const { currentCategories } = useSelector((state) => state.chatbot);
+  const { currentCategories, chatbotList } = useSelector(
+    (state) => state.chatbot
+  );
   useEffect(() => {
     if (user) {
       dispatch({
@@ -203,4 +207,4 @@ const ChatbotList = () => {
   );
 };
 
-export default ChatbotList;
+export default withRouter(ChatbotList);
