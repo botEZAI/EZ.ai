@@ -54,7 +54,6 @@ const Sidebar = ({ setKeywordCategory, setKeywordObject, setNow, setClickedMainI
               <div className="platforms-category">
                 <PlatformTabs activePlatformTab={activePlatformTab}
                               onSelectPlatform={onSelectPlatform}>
-                  <div label="kakao"> Kakao</div>
                   <div label="line"> Line </div>
                   <div label="facebook"> Facebook </div>
                   <div label="telegram"> Telegram </div>

@@ -98,16 +98,13 @@ const ToolStatus = ({
         </div>
         <div className="tool-status-info">
           <div className="tool-status-available">
-            <div className={availableIcon[0].use ? "sns-color-kakao" : null}>
+            <div className={availableIcon[0].use ? "sns-color-line" : null}>
               {" "}
             </div>
-            <div className={availableIcon[1].use ? "sns-color-line" : null}>
+            <div className={availableIcon[1].use ? "sns-color-facebook" : null}>
               {" "}
             </div>
-            <div className={availableIcon[2].use ? "sns-color-facebook" : null}>
-              {" "}
-            </div>
-            <div className={availableIcon[3].use ? "sns-color-telegram" : null}>
+            <div className={availableIcon[2].use ? "sns-color-telegram" : null}>
               {" "}
             </div>
           </div>

@@ -16,8 +16,7 @@ const Popup = ({
   const [selectedSns, setSelectedSns] = useState([
     { name: "line", color: false },
     { name: "facebook", color: false },
-    { name: "telegram", color: false },
-    { name: "kakao", color: false },
+    { name: "telegram", color: false }
   ]);
 
   const onChangeBotName = (e) => {

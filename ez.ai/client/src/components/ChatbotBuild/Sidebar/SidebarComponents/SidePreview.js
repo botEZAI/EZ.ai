@@ -158,25 +158,6 @@ const SidePreview = (props) => {
   );
   return (
     <>
-      {props.activePlatformTab == "platform-kakao" ? (
-        <div className="preview-container side-kakao">
-          <div className="preview-header"></div>
-          <div className="preview-contents">
-            <div class="datetime">
-              <Clock
-                format={"YYYY년 MM월 DD일 " + dd + "요일"}
-                ticking={true}
-                timezone={"Asia/Seoul"}
-              />
-            </div>
-          </div>
-          <div className="preview-footer">
-            <div class="preview-input input-kakao">
-              <input type="text" placeholder="Say Something" />
-            </div>
-          </div>
-        </div>
-      ) : null}
       {props.activePlatformTab == "platform-line" ? (
         <div className="preview-container side-line">
           <div className="preview-header"></div>
