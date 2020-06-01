@@ -34,4 +34,21 @@ function handleEvent(event) {
     }
 }
    
+function logic(array,text){   //키워드 찾는 함수 
+    let contents= [];
+    let flag = 0;
+    array.forEach(element => {
+        if(element.keyword===text) {
+            console.log("키워드 찾음", element.keyword);
+            contents = element.contents;
+            flag=1;
+        }
+    });
+        if(flag==1) return contents;
+        else return 0;
+}
+   
+
+   
+
   
