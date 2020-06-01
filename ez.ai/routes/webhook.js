@@ -22,4 +22,16 @@ app.post('/webhook', line.middleware(config), (req, res) => {
         res.status(500).end();
     });
 });
- 
+  
+
+// callback function to handle a single event
+function handleEvent(event) {
+    switch (event.type) {
+     case 'message':
+       const message = event.message;
+         if(message.type==='text')
+           return handleText(message, event.replyToken, event.source);
+    }
+}
+   
+  
