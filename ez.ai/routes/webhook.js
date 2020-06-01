@@ -47,7 +47,52 @@ function logic(array,text){   //키워드 찾는 함수
         if(flag==1) return contents;
         else return 0;
 }
-   
+async function handleText(message, replyToken, source) {
+    const data = await ChatbotData.findAll({
+     attributes:['data'],
+    });
+    const data1 = await JSON.parse(data[0].data);
+    const contents = await logic(data1,message.text);
+    if(contents){
+     const msg_array =[];
+     contents.forEach(element=> {
+        const type_val = element.type;
+        const text_val = element.content;
+        //위치 정보
+        const title_val = element.title;
+        const latitude_val = Number(element.latitude);  //정확한 위도 정보가 아니면 error
+        const longitude_val = Number(element.longtitude); //정확한 경도 정보가 아니면 error
+        //이미지 정보 
+        if(type_val==='text'){
+           console.log("텍스트 타입 통과");
+           msg_array.push({type: type_val, text: text_val});
+           console.log(message_array);
+        }
+        else if(element.type==='location'){
+            console.log("위치 타입 통과");
+            console.log(element);
+            msg_array.push({type: type_val, title: title_val, address: "adress", latitude: latitude_val, longitude: longitude_val});
+        } 
+       else if(type_val==='image'){
+        console.log("이미지 타입 통과");
+       //이미지 작업 해야됨
+       }
+});
+    const url_path = "https://botezai.com/static/media/main-logo-1.0a4edd41.png";
+    msg_array.push({type: "image", originalContentUrl:url_path, previewImageUrl: url_path });
+
+
+    return client.replyMessage(replyToken, msg_array)
+        .then(() => {
+        console.log("출력통과");
+        })
+        .catch((err) => {
+        console.log(err);
+    });
+ }
+}
+
+
 
    
 
