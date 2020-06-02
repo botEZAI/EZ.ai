@@ -17,7 +17,7 @@ const BotItem = (props, platformInfo) => {
   const [botClick, setBotClick] = useState({ botOn: false });
   const { children, onRemove, botDesc, botConnect, id } = props;
   const [addPlatformFlag, setAddPlatformFlag] = useState("");
-  const snsIcon = ["fab fa-line", "fab fa-facebook-square", "fab fa-telegram", "fab fa-kaggle"]
+  const snsIcon = ["fab fa-line", "fab fa-facebook-square", "fab fa-telegram"]
 
 
   const botClickEvent = () => {

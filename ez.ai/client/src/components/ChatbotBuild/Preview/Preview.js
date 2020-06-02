@@ -62,14 +62,14 @@ const Preview = ({
 
   // 아이콘 호환여부 설정
   const useableInfo = [
-    { name: "text", value: [0, 0, 0, 0] },
-    { name: "image", value: [0, 0, 0, 0] },
-    { name: "video", value: [0, 0, 0, 0] },
-    { name: "audio", value: [0, 0, 0, 0] },
-    { name: "location", value: [0, 0, 0, 0] },
-    { name: "file", value: [0, 0, 0, 0] },
-    { name: "list", value: [0, 1, 1, 0] },
-    { name: "sticker", value: [1, 0, 1, 0] },
+    { name: "text", value: [0, 0, 0] },
+    { name: "image", value: [0, 0, 0] },
+    { name: "video", value: [0, 0, 0] },
+    { name: "audio", value: [0, 0, 0] },
+    { name: "location", value: [0, 0, 0] },
+    { name: "file", value: [0, 0, 0] },
+    { name: "list", value: [1, 1, 0] },
+    { name: "sticker", value: [0, 1, 0] },
   ];
 
   const changeAvailableIcon = (tool) => {

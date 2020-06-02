@@ -46,7 +46,6 @@ const ChatbotList = (props) => {
     { platform: "line", created: false, deploy: false },
     { platform: "facebook", created: false, deploy: false },
     { platform: "telegram", created: false, deploy: false },
-    { platform: "kakao", created: false, deploy: false },
   ]);
   const [tokenInfo, setTokenInfo] = useState([]);
   const [botToken, setBotToken] = useState({ token: "" });
@@ -62,7 +61,6 @@ const ChatbotList = (props) => {
       { platform: "line", connect: false, tokenData: null },
       { platform: "facebook", connect: false, tokenData: null },
       { platform: "telegram", connect: false, tokenData: null },
-      { platform: "kakao", connect: false, tokenData: null },
     ]);
 
     let openPopup = {
