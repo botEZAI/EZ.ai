@@ -80,9 +80,14 @@ async function handleText(message, replyToken, source) {
        //이미지 작업 해야됨
        }
        else if(type_val==='video'){
-        console.log("비디오 정보 통과");
+        console.log("비디오 타입 통과");
         //originalContentUrl => 필수 정보
         //previewImageUrl => 필수 정보 
+       }
+       else if(type_val==='audio'){
+        console.log("비디오 타입 통과");
+        //originalContentUrl => 필수 정보
+        //duration => 필수 정보 => Length of audio file (milliseconds)
        }
 });
     const url_path = "https://botezai.com/static/media/main-logo-1.0a4edd41.png";
