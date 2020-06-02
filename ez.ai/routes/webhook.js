@@ -2,7 +2,10 @@ const express = require("express");
 const router = express.Router();
 
 //라인 연결 해야함
-
+const middleware = require('@line/bot-sdk').middleware
+const JSONParseError = require('@line/bot-sdk').JSONParseError
+const SignatureValidationFailed = require('@line/bot-sdk').SignatureValidationFailed
+const Client = require('@line/bot-sdk').Client;
 
 //DB 연결
 const ChatbotData = require('./models').ChatbotData;
