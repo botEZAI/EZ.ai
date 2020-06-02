@@ -1,3 +1,12 @@
+const express = require("express");
+const router = express.Router();
+
+//라인 연결 해야함
+
+
+//DB 연결
+const ChatbotData = require('./models').ChatbotData;
+const User = require('./models').User; 
 // 라인봇 관련 코드
 const config = {
     channelAccessToken: '/cmTlUJaNPwyfXD5s/tcNsyuN/+WB8LMHPpWm/gyrBnG17fRduIFjweKN0n72ZKcQ3ysAlCBy0PDnBS1xI1rtIKOPbjYxJrHSSHXDM17BkJQamNJXe8j5+tPn/M5ZCyc/ZuOK7Cg9Z8sfx95nxicvAdB04t89/1O/w1cDnyilFU=',
@@ -6,7 +15,7 @@ const config = {
 const client = new line.Client(config);
   
   // webhook callback
-app.post('/webhook', line.middleware(config), (req, res) => {
+router.post('/', line.middleware(config), (req, res) => {
     if (req.body.destination) {
       console.log("Destination User ID: " + req.body.destination);
      }
