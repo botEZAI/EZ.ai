@@ -12,8 +12,8 @@ const ChatbotData = require('./models').ChatbotData;
 const User = require('./models').User; 
 // 라인봇 관련 코드
 const config = {
-    channelAccessToken: '/cmTlUJaNPwyfXD5s/tcNsyuN/+WB8LMHPpWm/gyrBnG17fRduIFjweKN0n72ZKcQ3ysAlCBy0PDnBS1xI1rtIKOPbjYxJrHSSHXDM17BkJQamNJXe8j5+tPn/M5ZCyc/ZuOK7Cg9Z8sfx95nxicvAdB04t89/1O/w1cDnyilFU=',
-    channelSecret: 'eea6a47cb2f86fd0df9e280b31b0a93c'
+    channelAccessToken: 'input token',
+    channelSecret: 'input token'
 };
 const client = new line.Client(config);
   
