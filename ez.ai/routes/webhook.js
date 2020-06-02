@@ -1,12 +1,24 @@
+const express = require("express");
+const router = express.Router();
+
+//라인 연결 해야함
+const middleware = require('@line/bot-sdk').middleware
+const JSONParseError = require('@line/bot-sdk').JSONParseError
+const SignatureValidationFailed = require('@line/bot-sdk').SignatureValidationFailed
+const Client = require('@line/bot-sdk').Client;
+
+//DB 연결
+const ChatbotData = require('./models').ChatbotData;
+const User = require('./models').User; 
 // 라인봇 관련 코드
 const config = {
-    channelAccessToken: '/cmTlUJaNPwyfXD5s/tcNsyuN/+WB8LMHPpWm/gyrBnG17fRduIFjweKN0n72ZKcQ3ysAlCBy0PDnBS1xI1rtIKOPbjYxJrHSSHXDM17BkJQamNJXe8j5+tPn/M5ZCyc/ZuOK7Cg9Z8sfx95nxicvAdB04t89/1O/w1cDnyilFU=',
-    channelSecret: 'eea6a47cb2f86fd0df9e280b31b0a93c'
+    channelAccessToken: 'input token',
+    channelSecret: 'input token'
 };
 const client = new line.Client(config);
   
   // webhook callback
-app.post('/webhook', line.middleware(config), (req, res) => {
+router.post('/', line.middleware(config), (req, res) => {
     if (req.body.destination) {
       console.log("Destination User ID: " + req.body.destination);
      }
@@ -75,7 +87,19 @@ async function handleText(message, replyToken, source) {
         } 
        else if(type_val==='image'){
         console.log("이미지 타입 통과");
+        //originalContentUrl =>필수 정보
+        //previewImageUrl => 필수 정보
        //이미지 작업 해야됨
+       }
+       else if(type_val==='video'){
+        console.log("비디오 타입 통과");
+        //originalContentUrl => 필수 정보
+        //previewImageUrl => 필수 정보 
+       }
+       else if(type_val==='audio'){
+        console.log("비디오 타입 통과");
+        //originalContentUrl => 필수 정보
+        //duration => 필수 정보 => Length of audio file (milliseconds)
        }
 });
     const url_path = "https://botezai.com/static/media/main-logo-1.0a4edd41.png";
