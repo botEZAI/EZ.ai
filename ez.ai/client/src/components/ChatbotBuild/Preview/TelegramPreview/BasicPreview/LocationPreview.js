@@ -1,5 +1,5 @@
 import React from "react";
-import GoogleMapPresenter from "../../api/GoogleMapPresenter";
+import GoogleMapPresenter from "../../../api/GoogleMapPresenter";
 
 const LocationPreview = ({
   v,
@@ -19,8 +19,8 @@ const LocationPreview = ({
       <div
         className={
           now === i
-            ? "main-content main-locabox now"
-            : "main-content main-locabox"
+            ? "main-content locationbox-telegram now"
+            : "main-content locationbox-telegram"
         }
         key={v.content + i}
         onClick={() => {

@@ -14,8 +14,8 @@ const VideoPreview = ({
   return(
       <div className="main-preview">
         <div
-          className={now === i ? "main-content main-videobox now"
-                              : "main-content main-videobox"}
+          className={now === i ? "main-content videobox-telegram now"
+                              : "main-content videobox-telegram"}
           key={v.content + i}
           onClick={() => {
             setClickedMainInput(v);
@@ -24,8 +24,8 @@ const VideoPreview = ({
           }}
         >
           {" "}
-          <div className="main-video-content">
-            <i className="fas fa-play fa-lg main-file-icon"></i>
+          <div className="video-content-telegram">
+            <i className="fas fa-play fa-lg file-icon-telegram"></i>
           </div>
         </div>
       <div
