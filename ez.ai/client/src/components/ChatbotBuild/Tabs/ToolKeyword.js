@@ -72,20 +72,16 @@ const ToolKeyword = ({
   };
 
   const deleteCategory = (e, val) => {
-    if (val === "미분류") {
-      alert("기본으로 제공되는 '미분류' 카테고리는 삭제할 수 없습니다.");
+    let found = false;
+
+    keywordObject.map((keyword) => {
+      if (keyword.category === val) {found = true};
+    });
+
+    if (found) {
+      alert("해당 카테고리에 속해있는 키워드들을 먼저 옮겨주세요.");
     } else {
-      let found = false;
-
-      keywordObject.map((keyword) => {
-        if (keyword.category === val) {found = true};
-      });
-
-      if (found) {
-        alert("해당 카테고리에 속해있는 키워드들을 먼저 옮겨주세요.");
-      } else {
-        setKeywordCategory(keywordCategory.filter((c) => c.category !== val));
-      }
+      setKeywordCategory(keywordCategory.filter((c) => c.category !== val));
     }
   };
 
@@ -276,6 +272,7 @@ const ToolKeyword = ({
                 </div>
               </form>
             </div>
+
             {keywordCategory.map((i) => (
               <div value={i.category} className="keyword-category">
                 <div
@@ -311,7 +308,7 @@ const ToolKeyword = ({
                       />
                     )}
                   </div>
-                  <div className="keyword-category-btns">
+                  <div className={`keyword-category-btns keyword-category-${i.category}-btns`}>
                     <div
                       className={
                         disableInput && selectedCategory !== i.category

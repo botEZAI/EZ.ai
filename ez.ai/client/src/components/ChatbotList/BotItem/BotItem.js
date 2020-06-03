@@ -17,20 +17,23 @@ const BotItem = (props, platformInfo) => {
   const [botClick, setBotClick] = useState({ botOn: false });
   const { children, onRemove, botDesc, botConnect, id } = props;
   const [addPlatformFlag, setAddPlatformFlag] = useState("");
-  const snsIcon = ["fab fa-line", "fab fa-facebook-square", "fab fa-telegram", "fab fa-kaggle"]
+  const snsIcon = ["fab fa-line", "fab fa-facebook-square", "fab fa-telegram"]
 
 
-  const botClickEvent = (e) => {
+  const botClickEvent = () => {
     setBotClick({ botOn: !botClick.botOn });
   };
   const botDeleteClickEvent = useCallback(
     (id) => {
-      const index = chatbotList.findIndex((v) => v.id === id);
-      const chatbotData = chatbotList[index];
-      dispatch({
-        type: DELETE_CHATBOT_REQUEST,
-        data: chatbotData,
-      });
+      const confirmDelete = window.confirm("정말로 선택하신 챗봇빌더를 삭제하시겠습니까?");
+      if (confirmDelete) {
+        const index = chatbotList.findIndex((v) => v.id === id);
+        const chatbotData = chatbotList[index];
+        dispatch({
+          type: DELETE_CHATBOT_REQUEST,
+          data: chatbotData,
+        });
+      }
     },
     [currentChatbot]
   );
@@ -112,15 +115,16 @@ const BotItem = (props, platformInfo) => {
                   className="bot-item-create"
                   onClick={() => setCurrentChatbot(id)}
                 >
-                  만들기
+                  수정
                 </div>
                 <div
                   className="delete"
-                  onClick={() => {
+                  onClick={e => {
+                    e.stopPropagation();
                     botDeleteClickEvent(id);
                   }}
                 >
-                  삭제
+                  <i className="far fa-trash-alt"></i>
                 </div>
               </div>
             </div>
@@ -130,8 +134,11 @@ const BotItem = (props, platformInfo) => {
                 <div className="txtBox">{botDesc}</div>
               </div>
             </div>
-
-            <div className="sns-icons-container">
+            <div className="sns-icon-container-section">
+              <div className="sns-icon-container-title">
+                챗봇 연동 정보
+              </div>
+              <div className="sns-icons-container">
               {JSON.parse(
                 chatbotList.find((v) => v.id === id).platformInfo
               ).map((info, i) => (
@@ -161,6 +168,7 @@ const BotItem = (props, platformInfo) => {
                 </div>
               ))}
             </div>
+            </div>
           </div>
         </div>
       ) : (
@@ -186,7 +194,7 @@ const BotItem = (props, platformInfo) => {
                 className="bot-item-create"
                 onClick={() => setCurrentChatbot(id)}
               >
-                만들기
+                수정
               </div>
               <div
                 className="delete"
@@ -194,7 +202,7 @@ const BotItem = (props, platformInfo) => {
                   botDeleteClickEvent(id);
                 }}
               >
-                삭제
+                <i className="far fa-trash-alt"></i>
               </div>
             </div>
           </div>

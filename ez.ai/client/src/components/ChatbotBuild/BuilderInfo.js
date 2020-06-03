@@ -13,7 +13,6 @@ const BuilderInfo = ({ keywordObject, keywordCategory }) => {
     "fab fa-line",
     "fab fa-facebook-square",
     "fab fa-telegram",
-    "fab fa-kaggle",
   ];
   const [isSaved, setIsSaved] = useState(true);
   const dispatch = useDispatch();
@@ -28,6 +27,7 @@ const BuilderInfo = ({ keywordObject, keywordCategory }) => {
         data: keywordObject,
         categories: keywordCategory,
         info,
+        deploy: false,
       };
       dispatch({
         type: UPDATE_CHATBOT_REQUEST,

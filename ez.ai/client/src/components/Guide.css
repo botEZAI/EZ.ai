@@ -1,0 +1,59 @@
+.guideline-contents {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+/* 가이드 라인 리스트 */
+.guideline-contents .guideline-lists {
+    min-width : 300px;
+    height : auto;
+    border : 1px solid #ddd;
+}
+
+.guideline-lists .guideline-list {
+    width : 100%;
+    height: 50px;
+    padding : 0 20px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-weight: bold;
+    color : #999;
+    cursor : pointer;
+}
+
+
+.guideline-lists .guideline-list-inner {
+    width : 100%;
+    height : 40px;
+    padding : 0 30px;
+    background-color: #eee;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color : #999;
+    cursor : pointer;
+}
+
+.guideline-lists .guideline-list-inner:hover {
+    background-color: #ddd;
+    color : #333333;
+}
+
+
+.guideline-lists .selected-guide {
+    color : #00b8b4;
+    background-color: #f9f9f9;
+}
+
+
+/* 가이드라인 컨텐츠 보기 */
+.guideline-contents .guideline-view {
+    min-width : 786px;
+    height :500px;
+    padding : 20px;
+    border : 1px solid #ddd;
+
+}

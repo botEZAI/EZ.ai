@@ -71,17 +71,17 @@
   color : #999;
 }
 
-.bot-item-btns > div {
-  width : 50px;
-  height : 28px;
+.bot-item-btns .bot-item-create {
+  width : 80px;
+  height : 30px;
   margin : 5px;
-  border : 1px none;
+  border : 1px none ;
   border-radius: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #ddd;
-  font-size : 12px;
+  font-size : 14px;
   color : #999;
   transition: .2s all;
 }
@@ -90,18 +90,27 @@
   color : #333;
 }
 
-.bot-item-default:hover .bot-item-btns > div {
-  background-color: #eee;
+.bot-item-default:hover .bot-item-create {
+  border : 1px solid #ccc;
+  background-color: white;
 }
 
-.bot-item-create:hover {
+.bot-item-btns .bot-item-create:hover {
+  border : 1px solid #00b8b4;
   background-color: #00b8b4!important;
   color: white!important;
 }
 
-.bot-item-btns .delete:hover {
-  background-color: brown!important;
-  color: white!important;
+.bot-item-btns .delete {
+  margin-left : 10px;
+
+}
+
+.bot-item-btns .delete i {
+  color : #999;
+}
+.bot-item-btns .delete:hover i {
+  color: orangered!important;
 }
 
 
@@ -129,8 +138,9 @@
   color : #333;
 }
 
-.bot-item-expand .bot-item-btns > div {
-  background-color: #eee;
+.bot-item-expand .bot-item-create {
+  border : 1px solid #ccc;
+  background-color: white;
 }
 
 
@@ -169,6 +179,16 @@
 
 
 /* 챗봇 목록 확대 - 플랫폼 토글버튼 */
+.sns-icon-container-title {
+  margin : 5px;
+  padding-top : 20px;
+  padding-bottom: 10px;
+  border-top : 1px solid #eee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
 .sns-icons-container {
   height: 100px;
   display: grid;
@@ -228,11 +248,6 @@
   margin-top: 1%; /*봇들 사이에 간격 조정*/
 }
 
-
-.icon-kakao {
-  background: url(../sprites/kakao_size40px.png) no-repeat;
-  background-size: 40px 40px;
-}
 .icon-line {
   background: url(../sprites/line_size40px.png) no-repeat;
   background-size: 40px 40px;
@@ -353,9 +368,7 @@ input:checked + .slider:before {
 .sns-icons-container .sns-color-telegram {
   background-color: #26a8d9;
 }
-.sns-icons-container .sns-color-kakao {
-  background-color: #fbe300;
-}
+
 
 
 

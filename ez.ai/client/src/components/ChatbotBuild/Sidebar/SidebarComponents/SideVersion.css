@@ -1,86 +1,88 @@
 .sidebar-history-recent-list {
-    padding : 5px 0;
+  padding: 5px 0;
 }
 
-
-    /* 사이드바 버전관리 - 제목 css */
+/* 사이드바 버전관리 - 제목 css */
 .sidebar-history-recent-title {
-    padding : 10px 0;
-    border-top : 1px solid #999;
-    border-bottom : 1px solid #999;
+  padding: 10px 0;
+  border-top: 1px solid #999;
+  border-bottom: 1px solid #999;
 }
 
 .sidebar-history-recent-title .sidebar-history-recent-title-text {
-    padding : 5px 0;
-    font-weight: bold;
+  padding: 5px 0;
+  font-weight: bold;
 }
 
 .sidebar-history-recent-title .sidebar-history-recent-title-caution {
-    font-size : 10px;
-    color : #999;
+  font-size: 10px;
+  color: #999;
 }
-
 
 /* 사이드바 버전관리 - 박스 css */
+.sidebar-history-deploy {
+  background-color: red;
+}
 .sidebar-history-box {
-    padding : 15px 0;
-    border-bottom: 1px solid #ddd;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.sidebar-history-box .sidebar-history-contents, .sidebar-history-box .sidebar-history-btns {
-    width : 100%;
-    height : 40px;
-    padding: 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.sidebar-history-box .sidebar-history-contents,
+.sidebar-history-box .sidebar-history-btns {
+  width: 100%;
+  height: 40px;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .sidebar-history-text {
-    height:20px;
-    font-weight: bold;
-    max-width: 230px;
-    overflow-x: auto;
-    overflow-y: hidden;
+  height: 20px;
+  font-weight: bold;
+  max-width: 230px;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .sidebar-history-time {
-    font-size : 12px;
-    color : #ccc;
+  font-size: 12px;
+  color: #ccc;
 }
 
 .sidebar-history-btns .sidebar-history-favorite {
-    width : 20px;
-    height : 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .sidebar-history-favorite .fa-star {
-    color : #ccc;
-    cursor: pointer;
+  color: #ccc;
+  cursor: pointer;
 }
 
 .sidebar-history-button {
-    margin : 0 2px;
-    border : 0;
-    padding : 5px 10px;
-    cursor: pointer;
-    outline : none;
-    transition: .2s all;
+  margin: 0 2px;
+  border: 0;
+  padding: 5px 10px;
+  cursor: pointer;
+  outline: none;
+  transition: 0.2s all;
 }
 
 .sidebar-history-btn-load:hover {
-    background-color: #7fbdbd;
-    color : #eee
+  background-color: #7fbdbd;
+  color: #eee;
 }
 
 .sidebar-history-btn-delete:hover {
-    background-color: darkred;
-    color : #eee;
+  background-color: darkred;
+  color: #eee;
 }

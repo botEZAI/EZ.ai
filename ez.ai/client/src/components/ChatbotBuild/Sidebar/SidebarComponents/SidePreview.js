@@ -18,7 +18,8 @@ const SidePreview = (props) => {
 
   const { currentChatbot } = useSelector((state) => state.chatbot);
   const [message, setMessage] = useState("");
-
+  const [keyboard, setKeyboard] = useState("");
+  const [fixedMenu, setFixedMenu] = useState([]);
   const onChangeMessage = e => {
       setMessage(e.target.value)
   }
@@ -52,13 +53,11 @@ const SidePreview = (props) => {
         );
       else if (c.type == "list")
         return (
-          <div
-            className={`preview-receive ${props.activePlatformTab} ${props.activePlatformTab}-list`}
-          >
+          <div>
             <div className={`${props.activePlatformTab}-list-question`}>
               {c.listContent.question}
             </div>
-            {c.listContent.elem.map((i) => {
+            {/* {c.listContent.elem.map((i) => {
               return (
                 <div
                   className={`preview-button ${props.activePlatformTab}-list-elem`}
@@ -67,8 +66,10 @@ const SidePreview = (props) => {
                   {i}
                 </div>
               );
-            })}
-            {currentTime("outer")}
+            })} */}
+            {/* {currentTime("outer")} */}
+            {setFixedMenu(c.listContent.elem)}
+            {setKeyboard(props.activePlatformTab)}
           </div>
         );
       else if (c.type == "image")
@@ -158,25 +159,6 @@ const SidePreview = (props) => {
   );
   return (
     <>
-      {props.activePlatformTab == "platform-kakao" ? (
-        <div className="preview-container side-kakao">
-          <div className="preview-header"></div>
-          <div className="preview-contents">
-            <div class="datetime">
-              <Clock
-                format={"YYYY년 MM월 DD일 " + dd + "요일"}
-                ticking={true}
-                timezone={"Asia/Seoul"}
-              />
-            </div>
-          </div>
-          <div className="preview-footer">
-            <div class="preview-input input-kakao">
-              <input type="text" placeholder="Say Something" />
-            </div>
-          </div>
-        </div>
-      ) : null}
       {props.activePlatformTab == "platform-line" ? (
         <div className="preview-container side-line">
           <div className="preview-header"></div>
@@ -262,6 +244,22 @@ const SidePreview = (props) => {
               </div>
             </div>
           </div>
+          {keyboard === "platform-telegram" ?
+            <div className="preview-keyboard">
+              {fixedMenu.map((i) => {
+                return (
+                  <div
+                    className={`preview-button ${props.activePlatformTab}-list-elem`}
+                    onClick={() => moveKeyword(i)}
+                  >
+                    {i}
+                  </div>
+                );
+              })}
+            </div>
+            :
+            null
+          }
         </div>
       ) : null}
     </>

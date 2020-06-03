@@ -128,8 +128,11 @@ time {
 }
 
 .preview-button {
+  display: inline-flex;
   background-color: darkgray;
-  margin: 5px;
+  margin:5px 5px 1px 5px;
+  width:163px;
+  height: 40px;
 }
 
 

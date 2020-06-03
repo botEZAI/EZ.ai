@@ -6,6 +6,8 @@ export const initialState = {
   isDeleteSuccess: false, //삭제 성공여부
   history: null, //현재 만들고있는 챗봇의 버전
   isRecoverSuccess: false, //복구 성공여부
+  isDeploySuccess: false, //배포 성공여부
+  deploy: false,
 };
 
 export const ADD_CHATBOT_REQUEST = "ADD_CHATBOT_REQUEST";
@@ -48,6 +50,12 @@ export const RECOVER_HISTORY_SUCCESS_RESET = "RECOVER_HISTORY_SUCCESS_RESET";
 export const REMOVE_HISTORY_REQUEST = "REMOVE_HISTORY_REQUEST";
 export const REMOVE_HISTORY_SUCCESS = "REMOVE_HISTORY_SUCCESS";
 export const REMOVE_HISTORY_FAILURE = "REMOVE_HISTORY_FAILURE";
+
+export const DEPLOY_HISTORY_REQUEST = "DEPLOY_HISTORY_REQUEST";
+export const DEPLOY_HISTORY_SUCCESS = "DEPLOY_HISTORY_SUCCESS";
+export const DEPLOY_HISTORY_FAILURE = "DEPLOY_HISTORY_FAILURE";
+
+export const DEPLOY_HISTORY_SUCCESS_RESET = "DEPLOY_HISTORY_SUCCESS_RESET";
 
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -212,7 +220,6 @@ export default (state = initialState, action) => {
       };
     }
     case REMOVE_HISTORY_SUCCESS: {
-      console.log(JSON.stringify(action.data));
       return {
         ...state,
         history: JSON.stringify(action.data),
@@ -221,6 +228,29 @@ export default (state = initialState, action) => {
     case REMOVE_HISTORY_FAILURE: {
       return {
         ...state,
+      };
+    }
+    case DEPLOY_HISTORY_REQUEST: {
+      return {
+        ...state,
+      };
+    }
+    case DEPLOY_HISTORY_SUCCESS: {
+      return {
+        ...state,
+        history: JSON.stringify(action.data),
+        isDeploySuccess: true,
+      };
+    }
+    case DEPLOY_HISTORY_FAILURE: {
+      return {
+        ...state,
+      };
+    }
+    case DEPLOY_HISTORY_SUCCESS_RESET: {
+      return {
+        ...state,
+        isDeploySuccess: false,
       };
     }
 

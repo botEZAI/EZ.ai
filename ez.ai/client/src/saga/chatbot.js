@@ -35,6 +35,9 @@ import {
   REMOVE_HISTORY_REQUEST,
   REMOVE_HISTORY_SUCCESS,
   REMOVE_HISTORY_FAILURE,
+  DEPLOY_HISTORY_REQUEST,
+  DEPLOY_HISTORY_SUCCESS,
+  DEPLOY_HISTORY_FAILURE,
 } from "../reducer/chatbot";
 
 //챗봇 등록
@@ -279,6 +282,33 @@ function* watchRemoveHistory() {
   yield takeEvery(REMOVE_HISTORY_REQUEST, removeHistory);
 }
 
+//챗봇 기록 배포
+function deployHistoryAPI(chatbotData) {
+  return axios.post("api/chatbotdata/history/deploy", chatbotData, {
+    withCredentials: true,
+  });
+}
+
+function* deployHistory(action) {
+  try {
+    const result = yield call(deployHistoryAPI, action.data);
+    yield put({
+      type: DEPLOY_HISTORY_SUCCESS,
+      data: result.data,
+    });
+  } catch (e) {
+    console.error(e);
+    yield put({
+      type: DEPLOY_HISTORY_FAILURE,
+      error: e,
+    });
+  }
+}
+
+function* watchDeployHistory() {
+  yield takeEvery(DEPLOY_HISTORY_REQUEST, deployHistory);
+}
+
 export default function* userSaga() {
   yield all([
     fork(watchLoadChatbot),
@@ -290,5 +320,6 @@ export default function* userSaga() {
     fork(watchLoadHistory),
     fork(watchRecoverHistory),
     fork(watchRemoveHistory),
+    fork(watchDeployHistory),
   ]);
 }

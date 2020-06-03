@@ -13,9 +13,10 @@ import { useDispatch, useSelector } from "react-redux";
 
 const ChatbotBuild = (props) => {
   const dispatch = useDispatch();
-  const { currentChatbot, currentCategories } = useSelector(
+  const { currentChatbot, currentCategories, chatbotList } = useSelector(
     (state) => state.chatbot
   );
+  const { user } = useSelector((state) => state.user);
   const [activeTab, setActiveTab] = useState("basic");
   const [keyword, setKeyword] = useState("");
   const [keywordList, setKeywordList] = useState(["Welcome"]);
@@ -36,7 +37,6 @@ const ChatbotBuild = (props) => {
 
   /* 선택한 요소 플랫폼별 사용가능 여부 */
   const [availableIcon, setAvailableIcon] = useState([
-    { name: "kakao", use: false },
     { name: "line", use: false },
     { name: "facebook", use: false },
     { name: "telegram", use: false },
@@ -98,6 +98,17 @@ const ChatbotBuild = (props) => {
     const categoriesData = currentCategories && currentCategories;
     categoriesData && setKeywordCategory(categoriesData);
   }, []);
+  //로그인 여부
+  useEffect(() => {
+    if (!chatbotList) {
+      alert("로그인해 주세요");
+      props.history.push("/login");
+    }
+    if (!currentChatbot) {
+      alert("챗봇을 선택해 주세요");
+      props.history.push("/chatbotlist");
+    }
+  }, [currentChatbot]);
 
   return (
     <>

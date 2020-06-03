@@ -1,9 +1,11 @@
 import React, { useCallback, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { withRouter } from "react-router-dom";
 import {
   ADD_CHATBOT_REQUEST,
   LOAD_CHATBOT_REQUEST,
 } from "../../reducer/chatbot";
+import { LOAD_USER_REQUEST } from "../../reducer/user";
 import "./ChatbotList.css";
 import InputBot from "./InputBot/InputBot";
 import Popup from "./Popup/Popup";
@@ -11,11 +13,12 @@ import CheckPopup from "./Popup/CheckPopup";
 import BotList from "./BotList";
 import axios from "axios";
 
-
-const ChatbotList = () => {
+const ChatbotList = (props) => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
-  const { currentCategories } = useSelector((state) => state.chatbot);
+  const { currentCategories, chatbotList } = useSelector(
+    (state) => state.chatbot
+  );
   useEffect(() => {
     if (user) {
       dispatch({
@@ -43,7 +46,6 @@ const ChatbotList = () => {
     { platform: "line", created: false, deploy: false },
     { platform: "facebook", created: false, deploy: false },
     { platform: "telegram", created: false, deploy: false },
-    { platform: "kakao", created: false, deploy: false },
   ]);
   const [tokenInfo, setTokenInfo] = useState([]);
   const [botToken, setBotToken] = useState({ token: "" });
@@ -59,12 +61,11 @@ const ChatbotList = () => {
       { platform: "line", connect: false, tokenData: null },
       { platform: "facebook", connect: false, tokenData: null },
       { platform: "telegram", connect: false, tokenData: null },
-      { platform: "kakao", connect: false, tokenData: null },
     ]);
 
     let openPopup = {
       showPopup1: true,
-      showPopup2: false
+      showPopup2: false,
     };
     setPopup(openPopup);
   };
@@ -74,7 +75,7 @@ const ChatbotList = () => {
     console.log(bots);
     setPopup({
       showPopup1: false,
-      showPopup2: false// 팝업창 닫힘
+      showPopup2: false, // 팝업창 닫힘
     });
 
     let dataObject = {
@@ -117,14 +118,13 @@ const ChatbotList = () => {
   const nextPopup = (nextVal) => {
     const nextPopup = {
       showPopup1: false,
-      showPopup2: false
+      showPopup2: false,
     };
 
     if (nextVal === "check") {
       nextPopup.showPopup1 = false;
       nextPopup.showPopup2 = true;
-    } 
-    else if (nextVal === "first") {
+    } else if (nextVal === "first") {
       nextPopup.showPopup1 = true;
       nextPopup.showPopup2 = false;
     }
@@ -135,7 +135,7 @@ const ChatbotList = () => {
   const closePopup = () => {
     setPopup({
       showPopup1: false,
-      showPopup2: false
+      showPopup2: false,
     });
   };
 
@@ -205,4 +205,4 @@ const ChatbotList = () => {
   );
 };
 
-export default ChatbotList;
+export default withRouter(ChatbotList);
