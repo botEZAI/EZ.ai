@@ -12,8 +12,8 @@ const TextPreview = ({
   return(
       <div className="main-preview">
         <div
-          className={now === i ? "main-content main-textbox now"
-                              : "main-content main-textbox"}
+          className={now === i ? "main-content textbox-telegram now"
+                              : "main-content textbox-telegram"}
           key={v.content + i}
           style={{padding:'2%'}}
           onClick={() => {
