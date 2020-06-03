@@ -1,4 +1,4 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
 
 //라인 연결 해야함
@@ -102,10 +102,9 @@ async function handleText(message, replyToken, source) {
         //duration => 필수 정보 => Length of audio file (milliseconds)
        }
 });
+   //이미지 테스트
     const url_path = "https://botezai.com/static/media/main-logo-1.0a4edd41.png";
     msg_array.push({type: "image", originalContentUrl:url_path, previewImageUrl: url_path });
-
-
     return client.replyMessage(replyToken, msg_array)
         .then(() => {
         console.log("출력통과");
@@ -119,5 +118,5 @@ async function handleText(message, replyToken, source) {
 
 
    
-
+module.exports = router;
   
