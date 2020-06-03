@@ -152,6 +152,7 @@
 .main-textbox, .main-imgbox{/*== Basic > img, text ==*/
   width:fit-content;
   height:fit-content;
+  min-width:80px;
 }
 
 
