@@ -39,6 +39,7 @@
 
 /* 프리뷰 메인 가운데 section */
 .main-contents{
+  display:flex;
   height:100%;
   background-size: 100% 100%;
   border: 1px solid #999;
@@ -73,7 +74,7 @@
 .main-contents::-webkit-scrollbar-button {display: none;}
 
 
-.main-keyword-title{ /*== 키워드 말풍선 ==*/
+.main-keyword-title{
   position:relative;
   background-color:#e5ffd0;
   border:1px solid #e5ffd0;
@@ -82,7 +83,8 @@
   width:fit-content;
   word-break:break-all;
   float:right;
-  margin:3%;
+
+  margin: 15px 15px 15px auto;
 }
 
 
@@ -114,7 +116,7 @@
   line-height:20px;
   white-space:pre-wrap;
   border : 2px solid #eee;
-  border-radius: 10px 10px 10px 10px;
+  border-radius: 10px;
   text-align: left;
   clear:right;/*main-keyword-title의 float를 감지하지 않기 위함*/
   min-width:10%;

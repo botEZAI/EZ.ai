@@ -8,6 +8,7 @@ import DefaultPreview from "./DefaultPreview/DefaultPreview";
 import TelegramPreview from "./TelegramPreview/TelegramPreview";
 import LinePreview from "./LinePreview/LinePreview";
 import FacebookPreview from "./FacebookPreview/FacebookPreview";
+// import Slider from "./Slider";
 
 const Preview = ({
   mainKeyword,
@@ -160,7 +161,17 @@ const Preview = ({
         onClick={ClickedBuilderMain}
       >
       {theme === "default" ? (
-        <DefaultPreview />
+        <DefaultPreview 
+          changeAvailableIcon={changeAvailableIcon}
+          index={index}
+          keywordObject={keywordObject}
+          now={now}
+          onDelete={onDelete}
+          setClickedMainInput={setClickedMainInput}
+          setKeywordObject={setKeywordObject}
+          setVirtualKeyboard={setVirtualKeyboard}
+          setNow={setNow}
+        />
       )
       : theme == "telegram" ? (
         <TelegramPreview 
@@ -176,12 +187,43 @@ const Preview = ({
         />
       )
       : theme == "line" ? (
-        <LinePreview />
+        <LinePreview 
+          changeAvailableIcon={changeAvailableIcon}
+          index={index}
+          keywordObject={keywordObject}
+          now={now}
+          onDelete={onDelete}
+          setClickedMainInput={setClickedMainInput}
+          setKeywordObject={setKeywordObject}
+          setVirtualKeyboard={setVirtualKeyboard}
+          setNow={setNow}
+        />
       )
       : theme == "facebook" ? (
-        <FacebookPreview />
+        <FacebookPreview 
+          changeAvailableIcon={changeAvailableIcon}
+          index={index}
+          keywordObject={keywordObject}
+          now={now}
+          onDelete={onDelete}
+          setClickedMainInput={setClickedMainInput}
+          setKeywordObject={setKeywordObject}
+          setVirtualKeyboard={setVirtualKeyboard}
+          setNow={setNow}
+        />
       )
       : null}
+      {/* {theme !== "telegram"? 
+        <Slider 
+          keywordObject={keywordObject} 
+          index={index}
+          now={now}
+          clickedMainInput={clickedMainInput}
+          currentInput={currentInput}
+          curListCount={curListCount}
+        />
+        : null
+       } */}
 
       </div>
       {theme === "telegram" ?
