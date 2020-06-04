@@ -90,17 +90,6 @@ const Guide = () => {
 
     const [selectedG, setSelectedG] = useState(-1);
 
-    useEffect(() => {
-        const markdownPath = require("./Guide/step2/telegramConnect.md")
-
-        fetch(markdownPath)
-            .then(response => {
-                return response.text()
-            })
-            .then(text => {
-                this.
-            })
-    })
     return (
         <>
             <div className="guideline-contents">

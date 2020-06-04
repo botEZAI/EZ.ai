@@ -192,7 +192,10 @@
 
 
 .list-elem-wrapper{
-  display:inline-flex;
+  position: relative;
+  display:flex;
+  justify-content:center;
+  align-items:center;
   height: 36px;
   padding: 5px 5px 5px 10px;
   margin : 5px;
@@ -215,9 +218,10 @@
 
 
 .list-elem-wrapper .clear-button{
+  position : absolute;
   color: #808080;
   cursor:pointer;
-  margin-left:auto;
+  right: 5px;
 }
 
 
