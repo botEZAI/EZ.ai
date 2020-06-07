@@ -255,14 +255,20 @@ const SidePreview = (props) => {
           {keyboard === "platform-telegram" ?
             <div className="preview-keyboard">
               {fixedMenu.map((i) => {
-                return (
-                  <div
-                    className={`preview-button ${props.activePlatformTab}-list-elem`}
-                    onClick={() => moveKeyword(i)}
-                  >
-                    {i}
-                  </div>
-                );
+                if(i==="")
+                {
+                  
+                }
+                else {
+                  return (
+                    <div
+                      className={`preview-button ${props.activePlatformTab}-list-elem`}
+                      onClick={() => moveKeyword(i)}
+                    >
+                      {i}
+                    </div>
+                  );
+                }
               })}
             </div>
             :
