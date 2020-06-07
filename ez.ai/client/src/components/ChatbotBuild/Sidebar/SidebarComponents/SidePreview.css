@@ -127,12 +127,20 @@ time {
   padding: 8px;
 }
 
+.preview-keyboard{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+}
 .preview-button {
-  display: inline-flex;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: darkgray;
   margin:5px 5px 1px 5px;
-  width:163px;
-  height: 40px;
+  height:40px;
+  font-weight: 900;
+  border-radius: 3px;;
 }
 
 
