@@ -23,8 +23,6 @@ const TemplateStatus = (
     return (
         <div className="template-status">
             <div className="template-status-tab">
-                <div className={`template-status-tab-btn ${templateTab === "btn" && "tactive"}`} onClick={() => changeTemTab("btn")}>버튼 템플릿</div>
-                <div className={`template-status-tab-btn ${templateTab === "list" && "tactive"}`} onClick={() => changeTemTab("list")}>리스트 템플릿</div>
                 <div className={`template-status-tab-btn ${templateTab === "caro" && "tactive"}`} onClick={() => changeTemTab("caro")}>Carousel 템플릿</div>
                 <div className={`template-status-tab-btn ${templateTab === "icaro" && "tactive"}`} onClick={() => changeTemTab("icaro")}>Image Carousel 템플릿</div>
             </div>

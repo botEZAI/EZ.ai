@@ -11,6 +11,8 @@ import PersistentStatus from "./AdvanceStatus/PersistentStatus";
 import "./StatusPopups/EmogiPopup.css";
 import ImogiPopup from "./StatusPopups/EmogiPopup";
 import TemplateStatus from "./AdvanceStatus/TemplateStatus";
+import ButtonTemplateStatus from "./AdvanceStatus/Templates/ButtonTemplateStatus";
+import ListTemplateStatus from "./AdvanceStatus/Templates/ListTemplateStatus";
 
 const ToolStatus = ({
   mainKeyword,
@@ -178,8 +180,32 @@ const ToolStatus = ({
               curListCount={curListCount}
               setCurListCount={setCurListCount}
             />
-          ) : currentInput.type === "template" ||
-            clickedMainInput.type === "template" ? (
+          ) : currentInput.type === "btn_template" ||
+            clickedMainInput.type === "btn_template" ? (
+                <ButtonTemplateStatus
+                    currentContent={currentContent}
+                    setKeywordObject={setKeywordObject}
+                    keywordObject={keywordObject}
+                    now={now}
+                    index={index}
+                    listCount={listCount}
+                    curListCount={curListCount}
+                    setCurListCount={setCurListCount}
+                />
+            ) : currentInput.type === "list_template" ||
+            clickedMainInput.type === "list_template" ? (
+                <ListTemplateStatus
+                    currentContent={currentContent}
+                    setKeywordObject={setKeywordObject}
+                    keywordObject={keywordObject}
+                    now={now}
+                    index={index}
+                    listCount={listCount}
+                    curListCount={curListCount}
+                    setCurListCount={setCurListCount}
+                />
+            ) : currentInput.type === "carousel" ||
+            clickedMainInput.type === "carousel" ? (
                 <TemplateStatus
                     currentContent={currentContent}
                     setKeywordObject={setKeywordObject}
