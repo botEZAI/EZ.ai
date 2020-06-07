@@ -80,15 +80,20 @@ const ToolStatus = ({
               <>
                 <span>고정 메뉴</span>
               </>
-            ) : currentInput.type === "template" ||
-            clickedMainInput.type === "template" ? (
+            ) : currentInput.type === "btn_template" ||
+            clickedMainInput.type === "btn_template" ? (
                 <>
-                  <span>템플릿</span>
+                  <span>버튼 템플릿</span>
                 </>
-            ) : currentInput.type === "coupon" ||
-            clickedMainInput.type === "coupon" ? (
+            ) : currentInput.type === "list_template" ||
+            clickedMainInput.type === "list_template" ? (
                 <>
-                  <span>쿠폰</span>
+                  <span>리스트 템플릿</span>
+                </>
+            ) : currentInput.type === "carousel" ||
+            clickedMainInput.type === "carousel" ? (
+                <>
+                  <span>carousel 템플릿</span>
                 </>
             ) : currentInput.type === "sticker" ||
               clickedMainInput.type === "sticker" ? (

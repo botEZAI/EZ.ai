@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import produce from "immer";
-import KeywordPopUp from "../../StatusPopups/KeywordPopUp";
+import "./ButtonTemplateStatus.css";
 
 
 
@@ -33,20 +33,50 @@ const ButtonTemplateStatus = (
     };
 
     return (
-        <div className="status-input status-list">
-            <textarea
-                placeholder="작성하고자 하는 텍스트를 적어주세요"
-                /*
-                value={keywordObject[index].contents[now].listContent.question || ""}
-                onChange={(e) => {
-                    setKeywordObject(
-                        produce(keywordObject, (draft) => {
-                            draft[index].contents[now].listContent.question =
-                                e.target.value;
-                        })
-                    );
-                }} */
-            ></textarea>
+        <div className="btn-template-status">
+            <div className="btn-template-size">
+                <div className="btn-template-size-rectangle">
+                    <i className="far fa-square"></i>
+                </div>
+                <div className="btn-template-size-sqaure">
+                    <i className="far fa-square"></i>
+                </div>
+            </div>
+            <div className="btn-template-status-main">
+                <div className="btn-template-thumbnail">
+                    <i className="fas fa-upload"></i>
+                </div>
+                <div className="btn-template-contents">
+                    <div className="btn-template-title">타이틀</div>
+                    <div className="btn-template-text">텍스트입니다</div>
+                    <div className="btn-template-actions">
+                        <div className="btn-template-action">
+                            <div className="btn-action-label">첫번째 액션</div>
+                            <div className="btn-action-remove">
+                                <i className="fas fa-minus-circle"></i>
+                            </div>
+                        </div>
+                        <div className="btn-template-action">
+                            <div className="btn-action-label">2번째 액션</div>
+                            <div className="btn-action-remove">
+                                <i className="fas fa-minus-circle"></i>
+                            </div>
+                        </div>
+                        <div className="btn-template-action">
+                            <div className="btn-action-label">3번째 액션</div>
+                            <div className="btn-action-remove">
+                                <i className="fas fa-minus-circle"></i>
+                            </div>
+                        </div>
+                        <div className="btn-action-add">
+                            <div className="add-btn">
+                                action 추가
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
 
