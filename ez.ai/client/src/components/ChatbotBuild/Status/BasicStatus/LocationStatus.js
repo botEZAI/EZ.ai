@@ -10,9 +10,18 @@ const LocationStatus = ({
   index,
 }) => {
   return (
-    <>
-      <div className="status-input status-location">
-        <p>임시 - 추후 지도 API로 연동</p>
+    <div className="status-input status-location">
+      <input
+        className="status-location-search"
+        placeholder="주소를 입력하세요."
+      />
+      <GoogleMapPresenter
+        keywordObject={keywordObject}
+        setKeywordObject={setKeywordObject}
+        index={index}
+        now={now}
+      />
+      <div className="status-input status-location-input">
         <input
           placeholder="장소 이름을 적어주세요"
           value={keywordObject[index].contents[now].title || ""}
@@ -47,14 +56,7 @@ const LocationStatus = ({
           }}
         />
       </div>
-      <GoogleMapPresenter
-        keywordObject={keywordObject}
-        setKeywordObject={setKeywordObject}
-        index={index}
-        now={now}
-      />
-      ;
-    </>
+    </div>
   );
 };
 
