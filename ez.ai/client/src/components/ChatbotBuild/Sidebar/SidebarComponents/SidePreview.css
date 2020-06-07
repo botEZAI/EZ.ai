@@ -129,8 +129,7 @@ time {
 
 .preview-keyboard{
   display:grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: repeat(2, 1fr);
 }
 .preview-button {
   display: flex;
@@ -142,7 +141,9 @@ time {
   font-weight: 900;
   border-radius: 3px;;
 }
-
+.preview-button:nth-child(2n+1):last-child  {
+  grid-column: span 2;
+}
 
 .preview-send .nowtime_outer time{
   align-self: flex-end;
