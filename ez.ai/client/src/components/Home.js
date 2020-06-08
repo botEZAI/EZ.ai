@@ -32,7 +32,7 @@ const Home = () => {
           <p>단 몇 분만에,</p>
           <p>그 어떤 개발지식 없이,</p>
           <p>고객의 모든 요구사항을 담아 제작하는 맞춤형 챗봇</p>
-          <p>어떤 모습일지 궁금하지 않으신가요?</p>
+          <p>this paragraph</p>
         </div>
       </div>
       <div className="main-wonder__column">
