@@ -12,7 +12,7 @@ import Register from "./components/Register";
 import ChatbotBuild from "./components/ChatbotBuild/ChatbotBuild";
 import Footer from "./components/Footer";
 import Profile from "./components/Profile";
-
+import Object from "./components/Object";
 const App = ({ location }) => {
   return (
     <div className="App">
@@ -29,6 +29,7 @@ const App = ({ location }) => {
               <Route path="/login" component={Login} />
               <Route path="/profile" component={Profile} />
               <Route path="/register" component={Register} />
+              <Route path="/object" component={Object} />
             </Switch>
         </div>
       </section>
