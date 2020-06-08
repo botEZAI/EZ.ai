@@ -53,10 +53,6 @@ const Preview = ({
       .post("/api/chatbotbuild", { nowKeyword, keywordObject })
       .then((res) => console.log(res));
   };
-  //
-  const ClickedBuilderMain = () => {
-    setVirtualKeyboard(false);
-  };
 
   // 아이콘 호환여부 설정
   const useableInfo = [
@@ -158,7 +154,6 @@ const Preview = ({
         )))
         }
         ref={contentRef}
-        onClick={ClickedBuilderMain}
       >
       {theme === "default" ? (
         <DefaultPreview 
