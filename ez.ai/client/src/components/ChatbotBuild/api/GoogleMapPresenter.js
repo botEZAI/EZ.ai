@@ -27,7 +27,7 @@ export const GoogleMapPresenter = ({
         <Map
           ref={mapRef}
           google={google}
-          zoom={7}
+          zoom={11}
           initialCenter={{
             lat:
               (keywordObject[index].contents[now] &&
@@ -38,7 +38,7 @@ export const GoogleMapPresenter = ({
                 keywordObject[index].contents[now].longtitude) ||
               126.971315,
           }}
-          onClick={onClickMap}
+          // onClick={onClickMap}
         >
           <Marker
             position={{
