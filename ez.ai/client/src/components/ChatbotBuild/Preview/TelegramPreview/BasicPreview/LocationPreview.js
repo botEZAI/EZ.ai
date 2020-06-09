@@ -1,5 +1,6 @@
 import React from "react";
 import GoogleMapPresenter from "../../../api/GoogleMapPresenter";
+import produce from "immer";
 
 const LocationPreview = ({
   v,
@@ -30,12 +31,47 @@ const LocationPreview = ({
         }}
       >
         {" "}
-        <div>
+        {/* <div>
           <GoogleMapPresenter
             keywordObject={keywordObject}
             setKeywordObject={setKeywordObject}
             index={index}
             now={now}
+          />
+        </div> */}
+        <div>
+          <input
+            placeholder="장소 이름을 적어주세요"
+            value={v.title || ""}
+            onChange={(e) => {
+              setKeywordObject(
+                produce(keywordObject, (draft) => {
+                  draft[index].contents[now].title = e.target.value;
+                })
+              );
+            }}
+          />
+          <input
+            placeholder="latitude(위도)"
+            value={v.latitude || ""}
+            onChange={(e) => {
+              setKeywordObject(
+                produce(keywordObject, (draft) => {
+                  draft[index].contents[now].latitude = e.target.value;
+                })
+              );
+            }}
+          />
+          <input
+            placeholder="longtitude(경도)"
+            value={v.longtitude || ""}
+            onChange={(e) => {
+              setKeywordObject(
+                produce(keywordObject, (draft) => {
+                  draft[index].contents[now].longtitude = e.target.value;
+                })
+              );
+            }}
           />
         </div>
       </div>
