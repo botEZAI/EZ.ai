@@ -63,10 +63,6 @@ const PersistentStatus = ({
   return (
     <div className="status-list-main">
       <div className="status-input status-list">
-        <textarea
-          placeholder="작성하고자 하는 텍스트를 적어주세요"
-          value={keywordObject[index].contents[now].listContent.question || ""}
-        ></textarea>
         <div className="list-count">
           <span>선택지 개수 : </span>
           {listCount[5].map((i) => (
