@@ -11,7 +11,11 @@ article {
 article > div {
     height: 100%;
 }
-
+.hide{
+  line-height: 0;
+  font-size:1px;
+  overflow:hidden;
+}
 
 /* 1번째 아티클  - main-about */
 .main-about {
@@ -23,11 +27,16 @@ article > div {
 }
 
 .main-about-sns-image {
-    background-color: #eee;
-    width : 100%;
-    height: 400px;
+  width : 100%;
+  height: 400px;
+}
+.human{
+  width:350px;
 }
 
+.chatbot{
+  width:450px;
+}
 .main-about-btns {
     width : 100%;
     height: 50px;
@@ -56,7 +65,12 @@ article > div {
     color : #999;
 }
 
-
+.main-about-image h1{
+  text-align: right;
+  font-weight: 900;
+  font-size:50px;
+  
+}
 
 /* 아티클 2 - main-wonder */
 .main-wonder {
@@ -74,6 +88,7 @@ article > div {
 }
 .main-wonder-title h1 {
     font-size : 45px;
+    font-weight: 900;
 }
 
 .main-wonder-description p {
@@ -86,6 +101,19 @@ article > div {
     width : 600px;
     height : 400px;
     background-color: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.main-wonder-promotion i {
+    color : #eee;
+    font-size:120px;
+    transition-property: color;
+    transition-duration:0.2s;
+}
+.main-wonder-promotion i:hover{
+    color : white;
+    cursor: pointer;
 }
 
 .main-wonder-btn {
@@ -125,7 +153,6 @@ article > div {
 }
 
 .main-what-sns-image {
-    background-color: #eee;
     width : 100%;
     height: 400px;
     display: flex;
@@ -139,12 +166,15 @@ article > div {
  }
 
 .main-what-content {
-    margin-bottom: 15px;
+    font-size:18px;
+    line-height: 40px;
 }
 .main-what-content:first-child {
     font-weight : bold;
     font-size : 25px;
     line-height : 40px;
+    margin-top:40px;
+    margin-bottom:20px;
 }
 
 
@@ -179,7 +209,8 @@ article > div {
 }
 
 .main-how-content {
-    line-height : 25px;
+    line-height : 50px;
+    font-size:20px;
 }
 
 
@@ -208,7 +239,7 @@ article > div {
 }
 
 .main-sns-logo {
-    background-color: #eee;
+    /* background-color: #eee; */
     height : 100px;
     width: 100px;
 }
@@ -217,8 +248,14 @@ article > div {
     width : 100%;
     height :80px;
 }
-
+.main-sns-logo-image i{
+  font-size : 65px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .main-sns-logo-name {
+    font-weight: 900;
     display: flex;
     justify-content: center;
     align-items: center;
