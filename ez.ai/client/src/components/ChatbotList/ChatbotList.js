@@ -15,7 +15,7 @@ import axios from "axios";
 
 const ChatbotList = (props) => {
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.user);
+  const { user, isLoadUserFail } = useSelector((state) => state.user);
   const { currentCategories, chatbotList } = useSelector(
     (state) => state.chatbot
   );
@@ -26,6 +26,11 @@ const ChatbotList = (props) => {
       });
     }
   }, [user]);
+  useEffect(() => {
+    if (isLoadUserFail) {
+      props.history.push("/");
+    }
+  }, [isLoadUserFail]);
   // 봇 state
   const [bots, setBots] = useState([
     {
