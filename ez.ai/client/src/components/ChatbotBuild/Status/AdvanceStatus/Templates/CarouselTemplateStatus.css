@@ -1,0 +1,113 @@
+.carosuel-template-status {
+    position: absolute;
+    left : 0;
+    top : 0;
+    width : 100%;
+    height : 100%;
+    padding : 0 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-x : scroll;
+}
+
+.carosuel-template-status .btn-template-status {
+
+    min-width : 300px;
+    min-height : 525px;
+    margin-right: 10px;
+}
+
+.carosuel-template-status .btn-template-status-main-add {
+    height : 550px;
+    margin-right: 10px;
+    padding : 20px;
+    border : 1px solid #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+
+}
+
+
+
+/* 이미지 슬라이드 css */
+.img-carosuel-template-status {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-x: scroll;
+}
+
+.img-carosuel-template-status-content {
+    background-color: #eee;
+    width : 300px;
+    height : 320px;
+    margin-right : 10px;
+}
+
+.img-carosuel-template-control {
+    height : 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.img-carosuel-template-control > div {
+    height: 100%;
+    padding: 0 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-carosuel-template-control i {
+    color: #ddd;
+}
+
+.img-carosuel-template-main {
+
+    background-color: white;
+    height : 300px;
+    width : 300px;
+    border-radius: 10px;
+}
+
+.img-carosuel-template-main .img-carosuel-template-img {
+    position: relative;
+    width : 100%;
+    height : 100%;
+}
+
+.img-carosuel-template-action {
+    background-color: rgba(99,99,99,50);
+    width : 150px;
+    height : 50px;
+    border-radius: 25px;
+    position : absolute;
+    left : 75px;
+    top : 220px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: white;
+}
+
+.img-carosuel-template-status-content-add {
+    height : 320px;
+    margin-right: 10px;
+    padding : 20px;
+    border : 1px solid #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}

@@ -19,8 +19,8 @@ const ToolAdvance = ({
     const useableInfo = [
         {name : "list", value : [0,0,0]},
         {name : "btn_template", value : [0,0,1]},
-        {name : "list_template", value : [0,0,1]},
         {name : "carousel", value : [0,0,1]},
+        {name : "img_carousel", value : [0,0,1]},
         {name : "sticker", value : [0,0,1]},
     ]
 
@@ -98,17 +98,6 @@ const ToolAdvance = ({
             <i className="fas fa-th-large"></i>
             버튼<br />템플릿
         </div>
-
-        <div
-            className="tool-basic tool-basic-text"
-            onClick={() =>{
-                onClickTool("list_template");
-                setNow(length + 1);
-            }}
-        >
-            <i className="fas fa-indent"></i>
-            리스트<br />템플릿
-        </div>
         <div
             className="tool-basic tool-basic-text"
             onClick={() =>{
@@ -117,9 +106,18 @@ const ToolAdvance = ({
             }}
         >
             <i className="far fa-clone"></i>
-            Carousel<br />템플릿
+            슬라이드
         </div>
-
+        <div
+            className="tool-basic tool-basic-text"
+            onClick={() =>{
+                onClickTool("img_carousel");
+                setNow(length + 1);
+            }}
+        >
+            <i className="far fa-images"></i>
+            이미지<br /> 슬라이드
+        </div>
 
       <div
         className="tool-basic tool-basic-text"

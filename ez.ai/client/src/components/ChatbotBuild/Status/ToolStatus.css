@@ -3,8 +3,8 @@
 /* tool status css */
 .tool-status {
   position: relative;
-  height: 70vh;
-  min-height: 560px;
+  height: 100vh;
+  min-height: 660px;
   border-top: 0.5px solid #d9d9d9;
   border-left: 0.5px solid #999;
   border-right: 0.5px solid #999;

@@ -59,9 +59,7 @@
   position : absolute;
   padding : 30px 10%;
   border-radius: 30px;
-  height: 85vh;
-  min-height: 800px;
-  max-height : 1400px;
+  height: 900px;
   background-color: #fff;
   display: flex;
   justify-content: center;

@@ -14,23 +14,6 @@ const ButtonTemplateStatus = (
     curListCount,
     setCurListCount,
 ) => {
-    const [showPopup, setShowPopup] = useState(false);
-    const [popNum, setPopNum] = useState("-1");
-
-
-    const toggleKeywordPopUp = (i, e) => {
-        setPopNum(i);
-        setShowPopup(!showPopup);
-    };
-
-    const changeListLength = (i) => {
-        setCurListCount(listCount[i - 1]);
-        setKeywordObject(
-            produce(keywordObject, (draft) => {
-                draft[index].contents[now].listContent.keywordLen = i;
-            })
-        );
-    };
 
     return (
         <div className="btn-template-status">

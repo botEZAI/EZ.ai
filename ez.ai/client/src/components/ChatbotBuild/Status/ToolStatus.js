@@ -10,9 +10,9 @@ import PersistentStatus from "./AdvanceStatus/PersistentStatus";
 
 import "./StatusPopups/EmogiPopup.css";
 import ImogiPopup from "./StatusPopups/EmogiPopup";
-import TemplateStatus from "./AdvanceStatus/TemplateStatus";
+import CarouselTemplateStatus from "./AdvanceStatus/Templates/CarouselTemplateStatus";
+import ImgCarouselTemplateStatus from "./AdvanceStatus/Templates/ImgCarouselTemplateStatus";
 import ButtonTemplateStatus from "./AdvanceStatus/Templates/ButtonTemplateStatus";
-import ListTemplateStatus from "./AdvanceStatus/Templates/ListTemplateStatus";
 
 const ToolStatus = ({
   mainKeyword,
@@ -85,15 +85,15 @@ const ToolStatus = ({
                 <>
                   <span>버튼 템플릿</span>
                 </>
-            ) : currentInput.type === "list_template" ||
-            clickedMainInput.type === "list_template" ? (
-                <>
-                  <span>리스트 템플릿</span>
-                </>
             ) : currentInput.type === "carousel" ||
             clickedMainInput.type === "carousel" ? (
                 <>
-                  <span>carousel 템플릿</span>
+                  <span>슬라이드 템플릿</span>
+                </>
+            ) : currentInput.type === "img_carousel" ||
+            clickedMainInput.type === "img_carousel" ? (
+                <>
+                  <span>이미지 슬라이드 템플릿</span>
                 </>
             ) : currentInput.type === "sticker" ||
               clickedMainInput.type === "sticker" ? (
@@ -197,9 +197,9 @@ const ToolStatus = ({
                     curListCount={curListCount}
                     setCurListCount={setCurListCount}
                 />
-            ) : currentInput.type === "list_template" ||
-            clickedMainInput.type === "list_template" ? (
-                <ListTemplateStatus
+            ) : currentInput.type === "carousel" ||
+            clickedMainInput.type === "carousel" ? (
+                <CarouselTemplateStatus
                     currentContent={currentContent}
                     setKeywordObject={setKeywordObject}
                     keywordObject={keywordObject}
@@ -209,9 +209,9 @@ const ToolStatus = ({
                     curListCount={curListCount}
                     setCurListCount={setCurListCount}
                 />
-            ) : currentInput.type === "carousel" ||
-            clickedMainInput.type === "carousel" ? (
-                <TemplateStatus
+            ): currentInput.type === "img_carousel" ||
+            clickedMainInput.type === "img_carousel" ? (
+                <ImgCarouselTemplateStatus
                     currentContent={currentContent}
                     setKeywordObject={setKeywordObject}
                     keywordObject={keywordObject}
