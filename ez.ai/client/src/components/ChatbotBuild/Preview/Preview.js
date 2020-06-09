@@ -168,7 +168,7 @@ const Preview = ({
           setNow={setNow}
         />
       )
-      : theme == "telegram" ? (
+      : theme === "telegram" ? (
         <TelegramPreview 
           changeAvailableIcon={changeAvailableIcon}
           index={index}
@@ -181,7 +181,7 @@ const Preview = ({
           setNow={setNow}
         />
       )
-      : theme == "line" ? (
+      : theme === "line" ? (
         <LinePreview 
           changeAvailableIcon={changeAvailableIcon}
           index={index}
@@ -194,7 +194,7 @@ const Preview = ({
           setNow={setNow}
         />
       )
-      : theme == "facebook" ? (
+      : theme === "facebook" ? (
         <FacebookPreview 
           changeAvailableIcon={changeAvailableIcon}
           index={index}
@@ -208,17 +208,6 @@ const Preview = ({
         />
       )
       : null}
-      {/* {theme !== "telegram"? 
-        <Slider 
-          keywordObject={keywordObject} 
-          index={index}
-          now={now}
-          clickedMainInput={clickedMainInput}
-          currentInput={currentInput}
-          curListCount={curListCount}
-        />
-        : null
-       } */}
 
       </div>
       {theme === "telegram" ?

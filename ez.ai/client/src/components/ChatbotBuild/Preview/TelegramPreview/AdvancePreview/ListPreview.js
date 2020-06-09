@@ -24,8 +24,8 @@ const ListPreview = ({
             changeAvailableIcon("list");
           }}
         >
-          {" "}
-          <div>
+          {"[고정메뉴]      "}
+          {/* <div>
             <div className="listbox-header-telegram">Question</div>
             <div className="listbox-question-telegram">
               {v.listContent.question !== ""
@@ -38,7 +38,7 @@ const ListPreview = ({
                   {v.listContent.elem[i]}
                 </div>
             ))}
-          </div>
+          </div> */}
         </div>
       <div
         className="tool-delete delete-listbox "
