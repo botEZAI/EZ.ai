@@ -8,7 +8,7 @@ const ImageStatus = ({
   setKeywordObject,
   keywordObject,
   now,
-  index
+  index,
 }) => {
   /*이미지 외부 URL 입력후 적용시 미리보기에 적용*/
   const imageRef = useRef();
@@ -16,10 +16,10 @@ const ImageStatus = ({
   const [imageTab, setImageTab] = useState("url");
   const [imageURL, setImageURL] = useState("");
 
-  const onClickLoadImage = e => {
+  const onClickLoadImage = (e) => {
     setImageURL(e.target.value);
     setKeywordObject(
-      produce(keywordObject, draft => {
+      produce(keywordObject, (draft) => {
         draft[index].contents[now].content = e.target.value;
       })
     );
@@ -28,7 +28,7 @@ const ImageStatus = ({
   const onClickUploadImage = () => {
     imageRef.current.click();
   };
-  const onChangeImage = e => {
+  const onChangeImage = (e) => {
     if (e.target.value === "") return;
     if (e.target.files[0].type.match(/image/g)) {
       const imageFormData = new FormData();
@@ -36,12 +36,12 @@ const ImageStatus = ({
 
       // 보안상 로컬경로는 fakepath로 뜨기 때문에 실제 파일이 업로드 된 후 업로드 된 실파일경로를 가져와야함
 
-      axios.post("/api/image", imageFormData).then(res => {
+      axios.post("/api/image", imageFormData).then((res) => {
         console.log(res);
         setKeywordObject(
-          produce(keywordObject, draft => {
-            draft[index].contents[now].content = res.data.filename;
-            draft[index].contents[now].filepath = res.data.path;
+          produce(keywordObject, (draft) => {
+            draft[index].contents[now].content = res.data.location;
+            draft[index].contents[now].filepath = res.data.location;
           })
         );
       });
@@ -52,15 +52,17 @@ const ImageStatus = ({
     <div className="image-status">
       <div className="status-image-tab">
         <div
-          className={`image-tab-btn outer-img-link ${imageTab === "url" &&
-            "active"}`}
+          className={`image-tab-btn outer-img-link ${
+            imageTab === "url" && "active"
+          }`}
           onClick={() => setImageTab("url")}
         >
           외부 이미지 URL
         </div>
         <div
-          className={`image-tab-btn upload-img-file ${imageTab === "local" &&
-            "active"}`}
+          className={`image-tab-btn upload-img-file ${
+            imageTab === "local" && "active"
+          }`}
           onClick={() => setImageTab("local")}
         >
           내장 이미지 첨부
@@ -82,13 +84,12 @@ const ImageStatus = ({
               style={{ backgroundImage: `url(${imageURL})` }}
             >
               {!imageURL ? (
-                  <p>
-                    외부 이미지 미리보기
-                    <br />
-                    (올바른 URL 주소일때 이미지가 보여집니다.)
-                  </p>
+                <p>
+                  외부 이미지 미리보기
+                  <br />
+                  (올바른 URL 주소일때 이미지가 보여집니다.)
+                </p>
               ) : null}
-
             </div>
           </div>
           <div className="caution">
@@ -102,7 +103,7 @@ const ImageStatus = ({
               className="preview-screen upload-preview-screen cursor"
               onClick={onClickUploadImage}
               style={{
-                backgroundImage: `url(${keywordObject[index].contents[now].content})`
+                backgroundImage: `url(${keywordObject[index].contents[now].content})`,
               }}
             >
               {keywordObject[index].contents[now].content === "" && (
