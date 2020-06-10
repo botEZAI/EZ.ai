@@ -82,7 +82,6 @@ const SideVersion = ({
   );
   useEffect(() => {
     if (isDeploySuccess) {
-      alert("배포성공");
     }
     dispatch({
       type: DEPLOY_HISTORY_SUCCESS_RESET,
