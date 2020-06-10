@@ -133,8 +133,8 @@ const BuilderInfo = ({ keywordObject, keywordCategory }) => {
           value={info}
           onChange={(e) => onChangeInfo(e)}
         />
-        <button onClick={updateChatbot}>저장</button>
-        <button onClick={deployChatbot}>배포</button>
+        <button className="save" onClick={updateChatbot}>저장</button>
+        <button className="deploy" onClick={deployChatbot}>배포</button>
       </div>
     </>
   );
