@@ -99,7 +99,8 @@ export default (state = initialState, action) => {
     case UPDATE_CHATBOT_SUCCESS: {
       return {
         ...state,
-        chatbotList: action.data,
+        chatbotList: action.data.chatbotData,
+        history: action.data.historyData,
         isUpdateSuccess: true,
       };
     }

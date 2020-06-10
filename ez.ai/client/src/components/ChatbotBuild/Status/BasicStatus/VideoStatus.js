@@ -17,8 +17,8 @@ const VideoStatus = ({ setKeywordObject, keywordObject, now, index }) => {
         console.log(res);
         setKeywordObject(
           produce(keywordObject, (draft) => {
-            draft[index].contents[now].content = res.data.filename;
-            draft[index].contents[now].filepath = res.data.path;
+            draft[index].contents[now].content = res.data.location;
+            draft[index].contents[now].filepath = res.data.location;
           })
         );
       });

@@ -87,10 +87,16 @@ router.patch("/", isLoggedIn, async (req, res, next) => {
       },
       { where: { chatbot_id: req.body.id } }
     );
+    const historyData = await History.findOne({
+      where: { chatbot_id: req.body.id },
+    });
     const chatbotData = await ChatbotData.findAll({
       where: { user_id: req.user.id },
     });
-    res.json(chatbotData);
+    console.log("history==", historyData);
+    const mergedData = { chatbotData, historyData: historyData.history };
+
+    res.json(mergedData);
   } catch (e) {
     console.error(e);
     next(e);
