@@ -4,15 +4,8 @@ const multerS3 = require('multer-s3');
 const fs = require('fs'); const path = require('path'); 
 const AWS = require('aws-sdk');
 const router = express.Router();
-
-// multer 처리부분
-AWS.config.update({
-  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY_ID,
-  region : 'ap-northeast-2'
-});
-
 const s3 = new AWS.S3();
+
 const upload = multer({
   storage: multerS3({
       s3: s3,
@@ -26,3 +19,12 @@ const upload = multer({
   }),
   limits: { fileSize: 50 * 1024 * 1024 }, // 용량 제한
 });
+
+router.post("/", upload.single("file"), (req, res) => {
+  // 'file'가 일치해야함 리액트랑
+  console.log("파일 전송 성공");
+  console.log(req.file.location);
+  res.json(req.file.location);
+});
+
+module.exports = router;

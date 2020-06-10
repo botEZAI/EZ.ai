@@ -4,15 +4,9 @@ const multerS3 = require('multer-s3');
 const fs = require('fs'); const path = require('path'); 
 const AWS = require('aws-sdk');
 const router = express.Router();
-
-// multer 처리부분
-AWS.config.update({
-  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY_ID,
-  region : 'ap-northeast-2'
-});
-
 const s3 = new AWS.S3();
+
+
 const upload = multer({
   storage: multerS3({
       s3: s3,
@@ -32,8 +26,8 @@ router.post('/', upload.single('audio'), (req, res) =>{  // 'audio'가 일치해
 
     //리액트에 주소 보내는 방식은 이야기 해야함 !
     console.log("오디오 전송 성공");
-    console.log(req.file);
-    res.json(req.file);
+    console.log(req.file.location);
+    res.json(req.file.location);
 });
   
 module.exports = router;
