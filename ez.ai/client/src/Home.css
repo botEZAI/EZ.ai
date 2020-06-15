@@ -30,13 +30,11 @@ article > div {
   width : 100%;
   height: 400px;
 }
-.human{
+.main-about-sns-image img{
   width:350px;
 }
 
-.chatbot{
-  width:450px;
-}
+
 .main-about-btns {
     width : 100%;
     height: 50px;
@@ -63,6 +61,11 @@ article > div {
     justify-content: center;
     align-items: center;
     color : #999;
+}
+
+.main-about-image img {
+    width : 80%;
+    height : 80%;
 }
 
 .main-about-image h1{
@@ -158,6 +161,10 @@ article > div {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.main-what-sns-image img{
+    width:450px;
 }
 
 .main-what-contents {

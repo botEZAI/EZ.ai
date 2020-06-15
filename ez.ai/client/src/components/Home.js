@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import human from "../objects/main-phone.png";
-import chatbot from "../objects/main-chatbot.png";
+import humanImg from "../objects/main-phone.png";
+import chatbotImg from "../objects/main-chatbot.png";
+import dearImg from "../objects/dear.png";
 
 const Home = () => {
   const { user } = useSelector((state) => state.user);
@@ -19,7 +20,7 @@ const Home = () => {
     <article className="main-about">
       <div className = "main-about__column">
         <div className= "main-about-sns-image">
-          <img className="human" src={human}></img>
+          <img className="about-sns-image-main" src={humanImg}></img>
         </div>
         <div className= "main-about-btns">
           {/* [Let's go!] = 헤더의 '챗봇 만들기' 버튼과 유사한 기능 */}
@@ -41,6 +42,7 @@ const Home = () => {
       </div>
       <div className= "main-about__column">
         <div className="main-about-image">
+          <img className="about-image-main" src={dearImg}></img>
         </div>
       </div>
     </article>
@@ -73,7 +75,7 @@ const Home = () => {
       </div>
       <div className="main-what__column">
         <div className="main-what-sns-image">
-          <img className="chatbot" src={chatbot}></img>
+          <img className="what-sns-image-main" src={chatbotImg}></img>
         </div>
       </div>
       <div className="main-what__column">

@@ -15,6 +15,9 @@ body {
   flex-direction: column;
 }
 
+article {
+  min-width : 1180px;
+}
 /* header 기본 struct */
 .header {
   position : fixed;

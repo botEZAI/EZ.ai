@@ -13,12 +13,16 @@
     align-items: center;
 }
 
-.btn-template-size > div {
-    height: 100%;
-    padding : 0 3px;
+.btn-template-size input {
+    height: 80%;
+    width : 140px;
+    margin : 0 auto;
+    padding-left : 5px;
+    border : 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size : 12px;
 }
 
 .btn-template-size i {
@@ -35,16 +39,46 @@
 }
 
 .btn-template-thumbnail {
+    position: relative;
     height : 200px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
     border-bottom : 1px solid #eee;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+    transition : background-color .5s;
+}
+
+.btn-template-thumbnail:hover {
+    background-color : #ddf0ff;
+}
+
+.btn-template-thumbnail:hover i {
+    color : #449fe5;
+    font-size : 32px;
 }
 
 .btn-template-thumbnail i {
     color : #bbb;
     font-size: 30px;
+    transition : all .2s;
+}
+
+.btn-template-thumbnail .btn-template-thumbnail-cautions {
+    position: absolute;
+    bottom : 5px;
+    font-size : 10px;
+}
+
+.btn-template-thumbnail .btn-template-thumbnail-caution {
+    color : #999;
+}
+
+.btn-template-thumbnail:hover .btn-template-thumbnail-caution {
+    color: #449fe5;
 }
 
 /* 템플릿 메인 텍스트 */
@@ -54,7 +88,12 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
+}
+.btn-template-title input {
+    padding-left : 5px;
+    width : 100%;
     font-weight: bold;
+    border : 0;
 }
 
 .btn-template-text {
@@ -63,22 +102,50 @@
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
+}
+
+.btn-template-text textarea {
+    width : 280px;
+    height : 60px;
+    padding-left : 5px;
     font-size: 12px;
     color : #999999;
+    border : 0;
 }
 
 .btn-template-action {
-    position : relative;
     height : 50px;
+    width : 300px;
     border-top : 1px solid #eee;
+    padding : 0 8px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 }
 
+.btn-template-action .btn-action-types {
+    width : 42px;
+}
+
+.btn-action-types .btn-action-type {
+    width : 42px;
+    height: 15px;
+    margin : 5px 0;
+    padding : 2px;
+    border-radius : 5px;
+    font-size : 12px;
+    background-color: #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-weight: bold;
+    color : #999;
+
+}
+
 .btn-action-remove {
-    position :absolute;
-    right : 10px;
+
 }
 
 .btn-action-remove i {
