@@ -81,15 +81,15 @@ const ImageStatus = ({
           <div className="upload-preview">
             <div
               className="preview-screen"
-              style={{ backgroundImage: `url(${imageURL})` }}
             >
               {!imageURL ? (
-                <p>
-                  외부 이미지 미리보기
-                  <br />
-                  (올바른 URL 주소일때 이미지가 보여집니다.)
-                </p>
-              ) : null}
+                  <>
+                    <p>외부 이미지 미리보기</p>
+                    <p>(올바른 URL 주소일때 이미지가 보여집니다.)</p>
+                </>
+              ) : (
+                  <img className="preview-screen-image" src={imageURL}/>
+              )}
             </div>
           </div>
           <div className="caution">
@@ -102,13 +102,13 @@ const ImageStatus = ({
             <div
               className="preview-screen upload-preview-screen cursor"
               onClick={onClickUploadImage}
-              style={{
-                backgroundImage: `url(${keywordObject[index].contents[now].content})`,
-              }}
+              title = "로컬 이미지 업로드"
             >
-              {keywordObject[index].contents[now].content === "" && (
-                <p>로컬에서 이미지 불러오기</p>
-              )}
+              {keywordObject[index].contents[now].content === "" ? (
+                  <i className="fas fa-upload"></i>
+              ) : (<></>
+                //<img className="preview-screen-image" src={imageURL}/>
+                )}
             </div>
             <input ref={imageRef} type="file" hidden onChange={onChangeImage} />
           </div>

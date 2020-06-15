@@ -31,9 +31,10 @@ const FileStatus = ({ setKeywordObject, keywordObject, now, index }) => {
             <div
               className="preview-screen upload-preview-screen cursor"
               onClick={onClickUploadFile}
+              title="로컬 파일 업로드"
             >
               {keywordObject[index].contents[now].content || (
-                <p>로컬에서 파일 불러오기</p>
+                  <i className="fas fa-upload"></i>
               )}
             </div>
             <input ref={fileRef} type="file" hidden onChange={onChangeFile} />
