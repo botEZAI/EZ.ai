@@ -15,7 +15,7 @@ const ButtonTemplateStatus = (
     setCurListCount,
 ) => {
 
-    const btnTemplateNode = [
+    const btnTemplateNode =
         {
             type : "buttons" ,
             thumbnailImageUrl : "" ,
@@ -54,8 +54,24 @@ const ButtonTemplateStatus = (
                     uri: "http://example.com/page/123"
                 }
             ]
+        };
+
+    /* action 영역 개수 변경 */
+    const [actionBtns, setActionBtns] = useState(0);
+    const [showActionAddBtn, setShowActionAddBtn] = useState(true);
+
+    const changeActionBtnCount = i => {
+        if (i < 4) {
+            setActionBtns(i);
+            setShowActionAddBtn(true);
+        } else {
+            setShowActionAddBtn(false);
         }
-    ];
+    }
+    /* action type 변경 */
+    const changeActionType = e => {
+        console.log(e, e.target.innerHTML, e.target.name)
+    }
 
     return (
         <div className="btn-template-status">
@@ -82,28 +98,43 @@ const ButtonTemplateStatus = (
                     <div className="btn-template-text">
                         <textarea placeholder="텍스트를 적어주세요(필수 항목)" /></div>
                     <div className="btn-template-actions">
-                        <div className="btn-template-action">
-                            <div className="btn-action-types">
-                                <div className="btn-action-type">url</div>
-                                <div className="btn-action-type">키워드</div>
-                            </div>
-                            <div className="btn-action-label">첫번째 액션</div>
-                            <div className="btn-action-remove">
-                                <i className="fas fa-minus-circle"></i>
-                            </div>
-                        </div>
-                        <div className="btn-template-action">
-                            <div className="btn-action-label">2번째 액션</div>
-                            <div className="btn-action-remove">
-                                <i className="fas fa-minus-circle"></i>
-                            </div>
-                        </div>
-                        <div className="btn-template-action">
-                            <div className="btn-action-label">3번째 액션</div>
-                            <div className="btn-action-remove">
-                                <i className="fas fa-minus-circle"></i>
-                            </div>
-                        </div>
+                        {btnTemplateNode.actions.map(act => (
+                            <>
+                                {act.id <= actionBtns ? (
+                                    <div className="btn-template-action">
+
+                                        <div className="btn-action-types">
+                                            <div className="btn-action-type" name="0" onClick={changeActionType}>
+                                                url
+                                            </div>
+                                            <div className="btn-action-type" name="0" onClick={changeActionType}>키워드</div>
+                                        </div>
+                                        <div className="btn-action-label">
+                                            {act.type === "uri" ? (
+                                                    <input type = "text" placeholder="연동할 url를 입력해주세요" />
+                                                )
+                                                :
+                                                (
+                                                    <select>
+                                                        <option value="none" selected disabled>연동할 키워드를 선택해주세요</option>
+
+                                                    </select>
+                                                )
+                                            }
+
+
+                                            <input type="text" placeholder="버튼이름을 작성해주세요" />
+                                        </div>
+                                        <div className="btn-action-remove">
+                                            <i className="fas fa-minus-circle"></i>
+                                        </div>
+                                    </div>
+                                ) : null}
+
+                            </>
+                        ))
+                        }
+
                         <div className="btn-action-add">
                             <div className="add-btn">
                                 action 추가
