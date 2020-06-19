@@ -57,12 +57,17 @@ const ButtonTemplateStatus = (
         };
 
     /* action 영역 개수 변경 */
-    const [actionBtns, setActionBtns] = useState(0);
+    const [actionBtns, setActionBtns] = useState([0]);
     const [showActionAddBtn, setShowActionAddBtn] = useState(true);
 
-    const changeActionBtnCount = i => {
+    const changeActionBtnCount = (i, toDo) => {
+        if (toDo === "add") { // add 함수 수정 필요 [0, 1, 3 이렇게 있는경우...
+           // setActionBtns(actionBtns.push(i+1));
+        } else if (toDo === "remove") {
+            setActionBtns(actionBtns.splice(actionBtns.indexOf(i), 1));
+        }
+
         if (i < 4) {
-            setActionBtns(i);
             setShowActionAddBtn(true);
         } else {
             setShowActionAddBtn(false);
@@ -100,7 +105,7 @@ const ButtonTemplateStatus = (
                     <div className="btn-template-actions">
                         {btnTemplateNode.actions.map(act => (
                             <>
-                                {act.id <= actionBtns ? (
+                                {act.id in actionBtns ? (
                                     <div className="btn-template-action">
 
                                         <div className="btn-action-types">
@@ -125,22 +130,28 @@ const ButtonTemplateStatus = (
 
                                             <input type="text" placeholder="버튼이름을 작성해주세요" />
                                         </div>
-                                        <div className="btn-action-remove">
-                                            <i className="fas fa-minus-circle"></i>
-                                        </div>
+                                        {act.id > 0 ? (
+                                            <div className="btn-action-remove" onClick={() => changeActionBtnCount(act.id, "remove")}>
+                                                <i className="fas fa-minus-circle"></i>
+                                            </div>
+                                        ) : (
+                                            <div></div>
+                                        )}
+
                                     </div>
                                 ) : null}
 
                             </>
                         ))
                         }
-
-                        <div className="btn-action-add">
-                            <div className="add-btn">
-                                action 추가
+                        {actionBtns.length < 3 ? (
+                            <div className="btn-action-add">
+                                <div className="add-btn" onClick={() => changeActionBtnCount(actionBtns.length, "add")}>
+                                    action 추가
+                                </div>
                             </div>
+                        ) : null}
 
-                        </div>
                     </div>
                 </div>
             </div>
