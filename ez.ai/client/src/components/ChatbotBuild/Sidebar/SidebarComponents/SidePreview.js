@@ -27,6 +27,13 @@ const SidePreview = (props) => {
   //미리보기 => 사용자가 키워드 입력시 일치하는 키워드를 찾아서 dialogues 배열에 추가하는 방식
   const [dialogues, setDialogues] = useState([]);
 
+  //처음 시작시 Welcome키워드에 있는 요소 먼저 나타남
+  useEffect(() => {
+    const welcomeDialogue = JSON.parse(currentChatbot.data)[0];
+    setDialogues(addDialogue(welcomeDialogue));
+  }, [props.activePlatformTab, currentChatbot]);
+
+
   const currentTime = (position) => {
       return (
           <div className={position == "inner" ? "nowtime_inner" : "nowtime_outer"}>
@@ -51,27 +58,34 @@ const SidePreview = (props) => {
             {currentTime("outer")}
           </div>
         );
-      else if (c.type == "list")
-        return (
-          <div>
-            <div className={`${props.activePlatformTab}-list-question`}>
-              {c.listContent.question}
-            </div>
-            {/* {c.listContent.elem.map((i) => {
-              return (
-                <div
-                  className={`preview-button ${props.activePlatformTab}-list-elem`}
-                  onClick={() => moveKeyword(i)}
-                >
-                  {i}
-                </div>
-              );
-            })} */}
-            {/* {currentTime("outer")} */}
-            {setFixedMenu(c.listContent.elem)}
-            {setKeyboard(props.activePlatformTab)}
-          </div>
+      else if(c.type == "list")
+        return(
+          <>
+          {setKeyboard(props.activePlatformTab)}
+          {setFixedMenu(c.listContent.keywordLink)}
+          </>
         );
+      // else if (c.type == "list")
+      //   return (
+      //     <div>
+      //       <div className={`${props.activePlatformTab}-list-question`}>
+      //         {c.listContent.question}
+      //       </div>
+      //       {/* {c.listContent.elem.map((i) => {
+      //         return (
+      //           <div
+      //             className={`preview-button ${props.activePlatformTab}-list-elem`}
+      //             onClick={() => moveKeyword(i)}
+      //           >
+      //             {i}
+      //           </div>
+      //         );
+      //       })} */}
+      //       {/* {currentTime("outer")} */}
+      //       {setFixedMenu(c.listContent.elem)}
+      //       {setKeyboard(props.activePlatformTab)}
+      //     </div>
+      //   );
       else if (c.type == "image")
         return (
           <div
@@ -94,11 +108,6 @@ const SidePreview = (props) => {
     },
     [dialogues, message, currentChatbot]
   );
-  //처음 시작시 Welcome키워드에 있는 요소 먼저 나타남
-  useEffect(() => {
-    const welcomeDialogue = JSON.parse(currentChatbot.data)[0];
-    setDialogues(addDialogue(welcomeDialogue));
-  }, [props.activePlatformTab, currentChatbot]);
 
   const onSubmitPreview = useCallback(
     (e) => {
@@ -111,7 +120,6 @@ const SidePreview = (props) => {
     [message]
 
   );
-
 
   //일치하는 키워드가 있으면 키워드의 내용을 addDialogue함수로 전달
   const sendMessage = useCallback(
@@ -247,14 +255,20 @@ const SidePreview = (props) => {
           {keyboard === "platform-telegram" ?
             <div className="preview-keyboard">
               {fixedMenu.map((i) => {
-                return (
-                  <div
-                    className={`preview-button ${props.activePlatformTab}-list-elem`}
-                    onClick={() => moveKeyword(i)}
-                  >
-                    {i}
-                  </div>
-                );
+                if(i==="")
+                {
+                  
+                }
+                else {
+                  return (
+                    <div
+                      className={`preview-button ${props.activePlatformTab}-list-elem`}
+                      onClick={() => moveKeyword(i)}
+                    >
+                      {i}
+                    </div>
+                  );
+                }
               })}
             </div>
             :

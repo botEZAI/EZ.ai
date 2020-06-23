@@ -12,8 +12,8 @@ const FilePreview = ({
   return(
       <div className="main-preview">
         <div
-          className={now === i ? "main-content main-filebox now"
-                              : "main-content main-filebox"}
+          className={now === i ? "main-content filebox-telegram now"
+                              : "main-content filebox-telegram"}
           key={v.content + i}
           onClick={() => {
             setClickedMainInput(v);
@@ -23,12 +23,12 @@ const FilePreview = ({
         >
           {" "}
           <div>
-            <i className="fas fa-file fa-lg main-file-icon"></i>
-            <div className="main-file-content">
-              <div className="main-file-name" data-filetype="">
+            <i className="fas fa-file fa-lg file-icon-telegram"></i>
+            <div className="file-content-telegram">
+              <div className="file-name" data-filetype="">
                 {v.content}
               </div>
-              <div className="main-file-size" data-filetype="">
+              <div className="file-size" data-filetype="">
                 {/* 00.00 MB */}
               </div>
             </div>

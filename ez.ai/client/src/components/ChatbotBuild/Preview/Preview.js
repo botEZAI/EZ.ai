@@ -3,14 +3,12 @@ import produce from "immer";
 import axios from "axios";
 import "./Preview.css";
 
-import TextPreview from "./BasicPreview/TextPreview";
-import ImagePreview from "./BasicPreview/ImagePreview";
-import VideoPreview from "./BasicPreview/VideoPreview";
-import AudioPreview from "./BasicPreview/AudioPreview";
-import LocationPreview from "./BasicPreview/LocationPreview";
-import FilePreview from "./BasicPreview/FilePreview";
-import ListPreview from "./AdvancePreview/ListPreview";
-import VirtualKeyboard from "./AdvancePreview/VirtualKeyboard";
+import VirtualKeyboard from "./TelegramPreview/AdvancePreview/VirtualKeyboard";
+import DefaultPreview from "./DefaultPreview/DefaultPreview";
+import TelegramPreview from "./TelegramPreview/TelegramPreview";
+import LinePreview from "./LinePreview/LinePreview";
+import FacebookPreview from "./FacebookPreview/FacebookPreview";
+// import Slider from "./Slider";
 
 const Preview = ({
   mainKeyword,
@@ -54,10 +52,6 @@ const Preview = ({
     axios
       .post("/api/chatbotbuild", { nowKeyword, keywordObject })
       .then((res) => console.log(res));
-  };
-  //
-  const ClickedBuilderMain = () => {
-    setVirtualKeyboard(false);
   };
 
   // 아이콘 호환여부 설정
@@ -160,103 +154,75 @@ const Preview = ({
         )))
         }
         ref={contentRef}
-        onClick={ClickedBuilderMain}
       >
-        {keywordObject[index] && (
-          <div className="main-keyword-title">
-            KEYWORD: {keywordObject[index].keyword}
-          </div>
-        )}
-        {keywordObject[index] &&
-          keywordObject[index].contents.map((v, i) =>
-            v.type === "text" ? (
-              <TextPreview
-                v={v}
-                i={i}
-                setClickedMainInput={setClickedMainInput}
-                now={now}
-                setNow={setNow}
-                onDelete={onDelete}
-                changeAvailableIcon={changeAvailableIcon}
-              />
-            ) : v.type === "image" /**서버에서 파일 받아옴. */ ? (
-              <ImagePreview
-                v={v}
-                i={i}
-                setClickedMainInput={setClickedMainInput}
-                now={now}
-                setNow={setNow}
-                onDelete={onDelete}
-                changeAvailableIcon={changeAvailableIcon}
-              />
-            ) : v.type === "video" /**서버에서 파일 받아옴 */ ? (
-              <VideoPreview
-                v={v}
-                i={i}
-                setClickedMainInput={setClickedMainInput}
-                now={now}
-                setNow={setNow}
-                onDelete={onDelete}
-                changeAvailableIcon={changeAvailableIcon}
-              />
-            ) : v.type === "audio" ? (
-              <AudioPreview
-                v={v}
-                i={i}
-                setClickedMainInput={setClickedMainInput}
-                now={now}
-                setNow={setNow}
-                onDelete={onDelete}
-                changeAvailableIcon={changeAvailableIcon}
-              />
-            ) : v.type === "location" ? (
-              <LocationPreview
-                v={v}
-                i={i}
-                setClickedMainInput={setClickedMainInput}
-                index={index}
-                now={now}
-                setNow={setNow}
-                onDelete={onDelete}
-                keywordObject={keywordObject}
-                setKeywordObject={setKeywordObject}
-                changeAvailableIcon={changeAvailableIcon}
-              />
-            ) : v.type === "file" ? (
-              <FilePreview
-                v={v}
-                i={i}
-                setClickedMainInput={setClickedMainInput}
-                now={now}
-                setNow={setNow}
-                onDelete={onDelete}
-                changeAvailableIcon={changeAvailableIcon}
-              />
-            ) : v.type === "list" ? (
-              <ListPreview
-                v={v}
-                i={i}
-                setVirtualKeyboard={setVirtualKeyboard}
-                setClickedMainInput={setClickedMainInput}
-                now={now}
-                setNow={setNow}
-                onDelete={onDelete}
-                changeAvailableIcon={changeAvailableIcon}
-              />
-            ) : null
-          )}
+      {theme === "default" ? (
+        <DefaultPreview 
+          changeAvailableIcon={changeAvailableIcon}
+          index={index}
+          keywordObject={keywordObject}
+          now={now}
+          onDelete={onDelete}
+          setClickedMainInput={setClickedMainInput}
+          setKeywordObject={setKeywordObject}
+          setVirtualKeyboard={setVirtualKeyboard}
+          setNow={setNow}
+        />
+      )
+      : theme === "telegram" ? (
+        <TelegramPreview 
+          changeAvailableIcon={changeAvailableIcon}
+          index={index}
+          keywordObject={keywordObject}
+          now={now}
+          onDelete={onDelete}
+          setClickedMainInput={setClickedMainInput}
+          setKeywordObject={setKeywordObject}
+          setVirtualKeyboard={setVirtualKeyboard}
+          setNow={setNow}
+        />
+      )
+      : theme === "line" ? (
+        <LinePreview 
+          changeAvailableIcon={changeAvailableIcon}
+          index={index}
+          keywordObject={keywordObject}
+          now={now}
+          onDelete={onDelete}
+          setClickedMainInput={setClickedMainInput}
+          setKeywordObject={setKeywordObject}
+          setVirtualKeyboard={setVirtualKeyboard}
+          setNow={setNow}
+        />
+      )
+      : theme === "facebook" ? (
+        <FacebookPreview 
+          changeAvailableIcon={changeAvailableIcon}
+          index={index}
+          keywordObject={keywordObject}
+          now={now}
+          onDelete={onDelete}
+          setClickedMainInput={setClickedMainInput}
+          setKeywordObject={setKeywordObject}
+          setVirtualKeyboard={setVirtualKeyboard}
+          setNow={setNow}
+        />
+      )
+      : null}
+
       </div>
-      <VirtualKeyboard
-        clickedMainInput={clickedMainInput}
-        currentInput={currentInput}
-        index={index}
-        keywordObject={keywordObject}
-        now={now}
-        virtualKeyboard={virtualKeyboard}
-        curListCount={curListCount}
-        setCurListCount={setCurListCount}
-        setKeywordObject={setKeywordObject}
-      />
+      {theme === "telegram" ?
+        <VirtualKeyboard
+          clickedMainInput={clickedMainInput}
+          currentInput={currentInput}
+          index={index}
+          keywordObject={keywordObject}
+          now={now}
+          virtualKeyboard={virtualKeyboard}
+          curListCount={curListCount}
+          setCurListCount={setCurListCount}
+          setKeywordObject={setKeywordObject}
+        />
+      : null }
     </>
   ); /**retun END */
 };

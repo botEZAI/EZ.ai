@@ -127,14 +127,23 @@ time {
   padding: 8px;
 }
 
+.preview-keyboard{
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+}
 .preview-button {
-  display: inline-flex;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: darkgray;
   margin:5px 5px 1px 5px;
-  width:163px;
-  height: 40px;
+  height:40px;
+  font-weight: 900;
+  border-radius: 3px;;
 }
-
+.preview-button:nth-child(2n+1):last-child  {
+  grid-column: span 2;
+}
 
 .preview-send .nowtime_outer time{
   align-self: flex-end;

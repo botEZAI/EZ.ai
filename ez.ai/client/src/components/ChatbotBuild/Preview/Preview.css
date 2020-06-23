@@ -73,7 +73,7 @@
 .main-contents::-webkit-scrollbar-button {display: none;}
 
 
-.main-keyword-title{ /*== 키워드 말풍선 ==*/
+.main-keyword-title{
   position:relative;
   background-color:#e5ffd0;
   border:1px solid #e5ffd0;
@@ -82,7 +82,8 @@
   width:fit-content;
   word-break:break-all;
   float:right;
-  margin:3%;
+
+  margin: 15px 15px 15px auto;
 }
 
 
@@ -114,7 +115,7 @@
   line-height:20px;
   white-space:pre-wrap;
   border : 2px solid #eee;
-  border-radius: 10px 10px 10px 10px;
+  border-radius: 10px;
   text-align: left;
   clear:right;/*main-keyword-title의 float를 감지하지 않기 위함*/
   min-width:10%;
@@ -148,160 +149,19 @@
   border-right: transparent;
 }
 
-
-.main-textbox, .main-imgbox{/*== Basic > img, text ==*/
-  width:fit-content;
-  height:fit-content;
-  min-width:80px;
-}
-
-
-.main-image-preview{ /*== Basic > img preview ==*/
-  display:flex;
-  justify-content:flex-end;
-  align-items: flex-start;
-  min-width:230px;
-  min-height:230px;
-  background-size: 100% 100%;
-  border-radius:5px;
-  border: 1px solid #ddd;
-  color:#ddd;
-}
-
-
-.image-preview-default{
-  min-width:200px;
-  min-height:150px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border:1px solid #ddd;
-  color:#ddd;
-  border-radius: 5px;
-}
-
-
-.main-videobox{ /*==Basic > video==*/
-  padding:1%;
-  line-height:0; 
-  width: 300px; 
-  height: 180px; 
-  cursor: pointer;
-}
-
-
-.main-video-content{
-  line-height: 170px; 
-  height:170px;
-  text-align: center;
-  border-radius:5px;
-  border:1px solid #ddd;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-}
-
-
-.main-locabox{/*== Basic > 지도(Map) ==*/
-  width:210px;
-  height:210px;
-  position : relative;
-}
-
-.main-locabox > div {
-  position :absolute;
-  top : 2px;
-  left: 2px;
-}
-
-
-.main-filebox, .main-audiobox{/* === Basic > File == */
-  display:flex;
-  align-items:center;
-  width:fit-content;
-  height:fit-content;
-  padding:10px;
-}
-
-
-.main-file-content{
-  display:block;
-  width:200px;
-  white-space:nowrap;
-  overflow-x:hidden;
-  text-overflow:ellipsis;
-  margin:10px;
-}
-
-
-.main-file-icon{
-  padding:18px;
-  margin:5px;
-  border-radius: 50%;
-  background:#2ca2da;
-  color:white;
-  cursor:pointer;
-}
-
-
-.main-listbox { /*== Advance > List == */
-  padding:2%;
-  width:fit-content;
-  height:fit-content;
-}
-
-
-.main-listbox-header{
-  color:#318ace;
-}
-
-
-.main-listbox-question{
-  word-wrap:break-word;
-  white-space:pre-wrap;
-  padding:2%;
-  margin-bottom: 10px;
-  min-width:200px;
-  min-height:30px;
-  font-size:13pt;
-  font-weight : bold;
-}
-
-
-.main-listbox-question{
-  scrollbar-width: none; /*Firefox*/
-}
-
-
-.main-listbox-question::-webkit-scrollbar{
-  display:none; /*Chrome, Safari, Opera */
-}/*IE나 Edge는 적용 X*/
-
-
-.main-listbox-elem{
-  width:90%;
-  border-bottom: 1px solid #ddd;
-  margin:1%;
-  padding:5px;
-  font-size:11pt;
-}
-
-
-
-
 .fa-times:hover{
   color: red;
 }
 
 
 .main-footer{
-  /* border: .5px solid #999; */
   background-color:#EEEEEE;
   height:50px;
   margin-top:auto;
 }
 
 
-.main-button { /*저장 버튼*/
+.main-button { 
   float:right;
   margin:13px;
 }
@@ -331,7 +191,10 @@
 
 
 .list-elem-wrapper{
-  display:inline-flex;
+  position: relative;
+  display:flex;
+  justify-content:center;
+  align-items:center;
   height: 36px;
   padding: 5px 5px 5px 10px;
   margin : 5px;
@@ -354,9 +217,10 @@
 
 
 .list-elem-wrapper .clear-button{
+  position : absolute;
   color: #808080;
   cursor:pointer;
-  margin-left:auto;
+  right: 5px;
 }
 
 

@@ -1,254 +1,251 @@
 @import "AdvanceStatus/AdvanceStatus.css";
 
-
 /* tool status css */
 .tool-status {
-    position : relative;
-    height : 70vh;
-    min-height : 560px;
-    border-top : 0.5px solid #d9d9d9;
-    border-left : .5px solid #999;
-    border-right : .5px solid #999;
-    display : flex;
-    flex-direction : column;
-    justify-content: space-between;
-    align-items: center;
+  position: relative;
+  height: 100vh;
+  min-height: 660px;
+  border-top: 0.5px solid #d9d9d9;
+  border-left: 0.5px solid #999;
+  border-right: 0.5px solid #999;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .tool-status > div {
-    width : calc(100% - 1px);
+  width: calc(100% - 1px);
 }
-
-
 
 /* tool status-header css */
 .tool-status-header {
-    height: 50px;
-    border-bottom: 0.1px solid #d9d9d9;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding : 0 20px;
+  height: 50px;
+  border-bottom: 0.1px solid #d9d9d9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
 }
 
 .tool-status-name {
-    display: inline-block;
-    height: inherit;
-    min-width : 50px;
-    line-height: 50px;
+  display: inline-block;
+  height: inherit;
+  min-width: 50px;
+  line-height: 50px;
 }
-
 
 .tool-status-header .tool-status-info {
-    width : 160px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  width: 160px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-
 .tool-status-info .tool-status-available {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .tool-status-info .tool-status-available > div {
-    width : 20px;
-    height : 15px;
-    margin-left : 10px;
-    border-radius: 5px;
-    background-color: #eee;
+  width: 20px;
+  height: 15px;
+  margin-left: 10px;
+  border-radius: 5px;
+  background-color: #eee;
 }
 
 /* 연동 플랫폼 색깔 */
 .tool-status-available .sns-color-line {
-    background-color : #86efae!important;
+  background-color: #86efae !important;
 }
 
 .tool-status-available .sns-color-facebook {
-    background-color : #7a8fc1!important;
+  background-color: #7a8fc1 !important;
 }
 
 .tool-status-available .sns-color-telegram {
-    background-color : #99edf7!important;
+  background-color: #99edf7 !important;
 }
 
-
-
 .tool-status-header .help {
-    width : 24px;
-    height: 24px;
-    border-radius: 10px;
-    background-color : #bbb;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 14px;
-    font-weight: bold;
-    color : #fff;
-    cursor : pointer;
+  width: 24px;
+  height: 24px;
+  border-radius: 10px;
+  background-color: #bbb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
 }
 
 .tool-status-header .help:hover {
-    background-color : orange;
-    transform: translateY(-2px);
-    transition: .2s all;
+  background-color: orange;
+  transform: translateY(-2px);
+  transition: 0.2s all;
 }
-
-
 
 /* Tool status main css */
 .tool-status-main {
-    position :absolute;
-    top : 50px;
-    height : calc(100% - 100px);
-    min-height: 460px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin : 0 auto;
-    background-color: #f9f9f9;
-
+  position: absolute;
+  top: 50px;
+  height: calc(100% - 100px);
+  min-height: 460px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  background-color: #f9f9f9;
 }
-
 
 /* tool status extra css */
 .tool-status-extra {
-    display : flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .tool-status-extra .extra-btn {
-    background-color: #eee;
-    color : #999;
-    margin : 0 5px;
-    padding : 8px;
-    cursor: pointer;
+  background-color: #eee;
+  color: #999;
+  margin: 0 5px;
+  padding: 8px;
+  cursor: pointer;
 }
 
 .tool-status-extra .extra-btn:hover {
-    background-color: #00b8b4;
-    color : white;
+  background-color: #00b8b4;
+  color: white;
 }
 
 /* tool status-nav css */
 .tool-status-nav {
-    position : absolute;
-    bottom : 0;
-    height: 50px;
-    border-top: 0.1px solid #d9d9d9;
-    border-bottom : .5px solid #999;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  position: absolute;
+  bottom: 0;
+  height: 50px;
+  border-top: 0.1px solid #d9d9d9;
+  border-bottom: 0.5px solid #999;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-
 
 .tool-status-nav-btns {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .tool-status-btn {
-    width : 50px;
-    height : 30px;
-    margin-right : 10px;
-    border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 15px;
-    font-weight: bold;
-    background-color: #eee;
-    color : #999;
-    cursor : pointer;
-    transition: .2s all;
+  width: 50px;
+  height: 30px;
+  margin-right: 10px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  font-weight: bold;
+  background-color: #eee;
+  color: #999;
+  cursor: pointer;
+  transition: 0.2s all;
 }
 
-
 .tool-status-nav-btns .confirm:hover {
-    background-color: #86CD33;
-    color : #fff;
+  background-color: #86cd33;
+  color: #fff;
 }
 
 .tool-status-nav-btns .decline:hover {
-    background-color: #BE5A5A;
-    color : #fff;
+  background-color: #be5a5a;
+  color: #fff;
 }
-
-
 
 /* 파일 업로드 인터페이스 양식 */
 .status-upload .upload-preview {
-    height :300px;
-    width : 80%;
-    max-width : 400px;
-    background-color: white;
-    margin-top : 5px;
-    padding : 10px;
-    border-radius: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  height: 300px;
+  width: 80%;
+  max-width: 400px;
+  background-color: white;
+  margin-top: 5px;
+  padding: 10px;
+  border-radius: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .upload-preview .preview-screen {
-    color : #999;
-    background-size: 100% 100%;
-    width : 95%;
-    height : 95%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  color: #999;
+  background-size: 100% 100%;
+  width: 95%;
+  height: 95%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .preview-screen p {
-    font-size : 18px;
-    font-weight: bold;
-    color : #bbb;
+  font-size: 18px;
+  font-weight: bold;
+  color: #bbb;
 }
 
+.preview-screen p:last-child {
+  font-size : 14px;
+}
+
+.preview-screen .preview-screen-image {
+  max-width : 100%;
+  max-height: 100%;
+}
 
 .upload-preview .upload-preview-screen {
-    border : 7px dotted #ddd;
-    border-radius: 30px;
+  width : 100%;
+  height : 100%;
+  border-radius: 40px;
+  transition: 0.2s all;
+}
+.upload-preview .upload-preview-screen i {
+  color : #999;
 }
 
-.upload-preview .upload-preview-screen:hover, .upload-preview-screen:hover p {
-    border-color : #00b8b4;
-    color : #00b8b4;
-    font-size : 20px;
-    transition: .5s all;
-
+.upload-preview .upload-preview-screen:hover,
+.upload-preview-screen:hover p {
+  background-color: #ddf0ff;
+  font-size: 20px;
+}
+.upload-preview .upload-preview-screen:hover i {
+  color : #449fe5;
 }
 
 .status-upload {
-    height: 410px;
-    margin : 10px 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  height: 410px;
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-
-
 
 /* 각 요소 제한 사항 */
 .caution {
-    max-width : 400px;
-    width : 80%;
-    margin : 5px 0;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap : wrap;
+  max-width: 400px;
+  width: 80%;
+  margin: 5px 0;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 .caution p {
-    font-size : 12px;
-    color : #999;
-    margin : 0;
-
+  font-size: 12px;
+  color: #999;
+  margin: 0;
 }
 
 /* 각 요소별 입력칸 css */
@@ -256,90 +253,94 @@
 
 /* 텍스트 */
 .status-text {
-    width : 90%;
-
+  width: 90%;
 }
 
 .status-text textarea {
-    width : inherit;
-    height: 30vh;
-    min-height: 150px;
-    font-size : 16px;
+  width: inherit;
+  height: 30vh;
+  min-height: 150px;
+  font-size: 16px;
 }
 
 .status-text textarea:focus {
-    outline-color: rgb(0, 184, 180);
+  outline-color: rgb(0, 184, 180);
 }
-
 
 /* 이미지 */
 .image-status {
-    width : 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .status-image-tab {
-    height: 50px;
-    background-color: #ddd;
-    display: flex;
+  height: 50px;
+  background-color: #ddd;
+  display: flex;
 }
 
 .status-image-tab > div {
-    width : 50%;
-    height: inherit;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor : pointer;
+  width: 50%;
+  height: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
 
-
 .status-image-input {
-    max-width : 400px;
-    width : 80%;
-    height: 40px;
-    margin-bottom : 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  max-width: 400px;
+  width: 80%;
+  height: 40px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .status-image-input input {
-    width : 100%;
-    height: 100%;
-    font-size : 15px;
-    border: 1px solid #eee;
-    border-radius: 3px;
-    padding: 0 10px;
-    outline-color : #00b8b4;
+  width: 100%;
+  height: 100%;
+  font-size: 15px;
+  border: 1px solid #eee;
+  border-radius: 3px;
+  padding: 0 10px;
+  outline-color: #00b8b4;
 }
 
-
 .status-image-input .outer-img-btn:hover {
-    background-color: #00b8b4;
-    color : #eee;
-    transition: 0.2s all;
+  background-color: #00b8b4;
+  color: #eee;
+  transition: 0.2s all;
 }
 
 /* 비디오 */
 .upload {
-    width: 100%;
-    min-height: inherit;
-    margin: 20px 0;
+  width: 100%;
+  min-height: inherit;
+  margin: 20px 0;
 }
-
-
 
 /* 위치 */
 /* 임시 css */
 .status-location {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .status-location input {
-    margin : 2px;
-    outline-color: #00b8b4;
+  margin: 2px;
+  outline-color: #00b8b4;
+}
+.status-location-input {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.status-location-search {
+  width: 90%;
+  background-color: rgb(199, 194, 194);
 }

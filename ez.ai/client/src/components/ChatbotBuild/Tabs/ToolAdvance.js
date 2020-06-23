@@ -17,10 +17,11 @@ const ToolAdvance = ({
 }) => {
     /* 고급 요소 플랫폼별 이용 가능 여부 */
     const useableInfo = [
-        {name : "list", value : [0,0,0,0]},
-        {name : "template", value : [0,0,0,1]},
-        {name : "coupon", value : [0,0,1,0]},
-        {name : "sticker", value : [0,0,1,0]},
+        {name : "list", value : [0,0,0]},
+        {name : "btn_template", value : [0,0,1]},
+        {name : "carousel", value : [0,0,1]},
+        {name : "img_carousel", value : [0,0,1]},
+        {name : "sticker", value : [0,0,1]},
     ]
 
 
@@ -83,34 +84,40 @@ const ToolAdvance = ({
           setNow(length + 1);
         }}
       >
-        <i className="fas fa-list"></i>
+          <i className="fas fa-border-all"></i>
         고정 메뉴
       </div>
 
         <div
             className="tool-basic tool-basic-text"
             onClick={() =>{
-                onClickTool("template");
+                onClickTool("btn_template");
                 setNow(length + 1);
             }}
         >
-            <i className="fas fa-comment-medical"></i>
-            템플릿
+            <i className="fas fa-th-large"></i>
+            버튼<br />템플릿
         </div>
-
-
-
         <div
             className="tool-basic tool-basic-text"
             onClick={() =>{
-                onClickTool("coupon");
+                onClickTool("carousel");
                 setNow(length + 1);
             }}
         >
-            <i className="fas fa-ticket-alt"></i>
-            쿠폰
+            <i className="far fa-clone"></i>
+            슬라이드
         </div>
-
+        <div
+            className="tool-basic tool-basic-text"
+            onClick={() =>{
+                onClickTool("img_carousel");
+                setNow(length + 1);
+            }}
+        >
+            <i className="far fa-images"></i>
+            이미지<br /> 슬라이드
+        </div>
 
       <div
         className="tool-basic tool-basic-text"

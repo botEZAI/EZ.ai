@@ -17,8 +17,8 @@ const AudioStatus = ({ setKeywordObject, keywordObject, now, index }) => {
         console.log(res);
         setKeywordObject(
           produce(keywordObject, (draft) => {
-            draft[index].contents[now].content = res.data.filename;
-            draft[index].contents[now].filepath = res.data.path;
+            draft[index].contents[now].content = res.data.location;
+            draft[index].contents[now].filepath = res.data.location;
           })
         );
       });
@@ -32,9 +32,10 @@ const AudioStatus = ({ setKeywordObject, keywordObject, now, index }) => {
             <div
               className="preview-screen upload-preview-screen cursor"
               onClick={onClickUploadAudio}
+              title="로컬 오디오 업로드"
             >
               {keywordObject[index].contents[now].content || (
-                <p>로컬에서 오디오 불러오기</p>
+                  <i className="fas fa-upload"></i>
               )}
             </div>
             <input ref={audioRef} type="file" hidden onChange={onChangeAudio} />

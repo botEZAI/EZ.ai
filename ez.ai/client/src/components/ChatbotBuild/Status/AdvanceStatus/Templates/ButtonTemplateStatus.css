@@ -1,0 +1,190 @@
+.btn-template-status {
+    width : 300px;
+    background-color: #eee;
+}
+
+/* 템플릿 사이즈 선택 */
+.btn-template-size {
+    width : 100%;
+    height : 20px;
+    padding : 0 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-template-size input {
+    height: 80%;
+    width : 140px;
+    padding-left : 5px;
+    border : 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size : 12px;
+}
+
+.btn-template-size i {
+    color : #ddd;
+}
+
+
+/* 템플릿 메인 컨텐츠 */
+.btn-template-status-main {
+    background-color: white;
+    height : auto;
+    max-height: calc(100% - 20px);
+    border-radius: 20px;
+}
+
+.btn-template-thumbnail {
+    position: relative;
+    height : 200px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom : 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition : background-color .5s;
+}
+
+.btn-template-thumbnail:hover {
+    background-color : #ddf0ff;
+}
+
+.btn-template-thumbnail:hover i {
+    color : #449fe5;
+    font-size : 32px;
+}
+
+.btn-template-thumbnail i {
+    color : #bbb;
+    font-size: 30px;
+    transition : all .2s;
+}
+
+.btn-template-thumbnail .btn-template-thumbnail-cautions {
+    position: absolute;
+    bottom : 5px;
+    font-size : 10px;
+}
+
+.btn-template-thumbnail .btn-template-thumbnail-caution {
+    color : #999;
+}
+
+.btn-template-thumbnail:hover .btn-template-thumbnail-caution {
+    color: #449fe5;
+}
+
+/* 템플릿 메인 텍스트 */
+.btn-template-title {
+    height : 50px;
+    padding : 0 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.btn-template-title input {
+    padding-left : 5px;
+    width : 100%;
+    font-weight: bold;
+    border : 0;
+}
+
+.btn-template-text {
+    height : 70px;
+    padding : 0 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.btn-template-text textarea {
+    width : 280px;
+    height : 60px;
+    padding-left : 5px;
+    font-size: 12px;
+    color : #999999;
+    border : 0;
+}
+
+.btn-template-action {
+    height : 50px;
+    width : 300px;
+    border-top : 1px solid #eee;
+    padding : 0 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-template-action .btn-action-types {
+    width : 42px;
+}
+
+.btn-action-types .btn-action-type {
+    position : relative;
+    width : 42px;
+    height: 15px;
+    margin : 5px 0;
+    padding : 2px;
+    border-radius : 5px;
+    font-size : 12px;
+    background-color: #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-weight: bold;
+    color : #999;
+}
+
+.btn-template-action .btn-action-label {
+    width : 200px;
+    height : 42px;
+}
+
+.btn-template-action .btn-action-label input, .btn-template-action .btn-action-label select {
+    width : 100%;
+    height : 16px;
+    padding-left : 5px;
+    border : 0px none;
+    font-size : 11px;
+}
+.btn-template-action .btn-action-label input {
+    padding-left : 10px;
+}
+
+
+.btn-template-action .btn-action-label input:last-child {
+    height : 22px;
+    font-size : 15px;
+}
+
+ {
+    height : 16px;
+}
+
+.btn-action-remove {
+
+}
+
+.btn-action-remove i {
+    color : #bbb;
+    font-size : 14px;
+}
+
+.btn-action-add {
+    border-top : 1px solid #eee;
+    padding : 10px;
+}
+
+.btn-action-add .add-btn {
+    margin : 0 30px;
+    padding : 10px;
+    border : 2px solid #ddd;
+}

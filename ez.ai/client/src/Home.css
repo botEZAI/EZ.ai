@@ -1,13 +1,269 @@
-
-
-.main-banner {
-    background-image: url("./objects/main-logo-1.png");
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    border : 1px solid #ddd;
+article {
+    margin : 0;
+    padding : 50px 0;
+    height: 600px; /* 임시 */
+    min-width : 800px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
-.main-banner img{
-    width : 100%;
-    height: 100%;
 
+article > div {
+    height: 100%;
+}
+.hide{
+  line-height: 0;
+  font-size:1px;
+  overflow:hidden;
+}
+
+/* 1번째 아티클  - main-about */
+.main-about {
+    background-color: #fff;
+}
+
+.main-about__column {
+    min-width : 350px;
+}
+
+.main-about-sns-image {
+  width : 100%;
+  height: 400px;
+}
+.main-about-sns-image img{
+  width:350px;
+}
+
+
+.main-about-btns {
+    width : 100%;
+    height: 50px;
+    margin-top : 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-about-btns .main-about-btn {
+    background-color: #eee;
+    width : 160px;
+    height : 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-about-image {
+    width : 600px;
+    height : 400px;
+    background-color: #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color : #999;
+}
+
+.main-about-image img {
+    width : 80%;
+    height : 80%;
+}
+
+.main-about-image h1{
+  text-align: right;
+  font-weight: 900;
+  font-size:50px;
+  
+}
+
+/* 아티클 2 - main-wonder */
+.main-wonder {
+    background-color : #eee;
+}
+
+.main-wonder__column {
+    min-width: 350px;
+}
+
+.main-wonder-title {
+    width : 265px;
+    margin-bottom : 100px;
+    line-height : 60px;
+}
+.main-wonder-title h1 {
+    font-size : 45px;
+    font-weight: 900;
+}
+
+.main-wonder-description p {
+    font-size : 18px;
+    margin-bottom: 20px;
+}
+
+
+.main-wonder-promotion {
+    width : 600px;
+    height : 400px;
+    background-color: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.main-wonder-promotion i {
+    color : #eee;
+    font-size:120px;
+    transition-property: color;
+    transition-duration:0.2s;
+}
+.main-wonder-promotion i:hover{
+    color : white;
+    cursor: pointer;
+}
+
+.main-wonder-btn {
+    background-color: #ddd;
+    font-size : 20px;
+    font-weight: bold;
+    color: #fff;
+    width : 80%;
+    margin : 15px auto;
+    padding : 15px;
+    display : flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* 3번째 아티클 - main-what */
+.main-what {
+    position : relative;
+}
+
+.main-what-title {
+    width : 250px;
+    position : absolute;
+    top : -65px;
+    left : 50px;
+    font-size: 60px;
+    font-weight: bold;
+    line-height : 60px;
+}
+
+.main-what__column {
+    min-width : 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-what-sns-image {
+    width : 100%;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-what-sns-image img{
+    width:450px;
+}
+
+.main-what-contents {
+    width : 500px;
+    height: 400px;
+ }
+
+.main-what-content {
+    font-size:18px;
+    line-height: 40px;
+}
+.main-what-content:first-child {
+    font-weight : bold;
+    font-size : 25px;
+    line-height : 40px;
+    margin-top:40px;
+    margin-bottom:20px;
+}
+
+
+/* 4번재 아티클 - main-how */
+.main-how {
+    background-color: #eee;
+    position : relative;
+}
+
+.main-how-title {
+    width : 250px;
+    position : absolute;
+    top : -65px;
+    right : 50px;
+    font-size: 60px;
+    font-weight: bold;
+    line-height : 60px;
+    text-align: right;
+}
+
+.main-how__column {
+    background-color: #fff;
+    width : 350px;
+    height : 350px;
+    padding : 10px;
+}
+
+.main-how-content-title {
+    font-size : 25px;
+    font-weight : bold;
+    margin-bottom: 30px;
+}
+
+.main-how-content {
+    line-height : 50px;
+    font-size:20px;
+}
+
+
+
+/* 5번재 아티클 - main-sns */
+.main-sns {
+    background-color: white;
+    flex-direction: column;
+    height :350px;
+}
+
+.main-sns-title {
+    font-size : 45px;
+    font-weight: bold;
+    height : 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-sns-logos {
+    width : 400px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.main-sns-logo {
+    /* background-color: #eee; */
+    height : 100px;
+    width: 100px;
+}
+
+.main-sns-logo-image {
+    width : 100%;
+    height :80px;
+}
+.main-sns-logo-image i{
+  font-size : 65px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main-sns-logo-name {
+    font-weight: 900;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

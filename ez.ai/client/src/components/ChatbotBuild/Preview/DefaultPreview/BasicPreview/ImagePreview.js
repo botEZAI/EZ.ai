@@ -12,8 +12,8 @@ const ImagePreview = ({
   return (
       <div className="main-preview">
         <div
-            className={now === i ? "main-content main-imgbox now"
-                : "main-content main-imgbox"}
+            className={now === i ? "main-content imgbox-telegram now"
+                : "main-content imgbox-telegram"}
             key={v.content + i}
             style={{ padding: "1%" }}
             onClick={(e) => {
@@ -27,11 +27,11 @@ const ImagePreview = ({
                 {" "}
                 {v.content !== "" ? (
                     <div
-                        className="main-image-preview"
+                        className="image-preview-telegram"
                         style={{ backgroundImage: `url(${v.content})` }}
                     ></div>
                 ) : (
-                    <div className="image-preview-default">이미지 없음</div>
+                    <div className="image-default-telegram">이미지 없음</div>
                 )}
             </div>
         </div>
