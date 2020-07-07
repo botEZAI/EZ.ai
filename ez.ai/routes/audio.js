@@ -28,13 +28,13 @@ router.post('/', upload.single('audio'), (req, res) => {
   
   console.log("오디오 전송 성공");
   
-  getAudioDurationInSeconds(req.file.location).then((duration) => {
+  getAudioDurationInSeconds(req.file.location).then((duration) => { //m4a 파일도 테스트해봐야함
    // res.json(duration*1000); //밀리세컨드로 보내야함
     console.log('듀레이션 변환 성공');
     console.log(duration*1000);
     req.file.size = duration * 1000;
     console.log(req.file);
-    res.json(req.file);
+    res.json(req.file); //size에 듀레이션이 적혀있음
   });
 });
 
