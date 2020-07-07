@@ -9,60 +9,80 @@ const ButtonTemplateStatus = (
     setKeywordObject,
     keywordObject,
     now,
-    index,
-    listCount,
-    curListCount,
     setCurListCount,
 ) => {
 
-    const btnTemplateNode =
+    const [nodeAction, setNodeAction] = useState([  // 최대 4개
         {
-            type : "buttons" ,
-            thumbnailImageUrl : "" ,
-            imageSize : "cover",
-            imageBackgroundColor : "#FFFFFF",
-            title : "",
-            text : "",
-            defaultAction: {  // 사진, 이미지, 제목등 탭했을때
-                "type": "uri",
-                "label": "View detail",
-                "uri": ""
-            },
-            actions: [  // 최대 4개
-                {
-                    id : 0,
-                    type: "uri",
-                    label: "View detail",
-                    uri: "http://example.com/page/123"
+            id : 0,
+            type: "uri",
+            label: "View detail",
+            uri: "http://example.com/page/123"
+        },
+
+    ])
+
+    const btnTemplateNode = [
+            {
+                type : "buttons" ,
+                thumbnailImageUrl : "" ,
+                imageSize : "cover",
+                imageBackgroundColor : "#FFFFFF",
+                title : "",
+                text : "",
+                defaultAction: {  // 사진, 이미지, 제목등 탭했을때
+                    "type": "uri",
+                    "label": "View detail",
+                    "uri": ""
                 },
-                {
-                    id : 1,
-                    type: "postback",
-                    label: "Buy",
-                    data: "action=buy&itemid=123"
-                },
-                {
-                    id : 2,
-                    type: "postback",
-                    label: "Add to cart",
-                    data: "action=add&itemid=123"
-                },
-                {
-                    id : 3,
-                    type: "uri",
-                    label: "View detail",
-                    uri: "http://example.com/page/123"
-                }
-            ]
-        };
+                actions: nodeAction
+            }
+        ]
 
     /* action 영역 개수 변경 */
-    const [actionBtns, setActionBtns] = useState(0);
     const [showActionAddBtn, setShowActionAddBtn] = useState(true);
+
+    // action  추가
+    const addAction = () => {
+        console.log(btnTemplateNode)
+        // 요소추가
+        if (nodeAction.length < 4){
+            setNodeAction([
+                ...nodeAction,
+                {
+                    id : nodeAction.length,
+                    type : "uri",
+                    label : "",
+                    uri : "",   // uri 타입 사용시.
+                    data : ""   // postback 타입 사용시
+                }]
+            )
+        }
+        nodeAction.map(node => console.log(node))
+
+        console.log(btnTemplateNode, nodeAction )
+    }
+
+    // action 제거
+    const removeAction = id => {
+        // actions에서 id부분 제거
+        console.log("이전", nodeAction, id)
+        setNodeAction(nodeAction.filter(action => action.id !== id))
+        console.log("이후", nodeAction)
+        // 남은 요소들 id remap
+        setNodeAction(
+            nodeAction.map((action, index) =>
+            action.id > id ? (
+                { ...action, id : index}
+             ) : action
+            )
+        )
+        console.log(nodeAction)
+    }
+
 
     const changeActionBtnCount = i => {
         if (i < 4) {
-            setActionBtns(i);
             setShowActionAddBtn(true);
         } else {
             setShowActionAddBtn(false);
@@ -75,8 +95,8 @@ const ButtonTemplateStatus = (
 
     return (
         <div className="btn-template-status">
-            <div className="btn-template-size">
-                <input className="btn-template-color" placeholder="이미지 배경색 코드 입력"/>
+            <div className="btn-template-control">
+                <input type="color" className="btn-template-color" value="#ffffff"/>
                 <div className="btn-template-image-size">cover</div>
             </div>
             <div className="btn-template-status-main">
@@ -98,45 +118,43 @@ const ButtonTemplateStatus = (
                     <div className="btn-template-text">
                         <textarea placeholder="텍스트를 적어주세요(필수 항목)" /></div>
                     <div className="btn-template-actions">
-                        {btnTemplateNode.actions.map(act => (
+                        {nodeAction.map(act => (
                             <>
-                                {act.id <= actionBtns ? (
-                                    <div className="btn-template-action">
+                                <div className="btn-template-action">
 
-                                        <div className="btn-action-types">
-                                            <div className="btn-action-type" name="0" onClick={changeActionType}>
-                                                url
-                                            </div>
-                                            <div className="btn-action-type" name="0" onClick={changeActionType}>키워드</div>
+                                    <div className="btn-action-types">
+                                        <div className="btn-action-type" name="0">
+                                            url
                                         </div>
-                                        <div className="btn-action-label">
-                                            {act.type === "uri" ? (
-                                                    <input type = "text" placeholder="연동할 url를 입력해주세요" />
-                                                )
-                                                :
-                                                (
-                                                    <select>
-                                                        <option value="none" selected disabled>연동할 키워드를 선택해주세요</option>
-
-                                                    </select>
-                                                )
-                                            }
-
-
-                                            <input type="text" placeholder="버튼이름을 작성해주세요" />
-                                        </div>
-                                        <div className="btn-action-remove">
-                                            <i className="fas fa-minus-circle"></i>
-                                        </div>
+                                        <div className="btn-action-type" name="0">키워드</div>
                                     </div>
-                                ) : null}
+                                    <div className="btn-action-label">
+                                        {act.type === "uri" ? (
+                                                <input type = "text" placeholder="연동할 url를 입력해주세요" />
+                                            )
+                                            :
+                                            (
+                                                <select>
+                                                    <option value="none" selected disabled>연동할 키워드를 선택해주세요</option>
+
+                                                </select>
+                                            )
+                                        }
+
+
+                                        <input type="text" placeholder="버튼이름을 작성해주세요" />
+                                    </div>
+                                    <div className="btn-action-remove" onClick={() => removeAction(act.id)}>
+                                        <i className="fas fa-minus-circle"></i>
+                                    </div>
+                                </div>
 
                             </>
                         ))
                         }
 
                         <div className="btn-action-add">
-                            <div className="add-btn">
+                            <div className="add-btn" onClick={() => addAction()}>
                                 action 추가
                             </div>
 
