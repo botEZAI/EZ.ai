@@ -61,7 +61,7 @@ const ToolAdvance = ({
                    }
                }
             }else{
-              alert('[버튼형 리스트] 생성 후, 요소 추가가 안됩니다.\n요소 추가를 원하시면, [버튼형 리스트]를 삭제하세요.')
+              alert('[고정 메뉴] 생성 후, 요소 추가가 안됩니다.\n요소 추가를 원하시면, [고정 메뉴]를 삭제하세요.')
                 setAvailableIcon(availableIcon.map((ai,index)=> ({...ai, use : false})))
             }
           })
