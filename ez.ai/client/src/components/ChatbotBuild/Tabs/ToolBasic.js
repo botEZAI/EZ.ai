@@ -76,7 +76,7 @@ const ToolBasic = ({
               setAvailableIcon(availableIcon.map(i=> ({...i, use : true})))
             } else {
               alert(
-                "[버튼형 리스트] 생성 후, 요소 추가가 안됩니다.\n요소 추가를 원하시면, [버튼형 리스트]를 삭제하세요."
+                "[고정 메뉴] 생성 후, 요소 추가가 안됩니다.\n요소 추가를 원하시면, [고정 메뉴]를 삭제하세요."
               );
               setAvailableIcon(availableIcon.map(i=> ({...i, use : false})))
             }
