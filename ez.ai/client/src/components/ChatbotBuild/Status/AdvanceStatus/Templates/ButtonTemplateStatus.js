@@ -20,6 +20,7 @@ const ButtonTemplateStatus = (
       type: "uri",
       label: "View detail",
       uri: "http://example.com/page/123",
+      data: "",
     },
   ]);
 
@@ -56,9 +57,6 @@ const ButtonTemplateStatus = (
           data: "", // postback 타입 사용시
         },
       ]);
-    } else {
-      // 액션 추가 버튼 가시성
-      setShowActionAddBtn(true);
     }
   };
 
@@ -75,17 +73,26 @@ const ButtonTemplateStatus = (
     });
 
     setNodeAction(tmpAction);
-    setShowActionAddBtn(true);
   };
 
   /* action type 변경 */
-  const changeActionType = (e) => {
-    console.log(e, e.target.innerHTML, e.target.name);
+  const changeActionType = (id, value) => {
+    console.log(id, value);
+    setNodeAction(
+      nodeAction.map((node) =>
+        node.id === id ? { ...node, type: value } : node
+      )
+    );
   };
 
   useEffect(() => {
     btnTemplateNode.actions = nodeAction;
-    console.log(btnTemplateNode.actions);
+
+    if (nodeAction.length === 4) {
+      setShowActionAddBtn(false);
+    } else {
+      setShowActionAddBtn(true);
+    }
   });
 
   return (
@@ -121,10 +128,16 @@ const ButtonTemplateStatus = (
               <>
                 <div className="btn-template-action">
                   <div className="btn-action-types">
-                    <div className="btn-action-type" name="0">
+                    <div
+                      className="btn-action-type"
+                      onClick={() => changeActionType(act.id, "uri")}
+                    >
                       url
                     </div>
-                    <div className="btn-action-type" name="0">
+                    <div
+                      className="btn-action-type"
+                      onClick={() => changeActionType(act.id, "postback")}
+                    >
                       키워드
                     </div>
                   </div>
