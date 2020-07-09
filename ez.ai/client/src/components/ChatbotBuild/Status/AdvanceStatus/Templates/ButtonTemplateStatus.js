@@ -77,10 +77,19 @@ const ButtonTemplateStatus = (
 
   /* action type 변경 */
   const changeActionType = (id, value) => {
-    console.log(id, value);
     setNodeAction(
       nodeAction.map((node) =>
         node.id === id ? { ...node, type: value } : node
+      )
+    );
+  };
+
+  // OnChange 함수들
+  // uri 주소 onchsnge
+  const onChangeUri = (e, id) => {
+    setNodeAction(
+      nodeAction.map((node) =>
+        node.id === id ? { ...node, uri: e.target.value } : node
       )
     );
   };
@@ -93,6 +102,7 @@ const ButtonTemplateStatus = (
     } else {
       setShowActionAddBtn(true);
     }
+    console.log(nodeAction);
   });
 
   return (
@@ -146,6 +156,8 @@ const ButtonTemplateStatus = (
                       <input
                         type="text"
                         placeholder="연동할 url를 입력해주세요"
+                        onChange={(e) => onChangeUri(e, act.id)}
+                        value={act.uri}
                       />
                     ) : (
                       <select>
