@@ -10,9 +10,10 @@ const ButtonTemplateStatus = (
   now,
   setCurListCount
 ) => {
+  // action 추가 버튼 가시성
   const [showActionAddBtn, setShowActionAddBtn] = useState(true);
 
-  // === 노드 데이터 ===
+  // =================== 노드 데이터 ========================
   const [nodeAction, setNodeAction] = useState([
     // 최대 4개
     {
@@ -24,24 +25,23 @@ const ButtonTemplateStatus = (
     },
   ]);
 
-  const btnTemplateNode = [
-    {
-      type: "buttons",
-      thumbnailImageUrl: "",
-      imageSize: "cover",
-      imageBackgroundColor: "#FFFFFF",
-      title: "",
-      text: "",
-      defaultAction: {
-        // 사진, 이미지, 제목등 탭했을때
-        type: "uri",
-        label: "View detail",
-        uri: "",
-      },
-      actions: nodeAction,
+  const [btnTemplateNode, setBtnTemplateNode] = useState({
+    type: "buttons",
+    thumbnailImageUrl: "",
+    imageSize: "cover",
+    imageBackgroundColor: "#FFFFFF",
+    title: "",
+    text: "",
+    defaultAction: {
+      // 사진, 이미지, 제목등 탭했을때
+      type: "uri",
+      label: "View detail",
+      uri: "",
     },
-  ];
+    actions: nodeAction,
+  });
 
+  // =================== 기능 함수 ========================
   // action  추가
   const addAction = () => {
     console.log(btnTemplateNode);
@@ -84,16 +84,26 @@ const ButtonTemplateStatus = (
     );
   };
 
-  // OnChange 함수들
-  // uri 주소 onchsnge
-  const onChangeUri = (e, id) => {
+  // =================== onChange 기능 함수 ========================
+  //btnTemplateNode Onchange
+  const onChangeTemplate = (e) => {
+    setBtnTemplateNode({
+      ...btnTemplateNode,
+      [e.target.name]: e.target.value,
+    });
+    console.log(btnTemplateNode);
+  };
+
+  // nodeActions onchsnge
+  const onChangeAction = (e, id) => {
     setNodeAction(
       nodeAction.map((node) =>
-        node.id === id ? { ...node, uri: e.target.value } : node
+        node.id === id ? { ...node, [e.target.name]: e.target.value } : node
       )
     );
   };
 
+  // ================= useEffect ==============================
   useEffect(() => {
     btnTemplateNode.actions = nodeAction;
 
@@ -102,7 +112,7 @@ const ButtonTemplateStatus = (
     } else {
       setShowActionAddBtn(true);
     }
-    console.log(nodeAction);
+    console.log(btnTemplateNode);
   });
 
   return (
@@ -128,10 +138,21 @@ const ButtonTemplateStatus = (
         </div>
         <div className="btn-template-contents">
           <div className="btn-template-title">
-            <input type="text" placeholder="타이틀을 적어주세요(선택)" />
+            <input
+              type="text"
+              placeholder="타이틀을 적어주세요(선택)"
+              name="title"
+              value={btnTemplateNode.title}
+              onChange={onChangeTemplate}
+            />
           </div>
           <div className="btn-template-text">
-            <textarea placeholder="텍스트를 적어주세요(필수 항목)" />
+            <textarea
+              placeholder="텍스트를 적어주세요(필수 항목)"
+              name="text"
+              value={btnTemplateNode.text}
+              onChange={onChangeTemplate}
+            />
           </div>
           <div className="btn-template-actions">
             {nodeAction.map((act) => (
@@ -156,7 +177,7 @@ const ButtonTemplateStatus = (
                       <input
                         type="text"
                         placeholder="연동할 url를 입력해주세요"
-                        onChange={(e) => onChangeUri(e, act.id)}
+                        onChange={(e) => onChangeAction(e, act.id)}
                         value={act.uri}
                       />
                     ) : (
@@ -170,7 +191,9 @@ const ButtonTemplateStatus = (
                     <input
                       type="text"
                       placeholder="버튼이름을 작성해주세요"
-                      value={act.id}
+                      name="label"
+                      value={act.label}
+                      onChange={(e) => onChangeAction(e, act.id)}
                     />
                   </div>
                   <div
