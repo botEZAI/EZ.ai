@@ -42,6 +42,14 @@ const ButtonTemplateStatus = (
   });
 
   // =================== 기능 함수 ========================
+  // 이미지 타입 변경 - cover / contain
+  const changeImageType = (type) => {
+    setBtnTemplateNode({
+      ...btnTemplateNode,
+      imageSize: type,
+    });
+  };
+
   // action  추가
   const addAction = () => {
     console.log(btnTemplateNode);
@@ -91,7 +99,6 @@ const ButtonTemplateStatus = (
       ...btnTemplateNode,
       [e.target.name]: e.target.value,
     });
-    console.log(btnTemplateNode);
   };
 
   // nodeActions onchsnge
@@ -118,14 +125,34 @@ const ButtonTemplateStatus = (
   return (
     <div className="btn-template-status">
       <div className="btn-template-control">
-        <input
-          type="color"
-          className="btn-template-color"
-          name="imageBackgroundColor"
-          value={btnTemplateNode.imageBackgroundColor}
-          onChange={onChangeTemplate}
-        />
-        <div className="btn-template-image-size">cover</div>
+        <div classNAme="btn-template-color" title="이미지 배경색">
+          <input
+            type="color"
+            className="btn-template-color"
+            name="imageBackgroundColor"
+            value={btnTemplateNode.imageBackgroundColor}
+            onChange={onChangeTemplate}
+          />
+        </div>
+        <div className="btn-template-image-sizes">
+          {btnTemplateNode.imageSize !== "cover" ? (
+            <div
+              className="btn-template-image-size"
+              title="이미지 형태 : cover"
+              onClick={() => changeImageType("cover")}
+            >
+              <i class="fas fa-expand"></i>
+            </div>
+          ) : (
+            <div
+              className="btn-template-image-size"
+              title="이미지 형태 : contain"
+              onClick={() => changeImageType("contain")}
+            >
+              <i class="fas fa-compress"></i>
+            </div>
+          )}
+        </div>
       </div>
       <div className="btn-template-status-main">
         <div
