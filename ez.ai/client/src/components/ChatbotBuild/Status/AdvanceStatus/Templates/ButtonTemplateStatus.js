@@ -118,13 +118,20 @@ const ButtonTemplateStatus = (
   return (
     <div className="btn-template-status">
       <div className="btn-template-control">
-        <input type="color" className="btn-template-color" value="#ffffff" />
+        <input
+          type="color"
+          className="btn-template-color"
+          name="imageBackgroundColor"
+          value={btnTemplateNode.imageBackgroundColor}
+          onChange={onChangeTemplate}
+        />
         <div className="btn-template-image-size">cover</div>
       </div>
       <div className="btn-template-status-main">
         <div
           className="btn-template-thumbnail"
           title="썸네일 이미지 업로드(선택)"
+          style={{ backgroundColor: btnTemplateNode.imageBackgroundColor }}
         >
           <i className="fas fa-upload"></i>
           <div className="btn-template-thumbnail-cautions">
