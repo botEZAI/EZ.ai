@@ -54,7 +54,6 @@ const PersistentStatus = ({
         }))
     setBtnText(e.target.value);
 
-
     console.log(keywords, selectedBtn, btnText, keywordObject[index].contents[now].listContent)
   }
 
@@ -77,7 +76,8 @@ const PersistentStatus = ({
               <input
                 placeholder="연동된 키워드가 없습니다."
                 readOnly={true}
-                value={keywords[i].text}
+                value={keywordObject[index].contents[now].listContent.keywordLink[i] || ""}
+                //value={keywords[i].text}
               />
             </div>
           ))}
