@@ -19,6 +19,7 @@ const AudioStatus = ({ setKeywordObject, keywordObject, now, index }) => {
           produce(keywordObject, (draft) => {
             draft[index].contents[now].content = res.data.location;
             draft[index].contents[now].filepath = res.data.location;
+            draft[index].contents[now].size = res.data.size;
           })
         );
       });
@@ -35,7 +36,7 @@ const AudioStatus = ({ setKeywordObject, keywordObject, now, index }) => {
               title="로컬 오디오 업로드"
             >
               {keywordObject[index].contents[now].content || (
-                  <i className="fas fa-upload"></i>
+                <i className="fas fa-upload"></i>
               )}
             </div>
             <input ref={audioRef} type="file" hidden onChange={onChangeAudio} />

@@ -81,20 +81,20 @@ const ToolStatus = ({
                 <span>고정 메뉴</span>
               </>
             ) : currentInput.type === "btn_template" ||
-            clickedMainInput.type === "btn_template" ? (
-                <>
-                  <span>버튼 템플릿</span>
-                </>
+              clickedMainInput.type === "btn_template" ? (
+              <>
+                <span>버튼 템플릿</span>
+              </>
             ) : currentInput.type === "carousel" ||
-            clickedMainInput.type === "carousel" ? (
-                <>
-                  <span>슬라이드 템플릿</span>
-                </>
+              clickedMainInput.type === "carousel" ? (
+              <>
+                <span>슬라이드 템플릿</span>
+              </>
             ) : currentInput.type === "img_carousel" ||
-            clickedMainInput.type === "img_carousel" ? (
-                <>
-                  <span>이미지 슬라이드 템플릿</span>
-                </>
+              clickedMainInput.type === "img_carousel" ? (
+              <>
+                <span>이미지 슬라이드 템플릿</span>
+              </>
             ) : currentInput.type === "sticker" ||
               clickedMainInput.type === "sticker" ? (
               <>
@@ -120,8 +120,8 @@ const ToolStatus = ({
       </div>
 
       <div className="tool-status-main">
-        {(clickedMainInput || (!clickedMainInput && currentInput)) ?
-            (currentInput.type === "text" || clickedMainInput.type === "text" ? (
+        {clickedMainInput || (!clickedMainInput && currentInput) ? (
+          currentInput.type === "text" || clickedMainInput.type === "text" ? (
             <TextStatus
               currentContent={currentContent}
               setKeywordObject={setKeywordObject}
@@ -187,48 +187,49 @@ const ToolStatus = ({
             />
           ) : currentInput.type === "btn_template" ||
             clickedMainInput.type === "btn_template" ? (
-                <ButtonTemplateStatus
-                    currentContent={currentContent}
-                    setKeywordObject={setKeywordObject}
-                    keywordObject={keywordObject}
-                    now={now}
-                    index={index}
-                    listCount={listCount}
-                    curListCount={curListCount}
-                    setCurListCount={setCurListCount}
-                />
-            ) : currentInput.type === "carousel" ||
+            <ButtonTemplateStatus
+              currentContent={currentContent}
+              setKeywordObject={setKeywordObject}
+              keywordObject={keywordObject}
+              now={now}
+              index={index}
+              listCount={listCount}
+              curListCount={curListCount}
+              setCurListCount={setCurListCount}
+            />
+          ) : currentInput.type === "carousel" ||
             clickedMainInput.type === "carousel" ? (
-                <CarouselTemplateStatus
-                    currentContent={currentContent}
-                    setKeywordObject={setKeywordObject}
-                    keywordObject={keywordObject}
-                    now={now}
-                    index={index}
-                    listCount={listCount}
-                    curListCount={curListCount}
-                    setCurListCount={setCurListCount}
-                />
-            ): currentInput.type === "img_carousel" ||
+            <CarouselTemplateStatus
+              currentContent={currentContent}
+              setKeywordObject={setKeywordObject}
+              keywordObject={keywordObject}
+              now={now}
+              index={index}
+              listCount={listCount}
+              curListCount={curListCount}
+              setCurListCount={setCurListCount}
+            />
+          ) : currentInput.type === "img_carousel" ||
             clickedMainInput.type === "img_carousel" ? (
-                <ImgCarouselTemplateStatus
-                    currentContent={currentContent}
-                    setKeywordObject={setKeywordObject}
-                    keywordObject={keywordObject}
-                    now={now}
-                    index={index}
-                    listCount={listCount}
-                    curListCount={curListCount}
-                    setCurListCount={setCurListCount}
-                />
-            ) : currentInput.type === "sticker" ||
+            <ImgCarouselTemplateStatus
+              currentContent={currentContent}
+              setKeywordObject={setKeywordObject}
+              keywordObject={keywordObject}
+              now={now}
+              index={index}
+              listCount={listCount}
+              curListCount={curListCount}
+              setCurListCount={setCurListCount}
+            />
+          ) : currentInput.type === "sticker" ||
             clickedMainInput.type === "sticker" ? (
             <>
               <div>
                 <p>스티커는 추후 텔레그램 스티커 api와 연결</p>
               </div>
             </>
-          ) : null) : null}
+          ) : null
+        ) : null}
       </div>
       <div className="tool-status-nav">
         <div className="tool-status-extra">
