@@ -64,6 +64,10 @@ const Preview = ({
     { name: "file", value: [0, 0, 0] },
     { name: "list", value: [1, 1, 0] },
     { name: "sticker", value: [0, 1, 0] },
+    { name : "btn_template", value : [0,0,1] },
+    { name : "carousel", value : [0,0,1] },
+    { name : "img_carousel", value : [0,0,1] },
+    { name : "sticker", value : [0,0,1] },
   ];
 
   const changeAvailableIcon = (tool) => {
