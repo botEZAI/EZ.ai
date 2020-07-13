@@ -7,6 +7,7 @@ import AudioPreview from "./BasicPreview/AudioPreview";
 import LocationPreview from "./BasicPreview/LocationPreview";
 import FilePreview from "./BasicPreview/FilePreview";
 import ListPreview from "./AdvancePreview/ListPreview";
+import ButtonTemplatePreview from "./AdvancePreview/ButtonTemplatePreview";
 import './TelegramPreview.css';
 
 const TelegramPreview = ({
@@ -97,6 +98,17 @@ const TelegramPreview = ({
               v={v}
               i={i}
               setVirtualKeyboard={setVirtualKeyboard}
+              setClickedMainInput={setClickedMainInput}
+              now={now}
+              setNow={setNow}
+              onDelete={onDelete}
+              changeAvailableIcon={changeAvailableIcon}
+            />
+          ) : v.type === "btn_template" ? (
+            <ButtonTemplatePreview 
+              v={v}
+              i={i}
+              now={now}
               setClickedMainInput={setClickedMainInput}
               now={now}
               setNow={setNow}
