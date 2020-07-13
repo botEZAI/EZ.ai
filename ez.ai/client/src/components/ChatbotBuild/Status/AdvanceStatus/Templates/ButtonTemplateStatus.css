@@ -168,11 +168,8 @@
   font-size: 15px;
 }
 
- {
-  height: 16px;
-}
-
 .btn-action-remove {
+  height: 16px;
 }
 
 .btn-action-remove i {
