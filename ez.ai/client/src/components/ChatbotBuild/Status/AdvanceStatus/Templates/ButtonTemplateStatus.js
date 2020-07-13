@@ -277,10 +277,22 @@ const ButtonTemplateStatus = ({
                         value={act.uri}
                       />
                     ) : (
-                      <select>
+                      <select name="data" onChange = {e=>onChangeAction(e, act.id)}>
                         <option value="none" selected disabled>
                           연동할 키워드를 선택해주세요
                         </option>
+                        {keywordObject.map((keyword, index) => {
+                          return (
+                              <>
+                                <option
+                                    key={index}
+                                    value={keyword.keyword}
+                                >
+                                  {keyword.keyword}
+                                </option>
+                              </>
+                          )
+                        })}
                       </select>
                     )}
 
