@@ -1,125 +1,175 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import produce from "immer";
-import "./ButtonTemplateStatus.css";
-import { use } from "passport";
+import axios from "axios";
 
-const ButtonTemplateStatus = (
+import "./ButtonTemplateStatus.css";
+
+const ButtonTemplateStatus = ({
   currentContent,
   setKeywordObject,
   keywordObject,
   now,
-  setCurListCount
-) => {
+  index,
+  keywordPopup,
+  setKeywordPopup,
+  listCount,
+  curListCount,
+  setCurListCount,
+}) => {
   // action 추가 버튼 가시성
   const [showActionAddBtn, setShowActionAddBtn] = useState(true);
 
-  // =================== 노드 데이터 ========================
-  const [nodeAction, setNodeAction] = useState([
-    // 최대 4개
-    {
-      id: 0,
-      type: "uri",
-      label: "View detail",
-      uri: "http://example.com/page/123",
-      data: "",
-    },
-  ]);
+  // =================== 노드 데이터 ======================== keywordObject에서 바로 작업
+  // const [nodeAction, setNodeAction] = useState([
+  //   // 최대 4개
+  //   {
+  //     id: 0,
+  //     type: "uri",
+  //     label: "View detail",
+  //     uri: "http://example.com/page/123",
+  //     data: "",
+  //   },
+  // ]);
 
-  const [btnTemplateNode, setBtnTemplateNode] = useState({
-    type: "buttons",
-    thumbnailImageUrl: "",
-    imageSize: "cover",
-    imageBackgroundColor: "#FFFFFF",
-    title: "",
-    text: "",
-    defaultAction: {
-      // 사진, 이미지, 제목등 탭했을때
-      type: "uri",
-      label: "View detail",
-      uri: "",
-    },
-    actions: nodeAction,
-  });
+  // const [btnTemplateNode, setBtnTemplateNode] = useState({
+  //   type: "buttons",
+  //   thumbnailImageUrl: "",
+  //   imageSize: "cover",
+  //   imageBackgroundColor: "#FFFFFF",
+  //   title: "",
+  //   text: "",
+  //   defaultAction: {
+  //     // 사진, 이미지, 제목등 탭했을때
+  //     type: "uri",
+  //     label: "View detail",
+  //     uri: "",
+  //   },
+  //   actions: nodeAction,
+  // });
 
   // =================== 기능 함수 ========================
+  //이미지 업로드
+  const imageRef = useRef();
+
+  const onClickLoadImage = (e) => {
+    setKeywordObject(
+      produce(keywordObject, (draft) => {
+        draft[index].contents[now].content = e.target.value;
+      })
+    );
+  };
+
+  const onClickUploadImage = () => {
+    imageRef.current.click();
+  };
+  const onChangeImage = (e) => {
+    if (e.target.value === "") return;
+    if (e.target.files[0].type.match(/image/g)) {
+      const imageFormData = new FormData();
+      imageFormData.append("image", e.target.files[0]);
+
+      axios.post("/api/image", imageFormData).then((res) => {
+        setKeywordObject(
+          produce(keywordObject, (draft) => {
+            draft[index].contents[now].content.thumbnailImageUrl =
+              res.data.location;
+          })
+        );
+      });
+    } else return alert("이미지 파일이 아닙니다.");
+  };
+
   // 이미지 타입 변경 - cover / contain
   const changeImageType = (type) => {
-    setBtnTemplateNode({
-      ...btnTemplateNode,
-      imageSize: type,
-    });
+    setKeywordObject(
+      produce(keywordObject, (draft) => {
+        draft[index].contents[now].content.imageSize = type;
+      })
+    );
   };
 
   // action  추가
   const addAction = () => {
-    console.log(btnTemplateNode);
     // 요소추가
-    if (nodeAction.length < 4) {
-      setNodeAction([
-        ...nodeAction,
-        {
-          id: nodeAction.length,
-          type: "uri",
-          label: "",
-          uri: "", // uri 타입 사용시.
-          data: "", // postback 타입 사용시
-        },
-      ]);
+    if (keywordObject[index].contents[now].content.actions.length < 4) {
+      setKeywordObject(
+        produce(keywordObject, (draft) => {
+          draft[index].contents[now].content.actions.push({
+            id: draft[index].contents[now].content.actions.length,
+            type: "uri",
+            label: "",
+            uri: "", // uri 타입 사용시.
+            data: "", // postback 타입 사용시
+          });
+        })
+      );
     }
   };
 
   // action 제거
   const removeAction = (id) => {
-    if (nodeAction.length == 1) {
+    if (keywordObject[index].contents[now].content.actions.length === 1) {
       alert("action은 최소 한개 이상 존재해야 합니다");
       return;
     }
-    let tmpAction = nodeAction;
+    let tmpAction = keywordObject[index].contents[now].content.actions;
     tmpAction = tmpAction.filter((action) => action.id !== id);
     tmpAction = tmpAction.map((action, index) => {
       return { ...action, id: index };
     });
 
-    setNodeAction(tmpAction);
+    setKeywordObject(
+      produce(keywordObject, (draft) => {
+        draft[index].contents[now].content.actions = tmpAction;
+      })
+    );
   };
 
   /* action type 변경 */
   const changeActionType = (id, value) => {
-    setNodeAction(
-      nodeAction.map((node) =>
-        node.id === id ? { ...node, type: value } : node
-      )
+    let tmpAction = keywordObject[index].contents[
+      now
+    ].content.actions.map((node) =>
+      node.id === id ? { ...node, type: value } : node
+    );
+    setKeywordObject(
+      produce(keywordObject, (draft) => {
+        draft[index].contents[now].content.actions = tmpAction;
+      })
     );
   };
 
   // =================== onChange 기능 함수 ========================
   //btnTemplateNode Onchange
   const onChangeTemplate = (e) => {
-    setBtnTemplateNode({
-      ...btnTemplateNode,
-      [e.target.name]: e.target.value,
-    });
+    setKeywordObject(
+      produce(keywordObject, (draft) => {
+        draft[index].contents[now].content[e.target.name] = e.target.value;
+      })
+    );
   };
 
   // nodeActions onchsnge
   const onChangeAction = (e, id) => {
-    setNodeAction(
-      nodeAction.map((node) =>
-        node.id === id ? { ...node, [e.target.name]: e.target.value } : node
-      )
+    let tmpAction = keywordObject[index].contents[
+      now
+    ].content.actions.map((node) =>
+      node.id === id ? { ...node, [e.target.name]: e.target.value } : node
+    );
+    setKeywordObject(
+      produce(keywordObject, (draft) => {
+        draft[index].contents[now].content.actions = tmpAction;
+      })
     );
   };
 
   // ================= useEffect ==============================
   useEffect(() => {
-    btnTemplateNode.actions = nodeAction;
-
-    if (nodeAction.length === 4) {
+    if (keywordObject[index].contents[now].content.actions.length === 4) {
       setShowActionAddBtn(false);
     } else {
       setShowActionAddBtn(true);
     }
-    console.log(btnTemplateNode);
   });
 
   return (
@@ -130,12 +180,14 @@ const ButtonTemplateStatus = (
             type="color"
             className="btn-template-color"
             name="imageBackgroundColor"
-            value={btnTemplateNode.imageBackgroundColor}
+            value={
+              keywordObject[index].contents[now].content.imageBackgroundColor
+            }
             onChange={onChangeTemplate}
           />
         </div>
         <div className="btn-template-image-sizes">
-          {btnTemplateNode.imageSize !== "cover" ? (
+          {keywordObject[index].contents[now].content.imageSize !== "cover" ? (
             <div
               className="btn-template-image-size"
               title="이미지 형태 : cover"
@@ -158,8 +210,17 @@ const ButtonTemplateStatus = (
         <div
           className="btn-template-thumbnail"
           title="썸네일 이미지 업로드(선택)"
-          style={{ backgroundColor: btnTemplateNode.imageBackgroundColor }}
+          style={{
+            backgroundColor:
+              keywordObject[index].contents[now].content.imageBackgroundColor,
+          }}
+          onClick={onClickUploadImage}
         >
+          <img
+            className="btn-template-thumbnail-image"
+            src={keywordObject[index].contents[now].content.thumbnailImageUrl}
+          />
+          <input ref={imageRef} type="file" hidden onChange={onChangeImage} />
           <i className="fas fa-upload"></i>
           <div className="btn-template-thumbnail-cautions">
             <div className="btn-template-thumbnail-caution">
@@ -176,7 +237,7 @@ const ButtonTemplateStatus = (
               type="text"
               placeholder="타이틀을 적어주세요(선택)"
               name="title"
-              value={btnTemplateNode.title}
+              value={keywordObject[index].contents[now].content.title}
               onChange={onChangeTemplate}
             />
           </div>
@@ -184,12 +245,12 @@ const ButtonTemplateStatus = (
             <textarea
               placeholder="텍스트를 적어주세요(필수 항목)"
               name="text"
-              value={btnTemplateNode.text}
+              value={keywordObject[index].contents[now].content.text}
               onChange={onChangeTemplate}
             />
           </div>
           <div className="btn-template-actions">
-            {nodeAction.map((act) => (
+            {keywordObject[index].contents[now].content.actions.map((act) => (
               <>
                 <div className="btn-template-action">
                   <div className="btn-action-types">
@@ -211,6 +272,7 @@ const ButtonTemplateStatus = (
                       <input
                         type="text"
                         placeholder="연동할 url를 입력해주세요"
+                        name="uri"
                         onChange={(e) => onChangeAction(e, act.id)}
                         value={act.uri}
                       />
