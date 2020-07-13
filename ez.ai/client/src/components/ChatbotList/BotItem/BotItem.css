@@ -124,6 +124,7 @@
   border-radius: 8px;
   flex-direction: column;
   box-shadow: 1px 1px 3px 1px rgba(10, 10, 120, 0.15);
+  cursor : auto;
 }
 
 /* 챗봇 목록 확대 - 헤더 부분 */
@@ -132,6 +133,7 @@
   justify-content: space-between;
   align-items: center;
   font-weight: bold;
+  cursor : pointer;
 }
 
 .bot-item-header .bot-name, .bot-item-header .bot-item-btns > div {
