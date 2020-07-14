@@ -316,7 +316,10 @@ const CarouselTemplateStatus = ({
                 </div>
                 )
             )}
-            <div className="carosuel-template-add" onClick={addTemplateNode}>슬라이드 추가하기</div>
+            {templateNode.length < 10 ? (
+                <div className="carosuel-template-add" onClick={addTemplateNode}>슬라이드 추가하기</div>
+            ) : null}
+
         </div>
     )
 };
