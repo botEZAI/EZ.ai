@@ -116,8 +116,31 @@ const CarouselTemplateStatus = (
                 }
             ]
         )
-        console.log(templateNode)
     }
+
+    // =================== onChange 기능 함수 ========================
+    //carosuel node Onchange
+    const onChangeTemplate = (e, node) => {
+        setTemplateNode(templateNode.map(tnode => tnode.id === node.id ?
+            ({
+                ...tnode,
+                [e.target.name]: e.target.value
+            }) : tnode
+        ))
+    }
+
+    const onChangeTemplateAction = (e, node) => {
+        let tmpAction = node.actions.map(action => {
+            return {...action, [e.target.name]: e.target.value }
+        })
+        console.log(tmpAction, node, node.title, node.text)
+        setTemplateNode(templateNode.map(tnode => tnode.id === node.id ?
+            ({
+                ...tnode,
+                actions : tmpAction
+            }) : tnode
+        ))
+    };
 
 
 
@@ -133,7 +156,7 @@ const CarouselTemplateStatus = (
                                 className="btn-template-color"
                                 name="imageBackgroundColor"
                                 value={node.imageBackgroundColor}
-                                //onChange={onChangeTemplate}
+                                onChange={e=>onChangeTemplate(e, node)}
                             />
                         </div>
                         <div className="btn-template-image-sizes">
@@ -191,7 +214,7 @@ const CarouselTemplateStatus = (
                                 placeholder="타이틀을 적어주세요(선택)"
                                 name="title"
                                 value={node.title}
-                                //onChange={onChangeTemplate}
+                                onChange={e=>onChangeTemplate(e, node)}
                             />
                         </div>
                         <div className="btn-template-text">
@@ -199,7 +222,7 @@ const CarouselTemplateStatus = (
                                 placeholder="텍스트를 적어주세요(필수 항목)"
                                 name="text"
                                 value={node.text}
-                                //onChange={onChangeTemplate}
+                                onChange={e=>onChangeTemplate(e, node)}
                             />
                         </div>
                         <div className="btn-template-actions">
