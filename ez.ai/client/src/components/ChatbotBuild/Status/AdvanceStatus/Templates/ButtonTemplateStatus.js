@@ -137,6 +137,7 @@ const ButtonTemplateStatus = ({
         draft[index].contents[now].content.actions = tmpAction;
       })
     );
+    console.log(keywordObject)
   };
 
   // =================== onChange 기능 함수 ========================
