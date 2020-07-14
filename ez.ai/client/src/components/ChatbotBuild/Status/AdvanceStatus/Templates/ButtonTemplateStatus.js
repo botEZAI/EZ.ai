@@ -100,6 +100,7 @@ const ButtonTemplateStatus = ({
             label: "",
             uri: "", // uri 타입 사용시.
             data: "", // postback 타입 사용시
+            text: "",
           });
         })
       );
@@ -156,6 +157,11 @@ const ButtonTemplateStatus = ({
     ].content.actions.map((node) =>
       node.id === id ? { ...node, [e.target.name]: e.target.value } : node
     );
+    if (e.target.name === "label") {
+      tmpAction = tmpAction.map((node) =>
+        node.id === id ? { ...node, text: e.target.value } : node
+      );
+    }
     setKeywordObject(
       produce(keywordObject, (draft) => {
         draft[index].contents[now].content.actions = tmpAction;
@@ -174,6 +180,7 @@ const ButtonTemplateStatus = ({
 
   return (
     <div className="btn-template-status">
+      {console.log(keywordObject)}
       <div className="btn-template-control">
         <div classNAme="btn-template-color" title="이미지 배경색">
           <input
@@ -277,21 +284,21 @@ const ButtonTemplateStatus = ({
                         value={act.uri}
                       />
                     ) : (
-                      <select name="data" onChange = {e=>onChangeAction(e, act.id)}>
+                      <select
+                        name="data"
+                        onChange={(e) => onChangeAction(e, act.id)}
+                      >
                         <option value="none" selected disabled>
                           연동할 키워드를 선택해주세요
                         </option>
                         {keywordObject.map((keyword, index) => {
                           return (
-                              <>
-                                <option
-                                    key={index}
-                                    value={keyword.keyword}
-                                >
-                                  {keyword.keyword}
-                                </option>
-                              </>
-                          )
+                            <>
+                              <option key={index} value={keyword.keyword}>
+                                {keyword.keyword}
+                              </option>
+                            </>
+                          );
                         })}
                       </select>
                     )}
