@@ -164,10 +164,10 @@ const CarouselTemplateStatus = ({
         ))
     }
 
-    const onChangeTemplateAction = (e, node) => {
-        let tmpAction = node.actions.map(action => {
-            return {...action, [e.target.name]: e.target.value }
-        })
+    const onChangeTemplateAction = (e, node, id) => {
+        let tmpAction = node.actions.map(action => action.id === id ? (
+            {...action, [e.target.name]: e.target.value }
+        ) : action);
         setTemplateNode(templateNode.map(tnode => tnode.id === node.id ?
             ({
                 ...tnode,
@@ -294,12 +294,12 @@ const CarouselTemplateStatus = ({
                                             type="text"
                                             placeholder="연동할 url를 입력해주세요"
                                             name="uri"
-                                            //onChange={(e) => onChangeAction(e, act.id)}
+                                            onChange={(e) => onChangeTemplateAction(e, node, act.id)}
                                             value={act.uri}
                                         />
                                         ) : (
-                                        <select name="data">
-                                            <option value="none" selected disabled>
+                                        <select name="data" defaultValue="none">
+                                            <option value="none" disabled>
                                                 연동할 키워드를 선택해주세요
                                             </option>
                                             {keywordObject.map((keyword, index) => {
@@ -322,7 +322,7 @@ const CarouselTemplateStatus = ({
                                         placeholder="버튼이름을 작성해주세요"
                                         name="label"
                                         value={act.label}
-                                        //onChange={(e) => onChangeAction(e, act.id)}
+                                        onChange={(e) => onChangeTemplateAction(e, node, act.id)}
                                     />
                                 </div>
                                 <div
