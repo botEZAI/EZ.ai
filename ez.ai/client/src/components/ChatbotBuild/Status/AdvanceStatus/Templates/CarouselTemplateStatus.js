@@ -66,6 +66,26 @@ const CarouselTemplateStatus = (
         console.log(templateNode)
     }
 
+    // action 제거
+    const removeAction = (node, action_id) => {
+         if(node.actions.length === 1) {
+             alert("action은 최소 한개 이상 존재해야 합니다")
+             return
+         }
+
+         let tmpAction = node.actions;
+         tmpAction = tmpAction.filter(action => action.id !== action_id);
+         tmpAction = tmpAction.map((action, index) => {
+             return {...action, id: index};
+         });
+
+         let modifiedNode = templateNode.map(tnode => tnode.id === node.id ?
+             ({...tnode, actions : tmpAction}) : tnode
+         );
+
+         setTemplateNode(modifiedNode);
+    };
+
 
     // carosuel 템플릿 추가
     const addTemplateNode = () => {
@@ -98,6 +118,9 @@ const CarouselTemplateStatus = (
         )
         console.log(templateNode)
     }
+
+
+
 
     return (
         <div className="carosuel-templates">
@@ -237,7 +260,7 @@ const CarouselTemplateStatus = (
                     </div>
                                 <div
                                     className="btn-action-remove"
-                                    //onClick={() => removeAction(act.id)}
+                                    onClick={() => removeAction(node, act.id)}
                                 >
                                     <i className="fas fa-minus-circle"></i>
                                 </div>
