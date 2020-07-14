@@ -155,6 +155,15 @@ const CarouselTemplateStatus = ({
         ))
     }
 
+    const onChangeTemplateImageSizeType = (node, imageSizeType) => {
+        setTemplateNode(templateNode.map(tnode => tnode.id === node.id ?
+            ({
+                ...tnode,
+                "imageSize": imageSizeType
+            }) : tnode
+        ))
+    }
+
     const onChangeTemplateAction = (e, node) => {
         let tmpAction = node.actions.map(action => {
             return {...action, [e.target.name]: e.target.value }
@@ -189,7 +198,9 @@ const CarouselTemplateStatus = ({
                             <div
                                 className="btn-template-image-size"
                                 title="이미지 형태 : cover"
-                                //onClick={() => changeImageType("cover")}
+                                name="imageSize"
+                                value="cover"
+                                onClick={()=>onChangeTemplateImageSizeType(node, "cover")}
                             >
                                 <i className="fas fa-expand"></i>
                             </div>
@@ -197,7 +208,9 @@ const CarouselTemplateStatus = ({
                             <div
                                 className="btn-template-image-size"
                                 title="이미지 형태 : contain"
-                                //onClick={() => changeImageType("contain")}
+                                name="imageSize"
+                                value="contain"
+                                onClick={()=>onChangeTemplateImageSizeType(node, "contain")}
                             >
                                 <i className="fas fa-compress"></i>
                             </div>
