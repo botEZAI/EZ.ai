@@ -6,6 +6,7 @@ const ButtonTemplatePreview = ({
   setClickedMainInput,
   now,
   setNow,
+  onDelete,
   changeAvailableIcon
 }) => {
   return(
@@ -44,6 +45,14 @@ const ButtonTemplatePreview = ({
         </div>
         
         Hello Button Template. Telegram
+      </div>
+      <div
+        className="tool-delete delete-btntemplate "
+        onClick={() => {
+          onDelete(v.id, "list");
+        }}
+      >
+        <i className="fas fa-times"></i>
       </div>
     </div>
   );

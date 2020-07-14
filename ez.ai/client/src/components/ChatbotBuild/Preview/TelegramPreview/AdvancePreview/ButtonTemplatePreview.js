@@ -6,6 +6,7 @@ const ButtonTemplatePreview = ({
   setClickedMainInput,
   now,
   setNow,
+  onDelete,
   changeAvailableIcon
 }) => {
   return(
@@ -39,6 +40,14 @@ const ButtonTemplatePreview = ({
             텍스트(text)
           </div>
         </div>
+      </div>
+      <div
+        className="tool-delete delete-btntemplate "
+        onClick={() => {
+          onDelete(v.id, "list");
+        }}
+      >
+        <i className="fas fa-times"></i>
       </div>
     </div>
   );
