@@ -18,6 +18,8 @@ const ToolBasic = ({
       ? setKeywordObject(
           produce(keywordObject, draft => {
             const object = draft.find(t => t.keyword === mainKeyword);
+            const lastType = object.contents.length !== 0 ? object.contents[object.contents.length-1].type : tool;
+
             if (!object.completed) {
               object.contents.length === 0
                 ? tool === "location"
@@ -75,9 +77,16 @@ const ToolBasic = ({
               setAddFlag(true);
               setAvailableIcon(availableIcon.map(i=> ({...i, use : true})))
             } else {
-              alert(
-                "[고정 메뉴] 생성 후, 요소 추가가 안됩니다.\n요소 추가를 원하시면, [고정 메뉴]를 삭제하세요."
-              );
+              if(lastType === "list"){ // 마지막 요소 타입이 list
+                alert(
+                  "[고정 메뉴] 생성 후, 더 이상의 요소 생성이 안 됩니다.\n생성을 원하시면, [고정 메뉴]를 삭제하세요."
+                );
+              }
+              else if(lastType === "btn_template"){
+                alert(
+                  "[버튼형 템플릿] 생성 후, 더 이상의 요소 생성이 안 됩니다.\n생성을 원하시면, [버튼형 템플릿]을 삭제하세요."
+                )
+              }
               setAvailableIcon(availableIcon.map(i=> ({...i, use : false})))
             }
           })
