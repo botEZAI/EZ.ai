@@ -1,4 +1,5 @@
-.carosuel-template-status {
+/* carosuel css */
+.carosuel-templates {
     position: absolute;
     left : 0;
     top : 0;
@@ -11,14 +12,14 @@
     overflow-x : scroll;
 }
 
-.carosuel-template-status .btn-template-status {
+.carosuel-templates .carosuel-template {
 
     min-width : 300px;
     min-height : 525px;
     margin-right: 10px;
 }
 
-.carosuel-template-status .btn-template-status-main-add {
+.carosuel-templates .carosuel-template-add {
     height : 550px;
     margin-right: 10px;
     padding : 20px;
@@ -29,6 +30,8 @@
     font-weight: bold;
 
 }
+
+
 
 
 
