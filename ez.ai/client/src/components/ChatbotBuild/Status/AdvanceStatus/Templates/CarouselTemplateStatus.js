@@ -65,6 +65,21 @@ const CarouselTemplateStatus = ({
         setTemplateNode(modifiedNode)
     }
 
+    // template(column) 제거
+    const removeTemplate = node => {
+         if (templateNode.length === 1) {
+             alert("템플릿은 최소 한개 이상 존재해야 합니다");
+             return
+         }
+         let tmpTemplate = templateNode.filter(tmp => tmp.id !== node.id);
+
+
+         tmpTemplate = tmpTemplate.map((tmp, index) => {
+             return {...tmp, id: index}
+         })
+        setTemplateNode(tmpTemplate)
+    }
+
     // action 제거
     const removeAction = (node, action_id) => {
          if(node.actions.length === 1) {
@@ -187,6 +202,13 @@ const CarouselTemplateStatus = ({
                                 <i className="fas fa-compress"></i>
                             </div>
                         )}
+                            <div
+                                className="btn-template-image-size"
+                                title="column 제거"
+                                onClick={() => removeTemplate(node)}
+                            >
+                                <i className="far fa-trash-alt"></i>
+                            </div>
                         </div>
                     </div>
                     <div className="btn-template-status-main">
