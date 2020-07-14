@@ -1,4 +1,5 @@
 import React from "react"
+import DefaultImage from "../../../../../objects/template-default-image.jpg"
 
 const ButtonTemplatePreview = ({
   v,
@@ -22,29 +23,49 @@ const ButtonTemplatePreview = ({
         }}
       >
         <div
-          className="main-btn-template-thumbnail"
+          className="main-buttons-thumbnail"
+          style={{
+            backgroundColor:v.content.imageBackgroundColor,
+          }}
         >
-          이미지
+          {v.content.thumbnailImageUrl !== ""
+          ? 
+            <img
+              className="main-buttons-thumbnail-image"
+              src={v.content.thumbnailImageUrl} 
+            />
+          :
+            <img
+              className="main-buttons-thumbnail-image default-thumbnail"
+              src={DefaultImage}
+            />
+          }
+
         </div>
-        <div
-          className="main-btn-template-contents"
-        >
-          <div
-            className="main-btn-template-title"
-          >
-            텍스트(Title)
+        <div className="main-buttons-contents">
+          <div className="main-buttons-title">
+            {v.content.title !== ""
+                ? v.content.title
+                : "TITLE"}
           </div>
-          <div
-            className="main-btn-template-text"  
-          >
-            텍스트(text)
+          <div className="main-buttons-text">
+            {v.content.text !== ""
+                ? v.content.text
+                : "text"}
           </div>
-          <div className="main-btn-template-actions">
-            
+          <div className="main-buttons-actions">
+            <div className="space-top"></div>
+            {v.content.actions.map((act,index) => (
+              <div className="main-buttons-action">
+                {act.label !== "" 
+                  ? act.label
+                  : "(button" + (index + 1) + ")"
+                }
+              </div>
+            ))}
+            <div className="space-bottom"></div>
           </div>
         </div>
-        
-        Hello Button Template. Telegram
       </div>
       <div
         className="tool-delete delete-btntemplate "

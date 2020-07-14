@@ -1,4 +1,22 @@
+
 .btntemplatebox-Line{
   height: auto;
   width: 300px;
+}
+
+.main-buttons-action{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+  font-size: large;
+  color: #5271a2;
+}
+
+.space-top{
+  padding:10px 0 0 0;
+}
+.space-bottom{
+  padding: 0 0 10px 0;
 }
