@@ -2,16 +2,16 @@ import React, {useState} from "react";
 import "./CarouselTemplateStatus.css";
 import ButtonTemplateStatus from "./ButtonTemplateStatus";
 
-const CarouselTemplateStatus = (
-    currentContent,
-    setKeywordObject,
-    keywordObject,
-    now,
-    index,
-    listCount,
-    curListCount,
-    setCurListCount,
-) => {
+const CarouselTemplateStatus = ({
+                                    currentContent,
+                                    setKeywordObject,
+                                    keywordObject,
+                                    now,
+                                    index,
+                                    listCount,
+                                    curListCount,
+                                    setCurListCount,
+                                }) => {
 
     // =================== 노드 데이터 ========================
      const [templateNode, setTemplateNode] = useState([
@@ -63,7 +63,6 @@ const CarouselTemplateStatus = (
         )
 
         setTemplateNode(modifiedNode)
-        console.log(templateNode)
     }
 
     // action 제거
@@ -129,11 +128,22 @@ const CarouselTemplateStatus = (
         ))
     }
 
+    const onChangeTemplateActionType = (node, id, type) => {
+        let tmpAction = node.actions.map(action =>
+            action.id === id ? {...action, type : type } : action
+        )
+        setTemplateNode(templateNode.map(tnode => tnode.id === node.id ?
+            ({
+                ...tnode,
+                actions : tmpAction
+            }) : tnode
+        ))
+    }
+
     const onChangeTemplateAction = (e, node) => {
         let tmpAction = node.actions.map(action => {
             return {...action, [e.target.name]: e.target.value }
         })
-        console.log(tmpAction, node, node.title, node.text)
         setTemplateNode(templateNode.map(tnode => tnode.id === node.id ?
             ({
                 ...tnode,
@@ -183,10 +193,10 @@ const CarouselTemplateStatus = (
                         <div
                             className="btn-template-thumbnail"
                             title="썸네일 이미지 업로드(선택)"
-                        style={{
-                            backgroundColor: node.imageBackgroundColor,
-                        }}
-                        // onClick={onClickUploadImage}
+                            style={{
+                                backgroundColor: node.imageBackgroundColor,
+                            }}
+                            // onClick={onClickUploadImage}
                         >
                             <img
                                 className="btn-template-thumbnail-image"
@@ -230,57 +240,56 @@ const CarouselTemplateStatus = (
                         <>
                             <div className="btn-template-action">
                                 <div className="btn-action-types">
-                            <div
-                                className="btn-action-type"
-                                //onClick={() => changeActionType(act.id, "uri")}
-                            >
-                                url
-                            </div>
-                            <div
-                                className="btn-action-type"
-                                //onClick={() => changeActionType(act.id, "postback")}
-                            >
-                                키워드
-                            </div>
-                        </div>
+                                    <div
+                                        className="btn-action-type"
+                                        onClick={()=>onChangeTemplateActionType(node, act.id,"uri")}
+                                    >
+                                        url
+                                    </div>
+                                    <div
+                                        className="btn-action-type"
+                                        onClick={()=>onChangeTemplateActionType(node, act.id,"postback")}
+                                    >
+                                        키워드
+                                    </div>
+                                </div>
                                 <div className="btn-action-label">
-                        {act.type === "uri" ? (
-                            <input
-                                type="text"
-                                placeholder="연동할 url를 입력해주세요"
-                                name="uri"
-                                //onChange={(e) => onChangeAction(e, act.id)}
-                                value={act.uri}
-                            />
-                            ) : (
-                            <select name="data" //onChange = {e=>onChangeAction(e, act.id)}
-                            >
-                                <option value="none" selected disabled>
-                                    연동할 키워드를 선택해주세요
-                                </option>
-                                {keywordObject.map((keyword, index) => {
-                                    return (
-                                        <>
-                                            <option
-                                                key={index}
-                                                value={keyword.keyword}
-                                            >
-                                                {keyword.keyword}
+                                    {act.type === "uri" ? (
+                                        <input
+                                            type="text"
+                                            placeholder="연동할 url를 입력해주세요"
+                                            name="uri"
+                                            //onChange={(e) => onChangeAction(e, act.id)}
+                                            value={act.uri}
+                                        />
+                                        ) : (
+                                        <select name="data">
+                                            <option value="none" selected disabled>
+                                                연동할 키워드를 선택해주세요
                                             </option>
-                                        </>
-                                    )
-                                })}
-                                </select>
-                        )}
+                                            {keywordObject.map((keyword, index) => {
+                                                return (
+                                                    <>
+                                                        <option
+                                                            key={index}
+                                                            value={keyword.keyword}
+                                                        >
+                                                            {keyword.keyword}
+                                                        </option>
+                                                    </>
+                                                )
+                                            })}
+                                        </select>
+                                    )}
 
-                        <input
-                            type="text"
-                            placeholder="버튼이름을 작성해주세요"
-                            name="label"
-                            value={act.label}
-                            //onChange={(e) => onChangeAction(e, act.id)}
-                        />
-                    </div>
+                                    <input
+                                        type="text"
+                                        placeholder="버튼이름을 작성해주세요"
+                                        name="label"
+                                        value={act.label}
+                                        //onChange={(e) => onChangeAction(e, act.id)}
+                                    />
+                                </div>
                                 <div
                                     className="btn-action-remove"
                                     onClick={() => removeAction(node, act.id)}
