@@ -1,5 +1,4 @@
 import React from "react"
-import DefaultImage from "../../../../../objects/template-default-image.jpg"
 
 const ButtonTemplatePreview = ({
   v,
@@ -13,8 +12,8 @@ const ButtonTemplatePreview = ({
   return(
     <div className="main-preview">
       <div
-        className={now == i ? "main-content btntemplatebox-Line now"
-                            : "main-content btntemplatebox-Line"}
+        className={now == i ? "main-content buttonsbox-line now"
+                            : "main-content buttonsbox-line"}
         key={v.content + i}
         onClick={() => {
           setClickedMainInput(v);
@@ -26,7 +25,7 @@ const ButtonTemplatePreview = ({
         {v.content.thumbnailImageUrl !== "" 
         ?
           <div
-            className="main-buttons-thumbnail"
+            className="buttons-thumbnail-line"
             style={{
               backgroundColor:v.content.imageBackgroundColor,
             }}
@@ -42,12 +41,12 @@ const ButtonTemplatePreview = ({
         }
 
         <div className="main-buttons-contents">
-          <div className="main-buttons-title">
+          <div className="buttons-title-line">
             {v.content.title !== ""
                 ? v.content.title
                 : "TITLE"}
           </div>
-          <div className="main-buttons-text">
+          <div className="buttons-text-line">
             {v.content.text !== ""
                 ? v.content.text
                 : "text"}
@@ -67,7 +66,7 @@ const ButtonTemplatePreview = ({
         </div>
       </div>
       <div
-        className="tool-delete delete-btntemplate "
+        className="tool-delete delete-buttons"
         onClick={() => {
           onDelete(v.id, "list");
         }}

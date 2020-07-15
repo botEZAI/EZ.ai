@@ -1,7 +1,41 @@
 
-.btntemplatebox-Line{
+.buttonsbox-line{
   height: auto;
   width: 300px;
+}
+
+.buttons-thumbnail-line{
+  position: relative;
+  height: 200px;
+  border-top-left-radius: 8px;
+  border-top-right-radius:8px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.5s;
+  overflow: hidden;
+}
+.buttons-title-line{
+  height: fit-content;
+  padding: 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  word-break: break-all;
+  font-weight: bold;
+}
+.buttons-text-line{
+  height: fit-content;
+  padding: 0 10px 10px 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  word-break: break-all;
+  border-bottom:1px solid #eee;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
 }
 
 .main-buttons-action{
