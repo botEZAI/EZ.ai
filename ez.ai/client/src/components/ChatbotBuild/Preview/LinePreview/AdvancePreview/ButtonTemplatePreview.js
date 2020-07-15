@@ -22,26 +22,24 @@ const ButtonTemplatePreview = ({
           changeAvailableIcon("btn_template");
         }}
       >
-        <div
-          className="main-buttons-thumbnail"
-          style={{
-            backgroundColor:v.content.imageBackgroundColor,
-          }}
-        >
-          {v.content.thumbnailImageUrl !== ""
-          ? 
+        {/* 버튼 템플릿 이미지 없을 경우 이미지 영역 보이지 않음 */}
+        {v.content.thumbnailImageUrl !== "" 
+        ?
+          <div
+            className="main-buttons-thumbnail"
+            style={{
+              backgroundColor:v.content.imageBackgroundColor,
+            }}
+          >
             <img
               className="main-buttons-thumbnail-image"
               src={v.content.thumbnailImageUrl} 
             />
-          :
-            <img
-              className="main-buttons-thumbnail-image default-thumbnail"
-              src={DefaultImage}
-            />
-          }
+          </div>
+        : 
+          null
+        }
 
-        </div>
         <div className="main-buttons-contents">
           <div className="main-buttons-title">
             {v.content.title !== ""
