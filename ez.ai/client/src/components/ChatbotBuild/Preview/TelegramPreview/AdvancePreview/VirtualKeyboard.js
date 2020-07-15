@@ -27,33 +27,57 @@ const VirtualKeyboard = ({
     {virtualKeyboard ? (
       <div>
         {(clickedMainInput.type ||
-          (!clickedMainInput.type && currentInput)) &&
-          (currentInput.type === "list" ||
-          clickedMainInput.type === "list" ? (
-            <>
-              <div className="virtual-keyboard">
-                {curListCount.map((i) => (
-                    <div className="list-elem-wrapper">
-                      <span className="list-elem">
-                        {keywordObject[index].contents[now].listContent
-                          .keywordLink[i] || ""}
-                      </span>
-                      <span
-                        className="clear-button"
-                        onClick={() => {
-                          removeListElement(i);
-                        }}
-                      >
-                        x
-                      </span>
+          (!clickedMainInput.type && currentInput)) ?
+            (currentInput.type === "list" ||
+             clickedMainInput.type === "list") ? 
+            (
+              <>
+                <div className="virtual-keyboard">
+                  {curListCount.map((i) => (
+                      <div className="list-elem-wrapper">
+                        <span className="list-elem">
+                          {keywordObject[index].contents[now].listContent
+                            .keywordLink[i] || ""}
+                        </span>
+                        <span
+                          className="clear-button"
+                          onClick={() => {
+                            removeListElement(i);
+                          }}
+                        >
+                          x
+                        </span>
+                      </div>
+                  ))}
+                </div>
+              </>
+            ) : (currentInput.type === "btn_template" ||
+                 clickedMainInput.type === "btn_template") ? 
+                (
+                  <>
+                    <div className="virtual-keyboard">
+                      {now !== -1 &&
+                      keywordObject[index] &&
+                      keywordObject[index].contents[now].content.actions.map((act,i) => (
+                        <div className="list-elem-wrapper">
+                          <span className="list-elem">
+                            {act.label!== ""
+                            ? act.label
+                            : "(button" + (i + 1) + ")"
+                            }
+                          </span>
+                        </div>
+                      ))}
                     </div>
-                ))}
-              </div>
-            </>
-          ) : null)}
+                  </>
+                )
+                : null
+              : null
+        }
       </div>
-    ) : null}
+    ) : null }
     </>
   )
 }
 export default VirtualKeyboard;
+
