@@ -217,7 +217,7 @@ const ButtonTemplateStatus = ({
           }}
           onClick={onClickUploadImage}
         >
-          {keywordObject[index].contents[now].content.thumbnailImageUrl !== "" ? (
+          {keywordObject[index].contents[now].content.thumbnailImageUrl !== "" || keywordObject[index].contents[now].content.imageBackgroundColor !== "#FFFFFF" ? (
               <img
                   className="btn-template-thumbnail-image"
                   src={keywordObject[index].contents[now].content.thumbnailImageUrl}
@@ -244,7 +244,7 @@ const ButtonTemplateStatus = ({
           <div className="btn-template-title">
             <input
               type="text"
-              placeholder="타이틀을 적어주세요(선택)"
+              placeholder="타이틀을 적어주세요(선택) - 최대 40자"
               name="title"
               value={keywordObject[index].contents[now].content.title}
               onChange={onChangeTemplate}
@@ -252,7 +252,7 @@ const ButtonTemplateStatus = ({
           </div>
           <div className="btn-template-text">
             <textarea
-              placeholder="텍스트를 적어주세요(필수 항목)"
+              placeholder={keywordObject[index].contents[now].content.thumbnailImageUrl !== "" || keywordObject[index].contents[now].content.imageBackgroundColor !== "#FFFFFF" ? "텍스트를 적어주세요(필수) - 최대 60자" : "텍스트를 적어주세요(필수) - 최대 160자"}
               name="text"
               value={keywordObject[index].contents[now].content.text}
               onChange={onChangeTemplate}
