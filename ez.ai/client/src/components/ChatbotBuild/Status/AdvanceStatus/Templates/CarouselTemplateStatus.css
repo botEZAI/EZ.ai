@@ -12,15 +12,20 @@
     overflow-x : scroll;
 }
 
-.carosuel-templates .carosuel-template {
+.carosuel-templates .empty-carosuel-template {
+    min-width : 80px;
+    height : 550px;
+}
 
+.carosuel-templates .carosuel-template {
     min-width : 300px;
-    min-height : 525px;
+    min-height : 550px;
     margin-right: 10px;
 }
 
 .carosuel-templates .carosuel-template-add {
     height : 550px;
+    width : 40px;
     margin-right: 10px;
     padding : 20px;
     border : 1px solid #ddd;
@@ -28,14 +33,22 @@
     justify-content: center;
     align-items: center;
     font-weight: bold;
+    cursor: pointer;
+    transition: all .2s;
+}
 
+.carosuel-templates .carosuel-template-add:hover {
+    width : 60px;
+    background-color: #d8f9ff;
+    color : #008cff;
+    border : 1px solid #88c1ea;
 }
 
 
 
 
 
-/* 이미지 슬라이드 css */
+    /* 이미지 슬라이드 css */
 .img-carosuel-template-status {
     position: absolute;
     left: 0;

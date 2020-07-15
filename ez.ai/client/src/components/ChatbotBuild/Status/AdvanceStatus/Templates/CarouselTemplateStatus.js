@@ -181,6 +181,7 @@ const CarouselTemplateStatus = ({
 
     return (
         <div className="carosuel-templates">
+            <div className="empty-carosuel-template"></div>
             {templateNode.map(node => (
                 <div className="carosuel-template btn-template-status">
                     <div className="btn-template-control">
@@ -360,6 +361,7 @@ const CarouselTemplateStatus = ({
             {templateNode.length < 10 ? (
                 <div className="carosuel-template-add" onClick={addTemplateNode}>슬라이드 추가하기</div>
             ) : null}
+            <div className="empty-carosuel-template"></div>
 
         </div>
     )
