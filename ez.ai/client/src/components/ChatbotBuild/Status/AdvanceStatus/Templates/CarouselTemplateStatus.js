@@ -233,11 +233,11 @@ const CarouselTemplateStatus = ({
                             }}
                             // onClick={onClickUploadImage}
                         >
-                            {keywordObject[index].contents[now].content.thumbnailImageUrl !== "" || keywordObject[index].contents[now].content.imageBackgroundColor !== "#FFFFFF" ? (
+                            {node.thumbnailImageUrl !== "" || node.imageBackgroundColor !== "#FFFFFF" ? (
                                 <img
                                     className="btn-template-thumbnail-image"
-                                    src={keywordObject[index].contents[now].content.thumbnailImageUrl}
-                                    style={keywordObject[index].contents[now].content.imageSize === "cover" ? {width : "100%"}: {height : "100%"}}
+                                    src={node.thumbnailImageUrl}
+                                    style={node.imageSize === "cover" ? {width : "100%"}: {height : "100%"}}
                                 />
                             ) : (
                                 <>
@@ -270,7 +270,7 @@ const CarouselTemplateStatus = ({
                         </div>
                         <div className="btn-template-text">
                             <textarea
-                                placeholder="텍스트를 적어주세요(필수 항목)"
+                                placeholder={node.thumbnailImageUrl !== "" || node.imageBackgroundColor !== "#FFFFFF" ? "텍스트를 적어주세요(필수) - 최대 60자" : "텍스트를 적어주세요(필수) - 최대 160자"}
                                 name="text"
                                 value={node.text}
                                 onChange={e=>onChangeTemplate(e, node)}
@@ -282,13 +282,13 @@ const CarouselTemplateStatus = ({
                             <div className="btn-template-action">
                                 <div className="btn-action-types">
                                     <div
-                                        className="btn-action-type"
+                                        className={act.type !== "uri" ? "btn-action-type" : "btn-action-type selected-action-type"}
                                         onClick={()=>onChangeTemplateActionType(node, act.id,"uri")}
                                     >
                                         url
                                     </div>
                                     <div
-                                        className="btn-action-type"
+                                        className={act.type !== "postback" ? "btn-action-type" : "btn-action-type selected-action-type"}
                                         onClick={()=>onChangeTemplateActionType(node, act.id,"postback")}
                                     >
                                         키워드
