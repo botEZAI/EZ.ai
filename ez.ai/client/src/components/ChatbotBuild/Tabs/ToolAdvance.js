@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import produce from "immer";
 
 const ToolAdvance = ({
@@ -23,15 +24,27 @@ const ToolAdvance = ({
     { name: "sticker", value: [0, 0, 1] },
   ];
 
+  const { currentChatbot } = useSelector((state) => state.chatbot);
+  const platformInfo =
+    currentChatbot && JSON.parse(currentChatbot.platformInfo);
+
   const onClickTool = (tool) => {
-    console.log("onClickTool");
     mainKeyword
       ? setKeywordObject(
           produce(keywordObject, (draft) => {
             const object = draft.find((t) => t.keyword === mainKeyword);
-            const lastType = object.contents.length !== 0 ? object.contents[object.contents.length-1].type : tool;
+            const lastType =
+              object.contents.length !== 0
+                ? object.contents[object.contents.length - 1].type
+                : tool;
 
             if (!object.completed) {
+              //만약 라인이 연동돼있고 한 키워드에 4개보다 많은 메세지가 입력되면 오류
+              if (platformInfo[0].connect && object.contents.length === 4) {
+                return alert(
+                  "라인에서는 한 키워드에 4개의 메세지만 입력할 수 있습니다."
+                );
+              }
               if (tool === "list") {
                 //고정메뉴
                 object.completed = true;
@@ -97,19 +110,20 @@ const ToolAdvance = ({
                   );
                 }
               }
-            } else { //keyword의 complete가 false인 상태
-                if(lastType === "list"){ // 마지막 요소 타입이 list
-                  alert(
-                    "[고정 메뉴] 생성 후, 더 이상의 요소 생성이 안 됩니다.\n생성을 원하시면, [고정 메뉴]를 삭제하세요."
-                  );
-                }
-                else if(lastType === "btn_template"){
-                  alert(
-                    "[버튼형 템플릿] 생성 후, 더 이상의 요소 생성이 안 됩니다.\n 생성을 원하시면, [버튼형 템플릿]을 삭제하세요."
-                  )
-                }
-                setAvailableIcon(
-                  availableIcon.map((ai, index) => ({ ...ai, use: false }))
+            } else {
+              //keyword의 complete가 false인 상태
+              if (lastType === "list") {
+                // 마지막 요소 타입이 list
+                alert(
+                  "[고정 메뉴] 생성 후, 더 이상의 요소 생성이 안 됩니다.\n생성을 원하시면, [고정 메뉴]를 삭제하세요."
+                );
+              } else if (lastType === "btn_template") {
+                alert(
+                  "[버튼형 템플릿] 생성 후, 더 이상의 요소 생성이 안 됩니다.\n 생성을 원하시면, [버튼형 템플릿]을 삭제하세요."
+                );
+              }
+              setAvailableIcon(
+                availableIcon.map((ai, index) => ({ ...ai, use: false }))
               );
             }
           })
@@ -119,7 +133,6 @@ const ToolAdvance = ({
   };
   return (
     <>
-      {console.log("Tooladvance")}
       <div
         className="tool-basic tool-basic-text"
         onClick={() => {
