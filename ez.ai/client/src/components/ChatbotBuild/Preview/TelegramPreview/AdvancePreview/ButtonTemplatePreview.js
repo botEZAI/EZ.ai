@@ -34,6 +34,7 @@ const ButtonTemplatePreview = ({
               <img
                 className="main-buttons-thumbnail-image"
                 src={v.content.thumbnailImageUrl}
+                style={v.content.imageSize === "cover"? {width: "100%"} : {height:"100%"}}
               />
             </div>
           : 

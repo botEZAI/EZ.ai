@@ -154,10 +154,7 @@
   transition: background-color 0.5s;
   overflow: hidden;
 }
-.main-buttons-thumbnail img {
-  width: 100%;
-  height: 100%;
-}
+
 .main-buttons-title{
   height: fit-content;
   padding: 10px;
