@@ -109,12 +109,14 @@ const TelegramPreview = ({
               v={v}
               i={i}
               now={now}
+              setVirtualKeyboard={setVirtualKeyboard}
               setClickedMainInput={setClickedMainInput}
               now={now}
               setNow={setNow}
               onDelete={onDelete}
               changeAvailableIcon={changeAvailableIcon}
             />
+
           ) : null)}
     </>
   )
