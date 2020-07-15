@@ -205,5 +205,12 @@
 .btn-action-add .add-btn {
   margin: 0 30px;
   padding: 10px;
-  border: 2px solid #ddd;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  transition: all .2s;
+}
+
+.btn-action-add .add-btn:hover {
+  background-color: #d8f9ff;
+  border : 1px solid #008cff;
 }
