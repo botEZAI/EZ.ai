@@ -30,6 +30,11 @@
 .btn-template-control .btn-template-image-size i {
   cursor: pointer;
   color: #999;
+  transition: all .2s;
+}
+
+.btn-template-control .btn-template-image-size:hover i {
+  color: orangered;
 }
 
 /* 템플릿 메인 컨텐츠 */
