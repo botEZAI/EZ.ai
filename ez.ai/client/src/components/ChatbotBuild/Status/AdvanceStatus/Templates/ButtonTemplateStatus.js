@@ -217,20 +217,28 @@ const ButtonTemplateStatus = ({
           }}
           onClick={onClickUploadImage}
         >
-          <img
-            className="btn-template-thumbnail-image"
-            src={keywordObject[index].contents[now].content.thumbnailImageUrl}
-          />
-          <input ref={imageRef} type="file" hidden onChange={onChangeImage} />
-          <i className="fas fa-upload"></i>
-          <div className="btn-template-thumbnail-cautions">
-            <div className="btn-template-thumbnail-caution">
-              파일 형식 : JPEG, PNG
-            </div>
-            <div className="btn-template-thumbnail-caution">
-              파일 최대 너비 : 1024px / 최대 파일 크기: 1MB
-            </div>
-          </div>
+          {keywordObject[index].contents[now].content.thumbnailImageUrl !== "" ? (
+              <img
+                  className="btn-template-thumbnail-image"
+                  src={keywordObject[index].contents[now].content.thumbnailImageUrl}
+              />
+          ) : (
+              <>
+                <input ref={imageRef} type="file" hidden onChange={onChangeImage} />
+                <i className="fas fa-upload"></i>
+                <div className="btn-template-thumbnail-cautions">
+                  <div className="btn-template-thumbnail-caution">
+                    파일 형식 : JPEG, PNG
+                  </div>
+                  <div className="btn-template-thumbnail-caution">
+                    파일 최대 너비 : 1024px / 최대 파일 크기: 1MB
+                  </div>
+                </div>
+              </>
+          )}
+
+
+
         </div>
         <div className="btn-template-contents">
           <div className="btn-template-title">
