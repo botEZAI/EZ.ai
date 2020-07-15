@@ -15,7 +15,6 @@ const ImagePreview = ({
             className={now === i ? "main-content imgbox-telegram now"
                 : "main-content imgbox-telegram"}
             key={v.content + i}
-            style={{ padding: "1%" }}
             onClick={(e) => {
                 setClickedMainInput(v);
                 e.stopPropagation();
