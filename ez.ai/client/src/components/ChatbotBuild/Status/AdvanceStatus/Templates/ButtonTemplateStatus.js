@@ -48,6 +48,8 @@ const ButtonTemplateStatus = ({
   // });
 
   // =================== 기능 함수 ========================
+
+
   //이미지 업로드
   const imageRef = useRef();
 
@@ -86,6 +88,10 @@ const ButtonTemplateStatus = ({
         draft[index].contents[now].content.imageSize = type;
       })
     );
+
+
+
+
   };
 
   // action  추가
@@ -221,6 +227,7 @@ const ButtonTemplateStatus = ({
               <img
                   className="btn-template-thumbnail-image"
                   src={keywordObject[index].contents[now].content.thumbnailImageUrl}
+                  style={keywordObject[index].contents[now].content.imageSize === "cover" ? {width : "100%"}: {height : "100%"}}
               />
           ) : (
               <>
