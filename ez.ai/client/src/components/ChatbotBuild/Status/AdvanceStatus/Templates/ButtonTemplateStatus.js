@@ -48,6 +48,8 @@ const ButtonTemplateStatus = ({
   // });
 
   // =================== 기능 함수 ========================
+
+
   //이미지 업로드
   const imageRef = useRef();
 
@@ -86,6 +88,10 @@ const ButtonTemplateStatus = ({
         draft[index].contents[now].content.imageSize = type;
       })
     );
+
+
+
+
   };
 
   // action  추가
@@ -217,26 +223,35 @@ const ButtonTemplateStatus = ({
           }}
           onClick={onClickUploadImage}
         >
-          <img
-            className="btn-template-thumbnail-image"
-            src={keywordObject[index].contents[now].content.thumbnailImageUrl}
-          />
-          <input ref={imageRef} type="file" hidden onChange={onChangeImage} />
-          <i className="fas fa-upload"></i>
-          <div className="btn-template-thumbnail-cautions">
-            <div className="btn-template-thumbnail-caution">
-              파일 형식 : JPEG, PNG
-            </div>
-            <div className="btn-template-thumbnail-caution">
-              파일 최대 너비 : 1024px / 최대 파일 크기: 1MB
-            </div>
-          </div>
+          {keywordObject[index].contents[now].content.thumbnailImageUrl !== "" || keywordObject[index].contents[now].content.imageBackgroundColor !== "#FFFFFF" ? (
+              <img
+                  className="btn-template-thumbnail-image"
+                  src={keywordObject[index].contents[now].content.thumbnailImageUrl}
+                  style={keywordObject[index].contents[now].content.imageSize === "cover" ? {width : "100%"}: {height : "100%"}}
+              />
+          ) : (
+              <>
+                <input ref={imageRef} type="file" hidden onChange={onChangeImage} />
+                <i className="fas fa-upload"></i>
+                <div className="btn-template-thumbnail-cautions">
+                  <div className="btn-template-thumbnail-caution">
+                    파일 형식 : JPEG, PNG
+                  </div>
+                  <div className="btn-template-thumbnail-caution">
+                    파일 최대 너비 : 1024px / 최대 파일 크기: 1MB
+                  </div>
+                </div>
+              </>
+          )}
+
+
+
         </div>
         <div className="btn-template-contents">
           <div className="btn-template-title">
             <input
               type="text"
-              placeholder="타이틀을 적어주세요(선택)"
+              placeholder="타이틀을 적어주세요(선택) - 최대 40자"
               name="title"
               value={keywordObject[index].contents[now].content.title}
               onChange={onChangeTemplate}
@@ -244,7 +259,7 @@ const ButtonTemplateStatus = ({
           </div>
           <div className="btn-template-text">
             <textarea
-              placeholder="텍스트를 적어주세요(필수 항목)"
+              placeholder={keywordObject[index].contents[now].content.thumbnailImageUrl !== "" || keywordObject[index].contents[now].content.imageBackgroundColor !== "#FFFFFF" ? "텍스트를 적어주세요(필수) - 최대 60자" : "텍스트를 적어주세요(필수) - 최대 160자"}
               name="text"
               value={keywordObject[index].contents[now].content.text}
               onChange={onChangeTemplate}
@@ -256,13 +271,13 @@ const ButtonTemplateStatus = ({
                 <div className="btn-template-action">
                   <div className="btn-action-types">
                     <div
-                      className="btn-action-type"
+                      className={act.type !== "uri" ? "btn-action-type" : "btn-action-type selected-action-type"}
                       onClick={() => changeActionType(act.id, "uri")}
                     >
                       url
                     </div>
                     <div
-                      className="btn-action-type"
+                        className={act.type !== "postback" ? "btn-action-type" : "btn-action-type selected-action-type"}
                       onClick={() => changeActionType(act.id, "postback")}
                     >
                       키워드
