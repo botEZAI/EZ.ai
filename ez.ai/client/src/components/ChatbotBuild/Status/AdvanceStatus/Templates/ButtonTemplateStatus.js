@@ -264,13 +264,13 @@ const ButtonTemplateStatus = ({
                 <div className="btn-template-action">
                   <div className="btn-action-types">
                     <div
-                      className="btn-action-type"
+                      className={act.type !== "uri" ? "btn-action-type" : "btn-action-type selected-action-type"}
                       onClick={() => changeActionType(act.id, "uri")}
                     >
                       url
                     </div>
                     <div
-                      className="btn-action-type"
+                        className={act.type !== "postback" ? "btn-action-type" : "btn-action-type selected-action-type"}
                       onClick={() => changeActionType(act.id, "postback")}
                     >
                       키워드
