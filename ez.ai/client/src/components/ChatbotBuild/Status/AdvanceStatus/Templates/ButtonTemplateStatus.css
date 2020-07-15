@@ -189,6 +189,12 @@
 .btn-action-remove i {
   color: #bbb;
   font-size: 14px;
+  cursor : pointer;
+  transition: all .2s;
+ }
+
+.btn-action-remove:hover i {
+  color: darkred;
 }
 
 .btn-action-add {
