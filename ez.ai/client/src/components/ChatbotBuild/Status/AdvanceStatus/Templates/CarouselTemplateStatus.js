@@ -181,6 +181,7 @@ const CarouselTemplateStatus = ({
 
     return (
         <div className="carosuel-templates">
+            <div className="empty-carosuel-template"></div>
             {templateNode.map(node => (
                 <div className="carosuel-template btn-template-status">
                     <div className="btn-template-control">
@@ -233,24 +234,30 @@ const CarouselTemplateStatus = ({
                             }}
                             // onClick={onClickUploadImage}
                         >
-                            <img
-                                className="btn-template-thumbnail-image"
-                                src={node.thumbnailImageUrl}
-                            />
-                            <input
-                                //ref={imageRef}
-                                type="file" hidden
-                                //onChange={onChangeImage}
-                            />
-                            <i className="fas fa-upload"></i>
-                        <div className="btn-template-thumbnail-cautions">
-                            <div className="btn-template-thumbnail-caution">
-                                파일 형식 : JPEG, PNG
-                            </div>
-                            <div className="btn-template-thumbnail-caution">
-                                파일 최대 너비 : 1024px / 최대 파일 크기: 1MB
-                            </div>
-                        </div>
+                            {node.thumbnailImageUrl !== "" || node.imageBackgroundColor !== "#FFFFFF" ? (
+                                <img
+                                    className="btn-template-thumbnail-image"
+                                    src={node.thumbnailImageUrl}
+                                    style={node.imageSize === "cover" ? {width : "100%"}: {height : "100%"}}
+                                />
+                            ) : (
+                                <>
+                                    <input
+                                        //ref={imageRef}
+                                        type="file" hidden
+                                        //onChange={onChangeImage}
+                                    />
+                                    <i className="fas fa-upload"></i>
+                                    <div className="btn-template-thumbnail-cautions">
+                                        <div className="btn-template-thumbnail-caution">
+                                            파일 형식 : JPEG, PNG
+                                        </div>
+                                        <div className="btn-template-thumbnail-caution">
+                                            파일 최대 너비 : 1024px / 최대 파일 크기: 1MB
+                                        </div>
+                                    </div>
+                                </>
+                            )}
                     </div>
                     <div className="btn-template-contents">
                         <div className="btn-template-title">
@@ -264,7 +271,7 @@ const CarouselTemplateStatus = ({
                         </div>
                         <div className="btn-template-text">
                             <textarea
-                                placeholder="텍스트를 적어주세요(필수 항목)"
+                                placeholder={node.thumbnailImageUrl !== "" || node.imageBackgroundColor !== "#FFFFFF" ? "텍스트를 적어주세요(필수) - 최대 60자" : "텍스트를 적어주세요(필수) - 최대 160자"}
                                 name="text"
                                 value={node.text}
                                 onChange={e=>onChangeTemplate(e, node)}
@@ -276,13 +283,13 @@ const CarouselTemplateStatus = ({
                             <div className="btn-template-action">
                                 <div className="btn-action-types">
                                     <div
-                                        className="btn-action-type"
+                                        className={act.type !== "uri" ? "btn-action-type" : "btn-action-type selected-action-type"}
                                         onClick={()=>onChangeTemplateActionType(node, act.id,"uri")}
                                     >
                                         url
                                     </div>
                                     <div
-                                        className="btn-action-type"
+                                        className={act.type !== "postback" ? "btn-action-type" : "btn-action-type selected-action-type"}
                                         onClick={()=>onChangeTemplateActionType(node, act.id,"postback")}
                                     >
                                         키워드
@@ -354,6 +361,7 @@ const CarouselTemplateStatus = ({
             {templateNode.length < 10 ? (
                 <div className="carosuel-template-add" onClick={addTemplateNode}>슬라이드 추가하기</div>
             ) : null}
+            <div className="empty-carosuel-template"></div>
 
         </div>
     )
