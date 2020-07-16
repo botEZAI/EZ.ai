@@ -46,11 +46,12 @@ article > div {
 
 .main-about-btns .main-about-btn {
     background-color: #eee;
-    width : 160px;
+    width : 100%;
     height : 50px;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0px 50px;
 }
 
 .main-about-image {
