@@ -1,5 +1,4 @@
 import React from "react"
-import DefaultImage from "../../../../../objects/template-default-image.jpg"
 
 const ButtonTemplatePreview = ({
   v,
@@ -13,8 +12,8 @@ const ButtonTemplatePreview = ({
   return(
     <div className="main-preview">
       <div
-        className={now == i ? "main-content btntemplatebox-Line now"
-                            : "main-content btntemplatebox-Line"}
+        className={now == i ? "main-content buttonsbox-line now"
+                            : "main-content buttonsbox-line"}
         key={v.content + i}
         onClick={() => {
           setClickedMainInput(v);
@@ -22,33 +21,34 @@ const ButtonTemplatePreview = ({
           changeAvailableIcon("btn_template");
         }}
       >
-        <div
-          className="main-buttons-thumbnail"
-          style={{
-            backgroundColor:v.content.imageBackgroundColor,
-          }}
-        >
-          {v.content.thumbnailImageUrl !== ""
-          ? 
+        {/* 버튼 템플릿 이미지 없을 경우 이미지 영역 보이지 않음 */}
+        {v.content.thumbnailImageUrl !== "" 
+        ?
+          <div
+            className="buttons-thumbnail-line"
+            style={{
+              backgroundColor:v.content.imageBackgroundColor,
+            }}
+          >
             <img
               className="main-buttons-thumbnail-image"
               src={v.content.thumbnailImageUrl} 
+              style={v.content.imageSize === "cover"? {width: "100%"} : {height:"100%"}}
             />
-          :
-            <img
-              className="main-buttons-thumbnail-image default-thumbnail"
-              src={DefaultImage}
-            />
-          }
-
-        </div>
-        <div className="main-buttons-contents">
-          <div className="main-buttons-title">
-            {v.content.title !== ""
-                ? v.content.title
-                : "TITLE"}
           </div>
-          <div className="main-buttons-text">
+        : 
+          null
+        }
+        <div className="main-buttons-contents"> 
+          {v.content.title !== "" 
+          ?
+            <div className="buttons-title-line">
+              {v.content.title}
+            </div>
+          :
+            null
+          }
+          <div className="buttons-text-line">
             {v.content.text !== ""
                 ? v.content.text
                 : "text"}
@@ -68,7 +68,7 @@ const ButtonTemplatePreview = ({
         </div>
       </div>
       <div
-        className="tool-delete delete-btntemplate "
+        className="tool-delete delete-buttons"
         onClick={() => {
           onDelete(v.id, "list");
         }}

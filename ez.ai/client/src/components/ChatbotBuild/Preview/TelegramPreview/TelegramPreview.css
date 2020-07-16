@@ -141,11 +141,10 @@
   width:300px;
 }
 
-.main-buttons-thumbnail{
+.buttons-thumbnail-telegram{
   position: relative;
   height: 200px;
-  border-top-left-radius: 8px;
-  border-top-right-radius:8px;
+  border-radius: 8px;
   border-bottom: 1px solid #eee;
   display: flex;
   flex-direction: column;
@@ -154,11 +153,8 @@
   transition: background-color 0.5s;
   overflow: hidden;
 }
-.main-buttons-thumbnail img {
-  width: 100%;
-  height: 100%;
-}
-.main-buttons-title{
+
+.buttons-title-telegram{
   height: fit-content;
   padding: 10px;
   display: flex;
@@ -167,14 +163,13 @@
   word-break: break-all;
   font-weight: bold;
 }
-.main-buttons-text{
+.buttons-text-telegram{
   height: fit-content;
-  padding: 0 10px 10px 10px;
+  padding: 10px;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
   word-break: break-all;
-  border-bottom:1px solid #eee;
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
 }
