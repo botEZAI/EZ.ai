@@ -49,7 +49,6 @@ const ButtonTemplateStatus = ({
 
   // =================== 기능 함수 ========================
 
-
   //이미지 업로드
   const imageRef = useRef();
 
@@ -88,10 +87,6 @@ const ButtonTemplateStatus = ({
         draft[index].contents[now].content.imageSize = type;
       })
     );
-
-
-
-
   };
 
   // action  추가
@@ -143,7 +138,6 @@ const ButtonTemplateStatus = ({
         draft[index].contents[now].content.actions = tmpAction;
       })
     );
-    console.log(keywordObject)
   };
 
   // =================== onChange 기능 함수 ========================
@@ -223,29 +217,38 @@ const ButtonTemplateStatus = ({
           }}
           onClick={onClickUploadImage}
         >
-          {keywordObject[index].contents[now].content.thumbnailImageUrl !== "" || keywordObject[index].contents[now].content.imageBackgroundColor !== "#FFFFFF" ? (
-              <img
-                  className="btn-template-thumbnail-image"
-                  src={keywordObject[index].contents[now].content.thumbnailImageUrl}
-                  style={keywordObject[index].contents[now].content.imageSize === "cover" ? {width : "100%"}: {height : "100%"}}
-              />
+          {keywordObject[index].contents[now].content.thumbnailImageUrl !==
+            "" ||
+          keywordObject[index].contents[now].content.imageBackgroundColor !==
+            "#FFFFFF" ? (
+            <img
+              className="btn-template-thumbnail-image"
+              src={keywordObject[index].contents[now].content.thumbnailImageUrl}
+              style={
+                keywordObject[index].contents[now].content.imageSize === "cover"
+                  ? { width: "100%" }
+                  : { height: "100%" }
+              }
+            />
           ) : (
-              <>
-                <input ref={imageRef} type="file" hidden onChange={onChangeImage} />
-                <i className="fas fa-upload"></i>
-                <div className="btn-template-thumbnail-cautions">
-                  <div className="btn-template-thumbnail-caution">
-                    파일 형식 : JPEG, PNG
-                  </div>
-                  <div className="btn-template-thumbnail-caution">
-                    파일 최대 너비 : 1024px / 최대 파일 크기: 1MB
-                  </div>
+            <>
+              <input
+                ref={imageRef}
+                type="file"
+                hidden
+                onChange={onChangeImage}
+              />
+              <i className="fas fa-upload"></i>
+              <div className="btn-template-thumbnail-cautions">
+                <div className="btn-template-thumbnail-caution">
+                  파일 형식 : JPEG, PNG
                 </div>
-              </>
+                <div className="btn-template-thumbnail-caution">
+                  파일 최대 너비 : 1024px / 최대 파일 크기: 1MB
+                </div>
+              </div>
+            </>
           )}
-
-
-
         </div>
         <div className="btn-template-contents">
           <div className="btn-template-title">
@@ -259,7 +262,14 @@ const ButtonTemplateStatus = ({
           </div>
           <div className="btn-template-text">
             <textarea
-              placeholder={keywordObject[index].contents[now].content.thumbnailImageUrl !== "" || keywordObject[index].contents[now].content.imageBackgroundColor !== "#FFFFFF" ? "텍스트를 적어주세요(필수) - 최대 60자" : "텍스트를 적어주세요(필수) - 최대 160자"}
+              placeholder={
+                keywordObject[index].contents[now].content.thumbnailImageUrl !==
+                  "" ||
+                keywordObject[index].contents[now].content
+                  .imageBackgroundColor !== "#FFFFFF"
+                  ? "텍스트를 적어주세요(필수) - 최대 60자"
+                  : "텍스트를 적어주세요(필수) - 최대 160자"
+              }
               name="text"
               value={keywordObject[index].contents[now].content.text}
               onChange={onChangeTemplate}
@@ -271,13 +281,21 @@ const ButtonTemplateStatus = ({
                 <div className="btn-template-action">
                   <div className="btn-action-types">
                     <div
-                      className={act.type !== "uri" ? "btn-action-type" : "btn-action-type selected-action-type"}
+                      className={
+                        act.type !== "uri"
+                          ? "btn-action-type"
+                          : "btn-action-type selected-action-type"
+                      }
                       onClick={() => changeActionType(act.id, "uri")}
                     >
                       url
                     </div>
                     <div
-                        className={act.type !== "postback" ? "btn-action-type" : "btn-action-type selected-action-type"}
+                      className={
+                        act.type !== "postback"
+                          ? "btn-action-type"
+                          : "btn-action-type selected-action-type"
+                      }
                       onClick={() => changeActionType(act.id, "postback")}
                     >
                       키워드
@@ -293,21 +311,21 @@ const ButtonTemplateStatus = ({
                         value={act.uri}
                       />
                     ) : (
-                      <select name="data" onChange = {e=>onChangeAction(e, act.id)}>
+                      <select
+                        name="data"
+                        onChange={(e) => onChangeAction(e, act.id)}
+                      >
                         <option value="none" selected disabled>
                           연동할 키워드를 선택해주세요
                         </option>
                         {keywordObject.map((keyword, index) => {
                           return (
-                              <>
-                                <option
-                                    key={index}
-                                    value={keyword.keyword}
-                                >
-                                  {keyword.keyword}
-                                </option>
-                              </>
-                          )
+                            <>
+                              <option key={index} value={keyword.keyword}>
+                                {keyword.keyword}
+                              </option>
+                            </>
+                          );
                         })}
                       </select>
                     )}
