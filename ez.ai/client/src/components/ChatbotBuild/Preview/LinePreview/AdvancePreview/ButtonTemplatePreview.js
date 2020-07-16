@@ -39,13 +39,15 @@ const ButtonTemplatePreview = ({
         : 
           null
         }
-
-        <div className="main-buttons-contents">
-          <div className="buttons-title-line">
-            {v.content.title !== ""
-                ? v.content.title
-                : "TITLE"}
-          </div>
+        <div className="main-buttons-contents"> 
+          {v.content.title !== "" 
+          ?
+            <div className="buttons-title-line">
+              {v.content.title}
+            </div>
+          :
+            null
+          }
           <div className="buttons-text-line">
             {v.content.text !== ""
                 ? v.content.text

@@ -47,21 +47,24 @@ const ButtonTemplatePreview = ({
     }
     {/* 이미지 끝 */}
     {/* 텍스트 시작 */}
-    <div className="main-preview">
-      <div
-        className={now === i ? "main-content buttons-title-telegram now"
-                            : "main-content buttons-title-telegram"}
-        onClick={() => {
-          setClickedMainInput(v);
-          setNow(i);
-          changeAvailableIcon("btn_template");
-        }}
-      >
-        {v.content.title !== ""
-                  ? v.content.title
-                  : "TITLE"}
+    {v.content.title !== "" ?
+      <div className="main-preview">
+        <div
+          className={now === i ? "main-content buttons-title-telegram now"
+                              : "main-content buttons-title-telegram"}
+          onClick={() => {
+            setClickedMainInput(v);
+            setNow(i);
+            changeAvailableIcon("btn_template");
+          }}
+        >
+          {v.content.title}
+        </div>
       </div>
-    </div>
+    : 
+      null
+    }
+    
     <div className="main-preview">
       <div
         className={now === i ? "main-content buttons-text-telegram now"
