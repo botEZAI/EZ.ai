@@ -43,7 +43,7 @@ const Header = ({ history }) => {
           </div>
         </div>
         <div className="nav">
-          <ul>
+          {/* <ul>
             <li>
               <Link to="/about">소개</Link>
             </li>
@@ -53,7 +53,7 @@ const Header = ({ history }) => {
             <li>
               <Link to="/faq">FAQ</Link>
             </li>
-          </ul>
+          </ul> */}
         </div>
       </div>
       <div className="nav_r">
