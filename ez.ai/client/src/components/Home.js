@@ -35,9 +35,10 @@ const Home = () => {
             </div>
           )}
           {/* [소개] 페이지로 이동합니다. */}
-            <div className= "main-about-btn main-btn-about">
+            {/* <div className= "main-about-btn main-btn-about">
               <Link to = "/about">About Ez.ai</Link>
-            </div>
+              About Ez.ai
+            </div> */}
         </div>
       </div>
       <div className= "main-about__column">
@@ -63,9 +64,9 @@ const Home = () => {
         <div className="main-wonder-promotion">
           <i className={videoIcon}></i>
         </div>
-        <div className="main-wonder-btn">
+        {/* <div className="main-wonder-btn">
           <Link to="/Guide">가이드라인 보기</Link>
-        </div>
+        </div> */}
       </div>
     </article>
     <h2 className="hide">챗봇 소개</h2>
