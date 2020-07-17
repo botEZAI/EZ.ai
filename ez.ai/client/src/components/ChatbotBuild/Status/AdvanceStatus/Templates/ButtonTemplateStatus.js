@@ -101,6 +101,7 @@ const ButtonTemplateStatus = ({
             label: "",
             uri: "", // uri 타입 사용시.
             data: "", // postback 타입 사용시
+            text: "",
           });
         })
       );
@@ -157,6 +158,11 @@ const ButtonTemplateStatus = ({
     ].content.actions.map((node) =>
       node.id === id ? { ...node, [e.target.name]: e.target.value } : node
     );
+    if (e.target.name === "label") {
+      tmpAction = tmpAction.map((node) =>
+        node.id === id ? { ...node, text: e.target.value } : node
+      );
+    }
     setKeywordObject(
       produce(keywordObject, (draft) => {
         draft[index].contents[now].content.actions = tmpAction;
@@ -175,6 +181,7 @@ const ButtonTemplateStatus = ({
 
   return (
     <div className="btn-template-status">
+      {console.log(keywordObject)}
       <div className="btn-template-control">
         <div classNAme="btn-template-color" title="이미지 배경색">
           <input

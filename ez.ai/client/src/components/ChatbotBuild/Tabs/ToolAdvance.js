@@ -85,6 +85,7 @@ const ToolAdvance = ({
                         label: "View detail",
                         uri: "http://example.com/page/123",
                         data: "",
+                        text: "View detail",
                       },
                     ],
                   },
