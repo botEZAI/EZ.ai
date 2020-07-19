@@ -170,16 +170,6 @@ const ToolBasic = ({
         <i className="fas fa-map-marked-alt"></i>
         위치
       </div>
-      <div
-        className="tool-basic tool-basic-list"
-        onClick={() => {
-          onClickTool("file");
-          setNow(length + 1);
-        }}
-      >
-        <i className="fas fa-file"></i>
-        파일
-      </div>
     </>
   );
 };

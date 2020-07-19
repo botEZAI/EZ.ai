@@ -70,11 +70,6 @@ const ToolStatus = ({
               <>
                 <span>위치</span>
               </>
-            ) : currentInput.type === "file" ||
-              clickedMainInput.type === "file" ? (
-              <>
-                <span>파일</span>
-              </>
             ) : currentInput.type === "list" ||
               clickedMainInput.type === "list" ? (
               <>
@@ -163,14 +158,6 @@ const ToolStatus = ({
               now={now}
               index={index}
             />
-          ) : currentInput.type === "file" ||
-            clickedMainInput.type === "file" ? (
-            <FileStatus
-              setKeywordObject={setKeywordObject}
-              keywordObject={keywordObject}
-              now={now}
-              index={index}
-            />
           ) : currentInput.type === "list" ||
             clickedMainInput.type === "list" ? (
             <PersistentStatus
@@ -197,37 +184,6 @@ const ToolStatus = ({
               curListCount={curListCount}
               setCurListCount={setCurListCount}
             />
-          ) : currentInput.type === "carousel" ||
-            clickedMainInput.type === "carousel" ? (
-            <CarouselTemplateStatus
-              currentContent={currentContent}
-              setKeywordObject={setKeywordObject}
-              keywordObject={keywordObject}
-              now={now}
-              index={index}
-              listCount={listCount}
-              curListCount={curListCount}
-              setCurListCount={setCurListCount}
-            />
-          ) : currentInput.type === "img_carousel" ||
-            clickedMainInput.type === "img_carousel" ? (
-            <ImgCarouselTemplateStatus
-              currentContent={currentContent}
-              setKeywordObject={setKeywordObject}
-              keywordObject={keywordObject}
-              now={now}
-              index={index}
-              listCount={listCount}
-              curListCount={curListCount}
-              setCurListCount={setCurListCount}
-            />
-          ) : currentInput.type === "sticker" ||
-            clickedMainInput.type === "sticker" ? (
-            <>
-              <div>
-                <p>스티커는 추후 텔레그램 스티커 api와 연결</p>
-              </div>
-            </>
           ) : null
         ) : null}
       </div>
