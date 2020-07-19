@@ -6,7 +6,7 @@ const path = require("path");
 const AWS = require("aws-sdk");
 const router = express.Router();
 const s3 = new AWS.S3();
-const {getAudioDurationInSeconds} = require('get-audio-duration');
+const {getAudioDurationInSeconds} = require('get-audio-duration'); 
 
 const upload = multer({
   storage: multerS3({
