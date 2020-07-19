@@ -157,38 +157,6 @@ const ToolAdvance = ({
         <br />
         템플릿
       </div>
-      <div
-        className="tool-basic tool-basic-text"
-        onClick={() => {
-          onClickTool("carousel");
-          setNow(length + 1);
-        }}
-      >
-        <i className="far fa-clone"></i>
-        슬라이드
-      </div>
-      <div
-        className="tool-basic tool-basic-text"
-        onClick={() => {
-          onClickTool("img_carousel");
-          setNow(length + 1);
-        }}
-      >
-        <i className="far fa-images"></i>
-        이미지
-        <br /> 슬라이드
-      </div>
-
-      <div
-        className="tool-basic tool-basic-text"
-        onClick={() => {
-          onClickTool("sticker");
-          setNow(length + 1);
-        }}
-      >
-        <i className="far fa-laugh"></i>
-        스티커
-      </div>
     </>
   );
 };
