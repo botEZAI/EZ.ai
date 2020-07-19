@@ -49,7 +49,6 @@ const ChatbotList = (props) => {
   const [botConnect, setBotConnect] = useState({ sns: "" });
   const [platformInfo, setPlatformInfo] = useState([
     { platform: "line", created: false, deploy: false },
-    { platform: "facebook", created: false, deploy: false },
     { platform: "telegram", created: false, deploy: false },
   ]);
   const [tokenInfo, setTokenInfo] = useState([]);
@@ -64,7 +63,6 @@ const ChatbotList = (props) => {
     setBotToken({ token: "" });
     setPlatformInfo([
       { platform: "line", connect: false, tokenData: null },
-      { platform: "facebook", connect: false, tokenData: null },
       { platform: "telegram", connect: false, tokenData: null },
     ]);
 

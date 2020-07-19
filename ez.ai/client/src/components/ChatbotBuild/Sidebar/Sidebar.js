@@ -8,15 +8,21 @@ import { useDispatch } from "react-redux";
 
 import "./Sidebar.css";
 
-const Sidebar = ({ setKeywordCategory, setKeywordObject, setNow, setClickedMainInput }) => {
+const Sidebar = ({
+  setKeywordCategory,
+  setKeywordObject,
+  setNow,
+  setClickedMainInput,
+}) => {
   const [activeSideOverlay, setActiveSideOverlay] = useState("default");
   const [activeSideTab, setActiveSideTab] = useState("");
-  const [activePlatformTab, setActivePlatformTab] = useState("platform-telegram");
+  const [activePlatformTab, setActivePlatformTab] = useState(
+    "platform-telegram"
+  );
 
-
-  const onSelectPlatform = (label)=>{
-    setActivePlatformTab("platform-"+label);
-  }
+  const onSelectPlatform = (label) => {
+    setActivePlatformTab("platform-" + label);
+  };
   return (
     <div className="sidebar">
       <ul>
@@ -52,15 +58,16 @@ const Sidebar = ({ setKeywordCategory, setKeywordObject, setNow, setClickedMainI
             <>
               <div className="sidebar-title preview">메신저별 미리보기</div>
               <div className="platforms-category">
-                <PlatformTabs activePlatformTab={activePlatformTab}
-                              onSelectPlatform={onSelectPlatform}>
+                <PlatformTabs
+                  activePlatformTab={activePlatformTab}
+                  onSelectPlatform={onSelectPlatform}
+                >
                   <div label="line"> Line </div>
-                  <div label="facebook"> Facebook </div>
                   <div label="telegram"> Telegram </div>
                 </PlatformTabs>
               </div>
               <div className="sidebar-article" id="preview">
-                <SidePreview activePlatformTab={activePlatformTab}/>
+                <SidePreview activePlatformTab={activePlatformTab} />
               </div>
             </>
           )}
@@ -68,11 +75,11 @@ const Sidebar = ({ setKeywordCategory, setKeywordObject, setNow, setClickedMainI
             <>
               <div className="sidebar-title history">버전 관리</div>
               <SideVersion
-                  activeSideTab = {activeSideTab}
-                  setKeywordObject = {setKeywordObject}
-                  setKeywordCategory = {setKeywordCategory}
-                  setNow={setNow}
-                  setClickedMainInput={setClickedMainInput}
+                activeSideTab={activeSideTab}
+                setKeywordObject={setKeywordObject}
+                setKeywordCategory={setKeywordCategory}
+                setNow={setNow}
+                setClickedMainInput={setClickedMainInput}
               />
             </>
           )}

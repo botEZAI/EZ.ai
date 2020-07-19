@@ -56,18 +56,18 @@ const Preview = ({
 
   // 아이콘 호환여부 설정
   const useableInfo = [
-    { name: "text", value: [0, 0, 0] },
-    { name: "image", value: [0, 0, 0] },
-    { name: "video", value: [0, 0, 0] },
-    { name: "audio", value: [0, 0, 0] },
-    { name: "location", value: [0, 0, 0] },
-    { name: "file", value: [0, 0, 0] },
-    { name: "list", value: [1, 1, 0] },
-    { name: "sticker", value: [0, 1, 0] },
-    { name : "btn_template", value : [0,0,1] },
-    { name : "carousel", value : [0,0,1] },
-    { name : "img_carousel", value : [0,0,1] },
-    { name : "sticker", value : [0,0,1] },
+    { name: "text", value: [0, 0] },
+    { name: "image", value: [0, 0] },
+    { name: "video", value: [0, 0] },
+    { name: "audio", value: [0, 0] },
+    { name: "location", value: [0, 0] },
+    { name: "file", value: [0, 0] },
+    { name: "list", value: [1, 0] },
+    { name: "sticker", value: [0, 0] },
+    { name: "btn_template", value: [0, 1] },
+    { name: "carousel", value: [0, 1] },
+    { name: "img_carousel", value: [0, 1] },
+    { name: "sticker", value: [0, 1] },
   ];
 
   const changeAvailableIcon = (tool) => {
@@ -131,90 +131,90 @@ const Preview = ({
   // 메인 헤더 - 테마 선택 옵션
   const [theme, setTheme] = useState("telegram");
 
-
   return (
     <>
       <div className="main-header">
         <div className="main-header-theme">
-          <select value = {theme} onChange = {(e) => {setTheme(e.target.value)}}>
-            <option value="none" disabled>=== 테마 선택 ===</option>
+          <select
+            value={theme}
+            onChange={(e) => {
+              setTheme(e.target.value);
+            }}
+          >
+            <option value="none" disabled>
+              === 테마 선택 ===
+            </option>
             <option value="default">기본(Ezai 인터페이스)</option>
             <option value="telegram">텔레그램</option>
             <option value="line">라인</option>
-            <option value="facebook">페이스북</option>
           </select>
         </div>
       </div>
       <div
-        className={theme === "default" ? (
-            "main-contents main-contents-default"
-            ) : ( theme === "telegram" ? (
-            "main-contents main-contents-telegram"
-        ) : (theme === "line" ? (
-            "main-contents main-contents-line"
-        ) : (theme === "facebook" ? (
-            "main-contents main-contents-facebook"
-        ) : "main-contents"
-        )))
+        className={
+          theme === "default"
+            ? "main-contents main-contents-default"
+            : theme === "telegram"
+            ? "main-contents main-contents-telegram"
+            : theme === "line"
+            ? "main-contents main-contents-line"
+            : theme === "facebook"
+            ? "main-contents main-contents-facebook"
+            : "main-contents"
         }
         ref={contentRef}
       >
-      {theme === "default" ? (
-        <DefaultPreview 
-          changeAvailableIcon={changeAvailableIcon}
-          index={index}
-          keywordObject={keywordObject}
-          now={now}
-          onDelete={onDelete}
-          setClickedMainInput={setClickedMainInput}
-          setKeywordObject={setKeywordObject}
-          setVirtualKeyboard={setVirtualKeyboard}
-          setNow={setNow}
-        />
-      )
-      : theme === "telegram" ? (
-        <TelegramPreview 
-          changeAvailableIcon={changeAvailableIcon}
-          index={index}
-          keywordObject={keywordObject}
-          now={now}
-          onDelete={onDelete}
-          setClickedMainInput={setClickedMainInput}
-          setKeywordObject={setKeywordObject}
-          setVirtualKeyboard={setVirtualKeyboard}
-          setNow={setNow}
-        />
-      )
-      : theme === "line" ? (
-        <LinePreview 
-          changeAvailableIcon={changeAvailableIcon}
-          index={index}
-          keywordObject={keywordObject}
-          now={now}
-          onDelete={onDelete}
-          setClickedMainInput={setClickedMainInput}
-          setKeywordObject={setKeywordObject}
-          setVirtualKeyboard={setVirtualKeyboard}
-          setNow={setNow}
-        />
-      )
-      : theme === "facebook" ? (
-        <FacebookPreview 
-          changeAvailableIcon={changeAvailableIcon}
-          index={index}
-          keywordObject={keywordObject}
-          now={now}
-          onDelete={onDelete}
-          setClickedMainInput={setClickedMainInput}
-          setKeywordObject={setKeywordObject}
-          setVirtualKeyboard={setVirtualKeyboard}
-          setNow={setNow}
-        />
-      )
-      : null}
-
+        {theme === "default" ? (
+          <DefaultPreview
+            changeAvailableIcon={changeAvailableIcon}
+            index={index}
+            keywordObject={keywordObject}
+            now={now}
+            onDelete={onDelete}
+            setClickedMainInput={setClickedMainInput}
+            setKeywordObject={setKeywordObject}
+            setVirtualKeyboard={setVirtualKeyboard}
+            setNow={setNow}
+          />
+        ) : theme === "telegram" ? (
+          <TelegramPreview
+            changeAvailableIcon={changeAvailableIcon}
+            index={index}
+            keywordObject={keywordObject}
+            now={now}
+            onDelete={onDelete}
+            setClickedMainInput={setClickedMainInput}
+            setKeywordObject={setKeywordObject}
+            setVirtualKeyboard={setVirtualKeyboard}
+            setNow={setNow}
+          />
+        ) : theme === "line" ? (
+          <LinePreview
+            changeAvailableIcon={changeAvailableIcon}
+            index={index}
+            keywordObject={keywordObject}
+            now={now}
+            onDelete={onDelete}
+            setClickedMainInput={setClickedMainInput}
+            setKeywordObject={setKeywordObject}
+            setVirtualKeyboard={setVirtualKeyboard}
+            setNow={setNow}
+          />
+        ) : theme === "facebook" ? (
+          <FacebookPreview
+            changeAvailableIcon={changeAvailableIcon}
+            index={index}
+            keywordObject={keywordObject}
+            now={now}
+            onDelete={onDelete}
+            setClickedMainInput={setClickedMainInput}
+            setKeywordObject={setKeywordObject}
+            setVirtualKeyboard={setVirtualKeyboard}
+            setNow={setNow}
+          />
+        ) : null}
       </div>
-      {theme === "telegram" ?
+      {theme === "telegram" ? (
         <VirtualKeyboard
           clickedMainInput={clickedMainInput}
           currentInput={currentInput}
@@ -226,7 +226,7 @@ const Preview = ({
           setCurListCount={setCurListCount}
           setKeywordObject={setKeywordObject}
         />
-      : null }
+      ) : null}
     </>
   ); /**retun END */
 };

@@ -11,7 +11,7 @@ import {
 
 const BuilderInfo = ({ keywordObject, keywordCategory }) => {
   const [info, setInfo] = useState("");
-  const snsIcon = ["fab fa-line", "fab fa-facebook-square", "fab fa-telegram"];
+  const snsIcon = ["fab fa-line", "fab fa-telegram"];
   const [isSaved, setIsSaved] = useState(true);
   const [isDeployed, setIsDeployed] = useState(false);
   const dispatch = useDispatch();
@@ -102,7 +102,7 @@ const BuilderInfo = ({ keywordObject, keywordCategory }) => {
         message="저장이 안되어있습니다. 이동하시겠습니까?"
       />
       <div className="info__column">
-        <div className="info__main"> 
+        <div className="info__main">
           <div className="info-name">
             <p>{currentChatbot && currentChatbot.botname}</p>
           </div>
@@ -133,8 +133,12 @@ const BuilderInfo = ({ keywordObject, keywordCategory }) => {
           value={info}
           onChange={(e) => onChangeInfo(e)}
         />
-        <button className="save" onClick={updateChatbot}>저장</button>
-        <button className="deploy" onClick={deployChatbot}>배포</button>
+        <button className="save" onClick={updateChatbot}>
+          저장
+        </button>
+        <button className="deploy" onClick={deployChatbot}>
+          배포
+        </button>
       </div>
     </>
   );
