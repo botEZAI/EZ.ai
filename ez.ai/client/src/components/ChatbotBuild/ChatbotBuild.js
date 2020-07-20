@@ -38,7 +38,6 @@ const ChatbotBuild = (props) => {
   /* 선택한 요소 플랫폼별 사용가능 여부 */
   const [availableIcon, setAvailableIcon] = useState([
     { name: "line", use: false },
-    { name: "facebook", use: false },
     { name: "telegram", use: false },
   ]);
 

@@ -99,12 +99,11 @@
   background-color: #fff;
   height: 100%;
 }
-#preview{
-  height:90%;
+#preview {
+  height: 90%;
   background-color: #555;
   border-radius: 10px;
 }
-
 
 @keyframes slidein {
   from {
@@ -166,34 +165,30 @@
   }
 }
 
-.platforms-category{
+.platforms-category {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 50px;
-  margin : 0!important;
+  margin: 0 !important;
 }
 
-.platforms-category > div{
+.platforms-category > div {
   display: flex;
   justify-content: center;
   align-items: center;
-  width : 33.3%;
+  width: 50%;
   height: 50px;
   border-bottom: 0.2px solid #d9d9d9;
-  cursor : pointer;
-  font-weight : bold;
+  cursor: pointer;
+  font-weight: bold;
 }
 
 /* 연동 플랫폼 색깔 */
 .line-btn {
-  background-color : #86efae!important;
+  background-color: #86efae !important;
 }
 
-.facebook-btn {
-  background-color : #7a8fc1!important;
-}
-
-.telegram-btn{
-  background-color : #99edf7!important;
+.telegram-btn {
+  background-color: #99edf7 !important;
 }

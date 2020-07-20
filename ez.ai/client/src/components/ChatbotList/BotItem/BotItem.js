@@ -17,7 +17,7 @@ const BotItem = (props, platformInfo) => {
   const [botClick, setBotClick] = useState({ botOn: false });
   const { children, onRemove, botDesc, botConnect, id } = props;
   const [addPlatformFlag, setAddPlatformFlag] = useState("");
-  const snsIcon = ["fab fa-line", "fab fa-facebook-square", "fab fa-telegram"];
+  const snsIcon = ["fab fa-line", "fab fa-telegram"];
 
   const botClickEvent = () => {
     setBotClick({ botOn: !botClick.botOn });
@@ -43,8 +43,6 @@ const BotItem = (props, platformInfo) => {
       return <span className="icon-kakao"></span>;
     } else if (botConnect === "line") {
       return <span className="icon-line"></span>;
-    } else if (botConnect === "facebook") {
-      return <span className="icon-facebook"></span>;
     } else if (botConnect === "telegram") {
       return <span className="icon-telegram"></span>;
     } else {

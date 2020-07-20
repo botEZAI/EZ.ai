@@ -15,14 +15,13 @@ const SidePreview = (props) => {
   }
   let theMin = today.getMinutes();
 
-
   const { currentChatbot } = useSelector((state) => state.chatbot);
   const [message, setMessage] = useState("");
   const [keyboard, setKeyboard] = useState("");
   const [fixedMenu, setFixedMenu] = useState([]);
-  const onChangeMessage = e => {
-      setMessage(e.target.value)
-  }
+  const onChangeMessage = (e) => {
+    setMessage(e.target.value);
+  };
 
   //미리보기 => 사용자가 키워드 입력시 일치하는 키워드를 찾아서 dialogues 배열에 추가하는 방식
   const [dialogues, setDialogues] = useState([]);
@@ -33,18 +32,17 @@ const SidePreview = (props) => {
     setDialogues(addDialogue(welcomeDialogue));
   }, [props.activePlatformTab, currentChatbot]);
 
-
   const currentTime = (position) => {
-      return (
-          <div className={position == "inner" ? "nowtime_inner" : "nowtime_outer"}>
-              <Clock
-                  format={noon + " " + theHours + ":mm"}
-                  ticking={true}
-                  timezone={"Asia/Seoul"}
-              />
-          </div>
-      )
-  }
+    return (
+      <div className={position == "inner" ? "nowtime_inner" : "nowtime_outer"}>
+        <Clock
+          format={noon + " " + theHours + ":mm"}
+          ticking={true}
+          timezone={"Asia/Seoul"}
+        />
+      </div>
+    );
+  };
 
   //전달받은 키워드 안의 요소들의 타입을 구별후 배열 return
   const addDialogue = (findKeyword) => {
@@ -58,11 +56,11 @@ const SidePreview = (props) => {
             {currentTime("outer")}
           </div>
         );
-      else if(c.type == "list")
-        return(
+      else if (c.type == "list")
+        return (
           <>
-          {setKeyboard(props.activePlatformTab)}
-          {setFixedMenu(c.listContent.keywordLink)}
+            {setKeyboard(props.activePlatformTab)}
+            {setFixedMenu(c.listContent.keywordLink)}
           </>
         );
       // else if (c.type == "list")
@@ -95,7 +93,7 @@ const SidePreview = (props) => {
               className="main-image-preview"
               style={{ backgroundImage: `url(${c.content})` || null }}
             ></div>
-              {currentTime("inner")}
+            {currentTime("inner")}
           </div>
         );
     });
@@ -118,7 +116,6 @@ const SidePreview = (props) => {
       setMessage("");
     },
     [message]
-
   );
 
   //일치하는 키워드가 있으면 키워드의 내용을 addDialogue함수로 전달
@@ -130,22 +127,18 @@ const SidePreview = (props) => {
       console.log(findKeyword);
       if (!findKeyword)
         return (
-            <>
-              <div className="preview-send">
-                  {input}
-                  <div className="nowtime">
-                      {currentTime("outer")}
-                  </div>
-              </div>
+          <>
+            <div className="preview-send">
+              {input}
+              <div className="nowtime">{currentTime("outer")}</div>
+            </div>
             <div
               className={`preview-receive ${props.activePlatformTab} ${props.activePlatformTab}-notfound`}
             >
               다시 한번 입력해주세요
-                <div className="nowtime">
-                    {currentTime("outer")}
-                </div>
+              <div className="nowtime">{currentTime("outer")}</div>
             </div>
-            </>
+          </>
         );
       return (
         <>
@@ -153,9 +146,7 @@ const SidePreview = (props) => {
             className={`preview-send  ${props.activePlatformTab} ${props.activePlatformTab}-send`}
           >
             {input}
-              <div className="nowtime">
-                  {currentTime("outer")}
-              </div>
+            <div className="nowtime">{currentTime("outer")}</div>
           </div>
           {/* 키워드 전달 후 일치하는 요소들의 배열을 return받음 */}
           {addDialogue(findKeyword)}
@@ -163,7 +154,6 @@ const SidePreview = (props) => {
       );
     },
     [message, currentChatbot, dialogues]
-
   );
   return (
     <>
@@ -186,25 +176,7 @@ const SidePreview = (props) => {
           </div>
         </div>
       ) : null}
-      {props.activePlatformTab == "platform-facebook" ? (
-        <div className="preview-container side-facebook">
-          <div className="preview-header"></div>
-          <div className="preview-contents">
-            <div class="datetime">
-              <Clock
-                format={noon + " " + theHours + ":mm"}
-                ticking={true}
-                timezone={"Asia/Seoul"}
-              />
-            </div>
-          </div>
-          <div className="preview-footer">
-            <div class="preview-input input-facebook">
-              <input type="text" placeholder="Say Something" />
-            </div>
-          </div>
-        </div>
-      ) : null}
+
       {props.activePlatformTab == "platform-telegram" ? (
         <div className="preview-container side-telegram">
           <div className="preview-header"></div>
@@ -217,10 +189,8 @@ const SidePreview = (props) => {
               />
             </div>
             <div className="preview-send">
-                /start
-                <div className="nowtime">
-                    {currentTime("outer")}
-                </div>
+              /start
+              <div className="nowtime">{currentTime("outer")}</div>
             </div>
             {dialogues.map((dialogue) => {
               return dialogue;
@@ -252,14 +222,11 @@ const SidePreview = (props) => {
               </div>
             </div>
           </div>
-          {keyboard === "platform-telegram" ?
+          {keyboard === "platform-telegram" ? (
             <div className="preview-keyboard">
               {fixedMenu.map((i) => {
-                if(i==="")
-                {
-                  
-                }
-                else {
+                if (i === "") {
+                } else {
                   return (
                     <div
                       className={`preview-button ${props.activePlatformTab}-list-elem`}
@@ -271,9 +238,7 @@ const SidePreview = (props) => {
                 }
               })}
             </div>
-            :
-            null
-          }
+          ) : null}
         </div>
       ) : null}
     </>
