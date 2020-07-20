@@ -13,6 +13,7 @@ import ImogiPopup from "./StatusPopups/EmogiPopup";
 import CarouselTemplateStatus from "./AdvanceStatus/Templates/CarouselTemplateStatus";
 import ImgCarouselTemplateStatus from "./AdvanceStatus/Templates/ImgCarouselTemplateStatus";
 import ButtonTemplateStatus from "./AdvanceStatus/Templates/ButtonTemplateStatus";
+import HelpPopup from "./StatusPopups//HelpPopup";
 
 const ToolStatus = ({
   mainKeyword,
@@ -110,7 +111,10 @@ const ToolStatus = ({
               {" "}
             </div>
           </div>
-          <div className="help">?</div>
+          <HelpPopup 
+            currentInput={currentInput}
+            clickedMainInput={clickedMainInput}
+          />
         </div>
       </div>
 
