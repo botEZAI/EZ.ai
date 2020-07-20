@@ -69,31 +69,12 @@
   background-color: #99edf7 !important;
 }
 
-.tool-status-header .help {
-  width: 24px;
-  height: 24px;
-  border-radius: 10px;
-  background-color: #bbb;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 14px;
-  font-weight: bold;
-  color: #fff;
-  cursor: pointer;
-}
-
-.tool-status-header .help:hover {
-  background-color: orange;
-  transform: translateY(-2px);
-  transition: 0.2s all;
-}
-
 /* Tool status main css */
 .tool-status-main {
-  position: absolute;
+  /* position: absolute;
   top: 50px;
-  height: calc(100% - 100px);
+  height: calc(100% - 100px); */
+  height: calc(100% - 1px);
   min-height: 460px;
   display: flex;
   align-items: center;
