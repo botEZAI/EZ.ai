@@ -46,7 +46,6 @@
 }
 
 .btn-template-thumbnail {
-  position: relative;
   height: 200px;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
@@ -73,9 +72,11 @@
   color: #bbb;
   font-size: 30px;
   transition: all 0.2s;
+  padding: 70px 0 20px;
 }
 
 .btn-template-thumbnail .btn-template-thumbnail-cautions {
+  display: contents;
   position: absolute;
   bottom: 5px;
   font-size: 10px;
@@ -83,6 +84,7 @@
 
 .btn-template-thumbnail .btn-template-thumbnail-caution {
   color: #999;
+  padding: 10px;
 }
 
 .btn-template-thumbnail:hover .btn-template-thumbnail-caution {
