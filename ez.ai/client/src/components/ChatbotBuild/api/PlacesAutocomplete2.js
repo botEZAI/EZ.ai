@@ -64,7 +64,7 @@ const PlacesAutocomplete2 = ({
 
   return (
     <Combobox onSelect={handleSelect} aria-labelledby="demo">
-      <ComboboxInput value={value} onChange={handleInput} disabled={!ready} />
+      <ComboboxInput value={value} onChange={handleInput} disabled={!ready} placeholder = "장소명을 검색하세요"/>
       <ComboboxPopover>
         <ComboboxList>
           {status === "OK" &&

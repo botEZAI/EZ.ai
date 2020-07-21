@@ -27,7 +27,7 @@ export const GoogleMapPresenter = ({
         <Map
           ref={mapRef}
           google={google}
-          zoom={11}
+          zoom={17}
           initialCenter={{
             lat:
               (keywordObject[index].contents[now] &&
