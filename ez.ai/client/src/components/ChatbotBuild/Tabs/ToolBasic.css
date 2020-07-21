@@ -10,19 +10,18 @@
     flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
-
 }
 
 
 .tool-basic {
     color : #999;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: bold;
-    min-width : 70px;
-    height: 70px;
+    min-width : 65px;
+    height: 65px;
     background-color: #dddddd;
-    margin : 8px;
-    padding: 10px;
+    margin : 5px;
+    padding: 5px;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -33,7 +32,7 @@
 
 .tool-basic i {
     margin : 5px 0;
-    font-size : 25px;
+    font-size : 22px;
     color : #999;
 }
 
