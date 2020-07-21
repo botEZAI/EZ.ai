@@ -124,46 +124,41 @@ const ChatbotBuild = (props) => {
               <div className="tool-menu">
                 <div className="tool-tabs">
                   <Tabs activeTab={activeTab} onSelect={onSelect}>
-                    <div label="basic">기본</div>
-                    <div label="advance">고급</div>
+                    <div label="basic">요소</div>
                     <div label="keyword">키워드</div>
                   </Tabs>
                 </div>
-                {(activeTab === "basic" || activeTab === "advance") && (
-                  <div className="tool-contents-title">
-                    추가할 요소를 선택해주세요
-                  </div>
-                )}
                 {activeTab === "basic" && (
-                  <div className="tool-contents">
-                    <ToolBasic
-                      keywordObject={keywordObject}
-                      mainKeyword={mainKeyword}
-                      setAddFlag={setAddFlag}
-                      setClickedMainInput={setClickedMainInput}
-                      setKeywordObject={setKeywordObject}
-                      setNow={setNow}
-                      length={length}
-                      availableIcon={availableIcon}
-                      setAvailableIcon={setAvailableIcon}
-                    />
-                  </div>
-                )}
-                {activeTab === "advance" && (
-                  <div className="tool-contents">
-                    <ToolAdvance
-                      keywordObject={keywordObject}
-                      mainKeyword={mainKeyword}
-                      setAddFlag={setAddFlag}
-                      setClickedMainInput={setClickedMainInput}
-                      setKeywordObject={setKeywordObject}
-                      setNow={setNow}
-                      setVirtualKeyboard={setVirtualKeyboard}
-                      length={length}
-                      availableIcon={availableIcon}
-                      setAvailableIcon={setAvailableIcon}
-                    />
-                  </div>
+                    <>
+                      <div className="tool-contents-title">
+                        추가할 요소를 선택해주세요
+                      </div>
+                      <div className="tool-contents">
+                        <ToolBasic
+                          keywordObject={keywordObject}
+                          mainKeyword={mainKeyword}
+                          setAddFlag={setAddFlag}
+                          setClickedMainInput={setClickedMainInput}
+                          setKeywordObject={setKeywordObject}
+                          setNow={setNow}
+                          length={length}
+                          availableIcon={availableIcon}
+                          setAvailableIcon={setAvailableIcon}
+                        />
+                        <ToolAdvance
+                            keywordObject={keywordObject}
+                            mainKeyword={mainKeyword}
+                            setAddFlag={setAddFlag}
+                            setClickedMainInput={setClickedMainInput}
+                            setKeywordObject={setKeywordObject}
+                            setNow={setNow}
+                            setVirtualKeyboard={setVirtualKeyboard}
+                            length={length}
+                            availableIcon={availableIcon}
+                            setAvailableIcon={setAvailableIcon}
+                        />
+                      </div>
+                    </>
                 )}
                 {activeTab === "keyword" && (
                   <ToolKeyword
@@ -181,7 +176,7 @@ const ChatbotBuild = (props) => {
                   />
                 )}
               </div>
-              {(activeTab === "basic" || activeTab === "advance") && (
+              {activeTab === "basic" && (
                 <div className="tool-status">
                   <ToolStatus
                     mainKeyword={mainKeyword}
