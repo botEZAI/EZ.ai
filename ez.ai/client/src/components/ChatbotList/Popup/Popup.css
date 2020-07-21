@@ -161,11 +161,11 @@
   align-items: center;
 }
 /* 디자인 X "토큰 받는 법 알아보기"*/
-.move-to-guide{ 
+/* .move-to-guide{ 
   display:inline-flex;
   cursor: pointer;
   text-decoration: underline;
-}
+} */
 
 .popup-button-wrap button {
   display: inline-block;
