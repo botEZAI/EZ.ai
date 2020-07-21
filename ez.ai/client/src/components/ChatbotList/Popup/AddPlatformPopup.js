@@ -51,10 +51,10 @@ const AddPlatformPopup = ({ addPlatformFlag, id, setAddPlatformFlag }) => {
         <div className="popup-button-wrap">
           <button onClick={addPlatformSubmit}>확인</button>
         </div>
-        {/* 임시 */}
+        {/* 임시
         <div className="move-to-guide">
           <Link to="/guide">토큰 발급 받는 방법 </Link>
-        </div>
+        </div> */}
       </div>
     </>
   );
