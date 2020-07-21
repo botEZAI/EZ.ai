@@ -81,31 +81,16 @@ const ToolStatus = ({
               <>
                 <span>버튼 템플릿</span>
               </>
-            ) : currentInput.type === "carousel" ||
-              clickedMainInput.type === "carousel" ? (
-              <>
-                <span>슬라이드 템플릿</span>
-              </>
-            ) : currentInput.type === "img_carousel" ||
-              clickedMainInput.type === "img_carousel" ? (
-              <>
-                <span>이미지 슬라이드 템플릿</span>
-              </>
-            ) : currentInput.type === "sticker" ||
-              clickedMainInput.type === "sticker" ? (
-              <>
-                <span>스티커</span>
-              </>
             ) : null
           ) : null}
         </div>
         <div className="tool-status-info">
           <div className="tool-status-available">
             <div className={availableIcon[0].use ? "sns-color-line" : null}>
-              {" "}
+              <i className="fab fa-line"></i>
             </div>
             <div className={availableIcon[1].use ? "sns-color-telegram" : null}>
-              {" "}
+              <i className="fab fa-telegram" aria-hidden="true"></i>
             </div>
           </div>
           <HelpPopup 

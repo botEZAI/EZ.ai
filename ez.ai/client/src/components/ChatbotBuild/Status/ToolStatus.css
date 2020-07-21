@@ -36,7 +36,7 @@
 }
 
 .tool-status-header .tool-status-info {
-  width: 160px;
+  width: 100px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -48,21 +48,20 @@
   align-items: center;
 }
 
-.tool-status-info .tool-status-available > div {
-  width: 20px;
-  height: 15px;
+.tool-status-info .tool-status-available > div > i {
   margin-left: 10px;
   border-radius: 5px;
-  background-color: #eee;
+  font-size: 20px;
+  color: #ddd;
 }
 
 /* 연동 플랫폼 색깔 */
-.tool-status-available .sns-color-line {
-  background-color: #86efae !important;
+.tool-status-available .sns-color-line i {
+  color: #19ce60 !important;
 }
 
-.tool-status-available .sns-color-telegram {
-  background-color: #99edf7 !important;
+.tool-status-available .sns-color-telegram i {
+  color: #1F9CDB !important;
 }
 
 /* Tool status main css */
