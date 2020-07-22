@@ -56,7 +56,7 @@ const SidePreview = (props) => {
             {currentTime("outer")}
           </div>
         );
-      else if (c.type == "list")
+      else if (c.type === "list")
         return (
           <>
             {setKeyboard(props.activePlatformTab)}
@@ -66,10 +66,7 @@ const SidePreview = (props) => {
       // else if (c.type == "list")
       //   return (
       //     <div>
-      //       <div className={`${props.activePlatformTab}-list-question`}>
-      //         {c.listContent.question}
-      //       </div>
-      //       {/* {c.listContent.elem.map((i) => {
+      //       {c.listContent.keywordLink.map((i) => {
       //         return (
       //           <div
       //             className={`preview-button ${props.activePlatformTab}-list-elem`}
@@ -78,21 +75,49 @@ const SidePreview = (props) => {
       //             {i}
       //           </div>
       //         );
-      //       })} */}
-      //       {/* {currentTime("outer")} */}
+      //       })}
+      //       {currentTime("outer")}
       //       {setFixedMenu(c.listContent.elem)}
       //       {setKeyboard(props.activePlatformTab)}
       //     </div>
       //   );
-      else if (c.type == "image")
+      else if (c.type === "image")
         return (
           <div
             className={`preview-receive ${props.activePlatformTab} ${props.activePlatformTab}-image`}
           >
             <div
               className="main-image-preview"
-              style={{ backgroundImage: `url(${c.content})` || null }}
+              style={{ backgroundImage: `url(${c.filepath})` || null }}
             ></div>
+            {currentTime("inner")}
+          </div>
+        );
+      else if (c.type === "audio")
+        return (
+          <div
+            className={`preview-receive ${props.activePlatformTab} ${props.activePlatformTab}-audio`}
+          >
+            <i className="fas fa-play fa-lg file-icon-preview"></i>
+            <div
+              className="main-audio-preview"
+              style={{ backgroundImage: `url(${c.filepath})` || null }}
+            ></div>
+            <div>{c.content}</div>
+            {currentTime("inner")}
+          </div>
+        );
+      else if (c.type === "video")
+        return (
+          <div
+            className={`preview-receive ${props.activePlatformTab} ${props.activePlatformTab}-video`}
+          >
+            <i className="fas fa-play fa-lg file-icon-preview"></i>
+            <div
+              className="main-video-preview"
+              style={{ backgroundImage: `url(${c.filepath})` || null }}
+            ></div>
+            <div>{c.content}</div>
             {currentTime("inner")}
           </div>
         );
@@ -102,6 +127,8 @@ const SidePreview = (props) => {
 
   const moveKeyword = useCallback(
     (i) => {
+      setKeyboard("");
+      setFixedMenu([]);
       setDialogues((prev) => [...prev, sendMessage(i)]);
     },
     [dialogues, message, currentChatbot]
@@ -124,7 +151,6 @@ const SidePreview = (props) => {
       const findKeyword = JSON.parse(currentChatbot.data).find(
         (k) => k.keyword === input
       );
-      console.log(findKeyword);
       if (!findKeyword)
         return (
           <>
@@ -168,12 +194,39 @@ const SidePreview = (props) => {
                 timezone={"Asia/Seoul"}
               />
             </div>
+            {dialogues.map((dialogue) => {
+              return dialogue;
+            })}
           </div>
           <div className="preview-footer">
             <div class="preview-input input-line">
-              <input type="text" placeholder="Say Something" />
+              <form onSubmit={onSubmitPreview}>
+                <input
+                  type="text"
+                  placeholder="메세지"
+                  value={message}
+                  onChange={onChangeMessage}
+                />
+              </form>
             </div>
           </div>
+          {keyboard === "platform-line" ? (
+            <div className="preview-keyboard">
+              {fixedMenu.map((i) => {
+                if (i === "") {
+                } else {
+                  return (
+                    <div
+                      className={`preview-button ${props.activePlatformTab}-list-elem`}
+                      onClick={() => moveKeyword(i)}
+                    >
+                      {i}
+                    </div>
+                  );
+                }
+              })}
+            </div>
+          ) : null}
         </div>
       ) : null}
 

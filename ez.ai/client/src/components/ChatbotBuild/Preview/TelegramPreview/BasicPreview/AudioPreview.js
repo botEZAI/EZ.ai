@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 
 const AudioPreview = ({
   v,
@@ -7,13 +7,16 @@ const AudioPreview = ({
   now,
   setNow,
   onDelete,
-  changeAvailableIcon
+  changeAvailableIcon,
 }) => {
   return (
-      <div className="main-preview">
+    <div className="main-preview">
       <div
-        className={now === i ? "main-content audiobox-telegram now"
-                            : "main-content audiobox-telegram"}
+        className={
+          now === i
+            ? "main-content audiobox-telegram now"
+            : "main-content audiobox-telegram"
+        }
         key={v.content + i}
         onClick={() => {
           setClickedMainInput(v);
@@ -31,6 +34,7 @@ const AudioPreview = ({
             <div className="file-size" data-filetype="">
               {/* 길이, 용량을 표시하려면 데이터를 확장해야함.현재는 파일 이름만 저장 */}
               {/* 00:00, 00.00 MB{" "} */}
+              {v.size}
             </div>
           </div>
         </div>

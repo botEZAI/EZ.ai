@@ -181,7 +181,6 @@ const ButtonTemplateStatus = ({
 
   return (
     <div className="btn-template-status">
-      {console.log(keywordObject)}
       <div className="btn-template-control">
         <div classNAme="btn-template-color" title="이미지 배경색">
           <input
@@ -224,6 +223,7 @@ const ButtonTemplateStatus = ({
           }}
           onClick={onClickUploadImage}
         >
+          <input ref={imageRef} type="file" hidden onChange={onChangeImage} />
           {keywordObject[index].contents[now].content.thumbnailImageUrl !==
             "" ||
           keywordObject[index].contents[now].content.imageBackgroundColor !==
