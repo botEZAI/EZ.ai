@@ -12,8 +12,11 @@ const TextStatus = ({
 }) => {
     return (
         <div className="status-input status-text">
+            <div className="status-text-title">
+                텍스트 내용을 작성해주세요
+            </div>
               <textarea
-                  placeholder="작성하고자 하는 텍스트를 적어주세요"
+                  placeholder=""
                   value={currentContent || ""}
                   onChange={e => {
                       setKeywordObject(
