@@ -10,7 +10,6 @@
   border-right: 0.5px solid #999;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
 }
 
@@ -69,7 +68,7 @@
   /* position: absolute;
   top: 50px;
   height: calc(100% - 100px); */
-  height: calc(100% - 1px);
+  height: 580px;
   min-height: 460px;
   display: flex;
   align-items: center;
@@ -86,16 +85,19 @@
 }
 
 .tool-status-extra .extra-btn {
-  background-color: #eee;
-  color: #999;
   margin: 0 5px;
-  padding: 8px;
   cursor: pointer;
+  width : 30px;
 }
 
-.tool-status-extra .extra-btn:hover {
-  background-color: #00b8b4;
-  color: white;
+.tool-status-extra .extra-btn i {
+  color : #999;
+  transition: .2s all;
+}
+
+.tool-status-extra .extra-btn:hover i {
+  color: orangered;
+  font-size : 20px;
 }
 
 /* tool status-nav css */
@@ -187,18 +189,38 @@
   border-radius: 40px;
   transition: 0.2s all;
 }
+
+.upload-preview .preview-screen-description{
+  padding-top : 10px;
+  color: #999;
+  font-size : 15px;
+  font-weight: bold;
+  transition: .2s all;
+}
+
 .upload-preview .upload-preview-screen i {
   color: #999;
+  font-size : 25px;
+  transition: 0.2s all;
 }
 
 .upload-preview .upload-preview-screen:hover,
 .upload-preview-screen:hover p {
   background-color: #ddf0ff;
-  font-size: 20px;
+
 }
+
+.upload-preview .upload-preview-screen:hover .preview-screen-description {
+  color: #449fe5;
+  font-size : 16px;
+}
+
 .upload-preview .upload-preview-screen:hover i {
   color: #449fe5;
+  font-size: 28px;
 }
+
+
 
 .status-upload {
   height: 410px;
@@ -232,11 +254,18 @@
   width: 90%;
 }
 
+.status-text-title {
+  padding-bottom: 10px;
+  font-weight: bold;
+}
+
 .status-text textarea {
   width: inherit;
-  height: 30vh;
+  height: 20vh;
   min-height: 150px;
   font-size: 16px;
+  overflow: visible;
+  resize : none;
 }
 
 .status-text textarea:focus {
@@ -253,6 +282,11 @@
   height: 50px;
   background-color: #ddd;
   display: flex;
+}
+
+.status-image-tab .active {
+  background-color: white;
+  color: #666;
 }
 
 .status-image-tab > div {

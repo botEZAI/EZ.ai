@@ -78,8 +78,9 @@ const EmogiPopup = ({
             <div
                 className="extra-btn emoji"
                 onClick={showImoView}
+                title = "이모지"
             >
-                이모지
+                <i className="far fa-laugh"></i>
                 { showImoPopup ?
                     <div className="emoji-interface" >
                         <ul className = "emoji-tab">

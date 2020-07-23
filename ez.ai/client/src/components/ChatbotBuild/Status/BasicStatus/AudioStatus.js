@@ -36,13 +36,16 @@ const AudioStatus = ({ setKeywordObject, keywordObject, now, index }) => {
               title="로컬 오디오 업로드"
             >
               {keywordObject[index].contents[now].content || (
-                <i className="fas fa-upload"></i>
+                  <>
+                    <i className="fas fa-upload"></i>
+                    <div className="preview-screen-description">파일 업로드</div>
+                  </>
               )}
             </div>
             <input ref={audioRef} type="file" hidden onChange={onChangeAudio} />
           </div>
           <div className="caution">
-            <p>파일 형식: WAV, MP3, M4A, AAC, OGG</p>
+            <p>파일 형식: MP3, M4A</p>
             <p>최대 파일 크기 : 150MB</p>
           </div>
         </div>

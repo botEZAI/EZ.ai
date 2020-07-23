@@ -203,7 +203,6 @@ const ToolStatus = ({
         </div>
 
         <div className="tool-status-nav-btns">
-          <div className="tool-status-btn decline">삭제</div>
         </div>
       </div>
     </>
