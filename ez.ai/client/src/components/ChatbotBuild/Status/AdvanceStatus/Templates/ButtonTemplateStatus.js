@@ -248,7 +248,7 @@ const ButtonTemplateStatus = ({
               <i className="fas fa-upload"></i>
               <div className="btn-template-thumbnail-cautions">
                 <div className="btn-template-thumbnail-caution">
-                  파일 형식 : JPEG, PNG
+                  파일 형식 : JPG, JPEG, PNG
                 </div>
                 <div className="btn-template-thumbnail-caution">
                   파일 최대 너비 : 1024px / 최대 파일 크기: 1MB

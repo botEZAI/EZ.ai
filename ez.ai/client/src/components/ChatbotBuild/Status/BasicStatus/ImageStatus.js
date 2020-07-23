@@ -105,7 +105,10 @@ const ImageStatus = ({
               title = "로컬 이미지 업로드"
             >
               {keywordObject[index].contents[now].content === "" ? (
-                  <i className="fas fa-upload"></i>
+                  <>
+                    <i className="fas fa-upload"></i>
+                    <div className="preview-screen-description">파일 업로드</div>
+                  </>
               ) : (<></>
                 //<img className="preview-screen-image" src={imageURL}/>
                 )}

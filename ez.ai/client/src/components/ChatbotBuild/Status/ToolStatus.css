@@ -189,18 +189,38 @@
   border-radius: 40px;
   transition: 0.2s all;
 }
+
+.upload-preview .preview-screen-description{
+  padding-top : 10px;
+  color: #999;
+  font-size : 15px;
+  font-weight: bold;
+  transition: .2s all;
+}
+
 .upload-preview .upload-preview-screen i {
   color: #999;
+  font-size : 25px;
+  transition: 0.2s all;
 }
 
 .upload-preview .upload-preview-screen:hover,
 .upload-preview-screen:hover p {
   background-color: #ddf0ff;
-  font-size: 20px;
+
 }
+
+.upload-preview .upload-preview-screen:hover .preview-screen-description {
+  color: #449fe5;
+  font-size : 16px;
+}
+
 .upload-preview .upload-preview-screen:hover i {
   color: #449fe5;
+  font-size: 28px;
 }
+
+
 
 .status-upload {
   height: 410px;
@@ -262,6 +282,11 @@
   height: 50px;
   background-color: #ddd;
   display: flex;
+}
+
+.status-image-tab .active {
+  background-color: white;
+  color: #666;
 }
 
 .status-image-tab > div {

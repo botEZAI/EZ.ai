@@ -35,7 +35,10 @@ const VideoStatus = ({ setKeywordObject, keywordObject, now, index }) => {
               title="로컬 동영상 업로드"
             >
               {keywordObject[index].contents[now].content || (
-                  <i className="fas fa-upload"></i>
+                  <>
+                    <i className="fas fa-upload"></i>
+                    <div className="preview-screen-description">파일 업로드</div>
+                  </>
               )}
             </div>
             <input ref={videoRef} type="file" hidden onChange={onChangeVideo} />
