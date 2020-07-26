@@ -1,147 +1,139 @@
-
-.textbox-telegram, .imgbox-telegram{/*== Basic > img, text ==*/
-  width:fit-content;
-  height:fit-content;
-  min-width:80px;
+.textbox-telegram,
+.imgbox-telegram {
+  /*== Basic > img, text ==*/
+  width: fit-content;
+  height: fit-content;
+  min-width: 80px;
 }
 
-
-.image-preview-telegram{ /*== Basic > img preview ==*/
-  display:flex;
-  justify-content:flex-end;
+.image-preview-telegram {
+  /*== Basic > img preview ==*/
+  display: flex;
+  justify-content: flex-end;
   align-items: flex-start;
-  min-width:230px;
-  min-height:230px;
+  min-width: 230px;
+  min-height: 230px;
   background-size: 100% 100%;
-  border-radius:5px;
+  border-radius: 5px;
   border: 1px solid #ddd;
-  color:#ddd;
+  color: #ddd;
 }
 
-
-.image-default-telegram{
-  min-width:200px;
-  min-height:150px;
+.image-default-telegram {
+  min-width: 200px;
+  min-height: 150px;
   display: flex;
   justify-content: center;
   align-items: center;
-  border:1px solid #ddd;
-  color:#ddd;
+  border: 1px solid #ddd;
+  color: #ddd;
   border-radius: 5px;
 }
 
-
-.videobox-telegram{ /*==Basic > video==*/
-  padding:1%;
-  line-height:0; 
-  width: 300px; 
-  height: 180px; 
+.videobox-telegram {
+  /*==Basic > video==*/
+  padding: 1%;
+  line-height: 0;
+  width: 300px;
+  height: 180px;
   cursor: pointer;
 }
 
-
-.video-content-telegram{
-  line-height: 170px; 
-  height:170px;
+.video-content-telegram {
+  line-height: 170px;
+  height: 170px;
   text-align: center;
-  border-radius:5px;
-  border:1px solid #ddd;
+  border-radius: 5px;
+  border: 1px solid #ddd;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
 
-
-.locationbox-telegram{/*== Basic > 지도(Map) ==*/
-  width:210px;
-  height:210px;
-  position : relative;
+.locationbox-telegram {
+  /*== Basic > 지도(Map) ==*/
+  width: 310px;
+  height: 310px;
+  position: relative;
 }
 
 .locationbox-telegram > div {
-  position :absolute;
-  top : 2px;
+  position: absolute;
+  top: 2px;
   left: 2px;
 }
 
-
 .filebox-telegram,
-.audiobox-telegram{/* === Basic > File == */
-  display:flex;
-  align-items:center;
-  width:fit-content;
-  height:fit-content;
-  padding:10px;
+.audiobox-telegram {
+  /* === Basic > File == */
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  height: fit-content;
+  padding: 10px;
 }
 
-
-.file-content-telegram{
-  display:block;
-  width:200px;
-  white-space:nowrap;
-  overflow-x:hidden;
-  text-overflow:ellipsis;
-  margin:10px;
+.file-content-telegram {
+  display: block;
+  width: 200px;
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  margin: 10px;
 }
 
-
-.file-icon-telegram{
-  padding:18px;
-  margin:5px;
+.file-icon-telegram {
+  padding: 18px;
+  margin: 5px;
   border-radius: 50%;
-  background:#2ca2da;
-  color:white;
-  cursor:pointer;
+  background: #2ca2da;
+  color: white;
+  cursor: pointer;
 }
 
-
-.listbox-telegram { /*== Advance > List == */
-  padding:2%;
-  width:fit-content;
-  height:fit-content;
+.listbox-telegram {
+  /*== Advance > List == */
+  padding: 2%;
+  width: fit-content;
+  height: fit-content;
 }
 
-
-.listbox-header-telegram{
-  color:#318ace;
+.listbox-header-telegram {
+  color: #318ace;
 }
 
-
-.listbox-question-telegram{
-  word-wrap:break-word;
-  white-space:pre-wrap;
-  padding:2%;
+.listbox-question-telegram {
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  padding: 2%;
   margin-bottom: 10px;
-  min-width:200px;
-  min-height:30px;
-  font-size:13pt;
-  font-weight : bold;
+  min-width: 200px;
+  min-height: 30px;
+  font-size: 13pt;
+  font-weight: bold;
 }
 
-
-.listbox-question-telegram{
+.listbox-question-telegram {
   scrollbar-width: none; /*Firefox*/
 }
 
+.listbox-question-telegram::-webkit-scrollbar {
+  display: none; /*Chrome, Safari, Opera */
+} /*IE나 Edge는 적용 X*/
 
-.listbox-question-telegram::-webkit-scrollbar{
-  display:none; /*Chrome, Safari, Opera */
-}/*IE나 Edge는 적용 X*/
-
-
-.listbox-elem-telegram{
-  width:90%;
+.listbox-elem-telegram {
+  width: 90%;
   border-bottom: 1px solid #ddd;
-  margin:1%;
-  padding:5px;
-  font-size:11pt;
+  margin: 1%;
+  padding: 5px;
+  font-size: 11pt;
 }
 
-.buttonsbox-telegram{
-  height:auto;
-  width:300px;
+.buttonsbox-telegram {
+  height: auto;
+  width: 300px;
 }
 
-.buttons-thumbnail-telegram{
+.buttons-thumbnail-telegram {
   position: relative;
   height: 200px;
   border-radius: 8px;
@@ -154,7 +146,7 @@
   overflow: hidden;
 }
 
-.buttons-title-telegram{
+.buttons-title-telegram {
   height: fit-content;
   padding: 10px;
   display: flex;
@@ -163,7 +155,7 @@
   word-break: break-all;
   font-weight: bold;
 }
-.buttons-text-telegram{
+.buttons-text-telegram {
   height: fit-content;
   padding: 10px;
   display: flex;
