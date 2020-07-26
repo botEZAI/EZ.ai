@@ -2,6 +2,7 @@ import React, { useCallback, useState, useEffect } from "react";
 import "./SidePreview.css";
 import Clock from "react-live-clock";
 import { useSelector } from "react-redux";
+import GoogleMapPresenter from "../../api/GoogleMapPresenter";
 
 const SidePreview = (props) => {
   const dayList = ["일", "월", "화", "수", "목", "금", "토"];
@@ -45,8 +46,8 @@ const SidePreview = (props) => {
   };
 
   //전달받은 키워드 안의 요소들의 타입을 구별후 배열 return
-  const addDialogue = (findKeyword) => {
-    const dialogues = findKeyword.contents.map((c) => {
+  const addDialogue = (findKeyword, findIndex) => {
+    const dialogues = findKeyword.contents.map((c, i) => {
       if (c.type === "text")
         return (
           <div
@@ -121,6 +122,76 @@ const SidePreview = (props) => {
             {currentTime("inner")}
           </div>
         );
+      else if (c.type === "location")
+        return (
+          <div
+            className={`preview-receive ${props.activePlatformTab} ${props.activePlatformTab}-location`}
+          >
+            <GoogleMapPresenter
+              keywordObject={JSON.parse(currentChatbot.data)}
+              setKeywordObject={props.setKeywordObject}
+              index={findIndex}
+              now={i}
+            ></GoogleMapPresenter>
+            {currentTime("inner")}
+          </div>
+        );
+      else if (c.type === "btn_template")
+        return (
+          <div
+            className={`preview-receive ${props.activePlatformTab} ${props.activePlatformTab}-btn_template`}
+          >
+            {console.log(c)}
+            <div className={"main-content buttonsbox-line"} key={c.content + i}>
+              {/* 버튼 템플릿 이미지 없을 경우 이미지 영역 보이지 않음 */}
+              {c.content.thumbnailImageUrl !== "" ? (
+                <div
+                  className="buttons-thumbnail-line"
+                  style={{
+                    backgroundColor: c.content.imageBackgroundColor,
+                  }}
+                >
+                  <img
+                    className="main-buttons-thumbnail-image"
+                    src={c.content.thumbnailImageUrl}
+                    style={
+                      c.content.imageSize === "cover"
+                        ? { width: "100%" }
+                        : { height: "100%" }
+                    }
+                  />
+                </div>
+              ) : null}
+              <div className="main-buttons-contents">
+                {c.content.title !== "" ? (
+                  <div className="buttons-title-line">{c.content.title}</div>
+                ) : null}
+                <div className="buttons-text-line">
+                  {c.content.text !== "" ? c.content.text : "text"}
+                </div>
+                <div className="main-buttons-actions">
+                  <div className="space-top"></div>
+                  {c.content.actions.map((act, index) => (
+                    <div
+                      className="main-buttons-action"
+                      onClick={() =>
+                        act.type === "uri"
+                          ? moveKeyword(act.uri)
+                          : moveKeyword(act.data)
+                      }
+                    >
+                      {act.label !== ""
+                        ? act.label
+                        : "(button" + (index + 1) + ")"}
+                    </div>
+                  ))}
+                  <div className="space-bottom"></div>
+                </div>
+              </div>
+            </div>
+            {currentTime("outer")}
+          </div>
+        );
     });
     return dialogues;
   };
@@ -151,6 +222,9 @@ const SidePreview = (props) => {
       const findKeyword = JSON.parse(currentChatbot.data).find(
         (k) => k.keyword === input
       );
+      const findIndex = JSON.parse(currentChatbot.data).findIndex(
+        (k) => k.keyword === input
+      );
       if (!findKeyword)
         return (
           <>
@@ -175,7 +249,7 @@ const SidePreview = (props) => {
             <div className="nowtime">{currentTime("outer")}</div>
           </div>
           {/* 키워드 전달 후 일치하는 요소들의 배열을 return받음 */}
-          {addDialogue(findKeyword)}
+          {addDialogue(findKeyword, findIndex)}
         </>
       );
     },

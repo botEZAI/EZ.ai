@@ -67,7 +67,10 @@ const Sidebar = ({
                 </PlatformTabs>
               </div>
               <div className="sidebar-article" id="preview">
-                <SidePreview activePlatformTab={activePlatformTab} />
+                <SidePreview
+                  activePlatformTab={activePlatformTab}
+                  setKeywordObject={setKeywordObject}
+                />
               </div>
             </>
           )}

@@ -1,6 +1,10 @@
 .GoogleMapPresenter {
-  width: 400px;
-  height: 400px;
+  width: 300px;
+  height: 300px;
+}
+.locationbox-telegram > .GoogleMapPresenter {
+  width: 100px;
+  height: 100px;
 }
 
 .GoogleMapPresenter > div {
