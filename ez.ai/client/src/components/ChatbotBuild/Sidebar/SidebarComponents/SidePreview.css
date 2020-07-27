@@ -57,7 +57,7 @@
   height: 100%;
 }
 .side-line .preview-contents {
-  background-color: #c4f7d7 !important;
+  background-image: url("../../../../objects/line-bg.JPG");
   height: 100%;
 }
 .side-facebook .preview-contents {
@@ -162,23 +162,7 @@ time {
   padding: 8px;
 }
 
-.preview-keyboard {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-}
-.preview-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: darkgray;
-  margin: 5px 5px 1px 5px;
-  height: 40px;
-  font-weight: 900;
-  border-radius: 3px;
-}
-.preview-button:nth-child(2n + 1):last-child {
-  grid-column: span 2;
-}
+
 
 .preview-send .nowtime_outer time {
   align-self: flex-end;
@@ -198,4 +182,54 @@ time {
 
 .preview-receive .nowtime_inner time {
   display: none;
+}
+
+/* 라인 */
+.side-line .preview-receive {
+  padding : 8px;
+}
+
+/* 고정 메뉴 */
+.preview-keyboard {
+  display: grid;
+  padding-bottom : 5px;
+}
+
+.side-telegram .preview-keyboard {
+  background-color: #F5F6F7;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.side-line .preview-keyboard {
+  background-color: #F5F5F5;
+  border : 1px solid #ddd;
+  grid-template-columns: repeat(1, 1fr);
+}
+
+
+.preview-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin : 5px 5px 0 5px;
+  height: 40px;
+
+  border-radius: 3px;
+}
+
+.side-telegram .preview-button {
+  background-color: #E4E7E9;
+  font-size: 18px;
+  font-weight : normal;
+  color : #3A4B53;
+}
+
+.side-telegram .preview-button:nth-child(2n + 1):last-child {
+  grid-column: span 2;
+}
+
+.side-line .preview-button {
+  background-color : #eee;
+  border : 1px solid #ddd;
+  font-weight : bold;
 }
