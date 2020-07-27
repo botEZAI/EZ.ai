@@ -65,9 +65,6 @@
   height: 100%;
 }
 
-.side-telegram .preview-header {
-  background-color: #52749a !important;
-}
 
 .side-telegram .preview-contents {
   background-image: url("../../../../objects/telegram_bg.jpg");
@@ -183,8 +180,18 @@ time {
 .preview-receive .nowtime_inner time {
   display: none;
 }
+/*  미리보기 창 기본 인터페이스 */
+/* preview-header */
 
-/* 라인 */
+.side-telegram .preview-header {
+  background-color: #52749a !important;
+}
+.side-line .preview-header {
+  background-color: #2E3649;
+}
+
+
+/* preview-content - recive */
 .side-line .preview-receive {
   padding : 8px;
 }
