@@ -1,3 +1,10 @@
+.textbox-line{/*== Basic > img, text ==*/
+  width:fit-content;
+  height:fit-content;
+  min-width: 60px;
+  min-height:44px;
+  padding: 10px;
+}
 
 .buttonsbox-line{
   height: auto;

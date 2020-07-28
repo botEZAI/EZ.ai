@@ -15,7 +15,6 @@ const TextPreview = ({
           className={now === i ? "main-content textbox-telegram now"
                               : "main-content textbox-telegram"}
           key={v.content + i}
-          style={{padding:'2%'}}
           onClick={() => {
             setClickedMainInput(v);
             setNow(i);
@@ -23,7 +22,7 @@ const TextPreview = ({
           }}
         >
           <div>
-            {v.content || "(입력)"}
+            {v.content || ""}
           </div>
         </div>
           <div
