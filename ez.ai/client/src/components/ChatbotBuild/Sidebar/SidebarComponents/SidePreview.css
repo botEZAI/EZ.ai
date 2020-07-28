@@ -70,6 +70,8 @@
   background-image: url("../../../../objects/telegram_bg.jpg");
   height: 100%;
 }
+
+/* footer */
 .preview-footer {
   background-color: white !important;
   height: 50px;
@@ -100,6 +102,38 @@
   justify-content: space-around;
   align-items: center;
 }
+
+.line-preview-footer {
+  height : 70px;
+}
+
+.line-preview-footer i {
+  color : #999;
+}
+
+.line-preview-footer .preview-footer-icons {
+  width : 100px;
+}
+
+.line-preview-footer .preview-input {
+  padding : 0 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.line-preview-footer .preview-footer-icon-right {
+  width : 30px;
+}
+
+.line-preview-footer .input-line {
+  margin : 0 10px;
+  background-color: #eee;
+}
+
+
+
+
 .preview-input {
   width: 220px;
   height: 30px;
