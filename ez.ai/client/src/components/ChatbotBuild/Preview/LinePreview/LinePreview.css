@@ -75,6 +75,23 @@
   color:black;
 }
 /*  */
+.audiobox-line{
+  display: flex;
+  align-items: center;
+  padding: 17px;
+  border-radius: 30px;
+}
+
+.audiobox-line > i{
+  font-size: 37px;
+}
+
+.audio-contents-line > .audio-name {
+  font-size: 25px;
+  font-weight: bold;
+  margin-left: 8px;
+}
+
 .buttonsbox-line{
   height: auto;
   width: 300px;

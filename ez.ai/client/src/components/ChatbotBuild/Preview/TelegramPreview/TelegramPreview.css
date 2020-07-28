@@ -87,14 +87,43 @@
   left: 2px;
 }
 
-.filebox-telegram,
-.audiobox-telegram {
-  /* === Basic > File == */
-  display: flex;
+.audiobox-telegram{/* === Basic > File == */
+  display:flex;
+  align-items:center;
+  width:fit-content;
+  height:fit-content;
+  padding:10px;
+}
+
+.audio-container{
+  display:flex;
   align-items: center;
-  width: fit-content;
-  height: fit-content;
-  padding: 10px;
+}
+.audio-content-telegram{
+  min-width:100px;
+  width:auto;
+  height:auto;
+  max-width: 100%;
+  overflow:hidden;
+
+}
+.audio-content-telegram > div {
+  margin: 5px;
+}
+
+.audio-content-telegram .audio-name {
+  font-weight: bold;
+  max-width: 100%;
+  word-break: break-all;
+}
+
+.audio-icon-telegram{
+  padding:18px;
+  margin:5px;
+  border-radius: 50%;
+  background:#2ca2da;
+  color:white;
+  cursor:pointer;
 }
 
 .file-content-telegram {
