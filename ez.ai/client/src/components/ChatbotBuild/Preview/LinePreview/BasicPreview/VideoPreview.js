@@ -1,5 +1,6 @@
 import React from 'react'
-import TextPreview from "./TextPreview";
+import whitePlay from '../../../../../objects/play-circle.png';
+import blackPlay from "../../../../../objects/play-circle-black.png";
 
 const VideoPreview = ({
   v,
@@ -14,8 +15,8 @@ const VideoPreview = ({
   return(
       <div className="main-preview">
         <div
-          className={now === i ? "main-content videobox-telegram now"
-                              : "main-content videobox-telegram"}
+          className={now === i ? "main-content videobox-line now"
+                              : "main-content videobox-line"}
           key={v.content + i}
           onClick={() => {
             setClickedMainInput(v);
@@ -23,10 +24,16 @@ const VideoPreview = ({
             changeAvailableIcon("video");
           }}
         >
-          {" "}
-          <div className="video-content-telegram">
-            <i className="fas fa-play fa-lg file-icon-telegram"></i>
-          </div>
+          {v.content != "" ?
+            <>
+              <div className="video-content-line">
+                <video src={v.content} autoplay loop/>
+              </div>
+              <img className="video-play-icon" src={whitePlay}></img>
+            </>
+            :
+            <img className="video-default-icon" src={blackPlay}></img>
+          }
         </div>
       <div
         className="tool-delete delete-video"
