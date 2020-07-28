@@ -6,27 +6,28 @@
   padding: 10px;
 }
 
-.image-preview-telegram {
-  /*== Basic > img preview ==*/
-  display: flex;
-  justify-content: flex-end;
+.image-preview-telegram{ /*== Basic > img preview ==*/
+  display:flex;
+  justify-content:flex-end;
   align-items: flex-start;
-  min-width: 230px;
-  min-height: 230px;
-  background-size: 100% 100%;
-  border-radius: 5px;
-  border: 1px solid #ddd;
-  color: #ddd;
+  min-width:200px;
+  min-height:150px;
+  width: auto; 
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  border-radius:10px;
+  color:#ddd;
+  padding: 0 1px;
 }
 
-.image-default-telegram {
-  min-width: 200px;
-  min-height: 150px;
+.image-default-telegram{
+  min-width:200px;
+  min-height:150px;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid #ddd;
-  color: #ddd;
+  color:#ddd;
   border-radius: 5px;
 }
 

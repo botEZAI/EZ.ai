@@ -23,13 +23,10 @@ const ImagePreview = ({
             }}
         >
             <div>
-                {" "}
                 {v.content !== "" ? (
-                    <div
-                        className="image-preview-telegram"
-                        style={{ backgroundImage: `url(${v.content})` }}
-                    ></div>
-                ) : (
+                    <img className="image-preview-telegram" src={v.content} />
+
+                    ) : (
                     <div className="image-default-telegram">이미지 없음</div>
                 )}
             </div>
