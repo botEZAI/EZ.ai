@@ -62,8 +62,8 @@ const Sidebar = ({
                   activePlatformTab={activePlatformTab}
                   onSelectPlatform={onSelectPlatform}
                 >
-                  <div label="line"> Line </div>
-                  <div label="telegram"> Telegram </div>
+                  <div label="line"> 라인 </div>
+                  <div label="telegram"> 텔레그램 </div>
                 </PlatformTabs>
               </div>
               <div className="sidebar-article" id="preview">
