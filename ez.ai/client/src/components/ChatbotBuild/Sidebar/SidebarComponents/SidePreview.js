@@ -272,7 +272,18 @@ const SidePreview = (props) => {
               return dialogue;
             })}
           </div>
-          <div className="preview-footer">
+          <div className="preview-footer line-preview-footer">
+            <div className="preview-footer-icons">
+              <div className="preview-footer-icon">
+                <i className="fas fa-plus"></i>
+              </div>
+              <div className="preview-footer-icon">
+                <i className="fas fa-camera"></i>
+              </div>
+              <div className="preview-footer-icon">
+                <i className="far fa-image"></i>
+              </div>
+            </div>
             <div class="preview-input input-line">
               <form onSubmit={onSubmitPreview}>
                 <input
@@ -282,6 +293,12 @@ const SidePreview = (props) => {
                   onChange={onChangeMessage}
                 />
               </form>
+              <i className="far fa-smile"></i>
+            </div>
+            <div className="preview-footer-icon-right">
+              <div className="preview-footer-icon">
+                <i className="fas fa-microphone"></i>
+              </div>
             </div>
           </div>
           {keyboard === "platform-line" ? (
