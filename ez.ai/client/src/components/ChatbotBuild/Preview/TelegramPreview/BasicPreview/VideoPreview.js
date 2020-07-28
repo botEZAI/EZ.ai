@@ -1,5 +1,6 @@
 import React from 'react'
 import TextPreview from "./TextPreview";
+import whitePlay from '../../../../../objects/play-circle.png';
 
 const VideoPreview = ({
   v,
@@ -23,10 +24,21 @@ const VideoPreview = ({
             changeAvailableIcon("video");
           }}
         >
-          {" "}
-          <div className="video-content-telegram">
-            <i className="fas fa-play fa-lg file-icon-telegram"></i>
-          </div>
+          {v.content != "" ?
+            <div className="container">
+              <div className="video-info">
+                <span>00 : 00</span>
+                <span>
+                  <i class="fas fa-volume-mute fa-lg"></i>
+                </span>
+              </div>
+              <div className="video-content-telegram">
+                <video src={v.content} autoplay loop/>
+              </div>
+            </div>
+           :
+            <i className="fas fa-play-circle fa-lg video-icon-telegram"></i>
+          }
         </div>
       <div
         className="tool-delete delete-video"
