@@ -74,7 +74,7 @@
 /* footer */
 .preview-footer {
   background-color: white !important;
-  height: 50px;
+  min-height: 50px;
   margin-top: auto;
   padding: 0 10px;
   display: flex;
@@ -103,9 +103,6 @@
   align-items: center;
 }
 
-.line-preview-footer {
-  height : 70px;
-}
 
 .line-preview-footer i {
   color : #999;
@@ -127,7 +124,9 @@
 }
 
 .line-preview-footer .input-line {
+  height : 35px;
   margin : 0 10px;
+  border-radius: 15px;
   background-color: #eee;
 }
 
@@ -228,6 +227,11 @@ time {
 /* preview-content - recive */
 .side-line .preview-receive {
   padding : 8px;
+}
+
+/* 이미지 */
+.preview-contents .platform-line-image {
+  padding : 0;
 }
 
 /* 고정 메뉴 */
