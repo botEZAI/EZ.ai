@@ -19,7 +19,14 @@ router.get("/", isLoggedIn, (req, res) => {
 });
 router.post("/", isNotLoggedIn, async (req, res, next) => {
   //회원가입
-  const { email, password, userName, nickName, birthday } = req.body;
+  const {
+    email,
+    password,
+    userName,
+    nickName,
+    birthday,
+    profileImage,
+  } = req.body;
   try {
     const exUser = await User.findOne({ where: { email } });
     if (exUser) {
@@ -35,6 +42,7 @@ router.post("/", isNotLoggedIn, async (req, res, next) => {
       nick: nickName,
       name: userName,
       birth: birthday,
+      profileImage: profileImage,
     });
     return res.json("회원 가입 성공");
   } catch (error) {
@@ -62,7 +70,7 @@ router.post("/login", (req, res, next) => {
         }
         const fullUser = await User.findOne({
           where: { email: user.email },
-          attributes: ["id", "email", "nick", "name", "birth"],
+          attributes: ["id", "email", "nick", "name", "birth", "profileImage"],
         });
         console.log("fullUser:", fullUser);
         return res.json(fullUser);
