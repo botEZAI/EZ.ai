@@ -3,6 +3,7 @@ import produce from "immer";
 import axios from "axios";
 import "./Preview.css";
 
+import PersistentMenu from "./LinePreview/AdvancePreview/PersistentMenu";
 import VirtualKeyboard from "./TelegramPreview/AdvancePreview/VirtualKeyboard";
 import DefaultPreview from "./DefaultPreview/DefaultPreview";
 import TelegramPreview from "./TelegramPreview/TelegramPreview";
@@ -226,7 +227,19 @@ const Preview = ({
           setCurListCount={setCurListCount}
           setKeywordObject={setKeywordObject}
         />
-      ) : null}
+      ) : theme === "line" ? 
+        <PersistentMenu 
+          clickedMainInput={clickedMainInput}
+          currentInput={currentInput}
+          index={index}
+          keywordObject={keywordObject}
+          now={now}
+          virtualKeyboard={virtualKeyboard}
+          curListCount={curListCount}
+          setCurListCount={setCurListCount}
+          setKeywordObject={setKeywordObject}
+        />
+        : null}
     </>
   ); /**retun END */
 };
