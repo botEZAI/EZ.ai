@@ -79,16 +79,14 @@ const ImageStatus = ({
             />
           </div>
           <div className="upload-preview">
-            <div
-              className="preview-screen"
-            >
+            <div className="preview-screen">
               {!imageURL ? (
-                  <>
-                    <p>외부 이미지 미리보기</p>
-                    <p>(올바른 URL 주소일때 이미지가 보여집니다.)</p>
+                <>
+                  <p>외부 이미지 미리보기</p>
+                  <p>(올바른 URL 주소일때 이미지가 보여집니다.)</p>
                 </>
               ) : (
-                  <img className="preview-screen-image" src={imageURL}/>
+                <img className="preview-screen-image" src={imageURL} />
               )}
             </div>
           </div>
@@ -102,16 +100,17 @@ const ImageStatus = ({
             <div
               className="preview-screen upload-preview-screen cursor"
               onClick={onClickUploadImage}
-              title = "로컬 이미지 업로드"
+              title="로컬 이미지 업로드"
             >
               {keywordObject[index].contents[now].content === "" ? (
-                  <>
-                    <i className="fas fa-upload"></i>
-                    <div className="preview-screen-description">파일 업로드</div>
-                  </>
-              ) : (<></>
+                <>
+                  <i className="fas fa-upload"></i>
+                  <div className="preview-screen-description">파일 업로드</div>
+                </>
+              ) : (
+                <></>
                 //<img className="preview-screen-image" src={imageURL}/>
-                )}
+              )}
             </div>
             <input ref={imageRef} type="file" hidden onChange={onChangeImage} />
           </div>

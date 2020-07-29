@@ -3,7 +3,7 @@ module.exports = {
     development: {
         username: 'root',
         password:process.env.SEQUELIZE_PASSWORD,
-        database: 'ezaidb2',
+        database: 'ezaidb3',
         host: process.env.SEQUELIZE_HOST,
         dialect: 'mysql',
         port:'3306',
@@ -12,7 +12,7 @@ module.exports = {
       production: {
         username: 'root',
         password: process.env.SEQUELIZE_PASSWORD,
-        database: 'ezaidb2',
+        database: 'ezaidb3',
         host: process.env.SEQUELIZE_HOST,
         port:'3306',
         dialect: 'mysql',
