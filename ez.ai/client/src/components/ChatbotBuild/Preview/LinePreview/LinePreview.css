@@ -92,6 +92,50 @@
   margin-left: 8px;
 }
 
+.listbox-line{
+  padding: 2%;
+  width: fit-content;
+  height: fit-content;
+}
+
+.listbox-header-line{
+  color: #318ace;
+}
+
+.persistent-container{
+  border: 1px solid #eee;
+}
+
+.persistent-menu-line {
+  position: relative;
+}
+
+.persistent-menu-line > .limit-state-message{
+  position: absolute;
+  font-size: 16px;
+  width: 450px;
+  background-color: rgba(0,0,0,0.5);
+  color: white;
+  border-radius: 20px;
+  bottom: 20px;
+  left: 20px;
+  height: fit-content;
+  padding: 12px;
+}
+
+.persistent-menu-line > .list-elem-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 36px;
+    padding: 5px 5px 5px 10px;
+    margin: 10px 15px;
+    background-color: #eeeeeec7;
+    border: 1px solid #e2e2e2;
+    outline-color: #00b8b4;
+}
+
 .buttonsbox-line{
   height: auto;
   width: 300px;
