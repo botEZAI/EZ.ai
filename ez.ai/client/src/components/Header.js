@@ -73,7 +73,7 @@ const Header = ({ history }) => {
                 <i className="fas fa-user-circle"></i>
               </div>
               <div className="profile-more">
-                {user.name} 님&nbsp;
+                {user.nick} 님&nbsp;
                 {!showNP ? (
                   <i className="fas fa-chevron-down"></i>
                 ) : (

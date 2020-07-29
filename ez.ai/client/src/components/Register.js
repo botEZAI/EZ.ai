@@ -13,7 +13,6 @@ export const useInput = (initValue) => {
   return [value, handler, reset];
 };
 
-
 const Register = ({ history }) => {
   const [passwordCheck, setPasswordCheck] = useState("");
   const [passwordError, setPasswordError] = useState(false);
@@ -23,6 +22,7 @@ const Register = ({ history }) => {
   const [userName, onChangeUserName] = useInput("");
   const [nickName, onChangeNickName] = useInput("");
   const [birthday, onChangeBirthday] = useInput("");
+  const [profileImage, onChangeprofileImage] = useInput("");
   const dispatch = useDispatch();
   const { isSignedUp, user, signUpErrorReason } = useSelector(
     (state) => state.user
@@ -68,10 +68,11 @@ const Register = ({ history }) => {
           userName,
           nickName,
           birthday,
+          profileImage,
         },
       });
     },
-    [email, password, userName, nickName, birthday]
+    [email, password, userName, nickName, birthday, profileImage]
   );
 
   return (
