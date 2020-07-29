@@ -228,15 +228,26 @@ const ButtonTemplateStatus = ({
             "" ||
           keywordObject[index].contents[now].content.imageBackgroundColor !==
             "#FFFFFF" ? (
-            <img
-              className="btn-template-thumbnail-image"
-              src={keywordObject[index].contents[now].content.thumbnailImageUrl}
-              style={
-                keywordObject[index].contents[now].content.imageSize === "cover"
-                  ? { width: "100%" }
-                  : { height: "100%" }
-              }
-            />
+            <>
+              <img
+                className="btn-template-thumbnail-image"
+                src={
+                  keywordObject[index].contents[now].content.thumbnailImageUrl
+                }
+                style={
+                  keywordObject[index].contents[now].content.imageSize ===
+                  "cover"
+                    ? { width: "100%" }
+                    : { height: "100%" }
+                }
+              />
+              <input
+                ref={imageRef}
+                type="file"
+                hidden
+                onChange={onChangeImage}
+              />
+            </>
           ) : (
             <>
               <input
