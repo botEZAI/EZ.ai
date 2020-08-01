@@ -32,7 +32,7 @@
 }
 
 .videobox-line {
-  padding: 1px;
+  padding: 3px;
   min-width : 300px; 
   min-height: 180px;
   width: auto;
@@ -46,9 +46,25 @@
 
 .videobox-line > img {
   position: absolute;
+  transition: .1s all;
+  transform: rotate(.001deg);
   width: 50px;
   height: 50px;
   z-index: 9999;
+}
+
+.videobox-line > img:hover{
+  width:60px;
+  height:60px;
+  transform:rotate(.001deg);
+}
+
+.video-playstate-line > video{
+  display: block;
+  border-radius: 5px;
+  width: 100%;
+  height: 100%;
+  outline: none;
 }
 
 .video-content-line::after{
@@ -64,26 +80,27 @@
   opacity: 1;
 }
 
-.video-content-line video {
+.video-content-line > video {
+  display: block;
   width: 100%;
   height: 100%;
   border-radius: 5px;
   outline: none;
 }
 
-.video-content-line .video-default-icon{
+.video-content-line > .video-default-icon{
   color:black;
 }
 /*  */
 .audiobox-line{
   display: flex;
   align-items: center;
-  padding: 17px;
+  padding: 20px;
   border-radius: 30px;
 }
 
 .audiobox-line > i{
-  font-size: 37px;
+  font-size: 35px;
 }
 
 .audio-contents-line > .audio-name {
@@ -124,16 +141,16 @@
 }
 
 .persistent-menu-line > .list-elem-wrapper {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 36px;
-    padding: 5px 5px 5px 10px;
-    margin: 10px 15px;
-    background-color: #eeeeeec7;
-    border: 1px solid #e2e2e2;
-    outline-color: #00b8b4;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 36px;
+  padding: 5px 5px 5px 10px;
+  margin: 10px 15px;
+  background-color: #eeeeeec7;
+  border: 1px solid #e2e2e2;
+  outline-color: #00b8b4;
 }
 
 .buttonsbox-line{
