@@ -9,44 +9,45 @@ const AudioPreview = ({
   onDelete,
   changeAvailableIcon
 }) => {
-  const audio = useRef(null);
-  const audioTime = useRef(null);
+  const lineAudio = useRef(null);
+  const lineAudioTime = useRef(null);
   const [playState, setPlayState] = useState(false);
 
   const clickHandler = () => {
     setPlayState(!playState);
-    if(audio.current !== null) {
+    if(lineAudio.current !== null) {
       if(!playState){
-        audio.current.play();
+        lineAudio.current.play();
       }
       else {
-        audio.current.pause();
+        lineAudio.current.pause();
       }
     }
   }
 
-  const funcDuration = (duration) => {
+  const showDuration = (duration) => {
     const durMin = (duration * .001) < 60 ? 0 : Math.floor((duration *.001) / 60);
     const durSec = Math.floor(duration * .001 - (durMin * 60));
 
     return `${durMin}:${durSec < 10 ? `0${durSec}` : durSec}`;
   }
 
-  const func = (e) => {
-  
+  const countDownFunc = (e) => {
     const time = e.target.currentTime; // 현재 카운트 되는 시간
     const totalTime = e.target.duration; // 비디오의 전체 재생 시간
     const minutes = time < 60 ? 0 : Math.floor(time / 60); 
     const seconds = Math.floor(time - (minutes * 60));
     const totalMin = totalTime < 60 ? 0 : Math.floor(totalTime / 60);  
     const totalSec = Math.floor(totalTime - (totalMin * 60));
-    const showMin = totalMin - minutes;
-    const showSec = totalSec - seconds; 
+    const showMin = totalSec < seconds ? totalMin - (minutes + 1)
+                                       : totalMin - minutes;
+    const showSec = totalSec < seconds ? (totalSec + 60) - seconds 
+                                       : totalSec - seconds; 
 
-    audioTime.current.innerHTML = `${showMin}:${showSec < 10 ? `0${showSec}` : showSec}`;
+    lineAudioTime.current.innerHTML = `${showMin}:${showSec < 10 ? `0${showSec}` : showSec}`;
     if(playState && e.target.ended) {
       setPlayState(false);
-      audioTime.current.innerHTML = `${totalMin}:${totalSec < 10 ? `0${totalSec}` : totalSec}`
+      lineAudioTime.current.innerHTML = `${totalMin}:${totalSec < 10 ? `0${totalSec}` : totalSec}`
     }
   }
   
@@ -74,14 +75,14 @@ const AudioPreview = ({
 
         <div className="audio-contents-line">
           <audio 
-            ref={audio} 
+            ref={lineAudio} 
             src={v.content} 
-            onTimeUpdate={(e) => func(e)} 
+            onTimeUpdate={(e) => countDownFunc(e)} 
           />
-          <div className="audio-name" ref={audioTime}>
+          <div className="audio-name" ref={lineAudioTime}>
 
             {v.content !== "" && v.size !== null ? 
-              funcDuration(v.size)
+              showDuration(v.size)
             :
               "0:00"}
           </div>
