@@ -7,36 +7,40 @@ const VideoPreview = ({
   setClickedMainInput,
   now,
   setNow,
-
   onDelete,
   changeAvailableIcon
 }) => {
-  const video = useRef(null);
-  const videoTime = useRef(null);
+  const telegramVideo = useRef(null);
+  const telegramVideoTime = useRef(null);
   const [currentPlayState, setCurrentPlayState] = useState(false);
 
-  const timeUpdateFunc = (e) => {
+  const  countDownFunc = (e) => {
     const time = e.target.currentTime; // 현재 카운트 되는 시간
     const totalTime = e.target.duration; // 비디오의 전체 재생 시간
     const minutes = time < 60 ? 0 : Math.floor(time / 60); 
     const seconds = Math.floor(time - (minutes * 60));
     const totalMin = totalTime < 60 ? 0 : Math.floor(totalTime / 60);  
     const totalSec = Math.floor(totalTime - (totalMin * 60));
+    const showMin = totalSec < seconds ? totalMin - (minutes + 1)
+                                       : totalMin - minutes;
+    const showSec = totalSec < seconds ? (totalSec + 60) - seconds 
+                                       : totalSec - seconds; 
 
-    videoTime.current.innerHTML = `${minutes < 10 ?
-      `0${minutes}` : minutes}:${seconds < 10 ?
-      `0${seconds}` : seconds}`
+    telegramVideoTime.current.innerHTML = `${showMin < 10 ?
+      `0${showMin}` : showMin}:${showSec < 10 ? 
+      `0${showSec}` : showSec}`;
   }
+
   const clickHandler = () => {
     setCurrentPlayState(!currentPlayState); // 클릭 하면 현재 재생 상태가 바뀜
     
-    if(video.current !== null) { // 객체 null 예외처리
+    if(telegramVideo.current !== null) { // 객체 null 예외처리
       if(!currentPlayState){ // 상태 변화 전 pause였으면
-        video.current.play(); //오디오 플레이
+        telegramVideo.current.play(); //오디오 플레이
       }
       else { // 상태 변화 전 play 였으면
-        video.current.pause();
-        video.current.controller=true;
+        telegramVideo.current.pause();
+        telegramVideo.current.controller=true;
       }
     }
   }
@@ -55,7 +59,7 @@ const VideoPreview = ({
           {v.content != "" ?
             <div className="container">
               <div className="video-info">
-                <span ref={videoTime}>
+                <span ref={telegramVideoTime}>
                 </span>
                 <span>
                   <i class="fas fa-volume-mute fa-lg"    
@@ -68,8 +72,8 @@ const VideoPreview = ({
                   loop
                   autoplay="true"
                   muted
-                  ref={video}
-                  onTimeUpdate={(e) => timeUpdateFunc(e)}
+                  ref={telegramVideo}
+                  onTimeUpdate={(e) => countDownFunc(e)}
                   onClick={clickHandler}
                 >
                 </video>
