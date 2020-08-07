@@ -25,14 +25,14 @@
 
 /* 챗봇 목록 - 챗봇 이름 */
 .bot-name {
-  width: 150px;
+  max-width: 500px;
   padding: 0 10px;
   color: #999;
   height: 30px;
   display: flex;
   line-height: 24px;
   font-size: 18px;
-  overflow-x: auto;
+  overflow-x: scroll;
 }
 
 .bot-item-default:hover .bot-name {
