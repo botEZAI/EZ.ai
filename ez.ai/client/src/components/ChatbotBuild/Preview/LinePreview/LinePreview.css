@@ -1,3 +1,157 @@
+.textbox-line{/*== Basic > img, text ==*/
+  width:fit-content;
+  height:fit-content;
+  min-width: 60px;
+  min-height:44px;
+  padding: 10px;
+}
+
+.image-preview-line{ 
+  display:flex;
+  justify-content:flex-end;
+  align-items: flex-start;
+  min-width:200px;
+  min-height:150px;
+  width: auto; 
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  border-radius:10px;
+  color:#ddd;
+  padding: 0 1px;
+}
+
+.image-default-line{
+  min-width:200px;
+  min-height:150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color:#ddd;
+  border-radius: 5px;
+}
+
+.videobox-line {
+  padding: 3px;
+  min-width : 300px; 
+  min-height: 180px;
+  width: auto;
+  height: auto; 
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.videobox-line > img {
+  position: absolute;
+  transition: .1s all;
+  transform: rotate(.001deg);
+  width: 50px;
+  height: 50px;
+  z-index: 9999;
+}
+
+.videobox-line > img:hover{
+  width:60px;
+  height:60px;
+  transform:rotate(.001deg);
+}
+
+.video-playstate-line > video{
+  display: block;
+  border-radius: 5px;
+  width: 100%;
+  height: 100%;
+  outline: none;
+}
+
+.video-content-line::after{
+  content: '';
+  display: block;
+  position: absolute;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.5);
+  border-radius: 10px;
+  opacity: 1;
+}
+
+.video-content-line > video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  outline: none;
+}
+
+.video-content-line > .video-default-icon{
+  color:black;
+}
+/*  */
+.audiobox-line{
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  border-radius: 30px;
+}
+
+.audiobox-line > i{
+  font-size: 35px;
+}
+
+.audio-contents-line > .audio-name {
+  font-size: 25px;
+  font-weight: bold;
+  margin-left: 8px;
+}
+
+.listbox-line{
+  padding: 2%;
+  width: fit-content;
+  height: fit-content;
+}
+
+.listbox-header-line{
+  color: #318ace;
+}
+
+.persistent-container{
+  border: 1px solid #eee;
+}
+
+.persistent-menu-line {
+  position: relative;
+}
+
+.persistent-menu-line > .limit-state-message{
+  position: absolute;
+  font-size: 16px;
+  width: 450px;
+  background-color: rgba(0,0,0,0.5);
+  color: white;
+  border-radius: 20px;
+  bottom: 20px;
+  left: 20px;
+  height: fit-content;
+  padding: 12px;
+}
+
+.persistent-menu-line > .list-elem-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 36px;
+  padding: 5px 5px 5px 10px;
+  margin: 10px 15px;
+  background-color: #eeeeeec7;
+  border: 1px solid #e2e2e2;
+  outline-color: #00b8b4;
+}
 
 .buttonsbox-line{
   height: auto;

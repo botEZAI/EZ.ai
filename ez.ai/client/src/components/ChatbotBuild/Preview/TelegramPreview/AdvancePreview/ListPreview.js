@@ -24,21 +24,7 @@ const ListPreview = ({
             changeAvailableIcon("list");
           }}
         >
-          {"[고정메뉴]      "}
-          {/* <div>
-            <div className="listbox-header-telegram">Question</div>
-            <div className="listbox-question-telegram">
-              {v.listContent.question !== ""
-                ? v.listContent.question
-                : "(Ask a question)"}
-            </div>
-            {v.listContent.elem.map((i) => (
-              v.listContent.elem[i] && 
-                <div className="listbox-elem-telegram">
-                  {v.listContent.elem[i]}
-                </div>
-            ))}
-          </div> */}
+          <div className="listbox-header-telegram">고정메뉴</div>
         </div>
       <div
         className="tool-delete delete-listbox "

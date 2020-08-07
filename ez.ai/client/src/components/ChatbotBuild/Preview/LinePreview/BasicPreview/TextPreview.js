@@ -12,10 +12,9 @@ const TextPreview = ({
   return(
       <div className="main-preview">
         <div
-          className={now === i ? "main-content textbox-telegram now"
-                              : "main-content textbox-telegram"}
+          className={now === i ? "main-content textbox-line now"
+                              : "main-content textbox-line"}
           key={v.content + i}
-          style={{padding:'2%'}}
           onClick={() => {
             setClickedMainInput(v);
             setNow(i);
@@ -23,7 +22,7 @@ const TextPreview = ({
           }}
         >
           <div>
-            {v.content || "(입력)"}
+            {v.content || ""}
           </div>
         </div>
           <div

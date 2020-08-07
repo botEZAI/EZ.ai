@@ -122,12 +122,14 @@
   min-height:5%;
   max-width:80%;
   transition: .2s all;
+  transform :rotate(.001deg);
   cursor: pointer;
 }
 
 
 .main-content:hover {
   transform: translateY(-2px);
+  transform: rotate(.001deg);
   border : 2px solid #fff;
   background-color: white;
 }
@@ -142,6 +144,7 @@
   border: 2px solid #00b8b4;
   background-color: white;
   transform: translateY(-2px);
+  transform: rotate(.001deg);
 }
 
 
