@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import humanImg from "../objects/main-phone.png";
 import chatbotImg from "../objects/main-chatbot.png";
-import dearImg from "../objects/dear.png";
+import logo from "../objects/ezai_logo.png";
+import howWorkImg from "../objects/ezai_works.png";
 
 const Home = () => {
   const { user } = useSelector((state) => state.user);
@@ -14,31 +15,18 @@ const Home = () => {
       <h2 className="hide">Ez.ai 소개</h2>
       <article className="main-about">
         <div className="main-about__column">
-          <div className="main-about-sns-image">
-            <img className="about-sns-image-main" src={humanImg}></img>
-          </div>
-          <div className="main-about-btns">
-            {/* [Let's go!] = 헤더의 '챗봇 만들기' 버튼과 유사한 기능 */}
-            {!user ? (
-              <div className="main-about-btn main-btn-go">
-                <Link to="/login">Let's go!</Link>
-              </div>
-            ) : (
-              <div className="main-about-btn main-btn-go">
-                <Link to="/chatbotlist">Let's go!</Link>
-              </div>
-            )}
-            {/* [소개] 페이지로 이동합니다. */}
-            {/* <div className= "main-about-btn main-btn-about">
-              <Link to = "/about">About Ez.ai</Link>
-              About Ez.ai
-            </div> */}
-          </div>
-        </div>
-        <div className="main-about__column">
           <div className="main-about-image">
-            <img className="about-image-main" src={dearImg}></img>
+            <img className="about-image-main" src={logo}></img>
           </div>
+          {!user ? (
+              <div className="main-about-btn main-btn-go">
+                <Link to="/login">바로 시작하기</Link>
+              </div>
+          ) : (
+              <div className="main-about-btn main-btn-go">
+                <Link to="/chatbotlist">바로 시작하기</Link>
+              </div>
+          )}
         </div>
       </article>
       <h2 className="hide">Ez.ai 가이드라인</h2>
@@ -58,6 +46,7 @@ const Home = () => {
           <div className="main-wonder-promotion">
             <i className={videoIcon}></i>
           </div>
+
           {/* <div className="main-wonder-btn">
           <Link to="/Guide">가이드라인 보기</Link>
         </div> */}
@@ -74,7 +63,7 @@ const Home = () => {
         <div className="main-what__column">
           <div className="main-what-contents">
             <div className="main-what-content">
-              '챗봇'은 사람이 아니지만, 사람과 대화하는 것처럼 설계된 응용 채팅
+              <span>챗봇</span>은 사람이 아니지만, <br/>사람과 대화하는 것처럼 설계된 <br/>응용 채팅
               프로그램입니다.
             </div>
             <div className="main-what-content">
@@ -90,49 +79,26 @@ const Home = () => {
       <h2 className="hide">Ez.ai 사용법</h2>
       <article className="main-how">
         <div className="main-how-title">How it Works?</div>
-        <div className="main-how__column main-how-create">
-          <div className="main-how-content-title">Easy, 생성</div>
-          <div className="main-how-content">
-            <p>만들고 싶은 봇의 이름을 정하면 끝.</p>
-            <p>하나의 플랫폼을 선택하거나 모든 플랫폼을 선택할 수 있습니다.</p>
-          </div>
-        </div>
-
-        <div className="main-how__column main-how-make">
-          <div className="main-how-content-title">Easy, 제작</div>
-          <div className="main-how-content">
-            <p>익숙한 인터페이스로</p>
-            <p>더욱 친숙하게 다가갑니다.</p>
-            <p>히스토리와 커밋형 저장으로</p>
-            <p>더욱 수월한 버전 관리 가능!</p>
-          </div>
-        </div>
-
-        <div className="main-how__column main-how-publish">
-          <div className="main-how-content-title">Easy, 배포</div>
-          <div className="main-how-content">
-            <p>원하는 시간,</p>
-            <p> 원하는 플랫폼에,</p>
-            <p>버튼 하나로 배포하고 사용해보세요.</p>
-          </div>
+        <div className="main-how-content">
+          <img src={howWorkImg} />
         </div>
       </article>
       <h2 className="hide">연동플랫폼</h2>
       <article className="main-sns">
-        <div className="main-sns-title">Create and Deploy on Platforms</div>
+        <div className="main-sns-title">현재 지원중인 챗봇 플랫폼</div>
         <div className="main-sns-logos">
           <div className="main-sns-logo">
             <div className="main-sns-logo-image">
               <i className={snsIcon[0]}></i>
             </div>
-            <div className="main-sns-logo-name">Line</div>
+            <div className="main-sns-logo-name">라인</div>
           </div>
 
           <div className="main-sns-logo">
             <div className="main-sns-logo-image">
               <i className={snsIcon[2]}></i>
             </div>
-            <div className="main-sns-logo-name">Telegram</div>
+            <div className="main-sns-logo-name">텔레그램</div>
           </div>
         </div>
       </article>

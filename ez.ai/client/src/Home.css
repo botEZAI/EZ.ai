@@ -1,8 +1,7 @@
 article {
     margin : 0;
     padding : 50px 0;
-    height: 600px; /* 임시 */
-    min-width : 800px;
+    min-height: 600px;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -23,7 +22,7 @@ article > div {
 }
 
 .main-about__column {
-    min-width : 350px;
+    width: 100%;
 }
 
 .main-about-sns-image {
@@ -35,28 +34,29 @@ article > div {
 }
 
 
-.main-about-btns {
-    width : 100%;
-    height: 50px;
-    margin-top : 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.main-about-btns .main-about-btn {
-    background-color: #eee;
-    width : 100%;
+.main-about-btn {
+    background-color: #00B8B4;
+    width : 30%;
     height : 50px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0px 50px;
+    margin : 10px auto;
+    border-radius: 20px;
+    font-size: 18px;
+}
+
+.main-about-btn:hover {
+    background-color: #4fd6d1;
+}
+
+.main-about-btn a {
+    color : white;
 }
 
 .main-about-image {
-    width : 600px;
-    height : 400px;
+    width : 100%;
+    height : auto;
     background-color: #eee;
     display: flex;
     justify-content: center;
@@ -65,7 +65,7 @@ article > div {
 }
 
 .main-about-image img {
-    width : 80%;
+    width : 100%;
     height : 80%;
 }
 
@@ -102,22 +102,43 @@ article > div {
 
 
 .main-wonder-promotion {
+    position: relative;
+    background-image: url("./objects/ezai_thumbnail.png");
+    background-size: 100% 100%;
     width : 600px;
     height : 400px;
-    background-color: #ddd;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 10px;
 }
+
+.main-wonder-promotion:before {
+    position : absolute;
+    top: 0;
+    left : 0;
+    background-color: #333333;
+    width : 100%;
+    height :100%;
+    border-radius: 10px;
+    content: '';
+    opacity: 0.3;
+    cursor: pointer;
+}
+
+.main-wonder-promotion:hover .main-wonder-promotion:before{
+    opacity: 0;
+}
+
+
 .main-wonder-promotion i {
     color : #eee;
     font-size:120px;
     transition-property: color;
     transition-duration:0.2s;
 }
-.main-wonder-promotion i:hover{
-    color : white;
-    cursor: pointer;
+.main-wonder-promotion:hover i{
+    color : darkred;
 }
 
 .main-wonder-btn {
@@ -188,7 +209,7 @@ article > div {
 
 /* 4번재 아티클 - main-how */
 .main-how {
-    background-color: #eee;
+    padding : 0;
     position : relative;
 }
 
@@ -203,31 +224,17 @@ article > div {
     text-align: right;
 }
 
-.main-how__column {
-    background-color: #fff;
-    width : 350px;
-    height : 350px;
-    padding : 10px;
-}
-
-.main-how-content-title {
-    font-size : 25px;
-    font-weight : bold;
-    margin-bottom: 30px;
-}
-
-.main-how-content {
-    line-height : 50px;
-    font-size:20px;
-}
 
 
 
 /* 5번재 아티클 - main-sns */
+article[class="main-sns"] {
+    min-height : 400px!important;
+}
 .main-sns {
     background-color: white;
     flex-direction: column;
-    height :350px;
+    height :150px;
 }
 
 .main-sns-title {
