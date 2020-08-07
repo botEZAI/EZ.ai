@@ -101,25 +101,25 @@ const BotItem = (props, platformInfo) => {
             <div className="bot-item-header" onClick={botClickEvent}>
               <div className="bot-item-infos">
                 <div className="bot-name">{children}</div>
-                <div className="bot-item-connected">
-                  {JSON.parse(
-                    chatbotList.find((v) => v.id === id).platformInfo
-                  ).map((info, i) => (
-                    <div
-                      className={
-                        info.connect ? `sns-color-${info.platform}` : null
-                      }
-                    >
-                      <i className={snsIcon[i]}></i>
-                    </div>
-                  ))}
-                </div>
               </div>
 
               {/* <div className="sns-icons-container">
                 {botSnsIconHandler(botConnect)}
               </div> */}
               <div className="bot-item-btns">
+                <div className="bot-item-connected">
+                  {JSON.parse(
+                      chatbotList.find((v) => v.id === id).platformInfo
+                  ).map((info, i) => (
+                      <div
+                          className={
+                            info.connect ? `sns-color-${info.platform}` : null
+                          }
+                      >
+                        <i className={snsIcon[i]}></i>
+                      </div>
+                  ))}
+                </div>
                 <div
                   className="bot-item-create"
                   onClick={() => setCurrentChatbot(id)}
@@ -184,21 +184,21 @@ const BotItem = (props, platformInfo) => {
           <div className="bot-item-default" onClick={botClickEvent}>
             <div className="bot-item-infos">
               <div className="bot-name">{children}</div>
-              <div className="bot-item-connected">
-                {JSON.parse(
-                  chatbotList.find((v) => v.id === id).platformInfo
-                ).map((info, i) => (
-                  <div
-                    className={
-                      info.connect ? `sns-color-${info.platform}` : null
-                    }
-                  >
-                    <i className={snsIcon[i]}></i>
-                  </div>
-                ))}
-              </div>
             </div>
             <div className="bot-item-btns">
+              <div className="bot-item-connected">
+                {JSON.parse(
+                    chatbotList.find((v) => v.id === id).platformInfo
+                ).map((info, i) => (
+                    <div
+                        className={
+                          info.connect ? `sns-color-${info.platform}` : null
+                        }
+                    >
+                      <i className={snsIcon[i]}></i>
+                    </div>
+                ))}
+              </div>
               <div
                 className="bot-item-create"
                 onClick={() => setCurrentChatbot(id)}
