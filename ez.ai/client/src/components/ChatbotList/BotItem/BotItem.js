@@ -109,15 +109,15 @@ const BotItem = (props, platformInfo) => {
               <div className="bot-item-btns">
                 <div className="bot-item-connected">
                   {JSON.parse(
-                      chatbotList.find((v) => v.id === id).platformInfo
+                    chatbotList.find((v) => v.id === id).platformInfo
                   ).map((info, i) => (
-                      <div
-                          className={
-                            info.connect ? `sns-color-${info.platform}` : null
-                          }
-                      >
-                        <i className={snsIcon[i]}></i>
-                      </div>
+                    <div
+                      className={
+                        info.connect ? `sns-color-${info.platform}` : null
+                      }
+                    >
+                      <i className={snsIcon[i]}></i>
+                    </div>
                   ))}
                 </div>
                 <div
@@ -188,15 +188,15 @@ const BotItem = (props, platformInfo) => {
             <div className="bot-item-btns">
               <div className="bot-item-connected">
                 {JSON.parse(
-                    chatbotList.find((v) => v.id === id).platformInfo
+                  chatbotList.find((v) => v.id === id).platformInfo
                 ).map((info, i) => (
-                    <div
-                        className={
-                          info.connect ? `sns-color-${info.platform}` : null
-                        }
-                    >
-                      <i className={snsIcon[i]}></i>
-                    </div>
+                  <div
+                    className={
+                      info.connect ? `sns-color-${info.platform}` : null
+                    }
+                  >
+                    <i className={snsIcon[i]}></i>
+                  </div>
                 ))}
               </div>
               <div

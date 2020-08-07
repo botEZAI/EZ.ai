@@ -54,6 +54,17 @@ const ChatbotList = (props) => {
   const [tokenInfo, setTokenInfo] = useState([]);
   const [botToken, setBotToken] = useState({ token: "" });
 
+  //챗봇검색
+  const [search, setSearch] = useState("");
+  const onChangeSearch = (e) => {
+    setSearch(e.target.value);
+  };
+  const searchResults = !search
+    ? chatbotList
+    : chatbotList.filter((bot) =>
+        bot.botname.toLowerCase().includes(search.toLocaleLowerCase())
+      );
+
   //InsertStarter: 팝업창 띄움
   const InsertStarter = () => {
     // 이전 입력 봇 정보 초기화
@@ -169,6 +180,8 @@ const ChatbotList = (props) => {
                 type="text"
                 className="search-input"
                 placeholder="검색할 챗봇 이름을 적어주세요"
+                value={search}
+                onChange={onChangeSearch}
               />
             </div>
             <div className="search-btn">검색</div>
@@ -201,6 +214,7 @@ const ChatbotList = (props) => {
             botConnect={botConnect}
             platformInfo={platformInfo}
             setPlatformInfo={setPlatformInfo}
+            searchResults={searchResults}
           />
         </div>
       </div>
