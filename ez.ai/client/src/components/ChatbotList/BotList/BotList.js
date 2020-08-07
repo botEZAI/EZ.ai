@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import BotItem from "../BotItem";
 import { useDispatch, useSelector } from "react-redux";
 
-const BotList = ({ bots, onRemove, platformInfo }) => {
+const BotList = ({ bots, onRemove, platformInfo, searchResults }) => {
   const { chatbotList } = useSelector((state) => state.chatbot);
 
-  const botList = chatbotList.map((bot) => {
+  const botList = searchResults.map((bot) => {
     return (
       <BotItem
         key={bot.id}
@@ -13,7 +13,7 @@ const BotList = ({ bots, onRemove, platformInfo }) => {
         onRemove={() => onRemove(bot.id)}
         botDesc={bot.desc}
         botConnect={bot.sns}
-        plaformInfo = {platformInfo}
+        plaformInfo={platformInfo}
       >
         {bot.botname}
       </BotItem>
