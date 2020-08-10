@@ -357,3 +357,13 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+/* 더미용 봇 리스트 */
+.content .empty-item {
+  width : 100%;
+  height : 64px;
+  background-color: #f6f6f6;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  cursor : default;
+}
