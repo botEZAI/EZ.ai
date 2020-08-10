@@ -18,6 +18,7 @@ const BotItem = (props, platformInfo) => {
   const { children, onRemove, botDesc, botConnect, id } = props;
   const [addPlatformFlag, setAddPlatformFlag] = useState("");
   const snsIcon = ["fab fa-line", "fab fa-telegram"];
+  const [tokenPreview, setTokenPreview] = useState(['', ''])
 
   const botClickEvent = () => {
     setBotClick({ botOn: !botClick.botOn });
@@ -93,6 +94,8 @@ const BotItem = (props, platformInfo) => {
           addPlatformFlag={addPlatformFlag}
           setAddPlatformFlag={setAddPlatformFlag}
           id={id}
+          setTokenPreview={setTokenPreview}
+          tokenPreview={tokenPreview}
         />
       )}
       {botClick.botOn ? (
@@ -158,15 +161,23 @@ const BotItem = (props, platformInfo) => {
                   >
                     <div className="sns-icon-container-info">
                       <div className="sns-icon-container-icon">
-                        <div className={`icon-${info.platform}`}></div>
+                        <i className={snsIcon[i]}></i>
+
                       </div>
+                      {info.connect ? (
+                          <input className="sns-connect-info" value={'연동되었습니다'} disabled/>
+                      ) : (
+                          <input className="sns-connect-info" value={'연동정보가 없습니다'} disabled/>
+                      )}
+                    </div>
+                    <div className="sns-icon-container-connect">
                       <div className="sns-icon-container-toggle">
                         <label className="switch">
                           <input
-                            type="checkbox"
-                            className="sns-icon-checkbox"
-                            onClick={() => onClickPlatform(info)}
-                            checked={info.connect}
+                              type="checkbox"
+                              className="sns-icon-checkbox"
+                              onClick={() => onClickPlatform(info)}
+                              checked={info.connect}
                           />
                           <span className="slider round"></span>
                         </label>
