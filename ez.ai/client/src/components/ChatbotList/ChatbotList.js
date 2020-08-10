@@ -184,7 +184,6 @@ const ChatbotList = (props) => {
                 onChange={onChangeSearch}
               />
             </div>
-            <div className="search-btn">검색</div>
           </div>
         </div>
         <div className="content">
