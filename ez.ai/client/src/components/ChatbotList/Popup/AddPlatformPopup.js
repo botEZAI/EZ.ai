@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { CONNECT_CHATBOT_REQUEST } from "../../../reducer/chatbot";
 
-const AddPlatformPopup = ({ addPlatformFlag, id, setAddPlatformFlag }) => {
+const AddPlatformPopup = ({ addPlatformFlag, id, setAddPlatformFlag}) => {
   const { chatbotList } = useSelector((state) => state.chatbot);
   const dispatch = useDispatch();
 
