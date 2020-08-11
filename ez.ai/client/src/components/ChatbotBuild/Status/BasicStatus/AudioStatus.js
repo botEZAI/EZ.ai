@@ -1,8 +1,9 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import axios from "axios";
 import produce from "immer";
 
 const AudioStatus = ({ setKeywordObject, keywordObject, now, index }) => {
+  const [audioName, setAudioName] = useState(null);
   const audioRef = useRef();
   const onClickUploadAudio = () => {
     audioRef.current.click();
@@ -14,6 +15,7 @@ const AudioStatus = ({ setKeywordObject, keywordObject, now, index }) => {
       audioFormData.append("audio", e.target.files[0]);
 
       axios.post("/api/audio", audioFormData).then((res) => {
+        setAudioName(res.data.originalname)
         console.log(res);
         setKeywordObject(
           produce(keywordObject, (draft) => {
@@ -35,7 +37,7 @@ const AudioStatus = ({ setKeywordObject, keywordObject, now, index }) => {
               onClick={onClickUploadAudio}
               title="로컬 오디오 업로드"
             >
-              {keywordObject[index].contents[now].content || (
+              {audioName|| (
                   <>
                     <i className="fas fa-upload"></i>
                     <div className="preview-screen-description">파일 업로드</div>
