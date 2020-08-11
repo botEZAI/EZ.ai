@@ -110,7 +110,7 @@ const BuilderInfo = ({ keywordObject, keywordCategory }) => {
             <p>Description : {currentChatbot && currentChatbot.desc}</p>
           </div>
         </div>
-        <div className="info-platform">
+        <div className="info-platform" onClick={() => alert("우측 사이드바의 설정 페이지에서 연동 정보를 설정할 수 있습니다")}>
           <div className="info-platform-title">
             <p>플랫폼 연동 정보</p>
           </div>

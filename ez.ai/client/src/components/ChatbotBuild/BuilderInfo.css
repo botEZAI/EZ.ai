@@ -50,7 +50,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
+
+.info-platform:hover {
+  background-color: #eee;
+}
+
 .info-platform p {
   font-size : 12px;
   color : #666;
