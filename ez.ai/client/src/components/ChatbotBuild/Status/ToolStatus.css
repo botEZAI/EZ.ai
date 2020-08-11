@@ -60,6 +60,10 @@
   color: #19ce60 !important;
 }
 
+.tool-status-available .sns-color-line i:hover {
+
+}
+
 .tool-status-available .sns-color-telegram i {
   color: #1F9CDB !important;
 }

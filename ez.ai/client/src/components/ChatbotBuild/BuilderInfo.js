@@ -60,7 +60,7 @@ const BuilderInfo = ({ keywordObject, keywordCategory }) => {
   }, [keywordObject, keywordCategory, info, history]);
   useEffect(() => {
     if (isUpdateSuccess) {
-      alert("저장성공!");
+      alert("저장에 성공했습니다. 사이드바의 히스토리에서 확인 가능합니다.");
       setIsSaved(true);
       if (isDeployed) {
         dispatch({
@@ -110,7 +110,7 @@ const BuilderInfo = ({ keywordObject, keywordCategory }) => {
             <p>Description : {currentChatbot && currentChatbot.desc}</p>
           </div>
         </div>
-        <div className="info-platform">
+        <div className="info-platform" onClick={() => alert("우측 사이드바의 설정 페이지에서 연동 정보를 설정할 수 있습니다")}>
           <div className="info-platform-title">
             <p>플랫폼 연동 정보</p>
           </div>
@@ -129,7 +129,7 @@ const BuilderInfo = ({ keywordObject, keywordCategory }) => {
 
       <div className="info__column">
         <input
-          placeholder="저장에 대한 정보를 입력하세요"
+          placeholder="저장 및 배포에 대한 정보를 입력하세요"
           value={info}
           onChange={(e) => onChangeInfo(e)}
         />
