@@ -60,7 +60,7 @@ const BuilderInfo = ({ keywordObject, keywordCategory }) => {
   }, [keywordObject, keywordCategory, info, history]);
   useEffect(() => {
     if (isUpdateSuccess) {
-      alert("저장성공!");
+      alert("저장에 성공했습니다. 사이드바의 히스토리에서 확인 가능합니다.");
       setIsSaved(true);
       if (isDeployed) {
         dispatch({
@@ -129,7 +129,7 @@ const BuilderInfo = ({ keywordObject, keywordCategory }) => {
 
       <div className="info__column">
         <input
-          placeholder="저장에 대한 정보를 입력하세요"
+          placeholder="저장 및 배포에 대한 정보를 입력하세요"
           value={info}
           onChange={(e) => onChangeInfo(e)}
         />
