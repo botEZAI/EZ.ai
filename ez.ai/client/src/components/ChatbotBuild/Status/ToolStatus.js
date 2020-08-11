@@ -86,10 +86,10 @@ const ToolStatus = ({
         </div>
         <div className="tool-status-info">
           <div className="tool-status-available">
-            <div className={availableIcon[0].use ? "sns-color-line" : null}>
+            <div className={availableIcon[0].use ? "sns-color-line" : null} title={availableIcon[0].use ? "라인에서 공식적으로 지원하는 요소입니다." : "라인에서 지원하지 않는 요소입니다. 다른 형태로 지원됩니다."}>
               <i className="fab fa-line"></i>
             </div>
-            <div className={availableIcon[1].use ? "sns-color-telegram" : null}>
+            <div className={availableIcon[1].use ? "sns-color-telegram" : null} title={availableIcon[1].use ? "텔레그램에서 공식적으로 지원하는 요소입니다." : "텔레그램에서 지원하지 않는 요소입니다. 다른 형태로 지원됩니다."}>
               <i className="fab fa-telegram" aria-hidden="true"></i>
             </div>
           </div>
