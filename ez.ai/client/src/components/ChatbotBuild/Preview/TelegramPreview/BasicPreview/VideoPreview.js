@@ -68,10 +68,8 @@ const VideoPreview = ({
               </div>
               <div className="video-content-telegram">
                 <video 
-                  src={v.content} 
-                  loop
-                  autoplay="true"
-                  muted
+                  src={v.content}
+                  controls
                   ref={telegramVideo}
                   onTimeUpdate={(e) => countDownFunc(e)}
                   onClick={clickHandler}

@@ -1,8 +1,9 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import axios from "axios";
 import produce from "immer";
 
 const VideoStatus = ({ setKeywordObject, keywordObject, now, index }) => {
+  const [videoName, setVideoName] = useState(null);
   const videoRef = useRef();
   const onClickUploadVideo = () => {
     videoRef.current.click();
@@ -14,7 +15,7 @@ const VideoStatus = ({ setKeywordObject, keywordObject, now, index }) => {
       videoFormData.append("video", e.target.files[0]);
 
       axios.post("/api/video", videoFormData).then((res) => {
-        console.log(res);
+        setVideoName(res.data.originalname);
         setKeywordObject(
           produce(keywordObject, (draft) => {
             draft[index].contents[now].content = res.data.location;
@@ -34,7 +35,7 @@ const VideoStatus = ({ setKeywordObject, keywordObject, now, index }) => {
               onClick={onClickUploadVideo}
               title="로컬 동영상 업로드"
             >
-              {keywordObject[index].contents[now].content || (
+              {videoName || (
                   <>
                     <i className="fas fa-upload"></i>
                     <div className="preview-screen-description">파일 업로드</div>

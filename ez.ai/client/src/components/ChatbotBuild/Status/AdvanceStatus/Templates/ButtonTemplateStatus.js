@@ -182,7 +182,7 @@ const ButtonTemplateStatus = ({
   return (
     <div className="btn-template-status">
       <div className="btn-template-control">
-        <div classNAme="btn-template-color" title="이미지 배경색">
+        <div classname="btn-template-color" title="이미지 배경색">
           <input
             type="color"
             className="btn-template-color"
@@ -305,6 +305,7 @@ const ButtonTemplateStatus = ({
                           : "btn-action-type selected-action-type"
                       }
                       onClick={() => changeActionType(act.id, "uri")}
+                      title = "선택시 버튼에 url 주소를 연동할 수 있습니다."
                     >
                       url
                     </div>
@@ -315,6 +316,7 @@ const ButtonTemplateStatus = ({
                           : "btn-action-type selected-action-type"
                       }
                       onClick={() => changeActionType(act.id, "postback")}
+                      title = "선택시 버튼에 키워드를 연동할 수 있습니다."
                     >
                       키워드
                     </div>

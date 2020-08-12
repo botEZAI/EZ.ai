@@ -17,11 +17,8 @@ const ToolAdvance = ({
 }) => {
   /* 고급 요소 플랫폼별 이용 가능 여부 */
   const useableInfo = [
-    { name: "list", value: [0, 0, 0] },
-    { name: "btn_template", value: [0, 0, 1] },
-    { name: "carousel", value: [0, 0, 1] },
-    { name: "img_carousel", value: [0, 0, 1] },
-    { name: "sticker", value: [0, 0, 1] },
+    { name: "list", value: [true, true, true] },
+    { name: "btn_template", value: [true, true, false] },
   ];
 
   const { currentChatbot } = useSelector((state) => state.chatbot);
@@ -106,7 +103,7 @@ const ToolAdvance = ({
                   setAvailableIcon(
                     availableIcon.map((ai, index) => ({
                       ...ai,
-                      use: useableInfo[i].value[index] ? false : true,
+                      use: useableInfo[i].value[index],
                     }))
                   );
                 }

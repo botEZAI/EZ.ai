@@ -151,7 +151,13 @@
 }
 
 .listbox-header-telegram {
-  color: #318ace;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.listbox-header-telegram i {
+  color : #318ace;
 }
 
 .listbox-question-telegram {

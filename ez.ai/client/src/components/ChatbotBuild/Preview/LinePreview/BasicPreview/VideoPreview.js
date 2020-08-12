@@ -47,7 +47,7 @@ const VideoPreview = ({
             <>
               {currentPlayState ?
                 <div className="video-playstate-line">
-                  <video src={v.content} muted autoPlay="true" controls="true" 
+                  <video src={v.content} controls="true"
                          ref={lineVideo}
                          onPause={(e) => setCurrentPlayState(false)}
                   />

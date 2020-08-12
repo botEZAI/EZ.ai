@@ -28,6 +28,11 @@
     justify-content: space-around;
 }
 
+.status-list .status-list--title {
+    font-weight: bold;
+    margin : 10px 0;
+}
+
 /* 키보드 입력 개수 css */
 .status-list .list-count {
     display: flex;
@@ -55,6 +60,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.list-count .list-count-num__selected {
+    background-color: white;
+    border: 1px solid #00B8B4;
+    color : #00B8B4;
 }
 
 .list-count .list-count-num:hover {
@@ -125,6 +136,10 @@
     background-color: inherit;
     color : #666;
     outline-color: white;
+}
+
+.status-list input:hover {
+    background-color: #fff;
 }
 
 /* 키보드 수정 영역 css */
