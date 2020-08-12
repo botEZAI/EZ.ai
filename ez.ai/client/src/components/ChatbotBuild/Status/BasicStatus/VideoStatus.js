@@ -11,18 +11,22 @@ const VideoStatus = ({ setKeywordObject, keywordObject, now, index }) => {
   const onChangeVideo = (e) => {
     if (e.target.value === "") return;
     if (e.target.files[0].type.match(/video/g)) {
-      const videoFormData = new FormData();
-      videoFormData.append("video", e.target.files[0]);
+      if (e.target.files[0].size < 200000000) {
+        const videoFormData = new FormData();
+        videoFormData.append("video", e.target.files[0]);
 
-      axios.post("/api/video", videoFormData).then((res) => {
-        setVideoName(res.data.originalname);
-        setKeywordObject(
-          produce(keywordObject, (draft) => {
-            draft[index].contents[now].content = res.data.location;
-            draft[index].contents[now].filepath = res.data.location;
-          })
-        );
-      });
+        axios.post("/api/video", videoFormData).then((res) => {
+          setVideoName(res.data.originalname);
+          setKeywordObject(
+            produce(keywordObject, (draft) => {
+              draft[index].contents[now].content = res.data.location;
+              draft[index].contents[now].filepath = res.data.location;
+            })
+          );
+        });
+      } else {
+        return alert("비디오의 크기는 최대 200mb를 초과할수 없습니다");
+      }
     } else return alert("비디오 파일이 아닙니다.");
   };
   return (
@@ -36,10 +40,10 @@ const VideoStatus = ({ setKeywordObject, keywordObject, now, index }) => {
               title="로컬 동영상 업로드"
             >
               {videoName || (
-                  <>
-                    <i className="fas fa-upload"></i>
-                    <div className="preview-screen-description">파일 업로드</div>
-                  </>
+                <>
+                  <i className="fas fa-upload"></i>
+                  <div className="preview-screen-description">파일 업로드</div>
+                </>
               )}
             </div>
             <input ref={videoRef} type="file" hidden onChange={onChangeVideo} />

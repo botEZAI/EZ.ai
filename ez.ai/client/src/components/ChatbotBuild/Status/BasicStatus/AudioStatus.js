@@ -11,20 +11,24 @@ const AudioStatus = ({ setKeywordObject, keywordObject, now, index }) => {
   const onChangeAudio = (e) => {
     if (e.target.value === "") return;
     if (e.target.files[0].type.match(/audio/g)) {
-      const audioFormData = new FormData();
-      audioFormData.append("audio", e.target.files[0]);
+      if (e.target.files[0].size < 150000000) {
+        const audioFormData = new FormData();
+        audioFormData.append("audio", e.target.files[0]);
 
-      axios.post("/api/audio", audioFormData).then((res) => {
-        setAudioName(res.data.originalname)
-        console.log(res);
-        setKeywordObject(
-          produce(keywordObject, (draft) => {
-            draft[index].contents[now].content = res.data.location;
-            draft[index].contents[now].filepath = res.data.location;
-            draft[index].contents[now].size = res.data.size;
-          })
-        );
-      });
+        axios.post("/api/audio", audioFormData).then((res) => {
+          setAudioName(res.data.originalname);
+          console.log(res);
+          setKeywordObject(
+            produce(keywordObject, (draft) => {
+              draft[index].contents[now].content = res.data.location;
+              draft[index].contents[now].filepath = res.data.location;
+              draft[index].contents[now].size = res.data.size;
+            })
+          );
+        });
+      } else {
+        return alert("오디오의 크기는 최대 150mb를 초과할수 없습니다");
+      }
     } else return alert("오디오 파일이 아닙니다.");
   };
   return (
@@ -37,11 +41,11 @@ const AudioStatus = ({ setKeywordObject, keywordObject, now, index }) => {
               onClick={onClickUploadAudio}
               title="로컬 오디오 업로드"
             >
-              {audioName|| (
-                  <>
-                    <i className="fas fa-upload"></i>
-                    <div className="preview-screen-description">파일 업로드</div>
-                  </>
+              {audioName || (
+                <>
+                  <i className="fas fa-upload"></i>
+                  <div className="preview-screen-description">파일 업로드</div>
+                </>
               )}
             </div>
             <input ref={audioRef} type="file" hidden onChange={onChangeAudio} />

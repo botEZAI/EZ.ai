@@ -58,12 +58,6 @@ const ToolBasic = ({
                   });
                 }
               } else {
-                //만약 라인이 연동돼있고 한 키워드에 4개보다 많은 메세지가 입력되면 오류
-                if (platformInfo[0].connect && object.contents.length === 4) {
-                  return alert(
-                    "라인에서는 한 키워드에 4개의 메세지만 입력할 수 있습니다."
-                  );
-                }
                 if (tool === "location") {
                   object.contents.push({
                     type: tool,

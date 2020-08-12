@@ -13,9 +13,14 @@ const LocationPreview = ({
 
   onDelete,
   changeAvailableIcon,
+  platformInfo,
 }) => {
   return (
-    <div className="main-preview">
+    <div
+      className={`main-preview ${
+        platformInfo[0].connect && i >= 4 ? `lineLimit` : ``
+      }`}
+    >
       <div
         className={
           now === i

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 const ImagePreview = ({
   v,
@@ -7,30 +7,41 @@ const ImagePreview = ({
   now,
   setNow,
   onDelete,
-  changeAvailableIcon
+  changeAvailableIcon,
+  platformInfo,
 }) => {
   return (
-      <div className="main-preview">
-        <div
-            className={now === i ? "main-content imgbox-telegram now"
-                : "main-content imgbox-telegram"}
-            key={v.content + i}
-            onClick={(e) => {
-                setClickedMainInput(v);
-                e.stopPropagation();
-                setNow(i);
-                changeAvailableIcon("image");
-            }}
-        >
-            <div>
-                {v.content !== "" ? (
-                    <img className="image-preview-telegram" src={v.content} />
-
-                    ) : (
-                    <div className="image-default-telegram">이미지 없음</div>
-                )}
-            </div>
+    <div
+      className={`main-preview ${
+        platformInfo[0].connect && i >= 4 ? `lineLimit` : ``
+      }`}
+    >
+      <div
+        className={
+          now === i
+            ? "main-content imgbox-telegram now"
+            : "main-content imgbox-telegram"
+        }
+        key={v.content + i}
+        onClick={(e) => {
+          setClickedMainInput(v);
+          e.stopPropagation();
+          setNow(i);
+          changeAvailableIcon("image");
+        }}
+      >
+        <div>
+          {v.content == "" ? (
+            v.filepath == "" ? (
+              <div className="image-default-telegram">이미지 없음</div>
+            ) : (
+              <img className="image-preview-telegram" src={v.filepath} />
+            )
+          ) : (
+            <img className="image-preview-telegram" src={v.content} />
+          )}
         </div>
+      </div>
       <div
         className="tool-delete delete-image"
         onClick={() => {

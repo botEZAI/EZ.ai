@@ -26,7 +26,8 @@ const SideVersion = ({
     isRecoverSuccess,
     isDeploySuccess,
   } = useSelector((state) => state.chatbot);
-
+  const platformInfo =
+    currentChatbot && JSON.parse(currentChatbot.platformInfo);
   useEffect(() => {
     currentChatbot &&
       dispatch({
@@ -73,10 +74,20 @@ const SideVersion = ({
   //배포
   const onDeployHistory = useCallback(
     (history) => {
-      dispatch({
-        type: DEPLOY_HISTORY_REQUEST,
-        data: { currentChatbot, history },
-      });
+      if (
+        platformInfo &&
+        platformInfo[0].connect &&
+        JSON.parse(history.data).find((v) => v.contents.length > 4)
+      ) {
+        return alert(
+          "라인은 배포시 키워드당 요소가 4개를 초과할 수 없어 배포할 수 없습니다."
+        );
+      } else {
+        dispatch({
+          type: DEPLOY_HISTORY_REQUEST,
+          data: { currentChatbot, history },
+        });
+      }
     },
     [history, isDeploySuccess]
   );

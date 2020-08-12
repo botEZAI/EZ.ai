@@ -17,12 +17,16 @@ const ImageStatus = ({
   const [imageURL, setImageURL] = useState("");
 
   const onClickLoadImage = (e) => {
-    setImageURL(e.target.value);
-    setKeywordObject(
-      produce(keywordObject, (draft) => {
-        draft[index].contents[now].content = e.target.value;
-      })
-    );
+    if (e.target.value.includes("gif")) {
+      return alert("이미지는 JPG, JPEG, PNG 확장자만 가능합니다");
+    } else {
+      setImageURL(e.target.value);
+      setKeywordObject(
+        produce(keywordObject, (draft) => {
+          draft[index].contents[now].content = e.target.value;
+        })
+      );
+    }
   };
 
   const onClickUploadImage = () => {
@@ -31,20 +35,27 @@ const ImageStatus = ({
   const onChangeImage = (e) => {
     if (e.target.value === "") return;
     if (e.target.files[0].type.match(/image/g)) {
-      const imageFormData = new FormData();
-      imageFormData.append("image", e.target.files[0]);
+      if (!e.target.files[0].type.includes("gif")) {
+        if (e.target.files[0].size < 10000000) {
+          const imageFormData = new FormData();
+          imageFormData.append("image", e.target.files[0]);
 
-      // 보안상 로컬경로는 fakepath로 뜨기 때문에 실제 파일이 업로드 된 후 업로드 된 실파일경로를 가져와야함
+          // 보안상 로컬경로는 fakepath로 뜨기 때문에 실제 파일이 업로드 된 후 업로드 된 실파일경로를 가져와야함
 
-      axios.post("/api/image", imageFormData).then((res) => {
-        console.log(res);
-        setKeywordObject(
-          produce(keywordObject, (draft) => {
-            draft[index].contents[now].content = res.data.location;
-            draft[index].contents[now].filepath = res.data.location;
-          })
-        );
-      });
+          axios.post("/api/image", imageFormData).then((res) => {
+            setKeywordObject(
+              produce(keywordObject, (draft) => {
+                draft[index].contents[now].filepath = res.data.location;
+                setImageURL(res.data.location);
+              })
+            );
+          });
+        } else {
+          return alert("이미지의 크기는 최대 10mb를 초과할수 없습니다");
+        }
+      } else {
+        return alert("이미지는 JPG, JPEG, PNG 확장자만 가능합니다");
+      }
     } else return alert("이미지 파일이 아닙니다.");
   };
 
@@ -91,7 +102,7 @@ const ImageStatus = ({
             </div>
           </div>
           <div className="caution">
-            <p>파일형식 : JPG, JPEG, PNG, GIF</p>
+            <p>파일형식 : JPG, JPEG, PNG</p>
           </div>
         </div>
       ) : (
@@ -102,21 +113,22 @@ const ImageStatus = ({
               onClick={onClickUploadImage}
               title="로컬 이미지 업로드"
             >
-              {keywordObject[index].contents[now].content === "" ? (
+              {keywordObject[index].contents[now].filepath === "" ? (
                 <>
                   <i className="fas fa-upload"></i>
                   <div className="preview-screen-description">파일 업로드</div>
                 </>
               ) : (
-                <></>
-                //<img className="preview-screen-image" src={imageURL}/>
+                <>
+                  <img className="preview-screen-image" src={imageURL} />
+                </>
               )}
             </div>
             <input ref={imageRef} type="file" hidden onChange={onChangeImage} />
           </div>
           <div className="caution">
-            <p>파일형식 : JPG, JPEG, PNG, GIF</p>
-            <p>최대 파일 크기 : 30MB</p>
+            <p>파일형식 : JPG, JPEG, PNG</p>
+            <p>최대 파일 크기 : 10MB</p>
           </div>
         </div>
       )}
