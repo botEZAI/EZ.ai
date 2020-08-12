@@ -3,6 +3,7 @@ import SidePreview from "./SidebarComponents/SidePreview";
 import SideVersion from "./SidebarComponents/SideVersion";
 import PlatformTabs from "./SidebarComponents/PlatformTabs";
 import SidebarTab from "./SidebarTab";
+import SideSetting from "./SidebarComponents/SideSetting";
 
 import { useDispatch } from "react-redux";
 
@@ -13,6 +14,7 @@ const Sidebar = ({
   setKeywordObject,
   setNow,
   setClickedMainInput,
+  setAddPlatformFlag
 }) => {
   const [activeSideOverlay, setActiveSideOverlay] = useState("default");
   const [activeSideTab, setActiveSideTab] = useState("");
@@ -90,7 +92,9 @@ const Sidebar = ({
             <>
               <div className="sidebar-title settings">프로젝트 설정 페이지</div>
               <div className="sidebar-article">
-                <side_setting />
+                <SideSetting 
+                  setAddPlatformFlag={setAddPlatformFlag}
+                />
               </div>
             </>
           )}

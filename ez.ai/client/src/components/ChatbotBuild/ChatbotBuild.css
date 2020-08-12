@@ -112,4 +112,15 @@
   font-size: 40px;
   color : #bbb;
 }
-
+.builder > .side-platform-popup > .popup-overlay{
+  z-index: 5;
+}
+.builder > .side-platform-popup > .popup{    
+  position: absolute;
+  left: 0%;
+  top: 0%;
+  bottom: 0%;
+  right: 0%;
+  margin: auto;
+  max-height: 250px;
+}
