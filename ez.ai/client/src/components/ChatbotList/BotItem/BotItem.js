@@ -8,6 +8,7 @@ import {
 } from "../../../reducer/chatbot";
 import { withRouter } from "react-router-dom";
 import AddPlatformPopup from "../Popup/AddPlatformPopup";
+import PlatformConnect from "./PlatformConnect";
 
 const BotItem = (props, platformInfo) => {
   const dispatch = useDispatch();
@@ -39,17 +40,17 @@ const BotItem = (props, platformInfo) => {
     },
     [currentChatbot]
   );
-  const botSnsIconHandler = (botConnect) => {
-    if (botConnect === "kakao") {
-      return <span className="icon-kakao"></span>;
-    } else if (botConnect === "line") {
-      return <span className="icon-line"></span>;
-    } else if (botConnect === "telegram") {
-      return <span className="icon-telegram"></span>;
-    } else {
-      return null;
-    }
-  };
+  // const botSnsIconHandler = (botConnect) => {
+  //   if (botConnect === "kakao") {
+  //     return <span className="icon-kakao"></span>;
+  //   } else if (botConnect === "line") {
+  //     return <span className="icon-line"></span>;
+  //   } else if (botConnect === "telegram") {
+  //     return <span className="icon-telegram"></span>;
+  //   } else {
+  //     return null;
+  //   }
+  // };
   const setCurrentChatbot = useCallback(
     (id) => {
       const index = chatbotList.findIndex((v) => v.id === id);
@@ -63,30 +64,30 @@ const BotItem = (props, platformInfo) => {
     [chatbotList]
   );
   //플랫폼 추가 팝업
-  const onClickPlatform = useCallback(
-    (info) => {
-      //연결되어 있으면 해제
-      if (info.connect) {
-        const connect = window.confirm("연동을 해제하시겠습니까?");
-        if (connect) {
-          const platformInfo = JSON.parse(
-            chatbotList.find((v) => v.id === id).platformInfo
-          );
-          platformInfo.find(
-            (v) => v.platform === info.platform
-          ).connect = false;
+  // const onClickPlatform = useCallback(
+  //   (info) => {
+  //     //연결되어 있으면 해제
+  //     if (info.connect) {
+  //       const connect = window.confirm("연동을 해제하시겠습니까?");
+  //       if (connect) {
+  //         const platformInfo = JSON.parse(
+  //           chatbotList.find((v) => v.id === id).platformInfo
+  //         );
+  //         platformInfo.find(
+  //           (v) => v.platform === info.platform
+  //         ).connect = false;
 
-          dispatch({
-            type: DISCONNECT_CHATBOT_REQUEST,
-            data: { platformInfo, id },
-          });
-        }
-      } else {
-        setAddPlatformFlag(info.platform);
-      }
-    },
-    [chatbotList]
-  );
+  //         dispatch({
+  //           type: DISCONNECT_CHATBOT_REQUEST,
+  //           data: { platformInfo, id },
+  //         });
+  //       }
+  //     } else {
+  //       setAddPlatformFlag(info.platform);
+  //     }
+  //   },
+  //   [chatbotList]
+  // );
   return (
     <React.Fragment>
       {addPlatformFlag && (
@@ -149,42 +150,10 @@ const BotItem = (props, platformInfo) => {
             <div className="sns-icon-container-section">
               <div className="sns-icon-container-title">챗봇 연동 정보</div>
               <div className="sns-icons-container">
-                {JSON.parse(
-                  chatbotList.find((v) => v.id === id).platformInfo
-                ).map((info, i) => (
-                  <div
-                    className={
-                      info.connect
-                        ? `sns-color-${info.platform} sns-icon-container`
-                        : "sns-icon-container"
-                    }
-                  >
-                    <div className="sns-icon-container-info">
-                      <div className="sns-icon-container-icon">
-                        <i className={snsIcon[i]}></i>
-
-                      </div>
-                      {info.connect ? (
-                          <input className="sns-connect-info" value={'연동되었습니다'} disabled/>
-                      ) : (
-                          <input className="sns-connect-info" value={'연동정보가 없습니다'} disabled/>
-                      )}
-                    </div>
-                    <div className="sns-icon-container-connect">
-                      <div className="sns-icon-container-toggle">
-                        <label className="switch">
-                          <input
-                              type="checkbox"
-                              className="sns-icon-checkbox"
-                              onClick={() => onClickPlatform(info)}
-                              checked={info.connect}
-                          />
-                          <span className="slider round"></span>
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                ))}
+                <PlatformConnect 
+                  id={id} 
+                  setAddPlatformFlag={setAddPlatformFlag}
+                />
               </div>
             </div>
           </div>
