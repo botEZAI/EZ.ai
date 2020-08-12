@@ -58,11 +58,6 @@ const Login = ({ history }) => {
             </p>
           </div>
 
-          <div className="external_login">
-            <div className="google">구글 로그인</div>
-            <div className="naver">네이버 로그인</div>
-          </div>
-
           <div class="login-input">
             <form onSubmit={onSubmitForm} className="login-form">
               <input
