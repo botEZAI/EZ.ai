@@ -5,8 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 const BotList = ({ bots, onRemove, platformInfo, searchResults }) => {
   const { chatbotList } = useSelector((state) => state.chatbot);
 
-
-
   const botList = searchResults.map((bot) => {
     return (
       <BotItem
@@ -23,16 +21,17 @@ const BotList = ({ bots, onRemove, platformInfo, searchResults }) => {
   });
 
   const emptyList = () => {
-    return <div className="empty-item"></div>
-  }
+    return <div className="empty-item"></div>;
+  };
 
   return (
-      <>
-        <div className="bot-item">{botList}</div>
-        {Array(12-botList.length).fill(' ').map(() => emptyList())}
-        {console.log(botList.length, "lens")}
-      </>
-  )
+    <>
+      <div className="bot-item">{botList}</div>
+      {Array(12 - botList.length)
+        .fill(" ")
+        .map(() => emptyList())}
+    </>
+  );
 };
 
 export default BotList;

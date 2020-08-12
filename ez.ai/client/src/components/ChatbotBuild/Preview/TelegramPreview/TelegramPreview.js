@@ -8,7 +8,7 @@ import LocationPreview from "./BasicPreview/LocationPreview";
 import FilePreview from "./BasicPreview/FilePreview";
 import ListPreview from "./AdvancePreview/ListPreview";
 import ButtonTemplatePreview from "./AdvancePreview/ButtonTemplatePreview";
-import './TelegramPreview.css';
+import "./TelegramPreview.css";
 
 const TelegramPreview = ({
   changeAvailableIcon,
@@ -20,6 +20,7 @@ const TelegramPreview = ({
   setKeywordObject,
   setVirtualKeyboard,
   setNow,
+  platformInfo,
 }) => {
   return (
     <>
@@ -39,6 +40,7 @@ const TelegramPreview = ({
               setNow={setNow}
               onDelete={onDelete}
               changeAvailableIcon={changeAvailableIcon}
+              platformInfo={platformInfo}
             />
           ) : v.type === "image" /**서버에서 파일 받아옴. */ ? (
             <ImagePreview
@@ -49,6 +51,7 @@ const TelegramPreview = ({
               setNow={setNow}
               onDelete={onDelete}
               changeAvailableIcon={changeAvailableIcon}
+              platformInfo={platformInfo}
             />
           ) : v.type === "video" /**서버에서 파일 받아옴 */ ? (
             <VideoPreview
@@ -59,6 +62,7 @@ const TelegramPreview = ({
               setNow={setNow}
               onDelete={onDelete}
               changeAvailableIcon={changeAvailableIcon}
+              platformInfo={platformInfo}
             />
           ) : v.type === "audio" ? (
             <AudioPreview
@@ -69,6 +73,7 @@ const TelegramPreview = ({
               setNow={setNow}
               onDelete={onDelete}
               changeAvailableIcon={changeAvailableIcon}
+              platformInfo={platformInfo}
             />
           ) : v.type === "location" ? (
             <LocationPreview
@@ -82,6 +87,7 @@ const TelegramPreview = ({
               keywordObject={keywordObject}
               setKeywordObject={setKeywordObject}
               changeAvailableIcon={changeAvailableIcon}
+              platformInfo={platformInfo}
             />
           ) : v.type === "file" ? (
             <FilePreview
@@ -92,6 +98,7 @@ const TelegramPreview = ({
               setNow={setNow}
               onDelete={onDelete}
               changeAvailableIcon={changeAvailableIcon}
+              platformInfo={platformInfo}
             />
           ) : v.type === "list" ? (
             <ListPreview
@@ -103,9 +110,10 @@ const TelegramPreview = ({
               setNow={setNow}
               onDelete={onDelete}
               changeAvailableIcon={changeAvailableIcon}
+              platformInfo={platformInfo}
             />
           ) : v.type === "btn_template" ? (
-            <ButtonTemplatePreview 
+            <ButtonTemplatePreview
               v={v}
               i={i}
               now={now}
@@ -115,11 +123,12 @@ const TelegramPreview = ({
               setNow={setNow}
               onDelete={onDelete}
               changeAvailableIcon={changeAvailableIcon}
+              platformInfo={platformInfo}
             />
-
-          ) : null)}
+          ) : null
+        )}
     </>
-  )
+  );
 };
 
 export default TelegramPreview;

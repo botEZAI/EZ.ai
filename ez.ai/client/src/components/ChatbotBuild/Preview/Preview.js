@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState, useCallback } from "react";
+import { useSelector } from "react-redux";
 import produce from "immer";
 import axios from "axios";
 import "./Preview.css";
@@ -44,6 +45,9 @@ const Preview = ({
     keywordObject[index].contents[now].content;
   const contentRef = useRef(null);
 
+  const { currentChatbot } = useSelector((state) => state.chatbot);
+  const platformInfo =
+    currentChatbot && JSON.parse(currentChatbot.platformInfo);
   //post
   const onClickButton = () => {
     const count = keywordObject.length;
@@ -97,8 +101,6 @@ const Preview = ({
     } else if (id === tmp) {
       setNow(-1);
     }
-
-    console.log();
 
     setKeywordObject(
       produce(keywordObject, (draft) => {
@@ -188,6 +190,7 @@ const Preview = ({
             setKeywordObject={setKeywordObject}
             setVirtualKeyboard={setVirtualKeyboard}
             setNow={setNow}
+            platformInfo={platformInfo}
           />
         ) : theme === "line" ? (
           <LinePreview
@@ -200,6 +203,7 @@ const Preview = ({
             setKeywordObject={setKeywordObject}
             setVirtualKeyboard={setVirtualKeyboard}
             setNow={setNow}
+            platformInfo={platformInfo}
           />
         ) : theme === "facebook" ? (
           <FacebookPreview
@@ -227,8 +231,8 @@ const Preview = ({
           setCurListCount={setCurListCount}
           setKeywordObject={setKeywordObject}
         />
-      ) : theme === "line" ? 
-        <PersistentMenu 
+      ) : theme === "line" ? (
+        <PersistentMenu
           clickedMainInput={clickedMainInput}
           currentInput={currentInput}
           index={index}
@@ -239,7 +243,7 @@ const Preview = ({
           setCurListCount={setCurListCount}
           setKeywordObject={setKeywordObject}
         />
-        : null}
+      ) : null}
     </>
   ); /**retun END */
 };

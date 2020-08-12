@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 const TextPreview = ({
   v,
@@ -7,35 +7,40 @@ const TextPreview = ({
   now,
   setNow,
   onDelete,
-  changeAvailableIcon
+  changeAvailableIcon,
+  platformInfo,
 }) => {
-  return(
-      <div className="main-preview">
-        <div
-          className={now === i ? "main-content textbox-line now"
-                              : "main-content textbox-line"}
-          key={v.content + i}
-          onClick={() => {
-            setClickedMainInput(v);
-            setNow(i);
-            changeAvailableIcon("text");
-          }}
-        >
-          <div>
-            {v.content || ""}
-          </div>
-        </div>
-          <div
-              className="tool-delete delete-text"
-              onClick={() => {
-                  onDelete(v.id);
-              }}
-          >
-              <i className="fas fa-times"></i>
-          </div>
+  return (
+    <div
+      className={`main-preview ${
+        platformInfo[0].connect && i >= 4 ? `lineLimit` : ``
+      }`}
+    >
+      <div
+        className={
+          now === i
+            ? "main-content textbox-line now"
+            : "main-content textbox-line"
+        }
+        key={v.content + i}
+        onClick={() => {
+          setClickedMainInput(v);
+          setNow(i);
+          changeAvailableIcon("text");
+        }}
+      >
+        <div>{v.content || ""}</div>
       </div>
+      <div
+        className="tool-delete delete-text"
+        onClick={() => {
+          onDelete(v.id);
+        }}
+      >
+        <i className="fas fa-times"></i>
+      </div>
+    </div>
   );
-
 };
 
 export default TextPreview;

@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 
 const ButtonTemplatePreview = ({
   v,
@@ -7,13 +7,21 @@ const ButtonTemplatePreview = ({
   now,
   setNow,
   onDelete,
-  changeAvailableIcon
+  changeAvailableIcon,
+  platformInfo,
 }) => {
-  return(
-    <div className="main-preview">
+  return (
+    <div
+      className={`main-preview ${
+        platformInfo[0].connect && i >= 4 ? `lineLimit` : ``
+      }`}
+    >
       <div
-        className={now == i ? "main-content buttonsbox-line now"
-                            : "main-content buttonsbox-line"}
+        className={
+          now == i
+            ? "main-content buttonsbox-line now"
+            : "main-content buttonsbox-line"
+        }
         key={v.content + i}
         onClick={() => {
           setClickedMainInput(v);
@@ -22,45 +30,36 @@ const ButtonTemplatePreview = ({
         }}
       >
         {/* 버튼 템플릿 이미지 없을 경우 이미지 영역 보이지 않음 */}
-        {v.content.thumbnailImageUrl !== "" 
-        ?
+        {v.content.thumbnailImageUrl !== "" ? (
           <div
             className="buttons-thumbnail-line"
             style={{
-              backgroundColor:v.content.imageBackgroundColor,
+              backgroundColor: v.content.imageBackgroundColor,
             }}
           >
             <img
               className="main-buttons-thumbnail-image"
-              src={v.content.thumbnailImageUrl} 
-              style={v.content.imageSize === "cover"? {width: "100%"} : {height:"100%"}}
+              src={v.content.thumbnailImageUrl}
+              style={
+                v.content.imageSize === "cover"
+                  ? { width: "100%" }
+                  : { height: "100%" }
+              }
             />
           </div>
-        : 
-          null
-        }
-        <div className="main-buttons-contents"> 
-          {v.content.title !== "" 
-          ?
-            <div className="buttons-title-line">
-              {v.content.title}
-            </div>
-          :
-            null
-          }
+        ) : null}
+        <div className="main-buttons-contents">
+          {v.content.title !== "" ? (
+            <div className="buttons-title-line">{v.content.title}</div>
+          ) : null}
           <div className="buttons-text-line">
-            {v.content.text !== ""
-                ? v.content.text
-                : "text"}
+            {v.content.text !== "" ? v.content.text : "text"}
           </div>
           <div className="main-buttons-actions">
             <div className="space-top"></div>
-            {v.content.actions.map((act,index) => (
+            {v.content.actions.map((act, index) => (
               <div className="main-buttons-action">
-                {act.label !== "" 
-                  ? act.label
-                  : "(button" + (index + 1) + ")"
-                }
+                {act.label !== "" ? act.label : "(button" + (index + 1) + ")"}
               </div>
             ))}
             <div className="space-bottom"></div>

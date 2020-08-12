@@ -22,6 +22,18 @@ const BuilderInfo = ({ keywordObject, keywordCategory }) => {
     isDeploySuccess,
   } = useSelector((state) => state.chatbot);
 
+  const platformInfo =
+    currentChatbot && JSON.parse(currentChatbot.platformInfo);
+  const [lineLimitOn, setLineLimmitOn] = useState(false);
+  useEffect(() => {
+    if (
+      platformInfo &&
+      platformInfo[0].connect &&
+      keywordObject.find((v) => v.contents.length > 4)
+    )
+      setLineLimmitOn(true);
+    else setLineLimmitOn(false);
+  }, [keywordObject]);
   const updateChatbot = useCallback(() => {
     if (info === "") alert("저장사항에 대한 정보를 입력하세요.");
     else {
@@ -49,13 +61,24 @@ const BuilderInfo = ({ keywordObject, keywordCategory }) => {
         info,
         deploy: false,
       };
-      dispatch({
-        type: UPDATE_CHATBOT_REQUEST,
-        data: mergedData,
-      });
-      setIsDeployed(true);
+      if (lineLimitOn) {
+        dispatch({
+          type: UPDATE_CHATBOT_REQUEST,
+          data: mergedData,
+        });
+        setInfo("");
+        alert(
+          "라인은 키워드당 요소가 4개를 초과할 수 없습니다. 저장만 가능합니다."
+        );
+      } else {
+        dispatch({
+          type: UPDATE_CHATBOT_REQUEST,
+          data: mergedData,
+        });
+        setIsDeployed(true);
 
-      setInfo("");
+        setInfo("");
+      }
     }
   }, [keywordObject, keywordCategory, info, history]);
   useEffect(() => {
@@ -110,7 +133,14 @@ const BuilderInfo = ({ keywordObject, keywordCategory }) => {
             <p>Description : {currentChatbot && currentChatbot.desc}</p>
           </div>
         </div>
-        <div className="info-platform" onClick={() => alert("우측 사이드바의 설정 페이지에서 연동 정보를 설정할 수 있습니다")}>
+        <div
+          className="info-platform"
+          onClick={() =>
+            alert(
+              "우측 사이드바의 설정 페이지에서 연동 정보를 설정할 수 있습니다"
+            )
+          }
+        >
           <div className="info-platform-title">
             <p>플랫폼 연동 정보</p>
           </div>
