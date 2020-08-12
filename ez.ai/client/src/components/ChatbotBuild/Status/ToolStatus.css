@@ -34,6 +34,19 @@
   line-height: 50px;
 }
 
+.tool-status-name > div {
+  display: inline-block;
+  background-color: #e74c3c;
+  color : white;
+  height : 20px;
+  line-height: 20px;
+  margin : 0 10px;
+  border-radius: 20px;
+  padding : 0 5px;
+  font-size: 12px;
+  cursor : pointer;
+}
+
 .tool-status-header .tool-status-info {
   width: 100px;
   display: flex;

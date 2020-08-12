@@ -24,7 +24,7 @@ const ListPreview = ({
             changeAvailableIcon("list");
           }}
         >
-          <div className="listbox-header-telegram">고정메뉴</div>
+          <div className="listbox-header-telegram" title = "고정메뉴"><i className="far fa-keyboard"></i></div>
         </div>
       <div
         className="tool-delete delete-listbox "

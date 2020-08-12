@@ -116,7 +116,13 @@
 }
 
 .listbox-header-line{
-  color: #318ace;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.listbox-header-line i {
+  color : #318ace;
 }
 
 .persistent-container{

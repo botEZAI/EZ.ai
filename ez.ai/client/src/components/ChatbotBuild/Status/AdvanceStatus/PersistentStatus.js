@@ -40,8 +40,10 @@ const PersistentStatus = ({
   }
 
   const chooseKeywordBtn = i => {
-    setSelectedBtn(i)
+    setSelectedBtn(i);
     setBtnText(keywords[i].text)
+
+
   }
 
   const onChangeBtnText = e => {
@@ -51,10 +53,27 @@ const PersistentStatus = ({
     setKeywordObject(
         produce(keywordObject, draft => {
           draft[index].contents[now].listContent.keywordLink[selectedBtn] = e.target.value;
-        }))
-    setBtnText(e.target.value);
+        })
+    )
+      setBtnText(e.target.value);
+
+
 
     console.log(keywords, selectedBtn, btnText, keywordObject[index].contents[now].listContent)
+  }
+
+  const onChangeBtnTextBySelect = e => {
+      setKeywords(keywords.map(keyword =>
+          keyword.id === selectedBtn ? {...keyword, text : e.target.value} : keyword
+      ))
+      setKeywordObject(
+          produce(keywordObject, draft => {
+              draft[index].contents[now].listContent.keywordLink[selectedBtn] = e.target.value;
+          })
+      )
+      if (btnText.length === 0 ) {
+          setBtnText(e.target.value);
+      }
   }
 
 
@@ -62,13 +81,15 @@ const PersistentStatus = ({
   return (
     <div className="status-list-main">
       <div className="status-input status-list">
+        <div className="status-list--title">아래 메뉴 버튼을 클릭해서 연동하세요</div>
         <div className="list-count">
-          <span>선택지 개수 : </span>
+          <span>메뉴 버튼 개수 : </span>
           {listCount[5].map((i) => (
-            <div className="list-count-num" onClick={() => changeListLength(i)}>
+            <div className={curListCount.length !== i ? "list-count-num" : "list-count-num list-count-num__selected"} onClick={() => changeListLength(i)}>
               {i}
             </div>
           ))}
+            {console.log(curListCount)}
         </div>
         <table>
           {curListCount.map((i) => (
@@ -84,7 +105,7 @@ const PersistentStatus = ({
         </table>
       </div>
       <div className="status-list-modify">
-        <div className="status-list-modify-title">키보드 수정</div>
+        <div className="status-list-modify-title">연동정보 수정</div>
         <div className="status-list-modify-contents">
           {selectedBtn === 0 ? (
               <div className="status-list-modify-none">선택된 고정메뉴 버튼이 없습니다..</div>
@@ -92,11 +113,11 @@ const PersistentStatus = ({
               <>
                 <div className="status-list-modify-content-input">
                   <span>{selectedBtn}번째 버튼 : </span>
-                  <input placeholder="키워드명을 적어주세요" value={btnText} onChange = {onChangeBtnText} />
+                  <input placeholder="버튼명을 적어주세요" value={keywordObject[index].contents[now].listContent.keywordLink[selectedBtn] || ""} onChange = {onChangeBtnText} />
                 </div>
 
-              <select onChange = {onChangeBtnText}>
-              <option value="none" selected disabled>=== 키워드 선택 ===</option>
+              <select onChange = {onChangeBtnTextBySelect}>
+              <option value="none" selected disabled>======= 키워드 선택 =======</option>
               {keywordObject.map((keyword, index) => {
                 return (
                     <>

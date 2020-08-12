@@ -75,11 +75,13 @@ const ToolStatus = ({
               clickedMainInput.type === "list" ? (
               <>
                 <span>고정 메뉴</span>
+                <div title = "현 키워드에서 해당 요소 다음에 새로운 요소를 추가할 수 없습니다">마지막 요소</div>
               </>
             ) : currentInput.type === "btn_template" ||
               clickedMainInput.type === "btn_template" ? (
               <>
                 <span>버튼 템플릿</span>
+                <div title = "현 키워드에서 해당 요소 다음에 새로운 요소를 추가할 수 없습니다">마지막 요소</div>
               </>
             ) : null
           ) : null}
