@@ -14,6 +14,7 @@ const Sidebar = ({
   setKeywordObject,
   setNow,
   setClickedMainInput,
+  setAddPlatformFlag
 }) => {
   const [activeSideOverlay, setActiveSideOverlay] = useState("default");
   const [activeSideTab, setActiveSideTab] = useState("");
@@ -91,7 +92,9 @@ const Sidebar = ({
             <>
               <div className="sidebar-title settings">프로젝트 설정 페이지</div>
               <div className="sidebar-article">
-                <SideSetting />
+                <SideSetting 
+                  setAddPlatformFlag={setAddPlatformFlag}
+                />
               </div>
             </>
           )}

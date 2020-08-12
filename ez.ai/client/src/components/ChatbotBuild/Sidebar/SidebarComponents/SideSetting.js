@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import './SideSetting.css';
-import AddPlatformPopup from "../../../ChatbotList/Popup/AddPlatformPopup";
 import PlatformConnect from "../../../ChatbotList/BotItem/PlatformConnect";
 
-const SideSetting = () => {
-  const [addPlatformFlag, setAddPlatformFlag] = useState("");
+const SideSetting = ({ setAddPlatformFlag }) => {
   const { currentChatbot } = useSelector(
     (state) => state.chatbot
   );
@@ -85,13 +83,6 @@ const SideSetting = () => {
           </div>
         </div>
         <div>
-          {addPlatformFlag && (
-            <AddPlatformPopup
-              addPlatformFlag={addPlatformFlag}
-              setAddPlatformFlag={setAddPlatformFlag}
-              id={currentChatbot.id}
-            />
-          )}  
           <div className="chatbot-platform-container">
             <PlatformConnect 
               id={currentChatbot.id}

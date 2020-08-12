@@ -10,6 +10,7 @@ import ToolKeyword from "./Tabs/ToolKeyword";
 import ToolStatus from "./Status/ToolStatus";
 import Main from "./Preview/Preview";
 import { useDispatch, useSelector } from "react-redux";
+import AddPlatformPopup from "../ChatbotList/Popup/AddPlatformPopup";
 
 const ChatbotBuild = (props) => {
   const dispatch = useDispatch();
@@ -67,6 +68,7 @@ const ChatbotBuild = (props) => {
     { id: 5, value: "키워드 연동" },
   ];
   const [keywordPopup, setKeywordPopup] = useState(initialKP);
+  const [addPlatformFlag, setAddPlatformFlag] = useState("");
 
   const index =
     currentChatbot && keywordObject.findIndex((v) => v.keyword === mainKeyword);
@@ -223,13 +225,22 @@ const ChatbotBuild = (props) => {
             </div>
           </div>
         </div>
-
+        <div className="side-platform-popup">
+          {addPlatformFlag && (
+            <AddPlatformPopup
+              addPlatformFlag={addPlatformFlag}
+              setAddPlatformFlag={setAddPlatformFlag}
+              id={currentChatbot.id}
+            />
+          )}
+        </div>
         {/* 챗봇 빌더 오른쪽 사이드 바 기본 레이아웃*/}
         <Sidebar
           setKeywordObject={setKeywordObject}
           setKeywordCategory={setKeywordCategory}
           setNow={setNow}
           setClickedMainInput={setClickedMainInput}
+          setAddPlatformFlag={setAddPlatformFlag}
         />
       </div>
     </>
