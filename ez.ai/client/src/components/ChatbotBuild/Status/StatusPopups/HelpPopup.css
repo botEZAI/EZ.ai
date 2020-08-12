@@ -15,29 +15,28 @@
 
 .help:hover {
   background-color: orange;
-  transform: translateY(-2px);
-  transition: 0.2s all;
 }
 
 .active {
   background-color: orange;
 }
 
+
+
 .help-content{
   position: absolute;
-
-  background-color: rgba(0,0,0,0.5);
-  border-radius: 5px;
+  background-color: rgba(0,0,0,0.8);
+  border-radius: 10px 0px 10px 10px;
   color: #FFFFFF;
 
   min-width: 300px;
   max-width: 500px;
 
-  top: 40px;
-  right:0px;
+  top: 18px;
+  right:12px;
 
   padding:10px;
-  line-height: 30px;
+  line-height: 25px;
   z-index: 9999;
 }
 
