@@ -23,52 +23,51 @@ const SideSetting = ({ setAddPlatformFlag }) => {
       <div className="chatbot-info-setting">
         <div className="chatbot-setting-title">
           <div className="chatbot-setting-title-text">
-            챗봇 정보 수정
+            기본 정보
           </div>
           <div className="chatbot-setting-title-caution">
-            챗봇의 이름과 챗봇에 대한 설명을 수정하세요
+
           </div>
         </div>
         <form method="post">
-          <div className="d-flex">
-            <dl className="chatbot-rename-set">
-              <dt className="chatbot-rename-title input-label"> 
+          <div className="setting__column">
+            <div className="chatbot-rename-set">
+              <div className="chatbot-rename-title input-label">
                 <label for="rename-field">챗봇 이름 </label>
-              </dt>
-              <dd className="chatbot-rename-input">
+              </div>
+              <div className="chatbot-rename-input">
                 <input 
                   type="text"
                   value={rename}
                   onChange={(e) => onChangeRename(e)}
                   required='true'
                 />
-              </dd>
-            </dl>
+              </div>
+            </div>
             <button 
               type="submit" 
               className="chatbot-rename-btn"
             >
-              Rename
+              수정
             </button>
           </div>
         </form>
         <form method="post">
-          <div className="d-grid">
-            <dl className="chatbot-redesc-set">
-              <dt className="chatbot-redesc-title input-label"> 
+          <div className="setting__column">
+            <div className="chatbot-redesc-set">
+              <div className="chatbot-redesc-title input-label">
                 <label for="redesc-field">챗봇 설명</label> 
-              </dt>
-              <dd className="chatbot-redesc-textarea">
+              </div>
+              <div className="chatbot-redesc-textarea">
                 <textarea
                   value={redesc} 
                   onChange={(e) => onChangeReDesc(e)}
                   required='true'
                 />
-              </dd>
-            </dl>
-            <button className="chatbot-redesc-btn">
-              <i class="fas fa-pencil-alt"></i>
-              Edit
+              </div>
+            </div>
+            <button className="chatbot-rename-btn">
+              수정
             </button>
           </div>
         </form>
@@ -76,10 +75,9 @@ const SideSetting = ({ setAddPlatformFlag }) => {
       <div className="chatbot-connect-setting">
         <div className="chatbot-setting-title">
           <div className="chatbot-setting-title-text">
-            챗봇 연동 플랫폼
+            연동 플랫폼
           </div>
           <div className="chatbot-setting-title-caution">
-            챗봇에 연동할 플랫폼을 선택하세요.
           </div>
         </div>
         <div>
@@ -97,19 +95,15 @@ const SideSetting = ({ setAddPlatformFlag }) => {
             챗봇 삭제
           </div>
           <div className="chatbot-setting-title-caution">
-            현재 작업 중인 챗봇을 삭제합니다.
           </div>
         </div>
         <div className="chatbot-delete-box">
           <p>
-            <strong>챗봇을 삭제하겠습니까?</strong>
-          </p>
-          <p>
-            한 번 챗봇을 지우면, 다시 되돌릴 수 없습니다.
+            삭제 이후에는 다시 되돌릴 수 없습니다.
           </p>
         </div>
         <button className="chatbot-delete-btn">
-          Delete this chatbot
+          챗봇 삭제하기
         </button>
       </div>
     </div>
