@@ -14,11 +14,16 @@
 }
 
 .btn-template-control .btn-template-color {
+  height : 20px;
   border: 0;
   margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.btn-template-control .btn-template-color input {
+  height: 100%;
 }
 
 .btn-template-control .btn-template-image-sizes {
@@ -46,6 +51,7 @@
 }
 
 .btn-template-thumbnail {
+  position : relative;
   height: 200px;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
@@ -59,8 +65,17 @@
   overflow: hidden;
 }
 
-.btn-template-thumbnail:hover {
-  background-color: #ddf0ff;
+
+.btn-template-thumbnail:after {
+  position :absolute;
+  width : 100%;
+  height :100%;
+  content: '';
+  transition: .2s all;
+}
+
+.btn-template-thumbnail:hover:after{
+  background-color: rgba(0,0,0,0.1);
 }
 
 .btn-template-thumbnail:hover i {
@@ -125,6 +140,7 @@
   color: #999999;
   border: 0;
   cursor: pointer;
+  resize: none;
 }
 
 .btn-template-action {
@@ -156,6 +172,11 @@
   cursor: pointer;
   font-weight: bold;
   color: #999;
+}
+
+.btn-action-types .btn-action-type:hover {
+  background-color: white;
+  border : 1px solid #00B8B4;
 }
 
 .btn-action-types .selected-action-type {
