@@ -26,7 +26,7 @@ const TelegramPreview = ({
     <>
       {keywordObject[index] && (
         <div className="main-keyword-title">
-          KEYWORD: {keywordObject[index].keyword}
+          {keywordObject[index].keyword}
         </div>
       )}
       {keywordObject[index] &&
