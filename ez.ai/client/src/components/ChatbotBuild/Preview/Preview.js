@@ -145,9 +145,8 @@ const Preview = ({
             }}
           >
             <option value="none" disabled>
-              === 테마 선택 ===
+              ================= 테마 선택 =================
             </option>
-            <option value="default">기본(Ezai 인터페이스)</option>
             <option value="telegram">텔레그램</option>
             <option value="line">라인</option>
           </select>
