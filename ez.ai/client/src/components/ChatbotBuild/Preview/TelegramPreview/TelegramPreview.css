@@ -196,7 +196,6 @@
   position: relative;
   height: 200px;
   border-radius: 8px;
-  border-bottom: 1px solid #eee;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -206,6 +205,7 @@
 }
 
 .buttons-title-telegram {
+  width:fit-content;
   height: fit-content;
   padding: 10px;
   display: flex;
@@ -215,6 +215,7 @@
   font-weight: bold;
 }
 .buttons-text-telegram {
+  width:fit-content;
   height: fit-content;
   padding: 10px;
   display: flex;
