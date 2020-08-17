@@ -16,6 +16,8 @@ const ImageStatus = ({
   const [imageTab, setImageTab] = useState("url");
   const [imageURL, setImageURL] = useState("");
 
+  const [uploading, setUploading] = useState(false);
+
   const onClickLoadImage = (e) => {
     if (e.target.value.includes("gif")) {
       return alert("이미지는 JPG, JPEG, PNG 확장자만 가능합니다");
@@ -32,17 +34,18 @@ const ImageStatus = ({
   const onClickUploadImage = () => {
     imageRef.current.click();
   };
-  const onChangeImage = (e) => {
+  const onChangeImage = async(e) => {
     if (e.target.value === "") return;
     if (e.target.files[0].type.match(/image/g)) {
       if (!e.target.files[0].type.includes("gif")) {
         if (e.target.files[0].size < 10000000) {
+          setUploading(true)
           const imageFormData = new FormData();
           imageFormData.append("image", e.target.files[0]);
 
           // 보안상 로컬경로는 fakepath로 뜨기 때문에 실제 파일이 업로드 된 후 업로드 된 실파일경로를 가져와야함
 
-          axios.post("/api/image", imageFormData).then((res) => {
+          await axios.post("/api/image", imageFormData).then((res) => {
             setKeywordObject(
               produce(keywordObject, (draft) => {
                 draft[index].contents[now].filepath = res.data.location;
@@ -50,6 +53,7 @@ const ImageStatus = ({
               })
             );
           });
+          setUploading(false)
         } else {
           return alert("이미지의 크기는 최대 10mb를 초과할수 없습니다");
         }
@@ -113,15 +117,19 @@ const ImageStatus = ({
               onClick={onClickUploadImage}
               title="로컬 이미지 업로드"
             >
-              {keywordObject[index].contents[now].filepath === "" ? (
-                <>
-                  <i className="fas fa-upload"></i>
-                  <div className="preview-screen-description">파일 업로드</div>
-                </>
+              {uploading ? (
+                  <p>파일 업로딩중...</p>
               ) : (
-                <>
-                  <img className="preview-screen-image" src={imageURL} />
-                </>
+                  keywordObject[index].contents[now].filepath === "" ? (
+                    <>
+                      <i className="fas fa-upload"></i>
+                      <div className="preview-screen-description">파일 업로드</div>
+                    </>
+                  ) : (
+                    <>
+                      <img className="preview-screen-image" src={imageURL} />
+                    </>
+                  )
               )}
             </div>
             <input ref={imageRef} type="file" hidden onChange={onChangeImage} />
