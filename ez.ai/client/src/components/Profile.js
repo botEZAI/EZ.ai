@@ -31,7 +31,7 @@ const Profile = () => {
     imgRef.current.click();
   };
 
-  const onChangeImage = (e) => {
+  const onChangeImage = async (e) => {
     if (e.target.value === "") return;
     if (e.target.files[0].type.match(/image/g)) {
       const imageFormData = new FormData();
@@ -39,7 +39,7 @@ const Profile = () => {
 
       // 보안상 로컬경로는 fakepath로 뜨기 때문에 실제 파일이 업로드 된 후 업로드 된 실파일경로를 가져와야함
 
-      axios
+      await axios
         .post("/api/image/profile", imageFormData, {
           withCredentials: true,
         })
