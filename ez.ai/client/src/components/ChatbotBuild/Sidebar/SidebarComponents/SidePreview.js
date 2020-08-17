@@ -15,7 +15,6 @@ const SidePreview = (props) => {
     noon = "오후";
   }
   let theMin = today.getMinutes();
-
   const { currentChatbot } = useSelector((state) => state.chatbot);
   const [message, setMessage] = useState("");
   const [keyboard, setKeyboard] = useState("");
@@ -64,24 +63,6 @@ const SidePreview = (props) => {
             {setFixedMenu(c.listContent.keywordLink)}
           </>
         );
-      // else if (c.type == "list")
-      //   return (
-      //     <div>
-      //       {c.listContent.keywordLink.map((i) => {
-      //         return (
-      //           <div
-      //             className={`preview-button ${props.activePlatformTab}-list-elem`}
-      //             onClick={() => moveKeyword(i)}
-      //           >
-      //             {i}
-      //           </div>
-      //         );
-      //       })}
-      //       {currentTime("outer")}
-      //       {setFixedMenu(c.listContent.elem)}
-      //       {setKeyboard(props.activePlatformTab)}
-      //     </div>
-      //   );
       else if (c.type === "image")
         return (
           <div
@@ -136,62 +117,97 @@ const SidePreview = (props) => {
             {currentTime("inner")}
           </div>
         );
-      else if (c.type === "btn_template")
+      else if (c.type === "btn_template"){
         return (
-          <div
-            className={`preview-receive ${props.activePlatformTab} ${props.activePlatformTab}-btn_template`}
-          >
-            {console.log(c)}
-            <div className={"main-content buttonsbox-line"} key={c.content + i}>
-              {/* 버튼 템플릿 이미지 없을 경우 이미지 영역 보이지 않음 */}
+          <>
+          {props.activePlatformTab === "platform-telegram" ? 
+            <div className="buttonsbox-telegram" key={c.content + i}>
+              {/* 이미지 */}
               {c.content.thumbnailImageUrl !== "" ? (
-                <div
-                  className="buttons-thumbnail-line"
-                  style={{
-                    backgroundColor: c.content.imageBackgroundColor,
-                  }}
-                >
-                  <img
-                    className="main-buttons-thumbnail-image"
-                    src={c.content.thumbnailImageUrl}
-                    style={
-                      c.content.imageSize === "cover"
-                        ? { width: "100%" }
-                        : { height: "100%" }
-                    }
-                  />
-                </div>
-              ) : null}
-              <div className="main-buttons-contents">
-                {c.content.title !== "" ? (
-                  <div className="buttons-title-line">{c.content.title}</div>
-                ) : null}
-                <div className="buttons-text-line">
-                  {c.content.text !== "" ? c.content.text : "text"}
-                </div>
-                <div className="main-buttons-actions">
-                  <div className="space-top"></div>
-                  {c.content.actions.map((act, index) => (
-                    <div
-                      className="main-buttons-action"
-                      onClick={() =>
-                        act.type === "uri"
-                          ? moveKeyword(act.uri)
-                          : moveKeyword(act.data)
+                  <div
+                    className="preview-receive buttons-thumbnail-telegram"
+                    style={{
+                      backgroundColor: c.content.imageBackgroundColor,
+                    }}
+                  >
+                    <img
+                      className="main-buttons-thumbnail-image"
+                      src={c.content.thumbnailImageUrl}
+                      style={
+                        c.content.imageSize === "cover"
+                          ? { width: "100%" }
+                          : { height: "100%" }
                       }
-                    >
-                      {act.label !== ""
-                        ? act.label
-                        : "(button" + (index + 1) + ")"}
-                    </div>
-                  ))}
-                  <div className="space-bottom"></div>
+                    />
+                  </div>
+               ) : null}
+              {c.content.title !== "" ? (
+                <div className="preview-receive buttons-title-telegram">
+                  {c.content.title}
+                </div>
+              ) : null }
+              <div className="preview-receive buttons-text-telegram">
+               {c.content.text !== "" ? c.content.text : "text"}
+              </div>
+              {setKeyboard("platform-telegram-buttons")}
+              {setFixedMenu(c.content.actions)}
+            </div>
+          : 
+            <div
+            className={`preview-receive ${props.activePlatformTab} ${props.activePlatformTab}-btn_template`}
+            >
+              <div className={"main-content buttonsbox-line"} key={c.content + i}>
+                {/* 버튼 템플릿 이미지 없을 경우 이미지 영역 보이지 않음 */}
+                {c.content.thumbnailImageUrl !== "" ? (
+                  <div
+                    className="buttons-thumbnail-line"
+                    style={{
+                      backgroundColor: c.content.imageBackgroundColor,
+                    }}
+                  >
+                    <img
+                      className="main-buttons-thumbnail-image"
+                      src={c.content.thumbnailImageUrl}
+                      style={
+                        c.content.imageSize === "cover"
+                          ? { width: "100%" }
+                          : { height: "100%" }
+                      }
+                    />
+                  </div>
+               ) : null}
+                <div className="main-buttons-contents">
+                  {c.content.title !== "" ? (
+                    <div className="buttons-title-line">{c.content.title}</div>
+                  ) : null}
+                  <div className="buttons-text-line">
+                    {c.content.text !== "" ? c.content.text : "text"}
+                  </div>
+                  <div className="main-buttons-actions">
+                    <div className="space-top"></div>
+                    {c.content.actions.map((act, index) => (
+                      <div
+                        className="main-buttons-action"
+                        onClick={() =>
+                          act.type === "uri"
+                            ? moveKeyword(act.uri)
+                            : moveKeyword(act.data)
+                        }
+                      >
+                        {act.label !== ""
+                          ? act.label
+                          : "(button" + (index + 1) + ")"}
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
-            {currentTime("outer")}
-          </div>
+          }
+          </>
         );
+      }
+        
     });
     return dialogues;
   };
@@ -382,7 +398,25 @@ const SidePreview = (props) => {
                 }
               })}
             </div>
-          ) : null}
+          ) : keyboard === "platform-telegram-buttons" ? (
+            <div className="preview-keyboard">
+              {fixedMenu.map((act, index) => (
+                <div 
+                  className={`preview-button ${props.activePlatformTab}-list-elem`}
+                  onClick={() => 
+                    act.type === "uri" 
+                      ? moveKeyword(act.uri)
+                      : moveKeyword(act.data) 
+                  }
+                >
+                  {act.label !== ""
+                    ? act.label
+                    : "(button" + (index + 1) + ")" 
+                  }
+                </div>
+              ))}
+            </div>
+          ) : null }
         </div>
       ) : null}
     </>
