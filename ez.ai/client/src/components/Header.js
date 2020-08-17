@@ -69,8 +69,10 @@ const Header = ({ history }) => {
         ) : (
           <>
             <div className="nav_right profile" onClick={clickNavPopup}>
-              <div className="profile-picture">
-                <i className="fas fa-user-circle"></i>
+              <div className="profile-picture" style={{ backgroundImage: `url(${user && user.profileImage})` }}>
+                { !user.profileImage ? (
+                    <i className="fas fa-user-circle"></i>
+                ) : null}
               </div>
               <div className="profile-more">
                 {user.nick} 님&nbsp;
