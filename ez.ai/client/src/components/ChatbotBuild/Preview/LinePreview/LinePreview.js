@@ -26,7 +26,7 @@ const LinePreview = ({
     <>
       {keywordObject[index] && (
         <div className="main-keyword-title">
-          {keywordObject[index].keyword}
+          {index === 0 ? "대화방에 입장하셨습니다" :keywordObject[index].keyword}
         </div>
       )}
       {keywordObject[index] &&
