@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import "./BuilderInfo.css";
 import { Prompt } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import produce from "immer";
 import {
   UPDATE_CHATBOT_REQUEST,
   UPDATE_CHATBOT_SUCCESS_RESET,
@@ -9,11 +10,12 @@ import {
   DEPLOY_HISTORY_REQUEST,
 } from "../../reducer/chatbot";
 
-const BuilderInfo = ({ keywordObject, keywordCategory }) => {
+const BuilderInfo = ({ keywordObject, keywordCategory, setKeywordObject }) => {
   const [info, setInfo] = useState("");
   const snsIcon = ["fab fa-line", "fab fa-telegram"];
   const [isSaved, setIsSaved] = useState(true);
   const [isDeployed, setIsDeployed] = useState(false);
+  const [isCanSave, setIsCanSave] = useState(true);
   const dispatch = useDispatch();
   const {
     currentChatbot,
@@ -34,23 +36,38 @@ const BuilderInfo = ({ keywordObject, keywordCategory }) => {
       setLineLimmitOn(true);
     else setLineLimmitOn(false);
   }, [keywordObject]);
-  const updateChatbot = useCallback(() => {
+  useEffect(() => {
+    keywordObject.map((keyword, index) => {
+      keyword.contents.map((content, i) => {
+        if (content.type === "btn_template") {
+          if (content.content.text === "") setIsCanSave(false);
+        }
+      });
+    });
+  }, [keywordObject]);
+  const updateChatbot = () => {
     if (info === "") alert("저장사항에 대한 정보를 입력하세요.");
     else {
-      const mergedData = {
-        ...currentChatbot,
-        data: keywordObject,
-        categories: keywordCategory,
-        info,
-        deploy: false,
-      };
-      dispatch({
-        type: UPDATE_CHATBOT_REQUEST,
-        data: mergedData,
-      });
-      setInfo("");
+      if (!isCanSave) {
+        setIsCanSave(true);
+        alert("버튼템플릿 텍스트는 필수 입력사항입니다.");
+        setInfo("");
+      } else {
+        const mergedData = {
+          ...currentChatbot,
+          data: keywordObject,
+          categories: keywordCategory,
+          info,
+          deploy: false,
+        };
+        dispatch({
+          type: UPDATE_CHATBOT_REQUEST,
+          data: mergedData,
+        });
+        setInfo("");
+      }
     }
-  }, [keywordObject, keywordCategory, info]);
+  };
   const deployChatbot = useCallback(() => {
     if (info === "") alert("저장사항에 대한 정보를 입력하세요.");
     else {
@@ -163,7 +180,7 @@ const BuilderInfo = ({ keywordObject, keywordCategory }) => {
           value={info}
           onChange={(e) => onChangeInfo(e)}
         />
-        <button className="save" onClick={updateChatbot}>
+        <button className="save" onClick={() => updateChatbot()}>
           저장
         </button>
         <button className="deploy" onClick={deployChatbot}>

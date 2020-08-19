@@ -66,17 +66,25 @@ const ButtonTemplateStatus = ({
   const onChangeImage = (e) => {
     if (e.target.value === "") return;
     if (e.target.files[0].type.match(/image/g)) {
-      const imageFormData = new FormData();
-      imageFormData.append("image", e.target.files[0]);
+      if (!e.target.files[0].type.includes("gif")) {
+        if (e.target.files[0].size < 1000000) {
+          const imageFormData = new FormData();
+          imageFormData.append("image", e.target.files[0]);
 
-      axios.post("/api/image", imageFormData).then((res) => {
-        setKeywordObject(
-          produce(keywordObject, (draft) => {
-            draft[index].contents[now].content.thumbnailImageUrl =
-              res.data.location;
-          })
-        );
-      });
+          axios.post("/api/image", imageFormData).then((res) => {
+            setKeywordObject(
+              produce(keywordObject, (draft) => {
+                draft[index].contents[now].content.thumbnailImageUrl =
+                  res.data.location;
+              })
+            );
+          });
+        } else {
+          return alert("이미지의 크기는 최대 1mb를 초과할수 없습니다");
+        }
+      } else {
+        return alert("이미지는 JPG, JPEG, PNG 확장자만 가능합니다");
+      }
     } else return alert("이미지 파일이 아닙니다.");
   };
 
@@ -275,7 +283,7 @@ const ButtonTemplateStatus = ({
               placeholder="타이틀을 적어주세요(선택) - 최대 40자"
               name="title"
               value={keywordObject[index].contents[now].content.title}
-              onChange={onChangeTemplate}
+              onChange={(e) => onChangeTemplate(e)}
             />
           </div>
           <div className="btn-template-text">
@@ -290,7 +298,7 @@ const ButtonTemplateStatus = ({
               }
               name="text"
               value={keywordObject[index].contents[now].content.text}
-              onChange={onChangeTemplate}
+              onChange={(e) => onChangeTemplate(e)}
             />
           </div>
           <div className="btn-template-actions">
@@ -305,7 +313,7 @@ const ButtonTemplateStatus = ({
                           : "btn-action-type selected-action-type"
                       }
                       onClick={() => changeActionType(act.id, "uri")}
-                      title = "선택시 버튼에 url 주소를 연동할 수 있습니다."
+                      title="선택시 버튼에 url 주소를 연동할 수 있습니다."
                     >
                       url
                     </div>
@@ -316,7 +324,7 @@ const ButtonTemplateStatus = ({
                           : "btn-action-type selected-action-type"
                       }
                       onClick={() => changeActionType(act.id, "postback")}
-                      title = "선택시 버튼에 키워드를 연동할 수 있습니다."
+                      title="선택시 버튼에 키워드를 연동할 수 있습니다."
                     >
                       키워드
                     </div>
