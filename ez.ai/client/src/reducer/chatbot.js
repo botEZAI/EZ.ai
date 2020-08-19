@@ -57,6 +57,14 @@ export const DEPLOY_HISTORY_FAILURE = "DEPLOY_HISTORY_FAILURE";
 
 export const DEPLOY_HISTORY_SUCCESS_RESET = "DEPLOY_HISTORY_SUCCESS_RESET";
 
+export const UPDATE_CHATBOTNAME_REQUEST = "UPDATE_CHATBOTNAME_REQUEST";
+export const UPDATE_CHATBOTNAME_SUCCESS = "UPDATE_CHATBOTNAME_SUCCESS";
+export const UPDATE_CHATBOTNAME_FAILURE = "UPDATE_CHATBOTNAME_FAILURE";
+
+export const UPDATE_CHATBOTDESC_REQUEST = "UPDATE_CHATBOTDESC_REQUEST";
+export const UPDATE_CHATBOTDESC_SUCCESS = "UPDATE_CHATBOTDESC_SUCCESS";
+export const UPDATE_CHATBOTDESC_FAILURE = "UPDATE_CHATBOTDESC_FAILURE";
+
 export default (state = initialState, action) => {
   switch (action.type) {
     case ADD_CHATBOT_REQUEST: {
@@ -252,6 +260,45 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isDeploySuccess: false,
+      };
+    }
+    case UPDATE_CHATBOTNAME_REQUEST: {
+      return {
+        ...state,
+      };
+    }
+    case UPDATE_CHATBOTNAME_SUCCESS: {
+      return {
+        ...state,
+        currentChatbot: {
+          ...state.currentChatbot,
+          botname: action.data.botname,
+        },
+      };
+    }
+    case UPDATE_CHATBOTNAME_FAILURE: {
+      return {
+        ...state,
+      };
+    }
+
+    case UPDATE_CHATBOTDESC_REQUEST: {
+      return {
+        ...state,
+      };
+    }
+    case UPDATE_CHATBOTDESC_SUCCESS: {
+      return {
+        ...state,
+        currentChatbot: {
+          ...state.currentChatbot,
+          desc: action.data.desc,
+        },
+      };
+    }
+    case UPDATE_CHATBOTDESC_FAILURE: {
+      return {
+        ...state,
       };
     }
 
