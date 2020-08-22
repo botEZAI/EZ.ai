@@ -19,6 +19,7 @@ const ToolStatus = ({
   mainKeyword,
   keywordObject,
   setKeywordObject,
+  keywordCategory,
   clickedMainInput,
   now,
   setNow,
@@ -152,6 +153,7 @@ const ToolStatus = ({
               currentContent={currentContent}
               setKeywordObject={setKeywordObject}
               keywordObject={keywordObject}
+              keywordCategory={keywordCategory}
               now={now}
               index={index}
               keywordPopup={keywordPopup}
@@ -166,6 +168,7 @@ const ToolStatus = ({
               currentContent={currentContent}
               setKeywordObject={setKeywordObject}
               keywordObject={keywordObject}
+              keywordCategory={keywordCategory}
               now={now}
               index={index}
               listCount={listCount}

@@ -186,6 +186,7 @@ const ChatbotBuild = (props) => {
                     mainKeyword={mainKeyword}
                     keywordObject={keywordObject}
                     setKeywordObject={setKeywordObject}
+                    keywordCategory={keywordCategory}
                     clickedMainInput={clickedMainInput}
                     now={now}
                     index={index}
