@@ -37,7 +37,8 @@ const HelpPopup = ({ currentInput, clickedMainInput }) => {
               </div>
               {helpActive === "image" ?
                 <div className="help-content help-image-content" onClick={()=>setHelpActive("")}>
-                  이미지 메시지입니다.<br/>원본 이미지의 URL을 입력하거나<br/>직접 이미지를 첨부하세요.<br/>오른쪽 화면에 <br/>첨부한 이미지가 표시됩니다.
+                  <span>이미지</span> 메세지를 보내는 방법은 두가지가 있습니다. <br />
+                  외부 이미지의 URL 주소를 작성해 첨부하는 방법과, <br /> 로컬 이미지를 업로드 해 첨부하는 방법이 있습니다.
                 </div>
               :
                 null
