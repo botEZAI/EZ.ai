@@ -8,6 +8,7 @@ const ButtonTemplateStatus = ({
   currentContent,
   setKeywordObject,
   keywordObject,
+  keywordCategory,
   now,
   index,
   keywordPopup,
@@ -346,15 +347,27 @@ const ButtonTemplateStatus = ({
                         <option value="none" selected disabled>
                           연동할 키워드를 선택해주세요
                         </option>
-                        {console.log(keywordObject, "keywordObject")}
-                        {keywordObject.map((keyword, index) => {
+                        {keywordCategory.map(category => {
                           return (
-                            <>
-                              <option key={index} value={keyword.keyword}>
-                                {keyword.keyword}
-                              </option>
-                            </>
-                          );
+                              <>
+                                <optgroup label={category.category}>
+                                  {keywordObject.map((keyword, index) => {
+                                    return (
+                                        keyword.category === category.category ? (
+                                            <>
+                                              <option
+                                                  key={index}
+                                                  value={keyword.keyword}
+                                              >
+                                                {keyword.keyword}
+                                              </option>
+                                            </>
+                                        ) : null
+                                    )
+                                  })}
+                                </optgroup>
+                              </>
+                          )
                         })}
                       </select>
                     )}
