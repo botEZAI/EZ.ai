@@ -346,6 +346,7 @@ const ButtonTemplateStatus = ({
                         <option value="none" selected disabled>
                           연동할 키워드를 선택해주세요
                         </option>
+                        {console.log(keywordObject, "keywordObject")}
                         {keywordObject.map((keyword, index) => {
                           return (
                             <>

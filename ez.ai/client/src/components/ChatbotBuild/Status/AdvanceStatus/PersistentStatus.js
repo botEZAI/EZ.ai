@@ -5,6 +5,7 @@ const PersistentStatus = ({
   currentContent,
   setKeywordObject,
   keywordObject,
+  keywordCategory,
   now,
   index,
   keywordPopup,
@@ -117,19 +118,31 @@ const PersistentStatus = ({
                 </div>
 
               <select onChange = {onChangeBtnTextBySelect}>
-              <option value="none" selected disabled>======= 키워드 선택 =======</option>
-              {keywordObject.map((keyword, index) => {
-                return (
-                    <>
-                      <option
-                          key={index}
-                          value={keyword.keyword}
-                      >
-                        {keyword.keyword}
-                      </option>
-                    </>
-                )
-              })}
+                  <option value="none" selected disabled>======= 키워드 선택 =======</option>
+                  {keywordCategory.map(category => {
+                      return (
+                          <>
+                              <optgroup label={category.category}>
+                                  {keywordObject.map((keyword, index) => {
+                                      return (
+                                          keyword.category === category.category ? (
+                                              <>
+                                                  <option
+                                                      key={index}
+                                                      value={keyword.keyword}
+                                                  >
+                                                      {keyword.keyword}
+                                                  </option>
+                                              </>
+                                          ) : null
+                                      )
+                                  })}
+                              </optgroup>
+                          </>
+                      )
+                  })}
+
+
               </select>
                 </>
           )}
