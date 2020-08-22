@@ -19,7 +19,7 @@ const BotItem = (props, platformInfo) => {
   const { children, onRemove, botDesc, botConnect, id } = props;
   const [addPlatformFlag, setAddPlatformFlag] = useState("");
   const snsIcon = ["fab fa-line", "fab fa-telegram"];
-  const [tokenPreview, setTokenPreview] = useState(['', ''])
+  const [tokenPreview, setTokenPreview] = useState(["", ""]);
 
   const botClickEvent = () => {
     setBotClick({ botOn: !botClick.botOn });
@@ -150,8 +150,8 @@ const BotItem = (props, platformInfo) => {
             <div className="sns-icon-container-section">
               <div className="sns-icon-container-title">챗봇 연동 정보</div>
               <div className="sns-icons-container">
-                <PlatformConnect 
-                  id={id} 
+                <PlatformConnect
+                  id={id}
                   setAddPlatformFlag={setAddPlatformFlag}
                 />
               </div>

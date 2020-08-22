@@ -102,8 +102,44 @@ router.patch("/", isLoggedIn, async (req, res, next) => {
     next(e);
   }
 });
+//챗봇 이름 업데이트
+router.patch("/name", isLoggedIn, async (req, res, next) => {
+  try {
+    await ChatbotData.update(
+      {
+        botname: req.body.rename,
+      },
+      { where: { id: req.body.id } }
+    );
+    const currentChatbot = await ChatbotData.findOne({
+      where: { id: req.body.id },
+    });
+    res.json(currentChatbot);
+  } catch (e) {
+    console.error(e);
+    next(e);
+  }
+});
+//챗봇 설명 업데이트
+router.patch("/desc", isLoggedIn, async (req, res, next) => {
+  try {
+    await ChatbotData.update(
+      {
+        desc: req.body.redesc,
+      },
+      { where: { id: req.body.id } }
+    );
+    const currentChatbot = await ChatbotData.findOne({
+      where: { id: req.body.id },
+    });
+    res.json(currentChatbot);
+  } catch (e) {
+    console.error(e);
+    next(e);
+  }
+});
 //챗봇 연동(토큰 요청),연동 해제
-router.patch("/connect", isLoggedIn, async (req, res, nex) => {
+router.patch("/connect", isLoggedIn, async (req, res, next) => {
   try {
     await ChatbotData.update(
       {
