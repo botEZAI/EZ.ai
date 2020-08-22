@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { withRouter } from "react-router-dom";
@@ -12,6 +13,7 @@ import PlatformConnect from "../../../ChatbotList/BotItem/PlatformConnect";
 const SideSetting = ({ setAddPlatformFlag, history }) => {
   const { currentChatbot } = useSelector((state) => state.chatbot);
   const dispatch = useDispatch();
+
   /**값 보내기 전 */
   const [rename, setReName] = useState(
     currentChatbot && currentChatbot.botname
@@ -24,6 +26,7 @@ const SideSetting = ({ setAddPlatformFlag, history }) => {
   const onChangeReDesc = (e) => {
     setRedesc(e.target.value);
   };
+
   const onUpdateChatbotName = (e) => {
     const id = currentChatbot.id;
     const success = dispatch({
@@ -54,12 +57,14 @@ const SideSetting = ({ setAddPlatformFlag, history }) => {
     }
   };
 
+
   return (
     <div className="chatbot-setting-list">
       <div className="chatbot-info-setting">
         <div className="chatbot-setting-title">
           <div className="chatbot-setting-title-text">기본 정보</div>
           <div className="chatbot-setting-title-caution"></div>
+
         </div>
 
         <div className="setting__column">
@@ -96,6 +101,7 @@ const SideSetting = ({ setAddPlatformFlag, history }) => {
                 required="true"
               />
             </div>
+
           </div>
           <div
             className="chatbot-rename-btn"
@@ -127,6 +133,7 @@ const SideSetting = ({ setAddPlatformFlag, history }) => {
         <div className="chatbot-delete-box">
           <p>삭제 이후에는 다시 되돌릴 수 없습니다.</p>
         </div>
+
         <button
           className="chatbot-delete-btn"
           onClick={(e) => {
@@ -135,9 +142,11 @@ const SideSetting = ({ setAddPlatformFlag, history }) => {
         >
           챗봇 삭제하기
         </button>
+
       </div>
     </div>
   );
 };
 
 export default withRouter(SideSetting);
+

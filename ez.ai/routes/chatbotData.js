@@ -93,7 +93,6 @@ router.patch("/", isLoggedIn, async (req, res, next) => {
     const chatbotData = await ChatbotData.findAll({
       where: { user_id: req.user.id },
     });
-    console.log("history==", historyData);
     const mergedData = { chatbotData, historyData: historyData.history };
 
     res.json(mergedData);

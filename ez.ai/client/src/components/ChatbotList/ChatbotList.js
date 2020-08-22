@@ -86,7 +86,6 @@ const ChatbotList = (props) => {
 
   //InserFinish : 팝업창 닫으면서 봇을 리스트에 추가
   const InsertFinish = () => {
-    console.log(bots);
     setPopup({
       showPopup1: false,
       showPopup2: false, // 팝업창 닫힘
@@ -118,7 +117,6 @@ const ChatbotList = (props) => {
       ],
       categories: [{ category: "미분류", show: true }],
     };
-    console.log(platformInfo);
 
     dispatch({
       type: ADD_CHATBOT_REQUEST,

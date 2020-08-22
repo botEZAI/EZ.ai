@@ -57,7 +57,11 @@ const ButtonTemplatePreview = ({
       {/* 이미지 끝 */}
       {/* 텍스트 시작 */}
       {v.content.title !== "" ? (
-        <div className="main-preview">
+        <div
+          className={`main-preview ${
+            platformInfo[0].connect && i >= 4 ? `lineLimit` : ``
+          }`}
+        >
           <div
             className={
               now === i
@@ -75,7 +79,11 @@ const ButtonTemplatePreview = ({
         </div>
       ) : null}
 
-      <div className="main-preview">
+      <div
+        className={`main-preview ${
+          platformInfo[0].connect && i >= 4 ? `lineLimit` : ``
+        }`}
+      >
         <div
           className={
             now === i
@@ -88,7 +96,7 @@ const ButtonTemplatePreview = ({
             changeAvailableIcon("btn_template");
           }}
         >
-          {v.content.text !== "" ? v.content.text : "text"}
+          {v.content.text !== "" ? v.content.text : ""}
         </div>
         <div
           className="tool-delete delete-buttons"
