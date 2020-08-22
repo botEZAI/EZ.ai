@@ -56,7 +56,7 @@ const HelpPopup = ({ currentInput, clickedMainInput }) => {
               </div>
               {helpActive === "video" ?
                 <div className="help-content help-video-content" onClick={()=>setHelpActive("")}>
-                  사용자에게 동영상을 전송합니다.<br/> 로컬 비디오 파일을 업로드하세요. <br/>채팅에 동영상이 표시됩니다.
+                  <span>동영상</span>을 보내려면, <br /> 아래 적혀있는 올바른 동영상 형식의 파일을 첨부하세요.
                 </div>
               :
                 null
@@ -74,7 +74,7 @@ const HelpPopup = ({ currentInput, clickedMainInput }) => {
               </div>
               {helpActive === "audio" ?
                 <div className="help-content help-audio-content" onClick={()=>setHelpActive("")}>
-                  사용자에게 오디오를 전송합니다.<br/> 로컬 오디오 파일을 업로드하세요.<br/> 채팅에 오디오 파일이 표시됩니다.
+                  <span>오디오</span>를 보내려면, <br /> 아래 적혀있는 올바른 오디오 형식의 파일을 첨부하세요.
                 </div>
               :
                 null
@@ -92,8 +92,8 @@ const HelpPopup = ({ currentInput, clickedMainInput }) => {
               </div>
               {helpActive === "location" ?
                 <div className="help-content help-location-content" onClick={()=>setHelpActive("")}>
-                  사용자에게 맵 정보를 전송합니다.<br/> 아래 입력칸에 장소명을 입력한 뒤,<br/> 지역의 주소를 선택하세요.<br/> 
-                  오른쪽 화면에 <br/>지도 정보가 표시됩니다.
+                  사용자에게 <span>위치</span> 정보를 전송합니다.<br/> 아래 입력칸에 원하는 장소명을 입력한 뒤,<br/> 해당 장소의 정확한 주소를 선택하세요.<br/> 
+                  자동으로 지도에서 해당 위치가 지정됩니다.
                 </div>
               :
                 null
@@ -111,9 +111,10 @@ const HelpPopup = ({ currentInput, clickedMainInput }) => {
             </div>
             {helpActive === "list" ?
               <div className="help-content help-list-content" onClick={()=>setHelpActive("")}>
-                다른 키워드로 이동할 때 사용하는 <br/>[고정 메뉴] 입니다.<br/> 연동 가능한 키워드의 개수는 최대 6개입니다.<br/> 
-            하단 키보드 수정 영역에서 <br/>연동할 키워드의 개수와 키워드 명을 지정하세요.<br/> 
-            한 키워드 당, 하나의 [고정메뉴]만 생성할 수 있습니다.
+                <span>고정 메뉴</span>는 다른 키워드를 호출하는 가장 쉬운 방법입니다. <br/>
+                하단 키보드 수정 영역에서 <br/>연동할 키워드와 버튼 이름을 지정하세요.<br/>
+                연동 가능한 키워드의 개수는 최대 6개입니다.<br/>
+                <span>한 키워드 당, 하나의 고정메뉴만 생성할 수 있습니다.</span>
               </div>
             :
               null
@@ -131,9 +132,11 @@ const HelpPopup = ({ currentInput, clickedMainInput }) => {
             </div>
             {helpActive === "btn_template" ?
               <div className="help-content help-buttons-content" onClick={()=>setHelpActive("")}>
-                다른 키워드로 이동할 때 사용하는 <br/>[버튼 템플릿] 입니다.<br/> 연동 가능한 키워드의 개수는 최대 4개입니다.<br/>
-            이미지와 타이틀은 생략가능하나, <br/>텍스트는 반드시 작성하세요.<br/> 좌측 상단의 네모를 눌러 첨부한 이미지의<br/> 배경 색상을 변경할 수 있습니다.<br/>
-            한 키워드 당 하나의 [버튼 템플릿]만 생성할 수 있습니다.
+                <span>버튼 리스트</span>는 이미지, 텍스트, 여러 액션 버튼을 <br />
+                하나의 템플릿으로 보낼 수 있는 요소입니다.<br />
+                이미지와 타이틀은 생략가능하나, <br />텍스트는 필수 요소입니다.<br/>
+                연동 가능한 키워드의 개수는 최대 4개입니다.<br/>
+                <span>한 키워드 당 하나의 버튼 템플릿만 생성할 수 있습니다.</span>
               </div>
             :
               null
