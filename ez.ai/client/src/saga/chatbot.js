@@ -38,6 +38,12 @@ import {
   DEPLOY_HISTORY_REQUEST,
   DEPLOY_HISTORY_SUCCESS,
   DEPLOY_HISTORY_FAILURE,
+  UPDATE_CHATBOTNAME_REQUEST,
+  UPDATE_CHATBOTNAME_SUCCESS,
+  UPDATE_CHATBOTNAME_FAILURE,
+  UPDATE_CHATBOTDESC_REQUEST,
+  UPDATE_CHATBOTDESC_SUCCESS,
+  UPDATE_CHATBOTDESC_FAILURE,
 } from "../reducer/chatbot";
 
 //챗봇 등록
@@ -308,7 +314,58 @@ function* deployHistory(action) {
 function* watchDeployHistory() {
   yield takeEvery(DEPLOY_HISTORY_REQUEST, deployHistory);
 }
+//챗봇 이름 업데이트
+function updateChatbotNameAPI(chatbotData) {
+  return axios.patch("api/chatbotdata/name", chatbotData, {
+    withCredentials: true,
+  });
+}
 
+function* updateChatbotName(action) {
+  try {
+    const result = yield call(updateChatbotNameAPI, action.data);
+    yield put({
+      type: UPDATE_CHATBOTNAME_SUCCESS,
+      data: result.data,
+    });
+  } catch (e) {
+    console.error(e);
+    yield put({
+      type: UPDATE_CHATBOTNAME_FAILURE,
+      error: e,
+    });
+  }
+}
+
+function* watchUpdateChatbotName() {
+  yield takeEvery(UPDATE_CHATBOTNAME_REQUEST, updateChatbotName);
+}
+//챗봇 설명 업데이트
+function updateChatbotDescAPI(chatbotData) {
+  return axios.patch("api/chatbotdata/desc", chatbotData, {
+    withCredentials: true,
+  });
+}
+
+function* updateChatbotDesc(action) {
+  try {
+    const result = yield call(updateChatbotDescAPI, action.data);
+    yield put({
+      type: UPDATE_CHATBOTDESC_SUCCESS,
+      data: result.data,
+    });
+  } catch (e) {
+    console.error(e);
+    yield put({
+      type: UPDATE_CHATBOTDESC_FAILURE,
+      error: e,
+    });
+  }
+}
+
+function* watchUpdateChatbotDesc() {
+  yield takeEvery(UPDATE_CHATBOTDESC_REQUEST, updateChatbotDesc);
+}
 export default function* userSaga() {
   yield all([
     fork(watchLoadChatbot),
@@ -321,5 +378,7 @@ export default function* userSaga() {
     fork(watchRecoverHistory),
     fork(watchRemoveHistory),
     fork(watchDeployHistory),
+    fork(watchUpdateChatbotName),
+    fork(watchUpdateChatbotDesc),
   ]);
 }

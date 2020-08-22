@@ -32,7 +32,6 @@
   display: flex;
   line-height: 24px;
   font-size: 18px;
-  overflow-x: scroll;
 }
 
 .bot-item-default:hover .bot-name {
@@ -201,7 +200,7 @@
 }
 
 .sns-icon-container-info input {
-  width : 215px;
+  width: 215px;
   text-align: center;
 }
 
@@ -214,24 +213,21 @@
 }
 
 .sns-icon-container-icon i {
-  font-size : 40px;
-
+  font-size: 40px;
 }
-
-
 
 .sns-icon-container-icon .fa-line {
-  color : #19CE60
+  color: #19ce60;
 }
 
-.sns-icon-container-icon .fa-telegram{
-  color : #3498db
+.sns-icon-container-icon .fa-telegram {
+  color: #3498db;
 }
 
-.sns-color-line .sns-icon-container-info .fa-line, .sns-color-telegram .sns-icon-container-info .fa-telegram {
-  color : #eee!important;
+.sns-color-line .sns-icon-container-info .fa-line,
+.sns-color-telegram .sns-icon-container-info .fa-telegram {
+  color: #eee !important;
 }
-
 
 .sns-icon-container-info .sns-icon-container-toggle {
   width: 80px;
@@ -376,22 +372,22 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 40px;
-  padding : 0 5px;
+  padding: 0 5px;
 }
 
 /* 더미용 봇 리스트 */
 .content .empty-item {
-  width : 100%;
-  height : 64px;
+  width: 100%;
+  height: 64px;
   background-color: #f6f6f6;
   margin-bottom: 15px;
   border-radius: 8px;
-  cursor : default;
+  cursor: default;
 }
 
 /* 연동하기 이름, 토글버튼 */
 .sns-icon-container-connect {
-  height : 50px;
+  height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
