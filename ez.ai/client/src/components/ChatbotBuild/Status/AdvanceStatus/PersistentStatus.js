@@ -125,7 +125,7 @@ const PersistentStatus = ({
                               <optgroup label={category.category}>
                                   {keywordObject.map((keyword, index) => {
                                       return (
-                                          keyword.category === category.category ? (
+                                          keyword.category === category.category && index > 0 ? (
                                               <>
                                                   <option
                                                       key={index}
