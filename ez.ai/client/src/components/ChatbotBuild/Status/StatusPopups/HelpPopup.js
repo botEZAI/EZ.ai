@@ -19,7 +19,7 @@ const HelpPopup = ({ currentInput, clickedMainInput }) => {
               </div>
               {helpActive === "text" ?
                 <div className="help-content help-text-content" onClick={()=>setHelpActive("")}>
-                  텍스트 메시지입니다. <br/>챗봇 유저에게 전달할 <br/>텍스트 메시지를 작성해주세요.<br/>입력한 텍스트는 실시간으로 <br/>오른쪽 화면에 적용됩니다.
+                  <span>텍스트</span> 메세지를 보내려면, <br />아래의 입력칸에 텍스트를 입력하세요.
                 </div>
               :
                 null

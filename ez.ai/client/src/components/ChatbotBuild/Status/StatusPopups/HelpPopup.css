@@ -40,6 +40,10 @@
   z-index: 9999;
 }
 
+.help-content span {
+ color : orange;
+}
+
 .help-list-content , .help-buttons-content{
   width:450px;
 }
