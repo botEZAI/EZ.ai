@@ -293,7 +293,7 @@ const ToolKeyword = ({
                         <i className="fas fa-sort-up"></i>
                       )}
                     </div>
-                    {disableInput && selectedCategory !== i.category ? (
+                    {selectedCategory !== i.category ? (
                       <div
                         className="keyword-category-name"
                         onClick={() => foldCategory(i)}
