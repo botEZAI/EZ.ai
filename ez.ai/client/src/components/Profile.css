@@ -82,10 +82,14 @@
     border-radius: 5px;
     padding : 5px;
     align-self: center;
-    background-color: #eee;
+    background-color: #fff;
     font-weight : bold;
     color : #999;
     cursor: pointer;
+}
+
+.u-chatbots__detail {
+    width : 90%;
 }
 
 .u-more__name-btn:hover {
