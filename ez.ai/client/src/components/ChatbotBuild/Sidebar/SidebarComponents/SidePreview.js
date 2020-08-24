@@ -156,7 +156,7 @@ const SidePreview = (props) => {
             <div
             className={`preview-receive ${props.activePlatformTab} ${props.activePlatformTab}-btn_template`}
             >
-              <div className={"main-content buttonsbox-line"} key={c.content + i}>
+              <div className={"buttonsbox-line"} key={c.content + i}>
                 {/* 버튼 템플릿 이미지 없을 경우 이미지 영역 보이지 않음 */}
                 {c.content.thumbnailImageUrl !== "" ? (
                   <div
@@ -202,6 +202,7 @@ const SidePreview = (props) => {
                   </div>
                 </div>
               </div>
+              {currentTime("outer")}
             </div>
           }
           </>

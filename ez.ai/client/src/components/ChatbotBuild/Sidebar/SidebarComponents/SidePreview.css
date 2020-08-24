@@ -223,6 +223,23 @@ time {
   font-size: 11px;
   font-weight: normal;
 }
+
+.side-line .preview-receive time {
+    position : absolute;
+    color : white;
+    opacity: 1;
+    background-color: rgba(0,0,0,0);
+    padding-left : 12px;
+    bottom : 0;
+    font-size: 11px;
+    width : 67px;
+}
+
+.side-line .platform-line-btn_template {
+  padding : 0!important;
+  width : 240px;
+}
+
 /*  미리보기 창 기본 인터페이스 */
 /* preview-header */
 
@@ -292,5 +309,5 @@ time {
 /* 버튼 템플릿 이미지 손보기 */
 .main-buttons-thumbnail-image {
   border-radius: 5px;
-  margin: 1px;
+  margin: 0;
 }
