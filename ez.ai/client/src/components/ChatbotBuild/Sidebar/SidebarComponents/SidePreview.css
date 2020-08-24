@@ -193,8 +193,8 @@ time {
 }
 
 
-
-.preview-send .nowtime_outer time {
+/* 텔레그램 미리보기 시간 인터페이스 css */
+.side-telegram .preview-send .nowtime_outer time {
   align-self: flex-end;
   font-size: 11px;
   background-color: #e5ffd0;
@@ -202,7 +202,7 @@ time {
   font-weight: normal;
 }
 
-.preview-receive .nowtime_outer time {
+.side-telegram .preview-receive .nowtime_outer time {
   align-self: flex-end;
   font-size: 11px;
   background-color: white;
@@ -210,8 +210,12 @@ time {
   font-weight: normal;
 }
 
-.preview-receive .nowtime_inner time {
-  display: none;
+.side-telegram .preview-receive .nowtime_inner time {
+  position : absolute;
+  bottom : 3px;
+  right : 3px;
+  font-size: 11px;
+  font-weight: normal;
 }
 /*  미리보기 창 기본 인터페이스 */
 /* preview-header */

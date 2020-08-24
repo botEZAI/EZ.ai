@@ -139,15 +139,18 @@ const SidePreview = (props) => {
                           : { height: "100%" }
                       }
                     />
+                    {currentTime("inner")}
                   </div>
                ) : null}
               {c.content.title !== "" ? (
                 <div className="preview-receive buttons-title-telegram">
                   {c.content.title}
+                  {currentTime("outer")}
                 </div>
               ) : null }
               <div className="preview-receive buttons-text-telegram">
                {c.content.text !== "" ? c.content.text : "text"}
+                {currentTime("outer")}
               </div>
               {setKeyboard("platform-telegram-buttons")}
               {setFixedMenu(c.content.actions)}
