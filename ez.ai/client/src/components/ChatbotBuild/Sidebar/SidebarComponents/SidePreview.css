@@ -194,6 +194,12 @@ time {
 
 
 /* 텔레그램 미리보기 시간 인터페이스 css */
+.side-telegram .nowtime_outer {
+  position : relative;
+  right: -6px;
+  bottom : -3px;
+}
+
 .side-telegram .preview-send .nowtime_outer time {
   align-self: flex-end;
   font-size: 11px;
@@ -212,8 +218,8 @@ time {
 
 .side-telegram .preview-receive .nowtime_inner time {
   position : absolute;
-  bottom : 3px;
-  right : 3px;
+  bottom : 7px;
+  right : 5px;
   font-size: 11px;
   font-weight: normal;
 }
