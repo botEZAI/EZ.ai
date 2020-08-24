@@ -126,9 +126,6 @@ const SidePreview = (props) => {
               {c.content.thumbnailImageUrl !== "" ? (
                   <div
                     className="preview-receive buttons-thumbnail-telegram"
-                    style={{
-                      backgroundColor: c.content.imageBackgroundColor,
-                    }}
                   >
                     <img
                       className="main-buttons-thumbnail-image"
