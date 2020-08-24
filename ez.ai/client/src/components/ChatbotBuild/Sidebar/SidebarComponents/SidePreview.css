@@ -235,6 +235,22 @@ time {
     width : 67px;
 }
 
+.side-line .preview-send {
+  position : relative;
+}
+.side-line .preview-send .nowtime_outer {
+  position : absolute;
+  left : -60px;
+  bottom : 0;
+}
+.side-line .preview-send time {
+  color : white;
+  opacity: 1;
+  background-color: rgba(0,0,0,0);
+  font-size: 11px;
+  width : 67px;
+}
+
 .side-line .platform-line-btn_template {
   padding : 0!important;
   width : 240px;
