@@ -1,12 +1,24 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import "./Profile.css";
 import { useDispatch, useSelector } from "react-redux";
-import { LOAD_USER_REQUEST } from "../reducer/user";
+import { LOAD_USER_REQUEST, UPDATE_USERINFO_REQUEST } from "../reducer/user";
 import ChatbotList from "./ChatbotList";
 import axios from "axios";
 
+export const useInput = (initValue) => {
+  const [value, setter] = useState(initValue);
+  const handler = useCallback((e) => {
+    setter(e.target.value);
+  }, []);
+  const reset = useCallback(() => setter(initValue), [initValue]);
+  return [value, handler, reset];
+};
+
 const Profile = () => {
   const { user } = useSelector((state) => state.user);
+  const [userName, onChangeUserName] = useInput(user && user.name);
+  const [nickName, onChangeNickName] = useInput(user && user.nick);
+  const [birthday, onChangeBirthday] = useInput(user && user.birth);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -19,7 +31,24 @@ const Profile = () => {
 
   const [changeInfo, setChangeInfo] = useState(true);
   const userInfoInput = () => {
-    setChangeInfo(!changeInfo);
+    if (changeInfo === true && userName === (user && user.name))
+      setChangeInfo(!changeInfo);
+    else {
+      if (userName !== (user && user.name)) {
+        dispatch({
+          type: UPDATE_USERINFO_REQUEST,
+          data: {
+            userName,
+            nickName,
+            birthday,
+          },
+        });
+        dispatch({
+          type: LOAD_USER_REQUEST,
+        });
+      }
+      setChangeInfo(!changeInfo);
+    }
   };
 
   /* 프로필 사진 */
@@ -87,7 +116,7 @@ const Profile = () => {
               {changeInfo ? (
                 <div className="u-more__info-data">{user && user.nick}</div>
               ) : (
-                <input value={user && user.nick} />
+                <input value={nickName} onChange={onChangeNickName} />
               )}
             </div>
             <div className="u-more__info">
@@ -95,7 +124,7 @@ const Profile = () => {
               {changeInfo ? (
                 <div className="u-more__info-data">{user && user.name}</div>
               ) : (
-                <input value={user && user.name} />
+                <input value={userName} onChange={onChangeUserName} />
               )}
             </div>
             <div className="u-more__info">
@@ -103,14 +132,14 @@ const Profile = () => {
               {changeInfo ? (
                 <div className="u-more__info-data">{user && user.birth}</div>
               ) : (
-                <input value={user && user.birth} />
+                <input value={birthday} onChange={onChangeBirthday} />
               )}
             </div>
 
-            <div className="u-more__info">
+            {/* <div className="u-more__info">
               <div>비밀번호 : </div>
               <div className="u-more__info-data">{user && user.password}</div>
-            </div>
+            </div> */}
             <div className="u-more__name-btn" onClick={() => userInfoInput()}>
               개인정보 수정
             </div>

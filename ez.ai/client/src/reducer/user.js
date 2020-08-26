@@ -31,6 +31,10 @@ export const LOAD_USER_REQUEST = "LOAD_USER_REQUEST";
 export const LOAD_USER_SUCCESS = "LOAD_USER_SUCCESS";
 export const LOAD_USER_FAILURE = "LOAD_USER_FAILURE";
 
+export const UPDATE_USERINFO_REQUEST = "UPDATE_USERINFO_REQUEST";
+export const UPDATE_USERINFO_SUCCESS = "UPDATE_USERINFO_SUCCESS";
+export const UPDATE_USERINFO_FAILURE = "UPDATE_USERINFO_FAILURE";
+
 export default (state = initialState, action) => {
   switch (action.type) {
     case SIGN_UP_REQUEST: {
@@ -123,6 +127,22 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isLoadUserFail: true,
+      };
+    }
+    case UPDATE_USERINFO_REQUEST: {
+      return {
+        ...state,
+      };
+    }
+    case UPDATE_USERINFO_SUCCESS: {
+      return {
+        ...state,
+        user: action.data,
+      };
+    }
+    case UPDATE_USERINFO_FAILURE: {
+      return {
+        ...state,
       };
     }
     default: {

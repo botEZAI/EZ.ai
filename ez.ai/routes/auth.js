@@ -86,5 +86,28 @@ router.post("/logout", (req, res) => {
   req.session.destroy();
   res.send("logout 성공");
 });
+//유저 정보 업데이트
+router.patch("/", isLoggedIn, async (req, res, next) => {
+  try {
+    await User.update(
+      {
+        nick: req.body.nickName,
+        name: req.body.userName,
+        birth: req.body.birthday,
+      },
+      {
+        where: { id: req.user.id },
+      }
+    );
+    const user = await User.findOne({
+      where: { id: req.user.id },
+      attributes: ["id", "email", "nick", "name", "birth", "profileImage"],
+    });
+    res.json(user);
+  } catch (e) {
+    console.error(e);
+    return next(e);
+  }
+});
 
 module.exports = router;
