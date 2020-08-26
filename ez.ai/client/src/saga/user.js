@@ -13,6 +13,9 @@ import {
   LOAD_USER_FAILURE,
   LOAD_USER_REQUEST,
   LOAD_USER_SUCCESS,
+  UPDATE_USERINFO_REQUEST,
+  UPDATE_USERINFO_SUCCESS,
+  UPDATE_USERINFO_FAILURE,
 } from "../reducer/user";
 
 //---로그인---
@@ -121,11 +124,38 @@ function* loadUser(action) {
 function* watchLoadUser() {
   yield takeEvery(LOAD_USER_REQUEST, loadUser);
 }
+//유저 정보 업데이트
+function updateUserAPI(userInfo) {
+  return axios.patch("api/user/", userInfo, {
+    withCredentials: true,
+  });
+}
+
+function* updateUser(action) {
+  try {
+    const result = yield call(updateUserAPI(action.data));
+    yield put({
+      type: UPDATE_USERINFO_SUCCESS,
+      data: result.data,
+    });
+  } catch (e) {
+    console.error(e);
+    yield put({
+      type: UPDATE_USERINFO_FAILURE,
+      error: e,
+    });
+  }
+}
+
+function* watchUpdateUser() {
+  yield takeEvery(UPDATE_USERINFO_REQUEST, updateUser);
+}
 export default function* userSaga() {
   yield all([
     fork(watchLogIn),
     fork(watchLogOut),
     fork(watchSignUp),
     fork(watchLoadUser),
+    fork(watchUpdateUser),
   ]);
 }

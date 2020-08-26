@@ -61,7 +61,7 @@ const Login = ({ history }) => {
           <div class="login-input">
             <form onSubmit={onSubmitForm} className="login-form">
               <input
-                  type="email"
+                type="email"
                 name="email"
                 value={email}
                 onChange={onChangeEmail}
@@ -78,14 +78,14 @@ const Login = ({ history }) => {
                 placeholder="비밀번호"
               />
               <div className="login-extra">
-                <div className="login-keep">
+                {/* <div className="login-keep">
                   <input type="checkbox" />
                   <span>로그인 유지</span>
-                </div>
-                <div className="login-find">
+                </div> */}
+                {/* <div className="login-find">
                   <span>아이디찾기</span>
                   <span>비밀번호찾기</span>
-                </div>
+                </div> */}
               </div>
               <div className="login-btn">
                 <button className="login-btn__login">로그인</button>
