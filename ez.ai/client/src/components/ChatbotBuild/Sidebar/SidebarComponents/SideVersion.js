@@ -12,6 +12,7 @@ import "./SideVersion.css";
 
 const SideVersion = ({
   activeSideTab,
+  setActivePlatformTab,
   setKeywordObject,
   setKeywordCategory,
   setNow,
@@ -34,6 +35,7 @@ const SideVersion = ({
         type: LOAD_HISTORY_REQUEST,
         data: currentChatbot,
       });
+      setActivePlatformTab("platform-telegram");                                    
   }, [activeSideTab === "history", isUpdateSuccess, isDeploySuccess]);
   useEffect(() => {
     if (isRecoverSuccess) {

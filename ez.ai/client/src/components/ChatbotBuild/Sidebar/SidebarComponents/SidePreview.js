@@ -19,6 +19,8 @@ const SidePreview = (props) => {
   const [message, setMessage] = useState("");
   const [keyboard, setKeyboard] = useState("");
   const [fixedMenu, setFixedMenu] = useState([]);
+  const [persistentCount, setPersistenCount] = useState([]);
+
   const onChangeMessage = (e) => {
     setMessage(e.target.value);
   };
@@ -59,8 +61,16 @@ const SidePreview = (props) => {
       else if (c.type === "list")
         return (
           <>
-            {setKeyboard(props.activePlatformTab)}
-            {setFixedMenu(c.listContent.keywordLink)}
+            {setPersistenCount(c.listContent.keywordLink.filter(elem => elem !== ""))}
+            {persistentCount.length > 4 && props.activePlatformTab === "platform-line"
+              ? 
+                null 
+              :
+                (<>
+                  {setKeyboard(props.activePlatformTab)}
+                  {setFixedMenu(c.listContent.keywordLink)}
+                </>)
+            }
           </>
         );
       else if (c.type === "image")
