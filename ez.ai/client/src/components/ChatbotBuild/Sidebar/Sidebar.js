@@ -81,6 +81,7 @@ const Sidebar = ({
               <div className="sidebar-title history">버전 관리</div>
               <SideVersion
                 activeSideTab={activeSideTab}
+                setActivePlatformTab={setActivePlatformTab}
                 setKeywordObject={setKeywordObject}
                 setKeywordCategory={setKeywordCategory}
                 setNow={setNow}
