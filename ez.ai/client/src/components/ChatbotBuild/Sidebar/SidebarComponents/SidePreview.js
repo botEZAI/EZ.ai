@@ -48,6 +48,9 @@ const SidePreview = (props) => {
 
   //전달받은 키워드 안의 요소들의 타입을 구별후 배열 return
   const addDialogue = (findKeyword, findIndex) => {
+    if (props.activePlatformTab === "platform-line")
+      findKeyword.contents = findKeyword && findKeyword.contents.filter((c) => c.id <= 4);
+      
     const dialogues = findKeyword.contents.map((c, i) => {
       if (c.type === "text")
         return (
@@ -229,18 +232,17 @@ const SidePreview = (props) => {
       setFixedMenu([]);
       setDialogues((prev) => [...prev, sendMessage(i)]);
     },
-    [dialogues, message, currentChatbot]
+    [dialogues, message, currentChatbot, props.activePlatformTab]
   );
 
   const onSubmitPreview = useCallback(
     (e) => {
       e.preventDefault();
-
       //sendMessage 함수로부터 return받은 배열을  dialogues배열에 추가
       setDialogues((prev) => [...prev, sendMessage(message)]);
       setMessage("");
     },
-    [message]
+    [message, props.activePlatformTab]
   );
 
   //일치하는 키워드가 있으면 키워드의 내용을 addDialogue함수로 전달
@@ -280,7 +282,7 @@ const SidePreview = (props) => {
         </>
       );
     },
-    [message, currentChatbot, dialogues]
+    [message, currentChatbot, dialogues, props.activePlatformTab]
   );
   return (
     <>
