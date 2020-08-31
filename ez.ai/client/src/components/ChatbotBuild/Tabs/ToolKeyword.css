@@ -246,7 +246,7 @@
 /* 키워드 관리 창 css */
 .keyword-status {
     width : inherit;
-    height: 375px;
+    height: 475px;
     border : .5px solid #999;
     border-top : none;
     padding: 15px 0;
@@ -355,4 +355,26 @@
     color : #00b8b4;
     box-shadow: 0.5px 0.5px 0.5px 1px #eee;
     transition: .2s all;
+}
+
+/* 웰컴 키워드 */
+.welcome-keyword {
+    width : 100%;
+    display: flex;
+    justify-content: center;
+}
+.welcome-keyword .welcome {
+    width : 60%;
+    margin : 5px 0;
+    border : 1px solid #999;
+    padding : 5px;
+    cursor : pointer;
+    background-color: #eee;
+    color : #999;
+}
+
+.welcome-keyword .welcome:hover {
+    background-color: white;
+    border-color : orangered;
+    color : orangered;
 }
