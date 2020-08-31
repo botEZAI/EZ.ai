@@ -116,6 +116,7 @@ const SideVersion = ({
           JSON.parse(history)
             .reverse()
             .map((v) => (
+
               <div
                 className={`sidebar-history-box ${
                   v.deploy && `sidebar-history-deploy`
@@ -134,7 +135,7 @@ const SideVersion = ({
                     className="sidebar-history-button sidebar-history-btn-deploy"
                     onClick={() => onDeployHistory(v)}
                   >
-                    배포
+                    {!v.deploy ? "배포" : "현재 배포버전입니다"}
                   </button>
                   {/* </div> */}
                   <div className="sidebar-history-btn">

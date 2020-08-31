@@ -77,7 +77,13 @@
 }
 
 .sidebar-history-deploy .sidebar-history-btn-deploy{
-  visibility: hidden;
+  background-color: #d8f9ff;
+  cursor : auto;
+}
+
+.sidebar-history-deploy .sidebar-history-btn-deploy:hover{
+  background-color: #d8f9ff;
+  color : #008cff;
 }
 
 .sidebar-history-btn-deploy:hover {

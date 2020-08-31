@@ -251,6 +251,7 @@ const ToolKeyword = ({
             <h4>키워드 목록</h4>
           </div>
           <div className="tool-keywords">
+
             <div className="add-category">
               <form onSubmit={onSubmitCategory}>
                 <div className="add-category-main">
@@ -271,6 +272,17 @@ const ToolKeyword = ({
                   </div>
                 </div>
               </form>
+            </div>
+
+            <div className="welcome-keyword">
+              <div
+                  key={index}
+                  label={keywordObject[0].keyword}
+                  onClick={onClickKeyword(keywordObject[0].keyword)}
+                  className="welcome"
+              >
+                'Welcome 키워드'
+              </div>
             </div>
 
             {keywordCategory.map((i) => (
@@ -333,7 +345,7 @@ const ToolKeyword = ({
                 {i.show ? (
                   <div className="keyword-category-contents">
                     {keywordObject.map((keyword, index) => {
-                      return keyword.category === i.category ? (
+                      return keyword.category === i.category && index !== 0 ? (
                         <div
                           key={index}
                           label={keyword.keyword}
