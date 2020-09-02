@@ -244,6 +244,7 @@ const ChatbotBuild = (props) => {
           setNow={setNow}
           setClickedMainInput={setClickedMainInput}
           setAddPlatformFlag={setAddPlatformFlag}
+          keywordObject={keywordObject}
         />
       </div>
     </>

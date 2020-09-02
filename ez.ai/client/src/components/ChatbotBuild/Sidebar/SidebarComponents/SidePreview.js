@@ -30,9 +30,9 @@ const SidePreview = (props) => {
 
   //처음 시작시 Welcome키워드에 있는 요소 먼저 나타남
   useEffect(() => {
-    const welcomeDialogue = JSON.parse(currentChatbot.data)[0];
-    setDialogues(addDialogue(welcomeDialogue));
-  }, [props.activePlatformTab, currentChatbot]);
+    const welcomeDialogue = props.keywordObject[0];
+    setDialogues(addDialogue(welcomeDialogue, 0));
+  }, [props.activePlatformTab, currentChatbot, props.keywordObject]);
 
   const currentTime = (position) => {
     return (
@@ -48,14 +48,17 @@ const SidePreview = (props) => {
 
   //전달받은 키워드 안의 요소들의 타입을 구별후 배열 return
   const addDialogue = (findKeyword, findIndex) => {
-    if (props.activePlatformTab === "platform-line")
-      findKeyword.contents = findKeyword && findKeyword.contents.filter((c) => c.id <= 4);
-      
     const dialogues = findKeyword.contents.map((c, i) => {
       if (c.type === "text")
         return (
           <div
-            className={`preview-receive ${props.activePlatformTab} ${props.activePlatformTab}-text`}
+            className={` ${props.activePlatformTab} ${
+              props.activePlatformTab
+            }-text ${
+              props.activePlatformTab === "platform-line" && i >= 4
+                ? `linePreviewLimit`
+                : `preview-receive`
+            }`}
           >
             {c.content}
             {currentTime("outer")}
@@ -64,22 +67,28 @@ const SidePreview = (props) => {
       else if (c.type === "list")
         return (
           <>
-            {setPersistenCount(c.listContent.keywordLink.filter(elem => elem !== ""))}
-            {persistentCount.length > 4 && props.activePlatformTab === "platform-line"
-              ? 
-                null 
-              :
-                (<>
-                  {setKeyboard(props.activePlatformTab)}
-                  {setFixedMenu(c.listContent.keywordLink)}
-                </>)
-            }
+            {setPersistenCount(
+              c.listContent.keywordLink.filter((elem) => elem !== "")
+            )}
+            {persistentCount.length > 4 &&
+            props.activePlatformTab === "platform-line" ? null : (
+              <>
+                {setKeyboard(props.activePlatformTab)}
+                {setFixedMenu(c.listContent.keywordLink)}
+              </>
+            )}
           </>
         );
       else if (c.type === "image")
         return (
           <div
-            className={`preview-receive ${props.activePlatformTab} ${props.activePlatformTab}-image`}
+            className={` ${props.activePlatformTab} ${
+              props.activePlatformTab
+            }-image  ${
+              props.activePlatformTab === "platform-line" && i >= 4
+                ? `linePreviewLimit`
+                : `preview-receive`
+            }`}
           >
             <div
               className="main-image-preview"
@@ -91,7 +100,13 @@ const SidePreview = (props) => {
       else if (c.type === "audio")
         return (
           <div
-            className={`preview-receive ${props.activePlatformTab} ${props.activePlatformTab}-audio`}
+            className={` ${props.activePlatformTab} ${
+              props.activePlatformTab
+            }-audio  ${
+              props.activePlatformTab === "platform-line" && i >= 4
+                ? `linePreviewLimit`
+                : `preview-receive`
+            }`}
           >
             <i className="fas fa-play fa-lg file-icon-preview"></i>
             <div
@@ -105,7 +120,13 @@ const SidePreview = (props) => {
       else if (c.type === "video")
         return (
           <div
-            className={`preview-receive ${props.activePlatformTab} ${props.activePlatformTab}-video`}
+            className={` ${props.activePlatformTab} ${
+              props.activePlatformTab
+            }-video  ${
+              props.activePlatformTab === "platform-line" && i >= 4
+                ? `linePreviewLimit`
+                : `preview-receive`
+            }`}
           >
             <i className="fas fa-play fa-lg file-icon-preview"></i>
             <div
@@ -119,10 +140,16 @@ const SidePreview = (props) => {
       else if (c.type === "location")
         return (
           <div
-            className={`preview-receive ${props.activePlatformTab} ${props.activePlatformTab}-location`}
+            className={` ${props.activePlatformTab} ${
+              props.activePlatformTab
+            }-location  ${
+              props.activePlatformTab === "platform-line" && i >= 4
+                ? `linePreviewLimit`
+                : `preview-receive`
+            }`}
           >
             <GoogleMapPresenter
-              keywordObject={JSON.parse(currentChatbot.data)}
+              keywordObject={props.keywordObject}
               setKeywordObject={props.setKeywordObject}
               index={findIndex}
               now={i}
@@ -130,16 +157,14 @@ const SidePreview = (props) => {
             {currentTime("inner")}
           </div>
         );
-      else if (c.type === "btn_template"){
+      else if (c.type === "btn_template") {
         return (
           <>
-          {props.activePlatformTab === "platform-telegram" ? 
-            <div className="buttonsbox-telegram" key={c.content + i}>
-              {/* 이미지 */}
-              {c.content.thumbnailImageUrl !== "" ? (
-                  <div
-                    className="preview-receive buttons-thumbnail-telegram"
-                  >
+            {props.activePlatformTab === "platform-telegram" ? (
+              <div className="buttonsbox-telegram" key={c.content + i}>
+                {/* 이미지 */}
+                {c.content.thumbnailImageUrl !== "" ? (
+                  <div className="preview-receive buttons-thumbnail-telegram">
                     <img
                       className="main-buttons-thumbnail-image"
                       src={c.content.thumbnailImageUrl}
@@ -151,77 +176,84 @@ const SidePreview = (props) => {
                     />
                     {currentTime("inner")}
                   </div>
-               ) : null}
-              {c.content.title !== "" ? (
-                <div className="preview-receive buttons-title-telegram">
-                  {c.content.title}
+                ) : null}
+                {c.content.title !== "" ? (
+                  <div className="preview-receive buttons-title-telegram">
+                    {c.content.title}
+                    {currentTime("outer")}
+                  </div>
+                ) : null}
+                <div className="preview-receive buttons-text-telegram">
+                  {c.content.text !== "" ? c.content.text : "text"}
                   {currentTime("outer")}
                 </div>
-              ) : null }
-              <div className="preview-receive buttons-text-telegram">
-               {c.content.text !== "" ? c.content.text : "text"}
-                {currentTime("outer")}
+                {setKeyboard("platform-telegram-buttons")}
+                {setFixedMenu(c.content.actions)}
               </div>
-              {setKeyboard("platform-telegram-buttons")}
-              {setFixedMenu(c.content.actions)}
-            </div>
-          : 
-            <div
-            className={`preview-receive ${props.activePlatformTab} ${props.activePlatformTab}-btn_template`}
-            >
-              <div className={"buttonsbox-line"} key={c.content + i}>
-                {/* 버튼 템플릿 이미지 없을 경우 이미지 영역 보이지 않음 */}
-                {c.content.thumbnailImageUrl !== "" ? (
-                  <div
-                    className="buttons-thumbnail-line"
-                    style={{
-                      backgroundColor: c.content.imageBackgroundColor,
-                    }}
-                  >
-                    <img
-                      className="main-buttons-thumbnail-image"
-                      src={c.content.thumbnailImageUrl}
-                      style={
-                        c.content.imageSize === "cover"
-                          ? { width: "100%" }
-                          : { height: "100%" }
-                      }
-                    />
-                  </div>
-               ) : null}
-                <div className="main-buttons-contents">
-                  {c.content.title !== "" ? (
-                    <div className="buttons-title-line">{c.content.title}</div>
-                  ) : null}
-                  <div className="buttons-text-line">
-                    {c.content.text !== "" ? c.content.text : "text"}
-                  </div>
-                  <div className="main-buttons-actions">
-                    <div className="space-top"></div>
-                    {c.content.actions.map((act, index) => (
-                      <div
-                        className="main-buttons-action"
-                        onClick={() =>
-                          act.type === "uri"
-                            ? moveKeyword(act.uri)
-                            : moveKeyword(act.data)
+            ) : (
+              <div
+                className={` ${props.activePlatformTab} ${
+                  props.activePlatformTab
+                }-btn_template  ${
+                  props.activePlatformTab === "platform-line" && i >= 4
+                    ? `linePreviewLimit`
+                    : `preview-receive`
+                }`}
+              >
+                <div className={"buttonsbox-line"} key={c.content + i}>
+                  {/* 버튼 템플릿 이미지 없을 경우 이미지 영역 보이지 않음 */}
+                  {c.content.thumbnailImageUrl !== "" ? (
+                    <div
+                      className="buttons-thumbnail-line"
+                      style={{
+                        backgroundColor: c.content.imageBackgroundColor,
+                      }}
+                    >
+                      <img
+                        className="main-buttons-thumbnail-image"
+                        src={c.content.thumbnailImageUrl}
+                        style={
+                          c.content.imageSize === "cover"
+                            ? { width: "100%" }
+                            : { height: "100%" }
                         }
-                      >
-                        {act.label !== ""
-                          ? act.label
-                          : "(button" + (index + 1) + ")"}
+                      />
+                    </div>
+                  ) : null}
+                  <div className="main-buttons-contents">
+                    {c.content.title !== "" ? (
+                      <div className="buttons-title-line">
+                        {c.content.title}
                       </div>
-                    ))}
+                    ) : null}
+                    <div className="buttons-text-line">
+                      {c.content.text !== "" ? c.content.text : "text"}
+                    </div>
+                    <div className="main-buttons-actions">
+                      <div className="space-top"></div>
+                      {c.content.actions.map((act, index) => (
+                        <div
+                          className="main-buttons-action"
+                          onClick={() =>
+                            act.type === "uri"
+                              ? moveKeyword(act.uri)
+                              : moveKeyword(act.data)
+                          }
+                        >
+                          {act.label !== ""
+                            ? act.label
+                            : "(button" + (index + 1) + ")"}
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
+                {currentTime("outer")}
               </div>
-              {currentTime("outer")}
-            </div>
-          }
+            )}
           </>
         );
       }
-        
     });
     return dialogues;
   };
@@ -232,7 +264,13 @@ const SidePreview = (props) => {
       setFixedMenu([]);
       setDialogues((prev) => [...prev, sendMessage(i)]);
     },
-    [dialogues, message, currentChatbot, props.activePlatformTab]
+    [
+      dialogues,
+      message,
+      currentChatbot,
+      props.activePlatformTab,
+      props.keywordObject,
+    ]
   );
 
   const onSubmitPreview = useCallback(
@@ -248,10 +286,8 @@ const SidePreview = (props) => {
   //일치하는 키워드가 있으면 키워드의 내용을 addDialogue함수로 전달
   const sendMessage = useCallback(
     (input) => {
-      const findKeyword = JSON.parse(currentChatbot.data).find(
-        (k) => k.keyword === input
-      );
-      const findIndex = JSON.parse(currentChatbot.data).findIndex(
+      const findKeyword = props.keywordObject.find((k) => k.keyword === input);
+      const findIndex = props.keywordObject.findIndex(
         (k) => k.keyword === input
       );
       if (!findKeyword)
@@ -282,7 +318,13 @@ const SidePreview = (props) => {
         </>
       );
     },
-    [message, currentChatbot, dialogues, props.activePlatformTab]
+    [
+      message,
+      currentChatbot,
+      dialogues,
+      props.activePlatformTab,
+      props.keywordObject,
+    ]
   );
   return (
     <>
@@ -414,22 +456,19 @@ const SidePreview = (props) => {
           ) : keyboard === "platform-telegram-buttons" ? (
             <div className="preview-keyboard">
               {fixedMenu.map((act, index) => (
-                <div 
+                <div
                   className={`preview-button ${props.activePlatformTab}-list-elem`}
-                  onClick={() => 
-                    act.type === "uri" 
+                  onClick={() =>
+                    act.type === "uri"
                       ? moveKeyword(act.uri)
-                      : moveKeyword(act.data) 
+                      : moveKeyword(act.data)
                   }
                 >
-                  {act.label !== ""
-                    ? act.label
-                    : "(button" + (index + 1) + ")" 
-                  }
+                  {act.label !== "" ? act.label : "(button" + (index + 1) + ")"}
                 </div>
               ))}
             </div>
-          ) : null }
+          ) : null}
         </div>
       ) : null}
     </>
