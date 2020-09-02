@@ -15,24 +15,29 @@ export const GoogleMapPresenter = ({
   const { currentChatbot } = useSelector((state) => state.chatbot);
   const mapRef = useRef(null);
   const [latitude, setLatitude] = useState(
-    keywordObject[index].contents[now] &&
+    keywordObject[index] &&
+      keywordObject[index].contents[now] &&
       keywordObject[index].contents[now].latitude
   );
   const [longtitude, setLongtitude] = useState(
-    keywordObject[index].contents[now] &&
+    keywordObject[index] &&
+      keywordObject[index].contents[now] &&
       keywordObject[index].contents[now].longtitude
   );
   useEffect(() => {
     setLatitude(
-      keywordObject[index].contents[now] &&
+      keywordObject[index] &&
+        keywordObject[index].contents[now] &&
         keywordObject[index].contents[now].latitude
     );
     setLongtitude(
-      keywordObject[index].contents[now] &&
+      keywordObject[index] &&
+        keywordObject[index].contents[now] &&
         keywordObject[index].contents[now].longtitude
     );
   }, [
-    keywordObject[index].contents[now] &&
+    keywordObject[index] &&
+      keywordObject[index].contents[now] &&
       keywordObject[index].contents[now].latitude,
   ]);
   // const onClickMap = (e, aug, geo) => {
@@ -46,6 +51,7 @@ export const GoogleMapPresenter = ({
 
   return (
     <>
+      {console.log(keywordObject, index, now)}
       <div className={"GoogleMapPresenter"}>
         <Map
           ref={mapRef}
@@ -61,11 +67,13 @@ export const GoogleMapPresenter = ({
           <Marker
             position={{
               lat:
-                (keywordObject[index].contents[now] &&
+                (keywordObject[index] &&
+                  keywordObject[index].contents[now] &&
                   keywordObject[index].contents[now].latitude) ||
                 37.555185,
               lng:
-                (keywordObject[index].contents[now] &&
+                (keywordObject[index] &&
+                  keywordObject[index].contents[now] &&
                   keywordObject[index].contents[now].longtitude) ||
                 126.971315,
             }}

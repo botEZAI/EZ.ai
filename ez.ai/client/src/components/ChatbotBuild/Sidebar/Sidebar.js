@@ -14,7 +14,8 @@ const Sidebar = ({
   setKeywordObject,
   setNow,
   setClickedMainInput,
-  setAddPlatformFlag
+  setAddPlatformFlag,
+  keywordObject,
 }) => {
   const [activeSideOverlay, setActiveSideOverlay] = useState("default");
   const [activeSideTab, setActiveSideTab] = useState("");
@@ -72,6 +73,7 @@ const Sidebar = ({
                 <SidePreview
                   activePlatformTab={activePlatformTab}
                   setKeywordObject={setKeywordObject}
+                  keywordObject={keywordObject}
                 />
               </div>
             </>
@@ -93,9 +95,7 @@ const Sidebar = ({
             <>
               <div className="sidebar-title settings">프로젝트 설정 페이지</div>
               <div className="sidebar-article">
-                <SideSetting 
-                  setAddPlatformFlag={setAddPlatformFlag}
-                />
+                <SideSetting setAddPlatformFlag={setAddPlatformFlag} />
               </div>
             </>
           )}
