@@ -197,7 +197,9 @@
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
 }
-
+.main-buttons-actions {
+  padding : 10px 0;
+}
 .main-buttons-action{
   display: flex;
   flex-direction: column;
@@ -206,11 +208,10 @@
   padding: 10px 0;
   font-size: large;
   color: #5271a2;
+  cursor: pointer;
 }
 
-.space-top{
-  padding:10px 0 0 0;
+.main-buttons-action:hover {
+  background-color: #f9f9f9;
 }
-.space-bottom{
-  padding: 0 0 10px 0;
-}
+

@@ -14,7 +14,7 @@ const SidePreview = (props) => {
     theHours = theHours - 12;
     noon = "오후";
   }
-  let theMin = today.getMinutes();
+
   const { currentChatbot } = useSelector((state) => state.chatbot);
   const [message, setMessage] = useState("");
   const [keyboard, setKeyboard] = useState("");
