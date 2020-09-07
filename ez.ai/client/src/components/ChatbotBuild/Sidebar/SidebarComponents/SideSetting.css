@@ -129,6 +129,8 @@
 
 .chatbot-delete-box > p {
   margin:15px 0;
+  font-weight: bold;
+  color : #cb2431;
 }
 .chatbot-delete-box > p > strong{
   font-weight: bold;
