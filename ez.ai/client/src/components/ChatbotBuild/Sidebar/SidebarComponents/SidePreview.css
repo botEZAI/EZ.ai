@@ -16,6 +16,8 @@
   display: flex;
   flex-direction: column;
   overflow: scroll;
+  text-align: left;
+  white-space: pre-wrap;
 }
 .file-icon-preview {
   padding: 18px;
@@ -155,8 +157,10 @@
 .preview-input form input:focus {
   outline: none;
 }
-.datetime {
+.preview-contents .datetime {
   margin: 15px;
+  display: flex;
+  justify-content: center;
 }
 time {
   font-size: 13px;
@@ -177,12 +181,13 @@ time {
 }
 .preview-receive {
   width: inherit;
+  max-width: 90%;
   align-self: flex-start;
   position: relative;
   display: flex;
+  align-items: flex-end!important;
   background-color: white;
   border-radius: 10px;
-  padding: 2px;
   margin: 5px;
 }
 .platform-telegram-text,
@@ -195,6 +200,8 @@ time {
   position: relative;
   right: -6px;
   bottom: -3px;
+  min-width : 60px;
+  height : auto;
 }
 
 .side-telegram .preview-send .nowtime_outer time {
@@ -203,6 +210,7 @@ time {
   background-color: #e5ffd0;
   color: #426327;
   font-weight: normal;
+
 }
 
 .side-telegram .preview-receive .nowtime_outer time {
@@ -211,6 +219,7 @@ time {
   background-color: white;
   color: #999;
   font-weight: normal;
+
 }
 
 .side-telegram .preview-receive .nowtime_inner time {
@@ -250,7 +259,7 @@ time {
 
 .side-line .platform-line-btn_template {
   padding: 0 !important;
-  width: 240px;
+  width: 290px;
 }
 
 /*  미리보기 창 기본 인터페이스 */
@@ -296,8 +305,12 @@ time {
   align-items: center;
   margin: 5px 5px 0 5px;
   height: 40px;
-
   border-radius: 3px;
+  cursor : pointer;
+}
+
+.preview-button:hover {
+  background-color: #ddd!important;
 }
 
 .side-telegram .preview-button {

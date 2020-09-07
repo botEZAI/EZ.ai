@@ -103,12 +103,12 @@ const SideSetting = ({ setAddPlatformFlag, history }) => {
             </div>
 
           </div>
-          <div
+          <button
             className="chatbot-rename-btn"
             onClick={(e) => onUpdateChatbotDesc(e)}
           >
             수정
-          </div>
+          </button>
         </div>
       </div>
       <div className="chatbot-connect-setting">

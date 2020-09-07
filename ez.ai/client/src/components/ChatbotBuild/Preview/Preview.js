@@ -6,10 +6,8 @@ import "./Preview.css";
 
 import PersistentMenu from "./LinePreview/AdvancePreview/PersistentMenu";
 import VirtualKeyboard from "./TelegramPreview/AdvancePreview/VirtualKeyboard";
-import DefaultPreview from "./DefaultPreview/DefaultPreview";
 import TelegramPreview from "./TelegramPreview/TelegramPreview";
 import LinePreview from "./LinePreview/LinePreview";
-import FacebookPreview from "./FacebookPreview/FacebookPreview";
 // import Slider from "./Slider";
 
 const Preview = ({
@@ -166,19 +164,7 @@ const Preview = ({
         }
         ref={contentRef}
       >
-        {theme === "default" ? (
-          <DefaultPreview
-            changeAvailableIcon={changeAvailableIcon}
-            index={index}
-            keywordObject={keywordObject}
-            now={now}
-            onDelete={onDelete}
-            setClickedMainInput={setClickedMainInput}
-            setKeywordObject={setKeywordObject}
-            setVirtualKeyboard={setVirtualKeyboard}
-            setNow={setNow}
-          />
-        ) : theme === "telegram" ? (
+        {theme === "telegram" ? (
           <TelegramPreview
             changeAvailableIcon={changeAvailableIcon}
             index={index}
@@ -203,18 +189,6 @@ const Preview = ({
             setVirtualKeyboard={setVirtualKeyboard}
             setNow={setNow}
             platformInfo={platformInfo}
-          />
-        ) : theme === "facebook" ? (
-          <FacebookPreview
-            changeAvailableIcon={changeAvailableIcon}
-            index={index}
-            keywordObject={keywordObject}
-            now={now}
-            onDelete={onDelete}
-            setClickedMainInput={setClickedMainInput}
-            setKeywordObject={setKeywordObject}
-            setVirtualKeyboard={setVirtualKeyboard}
-            setNow={setNow}
           />
         ) : null}
       </div>
