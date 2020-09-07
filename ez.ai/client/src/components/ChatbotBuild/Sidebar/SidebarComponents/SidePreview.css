@@ -157,8 +157,10 @@
 .preview-input form input:focus {
   outline: none;
 }
-.datetime {
+.preview-contents .datetime {
   margin: 15px;
+  display: flex;
+  justify-content: center;
 }
 time {
   font-size: 13px;
