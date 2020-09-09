@@ -92,7 +92,6 @@ const Preview = ({
     let tmp = keywordObject[index].contents.findIndex(
       (content, i) => content.id === id
     );
-    console.log(tmp, id);
     setClickedMainInput(false);
     if (now > tmp) {
       setNow(now - 1);
