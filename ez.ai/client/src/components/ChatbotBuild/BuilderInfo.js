@@ -15,7 +15,6 @@ const BuilderInfo = ({ keywordObject, keywordCategory, setKeywordObject }) => {
   const snsIcon = ["fab fa-line", "fab fa-telegram"];
   const [isSaved, setIsSaved] = useState(true);
   const [isDeployed, setIsDeployed] = useState(false);
-  const [isCanSave, setIsCanSave] = useState(true);
   const dispatch = useDispatch();
   const {
     currentChatbot,
@@ -36,22 +35,23 @@ const BuilderInfo = ({ keywordObject, keywordCategory, setKeywordObject }) => {
       setLineLimmitOn(true);
     else setLineLimmitOn(false);
   }, [keywordObject]);
-  useEffect(() => {
-    keywordObject.map((keyword, index) => {
-      keyword.contents.map((content, i) => {
-        if (content.type === "btn_template") {
-          if (content.content.text === "") setIsCanSave(false);
-        }
-      });
-    });
-  }, [keywordObject]);
   const updateChatbot = () => {
+    var empty = false;
     if (info === "") alert("저장사항에 대한 정보를 입력하세요.");
     else {
-      if (!isCanSave) {
-        setIsCanSave(true);
-        alert("버튼템플릿 텍스트는 필수 입력사항입니다.");
+      for (var i = 0; i < keywordObject.length; i++) {
+        for (var j = 0; j < keywordObject[i].contents.length; j++) {
+          if (
+            keywordObject[i].contents[j].type === "btn_template" &&
+            keywordObject[i].contents[j].content.text === ""
+          ) {
+            empty = keywordObject[i].contents[j];
+          }
+        }
+      }
+      if (empty) {
         setInfo("");
+        return alert("버튼템플릿 텍스트는 필수 입력사항입니다.");
       } else {
         const mergedData = {
           ...currentChatbot,

@@ -114,7 +114,6 @@ const ChatbotBuild = (props) => {
   return (
     <>
       <div className="builder">
-        {console.log(keywordObject)}
         <div className="builder__column builder-info">
           <BuilderInfo
             keywordObject={keywordObject}
