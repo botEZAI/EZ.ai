@@ -236,7 +236,7 @@ const SidePreview = (props) => {
                           className="main-buttons-action"
                           onClick={() =>
                             act.type === "uri"
-                              ? moveKeyword(act.uri)
+                              ? window.open(act.uri)
                               : moveKeyword(act.data)
                           }
                         >
@@ -460,7 +460,7 @@ const SidePreview = (props) => {
                   className={`preview-button ${props.activePlatformTab}-list-elem`}
                   onClick={() =>
                     act.type === "uri"
-                      ? moveKeyword(act.uri)
+                      ? window.open(act.uri)
                       : moveKeyword(act.data)
                   }
                 >
