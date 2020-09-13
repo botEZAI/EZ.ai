@@ -40,7 +40,6 @@ const PlacesAutocomplete2 = ({
 
   const handleInput = (e) => {
     setValue(e.target.value);
-    console.log(e);
   };
   //주소 선택시
   const handleSelect = (val) => {
@@ -64,7 +63,12 @@ const PlacesAutocomplete2 = ({
 
   return (
     <Combobox onSelect={handleSelect} aria-labelledby="demo">
-      <ComboboxInput value={value} onChange={handleInput} disabled={!ready} placeholder = "장소명을 검색하세요"/>
+      <ComboboxInput
+        value={value}
+        onChange={handleInput}
+        disabled={!ready}
+        placeholder="장소명을 검색하세요"
+      />
       <ComboboxPopover>
         <ComboboxList>
           {status === "OK" &&

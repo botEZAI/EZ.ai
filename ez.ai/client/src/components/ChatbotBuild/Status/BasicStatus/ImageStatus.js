@@ -25,7 +25,7 @@ const ImageStatus = ({
       setImageURL(e.target.value);
       setKeywordObject(
         produce(keywordObject, (draft) => {
-          draft[index].contents[now].content = e.target.value;
+          draft[index].contents[now].filepath = e.target.value;
         })
       );
     }
@@ -34,12 +34,12 @@ const ImageStatus = ({
   const onClickUploadImage = () => {
     imageRef.current.click();
   };
-  const onChangeImage = async(e) => {
+  const onChangeImage = async (e) => {
     if (e.target.value === "") return;
     if (e.target.files[0].type.match(/image/g)) {
       if (!e.target.files[0].type.includes("gif")) {
         if (e.target.files[0].size < 10000000) {
-          setUploading(true)
+          setUploading(true);
           const imageFormData = new FormData();
           imageFormData.append("image", e.target.files[0]);
 
@@ -53,7 +53,7 @@ const ImageStatus = ({
               })
             );
           });
-          setUploading(false)
+          setUploading(false);
         } else {
           return alert("이미지의 크기는 최대 10mb를 초과할수 없습니다");
         }
@@ -89,7 +89,7 @@ const ImageStatus = ({
           <div className="status-image-input">
             <input
               placeholder="외부 이미지 URL를 입력해주세요"
-              value={currentContent || ""}
+              value={keywordObject[index].contents[now].filepath || ""}
               onChange={onClickLoadImage}
             />
           </div>
@@ -118,18 +118,16 @@ const ImageStatus = ({
               title="로컬 이미지 업로드"
             >
               {uploading ? (
-                  <p>파일 업로딩중...</p>
+                <p>파일 업로딩중...</p>
+              ) : keywordObject[index].contents[now].filepath === "" ? (
+                <>
+                  <i className="fas fa-upload"></i>
+                  <div className="preview-screen-description">파일 업로드</div>
+                </>
               ) : (
-                  keywordObject[index].contents[now].filepath === "" ? (
-                    <>
-                      <i className="fas fa-upload"></i>
-                      <div className="preview-screen-description">파일 업로드</div>
-                    </>
-                  ) : (
-                    <>
-                      <img className="preview-screen-image" src={imageURL} />
-                    </>
-                  )
+                <>
+                  <img className="preview-screen-image" src={imageURL} />
+                </>
               )}
             </div>
             <input ref={imageRef} type="file" hidden onChange={onChangeImage} />
