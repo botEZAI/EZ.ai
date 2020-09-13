@@ -347,27 +347,26 @@ const ButtonTemplateStatus = ({
                         <option value="none" selected disabled>
                           연동할 키워드를 선택해주세요
                         </option>
-                        {keywordCategory.map(category => {
+                        {keywordCategory.map((category) => {
                           return (
-                              <>
-                                <optgroup label={category.category}>
-                                  {keywordObject.map((keyword, index) => {
-                                    return (
-                                        keyword.category === category.category && index > 0 ? (
-                                            <>
-                                              <option
-                                                  key={index}
-                                                  value={keyword.keyword}
-                                              >
-                                                {keyword.keyword}
-                                              </option>
-                                            </>
-                                        ) : null
-                                    )
-                                  })}
-                                </optgroup>
-                              </>
-                          )
+                            <>
+                              <optgroup label={category.category}>
+                                {keywordObject.map((keyword, index) => {
+                                  return keyword.category ===
+                                    category.category && index > 0 ? (
+                                    <>
+                                      <option
+                                        key={index}
+                                        value={keyword.keyword}
+                                      >
+                                        {keyword.keyword}
+                                      </option>
+                                    </>
+                                  ) : null;
+                                })}
+                              </optgroup>
+                            </>
+                          );
                         })}
                       </select>
                     )}

@@ -38,7 +38,7 @@ const ImageStatus = ({
     if (e.target.value === "") return;
     if (e.target.files[0].type.match(/image/g)) {
       if (!e.target.files[0].type.includes("gif")) {
-        if (e.target.files[0].size < 10000000) {
+        if (e.target.files[0].size < 5000000) {
           setUploading(true);
           const imageFormData = new FormData();
           imageFormData.append("image", e.target.files[0]);
@@ -55,7 +55,7 @@ const ImageStatus = ({
           });
           setUploading(false);
         } else {
-          return alert("이미지의 크기는 최대 10mb를 초과할수 없습니다");
+          return alert("이미지의 크기는 최대 5mb를 초과할수 없습니다");
         }
       } else {
         return alert("이미지는 JPG, JPEG, PNG 확장자만 가능합니다");

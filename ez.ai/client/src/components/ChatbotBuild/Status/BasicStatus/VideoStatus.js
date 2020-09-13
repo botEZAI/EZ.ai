@@ -13,8 +13,8 @@ const VideoStatus = ({ setKeywordObject, keywordObject, now, index }) => {
   const onChangeVideo = async (e) => {
     if (e.target.value === "") return;
     if (e.target.files[0].type.match(/video/g)) {
-      if (e.target.files[0].size < 200000000) {
-        setUploading(true)
+      if (e.target.files[0].size < 20000000) {
+        setUploading(true);
         const videoFormData = new FormData();
         videoFormData.append("video", e.target.files[0]);
 
@@ -27,9 +27,9 @@ const VideoStatus = ({ setKeywordObject, keywordObject, now, index }) => {
             })
           );
         });
-        setUploading(false)
+        setUploading(false);
       } else {
-        return alert("비디오의 크기는 최대 200mb를 초과할수 없습니다");
+        return alert("비디오의 크기는 최대 20mb를 초과할수 없습니다");
       }
     } else return alert("비디오 파일이 아닙니다.");
   };
@@ -44,13 +44,17 @@ const VideoStatus = ({ setKeywordObject, keywordObject, now, index }) => {
               title="로컬 동영상 업로드"
             >
               {uploading ? (
-                  <p>파일 업로딩중...</p>
-              ) : ( videoName || (
-                <>
-                  <i className="fas fa-upload"></i>
-                  <div className="preview-screen-description">파일 업로드</div>
-                </>
-              ))}
+                <p>파일 업로딩중...</p>
+              ) : (
+                videoName || (
+                  <>
+                    <i className="fas fa-upload"></i>
+                    <div className="preview-screen-description">
+                      파일 업로드
+                    </div>
+                  </>
+                )
+              )}
             </div>
             <input ref={videoRef} type="file" hidden onChange={onChangeVideo} />
           </div>

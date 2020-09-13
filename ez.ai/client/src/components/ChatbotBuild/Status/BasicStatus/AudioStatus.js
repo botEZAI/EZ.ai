@@ -13,7 +13,7 @@ const AudioStatus = ({ setKeywordObject, keywordObject, now, index }) => {
   const onChangeAudio = async (e) => {
     if (e.target.value === "") return;
     if (e.target.files[0].type.match(/audio/g)) {
-      if (e.target.files[0].size < 150000000) {
+      if (e.target.files[0].size < 20000000) {
         setUploading(true);
         const audioFormData = new FormData();
         audioFormData.append("audio", e.target.files[0]);
@@ -29,9 +29,9 @@ const AudioStatus = ({ setKeywordObject, keywordObject, now, index }) => {
             })
           );
         });
-        setUploading(false)
+        setUploading(false);
       } else {
-        return alert("오디오의 크기는 최대 150mb를 초과할수 없습니다");
+        return alert("오디오의 크기는 최대 20mb를 초과할수 없습니다");
       }
     } else return alert("오디오 파일이 아닙니다.");
   };
@@ -46,13 +46,17 @@ const AudioStatus = ({ setKeywordObject, keywordObject, now, index }) => {
               title="로컬 오디오 업로드"
             >
               {uploading ? (
-                  <p>파일 업로딩중...</p>
-              ) : (audioName || (
-                <>
-                  <i className="fas fa-upload"></i>
-                  <div className="preview-screen-description">파일 업로드</div>
-                </>
-              ))}
+                <p>파일 업로딩중...</p>
+              ) : (
+                audioName || (
+                  <>
+                    <i className="fas fa-upload"></i>
+                    <div className="preview-screen-description">
+                      파일 업로드
+                    </div>
+                  </>
+                )
+              )}
             </div>
             <input ref={audioRef} type="file" hidden onChange={onChangeAudio} />
           </div>
