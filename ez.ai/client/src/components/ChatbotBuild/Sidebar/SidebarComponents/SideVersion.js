@@ -61,17 +61,18 @@ const SideVersion = ({
     [history, currentChatbot]
   );
   //기록 삭제
-  const onDeleteHistory = useCallback(
-    (history) => {
-      if (history.info === "초기") alert("초기 버전은 삭제할 수 없습니다.");
-      else {
-        dispatch({
-          type: REMOVE_HISTORY_REQUEST,
-          data: { currentChatbot, history },
-        });
-      }
-    },
-    [history]
+  const onDeleteHistory = useCallback((history) => {
+      if (window.confirm("정말로 해당 저장을 삭제하시겠습니까?\n한번 삭제후 되돌릴 수 없습니다.")) {
+          if (history.info === "초기") alert("초기 버전은 삭제할 수 없습니다.");
+          else {
+            dispatch({
+              type: REMOVE_HISTORY_REQUEST,
+              data: { currentChatbot, history },
+            });
+          }
+        }
+      },
+      [history]
   );
   //배포
   const onDeployHistory = useCallback(
