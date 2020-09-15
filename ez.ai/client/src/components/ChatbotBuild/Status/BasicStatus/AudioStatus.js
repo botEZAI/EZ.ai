@@ -62,7 +62,7 @@ const AudioStatus = ({ setKeywordObject, keywordObject, now, index }) => {
           </div>
           <div className="caution">
             <p>파일 형식: MP3, M4A</p>
-            <p>최대 파일 크기 : 150MB</p>
+            <p>최대 파일 크기 : 20MB</p>
           </div>
         </div>
       </div>

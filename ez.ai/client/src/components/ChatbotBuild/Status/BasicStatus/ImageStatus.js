@@ -134,7 +134,7 @@ const ImageStatus = ({
           </div>
           <div className="caution">
             <p>파일형식 : JPG, JPEG, PNG</p>
-            <p>최대 파일 크기 : 10MB</p>
+            <p>최대 파일 크기 : 5MB</p>
           </div>
         </div>
       )}
