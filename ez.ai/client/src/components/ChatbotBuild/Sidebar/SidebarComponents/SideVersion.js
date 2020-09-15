@@ -108,9 +108,6 @@ const SideVersion = ({
           <div className="sidebar-history-recent-title-text">
             최근 저장 목록
           </div>
-          <div className="sidebar-history-recent-title-caution">
-            최근 저장 목록은 최대 20개까지 저장됩니다.
-          </div>
         </div>
         {history &&
           JSON.parse(history)
