@@ -60,7 +60,7 @@ const VideoStatus = ({ setKeywordObject, keywordObject, now, index }) => {
           </div>
           <div className="caution">
             <p>파일 형식: MP4, M4V, MOV, AVI, WMV</p>
-            <p>최대 파일 크기 : 200MB</p>
+            <p>최대 파일 크기 : 20MB</p>
           </div>
         </div>
       </div>

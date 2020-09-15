@@ -30,7 +30,7 @@
   color: #999;
   height: 30px;
   display: flex;
-  line-height: 24px;
+  align-items: center;
   font-size: 18px;
 }
 
