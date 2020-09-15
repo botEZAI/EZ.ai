@@ -108,7 +108,7 @@ const ChatbotList = (props) => {
 
       data: [
         {
-          keyword: "Welcome",
+          keyword: "/start",
           id: 1,
           contents: [],
           completed: false,

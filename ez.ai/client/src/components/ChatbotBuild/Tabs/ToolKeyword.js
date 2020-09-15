@@ -75,7 +75,9 @@ const ToolKeyword = ({
     let found = false;
 
     keywordObject.map((keyword) => {
-      if (keyword.category === val) {found = true};
+      if (keyword.category === val) {
+        found = true;
+      }
     });
 
     if (found) {
@@ -251,7 +253,6 @@ const ToolKeyword = ({
             <h4>키워드 목록</h4>
           </div>
           <div className="tool-keywords">
-
             <div className="add-category">
               <form onSubmit={onSubmitCategory}>
                 <div className="add-category-main">
@@ -276,10 +277,10 @@ const ToolKeyword = ({
 
             <div className="welcome-keyword">
               <div
-                  key={index}
-                  label={keywordObject[0].keyword}
-                  onClick={onClickKeyword(keywordObject[0].keyword)}
-                  className="welcome"
+                key={index}
+                label={keywordObject[0].keyword}
+                onClick={onClickKeyword(keywordObject[0].keyword)}
+                className="welcome"
               >
                 'Welcome 키워드'
               </div>
@@ -320,7 +321,9 @@ const ToolKeyword = ({
                       />
                     )}
                   </div>
-                  <div className={`keyword-category-btns keyword-category-${i.category}-btns`}>
+                  <div
+                    className={`keyword-category-btns keyword-category-${i.category}-btns`}
+                  >
                     <div
                       className={
                         disableInput && selectedCategory !== i.category

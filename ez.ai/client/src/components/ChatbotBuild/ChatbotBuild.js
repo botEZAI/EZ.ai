@@ -20,7 +20,7 @@ const ChatbotBuild = (props) => {
   const { user } = useSelector((state) => state.user);
   const [activeTab, setActiveTab] = useState("basic");
   const [keyword, setKeyword] = useState("");
-  const [keywordList, setKeywordList] = useState(["Welcome"]);
+  const [keywordList, setKeywordList] = useState(["/start"]);
   const [keywordContentList, setKeywordContentList] = useState([]);
   const [keywordCategory, setKeywordCategory] = useState([
     { category: "미분류", show: true },
@@ -28,7 +28,7 @@ const ChatbotBuild = (props) => {
 
   const [keywordObject, setKeywordObject] = useState([
     {
-      keyword: "Welcome",
+      keyword: "/start",
       id: 1,
       contents: [],
       completed: false,
