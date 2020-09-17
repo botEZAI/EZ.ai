@@ -4,12 +4,14 @@ const passport = require("passport"); // passport 패키지 설치
 const port = process.env.PORT || 5000; //5000포트 사용 react는 3000포트 proxy로 연결중
 const flash = require("connect-flash"); //일회용 메세지를 출력하는 미들웨어
 const session = require("express-session"); //세선관리용 미들웨어
-const AWS = require("aws-sdk"); //asw sdk
-require("dotenv").config();
+const AWS = require('aws-sdk'); //asw sdk
+require('dotenv').config(); //dotenv 사용
+
+//aws sdk 연결 
 AWS.config.update({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY_ID,
-  region: "ap-northeast-2",
+  region : 'ap-northeast-2'
 });
 
 const cookieParser = require("cookie-parser");
@@ -27,7 +29,8 @@ const videoRouter = require("./routes/video"); //비디오 라우터
 const audioRouter = require("./routes/audio"); //오디오 라우터
 const fileRouter = require("./routes/file"); //파일 라우터
 const authRouter = require("./routes/auth"); //로그인 라우터
-const objectRouter = require("./routes/object"); //오브젝트 관련 라우터
+const objectRouter = require('./routes/object');//오브젝트 관련 라우터
+
 
 // 세션관리 + cookiparser 미들웨어
 app.use(cookieParser("secret code"));
@@ -60,7 +63,7 @@ app.use("/api/video", videoRouter); //비디오
 app.use("/api/audio", audioRouter); //오디오
 app.use("/api/file", fileRouter); //파일
 app.use("/api/user", authRouter); //로그인
-app.use("/object", objectRouter); //오브젝트
+app.use("/object",objectRouter);//오브젝트
 
 // 아직 에러 처리부분 없음
 app.listen(port, () => console.log(`Listening on port ${port}`));
