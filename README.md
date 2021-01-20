@@ -30,7 +30,7 @@
 
 - **2020 상명대학교 졸업 프로젝트 EZ.ai 팀**<br />
 _아래 참여자 이름을 클릭하면, 팀원 개인 github 페이지로 이동합니다._
-> [한창희](https://github.com/Hanswind) <br /> 
+> [한창희](https://github.com/hchayan) <br /> 
 > [최건우](https://github.com/CHOIKEONWOO) <br />
 > [장준영](https://github.com/junyeongjang) <br />
 > [황현정](https://github.com/giraff) <br />
