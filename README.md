@@ -16,7 +16,10 @@
 
 </div>
 
-<h1 align='middle'><a href='https://botezai.com/'>🏠https://botezai.com/</a></h1>
+
+<h4 align='middle' ><a href="#">🛑 현재 서버가 닫혀있습니다 🛑</a></h4>
+
+
 <h3 align='middle'> 쉽게 만드는 챗봇빌더 플랫폼 EZAI</h3>
                  
 <p align='middle'>
