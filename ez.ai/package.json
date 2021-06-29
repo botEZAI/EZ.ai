@@ -17,7 +17,7 @@
         "express-session": "^1.17.0",
         "get-audio-duration": "^2.0.2",
         "google-maps-react": "^2.0.2",
-        "immer": "^5.3.4",
+        "immer": "^8.0.1",
         "multer": "^1.4.2",
         "multer-s3": "^2.9.0",
         "mysql": "^2.17.1",
